@@ -8,7 +8,9 @@ package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * @spec http://www.w3.org/TR/2010/CR-css3-mediaqueries-20100727/#values
@@ -22,10 +24,7 @@ public class CssRatio extends CssValue {
         return type;
     }
 
-    float w;
-    boolean isWInt;
-    float h;
-    boolean isHInt;
+    BigDecimal w, h;
 
 
     /**
@@ -34,17 +33,20 @@ public class CssRatio extends CssValue {
     public CssRatio() {
     }
 
+    public CssRatio(BigDecimal w, BigDecimal h) {
+        this.w = w;
+        this.h = h;
+    }
+
     /**
      * Set the value of this ratio.
      *
      * @param s  the string representation of the ratio.
      * @param ac For errors and warnings reports.
-     * @throws org.w3c.css.util.InvalidParamException
-     *          (incorrect format)
+     * @throws org.w3c.css.util.InvalidParamException (incorrect format)
      */
     public void set(String s, ApplContext ac) throws InvalidParamException {
         String sw, sh;
-        s = s.toLowerCase();
         int slash = s.indexOf('/');
 
         if (slash == -1) {
@@ -56,37 +58,25 @@ public class CssRatio extends CssValue {
         sw = s.substring(0, slash).trim();
         sh = s.substring(slash + 1).trim();
         try {
-            w = Integer.parseInt(sw);
-            isWInt = true;
+            w = new BigDecimal(sw);
         } catch (NumberFormatException nex) {
-            try {
-                w = Float.parseFloat(sw);
-            } catch (NumberFormatException ne) {
-                // not an int, not a float... bail out
-                throw new InvalidParamException("value", s, ac);
-            }
+            // not an int, not a float... bail out
+            throw new InvalidParamException("value", s, ac);
         }
         // sanity check
-        if (w <= 0.f) {
+        if (w.signum() != 1) {
             throw new InvalidParamException("strictly-positive", s, ac);
         }
 
         try {
-            h = Integer.parseInt(sh);
-            isHInt = true;
+            h = new BigDecimal(sh);
         } catch (NumberFormatException nex) {
-            try {
-                h = Float.parseFloat(sh);
-            } catch (NumberFormatException ne) {
-                // not an int, not a float... bail out
-                throw new InvalidParamException("value", s, ac);
-            }
+            throw new InvalidParamException("value", s, ac);
         }
         // sanity check
-        if (h <= 0.f) {
+        if (h.signum() != 1) {
             throw new InvalidParamException("strictly-positive", s, ac);
         }
-
     }
 
     /**
@@ -101,9 +91,7 @@ public class CssRatio extends CssValue {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append((isWInt) ? Integer.toString((int) w) : Util.displayFloat(w));
-        sb.append('/');
-        sb.append((isHInt) ? Integer.toString((int) h) : Util.displayFloat(h));
+        sb.append(w.toPlainString()).append('/').append(h.toPlainString());
         return sb.toString();
     }
 
@@ -116,7 +104,10 @@ public class CssRatio extends CssValue {
         try {
             CssRatio other = (CssRatio) value;
             // check that the ratio are the same
-            return (Float.compare(w / h, other.w / other.h) == 0);
+            BigDecimal ratio, other_ratio;
+            ratio = w.divide(h, RoundingMode.CEILING);
+            other_ratio = other.w.divide(other.h, RoundingMode.CEILING);
+            return (ratio.compareTo(other_ratio) == 0);
         } catch (ClassCastException cce) {
             return false;
         }
