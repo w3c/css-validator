@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-outline
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-outline
  * @see org.w3c.css.properties.css3.CssBorderStyle
  * @see org.w3c.css.properties.css3.CssBorderWidth
  */
