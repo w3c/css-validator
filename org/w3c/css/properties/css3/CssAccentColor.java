@@ -13,34 +13,34 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-outline-color
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-accent-color
  */
-public class CssOutlineColor extends org.w3c.css.properties.css.CssOutlineColor {
+public class CssAccentColor extends org.w3c.css.properties.css.CssAccentColor {
 
-    public static final CssIdent invert = CssIdent.getIdent("invert");
+    public static final CssIdent auto = CssIdent.getIdent("auto");
 
     public static final CssIdent getMatchingIdent(CssIdent ident) {
-        if (invert.equals(ident)) {
+        if (auto.equals(ident)) {
             return ident;
         }
         return null;
     }
 
     /**
-     * Create a new CssOutlineColor
+     * Create a new CssAccentColor
      */
-    public CssOutlineColor() {
+    public CssAccentColor() {
         value = initial;
     }
 
     /**
-     * Creates a new CssOutlineColor
+     * Creates a new CssAccentColor
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
+     * @throws InvalidParamException
      *          Expressions are incorrect
      */
-    public CssOutlineColor(ApplContext ac, CssExpression expression, boolean check)
+    public CssAccentColor(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -61,8 +61,8 @@ public class CssOutlineColor extends org.w3c.css.properties.css.CssOutlineColor 
                 expression.next();
                 break;
             case CssTypes.CSS_IDENT:
-                if (invert.equals(val)) {
-                    value = invert;
+                if (auto.equals(val)) {
+                    value = auto;
                     expression.next();
                     break;
                 }
@@ -91,7 +91,7 @@ public class CssOutlineColor extends org.w3c.css.properties.css.CssOutlineColor 
         }
     }
 
-    public CssOutlineColor(ApplContext ac, CssExpression expression)
+    public CssAccentColor(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

@@ -12,22 +12,32 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-ui-4-20171222/#propdef-appearance
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-appearance
  */
 
 public class CssAppearance extends org.w3c.css.properties.css.CssAppearance {
 
     public static final CssIdent auto = CssIdent.getIdent("auto");
 
-    public static final CssIdent[] allowed_values;
+    public static final CssIdent[] allowed_values, compat_auto;
 
     static {
-        int i = 0;
-        String[] _allowed_values = {"auto", "none"};
-        allowed_values = new CssIdent[_allowed_values.length];
+        int i;
+        String[] _allowed_values = {"none", "auto", "textfield", "menulist-button"};
+        String[] _compat_values = {"searchfield", "textarea", "push-button", "slider-horizontal", "checkbox", "radio",
+                "square-button", "menulist", "listbox", "meter", "progress-bar", "button"};
+        allowed_values = new CssIdent[_allowed_values.length + _compat_values.length];
+        compat_auto = new CssIdent[_compat_values.length];
         i = 0;
         for (String s : _allowed_values) {
             allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        for (String s : _compat_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        i = 0;
+        for (String s : _compat_values) {
+            compat_auto[i++] = CssIdent.getIdent(s);
         }
     }
 
@@ -38,6 +48,15 @@ public class CssAppearance extends org.w3c.css.properties.css.CssAppearance {
             }
         }
         return null;
+    }
+
+    public static boolean isCompatAuto(CssIdent ident) {
+        for (CssIdent id : compat_auto) {
+            if (id.equals(ident)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -76,6 +95,12 @@ public class CssAppearance extends org.w3c.css.properties.css.CssAppearance {
                     throw new InvalidParamException("value", val.toString(),
                             getPropertyName(), ac);
                 }
+                // output will use auto
+                if (isCompatAuto(id)) {
+                    // need a specific warning to tell that it is seen as "auto"?
+                    ac.getFrame().addWarning("value-unofficial");
+                    value = auto;
+                }
             }
         } else {
             throw new InvalidParamException("value", val.toString(),
@@ -90,7 +115,7 @@ public class CssAppearance extends org.w3c.css.properties.css.CssAppearance {
     }
 
     public boolean isDefault() {
-        return ((value == auto) || (value == initial));
+        return ((value == none) || (value == initial));
     }
 
 }

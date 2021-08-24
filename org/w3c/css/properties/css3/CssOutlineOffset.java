@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-outline-offset
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-outline-offset
  */
 public class CssOutlineOffset extends org.w3c.css.properties.css.CssOutlineOffset {
 

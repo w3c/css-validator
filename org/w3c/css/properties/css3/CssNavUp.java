@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-nav-up
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-nav-up
  */
 public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
 
@@ -74,7 +74,7 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
             throws InvalidParamException {
 
         setByUser();
-        value = checkValues(ac, expression, check, this);
+        value = parseNav(ac, expression, check, this);
     }
 
     /**
@@ -96,8 +96,8 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
 
     // the main check is here (to be shared with other
     // nav-<dir>
-    protected static CssValue checkValues(ApplContext ac, CssExpression expression,
-                                          boolean check, CssProperty caller)
+    protected static CssValue parseNav(ApplContext ac, CssExpression expression,
+                                       boolean check, CssProperty caller)
             throws InvalidParamException {
         if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);

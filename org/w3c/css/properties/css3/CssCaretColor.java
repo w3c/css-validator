@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-caret-color
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-caret-color
  */
 public class CssCaretColor extends org.w3c.css.properties.css.CssCaretColor {
 

@@ -11,6 +11,7 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.atsc.ATSCStyle;
+import org.w3c.css.properties.css.CssAccentColor;
 import org.w3c.css.properties.css.CssAlignContent;
 import org.w3c.css.properties.css.CssAlignItems;
 import org.w3c.css.properties.css.CssAlignSelf;
@@ -605,7 +606,17 @@ public class Css3Style extends ATSCStyle {
     public CssBorderEndStartRadius cssBorderEndStartRadius;
     public CssBorderEndEndRadius cssBorderEndEndRadius;
     public CssAspectRatio cssAspectRatio;
+    public CssAccentColor cssAccentColor;
 
+    public CssAccentColor getAccentColor() {
+        if (cssAccentColor == null) {
+            cssAccentColor =
+                    (CssAccentColor) style.CascadingOrder(new CssAccentColor(),
+                            style, selector);
+        }
+        return cssAccentColor;
+    }
+    
     public CssAspectRatio getAspectRatio() {
         if (cssAspectRatio == null) {
             cssAspectRatio =
