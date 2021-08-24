@@ -9,40 +9,60 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
+import static org.w3c.css.values.CssOperator.SPACE;
+
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-decoration-line0
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#text-decoration-line-property
  */
 public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDecorationLine {
 
-    public static final CssIdent underline, overline, line_through;
+    private static CssIdent[] single_allowed_values, multiple_allowed_values;
 
     static {
-        underline = CssIdent.getIdent("underline");
-        overline = CssIdent.getIdent("overline");
-        line_through = CssIdent.getIdent("line-through");
+        String _single_values[] = {"none", "spelling-error", "grammar-error"};
+        single_allowed_values = new CssIdent[_single_values.length];
+        int i = 0;
+        for (String s : _single_values) {
+            single_allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        String _multiple_values[] = {"underline", "overline", "line-through", "blink"};
+        multiple_allowed_values = new CssIdent[_multiple_values.length];
+        i = 0;
+        for (String s : _multiple_values) {
+            multiple_allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    protected static final CssIdent getSingleAllowedValue(CssIdent ident) {
+        for (CssIdent id : single_allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
+    protected static final CssIdent getMultipleAllowedValue(CssIdent ident) {
+        for (CssIdent id : multiple_allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
     }
 
     public static final CssIdent getAllowedValue(CssIdent ident) {
-        if (none.equals(ident)) {
-            return none;
+        CssIdent id = getSingleAllowedValue(ident);
+        if (id != null) {
+            return id;
         }
-        if (underline.equals(ident)) {
-            return underline;
-        }
-        if (overline.equals(ident)) {
-            return overline;
-        }
-        if (line_through.equals(ident)) {
-            return line_through;
-        }
-        return null;
+        return getMultipleAllowedValue(ident);
     }
 
     /**
@@ -56,95 +76,72 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
      * Creates a new CssTextDecorationLine
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextDecorationLine(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        if (check && expression.getCount() > 3) {
+        if (check && expression.getCount() > multiple_allowed_values.length) {
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();
 
-        CssValue val;
+        CssValue val, v;
+        CssIdent id;
         char op;
 
-        CssIdent underlineValue = null;
-        CssIdent overlineValue = null;
-        CssIdent lineThroughValue = null;
+        ArrayList<CssValue> values = new ArrayList<>();
 
-        val = expression.getValue();
-        op = expression.getOperator();
-
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    val.toString(),
-                    getPropertyName(), ac);
-        }
-
-        CssIdent ident = (CssIdent) val;
-        if (inherit.equals(ident)) {
-            value = inherit;
-            if (check && expression.getCount() != 1) {
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            if (val.getType() != CssTypes.CSS_IDENT) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         getPropertyName(), ac);
             }
-        } else if (none.equals(ident)) {
-            value = none;
-            if (check && expression.getCount() != 1) {
+            id = (CssIdent) val;
+            if (inherit.equals(id)) {
+                if (expression.getCount() != 1) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                values.add(inherit);
+                break;
+            }
+            v = getSingleAllowedValue(id);
+            if (v != null) {
+                if (expression.getCount() != 1) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                values.add(v);
+                break;
+            }
+            v = getMultipleAllowedValue(id);
+            if (v == null) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         getPropertyName(), ac);
             }
-        } else {
-            int nbgot = 0;
-            do {
-                if (underlineValue == null && underline.equals(ident)) {
-                    underlineValue = underline;
-                } else if (overlineValue == null && overline.equals(ident)) {
-                    overlineValue = overline;
-                } else if (lineThroughValue == null && line_through.equals(ident)) {
-                    lineThroughValue = line_through;
-                } else {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-                nbgot++;
-                if (expression.getRemainingCount() == 1 || (!check && nbgot == 3)) {
-                    // if we have both, exit
-                    // (needed only if check == false...
-                    break;
-                }
-                if (op != CssOperator.SPACE) {
-                    throw new InvalidParamException("operator",
-                            Character.toString(op), ac);
-                }
-                expression.next();
-                val = expression.getValue();
-                op = expression.getOperator();
-                if (val.getType() != CssTypes.CSS_IDENT) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-                ident = (CssIdent) val;
-            } while (!expression.end());
-            // now construct the value
-            ArrayList<CssValue> v = new ArrayList<CssValue>(nbgot);
-            if (underlineValue != null) {
-                v.add(underlineValue);
+            values.add(v);
+            expression.next();
+
+            if (!expression.end() && (op != SPACE)) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op), ac);
             }
-            if (overlineValue != null) {
-                v.add(overlineValue);
-            }
-            if (lineThroughValue != null) {
-                v.add(lineThroughValue);
-            }
-            value = (nbgot > 1) ? new CssValueList(v) : v.get(0);
         }
-        expression.next();
+        // sanity check
+        for (int i=0; i< values.size(); i++) {
+            if (values.lastIndexOf(values.get(i)) != i) {
+                throw new InvalidParamException("value",
+                        values.get(i).toString(),
+                        getPropertyName(), ac);
+            }
+        }
+        value = (values.size() > 1) ? new CssValueList(values) : values.get(0);
     }
 
     public CssTextDecorationLine(ApplContext ac, CssExpression expression)
