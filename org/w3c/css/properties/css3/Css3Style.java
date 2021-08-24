@@ -182,6 +182,7 @@ import org.w3c.css.properties.css.CssObjectPosition;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOrder;
 import org.w3c.css.properties.css.CssOutlineOffset;
+import org.w3c.css.properties.css.CssOverflowAnchor;
 import org.w3c.css.properties.css.CssOverflowStyle;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssOverflowX;
@@ -607,7 +608,17 @@ public class Css3Style extends ATSCStyle {
     public CssBorderEndEndRadius cssBorderEndEndRadius;
     public CssAspectRatio cssAspectRatio;
     public CssAccentColor cssAccentColor;
+    public CssOverflowAnchor cssOverflowAnchor;
 
+    public CssOverflowAnchor getOverflowAnchor() {
+        if (cssOverflowAnchor == null) {
+            cssOverflowAnchor =
+                    (CssOverflowAnchor) style.CascadingOrder(new CssOverflowAnchor(),
+                            style, selector);
+        }
+        return cssOverflowAnchor;
+    }
+    
     public CssAccentColor getAccentColor() {
         if (cssAccentColor == null) {
             cssAccentColor =
