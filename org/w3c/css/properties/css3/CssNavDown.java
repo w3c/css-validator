@@ -11,7 +11,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-nav-down
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-nav-up
  * @see CssNavUp
  */
 public class CssNavDown extends org.w3c.css.properties.css.CssNavDown {
@@ -38,7 +38,7 @@ public class CssNavDown extends org.w3c.css.properties.css.CssNavDown {
             throws InvalidParamException {
 
         setByUser();
-        value = CssNavUp.checkValues(ac, expression, check, this);
+        value = CssNavUp.parseNav(ac, expression, check, this);
     }
 
     /**

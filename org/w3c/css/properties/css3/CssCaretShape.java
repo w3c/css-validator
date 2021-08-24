@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-caret-shape
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-caret-shape
  */
 public class CssCaretShape extends org.w3c.css.properties.css.CssCaretShape {
 
