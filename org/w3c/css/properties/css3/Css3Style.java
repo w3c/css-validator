@@ -241,6 +241,7 @@ import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
 import org.w3c.css.properties.css.CssTextDecorationSkip;
 import org.w3c.css.properties.css.CssTextDecorationStyle;
+import org.w3c.css.properties.css.CssTextDecorationThickness;
 import org.w3c.css.properties.css.CssTextEmphasis;
 import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
@@ -609,7 +610,17 @@ public class Css3Style extends ATSCStyle {
     public CssAspectRatio cssAspectRatio;
     public CssAccentColor cssAccentColor;
     public CssOverflowAnchor cssOverflowAnchor;
-
+    public CssTextDecorationThickness cssTextDecorationThickness;
+    
+    public CssTextDecorationThickness getTextDecorationThickness() {
+        if (cssTextDecorationThickness == null) {
+            cssTextDecorationThickness =
+                    (CssTextDecorationThickness) style.CascadingOrder(new CssTextDecorationThickness(),
+                            style, selector);
+        }
+        return cssTextDecorationThickness;
+    }
+    
     public CssOverflowAnchor getOverflowAnchor() {
         if (cssOverflowAnchor == null) {
             cssOverflowAnchor =
