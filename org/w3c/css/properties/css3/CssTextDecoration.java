@@ -18,19 +18,15 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-decoration0
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-decoration
  */
 public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecoration {
 
-    public static final CssIdent blink;
-
-    static {
-        blink = CssIdent.getIdent("blink");
-    }
 
     CssTextDecorationLine lineValue = null;
     CssTextDecorationColor colorValue = null;
     CssTextDecorationStyle styleValue = null;
+    CssTextDecorationThickness thicknessValue = null;
 
     /**
      * Create a new CssTextDecoration
@@ -43,12 +39,11 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
      * Creates a new CssTextDecoration
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextDecoration(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        if (check && expression.getCount() > 6) {
+        if (check && expression.getCount() > CssTextDecorationLine.multiple_allowed_values.length + 3) {
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();
@@ -57,9 +52,10 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
         char op;
 
         CssIdent styValue = null;
-        CssIdent bliValue = null;
         CssValue colValue = null;
+        CssValue thiValue = null;
         CssExpression linExp = null;
+        CssExpression thiExp = null;
 
         int state = 0;
 
@@ -68,13 +64,36 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
             op = expression.getOperator();
 
             if (val.getType() != CssTypes.CSS_IDENT) {
-                if (colValue != null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
+                switch (val.getType()) {
+                    case CssTypes.CSS_NUMBER:
+                    case CssTypes.CSS_PERCENTAGE:
+                    case CssTypes.CSS_LENGTH:
+                        if (thiValue != null) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        try {
+                            thiExp = new CssExpression();
+                            thiExp.addValue(val);
+                            thicknessValue = new CssTextDecorationThickness(ac, thiExp, check);
+                        } catch (Exception ex) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        thiValue = val;
+                        expression.next();
+                        break;
+                    default:
+                        if (colValue != null) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        CssColor c = new CssColor(ac, expression, false);
+                        colValue = c.getColor();
                 }
-                CssColor c = new CssColor(ac, expression, false);
-                colValue = c.getColor();
                 state *= 2;
                 // constructor is providing expression.next()
             } else {
@@ -101,10 +120,11 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
                             expression.next();
                         }
                     }
-                    // blink (single value)
-                    if (!match && bliValue == null) {
-                        if (blink.equals(ident)) {
-                            bliValue = blink;
+                    // thickness (single value)
+                    if (!match && thiValue == null) {
+                        id = CssTextDecorationThickness.getMatchingIdent(ident);
+                        if (id != null) {
+                            thiValue = id;
                             match = true;
                             state *= 2;
                             expression.next();
@@ -168,8 +188,10 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
             value = styValue;
             got++;
         }
-        if (bliValue != null) {
-            value = bliValue;
+        if (thiValue != null) {
+            thicknessValue = new CssTextDecorationThickness();
+            thicknessValue.value = thiValue;
+            value = thiValue;
             got++;
         }
         // and generate the value;
@@ -184,8 +206,8 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
             if (colValue != null) {
                 v.add(colValue);
             }
-            if (bliValue != null) {
-                v.add(bliValue);
+            if (thiValue != null) {
+                v.add(thiValue);
             }
             value = new CssValueList(v);
         }
@@ -212,6 +234,9 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
         }
         if (lineValue != null) {
             lineValue.addToStyle(ac, style);
+        }
+        if (thicknessValue != null) {
+            thicknessValue.addToStyle(ac, style);
         }
     }
 }

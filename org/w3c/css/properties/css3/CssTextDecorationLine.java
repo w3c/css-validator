@@ -22,7 +22,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDecorationLine {
 
-    private static CssIdent[] single_allowed_values, multiple_allowed_values;
+    protected static CssIdent[] single_allowed_values, multiple_allowed_values;
 
     static {
         String _single_values[] = {"none", "spelling-error", "grammar-error"};
