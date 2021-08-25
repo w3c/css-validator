@@ -240,6 +240,7 @@ import org.w3c.css.properties.css.CssTextCombineUpright;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
 import org.w3c.css.properties.css.CssTextDecorationSkip;
+import org.w3c.css.properties.css.CssTextDecorationSkipSelf;
 import org.w3c.css.properties.css.CssTextDecorationStyle;
 import org.w3c.css.properties.css.CssTextDecorationThickness;
 import org.w3c.css.properties.css.CssTextEmphasis;
@@ -613,7 +614,17 @@ public class Css3Style extends ATSCStyle {
     public CssOverflowAnchor cssOverflowAnchor;
     public CssTextDecorationThickness cssTextDecorationThickness;
     public CssTextUnderlineOffset cssTextUnderlineOffset;
+    public CssTextDecorationSkipSelf cssTextDecorationSkipSelf;
 
+    public CssTextDecorationSkipSelf getTextDecorationSkipSelf() {
+        if (cssTextDecorationSkipSelf == null) {
+            cssTextDecorationSkipSelf =
+                    (CssTextDecorationSkipSelf) style.CascadingOrder(new CssTextDecorationSkipSelf(),
+                            style, selector);
+        }
+        return cssTextDecorationSkipSelf;
+    }
+    
     public CssTextUnderlineOffset getTextUnderlineOffset() {
         if (cssTextUnderlineOffset == null) {
             cssTextUnderlineOffset =
