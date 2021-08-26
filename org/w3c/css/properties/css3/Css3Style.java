@@ -241,6 +241,7 @@ import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
 import org.w3c.css.properties.css.CssTextDecorationSkip;
 import org.w3c.css.properties.css.CssTextDecorationSkipBox;
+import org.w3c.css.properties.css.CssTextDecorationSkipInk;
 import org.w3c.css.properties.css.CssTextDecorationSkipInset;
 import org.w3c.css.properties.css.CssTextDecorationSkipSelf;
 import org.w3c.css.properties.css.CssTextDecorationStyle;
@@ -619,7 +620,17 @@ public class Css3Style extends ATSCStyle {
     public CssTextDecorationSkipSelf cssTextDecorationSkipSelf;
     public CssTextDecorationSkipBox cssTextDecorationSkipBox;
     public CssTextDecorationSkipInset cssTextDecorationSkipInset;
+    public CssTextDecorationSkipInk cssTextDecorationSkipInk;
 
+    public CssTextDecorationSkipInk getTextDecorationSkipInk() {
+        if (cssTextDecorationSkipInk == null) {
+            cssTextDecorationSkipInk =
+                    (CssTextDecorationSkipInk) style.CascadingOrder(new CssTextDecorationSkipInk(),
+                            style, selector);
+        }
+        return cssTextDecorationSkipInk;
+    }
+    
     public CssTextDecorationSkipInset getTextDecorationSkipInset() {
         if (cssTextDecorationSkipInset == null) {
             cssTextDecorationSkipInset =
