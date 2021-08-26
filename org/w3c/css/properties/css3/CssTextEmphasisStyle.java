@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-emphasis-style01
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-emphasis-style
  */
 public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmphasisStyle {
 

@@ -20,7 +20,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-shadow0
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-shadow
  */
 public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
 
