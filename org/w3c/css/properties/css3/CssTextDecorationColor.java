@@ -11,7 +11,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-decoration-color0
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-decoration-color
  */
 public class CssTextDecorationColor extends org.w3c.css.properties.css.CssTextDecorationColor {
 

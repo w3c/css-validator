@@ -17,12 +17,12 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2013/WD-css-text-decor-3-20130103/#text-underline-position
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#text-underline-position-property
  */
 public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssTextUnderlinePosition {
 
-    public static final CssIdent auto, alphabetic, below;
-    public static final CssIdent[] horizontalValues;
+    public static final CssIdent auto;
+    public static final CssIdent[] horizontalValues, verticalValues;
 
     static {
         String[] _horizontalValues = {"left", "right"};
@@ -31,8 +31,12 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
         for (String s : _horizontalValues) {
             horizontalValues[i++] = CssIdent.getIdent(s);
         }
-        alphabetic = CssIdent.getIdent("alphabetic");
-        below = CssIdent.getIdent("under");
+        String[] _verticalValues = {"under", "from-font"};
+        verticalValues = new CssIdent[_verticalValues.length];
+        i = 0;
+        for (String s : _verticalValues) {
+            verticalValues[i++] = CssIdent.getIdent(s);
+        }
         auto = CssIdent.getIdent("auto");
     }
 
@@ -45,17 +49,24 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
         return null;
     }
 
+    public static CssIdent getVerticalValue(CssIdent ident) {
+        for (CssIdent id : verticalValues) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
     public static final CssIdent getAllowedValue(CssIdent ident) {
         if (auto.equals(ident)) {
             return auto;
         }
-        if (alphabetic.equals(ident)) {
-            return alphabetic;
+        CssIdent id = getHorizontalValue(ident);
+        if (id != null) {
+            return id;
         }
-        if (below.equals(ident)) {
-            return below;
-        }
-        return getHorizontalValue(ident);
+        return getVerticalValue(ident);
     }
 
     /**
@@ -69,8 +80,7 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
      * Creates a new CssTextUnderlinePosition
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextUnderlinePosition(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -109,21 +119,15 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
                         val.toString(),
                         getPropertyName(), ac);
             }
-        } else if (alphabetic.equals(ident)) {
-            value = alphabetic;
-            if (check && expression.getCount() != 1) {
-                throw new InvalidParamException("value",
-                        val.toString(),
-                        getPropertyName(), ac);
-            }
         } else {
             int nbgot = 0;
             do {
                 boolean match = false;
-                if (verValue == null && below.equals(ident)) {
-                    verValue = below;
-                    match = true;
-                } else if (horValue == null) {
+                if (verValue == null) {
+                    verValue = getVerticalValue(ident);
+                    match = (verValue != null);
+                }
+                if (!match && horValue == null) {
                     horValue = getHorizontalValue(ident);
                     match = (horValue != null);
                 }
@@ -152,6 +156,7 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
                 }
                 ident = (CssIdent) val;
             } while (!expression.end());
+
             // now construct the value
             ArrayList<CssValue> v = new ArrayList<CssValue>(nbgot);
             if (horValue != null) {

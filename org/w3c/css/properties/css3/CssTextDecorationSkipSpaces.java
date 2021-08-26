@@ -18,20 +18,20 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#text-decoration-line-property
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-decoration-skip-spaces
  */
-public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDecorationLine {
+public class CssTextDecorationSkipSpaces extends org.w3c.css.properties.css.CssTextDecorationSkipSpaces {
 
     protected static CssIdent[] single_allowed_values, multiple_allowed_values;
 
     static {
-        String _single_values[] = {"none", "spelling-error", "grammar-error"};
+        String _single_values[] = {"none", "all"};
         single_allowed_values = new CssIdent[_single_values.length];
         int i = 0;
         for (String s : _single_values) {
             single_allowed_values[i++] = CssIdent.getIdent(s);
         }
-        String _multiple_values[] = {"underline", "overline", "line-through", "blink"};
+        String _multiple_values[] = {"start", "end"};
         multiple_allowed_values = new CssIdent[_multiple_values.length];
         i = 0;
         for (String s : _multiple_values) {
@@ -65,20 +65,21 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
         return getMultipleAllowedValue(ident);
     }
 
+
     /**
-     * Create a new CssTextDecorationLine
+     * Create a new CssTextDecorationSkipSpaces
      */
-    public CssTextDecorationLine() {
+    public CssTextDecorationSkipSpaces() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextDecorationLine
+     * Creates a new CssTextDecorationSkipSpaces
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssTextDecorationLine(ApplContext ac, CssExpression expression, boolean check)
+    public CssTextDecorationSkipSpaces(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         if (check && expression.getCount() > multiple_allowed_values.length) {
             throw new InvalidParamException("unrecognize", ac);
@@ -144,7 +145,7 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
         value = (values.size() > 1) ? new CssValueList(values) : values.get(0);
     }
 
-    public CssTextDecorationLine(ApplContext ac, CssExpression expression)
+    public CssTextDecorationSkipSpaces(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

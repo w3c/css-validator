@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2013/WD-css-text-decor-3-20130103/#text-emphasis-position
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-emphasis-position
  */
 public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextEmphasisPosition {
 

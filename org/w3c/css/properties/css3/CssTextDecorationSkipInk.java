@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-decoration-style
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-decoration-skip-ink
  */
-public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDecorationStyle {
+public class CssTextDecorationSkipInk extends org.w3c.css.properties.css.CssTextDecorationSkipInk {
 
     private static CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"solid", "double", "dotted", "dashed", "wavy"};
+        String id_values[] = {"auto", "none", "all"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -38,20 +38,19 @@ public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDe
     }
 
     /**
-     * Create a new CssTextDecorationStyle
+     * Create a new CssTextDecorationSkipInk
      */
-    public CssTextDecorationStyle() {
+    public CssTextDecorationSkipInk() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextDecorationStyle
+     * Creates a new CssTextDecorationSkipInk
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssTextDecorationStyle(ApplContext ac, CssExpression expression, boolean check)
+    public CssTextDecorationSkipInk(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -60,27 +59,25 @@ public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDe
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+        switch (val.getType()) {
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                value = getMatchingIdent((CssIdent) val);
+                if (value != null) {
+                    break;
+                }
+            default:
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
-            }
-            value = val;
         }
         expression.next();
     }
 
-    public CssTextDecorationStyle(ApplContext ac, CssExpression expression)
+    public CssTextDecorationSkipInk(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

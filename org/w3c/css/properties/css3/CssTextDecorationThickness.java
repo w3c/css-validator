@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2021.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#propdef-text-decoration-style
+ * @spec https://www.w3.org/TR/2020/WD-css-text-decor-4-20200506/#text-decoration-width-property
  */
-public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDecorationStyle {
+public class CssTextDecorationThickness extends org.w3c.css.properties.css.CssTextDecorationStyle {
 
     private static CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"solid", "double", "dotted", "dashed", "wavy"};
+        String id_values[] = {"auto", "from-font"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -40,7 +40,7 @@ public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDe
     /**
      * Create a new CssTextDecorationStyle
      */
-    public CssTextDecorationStyle() {
+    public CssTextDecorationThickness() {
         value = initial;
     }
 
@@ -48,10 +48,9 @@ public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDe
      * Creates a new CssTextDecorationStyle
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssTextDecorationStyle(ApplContext ac, CssExpression expression, boolean check)
+    public CssTextDecorationThickness(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -60,27 +59,34 @@ public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDe
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().getLength();
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                val.getCheckableValue().checkPositiveness(ac, getPropertyName());
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                } else {
+                    val = getMatchingIdent((CssIdent) val);
+                    if (val != null) {
+                        value = val;
+                        break;
+                    }
+                }
+            default:
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
-            }
-            value = val;
+
         }
         expression.next();
     }
 
-    public CssTextDecorationStyle(ApplContext ac, CssExpression expression)
+    public CssTextDecorationThickness(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

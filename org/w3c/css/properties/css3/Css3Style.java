@@ -240,7 +240,13 @@ import org.w3c.css.properties.css.CssTextCombineUpright;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
 import org.w3c.css.properties.css.CssTextDecorationSkip;
+import org.w3c.css.properties.css.CssTextDecorationSkipBox;
+import org.w3c.css.properties.css.CssTextDecorationSkipInk;
+import org.w3c.css.properties.css.CssTextDecorationSkipInset;
+import org.w3c.css.properties.css.CssTextDecorationSkipSelf;
+import org.w3c.css.properties.css.CssTextDecorationSkipSpaces;
 import org.w3c.css.properties.css.CssTextDecorationStyle;
+import org.w3c.css.properties.css.CssTextDecorationThickness;
 import org.w3c.css.properties.css.CssTextEmphasis;
 import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
@@ -249,6 +255,7 @@ import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextOrientation;
 import org.w3c.css.properties.css.CssTextOverflow;
 import org.w3c.css.properties.css.CssTextSizeAdjust;
+import org.w3c.css.properties.css.CssTextUnderlineOffset;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
 import org.w3c.css.properties.css.CssTouchAction;
 import org.w3c.css.properties.css.CssTransform;
@@ -609,7 +616,77 @@ public class Css3Style extends ATSCStyle {
     public CssAspectRatio cssAspectRatio;
     public CssAccentColor cssAccentColor;
     public CssOverflowAnchor cssOverflowAnchor;
+    public CssTextDecorationThickness cssTextDecorationThickness;
+    public CssTextUnderlineOffset cssTextUnderlineOffset;
+    public CssTextDecorationSkipSelf cssTextDecorationSkipSelf;
+    public CssTextDecorationSkipBox cssTextDecorationSkipBox;
+    public CssTextDecorationSkipInset cssTextDecorationSkipInset;
+    public CssTextDecorationSkipInk cssTextDecorationSkipInk;
+    public CssTextDecorationSkipSpaces cssTextDecorationSkipSpaces;
 
+    public CssTextDecorationSkipSpaces getTextDecorationSkipSpaces() {
+        if (cssTextDecorationSkipSpaces == null) {
+            cssTextDecorationSkipSpaces =
+                    (CssTextDecorationSkipSpaces) style.CascadingOrder(new CssTextDecorationSkipSpaces(),
+                            style, selector);
+        }
+        return cssTextDecorationSkipSpaces;
+    }
+    
+    public CssTextDecorationSkipInk getTextDecorationSkipInk() {
+        if (cssTextDecorationSkipInk == null) {
+            cssTextDecorationSkipInk =
+                    (CssTextDecorationSkipInk) style.CascadingOrder(new CssTextDecorationSkipInk(),
+                            style, selector);
+        }
+        return cssTextDecorationSkipInk;
+    }
+    
+    public CssTextDecorationSkipInset getTextDecorationSkipInset() {
+        if (cssTextDecorationSkipInset == null) {
+            cssTextDecorationSkipInset =
+                    (CssTextDecorationSkipInset) style.CascadingOrder(new CssTextDecorationSkipInset(),
+                            style, selector);
+        }
+        return cssTextDecorationSkipInset;
+    }
+    
+    public CssTextDecorationSkipBox getTextDecorationSkipBox() {
+        if (cssTextDecorationSkipBox == null) {
+            cssTextDecorationSkipBox =
+                    (CssTextDecorationSkipBox) style.CascadingOrder(new CssTextDecorationSkipBox(),
+                            style, selector);
+        }
+        return cssTextDecorationSkipBox;
+    }
+    
+    public CssTextDecorationSkipSelf getTextDecorationSkipSelf() {
+        if (cssTextDecorationSkipSelf == null) {
+            cssTextDecorationSkipSelf =
+                    (CssTextDecorationSkipSelf) style.CascadingOrder(new CssTextDecorationSkipSelf(),
+                            style, selector);
+        }
+        return cssTextDecorationSkipSelf;
+    }
+    
+    public CssTextUnderlineOffset getTextUnderlineOffset() {
+        if (cssTextUnderlineOffset == null) {
+            cssTextUnderlineOffset =
+                    (CssTextUnderlineOffset) style.CascadingOrder(new CssTextUnderlineOffset(),
+                            style, selector);
+        }
+        return cssTextUnderlineOffset;
+    }
+    
+    public CssTextDecorationThickness getTextDecorationThickness() {
+        if (cssTextDecorationThickness == null) {
+            cssTextDecorationThickness =
+                    (CssTextDecorationThickness) style.CascadingOrder(new CssTextDecorationThickness(),
+                            style, selector);
+        }
+        return cssTextDecorationThickness;
+    }
+    
     public CssOverflowAnchor getOverflowAnchor() {
         if (cssOverflowAnchor == null) {
             cssOverflowAnchor =
