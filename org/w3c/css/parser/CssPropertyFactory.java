@@ -253,6 +253,10 @@ public class CssPropertyFactory implements Cloneable {
             throw new WarningParamException("vendor-extension", expression.toStringFromStart());
         }
 
+        if (expression.hasCssVariable()) {
+            throw new WarningParamException("css-variable", expression.toStringFromStart());
+        }
+
         if (ac.getTreatCssHacksAsWarnings() && expression.hasCssHack()) {
             throw new WarningParamException("css-hack", expression.toStringFromStart());
         }
