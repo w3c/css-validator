@@ -38,6 +38,7 @@ import org.w3c.css.values.CssRatio;
 import org.w3c.css.values.CssSemitone;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssVolume;
+import org.w3c.css.values.CssVariable;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
