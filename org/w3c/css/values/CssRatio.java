@@ -24,7 +24,8 @@ public class CssRatio extends CssValue {
         return type;
     }
 
-    BigDecimal w, h;
+    BigDecimal w = null, h = null;
+    CssValue gw = null, gh = null;
 
 
     /**
@@ -36,6 +37,37 @@ public class CssRatio extends CssValue {
     public CssRatio(BigDecimal w, BigDecimal h) {
         this.w = w;
         this.h = h;
+    }
+
+    public CssRatio(BigDecimal w, CssValue gh) {
+        this.w = w;
+        try {
+            this.h = gh.getNumber().getBigDecimalValue();
+        } catch (Exception ex) {
+            this.gh = gh;
+        }
+    }
+
+    public CssRatio(CssValue gw, BigDecimal h) {
+        try {
+            this.w = gw.getNumber().getBigDecimalValue();
+        } catch (Exception ex) {
+            this.gw = gw;
+        }
+        this.h = h;
+    }
+
+    public CssRatio(CssValue gw, CssValue gh) {
+        try {
+            this.w = gw.getNumber().getBigDecimalValue();
+        } catch (Exception ex) {
+            this.gw = gw;
+        }
+        try {
+            this.h = gh.getNumber().getBigDecimalValue();
+        } catch (Exception ex) {
+            this.gh = gh;
+        }
     }
 
     /**
@@ -91,7 +123,17 @@ public class CssRatio extends CssValue {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(w.toPlainString()).append('/').append(h.toPlainString());
+        if (w != null) {
+            sb.append(w.toPlainString());
+        } else {
+            sb.append(gw.toString()).append(' ');
+        }
+        sb.append('/');
+        if (h != null) {
+            sb.append(h.toPlainString());
+        } else {
+            sb.append(gh.toString());
+        }
         return sb.toString();
     }
 
@@ -109,6 +151,8 @@ public class CssRatio extends CssValue {
             other_ratio = other.w.divide(other.h, RoundingMode.CEILING);
             return (ratio.compareTo(other_ratio) == 0);
         } catch (ClassCastException cce) {
+            return false;
+        }  catch (Exception ex) {
             return false;
         }
     }
