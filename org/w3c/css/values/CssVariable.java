@@ -191,4 +191,46 @@ public class CssVariable extends CssCheckableValue {
                 this.variable_name.equals(((CssVariable) value).variable_name));
     }
 
+    // extras for conflict resolution
+    public CssLength getLength() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_LENGTH) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getLength();
+    }
+
+    public CssPercentage getPercentage() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_PERCENTAGE) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getPercentage();
+    }
+
+    public CssNumber getNumber() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_NUMBER) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getNumber();
+    }
+
+    public CssTime getTime() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_TIME) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getTime();
+    }
+
+    public CssAngle getAngle() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_ANGLE) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getAngle();
+    }
+
+    public CssFrequency getFrequency() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_FREQUENCY) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getFrequency();
+    }
 }
