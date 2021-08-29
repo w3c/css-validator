@@ -59,7 +59,6 @@ import org.w3c.css.values.CssRatio;
 import org.w3c.css.values.CssSemitone;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssVolume;
-import org.w3c.css.values.CssVariable;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
@@ -406,23 +405,11 @@ public abstract class CssParser {
       	        if (f.getParameters().hasVendorExtensions()) {
       	            expr.markVendorExtension();
                 }
-                if (f.getParameters().hasCssVariable()) {
-                    expr.markCssVariable();
-                }
                 if (f.getParameters().hasCssHack()) {
                     expr.markCssHack();
                 }
-            } else if ( v.getType() == CssTypes.CSS_CALC) {
-                CssCalc c = (CssCalc) v;
-                if (c.hasCssVariable()) {
-                    expr.markCssVariable();
-                }
             }
-	} else if ( token == FUNCTIONVAR ) {
-            if (v.getType() == CssTypes.CSS_VARIABLE) {
-                expr.markCssVariable();
-            }
-        }
+	}
 	if (n != null) {
 	    if (ac.getCssVersion() == CssVersion.CSS1 &&
 		                          (n.image).equals("inherit")) {
@@ -2886,8 +2873,7 @@ void term(CssExpression exp) :
         | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
-        | func=functionvar() { setValue(func, exp, operator, null, FUNCTIONVAR); }
-/*        | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> */
+        | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN>
         | func=function() { setValue(func, exp, operator, null, FUNCTION); }
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
         | n=<DIV>  { setValue(new CssSwitch(), exp, operator, n, DIV); }
@@ -3128,9 +3114,6 @@ CssCheckableValue mathsum() :
 	    nb_pre_sp = 0;
 	    if (concat) {
 		nc = new CssCalc(ac, c);
-                if (c.hasCssVariable()) {
-                    nc.markCssVariable();
-                }
 		nc.addRightSide(o.image.trim(), v2);
 		c = nc;
 	    } else {
@@ -3147,7 +3130,6 @@ CssCheckableValue mathproduct() :
 { Token n,o;
   CssCheckableValue v1 = null;
   CssCheckableValue v2 = null;
-  CssValue f;
   CssCalc c, nc;
   char operator = ' ';
   boolean concat = false;
@@ -3157,14 +3139,11 @@ CssCheckableValue mathproduct() :
                     (  ( o="*" ( <S> )* v2=mathunit() )
                        |
                        ( o=<DIV> ( <S> )*  ( v2=calcnumbervalue()
-                       | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> { c.markCssVariable(); } )
+                       | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> )
                        )
                     ) {
                           if (concat) {
                               nc = new CssCalc(ac, c);
-                              if (c.hasCssVariable()) {
-                                  nc.markCssVariable();
-                              }
                               nc.addRightSide(o.image, v2);
                               c = nc;
                           } else {
@@ -3268,7 +3247,7 @@ char operator = ' ';
     | v=mathmin()
     | v=mathclamp()
     | v=attr()
-    | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> { CssCalc c = new CssCalc(); c.markCssVariable(); return c; }
+    | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN>
 ) {
      return v;
    }
@@ -3291,35 +3270,6 @@ CssExpression exp = null;
        v = new CssAttr();
        v.setValue(exp, ac);
        return v;
-  }
-}
-
-CssValue functionvar() :
-{ Token n;
- CssExpression exp = null;
- CssExpression e;
- CssVariable var;
-}
-{
-  <FUNCTIONVAR> ( <S> )* n=<CUSTOM_PROPERTY_NAME> {
-      var = new CssVariable(ac, convertIdent(n.image));
-  } 
-  ( <COMMA> ( <S> )* e=expr() { if (exp == null) {
-                                    exp = e;
-                                } else {
-                                    exp.setOperator(CssOperator.COMMA) ; 
-                                    while (!e.end()) {
-                                       exp.addValue(e.getValue());
-                                       exp.setOperator(e.getOperator());
-                                       e.next();
-                                    }
-                                }
-                              } )* ( <S> )* <LPARAN>
-  {
-    if (exp != null) {
-        var.set(exp);
-    }
-    return var;
   }
 }
 

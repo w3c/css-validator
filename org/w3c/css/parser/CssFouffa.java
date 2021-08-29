@@ -587,9 +587,7 @@ public final class CssFouffa extends CssParser {
         if (Util.onDebug) {
             System.err.println("Creating " + property + ": " + expression);
         }
-        if (property.startsWith("--")) {
-            // css variable
-        }
+
         final CssValue lastValue = expression.getLastValue();
 
         if (allowBackslash9Hack() && lastValue != null && lastValue.hasBackslash9Hack()) {

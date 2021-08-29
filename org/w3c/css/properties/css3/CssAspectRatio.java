@@ -14,6 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import static org.w3c.css.values.CssOperator.SPACE;
@@ -48,8 +49,8 @@ public class CssAspectRatio extends org.w3c.css.properties.css.CssAspectRatio {
         char op;
         int ratio_state = 0;
         setByUser();
-        CssValue dividend = null;
-        CssValue divisor = null;
+        BigDecimal dividend = null;
+        BigDecimal divisor = null;
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -59,11 +60,11 @@ public class CssAspectRatio extends org.w3c.css.properties.css.CssAspectRatio {
                 // so we are cheating and create a CssRatio when needed.
                 case CssTypes.CSS_NUMBER:
                     if (ratio_state == 0) {
-                        dividend = val;
+                        dividend = val.getNumber().getBigDecimalValue();
                         ratio_state++;
                         break;
                     } else if (ratio_state == 2) {
-                        divisor = val;
+                        divisor = val.getNumber().getBigDecimalValue();
                         ratio_state++;
                         v.add(new CssRatio(dividend, divisor)) ;
                         break;

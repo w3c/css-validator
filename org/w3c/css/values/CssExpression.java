@@ -22,7 +22,6 @@ public class CssExpression implements CssOperator {
 
     private boolean vendor_extension = false;
     private boolean css_hack = false;
-    private boolean css_variable = false;
 
     public boolean hasVendorExtensions() {
         return vendor_extension;
@@ -40,14 +39,6 @@ public class CssExpression implements CssOperator {
         css_hack = true;
     }
 
-    public boolean hasCssVariable() {
-        return css_variable;
-    }
-
-    public void markCssVariable() {
-        css_variable = true;
-    }
-    
     /**
      * mark the current position, it can be set to this
      * position later by using reset
