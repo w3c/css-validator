@@ -41,31 +41,48 @@ public class CssRatio extends CssValue {
 
     public CssRatio(BigDecimal w, CssValue gh) {
         this.w = w;
-        try {
-            this.h = gh.getNumber().getBigDecimalValue();
-        } catch (Exception ex) {
+        if (gh.getRawType() == CssTypes.CSS_NUMBER) {
+            try {
+                this.h = gh.getNumber().getBigDecimalValue();
+            } catch (Exception ex) {
+                this.gh = gh;
+            }
+        } else {
             this.gh = gh;
         }
     }
 
     public CssRatio(CssValue gw, BigDecimal h) {
-        try {
-            this.w = gw.getNumber().getBigDecimalValue();
-        } catch (Exception ex) {
+        if (gw.getRawType() == CssTypes.CSS_NUMBER) {
+            try {
+                this.w = gw.getNumber().getBigDecimalValue();
+            } catch (Exception ex) {
+                this.gw = gw;
+            }
+        } else {
             this.gw = gw;
         }
         this.h = h;
     }
 
     public CssRatio(CssValue gw, CssValue gh) {
-        try {
-            this.w = gw.getNumber().getBigDecimalValue();
-        } catch (Exception ex) {
+        if (gw.getRawType() == CssTypes.CSS_NUMBER) {
+            try {
+                this.w = gw.getNumber().getBigDecimalValue();
+            } catch (Exception ex) {
+                this.gw = gw;
+            }
+        } else {
             this.gw = gw;
         }
-        try {
-            this.h = gh.getNumber().getBigDecimalValue();
-        } catch (Exception ex) {
+
+        if (gh.getRawType() == CssTypes.CSS_NUMBER) {
+            try {
+                this.h = gh.getNumber().getBigDecimalValue();
+            } catch (Exception ex) {
+                this.gh = gh;
+            }
+        } else {
             this.gh = gh;
         }
     }
@@ -152,7 +169,7 @@ public class CssRatio extends CssValue {
             return (ratio.compareTo(other_ratio) == 0);
         } catch (ClassCastException cce) {
             return false;
-        }  catch (Exception ex) {
+        } catch (Exception ex) {
             return false;
         }
     }
