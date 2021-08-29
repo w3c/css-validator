@@ -77,8 +77,8 @@ public class CssVariable extends CssCheckableValue {
     public void set(CssExpression expression) {
         if (expression != null) {
             if (expression.getCount() == 1) {
-                CssValue v = expression.getValue();
-                computed_type = v.getType();
+                _exp_value = expression.getValue();
+                computed_type = _exp_value.getType();
             }
         }
         this.exp = expression;
