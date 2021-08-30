@@ -2770,8 +2770,11 @@ private int jjMoveNfa_0(int startState, int curPos)
                   { jjCheckNAddStates(1135, 1141); }
                   break;
                case 429:
-                  if (curChar == 45)
-                     { jjAddStates(1142, 1143); }
+                  if (curChar != 45)
+                     break;
+                  if (kind > 43)
+                     kind = 43;
+                  { jjAddStates(1142, 1143); }
                   break;
                case 431:
                   if ((0x3ff200000000000L & l) == 0L)
