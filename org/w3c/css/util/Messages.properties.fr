@@ -292,6 +292,7 @@ error.url: \u201C%s\u201D n'est pas une URL correcte.
 
 # used by org.w3c.css.values.CssColor
 error.rgb: \u201C%s\u201D n'est pas une couleur valide (qui doit contenir 3 ou 6 chiffres hexadécimaux).
+error.lab: \u201C%s\u201D n'est pas une couleur LAB valide
 error.angle: \u201C%s\u201D n'est pas une angle valide. La valeur doit être entre 0 et 360 
 
 # used by org.w3c.css.values.CssNumber
