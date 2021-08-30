@@ -412,16 +412,16 @@ public abstract class CssParser {
                 if (f.getParameters().hasCssHack()) {
                     expr.markCssHack();
                 }
-            } else if ( v.getType() == CssTypes.CSS_CALC) {
-                CssCalc c = (CssCalc) v;
-                if (c.hasCssVariable()) {
-                    expr.markCssVariable();
-                }
             }
 	} else if ( token == FUNCTIONVAR ) {
             if (v.getType() == CssTypes.CSS_VARIABLE) {
                 expr.markCssVariable();
             }
+        } else if ( token == FUNCTIONCALC ) {
+               CssCalc c = (CssCalc) v;
+               if (c.hasCssVariable()) {
+                   expr.markCssVariable();
+               }
         }
 	if (n != null) {
 	    if (ac.getCssVersion() == CssVersion.CSS1 &&
@@ -2881,7 +2881,7 @@ void term(CssExpression exp) :
         }
         ) 
       )
-      | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+      | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTIONCALC); }
         | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
@@ -2976,7 +2976,7 @@ void mediaterm(CssExpression exp) :
 	    }
     }
    | (  func=function() { setValue(func, exp, operator, null, FUNCTION); }
-      | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+      | func=mathcalc() { setValue(func, exp, operator, null, FUNCTIONCALC); }
       | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); }
