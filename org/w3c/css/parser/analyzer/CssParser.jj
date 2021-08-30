@@ -3153,26 +3153,34 @@ CssCheckableValue mathproduct() :
   boolean concat = false;
 }
 {
- ( v1=mathunit() { c = new CssCalc(ac, v1); }  ( LOOKAHEAD(2) ( <S> )* 
-                    (  ( o="*" ( <S> )* v2=mathunit() )
-                       |
-                       ( o=<DIV> ( <S> )*  ( v2=calcnumbervalue()
-                       | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> { c.markCssVariable(); } )
-                       )
-                    ) {
-                          if (concat) {
-                              nc = new CssCalc(ac, c);
-                              if (c.hasCssVariable()) {
-                                  nc.markCssVariable();
-                              }
-                              nc.addRightSide(o.image, v2);
-                              c = nc;
-                          } else {
-                              c.addRightSide(o.image, v2);
-                              concat = true;
-                          }
-                      }
-                  )*
+ ( v1=mathunit() { c = new CssCalc(ac, v1); }
+     ( LOOKAHEAD(2) ( <S> )*
+         (  ( o="*" ( <S> )* v2=mathunit() )
+           |
+           ( o=<DIV> ( <S> )*
+               ( v2=calcnumbervalue()
+                |
+                 v2=functionvar() {
+                     if (v2.getType() == CssTypes.CSS_VARIABLE) {
+                         c.markCssVariable();
+                     }
+                 }
+               )
+           )
+         ) {
+         if (concat) {
+             nc = new CssCalc(ac, c);
+             if (c.hasCssVariable()) {
+                 nc.markCssVariable();
+             }
+             nc.addRightSide(o.image, v2);
+             c = nc;
+         } else {
+             c.addRightSide(o.image, v2);
+             concat = true;
+         }
+     }
+     )*
  ) { return c; }
 }
 
@@ -3268,7 +3276,7 @@ char operator = ' ';
     | v=mathmin()
     | v=mathclamp()
     | v=attr()
-    | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> { CssCalc c = new CssCalc(); c.markCssVariable(); return c; }
+    | v=functionvar()
 ) {
      return v;
    }
@@ -3294,7 +3302,7 @@ CssExpression exp = null;
   }
 }
 
-CssValue functionvar() :
+CssCheckableValue functionvar() :
 { Token n;
  CssExpression exp = null;
  CssExpression e;
