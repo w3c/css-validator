@@ -422,9 +422,9 @@ public abstract class CssParser {
                     break;
                 case CssTypes.CSS_COLOR:
                     CssColor co = (CssColor) v;
-//                    if (co.hasCssVariable()) {
-//                       expr.markCssVariable();
-//                    }
+                    if (co.hasCssVariable()) {
+                       expr.markCssVariable();
+                    }
                     break;
                 default:
                 // do nothing
