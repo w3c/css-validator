@@ -86,6 +86,14 @@ public abstract class CssValue {
         throw new ClassCastException("unknown");
     }
 
+    public CssIdent getIdent() throws InvalidParamException {
+        throw new ClassCastException("unknown");
+    }
+
+    public CssHashIdent getHashIdent() throws InvalidParamException {
+        throw new ClassCastException("unknown");
+    }
+
     /**
      * Does this value contain a "\9" CSS declaration hack?
      */

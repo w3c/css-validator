@@ -570,16 +570,16 @@ public class CssImage extends CssValue {
 
                 case CssTypes.CSS_HASH_IDENT:
                     stopcol = new CssColor();
-                    stopcol.setShortRGBColor(ac, val.toString());
+                    stopcol.setShortRGBColor(ac, val.getHashIdent().toString());
                     stop1 = stopcol;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
+                    if (CssColorCSS3.currentColor.equals(val.getIdent())) {
                         stop1 = CssColorCSS3.currentColor;
                         break;
                     }
                     stopcol = new CssColor();
-                    stopcol.setIdentColor(ac, val.toString());
+                    stopcol.setIdentColor(ac, val.getIdent().toString());
                     stop1 = stopcol;
                     break;
                 case CssTypes.CSS_COLOR:
@@ -614,7 +614,7 @@ public class CssImage extends CssValue {
                                     "color-stop", ac);
                         }
                         stopcol = new CssColor();
-                        stopcol.setShortRGBColor(ac, val.toString());
+                        stopcol.setShortRGBColor(ac, val.getHashIdent().toString());
                         // TODO we rewrite putting color first, should we do that?
                         stop = new ArrayList<CssValue>(2);
                         stop.add(stopcol);
@@ -626,11 +626,11 @@ public class CssImage extends CssValue {
                             throw new InvalidParamException("value", val.toString(),
                                     "color-stop", ac);
                         }
-                        if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
+                        if (CssColorCSS3.currentColor.equals(val.getIdent())) {
                             stop2 = CssColorCSS3.currentColor;
                         } else {
                             stopcol = new CssColor();
-                            stopcol.setIdentColor(ac, val.toString());
+                            stopcol.setIdentColor(ac, val.getIdent().toString());
                             stop2 = stopcol;
                         }
                         // TODO we rewrite putting color first, should we do that?

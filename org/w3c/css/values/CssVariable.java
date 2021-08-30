@@ -192,6 +192,7 @@ public class CssVariable extends CssCheckableValue {
     }
 
     // extras for conflict resolution
+    @Override
     public CssLength getLength() throws InvalidParamException {
         if (computed_type != CssTypes.CSS_LENGTH) {
             throw new ClassCastException("unknown");
@@ -199,6 +200,7 @@ public class CssVariable extends CssCheckableValue {
         return _exp_value.getLength();
     }
 
+    @Override
     public CssPercentage getPercentage() throws InvalidParamException {
         if (computed_type != CssTypes.CSS_PERCENTAGE) {
             throw new ClassCastException("unknown");
@@ -206,6 +208,7 @@ public class CssVariable extends CssCheckableValue {
         return _exp_value.getPercentage();
     }
 
+    @Override
     public CssNumber getNumber() throws InvalidParamException {
         if (computed_type != CssTypes.CSS_NUMBER) {
             throw new ClassCastException("unknown");
@@ -213,6 +216,7 @@ public class CssVariable extends CssCheckableValue {
         return _exp_value.getNumber();
     }
 
+    @Override
     public CssTime getTime() throws InvalidParamException {
         if (computed_type != CssTypes.CSS_TIME) {
             throw new ClassCastException("unknown");
@@ -220,6 +224,7 @@ public class CssVariable extends CssCheckableValue {
         return _exp_value.getTime();
     }
 
+    @Override
     public CssAngle getAngle() throws InvalidParamException {
         if (computed_type != CssTypes.CSS_ANGLE) {
             throw new ClassCastException("unknown");
@@ -227,10 +232,27 @@ public class CssVariable extends CssCheckableValue {
         return _exp_value.getAngle();
     }
 
+    @Override
     public CssFrequency getFrequency() throws InvalidParamException {
         if (computed_type != CssTypes.CSS_FREQUENCY) {
             throw new ClassCastException("unknown");
         }
         return _exp_value.getFrequency();
+    }
+
+    @Override
+    public CssIdent getIdent() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_IDENT) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getIdent();
+    }
+
+    @Override
+    public CssHashIdent getHashIdent() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_HASH_IDENT) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getHashIdent();
     }
 }
