@@ -1,7 +1,7 @@
 # Master localization string file: $Id$
 # parameters use %s when ordered sequencially
 # you can use specific ordering by adding a digit after it
-# like "foo %s2 bar %s1 toto %s3 titi" parameters 1,2,3 will be at %s1, %s1 and %s3
+# like "foo %s2 bar %s1 toto %s3 titi" parameters 1,2,3 will be at %s1, %s2 and %s3
 
 direction: ltr
 language_name: English
@@ -279,7 +279,7 @@ error.url: \u201C%s\u201D is an incorrect URL
 
 # used by org.w3c.css.values.CssColor
 error.rgb: \u201C%s\u201D is not a valid color 3 or 6 hexadecimals numbers
-error.lab: \u201C%s\u201D is not a valid LAB color
+error.colorfunc: \u201C%s1\u201D is not a valid %s2 color
 error.angle: \u201C%s\u201D is not a valid angle. Value should be between \u201C0\u201D and \u201C360\u201D
 
 # used by org.w3c.css.values.CssNumber
