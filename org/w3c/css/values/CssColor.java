@@ -937,20 +937,27 @@ public class CssColor extends CssValue {
                     ac.getCssVersionString(), ac);
         }
 
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+            // we still parse variables as they will be ignored
+            // we check the delimiter syntax, and other failures
+        }
+
         color = null;
         lab = new LAB();
         CssValue val = exp.getValue();
         char op = exp.getOperator();
         // L
         if (val == null || op != SPACE) {
-            throw new InvalidParamException("invalid-color", ac);
+            throw new InvalidParamException("lab", ac);
         }
         switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
                 lab.setL(ac, val);
                 break;
             default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME lab
+                throw new InvalidParamException("lab", val, ac);
         }
 
         // A
@@ -961,11 +968,14 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            lab.setA(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME lab
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_VARIABLE:
+                lab.setA(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("lab", val, ac);
         }
 
         // B
@@ -974,51 +984,55 @@ public class CssColor extends CssValue {
         op = exp.getOperator();
         if (val == null) {
             exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
+            throw new InvalidParamException("lab", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            lab.setB(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME lab
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_VARIABLE:
+                lab.setB(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("lab", val, ac);
         }
-
+        
         exp.next();
         if (!exp.end()) {
             if (op != SPACE) {
-                throw new InvalidParamException("invalid-color", ac);
+                throw new InvalidParamException("lab", ac);
             }
             // now we need an alpha.
             val = exp.getValue();
             op = exp.getOperator();
 
             if (val.getType() != CssTypes.CSS_SWITCH) {
-                throw new InvalidParamException("rgb", val, ac);
+                throw new InvalidParamException("lab", val, ac);
             }
             if (op != SPACE) {
-                throw new InvalidParamException("invalid-color", ac);
+                throw new InvalidParamException("lab", ac);
             }
             exp.next();
             // now we get the alpha value
             val = exp.getValue();
             if (val == null) {
-                throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
+                throw new InvalidParamException("lab", exp.toStringFromStart(), ac);
             }
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
                 case CssTypes.CSS_PERCENTAGE:
+                case CssTypes.CSS_VARIABLE:
                     lab.setAlpha(ac, val);
                     break;
                 default:
                     exp.starts();
-                    throw new InvalidParamException("rgb", val, ac); // FIXME lab
+                    throw new InvalidParamException("lab", val, ac); // FIXME lab
             }
             exp.next();
         }
         // extra values?
         if (!exp.end()) {
             exp.starts();
-            throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
+            throw new InvalidParamException("lab", exp.toStringFromStart(), ac);
         }
     }
 
