@@ -106,6 +106,9 @@ public class CssCalc extends CssCheckableValue {
             throw new InvalidParamException("unrecognized", val1, ac);
         }
         val1 = value;
+        if (val1.getType() == CssTypes.CSS_VARIABLE) {
+            contains_variable = true;
+        }
         _toString = null;
         return this;
     }
@@ -129,6 +132,9 @@ public class CssCalc extends CssCheckableValue {
                 throw new InvalidParamException("operator", oper, ac);
         }
         val2 = value;
+        if (val2.getType() == CssTypes.CSS_VARIABLE) {
+            contains_variable = true;
+        }
         _computeResultingType(false);
         return this;
     }
