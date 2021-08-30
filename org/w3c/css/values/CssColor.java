@@ -37,6 +37,16 @@ public class CssColor extends CssValue {
     LCH lch = null;
     DeviceCMYK cmyk = null;
 
+    boolean contains_variable = false;
+
+    public boolean hasCssVariable() {
+        return contains_variable;
+    }
+
+    public void markCssVariable() {
+        contains_variable = true;
+    }
+
     /**
      * Create a new CssColor.
      */
@@ -206,17 +216,84 @@ public class CssColor extends CssValue {
      */
     public void setModernRGBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
-        CssValue val = exp.getValue();
-        char op = exp.getOperator();
+        CssValue val;
+        char op;
         color = null;
         rgba = new RGBA("rgb");
-        boolean separator_space = (op == SPACE);
+        boolean separator_space = true;
+
+        // check for variables
+        if (exp.hasCssVariable()) {
+            // don't check value then
+            markCssVariable();
+
+            val = exp.getValue();
+            op = exp.getOperator();
+            separator_space = (op == SPACE);
+            rgba.setModernStyle(separator_space);
+
+            if (val == null || (!separator_space && (op != COMMA))) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            rgba.vr = val;
+
+            exp.next();
+            val = exp.getValue();
+            op = exp.getOperator();
+
+            if (val == null || (separator_space && (op != SPACE)) ||
+                    (!separator_space && (op != COMMA))) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            rgba.vg = val;
+            exp.next();
+            val = exp.getValue();
+            op = exp.getOperator();
+            
+            rgba.vb = val;
+            exp.next();
+
+            if (!exp.end()) {
+                // care for old syntax
+                if (op == COMMA && !separator_space) {
+                    val = exp.getValue();
+                    rgba.va = val;
+                } else {
+                    // otherwise modern syntax
+                    if (op != SPACE) {
+                        throw new InvalidParamException("invalid-color", ac);
+                    }
+                    // now we need an alpha.
+                    val = exp.getValue();
+                    op = exp.getOperator();
+
+                    if (val.getType() != CssTypes.CSS_SWITCH) {
+                        throw new InvalidParamException("rgb", val, ac);
+                    }
+                    if (op != SPACE) {
+                        throw new InvalidParamException("invalid-color", ac);
+                    }
+                    exp.next();
+                    // now we get the alpha value
+                    if (exp.end()) {
+                        throw new InvalidParamException("rgb", exp.getValue(), ac);
+                    }
+                    val = exp.getValue();
+                    rgba.va = val;
+                }
+                exp.next();
+            }
+            return;
+        }
+
+        val = exp.getValue();
+        op = exp.getOperator();
+        separator_space = (op == SPACE);
         rgba.setModernStyle(separator_space);
 
         if (val == null || (!separator_space && (op != COMMA))) {
             throw new InvalidParamException("invalid-color", ac);
         }
-
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 rgba.setPercent(false);
