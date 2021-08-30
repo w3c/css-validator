@@ -11,8 +11,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 
-import java.math.BigDecimal;
-
 import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
@@ -249,7 +247,7 @@ public class CssColor extends CssValue {
             exp.next();
             val = exp.getValue();
             op = exp.getOperator();
-            
+
             rgba.vb = val;
             exp.next();
 
@@ -1014,79 +1012,6 @@ public class CssColor extends CssValue {
                 default:
                     exp.starts();
                     throw new InvalidParamException("rgb", val, ac); // FIXME lab
-            }
-            exp.next();
-        }
-        // extra values?
-        if (!exp.end()) {
-            exp.starts();
-            throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
-        }
-    }
-
-    public void setGrayColor(ApplContext ac, CssExpression exp)
-            throws InvalidParamException {
-        // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
-        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("gray(").append(exp.toStringFromStart()).append(')');
-            throw new InvalidParamException("notversion", sb.toString(),
-                    ac.getCssVersionString(), ac);
-        }
-
-        color = null;
-        lab = new LAB();
-        lab.setGray(true);
-        CssValue val = exp.getValue();
-        char op = exp.getOperator();
-        // L
-        if (val == null) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                lab.setL(ac, val);
-                break;
-            default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME gray
-        }
-
-        // A
-        CssNumber n = new CssNumber();
-        n.setValue(BigDecimal.ZERO);
-        lab.setA(ac, n);
-        // B
-        lab.setB(ac, n);
-
-        exp.next();
-        if (!exp.end()) {
-            if (op != SPACE) {
-                throw new InvalidParamException("invalid-color", ac);
-            }
-            // now we need an alpha.
-            val = exp.getValue();
-            op = exp.getOperator();
-
-            if (val.getType() != CssTypes.CSS_SWITCH) {
-                throw new InvalidParamException("rgb", val, ac);
-            }
-            if (op != SPACE) {
-                throw new InvalidParamException("invalid-color", ac);
-            }
-            exp.next();
-            // now we get the alpha value
-            val = exp.getValue();
-            if (val == null) {
-                throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
-            }
-            switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                case CssTypes.CSS_PERCENTAGE:
-                    lab.setAlpha(ac, val);
-                    break;
-                default:
-                    exp.starts();
-                    throw new InvalidParamException("rgb", val, ac); // FIXME gray
             }
             exp.next();
         }
