@@ -194,7 +194,7 @@ public class CssVariable extends CssCheckableValue {
     // extras for conflict resolution
     @Override
     public CssLength getLength() throws InvalidParamException {
-        if ((computed_type != CssTypes.CSS_LENGTH)
+        if ((computed_type == CssTypes.CSS_LENGTH)
                 || (computed_type == CssTypes.CSS_NUMBER)) {
             return _exp_value.getLength();
         }
