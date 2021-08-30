@@ -173,7 +173,7 @@ public class CssVariable extends CssCheckableValue {
             throws InvalidParamException {
         if (_isCheckableType(computed_type)) {
             _exp_value.getCheckableValue().checkInteger(ac, callername);
-        } 
+        }
     }
 
     @Override
@@ -194,10 +194,11 @@ public class CssVariable extends CssCheckableValue {
     // extras for conflict resolution
     @Override
     public CssLength getLength() throws InvalidParamException {
-        if (computed_type != CssTypes.CSS_LENGTH) {
-            throw new ClassCastException("unknown");
+        if ((computed_type != CssTypes.CSS_LENGTH)
+                || (computed_type == CssTypes.CSS_NUMBER)) {
+            return _exp_value.getLength();
         }
-        return _exp_value.getLength();
+        throw new ClassCastException("unknown");
     }
 
     @Override
@@ -218,26 +219,29 @@ public class CssVariable extends CssCheckableValue {
 
     @Override
     public CssTime getTime() throws InvalidParamException {
-        if (computed_type != CssTypes.CSS_TIME) {
-            throw new ClassCastException("unknown");
+        if ((computed_type == CssTypes.CSS_TIME)
+                || (computed_type == CssTypes.CSS_NUMBER)) {
+            return _exp_value.getTime();
         }
-        return _exp_value.getTime();
+        throw new ClassCastException("unknown");
     }
 
     @Override
     public CssAngle getAngle() throws InvalidParamException {
-        if (computed_type != CssTypes.CSS_ANGLE) {
-            throw new ClassCastException("unknown");
+        if ((computed_type == CssTypes.CSS_ANGLE)
+                || (computed_type == CssTypes.CSS_NUMBER)) {
+            return _exp_value.getAngle();
         }
-        return _exp_value.getAngle();
+        throw new ClassCastException("unknown");
     }
 
     @Override
     public CssFrequency getFrequency() throws InvalidParamException {
-        if (computed_type != CssTypes.CSS_FREQUENCY) {
-            throw new ClassCastException("unknown");
+        if ((computed_type == CssTypes.CSS_FREQUENCY)
+                || (computed_type == CssTypes.CSS_NUMBER)) {
+            return _exp_value.getFrequency();
         }
-        return _exp_value.getFrequency();
+        throw new ClassCastException("unknown");
     }
 
     @Override
