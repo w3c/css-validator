@@ -401,17 +401,33 @@ public abstract class CssParser {
 	throws ParseException {
 
 	if ( token == FUNCTION ) {
-	    if ( v.getType() == CssTypes.CSS_FUNCTION ) {
-                CssFunction f = (CssFunction) v;
-      	        if (f.getParameters().hasVendorExtensions()) {
-      	            expr.markVendorExtension();
-                }
-                if (f.getParameters().hasCssVariable()) {
-                    expr.markCssVariable();
-                }
-                if (f.getParameters().hasCssHack()) {
-                    expr.markCssHack();
-                }
+            switch (v.getType()) {
+                case CssTypes.CSS_FUNCTION:
+                    CssFunction f = (CssFunction) v;
+                    if (f.getParameters().hasVendorExtensions()) {
+                        expr.markVendorExtension();
+                    }
+                    if (f.getParameters().hasCssVariable()) {
+                        expr.markCssVariable();
+                    }
+                    if (f.getParameters().hasCssHack()) {
+                        expr.markCssHack();
+                    }
+                    break;
+                case CssTypes.CSS_IMAGE:
+                    CssImage im = (CssImage) v;
+                    if (im.hasCssVariable()) {
+                        expr.markCssVariable();
+                    }
+                    break;
+                case CssTypes.CSS_COLOR:
+                    CssColor co = (CssColor) v;
+//                    if (co.hasCssVariable()) {
+//                       expr.markCssVariable();
+//                    }
+                    break;
+                default:
+                // do nothing
             }
 	} else if ( token == FUNCTIONVAR ) {
             if (v.getType() == CssTypes.CSS_VARIABLE) {
@@ -2887,7 +2903,6 @@ void term(CssExpression exp) :
         | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
         | func=functionvar() { setValue(func, exp, operator, null, FUNCTIONVAR); }
-/*        | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> */
         | func=function() { setValue(func, exp, operator, null, FUNCTION); }
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
         | n=<DIV>  { setValue(new CssSwitch(), exp, operator, n, DIV); }
