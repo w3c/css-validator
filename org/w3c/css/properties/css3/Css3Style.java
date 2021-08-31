@@ -232,6 +232,7 @@ import org.w3c.css.properties.css.CssScrollPaddingTop;
 import org.w3c.css.properties.css.CssScrollSnapAlign;
 import org.w3c.css.properties.css.CssScrollSnapStop;
 import org.w3c.css.properties.css.CssScrollSnapType;
+import org.w3c.css.properties.css.CssScrollbarWidth;
 import org.w3c.css.properties.css.CssSpeakAs;
 import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignAll;
@@ -623,7 +624,17 @@ public class Css3Style extends ATSCStyle {
     public CssTextDecorationSkipInset cssTextDecorationSkipInset;
     public CssTextDecorationSkipInk cssTextDecorationSkipInk;
     public CssTextDecorationSkipSpaces cssTextDecorationSkipSpaces;
+    public CssScrollbarWidth cssScrollbarWidth;
 
+    public CssScrollbarWidth getScrollbarWidth() {
+        if (cssScrollbarWidth == null) {
+            cssScrollbarWidth =
+                    (CssScrollbarWidth) style.CascadingOrder(new CssScrollbarWidth(),
+                            style, selector);
+        }
+        return cssScrollbarWidth;
+    }
+    
     public CssTextDecorationSkipSpaces getTextDecorationSkipSpaces() {
         if (cssTextDecorationSkipSpaces == null) {
             cssTextDecorationSkipSpaces =
