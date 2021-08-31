@@ -624,8 +624,8 @@ TOKEN :
   | < RBRACKET  : "]" >
   | < ANY       : "*" >
   | < DOT       : "." >
-  | < LPARAN    : ")" >
-  | < RPARAN    : "(">
+  | < RPAREN    : ")" >
+  | < LPAREN    : "(">
 }
 
 <DEFAULT>
@@ -637,7 +637,7 @@ TOKEN :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-  < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* <LPARAN> >
+  < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* <RPAREN> >
 }
 
 <DEFAULT>
@@ -776,7 +776,7 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
     TOKEN :
 {
-    < FUNCTION : <IDENT> <RPARAN> >
+    < FUNCTION : <IDENT> <LPAREN> >
 }
 
 /* Quick and dirty way to catch HTML tags starting CSS documents 
@@ -1151,7 +1151,7 @@ void mediainparens(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
   Token n;
 }
 {
-    ( LOOKAHEAD(4) ( <RPARAN> ( <S> )*  mediacondition(mediaRule, defaultMedia, comb) <LPARAN> ( <S> )* ) | LOOKAHEAD(5) mediarange(mediaRule, defaultMedia, comb) | mediaexpression(mediaRule, defaultMedia, comb) )
+    ( LOOKAHEAD(4) ( <LPAREN> ( <S> )*  mediacondition(mediaRule, defaultMedia, comb) <RPAREN> ( <S> )* ) | LOOKAHEAD(5) mediarange(mediaRule, defaultMedia, comb) | mediaexpression(mediaRule, defaultMedia, comb) )
 }
 
 void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
@@ -1161,14 +1161,14 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
   Token n;
 }
 {
-    <RPARAN> ( <S> )* n=<IDENT> {
+    <LPAREN> ( <S> )* n=<IDENT> {
     // here we add the default media if not present
        if (defaultMedia) {
            mediaRule.addMedia(null, null, ac);
        }
        mediaFeatureName = convertIdent(n.image); }
     ( <S> )*
-    ( <COLON> ( <S> )* val=mediaexpr() )? <LPARAN>  ( <S> )*  {
+    ( <COLON> ( <S> )* val=mediaexpr() )? <RPAREN>  ( <S> )*  {
         MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
         if (mf != null) {
             mediaRule.addMediaFeature(mf, ac);
@@ -1261,11 +1261,11 @@ SupportsFeature supports_condition_in_parens(AtRuleSupports supportsRule):
     SupportsFeature nf;
 }
 {
-    ( <RPARAN>  ( <S> )* 
+    ( <LPAREN>  ( <S> )* 
       ( LOOKAHEAD(3) nf=supports_condition(supportsRule) { f.addFeature(nf); }
 	| p=declaration() { f.setProperty(p); }
       )
-      <LPARAN> ( <S> )*
+      <RPAREN> ( <S> )*
     ) {
 	return f;
     }
@@ -1276,7 +1276,7 @@ void general_enclosed(AtRuleSupports supportsRule):
 {
 }
 {
-    ( <FUNCTION> | <RPARAN> ) ( <S> )*  ( ident() )* <LPARAN> ( <S> )*
+    ( <FUNCTION> | <LPAREN> ) ( <S> )*  ( ident() )* <RPAREN> ( <S> )*
 }
 
 void unused_production_generic_syntax() :
@@ -1285,7 +1285,7 @@ void unused_production_generic_syntax() :
 
 }
 {
-    <RPARAN> ( <S> )* term(values) <LPARAN> {
+    <LPAREN> ( <S> )* term(values) <RPAREN> {
     }
 }
 
@@ -1925,7 +1925,7 @@ String property() :
  Token hack= null; }
 {
  // ( hack? ident | hackedIdent ) ( <S> )*
-    ( (hack="!" | hack="$" | hack="%" |  hack="&" | hack="`" | hack="?" | hack="<" | hack="|" | hack=<ANY> | hack=<EQ> | hack=<RBRACKET> | hack=<LBRACKET> | hack=<LPARAN> | hack=<RPARAN> | hack=<COLON> | hack=<TILDE> | hack=<PLUS> | hack=<COMMA> | hack=<GREATER> | hack=<DIV>)?
+    ( (hack="!" | hack="$" | hack="%" |  hack="&" | hack="`" | hack="?" | hack="<" | hack="|" | hack=<ANY> | hack=<EQ> | hack=<RBRACKET> | hack=<LBRACKET> | hack=<RPAREN> | hack=<LPAREN> | hack=<COLON> | hack=<TILDE> | hack=<PLUS> | hack=<COMMA> | hack=<GREATER> | hack=<DIV>)?
     n=ident() | n=<CUSTOM_PROPERTY_NAME>) ( <S> )* {
                  currentProperty = convertIdent(n.image);
                  if (hack != null && !"".equals(hack)) {
@@ -2475,7 +2475,7 @@ void negation(CssSelectors s) :
 	 attrib(ns) | 
 	 pseudo(ns)
 	 )
-	( <S> )* <LPARAN>
+	( <S> )* <RPAREN>
 	{ 
 	    s.setPseudoFun("not", ns.toString());
 	}
@@ -2546,7 +2546,7 @@ CssExpression param = null;
 	                   getBeginColumn(), getEndLine(), getEndColumn(), e));
 		} 
 	    }
-	    ) <LPARAN>
+	    ) <RPAREN>
 	    )
 }
 
@@ -2795,10 +2795,10 @@ void mediarange(AtRuleMedia mediaRule, boolean defaultMedia, String combinator) 
   boolean nameIsFirst = false;
 }
 {
-    ( <RPARAN> ( <S> )* ( LOOKAHEAD(3)
+    ( <LPAREN> ( <S> )* ( LOOKAHEAD(3)
 	( n=ident() { nameIsFirst = true; } ( <S> )* ( c1=<GREATER> | c1=<GREATEREQ> | c1=<EQ> | c1="<" | c1="<=" ) ( <S> )* val1=mediaexpr() ) | 
 	( val1=mediaexpr() ( c1=<GREATER> | c1=<GREATEREQ> | c1=<EQ> | c1="<" | c1="<=" ) ( <S> )* n=ident() ( <S> )* ( ( ( c2=<GREATER> | c2=<GREATEREQ> | c2=<EQ> | c2="<" | c2="<=" ) ( <S> )* ) val2=mediaexpr() )?
-	)  ) <LPARAN> ( <S> )* ) {
+	)  ) <RPAREN> ( <S> )* ) {
 	  if (defaultMedia) {
             mediaRule.addMedia(null, null, ac);
           }
@@ -3048,7 +3048,7 @@ CssCheckableValue mathmin() :
     }
 	( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
 		c.addValue(v);
-	} ( <S> )* )* <LPARAN> ) {
+	} ( <S> )* )* <RPAREN> ) {
 	c.validate();
     return c;
   }
@@ -3070,7 +3070,7 @@ CssCheckableValue mathmax() :
     }
 	( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
 	        c.addValue(v);
-	} ( <S> )* )* <LPARAN> ) {
+	} ( <S> )* )* <RPAREN> ) {
 	c.validate();
     return c;
   }
@@ -3084,7 +3084,7 @@ Token n;
 }
 {
     ( n=<FUNCTIONCLAMP>  ( <S> )* v1=mathsum() ( <S> )* <COMMA> ( <S> )* v2=mathsum() ( <S> )*
-      <COMMA> ( <S> )* v3=mathsum() ( <S> )* <LPARAN> ) {
+      <COMMA> ( <S> )* v3=mathsum() ( <S> )* <RPAREN> ) {
 	c = new CssClamp(ac, v1, v2, v3);
 	c.validate();
 	return c;
@@ -3099,7 +3099,7 @@ CssCalc c;
 Token n;
 }
 {
-    ( n=<FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) {
+    ( n=<FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* <RPAREN> ) {
     String funcname = n.image.toLowerCase();
     if (funcname.charAt(0) == '-') {
         if (ac.getTreatVendorExtensionsAsWarnings()) {
@@ -3207,7 +3207,7 @@ CssCheckableValue calcnumbervalue() :
 {
  (
  ( ( operator=unaryOperator() )? n=<NUMBER> { v = new CssNumber(); v.set(addOperator(operator, n.image), ac); } ) |
- ( <RPARAN> ( <S> )* v=calcnumbersum() ( <S> )* <LPARAN> { try { ((CssCalc) v).setParenthesis(); } catch (Exception ex) { ex.printStackTrace();}} )
+ ( <LPAREN> ( <S> )* v=calcnumbersum() ( <S> )* <RPAREN> { try { ((CssCalc) v).setParenthesis(); } catch (Exception ex) { ex.printStackTrace();}} )
  ) {
   return v;
  }
@@ -3285,7 +3285,7 @@ char operator = ' ';
     | n=<TIME> { v = new CssTime(); v.set(addOperator(operator, n.image), ac); }
     | n=<FREQ> { v= new CssFrequency(); v.set(addOperator(operator, n.image), ac); }
     )
-    | ( <RPARAN> ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) { ((CssCalc) v).setParenthesis(); }
+    | ( <LPAREN> ( <S> )* v=mathsum() ( <S> )* <RPAREN> ) { ((CssCalc) v).setParenthesis(); }
     | v=mathcalc()
     | v=mathmax()
     | v=mathmin()
@@ -3310,7 +3310,7 @@ CssExpression exp = null;
 	} 
 	( ( n=ident() | n="%" ) {
 	    setValue(new CssIdent(), exp, ' ', n, IDENT); 
-	}  ( <S> )* )? ( <COMMA> { exp.setOperator(','); } ( <S> )* term(exp) )? ) <LPARAN> {
+	}  ( <S> )* )? ( <COMMA> { exp.setOperator(','); } ( <S> )* term(exp) )? ) <RPAREN> {
        v = new CssAttr();
        v.setValue(exp, ac);
        return v;
@@ -3327,7 +3327,8 @@ CssCheckableValue functionvar() :
   <FUNCTIONVAR> ( <S> )* n=<CUSTOM_PROPERTY_NAME> {
       var = new CssVariable(ac, convertIdent(n.image));
   } 
-  ( <COMMA> ( <S> )* e=expr() { if (exp == null) {
+  ( <COMMA> ( <S> )* e=expr() { // we need something more lenient than expr here
+                                if (exp == null) {
                                     exp = e;
                                 } else {
                                     exp.setOperator(CssOperator.COMMA) ; 
@@ -3337,7 +3338,7 @@ CssCheckableValue functionvar() :
                                        e.next();
                                     }
                                 }
-                              } )* ( <S> )* <LPARAN>
+                              } )* ( <S> )* <RPAREN>
   {
     if (exp != null) {
         var.set(exp);
