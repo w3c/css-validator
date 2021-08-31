@@ -836,6 +836,9 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("notversion", sb.toString(),
                     ac.getCssVersionString(), ac);
         }
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
 
         color = null;
         hwb = new HWB();
@@ -849,10 +852,11 @@ public class CssColor extends CssValue {
         switch (val.getType()) {
             case CssTypes.CSS_ANGLE:
             case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_VARIABLE:
                 hwb.setHue(ac, val);
                 break;
             default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME hwb
+                throw new InvalidParamException("colorfunc", val, "HWB", ac);
         }
 
         // W
@@ -863,11 +867,14 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            hwb.setWhiteness(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hwb
+        switch (val.getType()) {
+            case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
+                hwb.setWhiteness(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("colorfunc", val, "HWB", ac);
         }
 
         // B
@@ -878,12 +885,16 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            hwb.setBlackness(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hwb
+        switch (val.getType()) {
+            case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
+                hwb.setBlackness(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("colorfunc", val, "HWB", ac);
         }
+
         hwb.normalize();
 
         // A
@@ -897,7 +908,7 @@ public class CssColor extends CssValue {
             op = exp.getOperator();
 
             if (val.getType() != CssTypes.CSS_SWITCH) {
-                throw new InvalidParamException("rgb", val, ac);
+                throw new InvalidParamException("colorfunc", val, "HWB", ac);
             }
             if (op != SPACE) {
                 throw new InvalidParamException("invalid-color", ac);
@@ -911,18 +922,19 @@ public class CssColor extends CssValue {
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
                 case CssTypes.CSS_PERCENTAGE:
+                case CssTypes.CSS_VARIABLE:
                     hwb.setAlpha(ac, val);
                     break;
                 default:
                     exp.starts();
-                    throw new InvalidParamException("rgb", val, ac); // FIXME hwb
+                    throw new InvalidParamException("colorfunc", val, "HWB", ac);
             }
             exp.next();
         }
         // extra values?
         if (!exp.end()) {
             exp.starts();
-            throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
+            throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "HWB", ac);
         }
     }
 
