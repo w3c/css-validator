@@ -908,8 +908,8 @@ public class CssColor extends CssValue {
                 hwb.setWhiteness(ac, val);
                 break;
             default:
-                exp.starts();
                 if (!hasCssVariable()) {
+                    exp.starts();
                     throw new InvalidParamException("colorfunc", val, "HWB", ac);
                 }
         }
@@ -919,8 +919,8 @@ public class CssColor extends CssValue {
         val = exp.getValue();
         op = exp.getOperator();
         if (val == null || (op != SPACE && exp.getRemainingCount() > 1)) {
-            exp.starts();
             if (!hasCssVariable()) {
+                exp.starts();
                 throw new InvalidParamException("invalid-color", ac);
             }
         }
@@ -930,8 +930,8 @@ public class CssColor extends CssValue {
                 hwb.setBlackness(ac, val);
                 break;
             default:
-                exp.starts();
                 if (!hasCssVariable()) {
+                    exp.starts();
                     throw new InvalidParamException("colorfunc", val, "HWB", ac);
                 }
         }
@@ -967,8 +967,8 @@ public class CssColor extends CssValue {
                     hwb.setAlpha(ac, val);
                     break;
                 default:
-                    exp.starts();
                     if (!hasCssVariable()) {
+                        exp.starts();
                         throw new InvalidParamException("colorfunc", val, "HWB", ac);
                     }
             }
@@ -976,8 +976,8 @@ public class CssColor extends CssValue {
         }
         // extra values?
         if (!exp.end()) {
-            exp.starts();
             if (!hasCssVariable()) {
+                exp.starts();
                 throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "HWB", ac);
             }
         }
@@ -1033,8 +1033,8 @@ public class CssColor extends CssValue {
                 lab.setA(ac, val);
                 break;
             default:
-                exp.starts();
                 if (!hasCssVariable()) {
+                    exp.starts();
                     throw new InvalidParamException("colorfunc", val, "Lab", ac);
                 }
         }
@@ -1044,8 +1044,8 @@ public class CssColor extends CssValue {
         val = exp.getValue();
         op = exp.getOperator();
         if (val == null) {
-            exp.starts();
             if (!hasCssVariable()) {
+                exp.starts();
                 throw new InvalidParamException("colorfunc", exp, "Lab", ac);
             }
         }
@@ -1055,8 +1055,8 @@ public class CssColor extends CssValue {
                 lab.setB(ac, val);
                 break;
             default:
-                exp.starts();
                 if (!hasCssVariable()) {
+                    exp.starts();
                     throw new InvalidParamException("colorfunc", val, "Lab", ac);
                 }
         }
@@ -1089,8 +1089,8 @@ public class CssColor extends CssValue {
                     lab.setAlpha(ac, val);
                     break;
                 default:
-                    exp.starts();
                     if (!hasCssVariable()) {
+                        exp.starts();
                         throw new InvalidParamException("colorfunc", val, "Lab", ac);
                     }
             }
@@ -1124,7 +1124,7 @@ public class CssColor extends CssValue {
         CssValue val = exp.getValue();
         char op = exp.getOperator();
         // L
-        if (val == null || op != SPACE) {
+        if ((val == null || op != SPACE) && !hasCssVariable()) {
             throw new InvalidParamException("invalid-color", ac);
         }
         switch (val.getType()) {
@@ -1133,14 +1133,16 @@ public class CssColor extends CssValue {
                 lch.setL(ac, val);
                 break;
             default:
-                throw new InvalidParamException("colorfunc", val, "LCH", ac);
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", val, "LCH", ac);
+                }
         }
 
         // A
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null || op != SPACE) {
+        if ((val == null || op != SPACE) && !hasCssVariable()) {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
@@ -1151,15 +1153,17 @@ public class CssColor extends CssValue {
                 lch.setC(ac, val);
                 break;
             default:
-                exp.starts();
-                throw new InvalidParamException("colorfunc", val, "LCH", ac);
+                if (!hasCssVariable()) {
+                    exp.starts();
+                    throw new InvalidParamException("colorfunc", val, "LCH", ac);
+                }
         }
 
         // B
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null) {
+        if ((val == null) && !hasCssVariable()) {
             throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "LCH", ac);
         }
 
@@ -1170,23 +1174,25 @@ public class CssColor extends CssValue {
                 lch.setH(ac, val);
                 break;
             default:
-                exp.starts();
-                throw new InvalidParamException("colorfunc", val, "LCH", ac);
+                if (!hasCssVariable()) {
+                    exp.starts();
+                    throw new InvalidParamException("colorfunc", val, "LCH", ac);
+                }
         }
 
         exp.next();
         if (!exp.end()) {
-            if (op != SPACE) {
+            if ((op != SPACE) && !hasCssVariable()) {
                 throw new InvalidParamException("invalid-color", ac);
             }
             // now we need an alpha.
             val = exp.getValue();
             op = exp.getOperator();
 
-            if (val.getType() != CssTypes.CSS_SWITCH) {
+            if ((val.getType() != CssTypes.CSS_SWITCH) && !hasCssVariable()) {
                 throw new InvalidParamException("colorfunc", val, "LCH", ac);
             }
-            if (op != SPACE) {
+            if ((op != SPACE) && !hasCssVariable()) {
                 throw new InvalidParamException("invalid-color", ac);
             }
             exp.next();
@@ -1202,15 +1208,19 @@ public class CssColor extends CssValue {
                     lch.setAlpha(ac, val);
                     break;
                 default:
-                    exp.starts();
-                    throw new InvalidParamException("colorfunc", val, "LCH", ac);
+                    if (!hasCssVariable()) {
+                        exp.starts();
+                        throw new InvalidParamException("colorfunc", val, "LCH", ac);
+                    }
             }
             exp.next();
         }
         // extra values?
         if (!exp.end()) {
-            exp.starts();
-            throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "LCH", ac);
+            if (!hasCssVariable()) {
+                exp.starts();
+                throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "LCH", ac);
+            }
         }
     }
 
