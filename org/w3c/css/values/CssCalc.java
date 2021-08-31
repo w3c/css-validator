@@ -64,6 +64,8 @@ public class CssCalc extends CssCheckableValue {
             if (value.getRawType() == CssTypes.CSS_CALC) {
                 CssCalc c = (CssCalc) value;
                 contains_variable = c.hasCssVariable();
+            } else if (value.getType() == CssTypes.CSS_VARIABLE) {
+                contains_variable = true;
             }
         }
         computed_type = value.getType();
