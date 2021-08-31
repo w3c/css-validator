@@ -429,6 +429,10 @@ public class CssColor extends CssValue {
         hsl = new HSL();
         boolean separator_space = (op == SPACE);
 
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
+
         if (val == null || (!separator_space && (op != COMMA))) {
             throw new InvalidParamException("invalid-color", ac);
         }
@@ -437,10 +441,11 @@ public class CssColor extends CssValue {
         switch (val.getType()) {
             case CssTypes.CSS_ANGLE:
             case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_VARIABLE:
                 hsl.setHue(ac, val);
                 break;
             default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+                throw new InvalidParamException("colorfunc", val, "HSL", ac);
         }
 
         exp.next();
@@ -453,11 +458,14 @@ public class CssColor extends CssValue {
         }
 
         // S
-        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            hsl.setSaturation(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        switch (val.getType()) {
+            case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
+                hsl.setSaturation(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("colorfunc", val, "HSL", ac);
         }
 
         exp.next();
@@ -469,12 +477,14 @@ public class CssColor extends CssValue {
         }
 
         // L
-
-        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            hsl.setLightness(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        switch (val.getType()) {
+            case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
+                hsl.setLightness(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("colorfunc", val, "HSL", ac);
         }
 
         exp.next();
@@ -487,10 +497,12 @@ public class CssColor extends CssValue {
                 switch (val.getType()) {
                     case CssTypes.CSS_NUMBER:
                     case CssTypes.CSS_PERCENTAGE:
+                    case CssTypes.CSS_VARIABLE:
                         hsl.setAlpha(ac, val);
                         break;
                     default:
-                        throw new InvalidParamException("rgb", val, ac);
+                        exp.starts();
+                        throw new InvalidParamException("colorfunc", val, "HSL", ac);
                 }
             } else {
                 // otherwise modern syntax
@@ -502,7 +514,7 @@ public class CssColor extends CssValue {
                 op = exp.getOperator();
 
                 if (val.getType() != CssTypes.CSS_SWITCH) {
-                    throw new InvalidParamException("rgb", val, ac);
+                    throw new InvalidParamException("colorfunc", val, "HSL", ac);
                 }
                 if (op != SPACE) {
                     throw new InvalidParamException("invalid-color", ac);
@@ -510,22 +522,23 @@ public class CssColor extends CssValue {
                 exp.next();
                 // now we get the alpha value
                 if (exp.end()) {
-                    throw new InvalidParamException("rgb", exp.getValue(), ac);
+                    throw new InvalidParamException("colorfunc", exp.getValue(), "HSL", ac);
                 }
                 val = exp.getValue();
                 switch (val.getType()) {
                     case CssTypes.CSS_NUMBER:
                     case CssTypes.CSS_PERCENTAGE:
+                    case CssTypes.CSS_VARIABLE:
                         hsl.setAlpha(ac, val);
                         break;
                     default:
-                        throw new InvalidParamException("rgb", val, ac);
+                        throw new InvalidParamException("colorfunc", val, "HSL", ac);
                 }
             }
             exp.next();
 
             if (!exp.end()) {
-                throw new InvalidParamException("rgb", exp.getValue(), ac);
+                throw new InvalidParamException("colorfunc", exp.getValue(), "HSL", ac);
             }
         }
     }
