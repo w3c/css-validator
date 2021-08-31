@@ -1080,7 +1080,7 @@ val = new CssURL();
       case ONLY:
       case NOT:
       case IDENT:
-      case RPARAN:{
+      case LPAREN:{
         mediaquerylist(media);
         break;
         }
@@ -1140,7 +1140,7 @@ begl = getBeginLine();
       case ONLY:
       case NOT:
       case IDENT:
-      case RPARAN:{
+      case LPAREN:{
         mediaquerylist(newRule);
 String media = getAtRule().toString();
                     emptyList = false;
@@ -1484,7 +1484,7 @@ combinator = convertIdent(n.image);
       mediainparens(mediaRule, defaultMedia, combinator);
       break;
       }
-    case RPARAN:{
+    case LPAREN:{
       mediainparens(mediaRule, defaultMedia, null);
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
       case AND:
@@ -1594,7 +1594,7 @@ mediarestrictor = convertIdent(n.image);
       mediainparens(mediaRule, defaultMedia, mediarestrictor);
       break;
       }
-    case RPARAN:{
+    case LPAREN:{
       mediainparens(mediaRule, defaultMedia, comb);
       label_35:
       while (true) {
@@ -1637,7 +1637,7 @@ mediarestrictor = convertIdent(n.image);
   String mediaFeatureName = null;
   Token n;
     if (jj_2_2(4)) {
-      jj_consume_token(RPARAN);
+      jj_consume_token(LPAREN);
       label_37:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -1652,7 +1652,7 @@ mediarestrictor = convertIdent(n.image);
         jj_consume_token(S);
       }
       mediacondition(mediaRule, defaultMedia, comb);
-      jj_consume_token(LPARAN);
+      jj_consume_token(RPAREN);
       label_38:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -1670,7 +1670,7 @@ mediarestrictor = convertIdent(n.image);
       mediarange(mediaRule, defaultMedia, comb);
     } else {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-      case RPARAN:{
+      case LPAREN:{
         mediaexpression(mediaRule, defaultMedia, comb);
         break;
         }
@@ -1685,7 +1685,7 @@ mediarestrictor = convertIdent(n.image);
   final public void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia, String comb) throws ParseException {CssExpression val = null;
   String mediaFeatureName = null;
   Token n;
-    jj_consume_token(RPARAN);
+    jj_consume_token(LPAREN);
     label_39:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -1741,7 +1741,7 @@ mediarestrictor = convertIdent(n.image);
       jj_la1[61] = jj_gen;
       ;
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
     label_42:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -1953,7 +1953,7 @@ setAtRule(old);
 nf.setNot(true); {if ("" != null) return nf;}
       break;
       }
-    case RPARAN:{
+    case LPAREN:{
       nf = supports_condition_in_parens(supportsRule);
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
       case AND:
@@ -2059,7 +2059,7 @@ if (f == null) {
   final public SupportsFeature supports_condition_in_parens(AtRuleSupports supportsRule) throws ParseException {CssProperty p;
     SupportsFeature f = new SupportsFeature();
     SupportsFeature nf;
-    jj_consume_token(RPARAN);
+    jj_consume_token(LPAREN);
     label_52:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -2094,8 +2094,8 @@ f.addFeature(nf);
       case LBRACKET:
       case RBRACKET:
       case ANY:
-      case LPARAN:
-      case RPARAN:
+      case RPAREN:
+      case LPAREN:
       case COLON:
       case ATKEYWORD:
       case CLASS:
@@ -2117,7 +2117,7 @@ f.setProperty(p);
         throw new ParseException();
       }
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
     label_53:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -2141,8 +2141,8 @@ f.setProperty(p);
       jj_consume_token(FUNCTION);
       break;
       }
-    case RPARAN:{
-      jj_consume_token(RPARAN);
+    case LPAREN:{
+      jj_consume_token(LPAREN);
       break;
       }
     default:
@@ -2180,7 +2180,7 @@ f.setProperty(p);
       }
       ident();
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
     label_56:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -2197,7 +2197,7 @@ f.setProperty(p);
   }
 
   final public void unused_production_generic_syntax() throws ParseException {CssExpression values = new CssExpression();
-    jj_consume_token(RPARAN);
+    jj_consume_token(LPAREN);
     label_57:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -2212,7 +2212,7 @@ f.setProperty(p);
       jj_consume_token(S);
     }
     term(values);
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
 
   }
 
@@ -3614,8 +3614,8 @@ connector = ' ' ;
     case LBRACKET:
     case RBRACKET:
     case ANY:
-    case LPARAN:
-    case RPARAN:
+    case RPAREN:
+    case LPAREN:
     case COLON:
     case 129:
     case 130:
@@ -3640,8 +3640,8 @@ connector = ' ' ;
       case LBRACKET:
       case RBRACKET:
       case ANY:
-      case LPARAN:
-      case RPARAN:
+      case RPAREN:
+      case LPAREN:
       case COLON:
       case 129:
       case 130:
@@ -3661,8 +3661,8 @@ connector = ' ' ;
         case LBRACKET:
         case RBRACKET:
         case ANY:
-        case LPARAN:
-        case RPARAN:
+        case RPAREN:
+        case LPAREN:
         case COLON:
         case 129:
         case 130:
@@ -3721,12 +3721,12 @@ connector = ' ' ;
             hack = jj_consume_token(LBRACKET);
             break;
             }
-          case LPARAN:{
-            hack = jj_consume_token(LPARAN);
+          case RPAREN:{
+            hack = jj_consume_token(RPAREN);
             break;
             }
-          case RPARAN:{
-            hack = jj_consume_token(RPARAN);
+          case LPAREN:{
+            hack = jj_consume_token(LPAREN);
             break;
             }
           case COLON:{
@@ -3987,8 +3987,8 @@ addError(new ParseException(e.getMessage()), skipStatement());
     case LBRACKET:
     case RBRACKET:
     case ANY:
-    case LPARAN:
-    case RPARAN:
+    case RPAREN:
+    case LPAREN:
     case COLON:
     case ATKEYWORD:
     case CLASS:
@@ -4056,8 +4056,8 @@ if (values != null) {
       case LBRACKET:
       case RBRACKET:
       case ANY:
-      case LPARAN:
-      case RPARAN:
+      case RPAREN:
+      case LPAREN:
       case COLON:
       case ATKEYWORD:
       case CLASS:
@@ -4931,7 +4931,7 @@ if (ac.getCssVersion() == CssVersion.CSS1) {
       }
       jj_consume_token(S);
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
 s.setPseudoFun("not", ns.toString());
   }
 
@@ -5080,7 +5080,7 @@ try {
           jj_consume_token(-1);
           throw new ParseException();
         }
-        jj_consume_token(LPARAN);
+        jj_consume_token(RPAREN);
         break;
         }
       default:
@@ -5479,7 +5479,7 @@ ac.getFrame().addWarning(e.getMessage(), e.getMessageArgs());
   CssComparator comp1 = null;
   CssComparator comp2 = null;
   boolean nameIsFirst = false;
-    jj_consume_token(RPARAN);
+    jj_consume_token(LPAREN);
     label_134:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -5697,7 +5697,7 @@ nameIsFirst = true;
         throw new ParseException();
       }
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
     label_140:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -6426,7 +6426,7 @@ c.addValue(v);
         jj_consume_token(S);
       }
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
 c.validate();
     {if ("" != null) return c;}
     throw new Error("Missing return statement in function");
@@ -6509,7 +6509,7 @@ c.addValue(v);
         jj_consume_token(S);
       }
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
 c.validate();
     {if ("" != null) return c;}
     throw new Error("Missing return statement in function");
@@ -6602,7 +6602,7 @@ Token n;
       }
       jj_consume_token(S);
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
 c = new CssClamp(ac, v1, v2, v3);
         c.validate();
         {if ("" != null) return c;}
@@ -6640,7 +6640,7 @@ Token n;
       }
       jj_consume_token(S);
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
 String funcname = n.image.toLowerCase();
     if (funcname.charAt(0) == '-') {
         if (ac.getTreatVendorExtensionsAsWarnings()) {
@@ -6808,7 +6808,7 @@ c = new CssCalc(ac, v1);
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case PLUS:
         case MINUS:
-        case RPARAN:
+        case LPAREN:
         case NUMBER:{
           v2 = calcnumbervalue();
           break;
@@ -6869,8 +6869,8 @@ if (concat) {
 v = new CssNumber(); v.set(addOperator(operator, n.image), ac);
       break;
       }
-    case RPARAN:{
-      jj_consume_token(RPARAN);
+    case LPAREN:{
+      jj_consume_token(LPAREN);
       label_170:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -6898,7 +6898,7 @@ v = new CssNumber(); v.set(addOperator(operator, n.image), ac);
         }
         jj_consume_token(S);
       }
-      jj_consume_token(LPARAN);
+      jj_consume_token(RPAREN);
 try { ((CssCalc) v).setParenthesis(); } catch (Exception ex) { ex.printStackTrace();}
       break;
       }
@@ -7134,8 +7134,8 @@ v= new CssFrequency(); v.set(addOperator(operator, n.image), ac);
       }
       break;
       }
-    case RPARAN:{
-      jj_consume_token(RPARAN);
+    case LPAREN:{
+      jj_consume_token(LPAREN);
       label_178:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -7163,7 +7163,7 @@ v= new CssFrequency(); v.set(addOperator(operator, n.image), ac);
         }
         jj_consume_token(S);
       }
-      jj_consume_token(LPARAN);
+      jj_consume_token(RPAREN);
 ((CssCalc) v).setParenthesis();
       break;
       }
@@ -7302,7 +7302,7 @@ exp.setOperator(',');
       jj_la1[270] = jj_gen;
       ;
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
 v = new CssAttr();
        v.setValue(exp, ac);
        {if ("" != null) return v;}
@@ -7355,7 +7355,8 @@ var = new CssVariable(ac, convertIdent(n.image));
         jj_consume_token(S);
       }
       e = expr();
-if (exp == null) {
+// we need something more lenient than expr here
+                                if (exp == null) {
                                     exp = e;
                                 } else {
                                     exp.setOperator(CssOperator.COMMA) ;
@@ -7379,7 +7380,7 @@ if (exp == null) {
       }
       jj_consume_token(S);
     }
-    jj_consume_token(LPARAN);
+    jj_consume_token(RPAREN);
 if (exp != null) {
         var.set(exp);
     }
@@ -7409,7 +7410,7 @@ if (exp != null) {
     }
     if (jj_2_15(2)) {
       exp = expr();
-      jj_consume_token(LPARAN);
+      jj_consume_token(RPAREN);
 String funcname = n.image.toLowerCase();
         if (funcname.equals("rgb(")) {
             color.setRGBColor(ac, exp);
@@ -7482,7 +7483,7 @@ String funcname = n.image.toLowerCase();
         p = ident();
         jj_consume_token(EQ);
         q = jj_consume_token(NUMBER);
-        jj_consume_token(LPARAN);
+        jj_consume_token(RPAREN);
         break;
         }
       default:
@@ -7948,7 +7949,7 @@ n.image = Util.strip(n.image);
       xsp = jj_scanpos;
       if (jj_3R_329()) { jj_scanpos = xsp; break; }
     }
-    if (jj_scan_token(LPARAN)) return true;
+    if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
@@ -8030,6 +8031,13 @@ n.image = Util.strip(n.image);
     return false;
   }
 
+  private boolean jj_3_15()
+ {
+    if (jj_3R_203()) return true;
+    if (jj_scan_token(RPAREN)) return true;
+    return false;
+  }
+
   private boolean jj_3R_214()
  {
     Token xsp;
@@ -8057,13 +8065,6 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_303()
  {
     if (jj_3R_293()) return true;
-    return false;
-  }
-
-  private boolean jj_3_15()
- {
-    if (jj_3R_203()) return true;
-    if (jj_scan_token(LPARAN)) return true;
     return false;
   }
 
@@ -8357,7 +8358,7 @@ n.image = Util.strip(n.image);
       xsp = jj_scanpos;
       if (jj_scan_token(21)) { jj_scanpos = xsp; break; }
     }
-    if (jj_scan_token(LPARAN)) return true;
+    if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
@@ -8413,7 +8414,7 @@ n.image = Util.strip(n.image);
     if (jj_3R_331()) jj_scanpos = xsp;
     xsp = jj_scanpos;
     if (jj_3R_332()) jj_scanpos = xsp;
-    if (jj_scan_token(LPARAN)) return true;
+    if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
@@ -8540,7 +8541,7 @@ n.image = Util.strip(n.image);
 
   private boolean jj_3R_279()
  {
-    if (jj_scan_token(RPARAN)) return true;
+    if (jj_scan_token(LPAREN)) return true;
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
@@ -8551,7 +8552,7 @@ n.image = Util.strip(n.image);
       xsp = jj_scanpos;
       if (jj_scan_token(21)) { jj_scanpos = xsp; break; }
     }
-    if (jj_scan_token(LPARAN)) return true;
+    if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
@@ -8982,7 +8983,7 @@ n.image = Util.strip(n.image);
 
   private boolean jj_3R_221()
  {
-    if (jj_scan_token(RPARAN)) return true;
+    if (jj_scan_token(LPAREN)) return true;
     return false;
   }
 
@@ -9110,7 +9111,7 @@ n.image = Util.strip(n.image);
 
   private boolean jj_3R_190()
  {
-    if (jj_scan_token(RPARAN)) return true;
+    if (jj_scan_token(LPAREN)) return true;
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
@@ -9121,7 +9122,7 @@ n.image = Util.strip(n.image);
     jj_scanpos = xsp;
     if (jj_3R_206()) return true;
     }
-    if (jj_scan_token(LPARAN)) return true;
+    if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
@@ -9139,7 +9140,7 @@ n.image = Util.strip(n.image);
 
   private boolean jj_3R_224()
  {
-    if (jj_scan_token(RPARAN)) return true;
+    if (jj_scan_token(LPAREN)) return true;
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
@@ -9327,7 +9328,7 @@ n.image = Util.strip(n.image);
       xsp = jj_scanpos;
       if (jj_scan_token(21)) { jj_scanpos = xsp; break; }
     }
-    if (jj_scan_token(LPARAN)) return true;
+    if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
@@ -9474,7 +9475,7 @@ n.image = Util.strip(n.image);
 
   private boolean jj_3R_315()
  {
-    if (jj_scan_token(RPARAN)) return true;
+    if (jj_scan_token(LPAREN)) return true;
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
@@ -9487,7 +9488,7 @@ n.image = Util.strip(n.image);
     }
     xsp = jj_scanpos;
     if (jj_3R_322()) jj_scanpos = xsp;
-    if (jj_scan_token(LPARAN)) return true;
+    if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
@@ -9519,7 +9520,7 @@ n.image = Util.strip(n.image);
 
   private boolean jj_3_2()
  {
-    if (jj_scan_token(RPARAN)) return true;
+    if (jj_scan_token(LPAREN)) return true;
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
@@ -9602,7 +9603,7 @@ n.image = Util.strip(n.image);
       xsp = jj_scanpos;
       if (jj_3R_328()) { jj_scanpos = xsp; break; }
     }
-    if (jj_scan_token(LPARAN)) return true;
+    if (jj_scan_token(RPAREN)) return true;
     return false;
   }
 
