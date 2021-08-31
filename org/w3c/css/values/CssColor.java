@@ -1241,94 +1241,115 @@ public class CssColor extends CssValue {
         char op = exp.getOperator();
         boolean gotFallback = false;
 
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
         // C
-        if (val == null || op != SPACE) {
+        if ((val == null || op != SPACE) && !hasCssVariable()) {
             throw new InvalidParamException("invalid-color", ac);
         }
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
                 cmyk.setC(ac, val);
                 break;
             default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME device-cmyk
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", val, "device-cmyk", ac);
+                }
         }
 
         // M
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null || op != SPACE) {
+        if ((val == null || op != SPACE) && !hasCssVariable()) {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
                 cmyk.setM(ac, val);
                 break;
             default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME device-cmyk
+                if (!hasCssVariable()) {
+                    exp.starts();
+                    throw new InvalidParamException("colorfunc", val, "device-cmyk", ac);
+                }
         }
 
         // Y
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null) {
-            throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
+        if ((val == null) && !hasCssVariable()) {
+            throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "device-cmyk", ac);
         }
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
                 cmyk.setY(ac, val);
                 break;
             default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME device-cmyk
+                if (!hasCssVariable()) {
+                    exp.starts();
+                    throw new InvalidParamException("colorfunc", val, "device-cmyk", ac);
+                }
         }
         // K
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null) {
-            throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
+        if ((val == null) && !hasCssVariable()) {
+            throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "device-cmyk", ac);
         }
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_VARIABLE:
                 cmyk.setK(ac, val);
                 break;
             default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME device-cmyk
+                if (!hasCssVariable()) {
+                    exp.starts();
+                    throw new InvalidParamException("colorfunc", val, "device-cmyk", ac);
+                }
         }
 
         exp.next();
         if (!exp.end()) {
-            if (op == SPACE) {
+            if ((op == SPACE) && !hasCssVariable()) {
                 // now we need an alpha.
                 val = exp.getValue();
                 op = exp.getOperator();
 
-                if (val.getType() != CssTypes.CSS_SWITCH) {
+                if ((val.getType() != CssTypes.CSS_SWITCH) && !hasCssVariable()) {
                     throw new InvalidParamException("rgb", val, ac);
                 }
-                if (op != SPACE) {
+                if ((op != SPACE) && !hasCssVariable()) {
                     throw new InvalidParamException("invalid-color", ac);
                 }
                 exp.next();
                 // now we get the alpha value
                 val = exp.getValue();
-                if (val == null) {
+                if ((val == null) && !hasCssVariable()) {
                     throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
                 }
                 switch (val.getType()) {
                     case CssTypes.CSS_NUMBER:
                     case CssTypes.CSS_PERCENTAGE:
+                    case CssTypes.CSS_VARIABLE:
                         cmyk.setAlpha(ac, val);
                         break;
                     default:
-                        exp.starts();
-                        throw new InvalidParamException("rgb", val, ac); // FIXME lch
+                        if (!hasCssVariable()) {
+                            exp.starts();
+                            throw new InvalidParamException("colorfunc", val, "device-cmyk", ac);
+                        }
                 }
                 // need to check if we get a comma after this.
                 op = exp.getOperator();
@@ -1336,8 +1357,8 @@ public class CssColor extends CssValue {
             }
             if (op == COMMA) {
                 //the optional fallback
-                if (exp.end()) {
-                    throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
+                if (exp.end() && !hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "device-cmyk", ac);
                 }
                 val = exp.getValue();
                 cmyk.setFallbackColor(ac, val);
@@ -1345,9 +1366,9 @@ public class CssColor extends CssValue {
             }
         }
         // extra values?
-        if (!exp.end()) {
+        if (!exp.end() && !hasCssVariable()) {
             exp.starts();
-            throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
+            throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "device-cmyk", ac);
         }
     }
 
