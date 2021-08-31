@@ -150,8 +150,8 @@ public class CssImage extends CssValue {
                     break;
                 case CssTypes.CSS_HASH_IDENT:
                     c = new CssColor();
-                    c.setShortRGBColor(ac, val.toString());
-                    v.add(c);
+                    c.setShortRGBColor(ac, val.getHashIdent().toString());
+                    v.add((val.getRawType() == CssTypes.CSS_HASH_IDENT) ? c : val);
                     gotcolor = true;
                     break;
                 case CssTypes.CSS_COLOR:
@@ -165,8 +165,8 @@ public class CssImage extends CssValue {
                         break;
                     }
                     c = new CssColor();
-                    c.setIdentColor(ac, val.toString());
-                    v.add(c);
+                    c.setIdentColor(ac, val.getIdent().toString());
+                    v.add((val.getRawType() == CssTypes.CSS_IDENT) ? c : val);
                     gotcolor = true;
                     break;
                 default:
