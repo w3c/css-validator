@@ -19,7 +19,7 @@ import org.w3c.css.values.CssValue;
 public class CssColor extends org.w3c.css.properties.css.CssColor {
 
     CssValue color;
-    String attrvalue = null;
+    CssValue value = null;
 
     /**
      * Create a new CssColor
@@ -32,8 +32,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * Set the value of the property
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssColor(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -50,14 +49,20 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
         switch (val.getType()) {
             case CssTypes.CSS_HASH_IDENT:
                 org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-                c.setShortRGBColor(ac, val.toString());
+                c.setShortRGBColor(ac, val.getHashIdent().toString());
                 color = c;
+                if (val.getRawType() == CssTypes.CSS_VARIABLE) {
+                    value = val;
+                }
                 break;
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {
                     color = inherit;
                 } else {
-                    color = new org.w3c.css.values.CssColor(ac, (String) val.get());
+                    color = new org.w3c.css.values.CssColor(ac, val.getIdent().toString());
+                }
+                if (val.getRawType() == CssTypes.CSS_VARIABLE) {
+                    value = val;
                 }
                 break;
             case CssTypes.CSS_COLOR:
@@ -86,7 +91,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
                                 params.getValue(),
                                 getPropertyName(), ac);
                     } else {
-                        attrvalue = "attr(" + v1 + ", " + v2 + ')';
+                        value = val;
                     }
                 } else {
                     throw new InvalidParamException("value",
@@ -140,8 +145,8 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * Returns a string representation of the object.
      */
     public String toString() {
-        if (attrvalue != null) {
-            return attrvalue;
+        if (value != null) {
+            return value.toString();
         } else {
             return color.toString();
         }
@@ -156,6 +161,5 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
         return (property instanceof CssColor &&
                 color.equals(((CssColor) property).color));
     }
-
 
 }
