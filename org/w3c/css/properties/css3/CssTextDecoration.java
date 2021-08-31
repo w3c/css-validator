@@ -98,7 +98,7 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
                 // constructor is providing expression.next()
             } else {
                 // so we have an ident...
-                CssIdent ident = (CssIdent) val;
+                CssIdent ident = val.getIdent();
                 if (inherit.equals(ident)) {
                     value = inherit;
                     if (check && expression.getCount() != 1) {
@@ -159,6 +159,10 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
                         }
                         // no need to check match, as if it is not a color
                         // an exception would be fired
+                    } else if (!match) {
+                        // all failed, unrecognized value
+                        throw new InvalidParamException("value", val.toString(),
+                                getPropertyName(), ac);
                     }
                 }
             }
