@@ -231,7 +231,8 @@ public class CssColor extends CssValue {
             rgba.setModernStyle(separator_space);
 
             if (val == null || (!separator_space && (op != COMMA))) {
-                throw new InvalidParamException("invalid-color", ac);
+                // don't throw, perhaps a warning instead? FIXME
+                // throw new InvalidParamException("invalid-color", ac);
             }
             rgba.vr = val;
 
@@ -241,7 +242,8 @@ public class CssColor extends CssValue {
 
             if (val == null || (separator_space && (op != SPACE)) ||
                     (!separator_space && (op != COMMA))) {
-                throw new InvalidParamException("invalid-color", ac);
+                // don't throw, perhaps a warning instead? FIXME
+                // throw new InvalidParamException("invalid-color", ac);
             }
             rgba.vg = val;
             exp.next();
@@ -259,22 +261,26 @@ public class CssColor extends CssValue {
                 } else {
                     // otherwise modern syntax
                     if (op != SPACE) {
-                        throw new InvalidParamException("invalid-color", ac);
+                        // don't throw, perhaps a warning instead? FIXME
+                        //         throw new InvalidParamException("invalid-color", ac);
                     }
                     // now we need an alpha.
                     val = exp.getValue();
                     op = exp.getOperator();
 
                     if (val.getType() != CssTypes.CSS_SWITCH) {
-                        throw new InvalidParamException("rgb", val, ac);
+                        // don't throw, perhaps a warning instead? FIXME
+//                        throw new InvalidParamException("rgb", val, ac);
                     }
                     if (op != SPACE) {
-                        throw new InvalidParamException("invalid-color", ac);
+                        // don't throw, perhaps a warning instead? FIXME
+//                        throw new InvalidParamException("invalid-color", ac);
                     }
                     exp.next();
                     // now we get the alpha value
                     if (exp.end()) {
-                        throw new InvalidParamException("rgb", exp.getValue(), ac);
+                        // don't throw, perhaps a warning instead? FIXME
+//                        throw new InvalidParamException("rgb", exp.getValue(), ac);
                     }
                     val = exp.getValue();
                     rgba.va = val;
@@ -434,7 +440,9 @@ public class CssColor extends CssValue {
         }
 
         if (val == null || (!separator_space && (op != COMMA))) {
-            throw new InvalidParamException("invalid-color", ac);
+            if (!hasCssVariable()) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
         }
 
         // H
@@ -445,7 +453,9 @@ public class CssColor extends CssValue {
                 hsl.setHue(ac, val);
                 break;
             default:
-                throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                }
         }
 
         exp.next();
@@ -454,7 +464,9 @@ public class CssColor extends CssValue {
 
         if (val == null || (separator_space && (op != SPACE)) ||
                 (!separator_space && (op != COMMA))) {
-            throw new InvalidParamException("invalid-color", ac);
+            if (!hasCssVariable()) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
         }
 
         // S
@@ -465,14 +477,16 @@ public class CssColor extends CssValue {
                 break;
             default:
                 exp.starts();
-                throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                }
         }
 
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
 
-        if (val == null) {
+        if (val == null && !hasCssVariable()) {
             throw new InvalidParamException("invalid-color", ac);
         }
 
@@ -484,7 +498,9 @@ public class CssColor extends CssValue {
                 break;
             default:
                 exp.starts();
-                throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                }
         }
 
         exp.next();
@@ -502,26 +518,28 @@ public class CssColor extends CssValue {
                         break;
                     default:
                         exp.starts();
-                        throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                        if (!hasCssVariable()) {
+                            throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                        }
                 }
             } else {
                 // otherwise modern syntax
-                if (op != SPACE) {
+                if (op != SPACE && !hasCssVariable()) {
                     throw new InvalidParamException("invalid-color", ac);
                 }
                 // now we need an alpha.
                 val = exp.getValue();
                 op = exp.getOperator();
 
-                if (val.getType() != CssTypes.CSS_SWITCH) {
+                if (val.getType() != CssTypes.CSS_SWITCH && !hasCssVariable()) {
                     throw new InvalidParamException("colorfunc", val, "HSL", ac);
                 }
-                if (op != SPACE) {
+                if (op != SPACE && !hasCssVariable()) {
                     throw new InvalidParamException("invalid-color", ac);
                 }
                 exp.next();
                 // now we get the alpha value
-                if (exp.end()) {
+                if (exp.end() && !hasCssVariable()) {
                     throw new InvalidParamException("colorfunc", exp.getValue(), "HSL", ac);
                 }
                 val = exp.getValue();
@@ -532,12 +550,14 @@ public class CssColor extends CssValue {
                         hsl.setAlpha(ac, val);
                         break;
                     default:
-                        throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                        if (!hasCssVariable()) {
+                            throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                        }
                 }
             }
             exp.next();
 
-            if (!exp.end()) {
+            if (!exp.end() && !hasCssVariable()) {
                 throw new InvalidParamException("colorfunc", exp.getValue(), "HSL", ac);
             }
         }
