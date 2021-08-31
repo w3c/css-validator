@@ -46,6 +46,16 @@ public class CssImage extends CssValue {
         }
     }
 
+    boolean contains_variable = false;
+
+    public boolean hasCssVariable() {
+        return contains_variable;
+    }
+
+    public void markCssVariable() {
+        contains_variable = true;
+    }
+
     public static boolean isVerticalIdent(CssIdent ident) {
         return ident.equals(top) || ident.equals(bottom);
     }
@@ -140,8 +150,8 @@ public class CssImage extends CssValue {
                     break;
                 case CssTypes.CSS_HASH_IDENT:
                     c = new CssColor();
-                    c.setShortRGBColor(ac, val.toString());
-                    v.add(c);
+                    c.setShortRGBColor(ac, val.getHashIdent().toString());
+                    v.add((val.getRawType() == CssTypes.CSS_HASH_IDENT) ? c : val);
                     gotcolor = true;
                     break;
                 case CssTypes.CSS_COLOR:
@@ -149,14 +159,14 @@ public class CssImage extends CssValue {
                     gotcolor = true;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
+                    if (CssColorCSS3.currentColor.equals(val.getIdent())) {
                         v.add(val);
                         gotcolor = true;
                         break;
                     }
                     c = new CssColor();
-                    c.setIdentColor(ac, val.toString());
-                    v.add(c);
+                    c.setIdentColor(ac, val.getIdent().toString());
+                    v.add((val.getRawType() == CssTypes.CSS_IDENT) ? c : val);
                     gotcolor = true;
                     break;
                 default:
@@ -233,7 +243,7 @@ public class CssImage extends CssValue {
                 exp.next();
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
+                CssIdent ident = val.getIdent();
                 if (to.equals(ident)) {
                     CssValueList vl = new CssValueList();
                     vl.add(to);
@@ -258,13 +268,13 @@ public class CssImage extends CssValue {
                                 val.toString(),
                                 name, ac);
                     }
-                    v1 = getLinearGradientIdent((CssIdent) val);
+                    v1 = getLinearGradientIdent(val.getIdent());
                     if (v1 == null) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 name, ac);
                     }
-                    vl.add(v1);
+                    vl.add((val.getRawType() == CssTypes.CSS_IDENT) ? v1 : val);
                     isV1Vertical = isVerticalIdent(v1);
                     exp.next();
                     if (exp.end()) {
@@ -280,7 +290,7 @@ public class CssImage extends CssValue {
                                     val.toString(),
                                     name, ac);
                         }
-                        v2 = getLinearGradientIdent((CssIdent) val);
+                        v2 = getLinearGradientIdent(val.getIdent());
                         if (v2 == null) {
                             throw new InvalidParamException("value",
                                     val.toString(),
@@ -293,7 +303,7 @@ public class CssImage extends CssValue {
                                     val.toString(),
                                     name, ac);
                         }
-                        vl.add(v2);
+                        vl.add((val.getRawType() == CssTypes.CSS_IDENT) ? v2 : val);
                         exp.next();
                     }
                     v.add(vl);
@@ -378,7 +388,7 @@ public class CssImage extends CssValue {
                 parse_prolog = true;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 parse_prolog = at.equals(id) ||
                         (getShape(id) != null) ||
                         (getExtentIdent(id) != null);
@@ -472,7 +482,7 @@ public class CssImage extends CssValue {
                     throw new InvalidParamException("value",
                             val, name, ac);
                 case CssTypes.CSS_IDENT:
-                    CssIdent id = (CssIdent) val;
+                    CssIdent id = val.getIdent();
                     // final 'at'
                     if (at.equals(id)) {
                         CssExpression exp = new CssExpression();
@@ -554,6 +564,32 @@ public class CssImage extends CssValue {
         boolean prev_is_hint = false;
         boolean got_length_percentage;
 
+        if (expression.hasCssVariable()) {
+            markCssVariable();
+            // we won't check if type is unknown
+            stop = new ArrayList<>(2);
+            while (!expression.end()) {
+                stop1 = expression.getValue();
+                op = expression.getOperator();
+                if (op == SPACE && expression.getRemainingCount() > 1) {
+                    expression.next();
+                    stop = new ArrayList<>(2);
+                    stop.add(stop1);
+                    stop.add(expression.getValue());
+                    op = expression.getOperator();
+                    v.add(new CssValueList(stop));
+                } else {
+                    v.add(stop1);
+                }
+                expression.next();
+                if (!expression.end() && op != COMMA) {
+                    expression.starts();
+                    throw new InvalidParamException("operator",
+                            Character.toString(op), ac);
+                }
+            }
+            return v;
+        }
         while (!expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
@@ -570,17 +606,17 @@ public class CssImage extends CssValue {
 
                 case CssTypes.CSS_HASH_IDENT:
                     stopcol = new CssColor();
-                    stopcol.setShortRGBColor(ac, val.toString());
-                    stop1 = stopcol;
+                    stopcol.setShortRGBColor(ac, val.getHashIdent().toString());
+                    stop1 = (val.getRawType() == CssTypes.CSS_HASH_IDENT) ? stopcol : val;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
-                        stop1 = CssColorCSS3.currentColor;
+                    if (CssColorCSS3.currentColor.equals(val.getIdent())) {
+                        stop1 = (val.getRawType() == CssTypes.CSS_IDENT) ? CssColorCSS3.currentColor : val;
                         break;
                     }
                     stopcol = new CssColor();
-                    stopcol.setIdentColor(ac, val.toString());
-                    stop1 = stopcol;
+                    stopcol.setIdentColor(ac, val.getIdent().toString());
+                    stop1 = (val.getRawType() == CssTypes.CSS_IDENT) ? stopcol : val;
                     break;
                 case CssTypes.CSS_COLOR:
                     stop1 = val;
@@ -614,10 +650,10 @@ public class CssImage extends CssValue {
                                     "color-stop", ac);
                         }
                         stopcol = new CssColor();
-                        stopcol.setShortRGBColor(ac, val.toString());
+                        stopcol.setShortRGBColor(ac, val.getHashIdent().toString());
                         // TODO we rewrite putting color first, should we do that?
                         stop = new ArrayList<CssValue>(2);
-                        stop.add(stopcol);
+                        stop.add((val.getRawType() == CssTypes.CSS_HASH_IDENT) ? stopcol : val);
                         stop.add(stop1);
                         v.add(new CssValueList(stop));
                         break;
@@ -626,12 +662,12 @@ public class CssImage extends CssValue {
                             throw new InvalidParamException("value", val.toString(),
                                     "color-stop", ac);
                         }
-                        if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
-                            stop2 = CssColorCSS3.currentColor;
+                        if (CssColorCSS3.currentColor.equals(val.getIdent())) {
+                            stop2 = (val.getRawType() == CssTypes.CSS_HASH_IDENT) ? CssColorCSS3.currentColor : val;
                         } else {
                             stopcol = new CssColor();
-                            stopcol.setIdentColor(ac, val.toString());
-                            stop2 = stopcol;
+                            stopcol.setIdentColor(ac, val.getIdent().toString());
+                            stop2 = (val.getRawType() == CssTypes.CSS_IDENT) ? stopcol : val;
                         }
                         // TODO we rewrite putting color first, should we do that?
                         stop = new ArrayList<CssValue>(2);

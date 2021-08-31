@@ -59,6 +59,7 @@ import org.w3c.css.values.CssRatio;
 import org.w3c.css.values.CssSemitone;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssVolume;
+import org.w3c.css.values.CssVariable;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
@@ -400,16 +401,44 @@ public abstract class CssParser {
 	throws ParseException {
 
 	if ( token == FUNCTION ) {
-	    if ( v.getType() == CssTypes.CSS_FUNCTION ) {
-                CssFunction f = (CssFunction) v;
-      	        if (f.getParameters().hasVendorExtensions()) {
-      	            expr.markVendorExtension();
-                }
-                if (f.getParameters().hasCssHack()) {
-                    expr.markCssHack();
-                }
+            switch (v.getType()) {
+                case CssTypes.CSS_FUNCTION:
+                    CssFunction f = (CssFunction) v;
+                    if (f.getParameters().hasVendorExtensions()) {
+                        expr.markVendorExtension();
+                    }
+                    if (f.getParameters().hasCssVariable()) {
+                        expr.markCssVariable();
+                    }
+                    if (f.getParameters().hasCssHack()) {
+                        expr.markCssHack();
+                    }
+                    break;
+                case CssTypes.CSS_IMAGE:
+                    CssImage im = (CssImage) v;
+                    if (im.hasCssVariable()) {
+                        expr.markCssVariable();
+                    }
+                    break;
+                case CssTypes.CSS_COLOR:
+                    CssColor co = (CssColor) v;
+                    if (co.hasCssVariable()) {
+                       expr.markCssVariable();
+                    }
+                    break;
+                default:
+                // do nothing
             }
-	}
+	} else if ( token == FUNCTIONVAR ) {
+            if (v.getType() == CssTypes.CSS_VARIABLE) {
+                expr.markCssVariable();
+            }
+        } else if ( token == FUNCTIONCALC ) {
+               CssCalc c = (CssCalc) v;
+               if (c.hasCssVariable()) {
+                   expr.markCssVariable();
+               }
+        }
 	if (n != null) {
 	    if (ac.getCssVersion() == CssVersion.CSS1 &&
 		                          (n.image).equals("inherit")) {
@@ -578,7 +607,7 @@ TOKEN :
 <DEFAULT>
 TOKEN :
 {
-    <CUSTOM_PROPERTY_NAME : <MINUS> <MINUS> <NMSTART> ( <NMCHAR> )* >
+    <CUSTOM_PROPERTY_NAME : <MINUS> <MINUS> ( <NMSTART> ( <NMCHAR> )* )? >
 }
 
 <DEFAULT>
@@ -2868,12 +2897,12 @@ void term(CssExpression exp) :
         }
         ) 
       )
-      | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+      | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTIONCALC); }
         | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
-        | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN>
+        | func=functionvar() { setValue(func, exp, operator, null, FUNCTIONVAR); }
         | func=function() { setValue(func, exp, operator, null, FUNCTION); }
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
         | n=<DIV>  { setValue(new CssSwitch(), exp, operator, n, DIV); }
@@ -2962,7 +2991,7 @@ void mediaterm(CssExpression exp) :
 	    }
     }
    | (  func=function() { setValue(func, exp, operator, null, FUNCTION); }
-      | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+      | func=mathcalc() { setValue(func, exp, operator, null, FUNCTIONCALC); }
       | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); }
@@ -3114,6 +3143,9 @@ CssCheckableValue mathsum() :
 	    nb_pre_sp = 0;
 	    if (concat) {
 		nc = new CssCalc(ac, c);
+                if (c.hasCssVariable()) {
+                    nc.markCssVariable();
+                }
 		nc.addRightSide(o.image.trim(), v2);
 		c = nc;
 	    } else {
@@ -3130,28 +3162,40 @@ CssCheckableValue mathproduct() :
 { Token n,o;
   CssCheckableValue v1 = null;
   CssCheckableValue v2 = null;
+  CssValue f;
   CssCalc c, nc;
   char operator = ' ';
   boolean concat = false;
 }
 {
- ( v1=mathunit() { c = new CssCalc(ac, v1); }  ( LOOKAHEAD(2) ( <S> )* 
-                    (  ( o="*" ( <S> )* v2=mathunit() )
-                       |
-                       ( o=<DIV> ( <S> )*  ( v2=calcnumbervalue()
-                       | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> )
-                       )
-                    ) {
-                          if (concat) {
-                              nc = new CssCalc(ac, c);
-                              nc.addRightSide(o.image, v2);
-                              c = nc;
-                          } else {
-                              c.addRightSide(o.image, v2);
-                              concat = true;
-                          }
-                      }
-                  )*
+ ( v1=mathunit() { c = new CssCalc(ac, v1); }
+     ( LOOKAHEAD(2) ( <S> )*
+         (  ( o="*" ( <S> )* v2=mathunit() )
+           |
+           ( o=<DIV> ( <S> )*
+               ( v2=calcnumbervalue()
+                |
+                 v2=functionvar() {
+                     if (v2.getType() == CssTypes.CSS_VARIABLE) {
+                         c.markCssVariable();
+                     }
+                 }
+               )
+           )
+         ) {
+         if (concat) {
+             nc = new CssCalc(ac, c);
+             if (c.hasCssVariable()) {
+                 nc.markCssVariable();
+             }
+             nc.addRightSide(o.image, v2);
+             c = nc;
+         } else {
+             c.addRightSide(o.image, v2);
+             concat = true;
+         }
+     }
+     )*
  ) { return c; }
 }
 
@@ -3247,7 +3291,7 @@ char operator = ' ';
     | v=mathmin()
     | v=mathclamp()
     | v=attr()
-    | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN>
+    | v=functionvar()
 ) {
      return v;
    }
@@ -3270,6 +3314,35 @@ CssExpression exp = null;
        v = new CssAttr();
        v.setValue(exp, ac);
        return v;
+  }
+}
+
+CssCheckableValue functionvar() :
+{ Token n;
+ CssExpression exp = null;
+ CssExpression e;
+ CssVariable var;
+}
+{
+  <FUNCTIONVAR> ( <S> )* n=<CUSTOM_PROPERTY_NAME> {
+      var = new CssVariable(ac, convertIdent(n.image));
+  } 
+  ( <COMMA> ( <S> )* e=expr() { if (exp == null) {
+                                    exp = e;
+                                } else {
+                                    exp.setOperator(CssOperator.COMMA) ; 
+                                    while (!e.end()) {
+                                       exp.addValue(e.getValue());
+                                       exp.setOperator(e.getOperator());
+                                       e.next();
+                                    }
+                                }
+                              } )* ( <S> )* <LPARAN>
+  {
+    if (exp != null) {
+        var.set(exp);
+    }
+    return var;
   }
 }
 
@@ -3302,9 +3375,6 @@ CssValue function() :
             return color;
         } else if (funcname.equals("lab(")) {
             color.setLABColor(ac, exp);
-            return color;
-        } else if (funcname.equals("gray(")) {
-            color.setGrayColor(ac, exp);
             return color;
         } else if (funcname.equals("lch(")) {
             color.setLCHColor(ac, exp);

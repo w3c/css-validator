@@ -7,6 +7,7 @@
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 
 /**
  * @version $Revision$
@@ -117,4 +118,9 @@ public class CssHashIdent extends CssValue implements Comparable<CssHashIdent> {
     }
 
     private String value;
+
+    @Override
+    public CssHashIdent getHashIdent() throws InvalidParamException {
+        return this;
+    }
 }

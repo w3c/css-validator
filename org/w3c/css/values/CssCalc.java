@@ -39,6 +39,7 @@ public class CssCalc extends CssCheckableValue {
     boolean hasParen = false;
     String _toString = null;
     boolean implicit_function = true;
+    boolean contains_variable = false;
 
 
     /**
@@ -60,9 +61,23 @@ public class CssCalc extends CssCheckableValue {
             this.ac = ac;
         }
         if (value != null) {
-            computed_type = value.getType();
-            val1 = value;
+            if (value.getRawType() == CssTypes.CSS_CALC) {
+                CssCalc c = (CssCalc) value;
+                contains_variable = c.hasCssVariable();
+            } else if (value.getType() == CssTypes.CSS_VARIABLE) {
+                contains_variable = true;
+            }
         }
+        computed_type = value.getType();
+        val1 = value;
+    }
+
+    public boolean hasCssVariable() {
+        return contains_variable;
+    }
+
+    public void markCssVariable() {
+        contains_variable = true;
     }
 
     public void setImplicitFunction(boolean v) {
@@ -93,6 +108,9 @@ public class CssCalc extends CssCheckableValue {
             throw new InvalidParamException("unrecognized", val1, ac);
         }
         val1 = value;
+        if (val1.getType() == CssTypes.CSS_VARIABLE) {
+            contains_variable = true;
+        }
         _toString = null;
         return this;
     }
@@ -116,6 +134,9 @@ public class CssCalc extends CssCheckableValue {
                 throw new InvalidParamException("operator", oper, ac);
         }
         val2 = value;
+        if (val2.getType() == CssTypes.CSS_VARIABLE) {
+            contains_variable = true;
+        }
         _computeResultingType(false);
         return this;
     }
@@ -146,6 +167,10 @@ public class CssCalc extends CssCheckableValue {
             throws InvalidParamException {
         int valtype;
 
+        if (contains_variable) {
+            // nothing to check as we may not have anything yet
+            return;
+        }
         if (val2 == null) {
             // we only have val1 to check.
             valtype = val1.getType();

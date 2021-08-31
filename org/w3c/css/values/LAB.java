@@ -13,7 +13,6 @@ public class LAB {
     String output = null;
     CssValue vl, va, vb, alpha;
     boolean faSet = false;
-    boolean isGray = false;
 
     /**
      * Create a new LAB
@@ -27,7 +26,7 @@ public class LAB {
             // TODO add warning about uncheckability
             // might need to extend...
         } else {
-            if (val.getType() == CssTypes.CSS_NUMBER) {
+            if (val.getType() == CssTypes.CSS_PERCENTAGE) {
                 CssCheckableValue v = val.getCheckableValue();
                 if (!v.isPositive()) {
                     ac.getFrame().addWarning("out-of-range", val.toString());
@@ -78,11 +77,6 @@ public class LAB {
         alpha = RGBA.filterAlpha(ac, val);
     }
 
-    public final boolean setGray(boolean isGray) {
-        this.isGray = isGray;
-        return isGray;
-    }
-
     public boolean equals(LAB other) {
         if (other != null) {
             return (vl.equals(other.vl) && va.equals(other.va) && vb.equals(other.vb) &&
@@ -97,23 +91,15 @@ public class LAB {
     public String toString() {
         if (output == null) {
             StringBuilder sb;
-            if (isGray) {
-                sb = new StringBuilder("gray(");
-                sb.append(vl);
-                if (faSet) {
-                    sb.append(" / ").append(alpha);
-                }
-                sb.append(')');
-            } else {
-                sb = new StringBuilder("lab(");
-                sb.append(vl).append(' ');
-                sb.append(va).append(' ');
-                sb.append(vb);
-                if (faSet) {
-                    sb.append(" / ").append(alpha);
-                }
-                sb.append(')');
+
+            sb = new StringBuilder("lab(");
+            sb.append(vl).append(' ');
+            sb.append(va).append(' ');
+            sb.append(vb);
+            if (faSet) {
+                sb.append(" / ").append(alpha);
             }
+            sb.append(')');
             output = sb.toString();
         }
         return output;

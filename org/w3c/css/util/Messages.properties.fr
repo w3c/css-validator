@@ -292,6 +292,7 @@ error.url: \u201C%s\u201D n'est pas une URL correcte.
 
 # used by org.w3c.css.values.CssColor
 error.rgb: \u201C%s\u201D n'est pas une couleur valide (qui doit contenir 3 ou 6 chiffres hexadécimaux).
+error.colorfunc: \u201C%s1\u201D n'est pas une couleur %s2 valide
 error.angle: \u201C%s\u201D n'est pas une angle valide. La valeur doit être entre 0 et 360 
 
 # used by org.w3c.css.values.CssNumber
@@ -419,6 +420,8 @@ error.notformobile : \u201C%s\u201D ne peut pas être utilisé pour le profile m
 error.notforatsc: \u201C%s\u201D ne peut pas être utilisé pour le profil ATSC
 error.notfortv: \u201C%s\u201D ne peut pas être utilisé pour le profil TV
 error.notversion: \u201C%s\u201D ne peut pas être utilisé pour cette version CSS: \u201C%s\u201D
+
+warning.css-variable: En raison de laur nature dynamique, les variables CSS ne sont pas vérifiées statiquement
 
 warning.css-hack : \u201C%s\u201D est un hack CSS
 

@@ -38,6 +38,7 @@ import org.w3c.css.values.CssRatio;
 import org.w3c.css.values.CssSemitone;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssVolume;
+import org.w3c.css.values.CssVariable;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
@@ -2769,8 +2770,11 @@ private int jjMoveNfa_0(int startState, int curPos)
                   { jjCheckNAddStates(1135, 1141); }
                   break;
                case 429:
-                  if (curChar == 45)
-                     { jjAddStates(1142, 1143); }
+                  if (curChar != 45)
+                     break;
+                  if (kind > 43)
+                     kind = 43;
+                  { jjAddStates(1142, 1143); }
                   break;
                case 431:
                   if ((0x3ff200000000000L & l) == 0L)

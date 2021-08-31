@@ -7,6 +7,7 @@
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 
 import java.util.HashMap;
 
@@ -149,6 +150,11 @@ public class CssIdent extends CssValue implements Comparable<CssIdent> {
     public boolean hasBackslash9Hack() {
         // TODO check that the comparison is right if the c18n of ident changes
         return value.endsWith("\\000009");
+    }
+
+    @Override
+    public CssIdent getIdent() throws InvalidParamException {
+        return this;
     }
 
     private String value;
