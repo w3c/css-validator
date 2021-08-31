@@ -1005,7 +1005,7 @@ public class CssColor extends CssValue {
         CssValue val = exp.getValue();
         char op = exp.getOperator();
         // L
-        if (val == null || op != SPACE) {
+        if ((val == null || op != SPACE) && !hasCssVariable()) {
             throw new InvalidParamException("colorfunc", exp, "Lab", ac);
         }
         switch (val.getType()) {
@@ -1014,14 +1014,16 @@ public class CssColor extends CssValue {
                 lab.setL(ac, val);
                 break;
             default:
-                throw new InvalidParamException("colorfunc", val, "Lab", ac);
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", val, "Lab", ac);
+                }
         }
 
         // A
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null || op != SPACE) {
+        if ((val == null || op != SPACE) && !hasCssVariable()) {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
@@ -1032,7 +1034,9 @@ public class CssColor extends CssValue {
                 break;
             default:
                 exp.starts();
-                throw new InvalidParamException("colorfunc", val, "Lab", ac);
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", val, "Lab", ac);
+                }
         }
 
         // B
@@ -1041,7 +1045,9 @@ public class CssColor extends CssValue {
         op = exp.getOperator();
         if (val == null) {
             exp.starts();
-            throw new InvalidParamException("colorfunc", exp, "Lab", ac);
+            if (!hasCssVariable()) {
+                throw new InvalidParamException("colorfunc", exp, "Lab", ac);
+            }
         }
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
@@ -1050,28 +1056,30 @@ public class CssColor extends CssValue {
                 break;
             default:
                 exp.starts();
-                throw new InvalidParamException("colorfunc", val, "Lab", ac);
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("colorfunc", val, "Lab", ac);
+                }
         }
 
         exp.next();
         if (!exp.end()) {
-            if (op != SPACE) {
+            if (op != SPACE && !hasCssVariable()) {
                 throw new InvalidParamException("colorfunc", op, "Lab", ac);
             }
             // now we need an alpha.
             val = exp.getValue();
             op = exp.getOperator();
 
-            if (val.getType() != CssTypes.CSS_SWITCH) {
+            if ((val.getType() != CssTypes.CSS_SWITCH) && !hasCssVariable()) {
                 throw new InvalidParamException("colorfunc", val, "Lab", ac);
             }
-            if (op != SPACE) {
+            if (op != SPACE && !hasCssVariable()) {
                 throw new InvalidParamException("colorfunc", val, "Lab", ac);
             }
             exp.next();
             // now we get the alpha value
             val = exp.getValue();
-            if (val == null) {
+            if ((val == null) && !hasCssVariable()) {
                 throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "Lab", ac);
             }
             switch (val.getType()) {
@@ -1082,14 +1090,18 @@ public class CssColor extends CssValue {
                     break;
                 default:
                     exp.starts();
-                    throw new InvalidParamException("colorfunc", val, "Lab", ac);
+                    if (!hasCssVariable()) {
+                        throw new InvalidParamException("colorfunc", val, "Lab", ac);
+                    }
             }
             exp.next();
         }
         // extra values?
         if (!exp.end()) {
             exp.starts();
-            throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "Lab", ac);
+            if (!hasCssVariable()) {
+                throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "Lab", ac);
+            }
         }
     }
 
