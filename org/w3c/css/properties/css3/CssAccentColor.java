@@ -56,8 +56,8 @@ public class CssAccentColor extends org.w3c.css.properties.css.CssAccentColor {
                 break;
             case CssTypes.CSS_HASH_IDENT:
                 org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-                c.setShortRGBColor(ac, val.toString());
-                value = c;
+                c.setShortRGBColor(ac, val.getHashIdent().toString());
+                value = (val.getRawType() == CssTypes.CSS_HASH_IDENT)? c : value;
                 expression.next();
                 break;
             case CssTypes.CSS_IDENT:
@@ -77,6 +77,9 @@ public class CssAccentColor extends org.w3c.css.properties.css.CssAccentColor {
                 try {
                     CssColor tcolor = new CssColor(ac, expression, check);
                     value = tcolor.getColor();
+                    if (value == null) {
+                        value = val;
+                    }
                     break;
                 } catch (InvalidParamException e) {
                     // we recreate the exception, as it will have
