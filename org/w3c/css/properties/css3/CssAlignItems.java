@@ -84,7 +84,7 @@ public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
+            CssIdent ident = val.getIdent();
             if (inherit.equals(ident)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val.toString(),
@@ -145,12 +145,12 @@ public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                value = CssAlignSelf.getSelfPosition((CssIdent) val);
+                value = CssAlignSelf.getSelfPosition(val.getIdent());
                 if (value == null) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                values.add(value);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }

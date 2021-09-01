@@ -135,38 +135,38 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
+            CssIdent ident = val.getIdent();
             if (inherit.equals(ident)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
                 expression.next();
-                return inherit;
+                return val;
             }
             if (normal.equals(ident)) {
                 expression.next();
-                return normal;
+                return val;
             }
             value = getContentDistribution(ident);
             if (value != null) {
                 expression.next();
-                return value;
+                return val;
             }
             // now try the two-values position, starting first with only one.
             if (baseline.equals(ident)) {
                 expression.next();
-                return baseline;
+                return val;
             }
             value = getContentPosition(ident);
             if (value != null) {
                 expression.next();
-                return value;
+                return val;
             }
             // ok, at that point we need two values.
             value = getBaselineQualifier(ident);
             if (value != null) {
-                values.add(value);
+                values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -180,13 +180,13 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                values.add(baseline);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }
             value = getOverflowPosition(ident);
             if (value != null) {
-                values.add(value);
+                values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -205,7 +205,7 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                values.add(value);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }
