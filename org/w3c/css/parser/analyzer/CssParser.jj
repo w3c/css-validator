@@ -3327,18 +3327,28 @@ CssCheckableValue functionvar() :
   <FUNCTIONVAR> ( <S> )* n=<CUSTOM_PROPERTY_NAME> {
       var = new CssVariable(ac, convertIdent(n.image));
   } 
-  ( <COMMA> ( <S> )* e=expr() { // we need something more lenient than expr here
-                                if (exp == null) {
-                                    exp = e;
-                                } else {
-                                    exp.setOperator(CssOperator.COMMA) ; 
-                                    while (!e.end()) {
-                                       exp.addValue(e.getValue());
-                                       exp.setOperator(e.getOperator());
-                                       e.next();
-                                    }
-                                }
-                              } )* ( <S> )* <RPAREN>
+  ( <COMMA> ( <S> )* try {
+                        e=expr()
+                     } catch (ParseException pe) {
+                        String s = skip_to_matching_paren();
+                        // FIXME do something meaningful with that string
+                        e = null;
+                     }
+                     {
+                         if (e != null) {
+                             if (exp == null) {
+                                 exp = e;
+                             } else {
+                                 exp.setOperator(CssOperator.COMMA);
+                                 while (!e.end()) {
+                                    exp.addValue(e.getValue());
+                                    exp.setOperator(e.getOperator());
+                                    e.next();
+                                 }
+                             }
+                         }
+                     }
+  )* ( <S> )* <RPAREN>
   {
     if (exp != null) {
         var.set(exp);
@@ -3532,6 +3542,45 @@ String skip_to_matching_brace() {
 	    }
 	}
 	getNextToken();
+    }
+    return s.toString();
+}
+
+JAVACODE
+String skip_to_matching_paren() {
+    StringBuilder s = new StringBuilder();
+    Token tok;
+    int nesting = 1;
+    /* FIXME
+       same as above */
+    while (nesting > 0) {
+        tok = getToken(1);
+        if (tok.kind == EOF) {
+            break;
+        }
+        s.append(tok.image);
+        switch(tok.kind) {
+            case LPAREN:
+            case FUNCTION:
+            case FUNCTIONLANG:
+            case FUNCTIONNOT:
+            case FUNCTIONCALC:
+            case FUNCTIONMIN:
+            case FUNCTIONMAX:
+            case FUNCTIONCLAMP:
+            case FUNCTIONATTR:
+            case FUNCTIONVAR:
+                nesting++;
+                getNextToken();
+                break;
+            case RPAREN:
+                nesting--;
+                if (nesting == 0) {
+                    break;
+                }
+            default:
+                getNextToken();
+        }
     }
     return s.toString();
 }
