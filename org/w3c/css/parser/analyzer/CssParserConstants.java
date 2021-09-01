@@ -119,9 +119,9 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int DOT = 54;
   /** RegularExpression Id. */
-  int LPARAN = 55;
+  int RPAREN = 55;
   /** RegularExpression Id. */
-  int RPARAN = 56;
+  int LPAREN = 56;
   /** RegularExpression Id. */
   int COLON = 57;
   /** RegularExpression Id. */

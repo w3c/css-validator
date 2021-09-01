@@ -51,7 +51,7 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
                 CssColor tcolor = new CssColor(ac, expression, check);
                 // instead of using getColor, we get the value directly
                 // as we can have idents
-                value = tcolor.color;
+                value = (tcolor.value == null) ? tcolor.color : tcolor.value;
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),

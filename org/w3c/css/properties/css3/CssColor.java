@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValue;
  */
 public class CssColor extends org.w3c.css.properties.css.CssColor {
 
-    CssValue color;
+    CssValue color = null;
     CssValue value = null;
 
     /**
@@ -57,7 +57,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
                 break;
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {
-                    color = inherit;
+                    value = inherit;
                 } else {
                     color = new org.w3c.css.values.CssColor(ac, val.getIdent().toString());
                 }
@@ -122,15 +122,10 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * Returns the color
      */
     public org.w3c.css.values.CssColor getColor() {
-        if (inherit.equals(color)) {
-            /*
-             System.err.println("[ERROR] org.w3c.css.properties.CssColor");
-             System.err.println("[ERROR] value is inherited");
-           */
-            return null;
-        } else {
+        if (color != null && color.getRawType() == CssTypes.CSS_COLOR) {
             return (org.w3c.css.values.CssColor) color;
         }
+        return null;
     }
 
     /**
@@ -158,7 +153,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssColor &&
+        return (property instanceof CssColor && (color != null) &&
                 color.equals(((CssColor) property).color));
     }
 
