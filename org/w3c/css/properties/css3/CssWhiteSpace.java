@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#white-space-property
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-white-space
  */
 public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
 
@@ -40,8 +40,8 @@ public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
     }
 
     /*
-    * Create a new CssWhiteSpace
-    */
+     * Create a new CssWhiteSpace
+     */
     public CssWhiteSpace() {
         value = initial;
     }
@@ -50,8 +50,7 @@ public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
      * Create a new CssWhiteSpace
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException values are incorrect
      */
     public CssWhiteSpace(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -63,19 +62,20 @@ public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
         CssValue val = expression.getValue();
         setByUser();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            if (inherit.equals(val)) {
-                value = inherit;
-            } else {
-                value = getMatchingIdent((CssIdent) val);
-            }
-            if (value != null) {
-                expression.next();
-                return;
-            }
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
         }
-        throw new InvalidParamException("value", expression.getValue(),
-                getPropertyName(), ac);
+        if (inherit.equals(val.getIdent())) {
+            value = val;
+        } else if (getMatchingIdent(val.getIdent()) != null) {
+            value = val;
+        } else {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        expression.next();
+
     }
 
     public CssWhiteSpace(ApplContext ac, CssExpression expression)

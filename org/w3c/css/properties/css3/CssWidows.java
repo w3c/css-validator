@@ -56,9 +56,9 @@ public class CssWidows extends org.w3c.css.properties.css.CssWidows {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ide = (CssIdent) val;
+                CssIdent ide = val.getIdent();
                 if (inherit.equals(ide)) {
-                    value = inherit;
+                    value = val;
                     break;
                 }
             default:

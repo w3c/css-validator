@@ -93,18 +93,18 @@ public class CssWillChange extends org.w3c.css.properties.css.CssWillChange {
                         val.toString(),
                         getPropertyName(), ac);
             }
-            id = (CssIdent) val;
+            id = val.getIdent();
             if (auto.equals(id)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                values.add(auto);
+                values.add(val);
             } else {
                 ident = getAllowedIdent(id);
                 if (ident != null) {
-                    values.add(ident);
+                    values.add(val);
                 } else {
                     // custom-ident
                     if (CssIdent.isCssWide(id) || isExcludedIdent(id)) {
@@ -112,7 +112,7 @@ public class CssWillChange extends org.w3c.css.properties.css.CssWillChange {
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
-                    values.add(id);
+                    values.add(val);
                 }
             }
             if (op != COMMA && expression.getRemainingCount() > 1) {

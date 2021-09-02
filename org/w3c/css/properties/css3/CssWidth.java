@@ -87,12 +87,12 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
         CssValue val = expression.getValue();
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    v = inherit;
+                if (inherit.equals(val.getIdent())) {
+                    v = val;
                 } else {
-                    CssIdent id = getAllowedIdent((CssIdent) val);
+                    CssIdent id = getAllowedIdent(val.getIdent());
                     if (id != null) {
-                        v = id;
+                        v = val;
                     } else {
                         throw new InvalidParamException("unrecognize", ac);
                     }
@@ -124,12 +124,17 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
     protected static CssValue parseFunctionValue(ApplContext ac, CssValue value,
                                                  CssProperty caller)
             throws InvalidParamException {
+        // FIXME cast
         CssFunction function = (CssFunction) value;
         if (!fit_content_func.equalsIgnoreCase(function.getName())) {
             throw new InvalidParamException("value", value.toString(),
                     caller.getPropertyName(), ac);
         }
         CssExpression expression = function.getParameters();
+        // don't check in that case
+        if (expression.hasCssVariable()) {
+            return value;
+        }
         if (expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
