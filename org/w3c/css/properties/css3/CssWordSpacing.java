@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValue;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-word-spacing
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#word-spacing-property
  */
 public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
 
@@ -33,8 +33,7 @@ public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
      * Create a new CssWordSpacing with an expression
      *
      * @param expression The expression
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssWordSpacing(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
@@ -58,11 +57,9 @@ public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                    break;
-                } else if (normal.equals(val)) {
-                    value = normal;
+                if (inherit.equals(val.getIdent()) ||
+                        normal.equals(val.getIdent())) {
+                    value = val;
                     break;
                 }
             default:
