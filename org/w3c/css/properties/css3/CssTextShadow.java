@@ -35,8 +35,7 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
      * Creates a new CssTextShadow
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextShadow(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -55,21 +54,21 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (inherit.equals(val)) {
+            if (inherit.equals(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                value = inherit;
+                value = val;
                 expression.next();
                 return;
             }
-            if (none.equals(val)) {
+            if (none.equals(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                value = none;
+                value = val;
                 expression.next();
                 return;
             }
@@ -132,14 +131,13 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
                     throw new InvalidParamException("value",
                             val, getPropertyName(), ac);
                 }
+                // FIXME rewrite potential exceptions
                 CssColor c = new CssColor(ac, exp, false);
-                color = c.getColor();
+                color = val;
                 // color can be first or last
                 if (values.size() > 0 && exp.getRemainingCount() != 0) {
-                    if (color != null) {
-                        throw new InvalidParamException("value",
-                                val, getPropertyName(), ac);
-                    }
+                    throw new InvalidParamException("value",
+                            val, getPropertyName(), ac);
                 }
                 // no need for exp.next() as CssColor parsing is
                 // already doing that.
