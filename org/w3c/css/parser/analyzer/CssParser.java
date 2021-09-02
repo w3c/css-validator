@@ -7601,7 +7601,6 @@ n.image = Util.strip(n.image);
         if (tok.kind == EOF) {
             break;
         }
-        s.append(tok.image);
         if (tok.kind == LBRACE) {
             nesting++;
         } else if (tok.kind == RBRACE) {
@@ -7610,6 +7609,7 @@ n.image = Util.strip(n.image);
                 break;
             }
         }
+        s.append(tok.image);
         getNextToken();
     }
     return s.toString();
@@ -7625,7 +7625,6 @@ n.image = Util.strip(n.image);
         if (tok.kind == EOF) {
             break;
         }
-        s.append(tok.image);
         switch(tok.kind) {
             case LPAREN:
             case FUNCTION:
@@ -7637,6 +7636,7 @@ n.image = Util.strip(n.image);
             case FUNCTIONCLAMP:
             case FUNCTIONATTR:
             case FUNCTIONVAR:
+                s.append(tok.image);
                 nesting++;
                 getNextToken();
                 break;
@@ -7646,6 +7646,7 @@ n.image = Util.strip(n.image);
                     break;
                 }
             default:
+                s.append(tok.image);
                 getNextToken();
         }
     }

@@ -128,6 +128,10 @@ public class CssImage extends CssValue {
                     ac.getCssVersionString(), ac);
         }
 
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
+
         CssValue val;
         char op;
         boolean gotcolor = false;
@@ -137,7 +141,7 @@ public class CssImage extends CssValue {
             val = exp.getValue();
             op = exp.getOperator();
             // color is always last
-            if (gotcolor) {
+            if (gotcolor && !hasCssVariable()) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         "image()", ac);
@@ -170,12 +174,14 @@ public class CssImage extends CssValue {
                     gotcolor = true;
                     break;
                 default:
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            "image()", ac);
+                    if (!hasCssVariable()) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                "image()", ac);
+                    }
             }
             exp.next();
-            if (!exp.end() && op != COMMA) {
+            if ((!exp.end() && op != COMMA) && !hasCssVariable()) {
                 exp.starts();
                 throw new InvalidParamException("operator",
                         Character.toString(op), ac);
@@ -229,13 +235,17 @@ public class CssImage extends CssValue {
         CssValue val = exp.getValue();
         char op = exp.getOperator();
 
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
+
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 // 0 is an acceptable value since CR-css-images-3-20191010
                 val.getAngle();
             case CssTypes.CSS_ANGLE:
                 v.add(val);
-                if (op != COMMA) {
+                if (op != COMMA && !hasCssVariable()) {
                     exp.starts();
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -251,25 +261,29 @@ public class CssImage extends CssValue {
                     // this is boringly boring...
                     CssIdent v1 = null;
                     CssIdent v2 = null;
-                    if (op != SPACE) {
+                    if (op != SPACE && !hasCssVariable()) {
                         exp.starts();
                         throw new InvalidParamException("operator",
                                 Character.toString(op), ac);
                     }
                     exp.next();
                     if (exp.end()) {
-                        throw new InvalidParamException("few-value", name, ac);
+                        if (!hasCssVariable()) {
+                            throw new InvalidParamException("few-value", name, ac);
+                        } else {
+                            break;
+                        }
                     }
                     val = exp.getValue();
                     op = exp.getOperator();
                     boolean isV1Vertical, isV2Vertical;
-                    if (val.getType() != CssTypes.CSS_IDENT) {
+                    if ((val.getType() != CssTypes.CSS_IDENT) && !hasCssVariable()) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 name, ac);
                     }
                     v1 = getLinearGradientIdent(val.getIdent());
-                    if (v1 == null) {
+                    if ((v1 == null) && !hasCssVariable()) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 name, ac);
@@ -278,27 +292,31 @@ public class CssImage extends CssValue {
                     isV1Vertical = isVerticalIdent(v1);
                     exp.next();
                     if (exp.end()) {
-                        throw new InvalidParamException("few-value", name, ac);
+                        if (hasCssVariable()) {
+                            throw new InvalidParamException("few-value", name, ac);
+                        } else {
+                            break;
+                        }
                     }
                     if (op == SPACE) {
                         // the operator is a space, we should have
                         // another
                         val = exp.getValue();
                         op = exp.getOperator();
-                        if (val.getType() != CssTypes.CSS_IDENT) {
+                        if ((val.getType() != CssTypes.CSS_IDENT) && !hasCssVariable()) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     name, ac);
                         }
                         v2 = getLinearGradientIdent(val.getIdent());
-                        if (v2 == null) {
+                        if ((v2 == null) && !hasCssVariable()) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     name, ac);
                         }
                         isV2Vertical = isVerticalIdent(v2);
-                        if ((isV1Vertical && isV2Vertical) ||
-                                (!isV1Vertical && !isV2Vertical)) {
+                        if (((isV1Vertical && isV2Vertical) ||
+                                (!isV1Vertical && !isV2Vertical)) && !hasCssVariable()) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     name, ac);
@@ -307,14 +325,14 @@ public class CssImage extends CssValue {
                         exp.next();
                     }
                     v.add(vl);
-                    if (op != COMMA) {
+                    if ((op != COMMA) && !hasCssVariable()) {
                         exp.starts();
                         throw new InvalidParamException("operator",
                                 Character.toString(op), ac);
                     }
                 }
-                if (top.equals(ident) || bottom.equals(ident)
-                        || left.equals(ident) || right.equals(ident)) {
+                if ((top.equals(ident) || bottom.equals(ident)
+                        || left.equals(ident) || right.equals(ident)) && !hasCssVariable()) {
                     throw new InvalidParamException( //
                             "linear-gradient-missing-to",
                             "to " + ident, ident, ac);
@@ -325,7 +343,7 @@ public class CssImage extends CssValue {
         }
         // now we a list of at least two color stops.
         ArrayList<CssValue> stops = parseColorStops(exp, ac);
-        if (stops.size() < 2) {
+        if ((stops.size() < 2) && !hasCssVariable()) {
             throw new InvalidParamException("few-value", name, ac);
         }
 
@@ -378,6 +396,10 @@ public class CssImage extends CssValue {
         CssValue val = exp.getValue();
         char op = exp.getOperator();
 
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
+
         // check if there is something before the color stops list
         boolean parse_prolog = false;
         switch (val.getType()) {
@@ -409,7 +431,7 @@ public class CssImage extends CssValue {
         }
         // now we a list of at least two color stops.
         ArrayList<CssValue> stops = parseColorStops(exp, ac);
-        if (stops.size() < 2) {
+        if ((stops.size() < 2) && !hasCssVariable()) {
             throw new InvalidParamException("few-value", name, ac);
         }
 
@@ -583,9 +605,10 @@ public class CssImage extends CssValue {
                 }
                 expression.next();
                 if (!expression.end() && op != COMMA) {
-                    expression.starts();
-                    throw new InvalidParamException("operator",
-                            Character.toString(op), ac);
+                    // do nothing as var() can expand to multiple values+separators
+//                    expression.starts();
+//                    throw new InvalidParamException("operator",
+//                            Character.toString(op), ac);
                 }
             }
             return v;

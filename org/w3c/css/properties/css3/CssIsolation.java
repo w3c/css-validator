@@ -65,16 +65,16 @@ public class CssIsolation extends org.w3c.css.properties.css.CssIsolation {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
+            CssIdent ident = val.getIdent();
             if (inherit.equals(ident)) {
-                value = inherit;
+                value = val;
             } else {
-                value = getAllowedIdent(ident);
-                if (value == null) {
+                if (getAllowedIdent(ident) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",
