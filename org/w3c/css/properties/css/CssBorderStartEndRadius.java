@@ -17,8 +17,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderStartEndRadius extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssBorderStartEndRadius
      */

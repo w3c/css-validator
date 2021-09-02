@@ -11,15 +11,12 @@ import org.w3c.css.properties.css2.Css2Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
  * @since CSS2
  */
 public class CssEmptyCells extends CssProperty {
-
-    public CssValue value;
 
     /**
      * Create a new CssEmptyCells

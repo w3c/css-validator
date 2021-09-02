@@ -20,7 +20,6 @@ import org.w3c.css.values.CssValueList;
  */
 public class CssBorderTopRightRadius extends CssProperty {
 
-    public CssValue value;
     public CssValue h_radius;
     public CssValue v_radius;
 

@@ -12,7 +12,6 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 
 /**
  * @see CssColumnWidth
@@ -23,8 +22,6 @@ import org.w3c.css.values.CssValue;
 public class CssColumns extends CssProperty {
 
     private static final String propertyName = "columns";
-
-    public CssValue value;
 
     /**
      * Create a new CssColumns

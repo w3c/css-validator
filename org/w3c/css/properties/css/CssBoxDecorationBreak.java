@@ -21,8 +21,6 @@ public class CssBoxDecorationBreak extends CssProperty {
 
     private static final String propertyName = "box-decoration-break";
 
-    public CssValue value;
-
     /**
      * Create a new CssBoxDecorationBreak
      */

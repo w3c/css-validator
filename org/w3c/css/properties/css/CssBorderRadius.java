@@ -11,14 +11,11 @@ import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 
 /**
  * @since CSS3
  */
 public class CssBorderRadius extends CssProperty {
-
-    public CssValue value;
 
     // those are @since CSS3
     public CssBorderTopLeftRadius topLeft;

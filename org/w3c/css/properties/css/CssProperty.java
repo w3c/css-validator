@@ -11,6 +11,7 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Messages;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  * <DL>
@@ -28,6 +29,11 @@ import org.w3c.css.values.CssIdent;
  */
 public abstract class CssProperty
         implements Cloneable, StyleSheetOrigin {
+
+    /**
+     * In most case there should be one value
+     */
+    public CssValue value = null;
 
     /**
      * True if this property is important. false otherwise.
@@ -93,6 +99,7 @@ public abstract class CssProperty
     public static final CssIdent none;
     public static final CssIdent currentColor;
     public static final CssIdent unset;
+    public static final CssIdent revert;
 
     static {
         inherit = CssIdent.getIdent("inherit");
@@ -100,6 +107,7 @@ public abstract class CssProperty
         initial = CssIdent.getIdent("initial");
         none = CssIdent.getIdent("none");
         unset = CssIdent.getIdent("unset");
+        revert = CssIdent.getIdent("revert");
         currentColor = CssIdent.getIdent("currentColor");
     }
 
