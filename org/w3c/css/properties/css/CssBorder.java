@@ -18,7 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorder extends CssProperty {
 
-    public CssValue value;
     // @since CSS1
     public CssBorderColor borderColor;
     public CssBorderStyle borderStyle;

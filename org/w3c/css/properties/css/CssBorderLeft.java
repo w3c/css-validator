@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderLeft extends CssProperty {
 
-    public CssValue value;
-
     // those are @since CSS1
     public CssBorderLeftWidth _width;
     // and @since CSS2

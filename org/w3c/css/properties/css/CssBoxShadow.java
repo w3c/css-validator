@@ -21,8 +21,6 @@ public class CssBoxShadow extends CssProperty {
 
     private static final String propertyName = "box-shadow";
 
-    public CssValue value;
-
     /**
      * Create a new CssBoxShadow
      */

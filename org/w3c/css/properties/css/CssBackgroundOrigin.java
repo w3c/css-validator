@@ -21,8 +21,6 @@ import org.w3c.css.values.CssValue;
 
 public class CssBackgroundOrigin extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssBackgroundClip
      */

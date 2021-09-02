@@ -22,8 +22,6 @@ public class CssColumnGap extends CssProperty {
 
     private static final String propertyName = "column-gap";
 
-    public CssValue value;
-
     /**
      * Create a new CssColumnGap
      */

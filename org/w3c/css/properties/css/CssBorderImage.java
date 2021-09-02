@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderImage extends CssProperty {
 
-    public CssValue value;
-
     public CssBorderImageSource source;
     public CssBorderImageSlice slice;
     public CssBorderImageWidth width;

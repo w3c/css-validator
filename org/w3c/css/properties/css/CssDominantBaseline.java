@@ -16,8 +16,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssDominantBaseline extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssDominantBaseline
      */

@@ -20,10 +20,6 @@ import org.w3c.css.values.CssValue;
 
 public class CssBackgroundClip extends CssProperty {
 
-
-    public CssValue value;
-
-
     /**
      * Create a new CssBackgroundClip
      */

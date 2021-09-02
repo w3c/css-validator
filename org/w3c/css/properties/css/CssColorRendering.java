@@ -17,8 +17,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssColorRendering extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssColorRendering
      */

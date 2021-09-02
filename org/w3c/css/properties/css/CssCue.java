@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssCue extends CssProperty {
 
-    public CssValue value;
-
     public CssCueAfter cssCueAfter;
     public CssCueBefore cssCueBefore;
 

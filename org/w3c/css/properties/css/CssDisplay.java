@@ -22,7 +22,6 @@ public class CssDisplay extends CssProperty {
 
     private static final String propertyName = "display";
 
-    public CssValue value;
     public static CssIdent inline;
 
     static {

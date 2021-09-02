@@ -17,8 +17,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssAnimationPlayState extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssAnimationPlayState
      */

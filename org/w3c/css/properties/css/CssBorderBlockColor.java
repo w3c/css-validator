@@ -17,8 +17,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderBlockColor extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssBorderBlockColor
      */

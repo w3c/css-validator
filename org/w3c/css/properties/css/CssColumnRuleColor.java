@@ -22,8 +22,6 @@ public class CssColumnRuleColor extends CssProperty {
 
     private static final String propertyName = "column-rule-color";
 
-    public CssValue value;
-
     /**
      * Create a new CssColumnRuleColor
      */

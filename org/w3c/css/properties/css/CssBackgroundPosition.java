@@ -38,8 +38,6 @@ public class CssBackgroundPosition extends CssProperty {
         defaultPercent100 = new CssPercentage(100);
     }
 
-    public CssValue value;
-
     /**
      * Create a new CssBackgroundPosition
      */

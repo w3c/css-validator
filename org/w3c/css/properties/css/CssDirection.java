@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssDirection extends CssProperty {
 
-    public CssValue value;
-
     public static final CssIdent ltr;
     public static final CssIdent rtl;
 

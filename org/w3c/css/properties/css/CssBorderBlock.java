@@ -17,8 +17,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderBlock extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssBorderBlock
      */

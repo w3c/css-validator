@@ -14,8 +14,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssAppearance extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssAppearance
      */

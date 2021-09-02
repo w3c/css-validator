@@ -23,8 +23,6 @@ public class CssBackgroundRepeat extends CssProperty {
         repeat = CssIdent.getIdent("repeat");
     }
 
-    public CssValue value;
-
     /**
      * Create a new CssBackgroundRepeat
      */

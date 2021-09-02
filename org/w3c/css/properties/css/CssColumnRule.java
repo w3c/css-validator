@@ -23,7 +23,6 @@ public class CssColumnRule extends CssProperty {
 
     private static final String propertyName = "column-rule";
 
-    CssValue value;
     CssColumnRuleWidth rule_width;
     CssColumnRuleStyle rule_style;
     CssColumnRuleColor rule_color;

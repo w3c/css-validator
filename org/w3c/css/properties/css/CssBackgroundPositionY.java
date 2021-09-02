@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBackgroundPositionY extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssBackgroundPositionY
      */

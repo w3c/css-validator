@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderRadius extends CssProperty {
 
-    public CssValue value;
-
     // those are @since CSS3
     public CssBorderTopLeftRadius topLeft;
     public CssBorderTopRightRadius topRight;

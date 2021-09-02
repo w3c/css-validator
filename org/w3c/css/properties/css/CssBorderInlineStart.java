@@ -17,8 +17,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderInlineStart extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssBorderInlineStart
      */

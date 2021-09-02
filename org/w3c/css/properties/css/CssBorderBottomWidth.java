@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderBottomWidth extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssBorderBottomWidth
      */

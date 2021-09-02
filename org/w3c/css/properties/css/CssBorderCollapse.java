@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderCollapse extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssBorderCollapse
      */

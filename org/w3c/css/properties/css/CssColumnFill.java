@@ -23,8 +23,6 @@ public class CssColumnFill extends CssProperty {
 
     private static final String propertyName = "column-fill";
 
-    public CssValue value;
-
     /**
      * Create a new CssColumnFill
      */

@@ -22,8 +22,6 @@ public class CssColumnCount extends CssProperty {
 
     private static final String propertyName = "column-count";
 
-    public CssValue value;
-
     /**
      * Create a new CssColumnCount
      */

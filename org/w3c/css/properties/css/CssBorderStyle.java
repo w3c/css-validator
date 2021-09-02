@@ -17,7 +17,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderStyle extends CssProperty {
 
-    public CssValue value;
     // those are @since CSS2
     public CssBorderTopStyle top;
     public CssBorderBottomStyle bottom;

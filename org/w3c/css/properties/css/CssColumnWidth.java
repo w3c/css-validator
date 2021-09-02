@@ -22,8 +22,6 @@ public class CssColumnWidth extends CssProperty {
 
     private static final String propertyName = "column-width";
 
-    public CssValue value;
-
     /**
      * Create a new CssColumnWidth
      */

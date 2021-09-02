@@ -24,8 +24,6 @@ public class CssColumns extends CssProperty {
 
     private static final String propertyName = "columns";
 
-    public CssValue value;
-
     /**
      * Create a new CssColumns
      */

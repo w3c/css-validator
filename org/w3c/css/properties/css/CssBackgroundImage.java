@@ -17,7 +17,6 @@ import org.w3c.css.values.CssValue;
  * @since CSS1
  */
 public class CssBackgroundImage extends CssProperty {
-    public CssValue value;
 
     /**
      * Create a new CssBackgroundImage

@@ -19,8 +19,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBackground extends CssProperty {
 
-    public CssValue value;
-
     public CssBackgroundColor color;
     public CssBackgroundImage image;
     public CssBackgroundRepeat repeat;

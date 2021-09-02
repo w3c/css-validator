@@ -17,8 +17,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderBottom extends CssProperty {
 
-    public CssValue value;
-
     // those are @since CSS1
     public CssBorderBottomWidth _width;
     // and @since CSS2

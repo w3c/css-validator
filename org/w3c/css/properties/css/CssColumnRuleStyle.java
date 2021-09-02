@@ -22,8 +22,6 @@ public class CssColumnRuleStyle extends CssProperty {
 
     private static final String propertyName = "column-rule-style";
 
-    public CssValue value;
-
     /**
      * Create a new CssColumnRuleStyle
      */
