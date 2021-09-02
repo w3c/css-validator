@@ -93,6 +93,7 @@ public abstract class CssProperty
     public static final CssIdent none;
     public static final CssIdent currentColor;
     public static final CssIdent unset;
+    public static final CssIdent revert;
 
     static {
         inherit = CssIdent.getIdent("inherit");
@@ -100,6 +101,7 @@ public abstract class CssProperty
         initial = CssIdent.getIdent("initial");
         none = CssIdent.getIdent("none");
         unset = CssIdent.getIdent("unset");
+        revert = CssIdent.getIdent("revert");
         currentColor = CssIdent.getIdent("currentColor");
     }
 
