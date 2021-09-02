@@ -22,13 +22,14 @@ public class CssIdent extends CssValue implements Comparable<CssIdent> {
 
     static {
         cachedValues = new HashMap<String, CssIdent>();
-        cachedValues.put("inherit", new CssIdent("inherit"));
-        cachedValues.put("initial", new CssIdent("initial"));
         cachedValues.put("none", new CssIdent("none"));
-        css_wide = new CssIdent[3];
-        css_wide[0] = CssIdent.getIdent("inherit");
-        css_wide[1] = CssIdent.getIdent("initial");
-        css_wide[2] = CssIdent.getIdent("unset");
+        String[] _css_wide_ids = {"inherit", "initial", "unset", "revert"};
+
+        css_wide = new CssIdent[_css_wide_ids.length];
+        int i = 0;
+        for (String s : _css_wide_ids) {
+            css_wide[i++] = CssIdent.getIdent(s);
+        }
     }
 
     public static boolean isCssWide(CssIdent cssIdent) {

@@ -11,6 +11,7 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Messages;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  * <DL>
@@ -28,6 +29,11 @@ import org.w3c.css.values.CssIdent;
  */
 public abstract class CssProperty
         implements Cloneable, StyleSheetOrigin {
+
+    /**
+     * In most case there should be one value
+     */
+    public CssValue value = null;
 
     /**
      * True if this property is important. false otherwise.

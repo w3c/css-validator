@@ -21,6 +21,7 @@ import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.WarningParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -261,20 +262,22 @@ public class CssPropertyFactory implements Cloneable {
             throw new WarningParamException("css-hack", expression.toStringFromStart());
         }
 
-        CssIdent initial = CssIdent.getIdent("initial");
-        CssIdent unset = CssIdent.getIdent("unset");
-        CssIdent revert = CssIdent.getIdent("revert");
-
         try {
-            if ((ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) && (expression.getCount() == 1)
-                    && (expression.getValue().equals(initial) || expression.getValue().equals(unset)
-                        || expression.getValue().equals(revert))) {
+            boolean isCssWide = false;
+            CssIdent cssIdent = null;
+            if ((expression.getCount() == 1) && (expression.getValue().getRawType() == CssTypes.CSS_IDENT)) {
+                cssIdent = expression.getValue().getIdent();
+                isCssWide = CssIdent.isCssWide(cssIdent);
+            }
+            if ((ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) && isCssWide) {
                 // create an instance of your property class
                 Class[] parametersType = {};
                 Constructor constructor = Class.forName(classname).getConstructor(parametersType);
                 Object[] parameters = {};
                 // invoke the constructor
-                return (CssProperty) constructor.newInstance(parameters);
+                CssProperty p = (CssProperty) constructor.newInstance(parameters);
+                p.value = cssIdent;
+                return p;
             } else {
                 // create an instance of your property class
                 Class[] parametersType = {ac.getClass(), expression.getClass(), boolean.class};
