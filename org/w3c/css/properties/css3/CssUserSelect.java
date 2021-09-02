@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-ui-4-20171222/#propdef-user-select
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-user-select
  */
 
 public class CssUserSelect extends org.w3c.css.properties.css.CssUserSelect {
@@ -67,15 +67,15 @@ public class CssUserSelect extends org.w3c.css.properties.css.CssUserSelect {
         val = expression.getValue();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
+            CssIdent id = val.getIdent();
             if (inherit.equals(id)) {
-                value = inherit;
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     throw new InvalidParamException("value", val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value", val.toString(),

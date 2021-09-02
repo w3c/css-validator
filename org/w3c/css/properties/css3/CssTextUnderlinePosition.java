@@ -92,8 +92,8 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
         CssValue val;
         char op;
 
-        CssIdent horValue = null;
-        CssIdent verValue = null;
+        CssValue horValue = null;
+        CssValue verValue = null;
 
         val = expression.getValue();
         op = expression.getOperator();
@@ -104,16 +104,16 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
                     getPropertyName(), ac);
         }
 
-        CssIdent ident = (CssIdent) val;
+        CssIdent ident = val.getIdent();
         if (inherit.equals(ident)) {
-            value = inherit;
+            value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         getPropertyName(), ac);
             }
         } else if (auto.equals(ident)) {
-            value = auto;
+            value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",
                         val.toString(),
@@ -124,12 +124,16 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
             do {
                 boolean match = false;
                 if (verValue == null) {
-                    verValue = getVerticalValue(ident);
-                    match = (verValue != null);
+                    match = (getVerticalValue(ident) != null);
+                    if (match) {
+                        verValue = val;
+                    }
                 }
                 if (!match && horValue == null) {
-                    horValue = getHorizontalValue(ident);
-                    match = (horValue != null);
+                    match = (getHorizontalValue(ident) != null);
+                    if (match) {
+                        horValue = val;
+                    }
                 }
                 if (!match) {
                     throw new InvalidParamException("value",
@@ -154,7 +158,7 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                ident = (CssIdent) val;
+                ident = val.getIdent();
             } while (!expression.end());
 
             // now construct the value
