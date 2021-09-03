@@ -12,7 +12,6 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 
 /**
  * @since CSS3
@@ -20,7 +19,6 @@ import org.w3c.css.values.CssValue;
 
 public class CssOpacity extends CssProperty {
 
-    public CssValue value;
 
     /**
      * Create a new CssOpacity

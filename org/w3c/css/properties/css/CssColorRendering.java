@@ -10,14 +10,11 @@ import org.w3c.css.properties.svg.SVGBasicStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 
 /**
  * @since SVG
  */
 public class CssColorRendering extends CssProperty {
-
-    public CssValue value;
 
     /**
      * Create a new CssColorRendering

@@ -13,7 +13,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -22,7 +21,6 @@ public class CssHeight extends CssProperty {
 
     public static CssIdent auto = CssIdent.getIdent("auto");
 
-    public CssValue value;
 
     /**
      * Create a new CssWidth

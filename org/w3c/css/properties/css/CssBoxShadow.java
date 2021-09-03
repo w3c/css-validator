@@ -11,7 +11,6 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 
 /**
  * @since CSS3
@@ -20,8 +19,6 @@ import org.w3c.css.values.CssValue;
 public class CssBoxShadow extends CssProperty {
 
     private static final String propertyName = "box-shadow";
-
-    public CssValue value;
 
     /**
      * Create a new CssBoxShadow
