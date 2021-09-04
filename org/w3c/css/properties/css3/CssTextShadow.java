@@ -53,17 +53,8 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
         while (!expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
-
-            if (inherit.equals(val.getIdent())) {
-                if (expression.getCount() > 1) {
-                    throw new InvalidParamException("value", val,
-                            getPropertyName(), ac);
-                }
-                value = val;
-                expression.next();
-                return;
-            }
-            if (none.equals(val.getIdent())) {
+            
+            if ((val.getType() == CssTypes.CSS_IDENT) && none.equals(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
