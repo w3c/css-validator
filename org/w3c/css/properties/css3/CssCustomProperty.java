@@ -33,7 +33,7 @@ public class CssCustomProperty extends org.w3c.css.properties.css.CssCustomPrope
     public void addToStyle(ApplContext ac, CssStyle style) {
         Css3Style s = (Css3Style) style;
         CssProperty p = s.addCustomProperty(getPropertyName(), this, false);
-        if (p == null) {
+        if (p != null) {
             // duplicate def
             // add a warning?
             s.addCustomProperty(getPropertyName(), this, true);
