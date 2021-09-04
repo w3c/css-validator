@@ -21,6 +21,7 @@ import org.w3c.css.parser.analyzer.ParseException;
 import org.w3c.css.parser.analyzer.TokenMgrError;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css3.CssCustomProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
@@ -587,29 +588,32 @@ public final class CssFouffa extends CssParser {
         if (Util.onDebug) {
             System.err.println("Creating " + property + ": " + expression);
         }
-        if (property.startsWith("--")) {
+
+        if (property.startsWith("--") && (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0)) {
+            prop = new CssCustomProperty(ac, property, expression);
             // css variable
-        }
-        final CssValue lastValue = expression.getLastValue();
+        } else {
+            final CssValue lastValue = expression.getLastValue();
 
-        if (allowBackslash9Hack() && lastValue != null && lastValue.hasBackslash9Hack()) {
-            expression.markCssHack();
-        }
-
-        try {
-            prop = properties.createProperty(ac, getAtRule(), property, expression);
-        } catch (InvalidParamException e) {
-            throw e;
-        } catch (Exception e) {
-            if (Util.onDebug) {
-                e.printStackTrace();
+            if (allowBackslash9Hack() && lastValue != null && lastValue.hasBackslash9Hack()) {
+                expression.markCssHack();
             }
-            throw new InvalidParamException(e.toString(), ac);
-        }
 
-        // set the importance
-        if (important) {
-            prop.setImportant();
+            try {
+                prop = properties.createProperty(ac, getAtRule(), property, expression);
+            } catch (InvalidParamException e) {
+                throw e;
+            } catch (Exception e) {
+                if (Util.onDebug) {
+                    e.printStackTrace();
+                }
+                throw new InvalidParamException(e.toString(), ac);
+            }
+
+            // set the importance
+            if (important) {
+                prop.setImportant();
+            }
         }
         prop.setOrigin(origin);
         // set informations for errors and warnings
@@ -747,9 +751,9 @@ public final class CssFouffa extends CssParser {
         if (charsetFromBOM && ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
             // TODO FIXME proper execption type.
             throw new ParseException(ac.getMsg().getString("parser.charset"));
-       //     CssError cerr = new CssError(getSourceFile(), getBeginLine(),
-           //         getBeginColumn(), getEndLine(), getEndColumn(), ex);
-         //   ac.getFrame().addError(cerr);
+            //     CssError cerr = new CssError(getSourceFile(), getBeginLine(),
+            //         getBeginColumn(), getEndLine(), getEndColumn(), ex);
+            //   ac.getFrame().addError(cerr);
         } else {
             Charset originalCharset = ac.getCharsetObjForURL(getURL());
             if (originalCharset == null) {

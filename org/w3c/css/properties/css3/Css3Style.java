@@ -90,6 +90,7 @@ import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssContain;
 import org.w3c.css.properties.css.CssCounterSet;
+import org.w3c.css.properties.css.CssCustomProperty;
 import org.w3c.css.properties.css.CssDominantBaseline;
 import org.w3c.css.properties.css.CssFilter;
 import org.w3c.css.properties.css.CssFlex;
@@ -300,7 +301,11 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
+import java.util.HashMap;
+
 public class Css3Style extends ATSCStyle {
+
+    public HashMap<String, CssCustomProperty> customProperties = new HashMap<>();
 
     public org.w3c.css.properties.css.counterstyle.CssSpeakAs counterStyleCssSpeakAs;
     public CssSystem counterStyleCssSystem;
@@ -3346,6 +3351,17 @@ public class Css3Style extends ATSCStyle {
         }
     }
 
+    public CssCustomProperty getCustomProperty(String s) {
+        return customProperties.get(s);
+    }
+
+    public CssCustomProperty addCustomProperty(String s, CssCustomProperty p, boolean force) {
+        if (force) {
+            return customProperties.put(s, p);
+        }
+        return customProperties.putIfAbsent(s, p);
+    }
+    
     /**
      * Find conflicts in this Style
      *
