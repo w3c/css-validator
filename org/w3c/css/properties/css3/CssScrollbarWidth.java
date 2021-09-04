@@ -66,15 +66,10 @@ public class CssScrollbarWidth extends org.w3c.css.properties.css.CssScrollbarWi
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                CssIdent ident = getAllowedIdent(val.getIdent());
+                if (ident != null) {
                     value = val;
                     break;
-                } else {
-                    CssIdent ident = getAllowedIdent(val.getIdent());
-                    if (ident != null) {
-                        value = val;
-                        break;
-                    }
                 }
                 // let it fail
             default:

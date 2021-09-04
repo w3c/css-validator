@@ -90,6 +90,7 @@ import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssContain;
 import org.w3c.css.properties.css.CssCounterSet;
+import org.w3c.css.properties.css.CssCustomProperty;
 import org.w3c.css.properties.css.CssDominantBaseline;
 import org.w3c.css.properties.css.CssFilter;
 import org.w3c.css.properties.css.CssFlex;
@@ -300,7 +301,11 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
+import java.util.HashMap;
+
 public class Css3Style extends ATSCStyle {
+
+    public HashMap<String, CssCustomProperty> customProperties = new HashMap<>();
 
     public org.w3c.css.properties.css.counterstyle.CssSpeakAs counterStyleCssSpeakAs;
     public CssSystem counterStyleCssSystem;
@@ -579,7 +584,7 @@ public class Css3Style extends ATSCStyle {
     public CssInsetBlock cssInsetBlock;
     public CssInsetInlineStart cssInsetInlineStart;
     public CssInsetInlineEnd cssInsetInlineEnd;
-    public CssInsetInline   cssInsetInline;
+    public CssInsetInline cssInsetInline;
     public CssInset cssInset;
     public CssPaddingBlockStart cssPaddingBlockStart;
     public CssPaddingBlockEnd cssPaddingBlockEnd;
@@ -595,7 +600,7 @@ public class Css3Style extends ATSCStyle {
     public CssBorderInlineWidth cssBorderInlineWidth;
     public CssBorderBlockStartStyle cssBorderBlockStartStyle;
     public CssBorderBlockEndStyle cssBorderBlockEndStyle;
-    public CssBorderBlockStyle  cssBorderBlockStyle;
+    public CssBorderBlockStyle cssBorderBlockStyle;
     public CssBorderInlineStartStyle cssBorderInlineStartStyle;
     public CssBorderInlineEndStyle cssBorderInlineEndStyle;
     public CssBorderInlineStyle cssBorderInlineStyle;
@@ -605,12 +610,12 @@ public class Css3Style extends ATSCStyle {
     public CssBorderInlineStartColor cssBorderInlineStartColor;
     public CssBorderInlineEndColor cssBorderInlineEndColor;
     public CssBorderInlineColor cssBorderInlineColor;
-    public CssBorderBlockStart  cssBorderBlockStart;
-    public CssBorderBlockEnd  cssBorderBlockEnd;
+    public CssBorderBlockStart cssBorderBlockStart;
+    public CssBorderBlockEnd cssBorderBlockEnd;
     public CssBorderInlineStart cssBorderInlineStart;
-    public CssBorderInlineEnd   cssBorderInlineEnd;
-    public CssBorderBlock   cssBorderBlock;
-    public CssBorderInline  cssBorderInline;
+    public CssBorderInlineEnd cssBorderInlineEnd;
+    public CssBorderBlock cssBorderBlock;
+    public CssBorderInline cssBorderInline;
     public CssBorderStartStartRadius cssBorderStartStartRadius;
     public CssBorderStartEndRadius cssBorderStartEndRadius;
     public CssBorderEndStartRadius cssBorderEndStartRadius;
@@ -636,7 +641,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssScrollbarColor;
     }
-    
+
     public CssScrollbarWidth getScrollbarWidth() {
         if (cssScrollbarWidth == null) {
             cssScrollbarWidth =
@@ -645,7 +650,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssScrollbarWidth;
     }
-    
+
     public CssTextDecorationSkipSpaces getTextDecorationSkipSpaces() {
         if (cssTextDecorationSkipSpaces == null) {
             cssTextDecorationSkipSpaces =
@@ -654,7 +659,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextDecorationSkipSpaces;
     }
-    
+
     public CssTextDecorationSkipInk getTextDecorationSkipInk() {
         if (cssTextDecorationSkipInk == null) {
             cssTextDecorationSkipInk =
@@ -663,7 +668,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextDecorationSkipInk;
     }
-    
+
     public CssTextDecorationSkipInset getTextDecorationSkipInset() {
         if (cssTextDecorationSkipInset == null) {
             cssTextDecorationSkipInset =
@@ -672,7 +677,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextDecorationSkipInset;
     }
-    
+
     public CssTextDecorationSkipBox getTextDecorationSkipBox() {
         if (cssTextDecorationSkipBox == null) {
             cssTextDecorationSkipBox =
@@ -681,7 +686,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextDecorationSkipBox;
     }
-    
+
     public CssTextDecorationSkipSelf getTextDecorationSkipSelf() {
         if (cssTextDecorationSkipSelf == null) {
             cssTextDecorationSkipSelf =
@@ -690,7 +695,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextDecorationSkipSelf;
     }
-    
+
     public CssTextUnderlineOffset getTextUnderlineOffset() {
         if (cssTextUnderlineOffset == null) {
             cssTextUnderlineOffset =
@@ -699,7 +704,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextUnderlineOffset;
     }
-    
+
     public CssTextDecorationThickness getTextDecorationThickness() {
         if (cssTextDecorationThickness == null) {
             cssTextDecorationThickness =
@@ -708,7 +713,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextDecorationThickness;
     }
-    
+
     public CssOverflowAnchor getOverflowAnchor() {
         if (cssOverflowAnchor == null) {
             cssOverflowAnchor =
@@ -717,7 +722,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssOverflowAnchor;
     }
-    
+
     public CssAccentColor getAccentColor() {
         if (cssAccentColor == null) {
             cssAccentColor =
@@ -726,7 +731,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssAccentColor;
     }
-    
+
     public CssAspectRatio getAspectRatio() {
         if (cssAspectRatio == null) {
             cssAspectRatio =
@@ -735,7 +740,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssAspectRatio;
     }
-    
+
     public CssBorderEndEndRadius getBorderEndEndRadius() {
         if (cssBorderEndEndRadius == null) {
             cssBorderEndEndRadius =
@@ -744,7 +749,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderEndEndRadius;
     }
-    
+
     public CssBorderEndStartRadius getBorderEndStartRadius() {
         if (cssBorderEndStartRadius == null) {
             cssBorderEndStartRadius =
@@ -753,7 +758,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderEndStartRadius;
     }
-    
+
     public CssBorderStartEndRadius getBorderStartEndRadius() {
         if (cssBorderStartEndRadius == null) {
             cssBorderStartEndRadius =
@@ -762,7 +767,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderStartEndRadius;
     }
-    
+
     public CssBorderStartStartRadius getBorderStartStartRadius() {
         if (cssBorderStartStartRadius == null) {
             cssBorderStartStartRadius =
@@ -771,7 +776,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderStartStartRadius;
     }
-    
+
     public CssBorderInline getBorderInline() {
         if (cssBorderInline == null) {
             cssBorderInline =
@@ -780,7 +785,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInline;
     }
-    
+
     public CssBorderBlock getBorderBlock() {
         if (cssBorderBlock == null) {
             cssBorderBlock =
@@ -789,7 +794,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlock;
     }
-    
+
     public CssBorderInlineEnd getBorderInlineEnd() {
         if (cssBorderInlineEnd == null) {
             cssBorderInlineEnd =
@@ -798,7 +803,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineEnd;
     }
-    
+
     public CssBorderInlineStart getBorderInlineStart() {
         if (cssBorderInlineStart == null) {
             cssBorderInlineStart =
@@ -807,7 +812,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineStart;
     }
-    
+
     public CssBorderBlockEnd getBorderBlockEnd() {
         if (cssBorderBlockEnd == null) {
             cssBorderBlockEnd =
@@ -816,7 +821,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockEnd;
     }
-    
+
     public CssBorderBlockStart getBorderBlockStart() {
         if (cssBorderBlockStart == null) {
             cssBorderBlockStart =
@@ -825,7 +830,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockStart;
     }
-    
+
     public CssBorderInlineColor getBorderInlineColor() {
         if (cssBorderInlineColor == null) {
             cssBorderInlineColor =
@@ -834,7 +839,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineColor;
     }
-    
+
     public CssBorderInlineEndColor getBorderInlineEndColor() {
         if (cssBorderInlineEndColor == null) {
             cssBorderInlineEndColor =
@@ -843,7 +848,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineEndColor;
     }
-    
+
     public CssBorderInlineStartColor getBorderInlineStartColor() {
         if (cssBorderInlineStartColor == null) {
             cssBorderInlineStartColor =
@@ -852,7 +857,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineStartColor;
     }
-    
+
     public CssBorderBlockColor getBorderBlockColor() {
         if (cssBorderBlockColor == null) {
             cssBorderBlockColor =
@@ -861,7 +866,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockColor;
     }
-    
+
     public CssBorderBlockEndColor getBorderBlockEndColor() {
         if (cssBorderBlockEndColor == null) {
             cssBorderBlockEndColor =
@@ -870,7 +875,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockEndColor;
     }
-    
+
     public CssBorderBlockStartColor getBorderBlockStartColor() {
         if (cssBorderBlockStartColor == null) {
             cssBorderBlockStartColor =
@@ -879,7 +884,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockStartColor;
     }
-    
+
     public CssBorderInlineStyle getBorderInlineStyle() {
         if (cssBorderInlineStyle == null) {
             cssBorderInlineStyle =
@@ -888,7 +893,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineStyle;
     }
-    
+
     public CssBorderInlineEndStyle getBorderInlineEndStyle() {
         if (cssBorderInlineEndStyle == null) {
             cssBorderInlineEndStyle =
@@ -897,7 +902,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineEndStyle;
     }
-    
+
     public CssBorderInlineStartStyle getBorderInlineStartStyle() {
         if (cssBorderInlineStartStyle == null) {
             cssBorderInlineStartStyle =
@@ -906,7 +911,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineStartStyle;
     }
-    
+
     public CssBorderBlockStyle getBorderBlockStyle() {
         if (cssBorderBlockStyle == null) {
             cssBorderBlockStyle =
@@ -915,7 +920,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockStyle;
     }
-    
+
     public CssBorderBlockEndStyle getBorderBlockEndStyle() {
         if (cssBorderBlockEndStyle == null) {
             cssBorderBlockEndStyle =
@@ -924,7 +929,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockEndStyle;
     }
-    
+
     public CssBorderBlockStartStyle getBorderBlockStartStyle() {
         if (cssBorderBlockStartStyle == null) {
             cssBorderBlockStartStyle =
@@ -933,7 +938,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockStartStyle;
     }
-    
+
     public CssBorderInlineWidth getBorderInlineWidth() {
         if (cssBorderInlineWidth == null) {
             cssBorderInlineWidth =
@@ -942,7 +947,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineWidth;
     }
-    
+
     public CssBorderBlockWidth getBorderBlockWidth() {
         if (cssBorderBlockWidth == null) {
             cssBorderBlockWidth =
@@ -951,7 +956,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockWidth;
     }
-    
+
     public CssBorderInlineEndWidth getBorderInlineEndWidth() {
         if (cssBorderInlineEndWidth == null) {
             cssBorderInlineEndWidth =
@@ -960,7 +965,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineEndWidth;
     }
-    
+
     public CssBorderInlineStartWidth getBorderInlineStartWidth() {
         if (cssBorderInlineStartWidth == null) {
             cssBorderInlineStartWidth =
@@ -969,7 +974,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderInlineStartWidth;
     }
-    
+
     public CssBorderBlockEndWidth getBorderBlockEndWidth() {
         if (cssBorderBlockEndWidth == null) {
             cssBorderBlockEndWidth =
@@ -978,7 +983,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockEndWidth;
     }
-    
+
     public CssBorderBlockStartWidth getBorderBlockStartWidth() {
         if (cssBorderBlockStartWidth == null) {
             cssBorderBlockStartWidth =
@@ -987,7 +992,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBorderBlockStartWidth;
     }
-    
+
     public CssPaddingInline getPaddingInline() {
         if (cssPaddingInline == null) {
             cssPaddingInline =
@@ -996,7 +1001,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPaddingInline;
     }
-    
+
     public CssPaddingInlineEnd getPaddingInlineEnd() {
         if (cssPaddingInlineEnd == null) {
             cssPaddingInlineEnd =
@@ -1005,7 +1010,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPaddingInlineEnd;
     }
-    
+
     public CssPaddingInlineStart getPaddingInlineStart() {
         if (cssPaddingInlineStart == null) {
             cssPaddingInlineStart =
@@ -1014,7 +1019,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPaddingInlineStart;
     }
-    
+
     public CssPaddingBlock getPaddingBlock() {
         if (cssPaddingBlock == null) {
             cssPaddingBlock =
@@ -1023,7 +1028,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPaddingBlock;
     }
-    
+
     public CssPaddingBlockEnd getPaddingBlockEnd() {
         if (cssPaddingBlockEnd == null) {
             cssPaddingBlockEnd =
@@ -1032,7 +1037,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPaddingBlockEnd;
     }
-    
+
     public CssPaddingBlockStart getPaddingBlockStart() {
         if (cssPaddingBlockStart == null) {
             cssPaddingBlockStart =
@@ -1041,7 +1046,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPaddingBlockStart;
     }
-    
+
     public CssInset getInset() {
         if (cssInset == null) {
             cssInset =
@@ -1050,7 +1055,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInset;
     }
-    
+
     public CssInsetInline getInsetInline() {
         if (cssInsetInline == null) {
             cssInsetInline =
@@ -1059,7 +1064,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInsetInline;
     }
-    
+
     public CssInsetInlineEnd getInsetInlineEnd() {
         if (cssInsetInlineEnd == null) {
             cssInsetInlineEnd =
@@ -1068,7 +1073,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInsetInlineEnd;
     }
-    
+
     public CssInsetInlineStart getInsetInlineStart() {
         if (cssInsetInlineStart == null) {
             cssInsetInlineStart =
@@ -1077,7 +1082,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInsetInlineStart;
     }
-    
+
     public CssInsetBlock getInsetBlock() {
         if (cssInsetBlock == null) {
             cssInsetBlock =
@@ -1086,7 +1091,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInsetBlock;
     }
-    
+
     public CssInsetBlockEnd getInsetBlockEnd() {
         if (cssInsetBlockEnd == null) {
             cssInsetBlockEnd =
@@ -1095,7 +1100,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInsetBlockEnd;
     }
-    
+
     public CssInsetBlockStart getInsetBlockStart() {
         if (cssInsetBlockStart == null) {
             cssInsetBlockStart =
@@ -1104,7 +1109,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInsetBlockStart;
     }
-    
+
     public CssMarginInline getMarginInline() {
         if (cssMarginInline == null) {
             cssMarginInline =
@@ -1113,7 +1118,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMarginInline;
     }
-    
+
     public CssMarginInlineEnd getMarginInlineEnd() {
         if (cssMarginInlineEnd == null) {
             cssMarginInlineEnd =
@@ -1122,7 +1127,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMarginInlineEnd;
     }
-    
+
     public CssMarginInlineStart getMarginInlineStart() {
         if (cssMarginInlineStart == null) {
             cssMarginInlineStart =
@@ -1140,7 +1145,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMarginBlock;
     }
-    
+
     public CssMarginBlockEnd getMarginBlockEnd() {
         if (cssMarginBlockEnd == null) {
             cssMarginBlockEnd =
@@ -1149,7 +1154,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMarginBlockEnd;
     }
-    
+
     public CssMarginBlockStart getMarginBlockStart() {
         if (cssMarginBlockStart == null) {
             cssMarginBlockStart =
@@ -1158,7 +1163,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMarginBlockStart;
     }
-    
+
     public CssMaxInlineSize getMaxInlineSize() {
         if (cssMaxInlineSize == null) {
             cssMaxInlineSize =
@@ -1167,7 +1172,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMaxInlineSize;
     }
-    
+
     public CssMaxBlockSize getMaxBlockSize() {
         if (cssMaxBlockSize == null) {
             cssMaxBlockSize =
@@ -1176,7 +1181,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMaxBlockSize;
     }
-    
+
     public CssMinInlineSize getMinInlineSize() {
         if (cssMinInlineSize == null) {
             cssMinInlineSize =
@@ -1185,7 +1190,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMinInlineSize;
     }
-    
+
     public CssMinBlockSize getMinBlockSize() {
         if (cssMinBlockSize == null) {
             cssMinBlockSize =
@@ -1194,7 +1199,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMinBlockSize;
     }
-    
+
     public CssInlineSize getInlineSize() {
         if (cssInlineSize == null) {
             cssInlineSize =
@@ -1203,7 +1208,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInlineSize;
     }
-    
+
     public CssBlockSize getBlockSize() {
         if (cssBlockSize == null) {
             cssBlockSize =
@@ -1230,7 +1235,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssForcedColorAdjust;
     }
-    
+
     public CssColorAdjust getColorAdjust() {
         if (cssColorAdjust == null) {
             cssColorAdjust =
@@ -3344,6 +3349,17 @@ public class Css3Style extends ATSCStyle {
                 }
             }
         }
+    }
+
+    public CssCustomProperty getCustomProperty(String s) {
+        return customProperties.get(s);
+    }
+
+    public CssCustomProperty addCustomProperty(String s, CssCustomProperty p, boolean force) {
+        if (force) {
+            return customProperties.put(s, p);
+        }
+        return customProperties.putIfAbsent(s, p);
     }
 
     /**

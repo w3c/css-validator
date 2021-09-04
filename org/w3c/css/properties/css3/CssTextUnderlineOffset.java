@@ -65,12 +65,12 @@ public class CssTextUnderlineOffset extends org.w3c.css.properties.css.CssTextUn
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                } else {
-                    value = getAllowedValue((CssIdent) val);
+                if (inherit.equals(val.getIdent())) {
+                    value = val;
+                    break;
                 }
-                if (value != null) {
+                if (getAllowedValue(val.getIdent() )!= null) {
+                    value = val;
                     break;
                 }
             default:

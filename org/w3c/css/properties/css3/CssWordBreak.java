@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#word-break-property
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-word-break
  */
 public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
@@ -68,19 +68,19 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
+            CssIdent ident = val.getIdent();
             if (inherit.equals(ident)) {
-                value = inherit;
+                value = val;
             } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
+                if (getAllowedValue(ident) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
                 // break-word is deprecated
-                if (value == break_word) {
-                    ac.getFrame().addWarning("deprecated", value.toString());
+                if (break_word.equals(val.getIdent())) {
+                    ac.getFrame().addWarning("deprecated", val.toString());
                 }
             }
         } else {

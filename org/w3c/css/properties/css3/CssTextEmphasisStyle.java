@@ -81,8 +81,7 @@ public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmph
      * Creates a new CssTextEmphasisStyle
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextEmphasisStyle(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -102,31 +101,33 @@ public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmph
 
         switch (val.getType()) {
             case CssTypes.CSS_STRING:
-                CssString s = (CssString) val;
-                // limit of 1 character + two surrounding quotes
-                // TODO might be a warning only
-                if (s.toString().length() != 3) {
-                    throw new InvalidParamException("value",
-                            s, getPropertyName(), ac);
+                if (val.getRawType() == CssTypes.CSS_STRING) {
+                    CssString s = (CssString) val;
+                    // limit of 1 character + two surrounding quotes
+                    // TODO might be a warning only
+                    if (s.toString().length() != 3) {
+                        throw new InvalidParamException("value",
+                                s, getPropertyName(), ac);
+                    }
                 }
                 if (check && expression.getCount() != 1) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                value = s;
+                value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
+                CssIdent ident = val.getIdent();
                 if (inherit.equals(ident)) {
-                    value = inherit;
+                    value = val;
                     if (check && expression.getCount() != 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
                 } else if (none.equals(ident)) {
-                    value = none;
+                    value = val;
                     if (check && expression.getCount() != 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),
@@ -168,7 +169,7 @@ public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmph
                                     val.toString(),
                                     getPropertyName(), ac);
                         }
-                        ident = (CssIdent) val;
+                        ident = val.getIdent();
                     } while (!expression.end());
                     // now construct the value
                     if (formValue != null && styleValue != null) {
