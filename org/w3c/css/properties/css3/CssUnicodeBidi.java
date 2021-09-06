@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/REC-css-writing-modes-3-20191210/#propdef-unicode-bidi
+ * @spec https://www.w3.org/TR/2019/CR-css-writing-modes-4-20190730/#propdef-unicode-bidi
  */
 public class CssUnicodeBidi extends org.w3c.css.properties.css.CssUnicodeBidi {
 
@@ -50,8 +50,7 @@ public class CssUnicodeBidi extends org.w3c.css.properties.css.CssUnicodeBidi {
      * Creates a new CssUnicodeBidi
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssUnicodeBidi(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -70,17 +69,13 @@ public class CssUnicodeBidi extends org.w3c.css.properties.css.CssUnicodeBidi {
             throw new InvalidParamException("value", val,
                     getPropertyName(), ac);
         }
-        CssIdent id = (CssIdent) val;
-        if (inherit.equals(id)) {
-            value = inherit;
-        } else {
-            value = getAllowedIdent(id);
-            if (value == null) {
-                throw new InvalidParamException("value",
-                        val.toString(),
-                        getPropertyName(), ac);
-            }
+        CssIdent id = val.getIdent();
+        if (!inherit.equals(id) || (getAllowedIdent(id) == null)) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 
