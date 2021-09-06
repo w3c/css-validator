@@ -61,8 +61,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
      * Creates a new CssTransform
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTransform(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -83,7 +82,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (inherit.equals(val.getIdent())) {
                         singleVal = true;
                         sValue = inherit;
                         values.add(inherit);
@@ -256,10 +255,9 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
         if (val.getType() == CssTypes.CSS_NUMBER) {
             if (type == CssTypes.CSS_LENGTH || type == CssTypes.CSS_ANGLE) {
                 // if not zero, it will fail
-                if (val.getNumber().isZero()) {
-                    expression.next();
-                    return;
-                }
+                val.getCheckableValue().checkEqualsZero(ac, caller.getPropertyName());
+                expression.next();
+                return;
             }
         }
         if (val.getType() != type) {

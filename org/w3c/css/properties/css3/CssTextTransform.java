@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#text-transform-property
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-text-transform
  */
 public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransform {
 
@@ -85,30 +85,28 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
                         getPropertyName(), ac);
             }
             // ident, so inherit, or allowed value
-            if (inherit.equals(val)) {
+            if (inherit.equals(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
                 values.add(inherit);
-            } else if (none.equals(val)) {
+            } else if (none.equals(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
                 values.add(none);
-            } else if (fullWidth.equals(val) && !got_full_width) {
+            } else if (fullWidth.equals(val.getIdent()) && !got_full_width) {
                 got_full_width = true;
                 values.add(fullWidth);
-            } else if (fullSizeKana.equals(val) && !got_full_size_kana) {
+            } else if (fullSizeKana.equals(val.getIdent()) && !got_full_size_kana) {
                 got_full_size_kana = true;
                 values.add(fullSizeKana);
             } else if (!got_action) {
-                got_action = true;
-                val = getMatchingActionIdent((CssIdent) val);
-                if (val == null) {
+                if (getMatchingActionIdent(val.getIdent()) == null) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
