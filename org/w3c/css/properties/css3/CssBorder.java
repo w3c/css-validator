@@ -129,14 +129,14 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
                     break;
                 case CssTypes.CSS_HASH_IDENT:
                     org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-                    c.setShortRGBColor(ac, val.toString());
-                    _color = c;
+                    c.setShortRGBColor(ac, val.getHashIdent().toString());
+                    _color = val;
                     break;
                 case CssTypes.CSS_COLOR:
                     _color = val;
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent id = (CssIdent) val;
+                    CssIdent id = val.getIdent();
                     if (transparent.equals(id)) {
                         _color = transparent;
                         break;
