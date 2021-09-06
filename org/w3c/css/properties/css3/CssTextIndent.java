@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-text-indent
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-text-indent
  */
 public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
 
@@ -38,8 +38,7 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
      * Creates a new CssTextIndent
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextIndent(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -77,7 +76,7 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
                     }
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
+                    CssIdent ident = val.getIdent();
                     if (inherit.equals(ident)) {
                         value = inherit;
                         if (check && expression.getCount() > 1) {
@@ -86,11 +85,11 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
                         break;
                     }
                     if (hangVal == null && hanging.equals(ident)) {
-                        hangVal = hanging;
+                        hangVal = val;
                         break;
                     }
                     if (eachVal == null && each_line.equals(ident)) {
-                        eachVal = each_line;
+                        eachVal = val;
                         break;
                     }
                 default:
@@ -109,7 +108,7 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
             if (expression.getCount() == 1) {
                 value = sizeVal;
             } else {
-                ArrayList<CssValue> v = new ArrayList<CssValue>(4);
+                ArrayList<CssValue> v = new ArrayList<>(4);
                 v.add(sizeVal);
                 if (hangVal != null) {
                     v.add(hangVal);
