@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/WD-pointerevents2-20160719/#the-touch-action-css-property
+ * @spec https://www.w3.org/TR/2021/WD-pointerevents3-20210901/#the-touch-action-css-property
  * @spec https://compat.spec.whatwg.org/#touch-action
  */
 
@@ -122,14 +122,14 @@ public class CssTouchAction extends org.w3c.css.properties.css.CssTouchAction {
                         val.toString(),
                         getPropertyName(), ac);
             }
-            id = (CssIdent) val;
+            id = val.getIdent();
             if (id.equals(inherit)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                values.add(inherit);
+                values.add(val);
                 expression.next();
                 continue;
             }
@@ -141,7 +141,7 @@ public class CssTouchAction extends org.w3c.css.properties.css.CssTouchAction {
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                values.add(ident);
+                values.add(val);
                 expression.next();
                 continue;
             }
@@ -155,7 +155,7 @@ public class CssTouchAction extends org.w3c.css.properties.css.CssTouchAction {
                             getPropertyName(), ac);
                 }
                 got_horizontal = true;
-                values.add(ident);
+                values.add(val);
                 expression.next();
                 continue;
             }
@@ -168,7 +168,7 @@ public class CssTouchAction extends org.w3c.css.properties.css.CssTouchAction {
                             getPropertyName(), ac);
                 }
                 got_vertical = true;
-                values.add(ident);
+                values.add(val);
                 expression.next();
                 continue;
             }
@@ -180,7 +180,7 @@ public class CssTouchAction extends org.w3c.css.properties.css.CssTouchAction {
                             getPropertyName(), ac);
                 }
                 got_pinch_zoom = true;
-                values.add(pinch_zoom);
+                values.add(val);
                 expression.next();
                 continue;
             }

@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-overflow-3-20200603/#text-overflow
+ * @spec https://www.w3.org/TR/2020/WD-css-overflow-3-20200603/#propdef-text-overflow
  */
 public class CssTextOverflow extends org.w3c.css.properties.css.CssTextOverflow {
 
