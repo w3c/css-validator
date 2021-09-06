@@ -5,6 +5,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.css.StyleSheet;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -31,8 +32,9 @@ public class CssCustomProperty extends org.w3c.css.properties.css.CssCustomPrope
 
     @Override
     public void addToStyle(ApplContext ac, CssStyle style) {
-        Css3Style s = (Css3Style) style;
-        CssProperty p = s.addCustomProperty(getPropertyName(), this, false);
+        StyleSheet s = ac.getStyleSheet();
+        assert s != null;
+        CssCustomProperty p = (CssCustomProperty) s.addCustomProperty(getPropertyName(), this, false);
         if (p != null) {
             // duplicate def
             // add a warning?

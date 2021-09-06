@@ -6,6 +6,8 @@
 
 package org.w3c.css.values;
 
+import org.w3c.css.css.StyleSheet;
+import org.w3c.css.properties.css.CssCustomProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
@@ -26,6 +28,22 @@ public class CssVariable extends CssCheckableValue {
 
     public final int getType() {
         if (computed_type == CssTypes.CSS_UNKNOWN) {
+            if (ac != null) {
+                StyleSheet s = ac.getStyleSheet();
+                if (s != null) {
+                    CssCustomProperty cp = s.getCustomProperty(variable_name);
+                    if (cp != null) {
+                        CssVariableDefinition vd = (CssVariableDefinition) cp.value;
+                        if (vd != null) {
+                            if (vd.size() == 1) {
+                                _exp_value = vd.expression.getValue();
+                                computed_type = _exp_value.getType();
+                                return computed_type;
+                            }
+                        }
+                    }
+                }
+            }
             return type;
         }
         return computed_type;
