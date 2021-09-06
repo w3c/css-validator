@@ -17,7 +17,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-ruby-1-20140805/#propdef-ruby-align
+ * @spec https://www.w3.org/TR/2021/WD-css-ruby-1-20210310/#propdef-ruby-align
  */
 public class CssRubyAlign extends org.w3c.css.properties.css.CssRubyAlign {
 
@@ -52,8 +52,7 @@ public class CssRubyAlign extends org.w3c.css.properties.css.CssRubyAlign {
      * Create new CssRubyAlign
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssRubyAlign(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
@@ -69,15 +68,15 @@ public class CssRubyAlign extends org.w3c.css.properties.css.CssRubyAlign {
                     expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (inherit.equals(val)) {
-            value = inherit;
+        if (inherit.equals(val.getIdent())) {
+            value = val;
         } else {
-            value = getAllowedIdent((CssIdent) val);
-            if (value == null) {
+            if (getAllowedIdent(val.getIdent()) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
             }
+            value = val;
         }
         expression.next();
     }
