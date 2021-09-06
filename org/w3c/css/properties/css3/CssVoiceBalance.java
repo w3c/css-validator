@@ -72,13 +72,13 @@ public class CssVoiceBalance extends org.w3c.css.properties.css.CssVoiceBalance 
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 if (inherit.equals(id)) {
-                    value = inherit;
+                    value = val;
                     break;
                 }
-                value = getAllowedIdent(id);
-                if (value != null) {
+                if (getAllowedIdent(id) != null) {
+                    value = val;
                     break;
                 }
             default:

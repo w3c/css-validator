@@ -84,7 +84,7 @@ public class CssVolume extends org.w3c.css.properties.css.CssVolume {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 if (inherit.equals(id)) {
                     value = inherit;
                     break;

@@ -58,12 +58,12 @@ public class CssVoiceDuration extends org.w3c.css.properties.css.CssVoiceDuratio
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (inherit.equals(val.getIdent())) {
+                    value = val;
                     break;
                 }
-                if (auto.equals(val)) {
-                    value = auto;
+                if (auto.equals(val.getIdent())) {
+                    value = val;
                     break;
                 }
             default:

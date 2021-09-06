@@ -132,14 +132,14 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
         CssIdent ageVal = null;
         CssValue numVal = null;
         CssValue nameVal = null;
-        ArrayList<CssIdent> identl = null;
+        ArrayList<CssValue> identl = null;
 
         // so we can have a generic voice or a string or an ident list...
         // let's triage things... that will require extra checks (again)
         // at the end *sigh*
         for (CssValue val : values) {
             if (ageVal == null && nameVal == null && val.getType() == CssTypes.CSS_IDENT) {
-                ageVal = getAge((CssIdent) val);
+                ageVal = getAge(val.getIdent());
                 if (ageVal != null) {
                     continue;
                 }
@@ -155,22 +155,24 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
                         nameVal = val;
                         break;
                     case CssTypes.CSS_IDENT:
-                        CssIdent id = (CssIdent) val;
+                        CssIdent id = val.getIdent();
                         if (inherit.equals(id)) {
+                            // FIXME need to do better here
                             val = inherit;
                         } else if (preserve.equals(id)) {
+                            // FIXME need to do better here
                             val = preserve;
                         }
                         if (nameVal == null) {
                             nameVal = val;
-                            identl = new ArrayList<CssIdent>();
+                            identl = new ArrayList<>();
                         }
                         if (identl == null) {
                             // else we got a string before...
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
-                        identl.add((CssIdent) val);
+                        identl.add(val.getIdent());
                         break;
                     case CssTypes.CSS_NUMBER:
                         CssCheckableValue n = val.getCheckableValue();
@@ -191,7 +193,7 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
                         getPropertyName(), ac);
             }
             if (nameVal.getType() == CssTypes.CSS_IDENT) {
-                hasGenericVoiceFamily = (getGenericVoiceName((CssIdent) nameVal) != null);
+                hasGenericVoiceFamily = (getGenericVoiceName(nameVal.getIdent()) != null);
             }
             curval.add(nameVal);
 
@@ -215,7 +217,7 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
                     if (identl.size() > 1) {
                         ac.getFrame().addWarning("with-space", 1);
                     } else {
-                        hasGenericVoiceFamily = (getGenericVoiceName(identl.get(0)) != null);
+                        hasGenericVoiceFamily = (getGenericVoiceName(identl.get(0).getIdent()) != null);
                     }
                 }
             }
