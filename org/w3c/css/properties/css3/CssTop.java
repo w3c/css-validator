@@ -73,13 +73,13 @@ public class CssTop extends org.w3c.css.properties.css.CssTop {
                 expression.next();
                 return val;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (inherit.equals(val.getIdent())) {
                     expression.next();
                     return inherit;
                 }
-                if (auto.equals(val)) {
+                if (auto.equals(val.getIdent())) {
                     expression.next();
-                    return auto;
+                    return val;
                 }
                 // if not inherit, or not an ident
                 // let it flow to the exception
