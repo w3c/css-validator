@@ -26,8 +26,7 @@ public class CssTextEmphasisColor extends org.w3c.css.properties.css.CssTextEmph
      * Creates a new CssTextEmphasisColor
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextEmphasisColor(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -38,13 +37,13 @@ public class CssTextEmphasisColor extends org.w3c.css.properties.css.CssTextEmph
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (inherit.equals(val)) {
-            value = inherit;
+        if (inherit.equals(val.getIdent())) {
+            value = val;
             expression.next();
         } else {
             try {
                 CssColor tcolor = new CssColor(ac, expression, check);
-                value = tcolor.color;
+                value = (tcolor.color != null) ? tcolor.color : tcolor.value;
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),

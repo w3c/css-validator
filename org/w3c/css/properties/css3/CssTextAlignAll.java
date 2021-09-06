@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-text-align-all
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-text-align-all
  */
 public class CssTextAlignAll extends org.w3c.css.properties.css.CssTextAlignAll {
 
@@ -65,15 +65,15 @@ public class CssTextAlignAll extends org.w3c.css.properties.css.CssTextAlignAll 
                     expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (inherit.equals(val)) {
-            value = inherit;
+        if (inherit.equals(val.getIdent())) {
+            value = val;
         } else {
-            value = getAllowedIdent((CssIdent) val);
-            if (value == null) {
+            if (getAllowedIdent(val.getIdent()) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
             }
+            value = val;
         }
         expression.next();
     }
