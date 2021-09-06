@@ -15,19 +15,24 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-ruby-1-20140805/#propdef-ruby-position
+ * @spec https://www.w3.org/TR/2021/WD-css-ruby-1-20210310/#propdef-ruby-position
  */
 
 public class CssRubyPosition extends org.w3c.css.properties.css.CssRubyPosition {
     public static final CssIdent[] allowed_values;
 
-    // Here we use the 9 November 2017 draft values
-    // https://github.com/w3c/csswg-drafts/blob/85d366602c156b1735da30d99b68f3fe0908ed60/css-ruby-1/Overview.bs
+    public static final CssIdent inter_char = CssIdent.getIdent("inter-character");
+    public static final CssIdent alternate = CssIdent.getIdent("alternate");
 
     static {
-        String[] _allowed_values = {"over", "under", "inter-character"};
+        String[] _allowed_values = {"over", "under"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -55,34 +60,57 @@ public class CssRubyPosition extends org.w3c.css.properties.css.CssRubyPosition 
      * Create new CssRubyPosition
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssRubyPosition(ApplContext ac, CssExpression expression,
                            boolean check) throws InvalidParamException {
+        CssValue val;
+        char op;
+        boolean gotAlt = false;
+        boolean gotLine = false;
+        ArrayList<CssValue> v = new ArrayList<>();
         setByUser();
-        CssValue val = expression.getValue();
-
-        if (check && expression.getCount() > 1) {
+        if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            value = getAllowedIdent((CssIdent) val);
-            if (value == null) {
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            if (val.getType() != CssTypes.CSS_IDENT) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
             }
+            CssIdent ident = val.getIdent();
+            if (inherit.equals(ident) || inter_char.equals(ident)) {
+                // single values
+                if (expression.getCount() != 1) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                value = val;
+            } else if (!gotAlt && alternate.equals(ident)) {
+                gotAlt = true;
+                v.add(val);
+            }  else if (!gotLine && (getAllowedIdent(ident) != null)) {
+                gotLine = true;
+                v.add(val);
+            } else {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+            }
+            expression.next();
+            if (!expression.end() && (op != SPACE)) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op), ac);
+            }
         }
-        expression.next();
+        if (!v.isEmpty()) {
+            value = (v.size() == 1) ? v.get(0): new CssValueList(v);
+        }
     }
 
 
