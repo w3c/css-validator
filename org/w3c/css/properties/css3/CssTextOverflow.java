@@ -11,14 +11,9 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssValueList;
-
-import java.util.ArrayList;
-
-import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-text-overflow
+ * @spec https://www.w3.org/TR/2020/WD-css-overflow-3-20200603/#text-overflow
  */
 public class CssTextOverflow extends org.w3c.css.properties.css.CssTextOverflow {
 
@@ -53,59 +48,34 @@ public class CssTextOverflow extends org.w3c.css.properties.css.CssTextOverflow 
      * Creates a new CssTextOverflow
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextOverflow(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
 
-
-        if (check && expression.getCount() > 2) {
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
-
         setByUser();
 
         CssValue val;
         char op;
-        ArrayList<CssValue> values = new ArrayList<>(4);
 
-        while (!expression.end()) {
-            val = expression.getValue();
-            op = expression.getOperator();
-            switch (val.getType()) {
-                case CssTypes.CSS_STRING:
-                    values.add(val);
-                    break;
-                case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        if (expression.getCount() > 1) {
-                            throw new InvalidParamException("value",
-                                    inherit.toString(),
-                                    getPropertyName(), ac);
-                        }
-                        values.add(inherit);
-                        break;
-                    }
-                    CssIdent match = getAllowedIdent((CssIdent) val);
-                    if (match != null) {
-                        values.add(match);
-                        break;
-                    }
-                    // unrecognized, let it fail
-                default:
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-            }
-            if (op != SPACE) {
-                throw new InvalidParamException("operator",
-                        Character.toString(op), ac);
-            }
-            expression.next();
-
+        val = expression.getValue();
+        op = expression.getOperator();
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
         }
-        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        CssIdent id = val.getIdent();
+        if (!inherit.equals(id) && (getAllowedIdent(id) == null)) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        value = val;
+        expression.next();
     }
 
     public CssTextOverflow(ApplContext ac, CssExpression expression)
