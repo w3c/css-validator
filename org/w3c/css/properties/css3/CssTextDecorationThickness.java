@@ -68,20 +68,18 @@ public class CssTextDecorationThickness extends org.w3c.css.properties.css.CssTe
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                } else {
-                    val = getMatchingIdent((CssIdent) val);
-                    if (val != null) {
-                        value = val;
-                        break;
-                    }
+                if (inherit.equals(val.getIdent())) {
+                    value = val;
+                    break;
+                }
+                if (getMatchingIdent(val.getIdent()) != null) {
+                    value = val;
+                    break;
                 }
             default:
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
-
         }
         expression.next();
     }

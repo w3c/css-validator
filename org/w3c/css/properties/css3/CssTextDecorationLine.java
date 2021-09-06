@@ -99,14 +99,14 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
                         val.toString(),
                         getPropertyName(), ac);
             }
-            id = (CssIdent) val;
+            id = val.getIdent();
             if (inherit.equals(id)) {
                 if (expression.getCount() != 1) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                values.add(inherit);
+                values.add(val);
                 break;
             }
             v = getSingleAllowedValue(id);
@@ -116,7 +116,7 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                values.add(v);
+                values.add(val);
                 break;
             }
             v = getMultipleAllowedValue(id);
@@ -125,7 +125,7 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
                         val.toString(),
                         getPropertyName(), ac);
             }
-            values.add(v);
+            values.add(val);
             expression.next();
 
             if (!expression.end() && (op != SPACE)) {

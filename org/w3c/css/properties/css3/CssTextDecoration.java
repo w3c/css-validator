@@ -150,6 +150,9 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
                         try {
                             CssColor c = new CssColor(ac, expression, false);
                             colValue = c.getColor();
+                            if (colValue == null) {
+                                colValue = c.value;
+                            }
                             state *= 2;
                         } catch (InvalidParamException iex) {
                             // as it is a catchall, we do not know if the intent was a color

@@ -58,8 +58,7 @@ public class CssTextDecorationSkip extends org.w3c.css.properties.css.CssTextDec
      * Creates a new CssTextDecorationSkip
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextDecorationSkip(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -71,10 +70,10 @@ public class CssTextDecorationSkip extends org.w3c.css.properties.css.CssTextDec
         CssValue val;
         char op;
 
-        CssIdent edgValue = null;
-        CssIdent spaValue = null;
-        CssIdent inkValue = null;
-        CssIdent objValue = null;
+        CssValue edgValue = null;
+        CssValue spaValue = null;
+        CssValue inkValue = null;
+        CssValue objValue = null;
 
         val = expression.getValue();
         op = expression.getOperator();
@@ -85,16 +84,16 @@ public class CssTextDecorationSkip extends org.w3c.css.properties.css.CssTextDec
                     getPropertyName(), ac);
         }
 
-        CssIdent ident = (CssIdent) val;
+        CssIdent ident = val.getIdent();
         if (inherit.equals(ident)) {
-            value = inherit;
+            value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         getPropertyName(), ac);
             }
         } else if (none.equals(ident)) {
-            value = none;
+            value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",
                         val.toString(),
@@ -104,13 +103,13 @@ public class CssTextDecorationSkip extends org.w3c.css.properties.css.CssTextDec
             int nbgot = 0;
             do {
                 if (edgValue == null && edges.equals(ident)) {
-                    edgValue = edges;
+                    edgValue = val;
                 } else if (spaValue == null && spaces.equals(ident)) {
-                    spaValue = spaces;
+                    spaValue = val;
                 } else if (inkValue == null && ink.equals(ident)) {
-                    inkValue = ink;
+                    inkValue = val;
                 } else if (objValue == null && objects.equals(ident)) {
-                    objValue = objects;
+                    objValue = val;
                 } else {
                     throw new InvalidParamException("value",
                             val.toString(),
@@ -134,7 +133,7 @@ public class CssTextDecorationSkip extends org.w3c.css.properties.css.CssTextDec
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                ident = (CssIdent) val;
+                ident = val.getIdent();
             } while (!expression.end());
             // now construct the value
             ArrayList<CssValue> v = new ArrayList<CssValue>(nbgot);
