@@ -199,7 +199,7 @@ public class CssTransition extends org.w3c.css.properties.css.CssTransition {
                             val.toString(),
                             caller.getPropertyName(), ac);
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
+                    CssIdent ident = val.getIdent();
                     if (inherit.equals(ident)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("unrecognize", ac);

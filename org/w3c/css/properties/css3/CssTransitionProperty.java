@@ -49,8 +49,7 @@ public class CssTransitionProperty extends org.w3c.css.properties.css.CssTransit
      * Creates a new CssTransitionProperty
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTransitionProperty(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -67,12 +66,12 @@ public class CssTransitionProperty extends org.w3c.css.properties.css.CssTransit
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (inherit.equals(val.getIdent())) {
                         singleVal = true;
                         sValue = inherit;
                         values.add(inherit);
                     } else {
-                        CssIdent ident = getAllowedIdent(ac, (CssIdent) val);
+                        CssIdent ident = getAllowedIdent(ac, val.getIdent());
                         if (ident == none) {
                             singleVal = true;
                             sValue = none;
