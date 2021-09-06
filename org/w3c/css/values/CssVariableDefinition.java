@@ -24,7 +24,10 @@ public class CssVariableDefinition extends CssValue {
     }
 
     public int size() {
-        return expression.getCount();
+        if (expression != null) {
+            return expression.getCount();
+        }
+        return 0;
     }
 
     /**
