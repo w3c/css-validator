@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#visibility
+ * @spec https://www.w3.org/TR/2021/CRD-css-display-3-20210903/#propdef-visibility
  */
 public class CssVisibility extends org.w3c.css.properties.css.CssVisibility {
 
@@ -68,17 +68,13 @@ public class CssVisibility extends org.w3c.css.properties.css.CssVisibility {
             throw new InvalidParamException("value", val,
                     getPropertyName(), ac);
         }
-        CssIdent id = (CssIdent) val;
-        if (inherit.equals(id)) {
-            value = inherit;
-        } else {
-            value = getAllowedIdent(id);
-            if (value == null) {
+        CssIdent id = val.getIdent();
+        if (!inherit.equals(id) && (getAllowedIdent(id) == null)) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         getPropertyName(), ac);
-            }
         }
+        value = val;
         expression.next();
     }
 
