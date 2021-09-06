@@ -14,14 +14,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-ruby-1-20140805/#propdef-ruby-merge
+ * @spec https://www.w3.org/TR/2021/WD-css-ruby-1-20210310/#propdef-ruby-merge
  */
 public class CssRubyMerge extends org.w3c.css.properties.css.CssRubyMerge {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"separate", "collapse", "auto"};
+        String[] _allowed_values = {"separate", "merge", "auto"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -49,8 +49,7 @@ public class CssRubyMerge extends org.w3c.css.properties.css.CssRubyMerge {
      * Create new CssRubyMerge
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssRubyMerge(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
@@ -62,16 +61,16 @@ public class CssRubyMerge extends org.w3c.css.properties.css.CssRubyMerge {
         }
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
+            CssIdent ident = val.getIdent();
             if (inherit.equals(ident)) {
-                value = inherit;
+                value = val;
             } else {
-                value = getAllowedIdent(ident);
-                if (value == null) {
+                if (getAllowedIdent(ident) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",
