@@ -300,7 +300,7 @@ public class CssCalc extends CssCheckableValue {
      */
     public boolean isPositive() {
         // TODO do our best...
-        return false;
+        return true;
     }
 
     /**
@@ -309,7 +309,7 @@ public class CssCalc extends CssCheckableValue {
      * @return a boolean
      */
     public boolean isStrictlyPositive() {
-        return false;
+        return true;
         // TODO do our best...
     }
 
@@ -320,7 +320,7 @@ public class CssCalc extends CssCheckableValue {
      */
     public boolean isZero() {
         // TODO do our best...
-        return false;
+        return true;
     }
 
 
