@@ -150,6 +150,84 @@ public class CssVariable extends CssCheckableValue {
         throw new ClassCastException("unknown");
     }
 
+    /**
+     * check if the value is positive or null
+     *
+     * @param ac         the validation context
+     * @param callername the String value of the caller (property / media query / ...)
+     * @throws InvalidParamException
+     */
+    @Override
+    public void checkPositiveness(ApplContext ac, String callername)
+            throws InvalidParamException {
+        if (_isCheckableType(computed_type)) {
+            _exp_value.getCheckableValue().checkPositiveness(ac, callername);
+        }
+    }
+
+    /**
+     * check if the value is strictly positive
+     *
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
+     * @throws org.w3c.css.util.InvalidParamException
+     */
+    @Override
+    public void checkStrictPositiveness(ApplContext ac, String callername)
+            throws InvalidParamException {
+        if (_isCheckableType(computed_type)) {
+            _exp_value.getCheckableValue().checkStrictPositiveness(ac, callername);
+        }
+    }
+
+    /**
+     * check if the value is equal to zero
+     *
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
+     * @throws InvalidParamException
+     */
+    @Override
+    public void checkEqualsZero(ApplContext ac, String callername)
+            throws InvalidParamException {
+        if (_isCheckableType(computed_type)) {
+            _exp_value.getCheckableValue().checkEqualsZero(ac, callername);
+        }
+    }
+
+    /**
+     * warn if the value is not positive or null
+     *
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
+     */
+    @Override
+    public boolean warnPositiveness(ApplContext ac, String callername) {
+        if (_isCheckableType(computed_type)) {
+            try {
+                return _exp_value.getCheckableValue().warnPositiveness(ac, callername);
+            } catch (InvalidParamException e) {
+            }
+        }
+        return false;
+    }
+
+    /**
+     * warn if the value is not zero
+     *
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
+     */
+    public boolean warnEqualsZero(ApplContext ac, String callername) {
+        if (_isCheckableType(computed_type)) {
+            try {
+                return _exp_value.getCheckableValue().warnEqualsZero(ac, callername);
+            } catch (InvalidParamException e) {
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean isPositive() {
         if (_isCheckableType(computed_type)) {
