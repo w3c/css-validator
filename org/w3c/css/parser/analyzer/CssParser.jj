@@ -448,10 +448,14 @@ public abstract class CssParser {
 
 	    if (n.kind == CssParserConstants.IDENT) {
 	        String s = convertIdent(val);
-            if ('-' == s.charAt(0)) {
-                expr.markVendorExtension();
-            }
-		    v.set(convertIdent(val), ac);
+		if ('-' == s.charAt(0)) {
+			expr.markVendorExtension();
+		}
+		if (v.getRawType() == CssTypes.CSS_IDENT) {
+			v = CssIdent.getIdent(s); // might be in the setValue call
+		} else {
+			v.set(s, ac);
+		}
 	    } else if (n.kind == CssParserConstants.STRING) {
 		    v.set(val, ac);
 	    } else {
