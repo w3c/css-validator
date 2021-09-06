@@ -17,9 +17,29 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#propdef-vertical-align
+ * @spec https://www.w3.org/TR/2020/WD-css-inline-3-20200827/#propdef-vertical-align
  */
 public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlign {
+
+    public static final CssIdent[] allowed_values;
+
+    static {
+        String[] _allowed_values = {"first", "last"};
+        int i = 0;
+        allowed_values = new CssIdent[_allowed_values.length];
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
     /**
      * Create a new CssVerticalAlign
@@ -33,23 +53,23 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssVerticalAlign(ApplContext ac, CssExpression expression,
                             boolean check) throws InvalidParamException {
 
-        if (check && expression.getCount() > 2) {
+        if (check && expression.getCount() > 3) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        ArrayList<CssValue> v = new ArrayList<>(2);
+        ArrayList<CssValue> v = new ArrayList<>(3);
         setByUser();
         char op;
         CssValue val;
         CssIdent res;
         boolean got_shift = false;
         boolean got_alignment = false;
+        boolean got_baseline_source = false;
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -68,20 +88,28 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
                     v.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent id = (CssIdent) val;
+                    CssIdent id = val.getIdent();
                     if (inherit.equals(id)) {
                         // inherit can only be alone
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", expression.getValue(),
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
+                    }
+                    if (!got_baseline_source) {
+                        res = getAllowedIdent(id);
+                        if (res != null) {
+                            v.add(val);
+                            got_baseline_source = true;
+                            break;
+                        }
                     }
                     if (!got_shift) {
                         res = CssBaselineShift.getAllowedIdent(id);
                         if (res != null) {
-                            v.add(res);
+                            v.add(val);
                             got_shift = true;
                             break;
                         }
@@ -90,7 +118,7 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
                         res = CssAlignmentBaseline.getAllowedIdent(id);
                         if (res != null) {
                             got_alignment = true;
-                            v.add(res);
+                            v.add(val);
                             break;
                         }
                     }
@@ -105,7 +133,7 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
             }
             expression.next();
         }
-        if (value != inherit) {
+        if (!v.isEmpty()) {
             value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
         }
     }
