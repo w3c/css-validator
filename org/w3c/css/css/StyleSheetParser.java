@@ -61,6 +61,10 @@ public final class StyleSheetParser
     CssFouffa cssFouffa;
     StyleSheet style = new StyleSheet();
 
+    public StyleSheetParser(ApplContext ac) {
+        ac.setStyleSheet(getStyleSheet());
+    }
+
     public void reInit() {
         style = new StyleSheet();
     }

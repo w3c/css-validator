@@ -9,6 +9,7 @@
 package org.w3c.css.util;
 
 
+import org.w3c.css.css.StyleSheet;
 import org.w3c.css.parser.Frame;
 import org.w3c.www.http.HttpAcceptCharset;
 import org.w3c.www.http.HttpAcceptCharsetList;
@@ -75,6 +76,7 @@ public class ApplContext {
     String lang;
     Messages msgs;
     Frame frame;
+    StyleSheet styleSheet = null;
     CssVersion version = CssVersion.getDefault();
     CssProfile profile = CssProfile.NONE;
     String input;
@@ -147,6 +149,14 @@ public class ApplContext {
 
     public Frame getFrame() {
         return frame;
+    }
+
+    public void setStyleSheet(StyleSheet styleSheet) {
+        this.styleSheet = styleSheet;
+    }
+
+    public StyleSheet getStyleSheet() {
+        return styleSheet;
     }
 
     public Class getCssSelectorsStyle() {

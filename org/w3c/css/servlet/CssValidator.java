@@ -417,7 +417,7 @@ public final class CssValidator extends HttpServlet {
 
                     if ("css".equals(type) || ("none".equals(type) && isCSS(text))) {
                         // if CSS:
-                        parser = new StyleSheetParser();
+                        parser = new StyleSheetParser(ac);
                         parser.parseStyleElement(ac, is, null, usermedium,
                                 new URL(fileName), 0);
 
@@ -716,7 +716,7 @@ public final class CssValidator extends HttpServlet {
             ac.setFakeURL(fileName);
             if (isCSS) {
                 //if CSS:
-                parser = new StyleSheetParser();
+                parser = new StyleSheetParser(ac);
                 parser.parseStyleElement(ac, is, null, ac.getMedium(),
                         new URL(fileName), 0);
 
