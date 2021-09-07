@@ -59,8 +59,7 @@ public class CssSpeakAs extends org.w3c.css.properties.css.CssSpeakAs {
      * Creates a new CssSpeakAs
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssSpeakAs(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -81,39 +80,39 @@ public class CssSpeakAs extends org.w3c.css.properties.css.CssSpeakAs {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    CssIdent id = (CssIdent) val;
+                    CssIdent id = val.getIdent();
                     if (inherit.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
                     if (normal.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = normal;
+                        value = val;
                         break;
                     }
                     if (spellVal == null) {
                         if (spell_out.equals(id)) {
-                            spellVal = id;
-                            value = id;
+                            spellVal = val;
+                            value = val;
                             break;
                         }
                     }
                     if (digitVal == null) {
                         if (digits.equals(id)) {
-                            digitVal = digits;
-                            value = id;
+                            digitVal = val;
+                            value = val;
                             break;
                         }
                     }
                     if (punctVal == null) {
-                        punctVal = getPunctuation(id);
-                        if (punctVal != null) {
-                            value = id;
+                        if (getPunctuation(id) != null) {
+                            punctVal = val;
+                            value = val;
                             break;
                         }
                     }
