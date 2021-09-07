@@ -90,6 +90,7 @@ public class CssTransformBox extends org.w3c.css.properties.css.CssTransformBox 
                     val.toString(),
                     getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 
