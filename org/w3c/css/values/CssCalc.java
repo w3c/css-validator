@@ -330,9 +330,22 @@ public class CssCalc extends CssCheckableValue {
      * @param value The other value.
      */
     public boolean equals(Object value) {
-        return (value instanceof CssCalc &&
-                this.val1.equals(((CssCalc) value).val1) &&
-                this.val2.equals(((CssCalc) value).val2));
+        if (value instanceof CssCalc) {
+            CssCalc c = (CssCalc) value;
+            if (this.val1 != null && !this.val1.equals(c.val1)) {
+                return false;
+            } else if ((this.val1 == null) && (c.val1 != null)) {
+                return false;
+            }
+            // val1 and c.val2 are equal even if null
+            if (this.val2 != null && !this.val2.equals(c.val2)) {
+                return false;
+            } else if ((this.val2 == null) && (c.val2 != null)) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
