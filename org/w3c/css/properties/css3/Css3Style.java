@@ -409,8 +409,8 @@ public class Css3Style extends ATSCStyle {
     public CssRubyPosition cssRubyPosition;
     public CssRubyAlign cssRubyAlign;
     public CssRubyMerge cssRubyMerge;
-    @Deprecated
-    CssRubyOverhang cssRubyOverhang;
+    public org.w3c.css.properties.css.CssRubyOverhang cssRubyOverhang;
+
     public CssAlignmentBaseline cssAlignmentBaseline;
     public CssBaselineShift cssBaselineShift;
     public CssDominantBaseline cssDominantBaseline;
@@ -2065,12 +2065,11 @@ public class Css3Style extends ATSCStyle {
         return cssRubyMerge;
     }
 
-    @Deprecated
-    public CssRubyOverhang getRubyOverhang() {
+    public org.w3c.css.properties.css.CssRubyOverhang getRubyOverhang() {
         if (cssRubyOverhang == null) {
             cssRubyOverhang =
-                    (CssRubyOverhang) style.CascadingOrder(
-                            new CssRubyOverhang(), style, selector);
+                    (org.w3c.css.properties.css.CssRubyOverhang) style.CascadingOrder(
+                            new org.w3c.css.properties.css.CssRubyOverhang(), style, selector);
         }
         return cssRubyOverhang;
     }
