@@ -49,8 +49,7 @@ public class CssSpeakPunctuation extends org.w3c.css.properties.css.CssSpeakPunc
      * Creates a new CssSpeakPunctuation
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssSpeakPunctuation(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -69,7 +68,7 @@ public class CssSpeakPunctuation extends org.w3c.css.properties.css.CssSpeakPunc
         ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
+            CssIdent id = val.getIdent();
             if (inherit.equals(id)) {
                 value = inherit;
             } else {

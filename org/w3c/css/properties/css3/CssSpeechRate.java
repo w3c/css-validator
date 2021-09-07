@@ -51,8 +51,7 @@ public class CssSpeechRate extends org.w3c.css.properties.css.CssSpeechRate {
      * Creates a new CssSpeechRate
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssSpeechRate(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -77,7 +76,7 @@ public class CssSpeechRate extends org.w3c.css.properties.css.CssSpeechRate {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 if (inherit.equals(id)) {
                     value = inherit;
                     break;

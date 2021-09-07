@@ -49,8 +49,7 @@ public class CssSpeakNumeral extends org.w3c.css.properties.css.CssSpeakNumeral 
      * Creates a new CssSpeakNumeral
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssSpeakNumeral(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -69,7 +68,7 @@ public class CssSpeakNumeral extends org.w3c.css.properties.css.CssSpeakNumeral 
         ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
+            CssIdent id = val.getIdent();
             if (inherit.equals(id)) {
                 value = inherit;
             } else {

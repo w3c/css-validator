@@ -56,7 +56,7 @@ public class CssStress extends org.w3c.css.properties.css.CssStress {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (inherit.equals(val.getIdent())) {
                     value = inherit;
                     break;
                 }
