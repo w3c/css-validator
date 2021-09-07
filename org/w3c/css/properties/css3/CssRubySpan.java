@@ -27,6 +27,7 @@ import java.util.Vector;
  * <EM>Inherited:</EM>no<BR>
  * <EM>Percentages:</EM>no<BR>
  * <EM>Media:</EM>:interactive
+ * @deprecated 
  */
 
 public class CssRubySpan extends CssProperty {

@@ -71,6 +71,7 @@ public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDe
                     expression.getValue(),
                     getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 
