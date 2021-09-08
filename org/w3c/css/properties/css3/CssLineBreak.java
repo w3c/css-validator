@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-line-break
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-line-break
  */
 public class CssLineBreak extends org.w3c.css.properties.css.CssLineBreak {
 
@@ -65,12 +65,12 @@ public class CssLineBreak extends org.w3c.css.properties.css.CssLineBreak {
                     expression.getValue(),
                     getPropertyName(), ac);
         }
+        CssIdent ident = val.getIdent();
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        if (CssIdent.isCssWide(ident)) {
+            value = val;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            if (getMatchingIdent(ident) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);

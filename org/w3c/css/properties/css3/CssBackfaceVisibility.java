@@ -65,12 +65,12 @@ public class CssBackfaceVisibility extends org.w3c.css.properties.css.CssBackfac
                     expression.getValue(),
                     getPropertyName(), ac);
         }
+        CssIdent id = val.getIdent();
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        if (CssIdent.isCssWide(id)) {
+            value = val;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            if (getMatchingIdent(id) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);

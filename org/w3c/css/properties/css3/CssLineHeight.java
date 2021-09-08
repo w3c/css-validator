@@ -14,8 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @version $Revision$
- * @spec http://www.w3.org/TR/2002/WD-css3-linebox-20020515/#line-height
+ * @spec https://www.w3.org/TR/2020/WD-css-inline-3-20200827/#propdef-line-height
  */
 public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
 
@@ -32,8 +31,7 @@ public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
      * Creates a new CssLineHeight
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssLineHeight(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -45,17 +43,17 @@ public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                } else if (normal.equals(val)) {
-                    value = normal;
-                } else if (none.equals(val)) {
-                    value = none;
-                } else {
-                    throw new InvalidParamException("value", val.toString(),
-                            getPropertyName(), ac);
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
+                    break;
                 }
-                break;
+                if (normal.equals(val)) {
+                    value = val;
+                    break;
+                }
+                throw new InvalidParamException("value", val.toString(),
+                        getPropertyName(), ac);
             case CssTypes.CSS_LENGTH:
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_PERCENTAGE:

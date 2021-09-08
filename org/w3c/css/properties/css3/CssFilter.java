@@ -101,14 +101,14 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
-                    if (inherit.equals(ident)) {
-                        value = inherit;
+                    CssIdent ident = val.getIdent();
+                    if (CssIdent.isCssWide(ident)) {
+                        value = val;
                         singleVal = true;
                         break;
                     }
                     if (none.equals(ident)) {
-                        value = none;
+                        value = val;
                         singleVal = true;
                         break;
                     }
