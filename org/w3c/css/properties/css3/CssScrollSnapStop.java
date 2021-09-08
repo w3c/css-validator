@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190319/#propdef-scroll-snap-stop
+ * @spec https://www.w3.org/TR/2021/CR-css-scroll-snap-1-20210311/#propdef-scroll-snap-stop
  */
 public class CssScrollSnapStop extends org.w3c.css.properties.css.CssScrollSnapStop {
 
@@ -48,8 +48,7 @@ public class CssScrollSnapStop extends org.w3c.css.properties.css.CssScrollSnapS
      * Creates a new CssScrollSnapStop
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssScrollSnapStop(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -62,13 +61,13 @@ public class CssScrollSnapStop extends org.w3c.css.properties.css.CssScrollSnapS
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     break;
                 }
-                CssIdent ident = getMatchingIdent((CssIdent) val);
-                if (ident != null) {
-                    value = ident;
+                if (getMatchingIdent(ident) != null) {
+                    value = val;
                     break;
                 }
                 // unrecognized... fail.

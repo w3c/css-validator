@@ -54,7 +54,7 @@ public class CssScrollBehavior extends org.w3c.css.properties.css.CssScrollBehav
      * @throws InvalidParamException Incorrect value
      */
     public CssScrollBehavior(ApplContext ac, CssExpression expression,
-                         boolean check) throws InvalidParamException {
+                             boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -67,15 +67,15 @@ public class CssScrollBehavior extends org.w3c.css.properties.css.CssScrollBehav
         val = expression.getValue();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     throw new InvalidParamException("value", val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value", val.toString(),
