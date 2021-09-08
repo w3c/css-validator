@@ -14,6 +14,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-direction
+ * @deprecated
  */
 public class CssMarqueeDirection extends org.w3c.css.properties.css.CssMarqueeDirection {
 
@@ -66,10 +67,11 @@ public class CssMarqueeDirection extends org.w3c.css.properties.css.CssMarqueeDi
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
+        CssIdent ident = val.getIdent();
+        if (inherit.equals(ident)) {
             value = inherit;
         } else {
-            val = getMatchingIdent((CssIdent) val);
+            val = getMatchingIdent(ident);
             if (val == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),

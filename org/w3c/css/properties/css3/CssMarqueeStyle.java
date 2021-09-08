@@ -14,6 +14,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-style
+ * @deprecated
  */
 public class CssMarqueeStyle extends org.w3c.css.properties.css.CssMarqueeStyle {
 
@@ -66,10 +67,10 @@ public class CssMarqueeStyle extends org.w3c.css.properties.css.CssMarqueeStyle 
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
+        if (inherit.equals(val.getIdent())) {
             value = inherit;
         } else {
-            val = getMatchingIdent((CssIdent) val);
+            val = getMatchingIdent(val.getIdent());
             if (val == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
