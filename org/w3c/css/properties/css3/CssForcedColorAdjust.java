@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-color-adjust-1-20200402/#propdef-forced-color-adjust
+ * @spec https://www.w3.org/TR/2021/WD-css-color-adjust-1-20210616/#propdef-forced-color-adjust
  */
 public class CssForcedColorAdjust extends org.w3c.css.properties.css.CssForcedColorAdjust {
 
     private static CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"auto", "none"};
+        String id_values[] = {"auto", "none", "preserve-parent-color"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -65,11 +65,11 @@ public class CssForcedColorAdjust extends org.w3c.css.properties.css.CssForcedCo
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        CssIdent ident = val.getIdent();
+        if (CssIdent.isCssWide(ident)) {
+            value = val;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            if (getMatchingIdent(ident) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
