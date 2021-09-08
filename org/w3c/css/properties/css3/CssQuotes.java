@@ -8,6 +8,7 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -17,11 +18,12 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2003/WD-css3-content-20030514/#quotes
- * an obsolete spec, but it's the same as CSS21.
+ * @spec https://www.w3.org/TR/2019/WD-css-content-3-20190802/#propdef-quotes
  */
 public class CssQuotes extends org.w3c.css.properties.css.CssQuotes {
 
+    static final CssIdent auto = CssIdent.getIdent("auto");
+    
     /**
      * Create a new CssQuotes
      */
@@ -51,13 +53,14 @@ public class CssQuotes extends org.w3c.css.properties.css.CssQuotes {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     expression.next();
                     break;
                 }
-                if (none.equals(val)) {
-                    value = none;
+                if (none.equals(ident) || auto.equals(ident)) {
+                    value = val;
                     expression.next();
                     break;
                 }

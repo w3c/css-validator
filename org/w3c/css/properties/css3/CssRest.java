@@ -56,8 +56,7 @@ public class CssRest extends org.w3c.css.properties.css.CssRest {
      * Creates a new CssRest
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssRest(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -82,9 +81,10 @@ public class CssRest extends org.w3c.css.properties.css.CssRest {
             }
             cssRestAfter = new CssRestAfter();
             cssRestAfter.value = checkRestValue(ac, expression, this);
-            if (cssRestBefore.value == inherit || cssRestAfter.value == inherit) {
+            if (((cssRestBefore.value.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(cssRestBefore.value.getIdent())) ||
+                    ((cssRestAfter.value.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(cssRestAfter.value.getIdent()))) {
                 throw new InvalidParamException("value",
-                        inherit, getPropertyName(), ac);
+                        cssRestBefore.value, getPropertyName(), ac);
             }
             ArrayList<CssValue> values = new ArrayList<CssValue>(2);
             values.add(cssRestBefore.value);
@@ -99,9 +99,9 @@ public class CssRest extends org.w3c.css.properties.css.CssRest {
     }
 
     protected static CssValue checkRestValue(ApplContext ac, CssExpression expression,
-                                              CssProperty caller)
+                                             CssProperty caller)
             throws InvalidParamException {
-        CssValue val, v;
+        CssValue val;
         char op;
 
         val = expression.getValue();
@@ -114,15 +114,14 @@ public class CssRest extends org.w3c.css.properties.css.CssRest {
                 expression.next();
                 return val;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
                     expression.next();
-                    return inherit;
+                    return val;
                 }
-                v = getAllowedIdent(id);
-                if (v != null) {
+                if (getAllowedIdent(id) != null) {
                     expression.next();
-                    return v;
+                    return val;
                 }
             default:
                 throw new InvalidParamException("value",

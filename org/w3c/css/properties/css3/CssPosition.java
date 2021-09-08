@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2016/WD-css-position-3-20160517/#position-property
+ * @spec https://www.w3.org/TR/2020/WD-css-position-3-20200519/#propdef-position
  */
 public class CssPosition extends org.w3c.css.properties.css.CssPosition {
 
@@ -49,8 +49,7 @@ public class CssPosition extends org.w3c.css.properties.css.CssPosition {
      * Creates a new CssPosition
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssPosition(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,19 +64,18 @@ public class CssPosition extends org.w3c.css.properties.css.CssPosition {
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
-            } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-            }
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        CssIdent id = val.getIdent();
+        if (CssIdent.isCssWide(id)) {
+            value = val;
+        } else if (getAllowedIdent(id) != null) {
+            value = val;
         } else {
+            value = val;
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);

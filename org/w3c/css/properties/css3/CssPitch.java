@@ -72,13 +72,13 @@ public class CssPitch extends org.w3c.css.properties.css.CssPitch {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 }
-                value = getAllowedIdent(id);
-                if (value != null) {
+                if (getAllowedIdent(id) != null) {
+                    value = val;
                     break;
                 }
             default:
