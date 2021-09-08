@@ -260,7 +260,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
             }
             v = exp.getValue();
             if (v.getType() == CssTypes.CSS_IDENT) {
-                if (null == CssListStyleType.getAllowedIdent((CssIdent) v)) {
+                if (null == CssListStyleType.getAllowedIdent(v.getIdent())) {
                     throw new InvalidParamException("value", v,
                             property.getPropertyName(), ac);
                 }
@@ -311,7 +311,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
             }
             v = exp.getValue();
             if (v.getType() == CssTypes.CSS_IDENT) {
-                if (null == CssListStyleType.getAllowedIdent((CssIdent) v)) {
+                if (null == CssListStyleType.getAllowedIdent(v.getIdent())) {
                     throw new InvalidParamException("value", v,
                             property.getPropertyName(), ac);
                 }

@@ -22,9 +22,9 @@ public class CssColumnRule extends CssProperty {
 
     private static final String propertyName = "column-rule";
 
-    CssColumnRuleWidth rule_width;
-    CssColumnRuleStyle rule_style;
-    CssColumnRuleColor rule_color;
+    public CssColumnRuleWidth rule_width;
+    public CssColumnRuleStyle rule_style;
+    public CssColumnRuleColor rule_color;
 
     /**
      * Create a new CssColumnRule
@@ -109,7 +109,6 @@ public class CssColumnRule extends CssProperty {
      * Returns a string representation of the object
      */
     public String toString() {
-
         return value.toString();
     }
 }

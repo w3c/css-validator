@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-count
+ * @spec https://www.w3.org/TR/2021/WD-css-multicol-1-20210212/#propdef-column-count
  */
 
 public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
@@ -43,7 +43,6 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
 
         setByUser();
         CssValue val = expression.getValue();
-        CssCheckableValue num;
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -51,18 +50,19 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                num = val.getCheckableValue();
+                CssCheckableValue num = val.getCheckableValue();
                 num.checkInteger(ac, this);
                 num.checkStrictPositiveness(ac, this);
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (auto.equals(val)) {
-                    value = auto;
+                CssIdent ident = val.getIdent();
+                if (auto.equals(ident)) {
+                    value = val;
                     break;
                 }
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     break;
                 }
             default:

@@ -19,7 +19,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-span
+ * @spec https://www.w3.org/TR/2021/WD-css-multicol-1-20210212/#propdef-column-span
  */
 
 public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
@@ -57,16 +57,13 @@ public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (all.equals(val)) {
-                    value = all;
+                CssIdent ident = val.getIdent();
+                if (all.equals(ident) || none.equals(ident)) {
+                    value = val;
                     break;
                 }
-                if (none.equals(val)) {
-                    value = none;
-                    break;
-                }
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     break;
                 }
             default:

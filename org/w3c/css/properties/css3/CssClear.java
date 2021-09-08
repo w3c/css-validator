@@ -13,7 +13,6 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-page-floats-3-20150915/#propdef-clear
  * @spec https://www.w3.org/TR/2018/WD-css-logical-1-20180827/#float-clear
  */
 public class CssClear extends org.w3c.css.properties.css.CssClear {

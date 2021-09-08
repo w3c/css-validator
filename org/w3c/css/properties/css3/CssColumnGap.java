@@ -16,8 +16,8 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-gap
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-column-gap
+ * @spec https://www.w3.org/TR/2021/WD-css-multicol-1-20210212/#cg
+ * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-column-gap
  */
 
 public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
@@ -59,12 +59,13 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (normal.equals(val)) {
-                    value = normal;
+                CssIdent ident = val.getIdent();
+                if (normal.equals(ident)) {
+                    value = val;
                     break;
                 }
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     break;
                 }
             default:
