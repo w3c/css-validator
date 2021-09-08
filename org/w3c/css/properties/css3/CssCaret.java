@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-caret
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-caret
  */
 public class CssCaret extends org.w3c.css.properties.css.CssCaret {
 
@@ -63,30 +63,29 @@ public class CssCaret extends org.w3c.css.properties.css.CssCaret {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        if (expression.getCount() > 1) {
-                            throw new InvalidParamException("unrecognize", ac);
-                        }
-                        values.add(inherit);
-                        break;
+                    CssIdent ident = val.getIdent();
+                    if (CssIdent.isCssWide(ident)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("unrecognize", ac);
                     }
-                    v = getMatchingIdent((CssIdent) val);
-                    if (v != null) {
-                        // auto can be used for both color and shape
-                        values.add(v);
-                        break;
+                    values.add(val);
+                    break;
+                }
+                if (getMatchingIdent(ident) != null) {
+                    // auto can be used for both color and shape
+                    values.add(val);
+                    break;
+                }
+                if (CssCaretShape.getMatchingIdent(ident) != null) {
+                    if (gotShape) {
+                        throw new InvalidParamException("value",
+                                val, getPropertyName(), ac);
                     }
-                    v = CssCaretShape.getMatchingIdent((CssIdent) val);
-                    if (v != null) {
-                        if (gotShape) {
-                            throw new InvalidParamException("value",
-                                    val, getPropertyName(), ac);
-                        }
-                        gotShape = true;
-                        values.add(v);
-                        break;
-                    }
-                    // if not recognized... it can be a color.
+                    gotShape = true;
+                    values.add(val);
+                    break;
+                }
+                // if not recognized... it can be a color.
                 default:
                     try {
                         CssExpression nex = new CssExpression();
@@ -99,7 +98,7 @@ public class CssCaret extends org.w3c.css.properties.css.CssCaret {
                                     val, getPropertyName(), ac);
                         }
                         gotColor = true;
-                        values.add(tcolor.color);
+                        values.add((tcolor.color == null) ? tcolor.value : tcolor.color);
                     } catch (InvalidParamException e) {
                         throw new InvalidParamException("value",
                                 expression.getValue(),

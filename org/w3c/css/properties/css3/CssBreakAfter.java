@@ -15,12 +15,10 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import static org.w3c.css.properties.css3.CssBreakBefore.auto;
-import static org.w3c.css.properties.css3.CssBreakBefore.getMatchingIdent;
-
 
 /**
  * @spec https://www.w3.org/TR/2018/CR-css-break-3-20181204/#propdef-break-after
+ * @see CssBreakBefore
  */
 
 public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
@@ -36,8 +34,7 @@ public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
      * Create a new CssPageBreakAfter
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException Incorrect value
      */
     public CssBreakAfter(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
@@ -55,11 +52,11 @@ public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        CssIdent ident = val.getIdent();
+        if (CssIdent.isCssWide(ident)) {
+            value = val;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            if (CssBreakBefore.getMatchingIdent(ident) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
@@ -79,7 +76,7 @@ public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (auto == value);
+        return (CssBreakBefore.auto == value);
     }
 
 }

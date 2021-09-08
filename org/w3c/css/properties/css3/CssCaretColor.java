@@ -52,12 +52,13 @@ public class CssCaretColor extends org.w3c.css.properties.css.CssCaretColor {
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     break;
                 }
-                value = getMatchingIdent((CssIdent) val);
-                if (value != null) {
+                if (getMatchingIdent(ident) != null) {
+                    value = val;
                     break;
                 }
                 // if not recognized... it can be a color.
@@ -66,7 +67,7 @@ public class CssCaretColor extends org.w3c.css.properties.css.CssCaretColor {
                     CssColor tcolor = new CssColor(ac, expression, check);
                     // instead of using getColor, we get the value directly
                     // as we can have idents
-                    value = tcolor.color;
+                    value = (tcolor.color == null) ? tcolor.value : tcolor.color;
                 } catch (InvalidParamException e) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
