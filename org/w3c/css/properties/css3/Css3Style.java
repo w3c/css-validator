@@ -198,6 +198,7 @@ import org.w3c.css.properties.css.CssPerspectiveOrigin;
 import org.w3c.css.properties.css.CssPlaceContent;
 import org.w3c.css.properties.css.CssPlaceItems;
 import org.w3c.css.properties.css.CssPlaceSelf;
+import org.w3c.css.properties.css.CssPrintColorAdjust;
 import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
@@ -561,6 +562,7 @@ public class Css3Style extends ATSCStyle {
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
     public CssColorScheme cssColorScheme;
+    public CssPrintColorAdjust cssPrintColorAdjust;
 
     public CssBlockSize cssBlockSize;
     public CssInlineSize cssInlineSize;
@@ -1222,6 +1224,15 @@ public class Css3Style extends ATSCStyle {
         return cssColorScheme;
     }
 
+    public CssPrintColorAdjust getPrintColorAdjust() {
+        if (cssPrintColorAdjust == null) {
+            cssPrintColorAdjust =
+                    (CssPrintColorAdjust) style.CascadingOrder(new CssPrintColorAdjust(),
+                            style, selector);
+        }
+        return cssPrintColorAdjust;
+    }
+    
     public CssForcedColorAdjust getForcedColorAdjust() {
         if (cssForcedColorAdjust == null) {
             cssForcedColorAdjust =
