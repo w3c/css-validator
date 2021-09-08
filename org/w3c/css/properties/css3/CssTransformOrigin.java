@@ -93,7 +93,7 @@ public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformO
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                value = inherit;
+                value = val;
                 expression.next();
                 return;
             }
