@@ -77,8 +77,7 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
      * Creates a new CssAzimuth
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssAzimuth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -113,7 +112,7 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
                 break;
             case CssTypes.CSS_IDENT:
                 int count = expression.getCount();
-                CssIdent ident = (CssIdent) val;
+                CssIdent ident = val.getIdent();
                 char op = expression.getOperator();
 
                 // inherit, leftwards, rightwards
@@ -142,7 +141,7 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
                     if (val.getType() != CssTypes.CSS_IDENT) {
                         throw new InvalidParamException("value", val, ac);
                     }
-                    ident = (CssIdent) val;
+                    ident = val.getIdent();
 
                     if (op != CssOperator.SPACE) {
                         throw new InvalidParamException("operator", val,
