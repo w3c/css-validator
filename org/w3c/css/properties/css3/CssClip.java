@@ -18,7 +18,8 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-positioning-20120207/#clip
+ * @spec https://www.w3.org/TR/2021/CRD-css-masking-1-20210805/#propdef-clip
+ * @deprecated
  */
 public class CssClip extends org.w3c.css.properties.css.CssClip {
 
@@ -46,12 +47,13 @@ public class CssClip extends org.w3c.css.properties.css.CssClip {
         setByUser();
 
         CssValue val = expression.getValue();
+        ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
         switch (val.getType()) {
             case CssTypes.CSS_FUNCTION:
                 CssFunction func = (CssFunction) val;
                 String funcname = func.getName().toLowerCase();
-                if (!funcname.equals("rect") && !funcname.equals("inset")) {
+                if (!funcname.equals("rect")) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
@@ -59,11 +61,12 @@ public class CssClip extends org.w3c.css.properties.css.CssClip {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     break;
-                } else if (auto.equals(val)) {
-                    value = auto;
+                } else if (auto.equals(ident)) {
+                    value = val;
                     break;
                 }
                 // let if fail.
@@ -102,7 +105,7 @@ public class CssClip extends org.w3c.css.properties.css.CssClip {
                 case CssTypes.CSS_LENGTH:
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (auto.equals(val)) {
+                    if (auto.equals(val.getIdent())) {
                         break;
                     }
                 default:
