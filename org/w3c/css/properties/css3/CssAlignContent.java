@@ -20,7 +20,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @spec https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#propdef-align-content
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-align-content
+ * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-align-content
  */
 public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent {
 
@@ -127,7 +127,7 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
     public static CssValue parseAlignContent(ApplContext ac, CssExpression expression,
                                              CssProperty caller)
             throws InvalidParamException {
-        CssValue val, value;
+        CssValue val;
         ArrayList<CssValue> values = new ArrayList<>();
         char op;
 
@@ -136,7 +136,7 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
 
         if (val.getType() == CssTypes.CSS_IDENT) {
             CssIdent ident = val.getIdent();
-            if (inherit.equals(ident)) {
+            if (CssIdent.isCssWide(ident)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
@@ -148,8 +148,7 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
                 expression.next();
                 return val;
             }
-            value = getContentDistribution(ident);
-            if (value != null) {
+            if (getContentDistribution(ident) != null) {
                 expression.next();
                 return val;
             }
@@ -158,14 +157,12 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
                 expression.next();
                 return val;
             }
-            value = getContentPosition(ident);
-            if (value != null) {
+            if (getContentPosition(ident) != null) {
                 expression.next();
                 return val;
             }
             // ok, at that point we need two values.
-            value = getBaselineQualifier(ident);
-            if (value != null) {
+            if (getBaselineQualifier(ident) != null) {
                 values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
@@ -176,7 +173,7 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
                     throw new InvalidParamException("unrecognize", ac);
                 }
                 val = expression.getValue();
-                if (val.getType() != CssTypes.CSS_IDENT || !baseline.equals(val)) {
+                if (val.getType() != CssTypes.CSS_IDENT || !baseline.equals(val.getIdent())) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
@@ -184,8 +181,7 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
                 expression.next();
                 return new CssValueList(values);
             }
-            value = getOverflowPosition(ident);
-            if (value != null) {
+            if (getOverflowPosition(ident) != null) {
                 values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
@@ -200,8 +196,7 @@ public class CssAlignContent extends org.w3c.css.properties.css.CssAlignContent 
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                value = getContentPosition((CssIdent) val);
-                if (value == null) {
+                if (getContentPosition(val.getIdent()) == null) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
