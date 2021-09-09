@@ -35,6 +35,7 @@ import org.w3c.css.properties.css.CssBackgroundPositionX;
 import org.w3c.css.properties.css.CssBackgroundPositionY;
 import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.properties.css.CssBaselineShift;
+import org.w3c.css.properties.css.CssBaselineSource;
 import org.w3c.css.properties.css.CssBlockSize;
 import org.w3c.css.properties.css.CssBorderBlock;
 import org.w3c.css.properties.css.CssBorderBlockColor;
@@ -420,6 +421,7 @@ public class Css3Style extends ATSCStyle {
     public CssInitialLetterAlign cssInitialLetterAlign;
     public CssInitialLetterWrap cssInitialLetterWrap;
     public CssInlineSizing cssInlineSizing;
+    public CssBaselineSource cssBaselineSource;
 
     public CssOpacity cssOpacity;
     public CssBackgroundClip cssBackgroundClip;
@@ -2175,6 +2177,15 @@ public class Css3Style extends ATSCStyle {
                             new CssBaselineShift(), style, selector);
         }
         return cssBaselineShift;
+    }
+
+    public CssBaselineSource getBaselineSource() {
+        if (cssBaselineSource == null) {
+            cssBaselineSource =
+                    (CssBaselineSource) style.CascadingOrder(
+                            new CssBaselineSource(), style, selector);
+        }
+        return cssBaselineSource;
     }
 
     public CssInitialLetter getInitialLetter() {
