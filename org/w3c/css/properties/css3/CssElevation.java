@@ -51,8 +51,7 @@ public class CssElevation extends org.w3c.css.properties.css.CssElevation {
      * Creates a new ACssElevation
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssElevation(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
@@ -69,21 +68,23 @@ public class CssElevation extends org.w3c.css.properties.css.CssElevation {
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_ANGLE:
-                CssAngle a = val.getAngle();
-                float v = a.getDegree();
-                if (v > 90 && v < 270) {
-                    throw new InvalidParamException("elevation.range", ac);
+                if (val.getRawType() == CssTypes.CSS_ANGLE || val.getRawType() == CssTypes.CSS_NUMBER) {
+                    CssAngle a = val.getAngle();
+                    float v = a.getDegree();
+                    if (v > 90 && v < 270) {
+                        throw new InvalidParamException("elevation.range", ac);
+                    }
                 }
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
-                    value = inherit;
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     break;
                 }
-                value = getAllowedIdent(ident);
-                if (value != null) {
+                if (getAllowedIdent(ident) != null) {
+                    value = val;
                     break;
                 }
             default:

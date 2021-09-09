@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-origin
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background-origin
  */
 
 public class CssBackgroundOrigin extends org.w3c.css.properties.css.CssBackgroundOrigin {
@@ -53,8 +53,7 @@ public class CssBackgroundOrigin extends org.w3c.css.properties.css.CssBackgroun
      * Create a new CssBackgroundClip
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException Incorrect value
      */
     public CssBackgroundOrigin(ApplContext ac, CssExpression expression,
                                boolean check) throws InvalidParamException {
@@ -69,23 +68,19 @@ public class CssBackgroundOrigin extends org.w3c.css.properties.css.CssBackgroun
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         // if we got inherit after other values, fail
                         // if we got more than one value... fail
                         if ((values.size() > 0) || (expression.getCount() > 1)) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
-                        values.add(inherit);
+                        values.add(val);
                         break;
-                    } else if (border_box.equals(val)) {
-                        values.add(border_box);
-                        break;
-                    } else if (content_box.equals(val)) {
-                        values.add(content_box);
-                        break;
-                    } else if (padding_box.equals(val)) {
-                        values.add(padding_box);
+                    }
+                    if (isMatchingIdent(id)) {
+                        values.add(val);
                         break;
                     }
                 default:
@@ -98,11 +93,7 @@ public class CssBackgroundOrigin extends org.w3c.css.properties.css.CssBackgroun
                         Character.toString(op), ac);
             }
         }
-        if (values.size() == 1) {
-            value = values.get(0);
-        } else {
-            value = new CssLayerList(values);
-        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
     }
 
     public CssBackgroundOrigin(ApplContext ac, CssExpression expression)

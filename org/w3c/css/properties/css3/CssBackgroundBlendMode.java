@@ -34,15 +34,14 @@ public class CssBackgroundBlendMode extends org.w3c.css.properties.css.CssBackgr
      * Creates a new CssBackgroundBlendMode
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssBackgroundBlendMode(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
 
         CssValue val;
-        CssIdent ident, id;
+        CssIdent ident;
         char op;
 
         ArrayList<CssValue> values = new ArrayList<>();
@@ -52,22 +51,21 @@ public class CssBackgroundBlendMode extends org.w3c.css.properties.css.CssBackgr
             op = expression.getOperator();
 
             if (val.getType() == CssTypes.CSS_IDENT) {
-                ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
+                ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
-                    values.add(inherit);
+                    values.add(val);
                 } else {
-                    id = CssMixBlendMode.getAllowedIdent(ident);
-                    if (id == null) {
+                    if (CssMixBlendMode.getAllowedIdent(ident) == null) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
-                    values.add(id);
+                    values.add(val);
                 }
             } else {
                 throw new InvalidParamException("value",

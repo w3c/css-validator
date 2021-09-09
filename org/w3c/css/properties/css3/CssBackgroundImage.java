@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-image
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background-image
  */
 public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackgroundImage {
 
@@ -41,8 +41,7 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
      * @param ac         the context
      * @param expression The expression for this property
      * @param check      boolean
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssBackgroundImage(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
@@ -62,17 +61,18 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         // if we got inherit after other values, fail
                         // if we got more than one value... fail
                         if ((values.size() > 0) || (expression.getCount() > 1)) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
-                        values.add(inherit);
+                        values.add(val);
                         break;
-                    } else if (none.equals(val)) {
-                        values.add(none);
+                    } else if (isMatchingIdent(id)) {
+                        values.add(val);
                         break;
                     }
                 default:
@@ -85,11 +85,7 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
                         Character.toString(op), ac);
             }
         }
-        if (values.size() == 1) {
-            value = values.get(0);
-        } else {
-            value = new CssLayerList(values);
-        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
     }
 
     public CssBackgroundImage(ApplContext ac, CssExpression expression)

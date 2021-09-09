@@ -61,8 +61,7 @@ public class CssBackgroundPositionY extends org.w3c.css.properties.css.CssBackgr
      * Creates a new CssBackgroundPositionY
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssBackgroundPositionY(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -79,11 +78,12 @@ public class CssBackgroundPositionY extends org.w3c.css.properties.css.CssBackgr
             op = expression.getOperator();
 
             if (val.getType() == CssTypes.CSS_IDENT) {
-                if (val.equals(inherit)) {
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
-                    value = inherit;
+                    value = val;
                     expression.next();
                     continue;
                 }
@@ -138,8 +138,8 @@ public class CssBackgroundPositionY extends org.w3c.css.properties.css.CssBackgr
                     v.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent id = (CssIdent) val;
-                    if (id.equals(center) && !gotCenter && !gotIdent && !gotLP) {
+                    CssIdent id = val.getIdent();
+                    if (center.equals(id) && !gotCenter && !gotIdent && !gotLP) {
                         gotCenter = true;
                         v.add(val);
                         break;
