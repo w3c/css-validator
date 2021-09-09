@@ -1,4 +1,4 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2015.
@@ -8,11 +8,12 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-filter-effects-1-20141125/#FloodOpacityProperty
+ * @spec https://www.w3.org/TR/2018/WD-filter-effects-1-20181218/#propdef-flood-opacity
  */
 public class CssFloodOpacity extends org.w3c.css.properties.css.CssFloodOpacity {
 
@@ -42,8 +43,16 @@ public class CssFloodOpacity extends org.w3c.css.properties.css.CssFloodOpacity 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_PERCENTAGE:
+                val.getCheckableValue().warnPositiveness(ac, getPropertyName());
+                // FIXME TODO clamp warnings
                 value = val;
                 break;
+            case CssTypes.CSS_IDENT:
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
+                    break;
+                }
+                // unrecognized ident, let it fail
             default:
                 throw new InvalidParamException("value",
                         val.toString(),
