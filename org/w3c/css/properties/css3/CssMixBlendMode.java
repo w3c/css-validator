@@ -51,8 +51,7 @@ public class CssMixBlendMode extends org.w3c.css.properties.css.CssMixBlendMode 
      * Creates a new CssMixBlendMode
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMixBlendMode(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -67,23 +66,19 @@ public class CssMixBlendMode extends org.w3c.css.properties.css.CssMixBlendMode 
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else {
-                value = getAllowedIdent(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-            }
-        } else {
+        if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);
         }
+        
+        CssIdent ident = val.getIdent();
+        if (!CssIdent.isCssWide(ident) && getAllowedIdent(ident) == null) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        value = val;
         expression.next();
 
     }

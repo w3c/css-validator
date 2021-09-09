@@ -48,11 +48,11 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
         return null;
     }
 
-    public boolean isVerticalIdent(CssIdent ident) {
+    public static boolean isVerticalIdent(CssIdent ident) {
         return top.equals(ident) || bottom.equals(ident);
     }
 
-    public boolean isHorizontalIdent(CssIdent ident) {
+    public static boolean isHorizontalIdent(CssIdent ident) {
         return left.equals(ident) || right.equals(ident);
     }
 
@@ -67,8 +67,7 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
      * Creates a new CssPerspectiveOrigin
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssPerspectiveOrigin(ApplContext ac, CssExpression expression,
                                 boolean check) throws InvalidParamException {
@@ -89,12 +88,12 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (inherit.equals(val)) {
+            if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                value = inherit;
+                value = val;
                 expression.next();
                 return;
             }
@@ -108,13 +107,14 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
             }
         }
         // if we reach the end in a value that can come in pair
-        check(values, ac);
+        parsePerspectiveOrigin(ac, values, getPropertyName());
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
     // check the value
-
-    private void check(ArrayList<CssValue> values, ApplContext ac)
+    // TODO FIXME do it right using the epxression instead
+    protected static void parsePerspectiveOrigin(ApplContext ac, ArrayList<CssValue> values,
+                                                 String caller)
             throws InvalidParamException {
         int nb_keyword = 0;
         int nb_values = values.size();
@@ -126,7 +126,7 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
         for (CssValue aValue : values) {
             switch (aValue.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    aValue.getCheckableValue().checkEqualsZero(ac, this);
+                    aValue.getCheckableValue().checkEqualsZero(ac, caller);
                 case CssTypes.CSS_LENGTH:
                 case CssTypes.CSS_PERCENTAGE:
                     break;
@@ -135,7 +135,7 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
                     break;
                 default:
                     throw new InvalidParamException("value", aValue,
-                            getPropertyName(), ac);
+                            caller, ac);
             }
         }
         // then we need to ckeck the values if we got two values and
@@ -145,7 +145,7 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
             boolean gotvertical = false;
             CssValue v = values.get(0);
             if (v.getType() == CssTypes.CSS_IDENT) {
-                CssIdent id = (CssIdent) v;
+                CssIdent id = v.getIdent();
                 // strictly horizontal or vertical
                 gothorizontal = isHorizontalIdent(id);
                 if (!gothorizontal) {
@@ -154,15 +154,15 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
             }
             v = values.get(1);
             if (v.getType() == CssTypes.CSS_IDENT) {
-                CssIdent id = (CssIdent) v;
+                CssIdent id = v.getIdent();
                 // yeah, it can be a single ugly test.
                 if (gothorizontal && isHorizontalIdent(id)) {
                     throw new InvalidParamException("value", id,
-                            getPropertyName(), ac);
+                            caller, ac);
                 }
                 if (gotvertical && isVerticalIdent(id)) {
                     throw new InvalidParamException("value", id,
-                            getPropertyName(), ac);
+                            caller, ac);
                 }
             }
         }
