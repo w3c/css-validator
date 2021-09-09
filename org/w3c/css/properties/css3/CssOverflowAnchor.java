@@ -65,16 +65,13 @@ public class CssOverflowAnchor extends org.w3c.css.properties.css.CssOverflowAnc
                     expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            value = getAllowedIdent((CssIdent) val);
-            if (value == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 

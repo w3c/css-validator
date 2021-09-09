@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#overflow-x
+ * @spec https://www.w3.org/TR/2020/WD-css-overflow-3-20200603/#propdef-overflow-x
  * @see CssOverflow
  */
 public class CssOverflowX extends org.w3c.css.properties.css.CssOverflowX {

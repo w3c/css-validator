@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#overflow
+ * @spec https://www.w3.org/TR/2020/WD-css-overflow-3-20200603/#propdef-overflow
  */
 public class CssOverflow extends org.w3c.css.properties.css.CssOverflow {
 
@@ -32,8 +32,7 @@ public class CssOverflow extends org.w3c.css.properties.css.CssOverflow {
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"visible", "hidden", "scroll",
-                "auto", "no-display", "no-content"};
+        String[] _allowed_values = {"visible", "hidden", "scroll", "auto"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
         for (String s : _allowed_values) {
@@ -63,8 +62,7 @@ public class CssOverflow extends org.w3c.css.properties.css.CssOverflow {
      * Creates a new CssOverflow
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssOverflow(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -87,7 +85,7 @@ public class CssOverflow extends org.w3c.css.properties.css.CssOverflow {
                 CssValue val;
                 char op = expression.getOperator();
                 val = checkOverflowAxis(ac, expression, false, this);
-                if (val == inherit) {
+                if (val.getType() == CssTypes.CSS_IDENT && CssIdent.isCssWide(val.getIdent())) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
@@ -98,7 +96,7 @@ public class CssOverflow extends org.w3c.css.properties.css.CssOverflow {
                             Character.toString(op), ac);
                 }
                 val = checkOverflowAxis(ac, expression, false, this);
-                if (val == inherit) {
+                if (val.getType() == CssTypes.CSS_IDENT && CssIdent.isCssWide(val.getIdent())) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
@@ -148,17 +146,13 @@ public class CssOverflow extends org.w3c.css.properties.css.CssOverflow {
             throw new InvalidParamException("value", val,
                     caller.getPropertyName(), ac);
         }
-        CssIdent id = (CssIdent) val;
-        if (inherit.equals(id)) {
-            value = inherit;
-        } else {
-            value = getAllowedIdent(id);
-            if (value == null) {
-                throw new InvalidParamException("value",
-                        val.toString(),
-                        caller.getPropertyName(), ac);
-            }
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    caller.getPropertyName(), ac);
         }
+        value = val;
         expression.next();
         return value;
     }

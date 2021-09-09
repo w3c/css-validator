@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#overflow-y
+ * @spec https://www.w3.org/TR/2020/WD-css-overflow-3-20200603/#propdef-overflow-y
  * @see org.w3c.css.properties.css3.CssOverflow
  */
 public class CssOverflowY extends org.w3c.css.properties.css.CssOverflowY {
