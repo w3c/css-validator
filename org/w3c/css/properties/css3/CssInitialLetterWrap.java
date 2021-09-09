@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#propdef-initial-letter-wrap
+ * @spec https://www.w3.org/TR/2020/WD-css-inline-3-20200827/#propdef-initial-letter-wrap
  */
 public class CssInitialLetterWrap extends org.w3c.css.properties.css.CssInitialLetterWrap {
 
@@ -49,8 +49,7 @@ public class CssInitialLetterWrap extends org.w3c.css.properties.css.CssInitialL
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssInitialLetterWrap(ApplContext ac, CssExpression expression,
                                 boolean check) throws InvalidParamException {
@@ -71,13 +70,13 @@ public class CssInitialLetterWrap extends org.w3c.css.properties.css.CssInitialL
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 }
-                value = getAllowedIdent(id);
-                if (value != null) {
+                if (getAllowedIdent(id) != null) {
+                    value = val;
                     break;
                 }
             default:

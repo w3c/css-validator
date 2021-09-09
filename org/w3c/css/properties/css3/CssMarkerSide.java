@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-marker-side
+ * @spec https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#propdef-marker-side
  */
 public class CssMarkerSide extends org.w3c.css.properties.css.CssMarkerSide {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"list-item", "list-container"};
+        String[] _allowed_values = {"match-self", "match-parent"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
         for (String s : _allowed_values) {
@@ -48,8 +48,7 @@ public class CssMarkerSide extends org.w3c.css.properties.css.CssMarkerSide {
      * Creates a new CssMarkerSide
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMarkerSide(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -64,12 +63,13 @@ public class CssMarkerSide extends org.w3c.css.properties.css.CssMarkerSide {
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 }
-                value = getAllowedIdent((CssIdent) val);
-                if (value != null) {
+                if (getAllowedIdent(id) != null) {
+                    value = val;
                     break;
                 }
                 // unrecognized ident.. fail!
