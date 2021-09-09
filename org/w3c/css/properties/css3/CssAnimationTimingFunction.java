@@ -13,7 +13,6 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -22,7 +21,8 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-animations-20120403/#animation-timing-function
+ * @spec https://www.w3.org/TR/2018/WD-css-animations-1-20181011/#propdef-animation-timing-function
+ * @spec https://www.w3.org/TR/2021/CRD-css-easing-1-20210401/#easing-functions
  */
 public class CssAnimationTimingFunction extends org.w3c.css.properties.css.CssAnimationTimingFunction {
 
@@ -87,15 +87,15 @@ public class CssAnimationTimingFunction extends org.w3c.css.properties.css.CssAn
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         singleVal = true;
-                        sValue = inherit;
-                        values.add(inherit);
+                        sValue = val;
+                        values.add(val);
                         break;
                     } else {
-                        CssIdent id = getAllowedIdent((CssIdent) val);
-                        if (id != null) {
-                            values.add(id);
+                        if (getAllowedIdent(id) != null) {
+                            values.add(val);
                             break;
                         }
                         // if not recognized, let it fail
@@ -201,11 +201,12 @@ public class CssAnimationTimingFunction extends org.w3c.css.properties.css.CssAn
                         caller.getPropertyName(), ac);
             }
             // we have a number, continue checks
-            CssNumber number = val.getNumber();
             // it must be between 0 and 1 for X [x1,y1,x2,y2]
             if ((i & 0x1) == 0) {
-                number.checkPositiveness(ac, caller);
-                number.checkLowerEqualThan(ac, 1., caller);
+                val.getCheckableValue().checkPositiveness(ac, caller);
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    val.getNumber().checkLowerEqualThan(ac, 1., caller);
+                }
             }
             values.add(val);
             // go to the next item...

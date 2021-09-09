@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-animations-20120403/#animation-name
+ * @spec https://www.w3.org/TR/2018/WD-css-animations-1-20181011/#propdef-animation-name
  */
 public class CssAnimationName extends org.w3c.css.properties.css.CssAnimationName {
 
@@ -61,15 +61,19 @@ public class CssAnimationName extends org.w3c.css.properties.css.CssAnimationNam
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         singleVal = true;
-                        sValue = inherit;
-                        values.add(inherit);
+                        sValue = val;
+                        values.add(val);
+                        break;
                     } else {
-                        CssIdent ident = getAllowedIdent(ac, (CssIdent) val);
-                        values.add(ident);
+                        if (getAllowedIdent(ac, id) != null) {
+                            values.add(val);
+                            break;
+                        }
                     }
-                    break;
+                    // unrecognized ident
                 default:
                     throw new InvalidParamException("value",
                             val.toString(),

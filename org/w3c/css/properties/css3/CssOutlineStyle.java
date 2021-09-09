@@ -39,8 +39,7 @@ public class CssOutlineStyle extends org.w3c.css.properties.css.CssOutlineStyle 
      * Creates a new CssOutlineStyle
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssOutlineStyle(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -56,11 +55,9 @@ public class CssOutlineStyle extends org.w3c.css.properties.css.CssOutlineStyle 
         // css3 adds an 'auto' value on top of border-style values
         value = null;
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id_val = (CssIdent) val;
-            if (inherit.equals(id_val)) {
-                value = inherit;
-            } else if (auto.equals(id_val)) {
-                value = auto;
+            CssIdent id_val = val.getIdent();
+            if (CssIdent.isCssWide(id_val) || auto.equals(id_val)) {
+                value = val;
             }
         }
         // if we got a match, work on the expression, otherwise
@@ -71,7 +68,7 @@ public class CssOutlineStyle extends org.w3c.css.properties.css.CssOutlineStyle 
             // here we delegate to BorderStyle implementation
             value = CssBorderStyle.parseBorderSideStyle(ac, expression, check, this);
             // but hidden is not a valid value...
-            if (hidden.equals(value)) {
+            if (value.getType() == CssTypes.CSS_IDENT && hidden.equals(value.getIdent())) {
                 throw new InvalidParamException("value", hidden,
                         getPropertyName(), ac);
             }

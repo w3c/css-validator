@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-animations-20120403/#animation-play-state
+ * @spec https://www.w3.org/TR/2018/WD-css-animations-1-20181011/#propdef-animation-play-state
  */
 public class CssAnimationPlayState extends org.w3c.css.properties.css.CssAnimationPlayState {
 
@@ -71,15 +71,15 @@ public class CssAnimationPlayState extends org.w3c.css.properties.css.CssAnimati
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         singleVal = true;
-                        sValue = inherit;
-                        values.add(inherit);
+                        sValue = val;
+                        values.add(val);
                         break;
                     } else {
-                        CssIdent ident = getAllowedIdent((CssIdent) val);
-                        if (ident != null) {
-                            values.add(ident);
+                        if (getAllowedIdent(id) != null) {
+                            values.add(val);
                             break;
                         }
                     }

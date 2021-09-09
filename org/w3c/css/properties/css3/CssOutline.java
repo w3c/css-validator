@@ -102,35 +102,32 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
                             val.toString(),
                             getPropertyName(), ac);
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent ident = val.getIdent();
+                    if (CssIdent.isCssWide(ident)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
-                    CssIdent ident = (CssIdent) val;
                     // let's try to find which ident we have...
                     if (styleValue == null) {
-                        CssIdent match = CssOutlineStyle.getMatchingIdent(ident);
-                        if (match != null) {
-                            styleValue = match;
+                        if (CssOutlineStyle.getMatchingIdent(ident) != null) {
+                            styleValue = val;
                             break;
                         }
                     }
                     if (widthValue == null) {
-                        CssIdent match = CssBorderWidth.getMatchingIdent(ident);
-                        if (match != null) {
-                            widthValue = match;
+                        if (CssBorderWidth.getMatchingIdent(ident) != null) {
+                            widthValue = val;
                             break;
                         }
                     }
                     if (colorValue == null) {
-                        CssIdent match = CssOutlineColor.getMatchingIdent(ident);
-                        if (match != null) {
-                            colorValue = match;
+                        if (CssOutlineColor.getMatchingIdent(ident) != null) {
+                            colorValue = val;
                             break;
                         } else {
                             CssExpression ex = new CssExpression();

@@ -7,8 +7,8 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2013/WD-css3-animations-20130219/#animation-duration
+ * @spec https://www.w3.org/TR/2018/WD-css-animations-1-20181011/#propdef-animation-duration
  */
 public class CssAnimationDuration extends org.w3c.css.properties.css.CssAnimationDuration {
 
@@ -33,14 +33,13 @@ public class CssAnimationDuration extends org.w3c.css.properties.css.CssAnimatio
      * Creates a new CssAnimationDuration
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssAnimationDuration(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
 
-        CssValue val;
+        CssValue val, sVal = expression.getValue();
         char op;
         ArrayList<CssValue> values = new ArrayList<CssValue>();
         boolean gotinherit = false;
@@ -50,14 +49,15 @@ public class CssAnimationDuration extends org.w3c.css.properties.css.CssAnimatio
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_TIME:
-                    CssCheckableValue t = val.getCheckableValue();
-                    t.checkPositiveness(ac, this);
+                    val.getCheckableValue().checkPositiveness(ac, this);
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         gotinherit = true;
-                        values.add(inherit);
+                        sVal = val;
+                        values.add(val);
                         break;
                     }
                 default:
@@ -73,7 +73,7 @@ public class CssAnimationDuration extends org.w3c.css.properties.css.CssAnimatio
         }
         if (gotinherit && values.size() > 1) {
             throw new InvalidParamException("value",
-                    inherit.toString(),
+                    sVal.toString(),
                     getPropertyName(), ac);
         }
         value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
