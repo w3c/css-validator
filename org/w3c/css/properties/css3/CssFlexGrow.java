@@ -29,8 +29,7 @@ public class CssFlexGrow extends org.w3c.css.properties.css.CssFlexGrow {
      * Creates a new CssFlexGrow
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFlexGrow(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -52,9 +51,8 @@ public class CssFlexGrow extends org.w3c.css.properties.css.CssFlexGrow {
                 value = num;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
                     break;
                 }
                 // let it flow

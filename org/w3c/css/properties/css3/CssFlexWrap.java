@@ -48,8 +48,7 @@ public class CssFlexWrap extends org.w3c.css.properties.css.CssFlexWrap {
      * Creates a new CssFlexWrap
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFlexWrap(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,16 +64,16 @@ public class CssFlexWrap extends org.w3c.css.properties.css.CssFlexWrap {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident)) {
+                value = val;
             } else {
-                value = getAllowedIdent(ident);
-                if (value == null) {
+                if (getAllowedIdent(ident) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",
