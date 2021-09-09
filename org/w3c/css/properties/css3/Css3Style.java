@@ -144,6 +144,7 @@ import org.w3c.css.properties.css.CssInitialLetter;
 import org.w3c.css.properties.css.CssInitialLetterAlign;
 import org.w3c.css.properties.css.CssInitialLetterWrap;
 import org.w3c.css.properties.css.CssInlineSize;
+import org.w3c.css.properties.css.CssInlineSizing;
 import org.w3c.css.properties.css.CssInset;
 import org.w3c.css.properties.css.CssInsetBlock;
 import org.w3c.css.properties.css.CssInsetBlockEnd;
@@ -418,6 +419,7 @@ public class Css3Style extends ATSCStyle {
     public CssInitialLetter cssInitialLetter;
     public CssInitialLetterAlign cssInitialLetterAlign;
     public CssInitialLetterWrap cssInitialLetterWrap;
+    public CssInlineSizing cssInlineSizing;
 
     public CssOpacity cssOpacity;
     public CssBackgroundClip cssBackgroundClip;
@@ -2139,6 +2141,15 @@ public class Css3Style extends ATSCStyle {
         return cssTextAlignLast;
     }
 
+    public CssInlineSizing getInlineSizing() {
+        if (cssInlineSizing == null) {
+            cssInlineSizing =
+                    (CssInlineSizing) style.CascadingOrder(
+                            new CssInlineSizing(), style, selector);
+        }
+        return cssInlineSizing;
+    }
+    
     public CssDominantBaseline getDominantBaseline() {
         if (cssDominantBaseline == null) {
             cssDominantBaseline =
