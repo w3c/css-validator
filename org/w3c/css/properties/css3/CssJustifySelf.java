@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#justify-self-property
+ * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-justify-self
  */
 public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
 
@@ -54,8 +54,7 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
      * Creates a new CssAlignSelf
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssJustifySelf(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -73,7 +72,7 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
     public static CssValue parseJustifySelf(ApplContext ac, CssExpression expression,
                                             CssProperty caller)
             throws InvalidParamException {
-        CssValue val, value;
+        CssValue val;
         ArrayList<CssValue> values = new ArrayList<>();
         char op;
 
@@ -81,34 +80,43 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
                 expression.next();
-                return inherit;
+                return val;
             }
-            value = CssAlignSelf.getSingleAlignSelfValue(ident);
-            if (value != null) {
+            if (CssAlignSelf.getSingleAlignSelfValue(ident) != null) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value", val.toString(),
+                            caller.getPropertyName(), ac);
+                }
                 expression.next();
-                return value;
+                return val;
             }
-            // now try the two-values position, starting first with only one.
+            // now try the two-values position, starting first with the "only one value" case
             if (CssAlignContent.baseline.equals(ident)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value", val.toString(),
+                            caller.getPropertyName(), ac);
+                }
                 expression.next();
-                return CssAlignContent.baseline;
+                return val;
             }
-            value = getSelfPositionAddExtras(ident);
-            if (value != null) {
+            if (getSelfPositionAddExtras(ident) != null) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value", val.toString(),
+                            caller.getPropertyName(), ac);
+                }
                 expression.next();
-                return value;
+                return val;
             }
-            // ok, at that point we need two values.
-            value = CssAlignContent.getBaselineQualifier(ident);
-            if (value != null) {
-                values.add(value);
+            // ok, at that point we really need two values.
+            if (CssAlignContent.getBaselineQualifier(ident) != null) {
+                values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -118,17 +126,16 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
                     throw new InvalidParamException("unrecognize", ac);
                 }
                 val = expression.getValue();
-                if (val.getType() != CssTypes.CSS_IDENT || !CssAlignContent.baseline.equals(val)) {
+                if (val.getType() != CssTypes.CSS_IDENT || !CssAlignContent.baseline.equals(val.getIdent())) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                values.add(CssAlignContent.baseline);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }
-            value = CssAlignContent.getOverflowPosition(ident);
-            if (value != null) {
-                values.add(value);
+            if (CssAlignContent.getOverflowPosition(ident) != null) {
+                values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -142,12 +149,11 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                value = getSelfPositionAddExtras((CssIdent) val);
-                if (value == null) {
+                if (getSelfPositionAddExtras(val.getIdent()) == null) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                values.add(value);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#justify-items-property
+ * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-justify-items
  */
 public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems {
 
@@ -106,7 +106,7 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
     public static CssValue parseJustifyItems(ApplContext ac, CssExpression expression,
                                              CssProperty caller)
             throws InvalidParamException {
-        CssValue val, value;
+        CssValue val;
         ArrayList<CssValue> values = new ArrayList<>();
         char op;
 
@@ -114,19 +114,18 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
                 expression.next();
-                return inherit;
+                return val;
             }
-            value = getSingleJustifyItemsValue(ident);
-            if (value != null) {
+            if (getSingleJustifyItemsValue(ident) != null) {
                 expression.next();
-                return value;
+                return val;
             }
             // now try the two-values position, starting first with only one.
             if (CssAlignContent.baseline.equals(ident)) {
@@ -134,37 +133,35 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                 return CssAlignContent.baseline;
             }
             // we must check the extras first
-            value = getLegacyQualifier(ident);
             // legacy qualifier are part of self-position, so we may have nothing
-            if (value != null) {
+            if (getLegacyQualifier(ident) != null) {
                 expression.next();
                 if (expression.end()) {
-                    return value;
+                    return val;
                 }
+                values.add(val);
                 val = expression.getValue();
-                if (val.getType() != CssTypes.CSS_IDENT || !legacy.equals(val)) {
-                    return value;
+                if (val.getType() != CssTypes.CSS_IDENT || !legacy.equals(val.getIdent())) {
+                    // FIXME sreturn or throw???
+                    return val;
                 }
                 // ok, we got a leagacy, operator check and return
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
                 }
-                values.add(value);
-                values.add(legacy);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }
 
-            value = getSelfPositionAddExtras(ident);
-            if (value != null) {
+            if (getSelfPositionAddExtras(ident) != null) {
                 expression.next();
-                return value;
+                return val;
             }
             // ok, at that point we need two values.
-            value = CssAlignContent.getBaselineQualifier(ident);
-            if (value != null) {
-                values.add(value);
+            if (CssAlignContent.getBaselineQualifier(ident) != null) {
+                values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -174,17 +171,16 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                     throw new InvalidParamException("unrecognize", ac);
                 }
                 val = expression.getValue();
-                if (val.getType() != CssTypes.CSS_IDENT || !CssAlignContent.baseline.equals(val)) {
+                if (val.getType() != CssTypes.CSS_IDENT || !CssAlignContent.baseline.equals(val.getIdent())) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                values.add(CssAlignContent.baseline);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }
-            value = CssAlignContent.getOverflowPosition(ident);
-            if (value != null) {
-                values.add(value);
+            if (CssAlignContent.getOverflowPosition(ident) != null) {
+                values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -198,12 +194,11 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                value = getSelfPositionAddExtras((CssIdent) val);
-                if (value == null) {
+                if (getSelfPositionAddExtras(val.getIdent()) == null) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                values.add(value);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }
@@ -212,14 +207,13 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                 // we can have nothing or a qualifier here.
                 expression.next();
                 if (expression.end()) {
-                    return legacy;
+                    return val;
                 }
                 val = expression.getValue();
                 if (val.getType() != CssTypes.CSS_IDENT) {
                     return legacy; // let the caller check and fail if necessary
                 }
-                value = getLegacyQualifier((CssIdent) val);
-                if (value == null) {
+                if (getLegacyQualifier(val.getIdent()) == null) {
                     return legacy;
                 }
                 // so we got something, check the operator
@@ -228,7 +222,7 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                             Character.toString(op), ac);
                 }
                 values.add(legacy);
-                values.add(value);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }
