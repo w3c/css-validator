@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-filter-effects-1-20141125/#propdef-filter
+ * @spec https://www.w3.org/TR/2018/WD-filter-effects-1-20181218/#propdef-filter
  * @spec http://www.w3.org/TR/SVG/filters.html#FilterProperty
  * @see <https://msdn.microsoft.com/library/ms530752%28v=vs.85%29.aspx>
  * @see <http://davidwalsh.name/css-image-filters-internet-explorer>
@@ -113,10 +113,10 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
                         break;
                     }
                     if (allowLegacyIEValues(ac)) {
-                        value = getLegacyIEIdent(ident);
-                        if (value != null) {
+                        if (getLegacyIEIdent(ident) != null) {
                             singleVal = true;
                             ac.getFrame().addWarning("vendor-extension", expression.toStringFromStart());
+                            value = val;
                             break;
                         }
                         // not found? let it flow and fail.

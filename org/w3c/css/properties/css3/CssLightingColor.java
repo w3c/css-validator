@@ -8,10 +8,12 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-filter-effects-1-20141125/#LightingColorProperty
+ * @spec https://www.w3.org/TR/2018/WD-filter-effects-1-20181218/#propdef-lighting-color
  */
 public class CssLightingColor extends org.w3c.css.properties.css.CssLightingColor {
 
@@ -38,15 +40,15 @@ public class CssLightingColor extends org.w3c.css.properties.css.CssLightingColo
         setByUser();
         CssValue val = expression.getValue();
 
-        if (inherit.equals(val)) {
-            value = inherit;
+        if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
+            value = val;
             expression.next();
         } else {
             try {
                 CssColor tcolor = new CssColor(ac, expression, check);
                 // instead of using getColor, we get the value directly
                 // as we can have idents
-                value = tcolor.color;
+                value = (tcolor.color != null) ? tcolor.color : tcolor.value;
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
