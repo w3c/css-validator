@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-images-3-20191010/#propdef-image-rendering
+ * @spec https://www.w3.org/TR/2020/CRD-css-images-3-20201217/#propdef-image-rendering
  */
 public class CssImageRendering extends org.w3c.css.properties.css.CssImageRendering {
 
@@ -67,8 +67,7 @@ public class CssImageRendering extends org.w3c.css.properties.css.CssImageRender
      * Creates a new CssImageRendering
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssImageRendering(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -84,20 +83,19 @@ public class CssImageRendering extends org.w3c.css.properties.css.CssImageRender
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident)) {
+                value = val;
             } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    value = getDeprecatedValue(ident);
-                    if (value == null) {
+                if (getAllowedValue(ident) == null) {
+                    if (getDeprecatedValue(ident) == null) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
                     ac.getFrame().addWarning("deprecated", value.toString());
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",

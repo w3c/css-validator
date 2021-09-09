@@ -11,6 +11,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
@@ -90,8 +91,8 @@ public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
                     break;
                 }
                 // let it flow through the exception
