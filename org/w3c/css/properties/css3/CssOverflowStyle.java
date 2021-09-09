@@ -14,6 +14,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#overflow-style
+ * @deprecated 
  */
 public class CssOverflowStyle extends org.w3c.css.properties.css.CssOverflowStyle {
 
@@ -56,6 +57,8 @@ public class CssOverflowStyle extends org.w3c.css.properties.css.CssOverflowStyl
         setByUser();
         CssValue val = expression.getValue();
 
+        ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
+
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
@@ -66,11 +69,11 @@ public class CssOverflowStyle extends org.w3c.css.properties.css.CssOverflowStyl
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        CssIdent id = val.getIdent();
+        if (CssIdent.isCssWide(id)) {
+            value = val;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            if (getMatchingIdent(id) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
