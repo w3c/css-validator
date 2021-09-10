@@ -98,7 +98,7 @@ public class CssCaret extends org.w3c.css.properties.css.CssCaret {
                                     val, getPropertyName(), ac);
                         }
                         gotColor = true;
-                        values.add((tcolor.color == null) ? tcolor.value : tcolor.color);
+                        values.add(tcolor.getValue());
                     } catch (InvalidParamException e) {
                         throw new InvalidParamException("value",
                                 expression.getValue(),

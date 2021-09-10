@@ -45,7 +45,7 @@ public class CssTextEmphasisColor extends org.w3c.css.properties.css.CssTextEmph
         } else {
             try {
                 CssColor tcolor = new CssColor(ac, expression, check);
-                value = (tcolor.color != null) ? tcolor.color : tcolor.value;
+                value = tcolor.getValue();
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),

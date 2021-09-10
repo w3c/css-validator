@@ -28,8 +28,7 @@ public class CssLightingColor extends org.w3c.css.properties.css.CssLightingColo
      * Creates a new CssLightingColor
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssLightingColor(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -48,7 +47,7 @@ public class CssLightingColor extends org.w3c.css.properties.css.CssLightingColo
                 CssColor tcolor = new CssColor(ac, expression, check);
                 // instead of using getColor, we get the value directly
                 // as we can have idents
-                value = (tcolor.color != null) ? tcolor.color : tcolor.value;
+                value = tcolor.getValue();
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),

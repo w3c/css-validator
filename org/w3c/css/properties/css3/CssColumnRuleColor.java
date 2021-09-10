@@ -55,7 +55,7 @@ public class CssColumnRuleColor extends org.w3c.css.properties.css.CssColumnRule
             // we use the latest version of CssColor, aka CSS3
             // instead of using CSS21 colors + transparent per spec
             CssColor tcolor = new CssColor(ac, expression, check);
-            value = (tcolor.value == null) ? tcolor.color : tcolor.value;
+            value = tcolor.getValue();
         } catch (InvalidParamException e) {
             throw new InvalidParamException("value",
                     expression.getValue(),

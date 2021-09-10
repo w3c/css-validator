@@ -118,6 +118,17 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
     }
 
     /**
+     *
+     * @return the computed CssValue
+     */
+    public CssValue getValue() {
+        if (color != null) {
+            return color;
+        }
+        return value;
+    }
+
+    /**
      * Returns the color
      */
     public org.w3c.css.values.CssColor getColor() {

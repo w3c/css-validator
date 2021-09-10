@@ -67,7 +67,7 @@ public class CssCaretColor extends org.w3c.css.properties.css.CssCaretColor {
                     CssColor tcolor = new CssColor(ac, expression, check);
                     // instead of using getColor, we get the value directly
                     // as we can have idents
-                    value = (tcolor.color == null) ? tcolor.value : tcolor.color;
+                    value = tcolor.getValue();
                 } catch (InvalidParamException e) {
                     throw new InvalidParamException("value",
                             expression.getValue(),

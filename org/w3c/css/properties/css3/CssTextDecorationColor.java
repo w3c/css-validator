@@ -45,7 +45,7 @@ public class CssTextDecorationColor extends org.w3c.css.properties.css.CssTextDe
         } else {
             try {
                 CssColor tcolor = new CssColor(ac, expression, check);
-                value = (tcolor.value != null) ? tcolor.value : tcolor.color;
+                value = tcolor.getValue();
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),

@@ -187,7 +187,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                     CssExpression exp = new CssExpression();
                     exp.addValue(val);
                     CssColor color = new CssColor(ac, exp, check);
-                    value.color = (color.color == null) ? color.value : color.color;
+                    value.color = color.getValue();
                     break;
                 default:
                     throw new InvalidParamException("value", val,
