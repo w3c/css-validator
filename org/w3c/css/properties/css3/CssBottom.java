@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-positioning-20120207/#bottom
+ * @spec https://www.w3.org/TR/2020/WD-css-position-3-20200519/#propdef-bottom
  * @see org.w3c.css.properties.css3.CssTop
  */
 public class CssBottom extends org.w3c.css.properties.css.CssBottom {

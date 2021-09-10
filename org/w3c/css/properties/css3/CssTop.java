@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-positioning-20120207/#top
+ * @spec https://www.w3.org/TR/2020/WD-css-position-3-20200519/#propdef-top
  */
 public class CssTop extends org.w3c.css.properties.css.CssTop {
 
@@ -31,8 +31,7 @@ public class CssTop extends org.w3c.css.properties.css.CssTop {
      * Creates a new CssTop
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTop(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -73,11 +72,12 @@ public class CssTop extends org.w3c.css.properties.css.CssTop {
                 expression.next();
                 return val;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val.getIdent())) {
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
                     expression.next();
-                    return inherit;
+                    return val;
                 }
-                if (auto.equals(val.getIdent())) {
+                if (auto.equals(id)) {
                     expression.next();
                     return val;
                 }
