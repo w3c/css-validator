@@ -19,7 +19,6 @@ import org.w3c.css.values.CssValue;
 public class CssColor extends org.w3c.css.properties.css.CssColor {
 
     CssValue color = null;
-    CssValue value = null;
 
     /**
      * Create a new CssColor
