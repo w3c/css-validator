@@ -49,8 +49,7 @@ public class CssEmptyCells extends org.w3c.css.properties.css.CssEmptyCells {
      * Creates a new CssEmptyCells
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssEmptyCells(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -66,16 +65,16 @@ public class CssEmptyCells extends org.w3c.css.properties.css.CssEmptyCells {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",

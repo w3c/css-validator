@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#dominant-baseline-property
+ * @spec https://www.w3.org/TR/2020/WD-css-inline-3-20200827/#propdef-dominant-baseline
  */
 public class CssDominantBaseline extends org.w3c.css.properties.css.CssDominantBaseline {
 
@@ -48,8 +48,7 @@ public class CssDominantBaseline extends org.w3c.css.properties.css.CssDominantB
      * Creates a new CssDominantBaseline
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssDominantBaseline(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -63,17 +62,13 @@ public class CssDominantBaseline extends org.w3c.css.properties.css.CssDominantB
         val = expression.getValue();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
-            } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
+            CssIdent id = val.getIdent();
+            if (!CssIdent.isCssWide(id) && (getAllowedIdent(id) == null)) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
             }
+            value = val;
         } else {
             throw new InvalidParamException("value",
                     val.toString(),

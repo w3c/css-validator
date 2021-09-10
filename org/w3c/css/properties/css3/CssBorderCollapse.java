@@ -48,8 +48,7 @@ public class CssBorderCollapse extends org.w3c.css.properties.css.CssBorderColla
      * Creates a new CssBorderCollapse
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssBorderCollapse(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,17 +64,13 @@ public class CssBorderCollapse extends org.w3c.css.properties.css.CssBorderColla
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
-            } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
+            CssIdent id = val.getIdent();
+            if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
             }
+            value = val;
         } else {
             throw new InvalidParamException("value",
                     val.toString(),

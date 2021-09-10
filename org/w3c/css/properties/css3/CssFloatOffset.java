@@ -66,9 +66,8 @@ public class CssFloatOffset extends org.w3c.css.properties.css.CssFloatOffset {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
                     break;
                 }
             default:
