@@ -21,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-auto-rows
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid-auto-rows
  */
 public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows {
 
@@ -60,8 +60,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
      * Creates a new CssGridAutoRows
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssGridAutoRows(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -76,11 +75,11 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (val.getType() == CssTypes.CSS_IDENT && inherit.equals(val)) {
+            if (val.getType() == CssTypes.CSS_IDENT && CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
-                values.add(inherit);
+                values.add(val);
             } else {
                 values.add(parseTrackSize(ac, val, this));
             }
@@ -159,7 +158,6 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
     protected static CssValue parseTrackBreadth(ApplContext ac, CssValue value,
                                                 CssProperty caller)
             throws InvalidParamException {
-        CssIdent ident;
 
         switch (value.getType()) {
             case CssTypes.CSS_NUMBER:
@@ -171,10 +169,10 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
                 value.getCheckableValue().checkPositiveness(ac, caller);
                 return value;
             case CssTypes.CSS_IDENT:
-                ident = getAllowedIdent((CssIdent) value);
-                if (ident != null) {
-                    return ident;
+                if (getAllowedIdent(value.getIdent()) != null) {
+                    return value;
                 }
+                // else fail
             default:
                 throw new InvalidParamException("value",
                         value.toString(),
@@ -196,10 +194,10 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
                 value.getCheckableValue().checkPositiveness(ac, caller);
                 return value;
             case CssTypes.CSS_IDENT:
-                ident = getAllowedIdent((CssIdent) value);
-                if (ident != null) {
-                    return ident;
+                if (getAllowedIdent(value.getIdent()) != null) {
+                    return value;
                 }
+                // else fail
             default:
                 throw new InvalidParamException("value",
                         value.toString(),

@@ -21,7 +21,7 @@ import static org.w3c.css.properties.css3.CssGridTemplate.parseTemplateRows;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid
  */
 public class CssGrid extends org.w3c.css.properties.css.CssGrid {
 
@@ -93,7 +93,7 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                     auto_flow_first = true;
                 } // else defaults to false
             } else if (val.getType() == CssTypes.CSS_IDENT) {
-                got_auto_flow = auto_flow.equals((CssIdent) val);
+                got_auto_flow = auto_flow.equals(val.getIdent());
             }
             expression.next();
         }
@@ -114,9 +114,9 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 if (auto_flow.equals(id)) {
-                    values.add(auto_flow);
+                    values.add(val);
                     autoFlowValues.add(CssGridAutoFlow.row);
                     // optional 'dense'
                     if (op != SPACE) {
@@ -126,9 +126,9 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                     expression.next();
                     val = expression.getValue();
                     op = expression.getOperator();
-                    if (val.getType() == CssTypes.CSS_IDENT && CssGridAutoFlow.dense.equals(val)) {
-                        values.add(CssGridAutoFlow.dense);
-                        autoFlowValues.add(CssGridAutoFlow.dense);
+                    if (val.getType() == CssTypes.CSS_IDENT && CssGridAutoFlow.dense.equals(val.getIdent())) {
+                        values.add(val);
+                        autoFlowValues.add(val);
                         if (op != SPACE) {
                             throw new InvalidParamException("operator", op,
                                     getPropertyName(), ac);
@@ -137,8 +137,8 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                     }
                 } else {
                     if (CssGridAutoFlow.dense.equals(id)) {
-                        values.add(CssGridAutoFlow.dense);
-                        autoFlowValues.add(CssGridAutoFlow.dense);
+                        values.add(val);
+                        autoFlowValues.add(val);
                         // mandatory 'auto-flow'
                         if (op != SPACE) {
                             throw new InvalidParamException("operator", op,
@@ -147,8 +147,8 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                         expression.next();
                         val = expression.getValue();
                         op = expression.getOperator();
-                        if (val.getType() == CssTypes.CSS_IDENT && auto_flow.equals(val)) {
-                            values.add(auto_flow);
+                        if (val.getType() == CssTypes.CSS_IDENT && auto_flow.equals(val.getIdent())) {
+                            values.add(val);
                             autoFlowValues.add(CssGridAutoFlow.row);
                         } else {
                             throw new InvalidParamException("value",
@@ -211,9 +211,9 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 if (auto_flow.equals(id)) {
-                    values.add(auto_flow);
+                    values.add(val);
                     autoFlowValues.add(CssGridAutoFlow.row);
                     // optional 'dense'
                     if (op != SPACE) {
@@ -223,8 +223,8 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                     expression.next();
                     val = expression.getValue();
                     op = expression.getOperator();
-                    if (val.getType() == CssTypes.CSS_IDENT && CssGridAutoFlow.dense.equals(val)) {
-                        values.add(CssGridAutoFlow.dense);
+                    if (val.getType() == CssTypes.CSS_IDENT && CssGridAutoFlow.dense.equals(val.getIdent())) {
+                        values.add(val);
                         autoFlowValues.add(CssGridAutoFlow.dense);
                         if (op != SPACE) {
                             throw new InvalidParamException("operator", op,
@@ -234,7 +234,7 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                     }
                 } else {
                     if (CssGridAutoFlow.dense.equals(id)) {
-                        values.add(CssGridAutoFlow.dense);
+                        values.add(val);
                         autoFlowValues.add(CssGridAutoFlow.dense);
                         // mandatory 'auto-flow'
                         if (op != SPACE) {
@@ -244,8 +244,8 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
                         expression.next();
                         val = expression.getValue();
                         op = expression.getOperator();
-                        if (val.getType() == CssTypes.CSS_IDENT && auto_flow.equals(val)) {
-                            values.add(auto_flow);
+                        if (val.getType() == CssTypes.CSS_IDENT && auto_flow.equals(val.getIdent())) {
+                            values.add(val);
                             autoFlowValues.add(CssGridAutoFlow.row);
                         } else {
                             throw new InvalidParamException("value",
@@ -281,8 +281,8 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
         } else {
             // inherit ?
             val = expression.getValue();
-            if (expression.getCount() == 1 && val.getType() == CssTypes.CSS_IDENT == inherit.equals((CssIdent) val)) {
-                value = inherit;
+            if (expression.getCount() == 1 && (val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
+                value = val;
                 expression.next();
                 return;
             }

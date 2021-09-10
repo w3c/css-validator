@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-template-areas
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid-template-areas
  */
 public class CssGridTemplateAreas extends org.w3c.css.properties.css.CssGridTemplateAreas {
 
@@ -33,8 +33,7 @@ public class CssGridTemplateAreas extends org.w3c.css.properties.css.CssGridTemp
      * Creates a new CssGridTemplateAreas
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssGridTemplateAreas(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -53,18 +52,12 @@ public class CssGridTemplateAreas extends org.w3c.css.properties.css.CssGridTemp
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id) || none.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        values.add(inherit);
-                        break;
-                    }
-                    if (none.equals(val)) {
-                        if (expression.getCount() > 1) {
-                            throw new InvalidParamException("unrecognize", ac);
-                        }
-                        values.add(none);
+                        values.add(val);
                         break;
                     }
                 default:

@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-template-rows
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid-template-rows
  */
 public class CssGridTemplateRows extends org.w3c.css.properties.css.CssGridTemplateRows {
 
@@ -31,8 +31,7 @@ public class CssGridTemplateRows extends org.w3c.css.properties.css.CssGridTempl
      * Creates a new CssGridTemplateRows
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssGridTemplateRows(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -47,11 +46,11 @@ public class CssGridTemplateRows extends org.w3c.css.properties.css.CssGridTempl
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
-                    values.add(inherit);
+                    values.add(val);
                     expression.next();
                     break;
                 }

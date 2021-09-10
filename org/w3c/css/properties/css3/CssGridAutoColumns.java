@@ -8,6 +8,7 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -18,7 +19,7 @@ import static org.w3c.css.properties.css3.CssGridAutoRows.parseTrackSize;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-auto-columns
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid-auto-columns
  */
 public class CssGridAutoColumns extends org.w3c.css.properties.css.CssGridAutoColumns {
 
@@ -49,11 +50,11 @@ public class CssGridAutoColumns extends org.w3c.css.properties.css.CssGridAutoCo
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (val.getType() == CssTypes.CSS_IDENT && inherit.equals(val)) {
+            if (val.getType() == CssTypes.CSS_IDENT && CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
-                values.add(inherit);
+                values.add(val);
             } else {
                 values.add(parseTrackSize(ac, val, this));
             }

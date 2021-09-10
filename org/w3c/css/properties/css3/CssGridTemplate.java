@@ -26,7 +26,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-template
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid-template
  */
 public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate {
 
@@ -60,8 +60,7 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
      * Creates a new CssGridTemplate
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssGridTemplate(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -100,17 +99,12 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
                         val.toString(),
                         caller.getPropertyName(), ac);
             }
-            CssIdent id = (CssIdent) val;
-            if (none.equals(id)) {
-                values.add(none);
-                areaValues.add(none);
-                columnValues.add(none);
-                rowValues.add(none);
-            } else if (inherit.equals(id)) {
-                values.add(inherit);
-                areaValues.add(inherit);
-                columnValues.add(inherit);
-                rowValues.add(inherit);
+            CssIdent id = val.getIdent();
+            if (none.equals(id) || CssIdent.isCssWide(id)) {
+                values.add(val);
+                areaValues.add(val);
+                columnValues.add(val);
+                rowValues.add(val);
             } else {
                 throw new InvalidParamException("value",
                         val.toString(),
@@ -276,9 +270,9 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
             throws InvalidParamException {
         if (exp.getCount() == 1) {
             CssValue val = exp.getValue();
-            if (val.getType() == CssTypes.CSS_IDENT && none.equals((CssIdent) val)) {
+            if (val.getType() == CssTypes.CSS_IDENT && none.equals(val.getIdent())) {
                 exp.next();
-                return none;
+                return val;
             }
         }
         exp.mark();
@@ -519,8 +513,7 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                CssIdent id = getAllowedRepeatIdent((CssIdent) val);
-                if (id == null || type != RepeatType.AUTO_REPEAT) {
+                if ((getAllowedRepeatIdent(val.getIdent()) == null) || (type != RepeatType.AUTO_REPEAT)) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             caller.getPropertyName(), ac);

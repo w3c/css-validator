@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-row-start
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid-row-start
  */
 public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart {
 
@@ -37,8 +37,7 @@ public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart 
      * Creates a new CssGridRowEnd
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssGridRowStart(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -67,7 +66,7 @@ public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart 
 
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    if (gotNumber || val.getCheckableValue().isZero()) {
+                    if (gotNumber || ((val.getRawType() == CssTypes.CSS_NUMBER) && val.getCheckableValue().isZero())) {
                         // TODO add a specific exception, value can't be zero.
                         throw new InvalidParamException("value",
                                 val.toString(),
@@ -77,10 +76,10 @@ public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart 
                     gotNumber = true;
                     v.add(val);
                     break;
-
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        v.add(inherit);
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        v.add(val);
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
@@ -88,8 +87,8 @@ public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart 
                         }
                         break;
                     }
-                    if (auto.equals(val)) {
-                        v.add(auto);
+                    if (auto.equals(id)) {
+                        v.add(val);
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
@@ -97,14 +96,14 @@ public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart 
                         }
                         break;
                     }
-                    if (span.equals(val)) {
+                    if (span.equals(id)) {
                         // span cannot be in the middle...
                         if (v.size() > 0 && expression.getRemainingCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     caller.getPropertyName(), ac);
                         }
-                        v.add(span);
+                        v.add(val);
                         break;
                     }
                     if (gotCustomIdent) {
@@ -115,7 +114,6 @@ public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart 
                     v.add(val);
                     gotCustomIdent = true;
                     break;
-
                 default:
                     throw new InvalidParamException("value",
                             val.toString(),
