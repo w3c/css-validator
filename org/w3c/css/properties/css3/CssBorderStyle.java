@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-style
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border--style
  */
 public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
 
@@ -36,7 +36,7 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
         }
     }
 
-    public static CssIdent getMatchingIdent(CssIdent ident) {
+    public static CssIdent getAllowedIdent(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -61,8 +61,7 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderStyle(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -74,8 +73,7 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderStyle(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
@@ -85,6 +83,7 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
         setByUser();
         CssValue val;
         char op;
+        boolean gotCssWide = false;
 
         ArrayList<CssValue> res = new ArrayList<CssValue>();
         while (res.size() < 4 && !expression.end()) {
@@ -93,19 +92,20 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        res.add(inherit);
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        gotCssWide = true;
+                        value = val;
+                        res.add(val);
                         break;
                     }
-                    CssIdent match = getMatchingIdent((CssIdent) val);
-                    if (match == null) {
-                        throw new InvalidParamException("value", expression.getValue(),
-                                getPropertyName(), ac);
+                    if (getAllowedIdent(id) != null) {
+                        res.add(val);
+                        break;
                     }
-                    res.add(match);
-                    break;
                 default:
-                    throw new InvalidParamException("unrecognize", ac);
+                    throw new InvalidParamException("value", expression.getValue(),
+                            getPropertyName(), ac);
             }
             expression.next();
             if (op != SPACE) {
@@ -115,7 +115,7 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
             }
         }
         // check that inherit is alone
-        if (res.size() > 1 && res.contains(inherit)) {
+        if (res.size() > 1 && gotCssWide) {
             throw new InvalidParamException("unrecognize", ac);
         }
         value = (res.size() == 1) ? res.get(0) : new CssValueList(res);
@@ -164,18 +164,14 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
         CssValue val = expression.getValue();
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    retval = inherit;
-                } else {
-                    retval = getMatchingIdent((CssIdent) val);
+                if (CssIdent.isCssWide(val.getIdent()) || (getAllowedIdent(val.getIdent()) != null)) {
+                    retval = val;
+                    break;
                 }
-                if (retval == null) {
-                    throw new InvalidParamException("value", expression.getValue(),
-                            caller.getPropertyName(), ac);
-                }
-                break;
+                // else, fail
             default:
-                throw new InvalidParamException("unrecognize", ac);
+                throw new InvalidParamException("value", val,
+                        caller.getPropertyName(), ac);
         }
         expression.next();
         return retval;

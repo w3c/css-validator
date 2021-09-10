@@ -25,7 +25,7 @@ public class CssOutlineStyle extends org.w3c.css.properties.css.CssOutlineStyle 
         if (auto.equals(ident)) {
             return auto;
         }
-        return CssBorderStyle.getMatchingIdent(ident);
+        return CssBorderStyle.getAllowedIdent(ident);
     }
 
     /**

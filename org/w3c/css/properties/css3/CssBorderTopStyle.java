@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-top-style
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-top-style
  * @see CssBorderStyle
  */
 public class CssBorderTopStyle extends org.w3c.css.properties.css.CssBorderTopStyle {

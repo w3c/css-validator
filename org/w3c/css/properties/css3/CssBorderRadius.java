@@ -8,8 +8,8 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssSwitch;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-radius
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-radius
  */
 public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius {
 
@@ -61,13 +61,12 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    val.getCheckableValue().checkEqualsZero(ac, this);
+                    val.getCheckableValue().checkEqualsZero(ac, getPropertyName());
                     cur_radius.add(val);
                     break;
                 case CssTypes.CSS_LENGTH:
                 case CssTypes.CSS_PERCENTAGE:
-                    CssCheckableValue length = val.getCheckableValue();
-                    length.checkPositiveness(ac, this);
+                    val.getCheckableValue().checkPositiveness(ac, getPropertyName());
                     cur_radius.add(val);
                     break;
                 case CssTypes.CSS_SWITCH:
@@ -79,15 +78,17 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
                     cur_radius = v_radius;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         if (expression.getCount() > 1) {
-                            throw new InvalidParamException("unrecognize", ac);
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
                         }
-                        cur_radius.add(inherit);
+                        cur_radius.add(val);
                         break;
                     }
                 default:
-                    throw new InvalidParamException("unrecognize", ac);
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
             }
             expression.next();
             if (op != SPACE) {
@@ -183,7 +184,7 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
         if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
-        CssValue val;
+        CssValue val, cssWideVal = null;
         CssValueList res = new CssValueList();
         char op;
 
@@ -198,20 +199,16 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
                     break;
                 case CssTypes.CSS_LENGTH:
                 case CssTypes.CSS_PERCENTAGE:
-                    CssCheckableValue length = val.getCheckableValue();
-                    length.checkPositiveness(ac, caller);
+                    val.getCheckableValue().checkPositiveness(ac, caller);
                     res.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        if (res.size() > 0) {
-                            throw new InvalidParamException("unrecognize", ac);
-                        }
-                        res.add(inherit);
+                    if (CssIdent.isCssWide(val.getIdent())) {
+                        cssWideVal = val;
                         break;
                     }
                 default:
-                    throw new InvalidParamException("unrecognize", ac);
+                    throw new InvalidParamException("value", val, caller, ac);
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
@@ -219,6 +216,13 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
                         ac);
             }
             expression.next();
+        }
+        // sanity check
+        if ((cssWideVal != null) && (res.size() != 0)) {
+            throw new InvalidParamException("value", cssWideVal, caller, ac);
+        }
+        if (cssWideVal != null) {
+            return cssWideVal;
         }
         return (res.size() == 1) ? res.get(0) : res;
     }

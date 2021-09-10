@@ -8,7 +8,6 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
@@ -18,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border
  */
 public class CssBorder extends org.w3c.css.properties.css.CssBorder {
 
@@ -118,13 +117,11 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
 
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    CssCheckableValue number = val.getCheckableValue();
-                    number.checkEqualsZero(ac, caller);
+                    val.getCheckableValue().checkEqualsZero(ac, caller);
                     _width = val;
                     break;
                 case CssTypes.CSS_LENGTH:
-                    CssCheckableValue length = val.getCheckableValue();
-                    length.checkPositiveness(ac, caller);
+                    val.getCheckableValue().checkPositiveness(ac, caller);
                     _width = val;
                     break;
                 case CssTypes.CSS_HASH_IDENT:
@@ -141,28 +138,28 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
                         _color = transparent;
                         break;
                     }
-                    if (inherit.equals(id)) {
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        _width = inherit;
-                        _style = inherit;
-                        _color = inherit;
+                        _width = val;
+                        _style = val;
+                        _color = val;
                         break;
                     }
-                    CssIdent match = CssBorderWidth.getMatchingIdent(id);
+                    CssIdent match = CssBorderWidth.getAllowedIdent(id);
                     if (match != null) {
-                        _width = match;
+                        _width = val;
                     } else {
-                        match = CssBorderStyle.getMatchingIdent(id);
+                        match = CssBorderStyle.getAllowedIdent(id);
                         if (match != null) {
-                            _style = match;
+                            _style = val;
                         } else {
                             // if not a width or a style, fail if it's not a proper color
                             nex = new CssExpression();
                             nex.addValue(val);
                             CssColor cssColor = new CssColor(ac, nex, false);
-                            _color = cssColor.color;
+                            _color = cssColor.getValue();
                         }
                     }
                     break;
@@ -170,7 +167,7 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
                     nex = new CssExpression();
                     nex.addValue(val);
                     CssColor cssColor = new CssColor(ac, nex, false);
-                    _color = cssColor.color;
+                    _color = cssColor.getValue();
                     break;
                 default:
                     throw new InvalidParamException("value", val.toString(),

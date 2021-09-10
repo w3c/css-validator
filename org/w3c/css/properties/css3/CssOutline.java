@@ -120,7 +120,7 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
                         }
                     }
                     if (widthValue == null) {
-                        if (CssBorderWidth.getMatchingIdent(ident) != null) {
+                        if (CssBorderWidth.getAllowedIdent(ident) != null) {
                             widthValue = val;
                             break;
                         }

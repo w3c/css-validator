@@ -20,23 +20,23 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-width
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-width
  */
 public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
 
-    public static CssIdent allowed_values[];
+
+    public static final CssIdent[] allowed_values;
 
     static {
-        allowed_values = new CssIdent[3];
-        allowed_values[0] = CssIdent.getIdent("thin");
-        allowed_values[1] = CssIdent.getIdent("medium");
-        allowed_values[2] = CssIdent.getIdent("thick");
+        String[] _allowed_values = {"thin", "medium", "thick"};
+        int i = 0;
+        allowed_values = new CssIdent[_allowed_values.length];
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
     }
 
-    /*
-     * Get the cached ident if it matches null otherwise
-     */
-    static CssIdent getMatchingIdent(CssIdent ident) {
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -61,8 +61,7 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderWidth(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -74,8 +73,7 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderWidth(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
@@ -85,6 +83,7 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
         setByUser();
         CssValue val;
         char op;
+        boolean gotCssWide = false;
 
         ArrayList<CssValue> res = new ArrayList<CssValue>();
         while (res.size() < 4 && !expression.end()) {
@@ -102,19 +101,22 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
                     res.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        res.add(inherit);
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        gotCssWide = true;
+                        res.add(id);
+                        value = val;
                         break;
                     }
-                    CssIdent match = getMatchingIdent((CssIdent) val);
-                    if (match == null) {
-                        throw new InvalidParamException("value", expression.getValue(),
+                    if (getAllowedIdent(id) == null) {
+                        throw new InvalidParamException("value", val,
                                 getPropertyName(), ac);
                     }
-                    res.add(match);
+                    res.add(val);
                     break;
                 default:
-                    throw new InvalidParamException("unrecognize", ac);
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
             }
             expression.next();
             if (op != SPACE) {
@@ -124,8 +126,9 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
             }
         }
         // check that inherit is alone
-        if (res.size() > 1 && res.contains(inherit)) {
-            throw new InvalidParamException("unrecognize", ac);
+        if (res.size() > 1 && gotCssWide) {
+            throw new InvalidParamException("value", value,
+                    getPropertyName(), ac);
         }
         value = (res.size() == 1) ? res.get(0) : new CssValueList(res);
 
@@ -185,18 +188,15 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
                 retval = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    retval = inherit;
-                } else {
-                    retval = getMatchingIdent((CssIdent) val);
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || getAllowedIdent(id) != null) {
+                    retval = val;
+                    break;
                 }
-                if (retval == null) {
-                    throw new InvalidParamException("value", expression.getValue(),
-                            caller.getPropertyName(), ac);
-                }
-                break;
+                // else fail
             default:
-                throw new InvalidParamException("unrecognize", ac);
+                throw new InvalidParamException("value", expression.getValue(),
+                        caller.getPropertyName(), ac);
         }
         expression.next();
         return retval;
