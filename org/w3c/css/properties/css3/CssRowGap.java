@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-row-gap
+ * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-row-gap
  */
 
 public class CssRowGap extends org.w3c.css.properties.css.CssRowGap {
@@ -44,10 +44,10 @@ public class CssRowGap extends org.w3c.css.properties.css.CssRowGap {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
-        value = checkSyntax(ac, expression, this);
+        value = parseRowGap(ac, expression, this);
     }
 
-    public static CssValue checkSyntax(ApplContext ac, CssExpression expression, CssProperty caller)
+    public static CssValue parseRowGap(ApplContext ac, CssExpression expression, CssProperty caller)
             throws InvalidParamException {
         CssValue val = expression.getValue();
 
@@ -61,12 +61,11 @@ public class CssRowGap extends org.w3c.css.properties.css.CssRowGap {
                 l.checkPositiveness(ac, caller);
                 break;
             case CssTypes.CSS_IDENT:
-                if (normal.equals(val)) {
-                    val = normal;
+                CssIdent id = val.getIdent();
+                if (normal.equals(id)) {
                     break;
                 }
-                if (inherit.equals(val)) {
-                    val = inherit;
+                if (CssIdent.isCssWide(id)) {
                     break;
                 }
             default:
