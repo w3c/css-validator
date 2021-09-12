@@ -34,6 +34,7 @@ public class CssImage extends CssValue {
     static final CssIdent at = CssIdent.getIdent("at");
     static final CssIdent circle = CssIdent.getIdent("circle");
     static final CssIdent ellipse = CssIdent.getIdent("ellipse");
+    static final CssIdent from = CssIdent.getIdent("from");
     static final CssIdent[] extent_keywords;
 
     static {
@@ -342,7 +343,7 @@ public class CssImage extends CssValue {
                 // we defer errors to the next step
         }
         // now we a list of at least two color stops.
-        ArrayList<CssValue> stops = parseColorStops(exp, ac);
+        ArrayList<CssValue> stops = parseColorStops(exp, ac, true);
         if ((stops.size() < 2) && !hasCssVariable()) {
             throw new InvalidParamException("few-value", name, ac);
         }
@@ -350,6 +351,117 @@ public class CssImage extends CssValue {
         v.addAll(stops);
         value = new CssLayerList(v);
     }
+
+    /**
+     * @param exp
+     * @param ac
+     * @throws InvalidParamException
+     * @spec https://www.w3.org/TR/2017/WD-css-images-4-20170413/#funcdef-conic-gradient
+     */
+    public void setConicGradient(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        name = "conic-gradient";
+        _cache = null;
+        _setConicGradient(exp, ac);
+    }
+
+    /**
+     * @param exp
+     * @param ac
+     * @throws InvalidParamException
+     * @spec https://www.w3.org/TR/2017/WD-css-images-4-20170413/#funcdef-conic-gradient
+     */
+    public void setRepeatingConicGradient(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        name = "repeating-conic-gradient";
+        _cache = null;
+        _setConicGradient(exp, ac);
+    }
+
+    private void _setConicGradient(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        // ImageList defined in CSS3 and onward
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(name).append('(').append(exp.toStringFromStart()).append(')');
+            throw new InvalidParamException("notversion", sb.toString(),
+                    ac.getCssVersionString(), ac);
+        }
+        ArrayList<CssValue> v = new ArrayList<CssValue>();
+        CssValue val;
+        char op = exp.getOperator();
+
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
+        while (op != COMMA) {
+            val = exp.getValue();
+            op = exp.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    CssIdent id = val.getIdent();
+                    if (from.equals(id)) {
+                        if (exp.getRemainingCount() < 1) {
+                            throw new InvalidParamException("few-value", name, ac);
+                        }
+                        // from must be first
+                        if (!v.isEmpty()) {
+                            throw new InvalidParamException("value", val,
+                                    name, ac);
+                        }
+                        if (op != SPACE) {
+                            throw new InvalidParamException("operator",
+                                    Character.toString(op), ac);
+                        }
+                        exp.next();
+                        CssValue nextVal = exp.getValue();
+                        op = exp.getOperator();
+                        switch (nextVal.getType()) {
+                            case CssTypes.CSS_NUMBER:
+                                nextVal.getCheckableValue().checkEqualsZero(ac, name);
+                            case CssTypes.CSS_ANGLE:
+                                CssValueList vl = new CssValueList();
+                                vl.add(val);
+                                vl.add(nextVal);
+                                v.add(vl);
+                                exp.next();
+                                break;
+                            default:
+                                throw new InvalidParamException("value", nextVal,
+                                        name, ac);
+                        }
+                        break;
+                    } else if (at.equals(id)) {
+                        if (exp.getRemainingCount() < 1) {
+                            throw new InvalidParamException("few-value", name, ac);
+                        }
+                        CssExpression nex = new CssExpression();
+                        while (!exp.end() && (exp.getOperator() != COMMA)) {
+                            exp.next();
+                            nex.addValue(exp.getValue());
+                            op = exp.getOperator();
+                        }
+                        CssValueList vl = new CssValueList();
+                        vl.add(val);
+                        vl.add(checkPosition(nex, ac));
+                        v.add(vl);
+                        exp.next();
+                        break;
+                    }
+                default:
+                    // parse color stops now, fake a separator
+                    op = COMMA;
+            }
+        }
+        // now we a list of at least two color stops.
+        ArrayList<CssValue> stops = parseColorStops(exp, ac, false);
+        if ((stops.size() < 2) && !hasCssVariable()) {
+            throw new InvalidParamException("few-value", name, ac);
+        }
+        v.addAll(stops);
+        value = new CssLayerList(v);
+    }
+
 
     /**
      * @param exp
@@ -430,7 +542,7 @@ public class CssImage extends CssValue {
             v.add(parseRadialProlog(newexp, ac));
         }
         // now we a list of at least two color stops.
-        ArrayList<CssValue> stops = parseColorStops(exp, ac);
+        ArrayList<CssValue> stops = parseColorStops(exp, ac, true);
         if ((stops.size() < 2) && !hasCssVariable()) {
             throw new InvalidParamException("few-value", name, ac);
         }
@@ -575,7 +687,8 @@ public class CssImage extends CssValue {
     }
 
     private final ArrayList<CssValue> parseColorStops(CssExpression expression,
-                                                      ApplContext ac)
+                                                      ApplContext ac,
+                                                      boolean matchLength)
             throws InvalidParamException {
         ArrayList<CssValue> v = new ArrayList<CssValue>();
         CssValue val;
@@ -584,7 +697,7 @@ public class CssImage extends CssValue {
         CssValue stop1, stop2;
         ArrayList<CssValue> stop;
         boolean prev_is_hint = false;
-        boolean got_length_percentage;
+        boolean got_length_angle_percentage;
 
         if (expression.hasCssVariable()) {
             markCssVariable();
@@ -617,16 +730,64 @@ public class CssImage extends CssValue {
             val = expression.getValue();
             op = expression.getOperator();
 
-            got_length_percentage = false;
+            got_length_angle_percentage = false;
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    val.getLength();
+                    val.getCheckableValue().checkEqualsZero(ac, name);
                 case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_ANGLE:
+                    //some tricks to avoid writing the same code twise
+                    if (matchLength) {
+                        if (val.getType() == CssTypes.CSS_ANGLE) {
+                            throw new InvalidParamException("value", val.toString(),
+                                    "color-stop", ac);
+                        }
+                    } else {
+                        if (val.getType() == CssTypes.CSS_LENGTH) {
+                            throw new InvalidParamException("value", val.toString(),
+                                    "color-stop", ac);
+                        }
+                    }
                 case CssTypes.CSS_PERCENTAGE:
                     stop1 = val;
-                    got_length_percentage = true;
+                    got_length_angle_percentage = true;
+                    // check if we have another one
+                    CssValue nextVal = expression.getNextValue();
+                    if (nextVal != null) {
+                        switch (nextVal.getType()) {
+                            case CssTypes.CSS_NUMBER:
+                                nextVal.getCheckableValue().checkEqualsZero(ac, name);
+                            case CssTypes.CSS_ANGLE:
+                            case CssTypes.CSS_LENGTH:
+                                if (matchLength) {
+                                    if (nextVal.getType() == CssTypes.CSS_ANGLE) {
+                                        throw new InvalidParamException("value", nextVal.toString(),
+                                                "color-stop", ac);
+                                    }
+                                } else {
+                                    if (nextVal.getType() == CssTypes.CSS_LENGTH) {
+                                        throw new InvalidParamException("value", nextVal.toString(),
+                                                "color-stop", ac);
+                                    }
+                                }
+                            case CssTypes.CSS_PERCENTAGE:
+                                if (op != SPACE) {
+                                    throw new InvalidParamException("operator",
+                                            Character.toString(op), ac);
+                                }
+                                // we have our second value...
+                                CssValueList vl = new CssValueList();
+                                vl.add(stop1);
+                                vl.add(nextVal);
+                                stop1 = vl;
+                                expression.next();
+                                op = expression.getOperator();
+                                break;
+                            default:
+                                // do nothing
+                        }
+                    }
                     break;
-
                 case CssTypes.CSS_HASH_IDENT:
                     stopcol = new CssColor();
                     stopcol.setShortRGBColor(ac, val.getHashIdent().toString());
@@ -655,20 +816,68 @@ public class CssImage extends CssValue {
 
                 switch (val.getType()) {
                     case CssTypes.CSS_NUMBER:
-                        val.getLength();
+                        val.getCheckableValue().checkEqualsZero(ac, name);
+                    case CssTypes.CSS_ANGLE:
                     case CssTypes.CSS_LENGTH:
+                        if (matchLength) {
+                            if (val.getType() == CssTypes.CSS_ANGLE) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        "color-stop", ac);
+                            }
+                        } else {
+                            if (val.getType() == CssTypes.CSS_LENGTH) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        "color-stop", ac);
+                            }
+                        }
                     case CssTypes.CSS_PERCENTAGE:
-                        if (got_length_percentage) {
+                        if (got_length_angle_percentage) {
                             throw new InvalidParamException("value", val.toString(),
                                     "color-stop", ac);
                         }
                         stop = new ArrayList<CssValue>(2);
                         stop.add(stop1);
-                        stop.add(val);
+                        CssValue nextVal = expression.getNextValue();
+                        if (nextVal != null && op == SPACE) {
+                            switch (nextVal.getType()) {
+                                case CssTypes.CSS_NUMBER:
+                                    nextVal.getCheckableValue().checkEqualsZero(ac, name);
+                                case CssTypes.CSS_ANGLE:
+                                case CssTypes.CSS_LENGTH:
+                                    if (matchLength) {
+                                        if (nextVal.getType() == CssTypes.CSS_ANGLE) {
+                                            throw new InvalidParamException("value", nextVal.toString(),
+                                                    "color-stop", ac);
+                                        }
+                                    } else {
+                                        if (nextVal.getType() == CssTypes.CSS_LENGTH) {
+                                            throw new InvalidParamException("value", nextVal.toString(),
+                                                    "color-stop", ac);
+                                        }
+                                    }
+                                case CssTypes.CSS_PERCENTAGE:
+                                    // we have our second value...
+                                    if (op != SPACE) {
+                                        throw new InvalidParamException("operator",
+                                                Character.toString(op), ac);
+                                    }
+                                    CssValueList vl = new CssValueList();
+                                    vl.add(val);
+                                    vl.add(nextVal);
+                                    stop.add(vl);
+                                    expression.next();
+                                    op = expression.getOperator();
+                                    break;
+                                default:
+                                    // do nothing
+                            }
+                        } else {
+                            stop.add(val);
+                        }
                         v.add(new CssValueList(stop));
                         break;
                     case CssTypes.CSS_HASH_IDENT:
-                        if (!got_length_percentage) {
+                        if (!got_length_angle_percentage) {
                             throw new InvalidParamException("value", val.toString(),
                                     "color-stop", ac);
                         }
@@ -681,7 +890,7 @@ public class CssImage extends CssValue {
                         v.add(new CssValueList(stop));
                         break;
                     case CssTypes.CSS_IDENT:
-                        if (!got_length_percentage) {
+                        if (!got_length_angle_percentage) {
                             throw new InvalidParamException("value", val.toString(),
                                     "color-stop", ac);
                         }
@@ -699,7 +908,7 @@ public class CssImage extends CssValue {
                         v.add(new CssValueList(stop));
                         break;
                     case CssTypes.CSS_COLOR:
-                        if (!got_length_percentage) {
+                        if (!got_length_angle_percentage) {
                             throw new InvalidParamException("value", val.toString(),
                                     "color-stop", ac);
                         }
@@ -717,12 +926,12 @@ public class CssImage extends CssValue {
                 prev_is_hint = false;
             } else {
                 // we can't have two hints in a row
-                if (prev_is_hint && got_length_percentage) {
+                if (prev_is_hint && got_length_angle_percentage) {
                     throw new InvalidParamException("value", stop1,
                             "color-stop", ac);
                 }
                 v.add(stop1);
-                prev_is_hint = got_length_percentage;
+                prev_is_hint = got_length_angle_percentage;
             }
             expression.next();
             if (!expression.end() && op != COMMA) {

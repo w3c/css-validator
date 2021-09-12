@@ -3417,6 +3417,14 @@ CssValue function() :
             CssImage img = new CssImage();
             img.setRepeatingRadialGradient(exp, ac);
             return img;
+        } else if (funcname.equals("conic-gradient(")) {
+            CssImage img = new CssImage();
+            img.setConicGradient(exp, ac);
+            return img;
+        } else if (funcname.equals("repeating-conic-gradient(")) {
+            CssImage img = new CssImage();
+            img.setRepeatingConicGradient(exp, ac);
+            return img;
 	} else if (funcname.equals("atsc-rgba(")) {
 	    if (getAtRule().toString().equals("@media atsc-tv")) {
 	        color.setATSCRGBAColor(ac, exp);
