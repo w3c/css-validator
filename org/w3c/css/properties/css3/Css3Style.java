@@ -27,6 +27,7 @@ import org.w3c.css.properties.css.CssAnimationPlayState;
 import org.w3c.css.properties.css.CssAnimationTimingFunction;
 import org.w3c.css.properties.css.CssAppearance;
 import org.w3c.css.properties.css.CssAspectRatio;
+import org.w3c.css.properties.css.CssBackdropFilter;
 import org.w3c.css.properties.css.CssBackfaceVisibility;
 import org.w3c.css.properties.css.CssBackgroundBlendMode;
 import org.w3c.css.properties.css.CssBackgroundClip;
@@ -559,6 +560,7 @@ public class Css3Style extends ATSCStyle {
     public CssFloodColor cssFloodColor;
     public CssFloodOpacity cssFloodOpacity;
     public CssLightingColor cssLightingColor;
+    public CssBackdropFilter cssBackdropFilter;
 
     public CssFloatReference cssFloatReference;
     public CssFloatOffset cssFloatOffset;
@@ -2661,7 +2663,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssFontSynthesisSmallCaps;
     }
-    
+
     public CssFontSynthesisStyle getFontSynthesisStyle() {
         if (cssFontSynthesisStyle == null) {
             cssFontSynthesisStyle =
@@ -2670,7 +2672,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssFontSynthesisStyle;
     }
-    
+
     public CssFontSynthesisWeight getFontSynthesisWeight() {
         if (cssFontSynthesisWeight == null) {
             cssFontSynthesisWeight =
@@ -2715,7 +2717,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssFontVariantEmoji;
     }
-    
+
     public CssFontVariantNumeric getFontVariantNumeric() {
         if (cssFontVariantNumeric == null) {
             cssFontVariantNumeric =
@@ -2742,7 +2744,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssFontPalette;
     }
-    
+
     public CssFontFeatureSettings getFontFeatureSettings() {
         if (cssFontFeatureSettings == null) {
             cssFontFeatureSettings =
@@ -3337,6 +3339,14 @@ public class Css3Style extends ATSCStyle {
             cssFilter = (CssFilter) style.CascadingOrder(new CssFilter(), style, selector);
         }
         return cssFilter;
+    }
+
+    public final CssBackdropFilter getBackdropFilter() {
+        if (cssBackdropFilter == null) {
+            cssBackdropFilter = (CssBackdropFilter) style.CascadingOrder(
+                    new CssBackdropFilter(), style, selector);
+        }
+        return cssBackdropFilter;
     }
 
     public final CssColorInterpolationFilters getColorInterpolationFilters() {

@@ -65,14 +65,14 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
         value = initial;
     }
 
-    public CssFilter(final ApplContext ac, final CssExpression expression) throws InvalidParamException {
+    public CssFilter(ApplContext ac, CssExpression expression) throws InvalidParamException {
         this(ac, expression, false);
     }
 
     /**
      * Emit warnings instead of errors for legacy proprietary IE filters
      */
-    private boolean allowLegacyIEValues(final ApplContext ac) {
+    private static boolean allowLegacyIEValues(ApplContext ac) {
         return ac.getTreatVendorExtensionsAsWarnings();
     }
 
@@ -82,11 +82,18 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
      * @param expression The expressions for this property
      * @throws InvalidParamException Expressions are incorrect
      */
-    public CssFilter(final ApplContext ac, final CssExpression expression, final boolean check) throws InvalidParamException {
+    public CssFilter(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
         setByUser();
 
+        value = parseFilter(ac, expression, check, getPropertyName());
+    }
+
+    public static CssValue parseFilter(ApplContext ac, CssExpression expression,
+                                       boolean check, String caller)
+            throws InvalidParamException {
         ArrayList<CssValue> values = new ArrayList<>();
-        CssValue val;
+        CssValue val, value = null;
         boolean singleVal = false;
 
         while (!expression.end()) {
@@ -97,7 +104,7 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
                     values.add(val);
                     break;
                 case CssTypes.CSS_FUNCTION:
-                    parseFunctionValues(ac, val, this);
+                    parseFunctionValues(ac, val, caller);
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
@@ -122,20 +129,25 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
                         // not found? let it flow and fail.
                     }
                 default:
-                    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+                    throw new InvalidParamException("value", val.toString(), caller, ac);
             }
             expression.next();
         }
         if (singleVal && values.size() > 1) {
             throw new InvalidParamException("value",
                     value.toString(),
-                    getPropertyName(), ac);
+                    caller, ac);
         }
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-
+        return value;
     }
 
     protected static void parseFunctionValues(ApplContext ac, CssValue func, CssProperty caller)
+            throws InvalidParamException {
+        parseFunctionValues(ac, func, caller.getPropertyName());
+    }
+
+    protected static void parseFunctionValues(ApplContext ac, CssValue func, String caller)
             throws InvalidParamException {
         CssFunction function = (CssFunction) func;
         String fname = function.getName().toLowerCase();
@@ -163,13 +175,13 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
                 // unrecognized function
                 throw new InvalidParamException("value",
                         func.toString(),
-                        caller.getPropertyName(), ac);
+                        caller, ac);
         }
     }
 
     // parse one value of type (CssTypes.XXX)
     private static void parseOneX(ApplContext ac, CssExpression expression,
-                                  int type, CssProperty caller)
+                                  int type, String caller)
             throws InvalidParamException {
         if (expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -188,15 +200,14 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
         }
         if (val.getType() != type) {
             throw new InvalidParamException("value",
-                    val.toString(),
-                    caller.getPropertyName(), ac);
+                    val.toString(), caller, ac);
         }
         expression.next();
     }
 
     // parse one value of type (CssTypes.XXX)
     private static void parseOneNonNegativeNumPercent(ApplContext ac, CssExpression expression,
-                                                      CssProperty caller)
+                                                      String caller)
             throws InvalidParamException {
         if (expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -211,8 +222,7 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
                 break;
             default:
                 throw new InvalidParamException("value",
-                        val.toString(),
-                        caller.getPropertyName(), ac);
+                        val.toString(), caller, ac);
         }
         if (op != SPACE) {
             throw new InvalidParamException("operator",
@@ -223,7 +233,7 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
     }
 
     private static void parseDropShadowFunction(ApplContext ac, CssExpression expression,
-                                                CssProperty caller)
+                                                String caller)
             throws InvalidParamException {
         if (expression.getCount() > 4) {
             throw new InvalidParamException("unrecognize", ac);
