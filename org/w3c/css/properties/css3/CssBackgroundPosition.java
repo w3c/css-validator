@@ -515,15 +515,15 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                 for (CssValue aValue : v) {
                     switch (aValue.getType()) {
                         case CssTypes.CSS_IDENT:
-                            if (getMatchingIdent((CssIdent) aValue) == null) {
+                            if (getMatchingIdent(aValue.getIdent()) == null) {
                                 throw new InvalidParamException("value", aValue,
                                         caller, ac);
                             }
                             got_ident = true;
                             if (id1 == null) {
-                                id1 = (CssIdent) aValue;
+                                id1 = aValue.getIdent();
                             } else {
-                                id2 = (CssIdent) aValue;
+                                id2 = aValue.getIdent();
                                 // we got both, let's check.
                                 if (((isVertical(id1) && isVertical(id2))) ||
                                         (isHorizontal(id1) && isHorizontal(id2))) {

@@ -208,7 +208,8 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
                             getPropertyName(), ac);
                 }
                 // ok so now check that we have a generic value in nameVal
-                if (getGenericVoiceName((CssIdent) nameVal) == null) {
+                if ((nameVal.getType() == CssTypes.CSS_IDENT)
+                        && (getGenericVoiceName(nameVal.getIdent()) == null)) {
                     throw new InvalidParamException("value", nameVal,
                             getPropertyName(), ac);
                 }
