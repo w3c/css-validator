@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-list-style-position
+ * @spec https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#propdef-list-style-position
  */
 public class CssListStylePosition extends org.w3c.css.properties.css.CssListStylePosition {
 
@@ -50,8 +50,7 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssListStylePosition(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -63,8 +62,7 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssListStylePosition(ApplContext ac, CssExpression expression,
                                 boolean check) throws InvalidParamException {
@@ -81,17 +79,13 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
             throw new InvalidParamException("value", val,
                     getPropertyName(), ac);
         }
-        CssIdent id = (CssIdent) val;
-        if (inherit.equals(id)) {
-            value = inherit;
-        } else {
-            value = getAllowedIdent(id);
-            if (value == null) {
-                throw new InvalidParamException("value",
-                        val.toString(),
-                        getPropertyName(), ac);
-            }
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 }

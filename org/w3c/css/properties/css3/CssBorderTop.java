@@ -9,9 +9,11 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-top
  * @see CssBorder
  */
 public class CssBorderTop extends org.w3c.css.properties.css.CssBorderTop {
@@ -31,8 +33,7 @@ public class CssBorderTop extends org.w3c.css.properties.css.CssBorderTop {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderTop(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -44,8 +45,7 @@ public class CssBorderTop extends org.w3c.css.properties.css.CssBorderTop {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderTop(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
@@ -72,11 +72,11 @@ public class CssBorderTop extends org.w3c.css.properties.css.CssBorderTop {
      */
     public String toString() {
         if (_width != null) {
-            if (inherit == _width.value) {
-                return inherit.toString();
-            }
-            if (initial == _width.value) {
-                return initial.toString();
+            try {
+                if ((_width.value.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(_width.value.getIdent())) {
+                    return _width.value.toString();
+                }
+            } catch (Exception ignored) {
             }
         }
         StringBuilder sb = new StringBuilder();

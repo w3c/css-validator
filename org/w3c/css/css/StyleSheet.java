@@ -11,6 +11,7 @@ import org.w3c.css.parser.AtRule;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.Errors;
+import org.w3c.css.properties.css.CssCustomProperty;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -37,16 +38,18 @@ public class StyleSheet {
     private boolean doNotAddRule;
     private boolean doNotAddAtRule;
     private static final boolean debug = false;
+    private HashMap<String, CssCustomProperty> customProperties;
 
     /**
      * Create a new StyleSheet.
      */
     public StyleSheet() {
-        rules = new HashMap<String, CssSelectors>();
+        rules = new HashMap<>();
         errors = new Errors();
         warnings = new Warnings();
         cascading = new CssCascadingOrder();
-        atRuleList = new ArrayList<CssRuleList>();
+        atRuleList = new ArrayList<>();
+        customProperties = new HashMap<>();
     }
 
     public void setWarningLevel(int warningLevel) {
@@ -92,6 +95,23 @@ public class StyleSheet {
                     + " " + property);
         }
         getContext(selector).addProperty(property, warnings);
+    }
+
+    /**
+     * lookup a custom property
+     * @param s, the name of the property
+     * @return a CssCustomProperty or null if not found
+     */
+    public CssCustomProperty getCustomProperty(String s) {
+        return customProperties.get(s);
+    }
+
+    // we are not adding custom property in addProperty, as we want to be
+    public CssCustomProperty addCustomProperty(String s, CssCustomProperty p, boolean force) {
+        if (force) {
+            return customProperties.put(s, p);
+        }
+        return customProperties.putIfAbsent(s, p);
     }
 
     public void remove(CssSelectors selector) {

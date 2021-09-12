@@ -11,6 +11,7 @@ import org.w3c.css.values.CssExpression;
 
 /**
  * @spec https://www.w3.org/TR/2018/WD-css-logical-1-20180827/#propdef-inset-inline-start
+ * @spec https://www.w3.org/TR/2020/WD-css-position-3-20200519/#propdef-inset-inline-start
  */
 public class CssInsetInlineStart extends org.w3c.css.properties.css.CssInsetInlineStart {
 

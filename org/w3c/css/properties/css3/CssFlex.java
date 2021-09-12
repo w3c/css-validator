@@ -8,7 +8,6 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
@@ -60,6 +59,7 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlex {
         CssValue val;
         char op;
         boolean gotNumber = false;
+        boolean gotCssWide = false;
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -67,9 +67,10 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlex {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
-                    if (inherit.equals(ident)) {
-                        value = inherit;
+                    CssIdent ident = val.getIdent();
+                    if (CssIdent.isCssWide(ident)) {
+                        gotCssWide = true;
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
@@ -78,7 +79,7 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlex {
                         break;
                     }
                     if (none.equals(ident)) {
-                        value = none;
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
@@ -102,16 +103,14 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlex {
                             getPropertyName(), ac);
                 case CssTypes.CSS_NUMBER:
                     if (growVal == null) {
-                        CssCheckableValue num = val.getCheckableValue();
-                        num.checkPositiveness(ac, this);
+                        val.getCheckableValue().checkPositiveness(ac, this);
                         growVal = val;
                         gotNumber = true;
                         break;
                     }
                     // we can get shrink only after grow
                     if (gotNumber && shrinkVal == null) {
-                        CssCheckableValue num = val.getCheckableValue();
-                        num.checkPositiveness(ac, this);
+                        val.getCheckableValue().checkPositiveness(ac, this);
                         shrinkVal = val;
                         break;
                     }
@@ -146,10 +145,10 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlex {
         flexBasis = new CssFlexBasis();
         flexGrow = new CssFlexGrow();
         flexShrink = new CssFlexShrink();
-        if (value == inherit) {
-            flexBasis.value = inherit;
-            flexGrow.value = inherit;
-            flexShrink.value = inherit;
+        if (gotCssWide) {
+            flexBasis.value = value;
+            flexGrow.value = value;
+            flexShrink.value = value;
         } else if (value == none) {
             flexBasis.value = CssWidth.auto;
             CssNumber z = new CssNumber();

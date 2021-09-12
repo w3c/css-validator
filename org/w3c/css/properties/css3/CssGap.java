@@ -10,6 +10,8 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-gap
+ * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-gap
  */
 
 public class CssGap extends org.w3c.css.properties.css.CssGap {
@@ -51,7 +53,7 @@ public class CssGap extends org.w3c.css.properties.css.CssGap {
         columnGap = new CssColumnGap();
         rowGap = new CssRowGap();
 
-        val = CssRowGap.checkSyntax(ac, expression, this);
+        val = CssRowGap.parseRowGap(ac, expression, this);
         rowGap.value = val;
         if (!expression.end()) {
             if (op != SPACE) {
@@ -59,13 +61,13 @@ public class CssGap extends org.w3c.css.properties.css.CssGap {
                         Character.toString(op), ac);
             }
             // inherit can only be alone
-            if (inherit.equals(val)) {
+            if ((val.getType()== CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
                 throw new InvalidParamException("value", val.toString(),
                         getPropertyName(), ac);
             }
-            val = CssRowGap.checkSyntax(ac, expression, this);
+            val = CssRowGap.parseRowGap(ac, expression, this);
             // same for value #2
-            if (inherit.equals(val)) {
+            if ((val.getType()== CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
                 throw new InvalidParamException("value", val.toString(),
                         getPropertyName(), ac);
             }

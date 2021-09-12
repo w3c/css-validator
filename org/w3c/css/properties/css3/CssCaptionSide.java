@@ -14,7 +14,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/tables.html#propdef-caption-side
- * @spec https://www.w3.org/TR/2017/WD-css-logical-1-20170518/#caption-side
+ * @spec https://www.w3.org/TR/2018/WD-css-logical-1-20180827/#caption-side
  */
 public class CssCaptionSide extends org.w3c.css.properties.css.CssCaptionSide {
 
@@ -66,16 +66,16 @@ public class CssCaptionSide extends org.w3c.css.properties.css.CssCaptionSide {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",

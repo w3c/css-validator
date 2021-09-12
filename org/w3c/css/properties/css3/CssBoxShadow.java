@@ -10,7 +10,6 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
@@ -24,7 +23,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-css3-background-20140204/#box-shadow
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-box-shadow
  */
 
 public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
@@ -61,13 +60,9 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
         if (expression.getCount() == 1) {
             // it can be only 'none' or 'inherit'
             if (val.getType() == CssTypes.CSS_IDENT) {
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
-                    value = inherit;
-                    expression.next();
-                    return;
-                } else if (none.equals(ident)) {
-                    value = none;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || none.equals(val)) {
+                    value = val;
                     expression.next();
                     return;
                 }
@@ -148,8 +143,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                             value.vertical_offset = val;
                             break;
                         case 3:
-                            CssCheckableValue length = val.getCheckableValue();
-                            length.checkPositiveness(ac, this);
+                            val.getCheckableValue().checkPositiveness(ac, getPropertyName());
                             value.blur_radius = val;
                             break;
                         case 4:
@@ -165,14 +159,14 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                     if (got_length != 0) {
                         length_ok = false;
                     }
-                    CssIdent ident = (CssIdent) val;
+                    CssIdent id = val.getIdent();
                     // checked before, not allowed here
-                    if (inherit.equals(ident)) {
+                    if (CssIdent.isCssWide(id)) {
                         throw new InvalidParamException("value", val,
                                 getPropertyName(), ac);
                     }
-                    if (inset.equals(ident) && value.shadow_mod == null) {
-                        value.shadow_mod = inset;
+                    if (inset.equals(id) && value.shadow_mod == null) {
+                        value.shadow_mod = val;
                         // inset has been relaxed
                         break;
                     }
@@ -193,7 +187,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                     CssExpression exp = new CssExpression();
                     exp.addValue(val);
                     CssColor color = new CssColor(ac, exp, check);
-                    value.color = (CssValue) color.get();
+                    value.color = color.getValue();
                     break;
                 default:
                     throw new InvalidParamException("value", val,

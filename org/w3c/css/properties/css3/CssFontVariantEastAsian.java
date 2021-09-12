@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-east-asian
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant-east-asian
  */
 public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontVariantEastAsian {
 
@@ -86,8 +86,7 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
      * Creates a new CssFontVariantEastAsian
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontVariantEastAsian(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -100,9 +99,9 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
         CssValue val;
         char op;
 
-        CssIdent varValue = null;
-        CssIdent widValue = null;
-        CssIdent rubValue = null;
+        CssValue varValue = null;
+        CssValue widValue = null;
+        CssValue rubValue = null;
         boolean match;
 
         while (!expression.end()) {
@@ -110,40 +109,38 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
             op = expression.getOperator();
 
             if (val.getType() == CssTypes.CSS_IDENT) {
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident) || normal.equals(ident)) {
                     if (expression.getCount() != 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
-                    value = inherit;
-                } else if (normal.equals(ident)) {
-                    if (expression.getCount() != 1) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
-                    }
-                    value = normal;
+                    value = val;
                 } else {
                     // no inherit, nor normal, test the up-to-three values
                     match = false;
                     if (varValue == null) {
-                        varValue = getEastAsianVariantValue(ident);
-                        value = varValue;
-                        match = (varValue != null);
+                        match = (getEastAsianVariantValue(ident) != null);
+                        if (match) {
+                            varValue = val;
+                            value = val;
+                        }
                     }
 
                     if (!match && (widValue == null)) {
-                        widValue = getEastAsianWidthValue(ident);
-                        value = widValue;
-                        match = (widValue != null);
+                        match = (getEastAsianWidthValue(ident) != null);
+                        if (match) {
+                            widValue = val;
+                            value = val;
+
+                        }
                     }
                     if (!match && (rubValue == null)) {
                         match = ruby.equals(ident);
                         if (match) {
-                            rubValue = ruby;
-                            value = ruby;
+                            rubValue = val;
+                            value = val;
                         }
                     }
                     if (!match) {

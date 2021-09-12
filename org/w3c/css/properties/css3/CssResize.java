@@ -13,8 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20210316/#propdef-resize
- * @spec https://www.w3.org/TR/2018/WD-css-logical-1-20180827/#resize
+ * @spec https://www.w3.org/TR/2021/WD-css-ui-4-20210316/#propdef-resize
  */
 public class CssResize extends org.w3c.css.properties.css.CssResize {
 
@@ -66,17 +65,16 @@ public class CssResize extends org.w3c.css.properties.css.CssResize {
                     expression.getValue(),
                     getPropertyName(), ac);
         }
+        CssIdent ident = val.getIdent();
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
+        if (CssIdent.isCssWide(ident)) {
             value = val;
+        } else if (getMatchingIdent(ident) != null) {
+            value = val;
+        } else {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
         }
         expression.next();
     }

@@ -48,8 +48,7 @@ public class CssVoiceStress extends org.w3c.css.properties.css.CssVoiceStress {
      * Creates a new CssVoiceStress
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssVoiceStress(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,16 +64,16 @@ public class CssVoiceStress extends org.w3c.css.properties.css.CssVoiceStress {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
+            CssIdent id = val.getIdent();
             if (inherit.equals(id)) {
-                value = inherit;
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",

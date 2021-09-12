@@ -21,27 +21,38 @@ import org.w3c.css.values.CssValue;
 
 public class CssBoxDecorationBreak extends org.w3c.css.properties.css.CssBoxDecorationBreak {
 
-    public static CssIdent slice;
-    public static CssIdent clone;
+    public static final CssIdent[] allowed_values;
 
     static {
-        slice = CssIdent.getIdent("slice");
-        clone = CssIdent.getIdent("clone");
+        String[] _allowed_values = {"slice", "clone"};
+        int i = 0;
+        allowed_values = new CssIdent[_allowed_values.length];
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
     }
 
     /**
      * Create new CssBoxDecorationBreak
      */
     public CssBoxDecorationBreak() {
-        value = slice;
+        value = initial;
     }
 
     /**
      * Create new CssBoxDecorationBreak
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssBoxDecorationBreak(ApplContext ac, CssExpression expression,
                                  boolean check) throws InvalidParamException {
@@ -58,17 +69,13 @@ public class CssBoxDecorationBreak extends org.w3c.css.properties.css.CssBoxDeco
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else if (slice.equals(val)) {
-            value = slice;
-        } else if (clone.equals(val)) {
-            value = clone;
-        } else {
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
             throw new InvalidParamException("value",
                     expression.getValue(),
                     getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 
@@ -78,11 +85,4 @@ public class CssBoxDecorationBreak extends org.w3c.css.properties.css.CssBoxDeco
         this(ac, expression, false);
     }
 
-    /**
-     * Is the value of this property a default value
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return slice == value;
-    }
 }

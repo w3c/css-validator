@@ -9,24 +9,38 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-synthesis
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-synthesis
  */
 public class CssFontSynthesis extends org.w3c.css.properties.css.CssFontSynthesis {
 
-    public static final CssIdent style;
-    public static final CssIdent weight;
+    public static final CssIdent[] allowedValues;
 
     static {
-        style = CssIdent.getIdent("style");
-        weight = CssIdent.getIdent("weight");
+        String[] _allowedValues = {"weight", "style", "small-caps"};
+        allowedValues = new CssIdent[_allowedValues.length];
+        for (int i = 0; i < allowedValues.length; i++) {
+            allowedValues[i] = CssIdent.getIdent(_allowedValues[i]);
+        }
+        Arrays.sort(allowedValues);
+    }
+
+    public static final CssIdent getAllowedValue(CssIdent ident) {
+        for (CssIdent id : allowedValues) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
     }
 
     /**
@@ -40,81 +54,65 @@ public class CssFontSynthesis extends org.w3c.css.properties.css.CssFontSynthesi
      * Creates a new CssFontSynthesis
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontSynthesis(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
 
-        if (check && expression.getCount() > 2) {
+        if (check && expression.getCount() > allowedValues.length) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
         setByUser();
 
         CssValue val;
+        CssIdent okIdent;
         char op;
+        ArrayList<CssValue> values = new ArrayList<>();
+        ArrayList<CssIdent> ids = new ArrayList<>();
 
-        val = expression.getValue();
-        op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else if (none.equals(ident)) {
-                value = none;
-            } else if (weight.equals(ident)) {
-                if (expression.getCount() > 1) {
-                    if (op != CssOperator.SPACE) {
-                        throw new InvalidParamException("operator",
-                                Character.toString(op), ac);
-                    }
-                    expression.next();
-                    val = expression.getValue();
-                    if (!style.equals(val)) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
-                    }
-                    ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-                    v.add(style);
-                    v.add(weight);
-                    value = new CssValueList(v);
-                } else {
-                    value = weight;
-                }
-            } else if (style.equals(ident)) {
-                if (expression.getCount() > 1) {
-                    if (op != CssOperator.SPACE) {
-                        throw new InvalidParamException("operator",
-                                Character.toString(op), ac);
-                    }
-                    expression.next();
-                    val = expression.getValue();
-                    if (!weight.equals(val)) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
-                    }
-                    ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-                    v.add(style);
-                    v.add(weight);
-                    value = new CssValueList(v);
-                } else {
-                    value = style;
-                }
-            } else {
+            if (val.getType() != CssTypes.CSS_IDENT) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         getPropertyName(), ac);
             }
-        } else {
-            throw new InvalidParamException("value",
-                    val.toString(),
-                    getPropertyName(), ac);
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id) || none.equals(id)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                value = val;
+            } else {
+                okIdent = getAllowedValue(id);
+                if (okIdent == null) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                if (ids.contains(okIdent)) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                values.add(val);
+                ids.add(okIdent);
+
+            }
+            expression.next();
+            if (!expression.end() && (op != SPACE)) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op), ac);
+            }
         }
-        expression.next();
+        if (!values.isEmpty()) {
+            value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        }
     }
 
     public CssFontSynthesis(ApplContext ac, CssExpression expression)

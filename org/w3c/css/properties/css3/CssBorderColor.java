@@ -9,6 +9,8 @@ import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-color
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-color
  */
 public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
 
@@ -37,8 +39,7 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderColor(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -50,8 +51,7 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderColor(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
@@ -61,14 +61,17 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
         setByUser();
         CssValue val;
         char op;
+        boolean isCssWide = false;
 
         ArrayList<CssValue> res = new ArrayList<CssValue>();
         while (res.size() < 4 && !expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (inherit.equals(val)) {
-                res.add(inherit);
+            if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
+                res.add(val);
+                isCssWide = true;
+                value = val;
             } else {
                 try {
                     CssExpression ex = new CssExpression();
@@ -77,7 +80,7 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
                     CssColor tcolor = new CssColor(ac, ex, check);
                     // instead of using getColor, we get the value directly
                     // as we can have idents
-                    res.add(tcolor.color);
+                    res.add(tcolor.getValue());
                 } catch (InvalidParamException e) {
                     throw new InvalidParamException("value",
                             val.toString(),
@@ -92,8 +95,10 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
             }
         }
         // check that inherit is alone
-        if (res.size() > 1 && res.contains(inherit)) {
-            throw new InvalidParamException("unrecognize", ac);
+        if (res.size() > 1 && isCssWide) {
+            throw new InvalidParamException("value",
+                    value.toString(),
+                    getPropertyName(), ac);
         }
         value = (res.size() == 1) ? res.get(0) : new CssValueList(res);
 
@@ -133,7 +138,9 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
      * Check the border-*-color and returns a value.
      * It makes sense to do it only once for all the sides, so by having the code here.
      */
-    protected static CssValue parseBorderSideColor(ApplContext ac, CssExpression expression, boolean check, CssProperty caller) throws InvalidParamException {
+    protected static CssValue parseBorderSideColor(ApplContext ac, CssExpression expression,
+                                                   boolean check, CssProperty caller)
+            throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -142,15 +149,15 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
         CssValue retval = null;
         CssValue val = expression.getValue();
 
-        if (inherit.equals(val)) {
-            retval = inherit;
+        if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
+            retval = val;
         } else {
             try {
                 // we use the latest version of CssColor, aka CSS3
                 CssColor tcolor = new CssColor(ac, expression, check);
                 // instead of using getColor, we get the value directly
                 // as we can have idents
-                retval = tcolor.color;
+                retval = tcolor.getValue();
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         val.toString(),

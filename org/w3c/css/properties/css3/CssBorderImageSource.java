@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-source
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-image-source
  */
 public class CssBorderImageSource extends org.w3c.css.properties.css.CssBorderImageSource {
 
@@ -33,8 +33,7 @@ public class CssBorderImageSource extends org.w3c.css.properties.css.CssBorderIm
      * Creates a new CssBorderImageSource
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssBorderImageSource(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -50,11 +49,9 @@ public class CssBorderImageSource extends org.w3c.css.properties.css.CssBorderIm
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                    break;
-                } else if (none.equals(val)) {
-                    value = none;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || isMatchingIdent(id)) {
+                    value = val;
                     break;
                 }
                 // unrecognized ident... let it fail

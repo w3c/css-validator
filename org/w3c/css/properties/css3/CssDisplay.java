@@ -106,8 +106,7 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
      * @param ac         The context
      * @param expression The expression for this property
      * @param check      true if explicit check is needed
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorect
      */
     public CssDisplay(ApplContext ac, CssExpression expression,
                       boolean check) throws InvalidParamException {
@@ -135,19 +134,19 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
             op = expression.getOperator();
 
             if (val.getType() == CssTypes.CSS_IDENT) {
-                CssIdent id_val = (CssIdent) val;
+                CssIdent id_val = val.getIdent();
                 id = null;
                 // let's check the values which can occur only once.
                 if (count == 1) {
                     if (inherit.equals(id_val)) {
                         id = inherit;
-                        value = inherit;
+                        value = val;
                     } else if ((id = getMatchingIdentInArray(id_val, display_box)) != null) {
-                        value = id;
+                        value = val;
                     } else if ((id = getMatchingIdentInArray(id_val, display_internal)) != null) {
-                        value = id;
+                        value = val;
                     } else if ((id = getMatchingIdentInArray(id_val, display_legacy)) != null) {
-                        value = id;
+                        value = val;
                     }
                 }
                 if (id == null) {
@@ -156,7 +155,7 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
                     if (id != null) {
                         if (!outside) {
                             outside = true;
-                            v.add(id);
+                            v.add(val);
                         } else {
                             throw new InvalidParamException("value", id_val,
                                     getPropertyName(), ac);
@@ -168,7 +167,7 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 
                             if (!listitem && (!inside || flow)) {
                                 listitem = true;
-                                v.add(id);
+                                v.add(val);
                             } else {
                                 throw new InvalidParamException("value", id_val,
                                         getPropertyName(), ac);
@@ -180,7 +179,7 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
                                 throw new InvalidParamException("value", id_val,
                                         getPropertyName(), ac);
                             }
-                            v.add(id);
+                            v.add(val);
                             inside = true;
                             flow = (getMatchingIdentInArray(id_val, display_flow) != null);
                         }

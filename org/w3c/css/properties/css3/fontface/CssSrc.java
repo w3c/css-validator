@@ -9,6 +9,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -20,9 +21,84 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2013/CR-css-fonts-3-20131003/#descdef-src
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#descdef-font-face-src
  */
 public class CssSrc extends org.w3c.css.properties.css.fontface.CssSrc {
+
+    public static final CssIdent[] allowed_font_format;
+    public static final CssIdent[] allowed_font_technologies;
+    public static final CssIdent[] allowed_font_feature_technologies;
+    public static final CssIdent[] allowed_color_font_technologies;
+
+    public static final CssIdent supports = CssIdent.getIdent("supports");
+
+    static {
+        int i = 0;
+        String[] _allowed_font_format_values = {"woff", "truetype", "opentype",
+                "woff2", "embedded-opentype", "collection", "svg"};
+        allowed_font_format = new CssIdent[_allowed_font_format_values.length];
+        for (String s : _allowed_font_format_values) {
+            allowed_font_format[i++] = CssIdent.getIdent(s);
+        }
+
+        i = 0;
+        String[] _allowed_font_technologies = {"variations", "palettes"};
+        allowed_font_technologies = new CssIdent[_allowed_font_technologies.length];
+        for (String s : _allowed_font_technologies) {
+            allowed_font_technologies[i++] = CssIdent.getIdent(s);
+        }
+
+        i = 0;
+        String[] _allowed_font_feature_technologies = {"opentype", "aat", "graphite"};
+        allowed_font_feature_technologies = new CssIdent[_allowed_font_feature_technologies.length];
+        for (String s : _allowed_font_feature_technologies) {
+            allowed_font_feature_technologies[i++] = CssIdent.getIdent(s);
+        }
+
+        i = 0;
+        String[] _allowed_color_font_technologies = {"COLRv0", "COLRv1", "SVG",
+                "sbix", "CBDT"};
+        allowed_color_font_technologies = new CssIdent[_allowed_color_font_technologies.length];
+        for (String s : _allowed_color_font_technologies) {
+            allowed_color_font_technologies[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static CssIdent getMatchingFontFormat(CssIdent ident) {
+        for (CssIdent id : allowed_font_format) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
+    public static CssIdent getMatchingColorFontTechnology(CssIdent ident) {
+        for (CssIdent id : allowed_color_font_technologies) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
+    public static CssIdent getMatchingFontTechnology(CssIdent ident) {
+        for (CssIdent id : allowed_font_technologies) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
+    public static CssIdent getMatchingFontFeatureTechnology(CssIdent ident) {
+        for (CssIdent id : allowed_font_feature_technologies) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
     /**
      * Create a new CssSrc
@@ -35,8 +111,7 @@ public class CssSrc extends org.w3c.css.properties.css.fontface.CssSrc {
      * Creates a new CssSrc
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssSrc(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -139,21 +214,129 @@ public class CssSrc extends org.w3c.css.properties.css.fontface.CssSrc {
         char op;
         CssValue val;
 
-        while (!exp.end()) {
+        val = exp.getValue();
+        op = exp.getOperator();
+
+        switch (val.getType()) {
+            case CssTypes.CSS_STRING:
+                break;
+            case CssTypes.CSS_IDENT:
+                if (getMatchingFontFormat(val.getIdent()) != null) {
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        f.getName(), ac);
+        }
+        exp.next();
+
+        if (!exp.end()) {
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        f.getName(), ac);
+            }
             val = exp.getValue();
             op = exp.getOperator();
 
-            if (val.getType() != CssTypes.CSS_STRING) {
+            // we need 'supports' ...
+            if ((val.getType() != CssTypes.CSS_IDENT) || !supports.equals(val.getIdent())) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         f.getName(), ac);
             }
-            if (op != COMMA && exp.getRemainingCount() > 1) {
+            exp.next();
+            if ((op != SPACE) || exp.end()) {
                 throw new InvalidParamException("operator", op,
                         f.getName(), ac);
             }
-            exp.next();
+            while (!exp.end()) {
+                val = exp.getValue();
+                op = exp.getOperator();
+                switch (val.getType()) {
+                    case CssTypes.CSS_FUNCTION:
+                        CssFunction subf = (CssFunction) val;
+                        String subfname = subf.getName().toLowerCase();
+                        switch (subfname) {
+                            case "features":
+                                parseFontFeatureTechnology(ac, subf);
+                                break;
+                            case "color":
+                                parseColorFontTechnology(ac, subf);
+                                break;
+                            default:
+                                throw new InvalidParamException("value",
+                                        val.toString(),
+                                        f.getName(), ac);
+                        }
+                        break;
+                    case CssTypes.CSS_IDENT:
+                        CssIdent ident = val.getIdent();
+                        if (getMatchingFontTechnology(ident) != null) {
+                            break;
+                        }
+                        // unrecognized ident
+                    default:
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                f.getName(), ac);
+                }
+                exp.next();
+                if (op != COMMA && !exp.end()) {
+                    throw new InvalidParamException("operator", op,
+                            f.getName(), ac);
+                }
+            }
         }
+
+    }
+
+    protected void parseFontFeatureTechnology(ApplContext ac, CssFunction f)
+            throws InvalidParamException {
+        CssExpression exp = f.getParameters();
+        char op;
+        CssValue val;
+
+        if (exp.getCount() > 1) {
+            throw new InvalidParamException("value", exp.toStringFromStart(),
+                    f.getName(), ac);
+        }
+        val = exp.getValue();
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    f.getName(), ac);
+        }
+        if (getMatchingFontFeatureTechnology(val.getIdent()) == null) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    f.getName(), ac);
+        }
+        exp.next();
+    }
+
+    protected void parseColorFontTechnology(ApplContext ac, CssFunction f)
+            throws InvalidParamException {
+        CssExpression exp = f.getParameters();
+        char op;
+        CssValue val;
+
+        if (exp.getCount() > 1) {
+            throw new InvalidParamException("value", exp.toStringFromStart(),
+                    f.getName(), ac);
+        }
+        val = exp.getValue();
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    f.getName(), ac);
+        }
+        if (getMatchingColorFontTechnology(val.getIdent()) == null) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    f.getName(), ac);
+        }
+        exp.next();
     }
 
     protected void parseLocalFunction(ApplContext ac, CssFunction f)

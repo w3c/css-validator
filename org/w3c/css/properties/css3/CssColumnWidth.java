@@ -18,8 +18,8 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-width
- * @spec https://www.w3.org/TR/2018/WD-css-sizing-3-20180304/#column-sizing
+ * @spec https://www.w3.org/TR/2021/WD-css-multicol-1-20210212/#propdef-column-width
+ * @spec https://www.w3.org/TR/2021/WD-css-sizing-3-20210317/
  */
 
 public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
@@ -86,20 +86,22 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
                 value = parseFitContentFunction(ac, (CssFunction) val, this);
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                 } else {
-                    CssIdent id = getAllowedIdent((CssIdent) val);
-                    if (id != null) {
-                        value = id;
+                    if (getAllowedIdent(ident) != null) {
+                        value = val;
                     } else {
-                        throw new InvalidParamException("unrecognize", ac);
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
                     }
                 }
                 break;
 
             default:
-                throw new InvalidParamException("value", expression.getValue(),
+                throw new InvalidParamException("value", val.toString(),
                         getPropertyName(), ac);
         }
         expression.next();

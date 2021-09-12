@@ -5,9 +5,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
@@ -18,9 +18,11 @@ import java.util.Arrays;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#font-prop
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font
  */
 public class CssFont extends org.w3c.css.properties.css.CssFont {
+
+    public CssFontStretch fontStretch = null;
 
     public static final CssIdent normal;
     public static final CssIdent[] systemFonts;
@@ -56,8 +58,7 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
      * Creates a new CssFontSize
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFont(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -66,6 +67,7 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 
         CssValue val;
         char op;
+        CssExpression nex;
 
         boolean gotNormal = false;
         int state = 0;
@@ -75,71 +77,92 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
-                    CssIdent ident;
-                    ident = getSystemFont((CssIdent) val);
-                    if (ident != null) {
+                    if (getSystemFont(id) != null) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException(
                                     "system-font-keyword-not-sole-value",
                                     val.toString(), val.toString(), ac);
                         }
-                        value = ident;
+                        value = val;
                         break;
                     }
 
                     // first font-style
-                    ident = (CssIdent) val;
                     if (state == 0) {
                         // now check for possible font values
                         // first the strange case of 'normal'
-                        // which sets up to three values...
+                        // which sets up to four values...
                         // we keep it around for the final check
-                        if (normal.equals((CssIdent) val)) {
+                        if (normal.equals(id)) {
                             gotNormal = true;
                             break;
                         }
-                        int pos = CssFontStyle.allowed_values.indexOf(ident);
-                        if (pos >= 0) {
+                        if (CssFontStyle.getMatchingIdent(id) != null) {
                             if (fontStyle != null) {
                                 throw new InvalidParamException("value",
                                         val.toString(),
                                         getPropertyName(), ac);
                             }
-                            fontStyle = new CssFontStyle();
-                            fontStyle.value = CssFontStyle.allowed_values.get(pos);
+                            CssValue nextVal = expression.getNextValue();
+                            if (nextVal != null && (nextVal.getType() == CssTypes.CSS_ANGLE)) {
+                                nex = new CssExpression();
+                                nex.addValue(val);
+                                expression.next();
+                                nex.addValue(nextVal);
+                                try {
+                                    fontStyle = new CssFontStyle(ac, nex, false);
+                                } catch (Exception ex) {
+                                    throw new InvalidParamException("value",
+                                            val.toString(),
+                                            getPropertyName(), ac);
+                                }
+                            } else {
+                                fontStyle = new CssFontStyle();
+                                fontStyle.value = val;
+                            }
                             break;
                         }
                         // font-variant
-                        CssIdent v = org.w3c.css.properties.css21.CssFontVariant.getAllowedFontVariant(ident);
-                        if (v != null) {
+                        if (org.w3c.css.properties.css21.CssFontVariant.getAllowedFontVariant(id) != null) {
                             if (fontVariant != null) {
                                 throw new InvalidParamException("value",
                                         val.toString(),
                                         getPropertyName(), ac);
                             }
                             fontVariant = new CssFontVariant();
-                            fontVariant.value = v;
+                            fontVariant.value = val;
                             break;
                         }
                         // font-weight
-                        v = CssFontWeight.getAllowedValue(ident);
-                        if (v != null) {
+                        if (CssFontWeight.getAllowedValue(id) != null) {
                             if (fontWeight != null) {
                                 throw new InvalidParamException("value",
                                         val.toString(),
                                         getPropertyName(), ac);
                             }
                             fontWeight = new CssFontWeight();
-                            fontWeight.value = v;
+                            fontWeight.value = val;
+                            break;
+                        }
+                        // font-stretch
+                        if (CssFontStretch.getAllowedValue(id) != null) {
+                            if (fontStretch != null) {
+                                throw new InvalidParamException("value",
+                                        val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            fontStretch = new CssFontStretch();
+                            fontStretch.value = val;
                             break;
                         }
                     }
@@ -147,8 +170,7 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
                     // check if we moved past and we now got
                     // a font-size
                     if (state == 0) {
-                        CssIdent v = CssFontSize.getAllowedValue(ident);
-                        if (v != null) {
+                        if (CssFontSize.getAllowedValue(id) != null) {
                             // we got a FontSize, so no more style/variant/weight
                             state = 1;
                             if (fontSize != null) {
@@ -157,7 +179,7 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
                                         getPropertyName(), ac);
                             }
                             fontSize = new CssFontSize();
-                            fontSize.value = v;
+                            fontSize.value = val;
                             break;
                         }
                     }
@@ -189,21 +211,21 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
                                 getPropertyName(), ac);
                     }
                     // let's parse a line-height
-                    lineHeight = new CssLineHeight(ac, expression, false);
+                    nex = new CssExpression();
+                    nex.addValue(expression.getValue());
+                    lineHeight = new CssLineHeight(ac, nex, false);
                     state = 1;
-                    // expression.next is called, so continue instead
-                    // of next
-                    continue;
+                    break;
 
                 case CssTypes.CSS_NUMBER:
-                    CssCheckableValue c = (CssCheckableValue) val;
-                    if (!c.isZero()) {
+                    // TODO FIXME case of var with unknown numerical value...
+                    if (!val.getCheckableValue().isZero()) {
                         // must be a font-weight
                         if (state == 0 && fontWeight == null) {
-                            fontWeight = new CssFontWeight(ac, expression, false);
-                            // expression.next is called, so continue instead
-                            // of next
-                            continue;
+                            nex = new CssExpression();
+                            nex.addValue(val);
+                            fontWeight = new CssFontWeight(ac, nex, false);
+                            break;
                         }
                         throw new InvalidParamException("value",
                                 val.toString(),
@@ -213,11 +235,11 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
                 case CssTypes.CSS_PERCENTAGE:
                 case CssTypes.CSS_LENGTH:
                     if (state == 0 && fontSize == null) {
-                        fontSize = new CssFontSize(ac, expression, false);
+                        nex = new CssExpression();
+                        nex.addValue(val);
+                        fontSize = new CssFontSize(ac, nex, false);
                         state = 1;
-                        // expression.next is called, so continue instead
-                        // of next
-                        continue;
+                        break;
                     }
                     throw new InvalidParamException("value",
                             val.toString(),
@@ -228,8 +250,6 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
                     if (state == 1) {
                         fontFamily = new CssFontFamily(ac, expression, check);
                         state = 2;
-                        // expression.next is called, so continue instead
-                        // of next
                         continue;
                     }
                 default:
@@ -256,7 +276,10 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
             if (fontWeight == null) {
                 fontWeight = new CssFontWeight();
                 fontWeight.value = normal;
-
+            }
+            if (fontStretch == null) {
+                fontStretch = new CssFontStretch();
+                fontStretch.value = normal;
             }
         }
     }
@@ -266,5 +289,69 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
         this(ac, expression, false);
     }
 
+    @Override
+    public String toString() {
+        if (value != null) {
+            return value.toString();
+        }
+        boolean first = true;
+        StringBuilder sb = new StringBuilder();
+        if (fontStyle != null) {
+            sb.append(fontStyle);
+            first = false;
+        }
+        if (fontVariant != null) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(' ');
+            }
+            sb.append(fontVariant);
+        }
+        if (fontWeight != null) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(' ');
+            }
+            sb.append(fontWeight);
+        }
+        if (fontStretch != null) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(' ');
+            }
+            sb.append(fontStretch);
+        }
+
+        // no need to test, if we are here we should have one!
+        if (fontSize != null) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(' ');
+            }
+            sb.append(fontSize);
+        }
+        if (lineHeight != null) {
+            sb.append('/');
+            sb.append(lineHeight);
+        }
+        // should always be there...
+        if (fontFamily != null) {
+            sb.append(' ');
+            sb.append(fontFamily);
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        super.addToStyle(ac, style);
+        if (fontStretch != null) {
+            fontStretch.addToStyle(ac, style);
+        }
+    }
 }
 

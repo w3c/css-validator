@@ -14,13 +14,14 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-speed
+ * @deprecated
  */
 public class CssMarqueeSpeed extends org.w3c.css.properties.css.CssMarqueeSpeed {
 
-    private static CssIdent[] allowed_values;
+    private static final CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"slow", "normal", "fast"};
+        String[] id_values = {"slow", "normal", "fast"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -66,10 +67,10 @@ public class CssMarqueeSpeed extends org.w3c.css.properties.css.CssMarqueeSpeed 
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
+        if (inherit.equals(val.getIdent())) {
             value = inherit;
         } else {
-            val = getMatchingIdent((CssIdent) val);
+            val = getMatchingIdent(val.getIdent());
             if (val == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),

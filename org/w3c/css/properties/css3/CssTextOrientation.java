@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/REC-css-writing-modes-3-20191210/#propdef-text-orientation
+ * @spec https://www.w3.org/TR/2019/CR-css-writing-modes-4-20190730/#propdef-text-orientation
  */
 public class CssTextOrientation extends org.w3c.css.properties.css.CssTextOrientation {
 
@@ -26,12 +26,6 @@ public class CssTextOrientation extends org.w3c.css.properties.css.CssTextOrient
         for (String s : _allowed_values) {
             allowed_values[i++] = CssIdent.getIdent(s);
         }
-    }
-
-    static CssIdent all;
-
-    static {
-        all = CssIdent.getIdent("all");
     }
 
     public static CssIdent getAllowedIdent(CssIdent ident) {
@@ -54,8 +48,7 @@ public class CssTextOrientation extends org.w3c.css.properties.css.CssTextOrient
      * Creates a new CssTextOrientation
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextOrientation(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -71,15 +64,12 @@ public class CssTextOrientation extends org.w3c.css.properties.css.CssTextOrient
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (val.equals(inherit)) {
-            value = inherit;
-        } else {
-            value = getAllowedIdent((CssIdent) val);
-            if (value == null) {
-                throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
-            }
+        CssIdent id = val.getIdent();
+        if (!inherit.equals(id) && (getAllowedIdent(id) == null)) {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 

@@ -48,8 +48,7 @@ public class CssIsolation extends org.w3c.css.properties.css.CssIsolation {
      * Creates a new CssIsolation
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssIsolation(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -66,7 +65,7 @@ public class CssIsolation extends org.w3c.css.properties.css.CssIsolation {
 
         if (val.getType() == CssTypes.CSS_IDENT) {
             CssIdent ident = val.getIdent();
-            if (inherit.equals(ident)) {
+            if (CssIdent.isCssWide(ident)) {
                 value = val;
             } else {
                 if (getAllowedIdent(ident) == null) {

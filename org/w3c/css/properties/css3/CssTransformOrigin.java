@@ -67,8 +67,7 @@ public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformO
      * Creates a new CssTransformOrigin
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssTransformOrigin(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
@@ -89,12 +88,12 @@ public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformO
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (inherit.equals(val)) {
+            if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                value = inherit;
+                value = val;
                 expression.next();
                 return;
             }
@@ -145,7 +144,7 @@ public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformO
             boolean got_vertical = false;
             CssValue v = values.get(0);
             if (v.getType() == CssTypes.CSS_IDENT) {
-                CssIdent id = (CssIdent) v;
+                CssIdent id = v.getIdent();
                 // strictly horizontal or vertical
                 got_horizontal = isHorizontalIdent(id);
                 if (!got_horizontal) {
@@ -154,7 +153,7 @@ public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformO
             }
             v = values.get(1);
             if (v.getType() == CssTypes.CSS_IDENT) {
-                CssIdent id = (CssIdent) v;
+                CssIdent id = v.getIdent();
                 // yeah, it can be a single ugly test.
                 if (got_horizontal && isHorizontalIdent(id)) {
                     throw new InvalidParamException("value", id,

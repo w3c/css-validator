@@ -9,24 +9,15 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-gap
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-column-gap
+ * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-column-gap
+ * @see CssRowGap
  */
 
 public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
-
-    static CssIdent normal;
-
-    static {
-        normal = CssIdent.getIdent("normal");
-    }
 
     /**
      * Create a new CssColumnGap
@@ -46,32 +37,7 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
-
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkEqualsZero(ac, this);
-                value = val;
-                break;
-            case CssTypes.CSS_PERCENTAGE:
-            case CssTypes.CSS_LENGTH:
-                CssCheckableValue l = val.getCheckableValue();
-                l.checkPositiveness(ac, this);
-                value = val;
-                break;
-            case CssTypes.CSS_IDENT:
-                if (normal.equals(val)) {
-                    value = normal;
-                    break;
-                }
-                if (inherit.equals(val)) {
-                    value = inherit;
-                    break;
-                }
-            default:
-                throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
-        }
-        expression.next();
+        value = CssRowGap.parseRowGap(ac, expression, this);
     }
 
     public CssColumnGap(ApplContext ac, CssExpression expression)

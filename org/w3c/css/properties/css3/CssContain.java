@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2019/REC-css-contain-1-20191121/#propdef-contain
+ * @spec https://www.w3.org/TR/2020/WD-css-contain-2-20201216/#propdef-contain
  */
 public class CssContain extends org.w3c.css.properties.css.CssContain {
 
@@ -33,7 +33,8 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
         for (String s : _allowed_single_values) {
             allowed_single_values[i++] = CssIdent.getIdent(s);
         }
-        String[] _allowed_multiple_values = {"size", "layout", "paint"};
+        // "style" added as of css-contain-2 but at-risk
+        String[] _allowed_multiple_values = {"size", "layout", "paint", "style"};
         i = 0;
         allowed_multiple_values = new CssIdent[_allowed_multiple_values.length];
         for (String s : _allowed_multiple_values) {
@@ -82,6 +83,7 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
         setByUser();
 
         ArrayList<CssValue> values = new ArrayList<>();
+        ArrayList<CssValue> idvalues = new ArrayList<>();
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -92,26 +94,25 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
                         val.toString(),
                         getPropertyName(), ac);
             }
-            id = (CssIdent) val;
-            if (id.equals(inherit)) {
+            id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                values.add(inherit);
+                values.add(val);
                 expression.next();
                 continue;
             }
 
-            ident = getAllowedSingleIdent(id);
-            if (ident != null) {
+            if (getAllowedSingleIdent(id) != null) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                values.add(ident);
+                values.add(val);
                 expression.next();
                 continue;
             }
@@ -123,12 +124,13 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
                         getPropertyName(), ac);
             }
             // check possible duplication
-            if (values.contains(ident)) {
+            if (idvalues.contains(ident)) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
             }
-            values.add(ident);
+            idvalues.add(ident);
+            values.add(val);
             if (op != SPACE) {
                 throw new InvalidParamException("operator", op,
                         getPropertyName(), ac);

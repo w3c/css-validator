@@ -7,8 +7,8 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-outset
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-image-outset
  */
 public class CssBorderImageOutset extends org.w3c.css.properties.css.CssBorderImageOutset {
 
@@ -51,16 +51,15 @@ public class CssBorderImageOutset extends org.w3c.css.properties.css.CssBorderIm
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
                 case CssTypes.CSS_LENGTH:
-                    CssCheckableValue num = val.getCheckableValue();
-                    num.checkPositiveness(ac, this);
+                    val.getCheckableValue().checkPositiveness(ac, getPropertyName());
                     valueList.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        valueList.add(inherit);
+                        valueList.add(val);
                         break;
                     }
                     // unrecognized ident, let it fail

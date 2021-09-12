@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-images-3-20191010/#propdef-object-fit
+ * @spec https://www.w3.org/TR/2020/CRD-css-images-3-20201217/#propdef-object-fit
  */
 public class CssObjectFit extends org.w3c.css.properties.css.CssObjectFit {
 
@@ -49,8 +49,7 @@ public class CssObjectFit extends org.w3c.css.properties.css.CssObjectFit {
      * Creates a new CssObjectFit
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssObjectFit(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,23 +64,19 @@ public class CssObjectFit extends org.w3c.css.properties.css.CssObjectFit {
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else {
-                value = getAllowedIdent(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-            }
-        } else {
+        if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);
         }
+        CssIdent ident = val.getIdent();
+        if (!CssIdent.isCssWide(ident) && getAllowedIdent(ident) == null) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        value = val;
+
         expression.next();
     }
 

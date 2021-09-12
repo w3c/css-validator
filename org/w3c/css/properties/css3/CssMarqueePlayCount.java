@@ -15,6 +15,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-play-count
+ * @deprecated
  */
 public class CssMarqueePlayCount extends org.w3c.css.properties.css.CssMarqueePlayCount {
 
@@ -55,7 +56,7 @@ public class CssMarqueePlayCount extends org.w3c.css.properties.css.CssMarqueePl
                 value = num;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
+                CssIdent ident = val.getIdent();
                 if (inherit.equals(ident)) {
                     value = inherit;
                     break;

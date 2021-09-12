@@ -10,10 +10,12 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-color
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background-color
  */
 public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackgroundColor {
 
@@ -28,8 +30,7 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
      * Create a new CssBackgroundColor
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssBackgroundColor(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
@@ -41,8 +42,8 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (inherit.equals(val)) {
-            value = inherit;
+        if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
+            value = val;
             expression.next();
         } else {
             try {
@@ -51,7 +52,7 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
                 CssColor tcolor = new CssColor(ac, expression, check);
                 // instead of using getColor, we get the value directly
                 // as we can have idents
-                value = (tcolor.value == null) ? tcolor.color : tcolor.value;
+                value = tcolor.getValue();
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
@@ -69,6 +70,7 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
      */
+    @Override
     public boolean isDefault() {
         return (value == transparent);
     }

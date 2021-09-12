@@ -92,17 +92,12 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
                 v = parseFunctionValue(ac, val, caller);
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    v = inherit;
-                } else {
-                    CssIdent id = getAllowedIdent((CssIdent) val);
-                    if (id != null) {
-                        v = id;
-                    } else {
-                        throw new InvalidParamException("unrecognize", ac);
-                    }
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || getAllowedIdent(id) != null) {
+                    v = val;
+                    break;
                 }
-                break;
+                // unrecognized, let it fail
             default:
                 throw new InvalidParamException("value", expression.getValue(),
                         caller.getPropertyName(), ac);

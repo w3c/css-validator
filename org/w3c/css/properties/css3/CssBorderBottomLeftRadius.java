@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValueList;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-bottom-left-radius
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-bottom-left-radius
  * @see CssBorderRadius
  */
 public class CssBorderBottomLeftRadius extends org.w3c.css.properties.css.CssBorderBottomLeftRadius {

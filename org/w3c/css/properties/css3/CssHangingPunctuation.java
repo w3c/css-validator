@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-hanging-punctuation
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-hanging-punctuation
  */
 public class CssHangingPunctuation extends org.w3c.css.properties.css.CssHangingPunctuation {
 
@@ -57,8 +57,7 @@ public class CssHangingPunctuation extends org.w3c.css.properties.css.CssHanging
      * Creates a new CssHangingPunctuation
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssHangingPunctuation(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -70,9 +69,9 @@ public class CssHangingPunctuation extends org.w3c.css.properties.css.CssHanging
         CssValue val;
         char op;
 
-        CssIdent firstValue = null;
-        CssIdent lastValue = null;
-        CssIdent endValue = null;
+        CssValue firstValue = null;
+        CssValue lastValue = null;
+        CssValue endValue = null;
 
         val = expression.getValue();
         op = expression.getOperator();
@@ -83,16 +82,16 @@ public class CssHangingPunctuation extends org.w3c.css.properties.css.CssHanging
                     getPropertyName(), ac);
         }
 
-        CssIdent ident = (CssIdent) val;
-        if (inherit.equals(ident)) {
-            value = inherit;
+        CssIdent ident = val.getIdent();
+        if (CssIdent.isCssWide(ident)) {
+            value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         getPropertyName(), ac);
             }
         } else if (none.equals(ident)) {
-            value = none;
+            value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",
                         val.toString(),
@@ -103,15 +102,15 @@ public class CssHangingPunctuation extends org.w3c.css.properties.css.CssHanging
             do {
                 boolean match = false;
                 if (firstValue == null && first.equals(ident)) {
-                    firstValue = first;
+                    firstValue = val;
                     match = true;
                 } else if (lastValue == null && last.equals(ident)) {
-                    lastValue = last;
+                    lastValue = val;
                     match = true;
                 } else {
-                    if (endValue == null) {
-                        endValue = getEndValue(ident);
-                        match = (endValue != null);
+                    if ((endValue == null) && (getEndValue(ident) != null)) {
+                        endValue = val;
+                        match = true;
                     }
                 }
                 if (!match) {
@@ -137,7 +136,7 @@ public class CssHangingPunctuation extends org.w3c.css.properties.css.CssHanging
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                ident = (CssIdent) val;
+                ident = val.getIdent();
             } while (!expression.end());
             // now construct the value
             ArrayList<CssValue> v = new ArrayList<CssValue>(nbgot);

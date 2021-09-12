@@ -15,7 +15,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-fill
+ * @spec https://www.w3.org/TR/2021/WD-css-multicol-1-20210212/#propdef-column-fill
  */
 
 public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
@@ -72,11 +72,11 @@ public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        CssIdent ident = val.getIdent();
+        if (CssIdent.isCssWide(ident)) {
+            value = val;
         } else {
-            val = getAllowedValue((CssIdent) val);
-            if (val == null) {
+            if (getAllowedValue(ident) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);

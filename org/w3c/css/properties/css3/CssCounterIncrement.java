@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-counter-increment
+ * @spec https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#propdef-counter-increment
  */
 public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIncrement {
 
@@ -34,8 +34,7 @@ public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIn
      * Creates a new CssCounterIncrement
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssCounterIncrement(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -51,16 +50,17 @@ public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIn
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (inherit.equals(id)) {
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
                         break;
                     }
-                    if (none.equals(val)) {
-                        value = none;
+                    if (none.equals(id)) {
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
@@ -68,9 +68,13 @@ public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIn
                         break;
                     }
                     // check for reserved keyword
-                    if (CssIdent.isCssWide((CssIdent) val)) {
-                        throw new InvalidParamException("value", val,
-                                getPropertyName(), ac);
+                    if (CssIdent.isCssWide(id)) {
+                        value = val;
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                        break;
                     }
                     v.add(val);
                     intallowed = true;

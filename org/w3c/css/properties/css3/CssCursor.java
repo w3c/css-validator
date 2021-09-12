@@ -105,17 +105,18 @@ public class CssCursor extends org.w3c.css.properties.css.CssCursor {
                     }
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     inherit.toString(),
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
                     if (lastIdent == null) {
-                        lastIdent = getMatchingIdent((CssIdent) val);
+                        lastIdent = getMatchingIdent(id);
                         // not recognized... exit
                         if (lastIdent == null) {
                             throw new InvalidParamException("value",

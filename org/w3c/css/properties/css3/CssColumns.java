@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-columns
+ * @spec https://www.w3.org/TR/2021/WD-css-multicol-1-20210212/#propdef-columns
  * @see org.w3c.css.properties.css3.CssColumnWidth
  * @see org.w3c.css.properties.css3.CssColumnCount
  */
@@ -75,7 +75,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
                     if (count != null) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
-                    count = new CssColumnCount(ac, expression);
+                    count = new CssColumnCount(ac, expression, false);
                     values.add(val);
                     break;
                 case CssTypes.CSS_FUNCTION:
@@ -83,21 +83,22 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
                     if (width != null) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
-                    width = new CssColumnWidth(ac, expression);
+                    width = new CssColumnWidth(ac, expression, false);
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals((CssIdent) val)) {
+                    CssIdent ident = val.getIdent();
+                    if (CssIdent.isCssWide(ident)) {
                         if (nb_val > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = inherit;
+                        value = val;
                         expression.next();
                         break;
                     }
-                    if (auto.equals((CssIdent) val)) {
+                    if (auto.equals(ident)) {
                         nb_auto++;
-                        values.add(auto);
+                        values.add(val);
                         expression.next();
                         break;
                     }
@@ -105,7 +106,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
                     if (width != null) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
-                    width = new CssColumnWidth(ac, expression);
+                    width = new CssColumnWidth(ac, expression, false);
                     values.add(val);
                     break;
                 default:
@@ -115,7 +116,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
             }
         }
         if (nb_val == 1) {
-            if (value != inherit) {
+            if (!values.isEmpty()) {
                 value = values.get(0);
             }
         } else {

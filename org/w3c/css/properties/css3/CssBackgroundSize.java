@@ -9,7 +9,6 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
@@ -23,7 +22,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-size
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background-size
  */
 public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundSize {
 
@@ -64,8 +63,7 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
      * @param ac         The context
      * @param expression The expression for this property
      * @param check      if arguments count must be checked.
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssBackgroundSize(ApplContext ac, CssExpression expression,
                              boolean check) throws InvalidParamException {
@@ -96,11 +94,10 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    val.getLength();
+                    val.getCheckableValue().checkEqualsZero(ac, caller);
                 case CssTypes.CSS_LENGTH:
                 case CssTypes.CSS_PERCENTAGE:
-                    CssCheckableValue l = val.getCheckableValue();
-                    l.checkPositiveness(ac, caller);
+                    val.getCheckableValue().checkPositiveness(ac, caller);
                     if (is_complete) {
                         vl = new CssValueList();
                         vl.add(val);
@@ -111,31 +108,31 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
                     is_complete = !is_complete;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         // if we got inherit after other values, fail
                         // if we got more than one value... fail
                         if ((values.size() > 0) || (expression.getCount() > 1)) {
                             throw new InvalidParamException("value", val,
                                     caller, ac);
                         }
-                        values.add(inherit);
+                        values.add(val);
                         break;
-                    } else if (auto.equals(val)) {
+                    } else if (auto.equals(id)) {
                         if (is_complete) {
                             vl = new CssValueList();
-                            vl.add(auto);
+                            vl.add(val);
                         } else {
-                            vl.add(auto);
+                            vl.add(val);
                             values.add(vl);
                         }
                         is_complete = !is_complete;
                         break;
                     } else {
-                        CssValue v = getMatchingIdent((CssIdent) val);
                         // if ok, and if we are not in a middle of a compound
                         // value...
-                        if (v != null && is_complete) {
-                            values.add(v);
+                        if ((getMatchingIdent(id) != null) && is_complete) {
+                            values.add(val);
                             break;
                         }
                     }

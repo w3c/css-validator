@@ -12,7 +12,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-rule-width
+ * @spec https://www.w3.org/TR/2021/WD-css-multicol-1-20210212/#propdef-column-rule-width
  */
 
 public class CssColumnRuleWidth extends org.w3c.css.properties.css.CssColumnRuleWidth {

@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#font-weight-prop
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-weight
  */
 public class CssFontWeight extends org.w3c.css.properties.css.CssFontWeight {
 
@@ -48,8 +48,7 @@ public class CssFontWeight extends org.w3c.css.properties.css.CssFontWeight {
      * Creates a new CssFontWeight
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontWeight(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -66,42 +65,25 @@ public class CssFontWeight extends org.w3c.css.properties.css.CssFontWeight {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                CssNumber num = val.getNumber();
-                switch (num.getInt()) {
-                    case 100:
-                    case 200:
-                    case 300:
-                    case 400:
-                    case 500:
-                    case 600:
-                    case 700:
-                    case 800:
-                    case 900:
-                        value = num;
-                        break;
-                    default:
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    CssNumber num = val.getNumber();
+                    num.checkGreaterEqualThan(ac, 1, this);
+                    num.checkLowerEqualThan(ac, 1000, this);
+                } else {
+                    // can at least check it is positive
+                    val.getCheckableValue().checkStrictPositiveness(ac, getPropertyName());
                 }
+                value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || (getAllowedValue(id) != null)) {
+                    value = val;
                     break;
                 }
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-                break;
             default:
                 throw new InvalidParamException("value",
-                        expression.getValue().toString(),
-                        getPropertyName(), ac);
+                        val.toString(), getPropertyName(), ac);
         }
         expression.next();
     }

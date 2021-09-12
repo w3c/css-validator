@@ -11,6 +11,7 @@ import org.w3c.css.values.CssExpression;
 
 /**
  * @spec https://www.w3.org/TR/2018/WD-css-logical-1-20180827/#propdef-inset-inline-end
+ * @spec https://www.w3.org/TR/2020/WD-css-position-3-20200519/#propdef-inset-inline-end
  */
 public class CssInsetInlineEnd extends org.w3c.css.properties.css.CssInsetInlineEnd {
 

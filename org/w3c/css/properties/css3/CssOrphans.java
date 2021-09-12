@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/CR-css-break-3-20181204/#propdef-break-inside
+ * @spec https://www.w3.org/TR/2018/CR-css-break-3-20181204/#propdef-orphans
  */
 public class CssOrphans extends org.w3c.css.properties.css.CssOrphans {
 
@@ -35,8 +35,7 @@ public class CssOrphans extends org.w3c.css.properties.css.CssOrphans {
      * @param ac         The context
      * @param expression The expression for this property
      * @param check      true will test the number of parameters
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssOrphans(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -56,9 +55,8 @@ public class CssOrphans extends org.w3c.css.properties.css.CssOrphans {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ide = (CssIdent) val;
-                if (inherit.equals(ide)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
                     break;
                 }
             default:
@@ -73,8 +71,7 @@ public class CssOrphans extends org.w3c.css.properties.css.CssOrphans {
      *
      * @param ac,        the Context
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssOrphans(ApplContext ac, CssExpression expression)
             throws InvalidParamException {

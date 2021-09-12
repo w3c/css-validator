@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#propdef-initial-letter
+ * @spec https://www.w3.org/TR/2020/WD-css-inline-3-20200827/#propdef-initial-letter-align
  */
 public class CssInitialLetterAlign extends org.w3c.css.properties.css.CssInitialLetterAlign {
 
@@ -26,7 +26,7 @@ public class CssInitialLetterAlign extends org.w3c.css.properties.css.CssInitial
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"alphabetic", "ideographic", "hebrew", "hanging"};
+        String[] _allowed_values = {"alphabetic", "ideographic", "leading", "hanging"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
         for (String s : _allowed_values) {
@@ -77,26 +77,25 @@ public class CssInitialLetterAlign extends org.w3c.css.properties.css.CssInitial
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    CssIdent id = (CssIdent) val;
-                    if (inherit.equals(id)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", expression.getValue(),
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
                     // border_box can only be first.
                     if (border_box.equals(id) && v.isEmpty()) {
-                        v.add(border_box);
+                        v.add(val);
                         got_border_box = true;
                         break;
                     }
-                    id = getAllowedIdent(id);
-                    if (id != null) {
+                    if (getAllowedIdent(id) != null) {
                         // a match! We can't have two of them so...
                         if (v.isEmpty() || got_border_box) {
-                            v.add(id);
+                            v.add(val);
                             break;
                         }
                     }
@@ -110,7 +109,7 @@ public class CssInitialLetterAlign extends org.w3c.css.properties.css.CssInitial
             }
             expression.next();
         }
-        if (value != inherit) {
+        if (!v.isEmpty()) {
             value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
         }
     }

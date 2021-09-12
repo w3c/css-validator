@@ -15,7 +15,7 @@ import org.w3c.css.values.CssValue;
 import java.util.Arrays;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#font-variant-caps-prop
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant-caps
  */
 public class CssFontVariantCaps extends org.w3c.css.properties.css.CssFontVariantCaps {
 
@@ -34,7 +34,7 @@ public class CssFontVariantCaps extends org.w3c.css.properties.css.CssFontVarian
         Arrays.sort(capsValues);
     }
 
-    public static final CssIdent getCapsValue(CssIdent ident) {
+    public static final CssIdent getAllowedValue(CssIdent ident) {
         int idx = Arrays.binarySearch(capsValues, ident);
         if (idx >= 0) {
             return capsValues[idx];
@@ -53,8 +53,7 @@ public class CssFontVariantCaps extends org.w3c.css.properties.css.CssFontVarian
      * Creates a new CssFontVariantCaps
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontVariantCaps(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -69,25 +68,20 @@ public class CssFontVariantCaps extends org.w3c.css.properties.css.CssFontVarian
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else if (normal.equals(ident)) {
-                value = normal;
-            } else {
-                value = getCapsValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-            }
-        } else {
+        if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);
         }
+        CssIdent ident = val.getIdent();
+        if (!CssIdent.isCssWide(ident) &&
+                !normal.equals(ident) &&
+                (getAllowedValue(ident) == null)) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        value = val;
         expression.next();
     }
 

@@ -62,8 +62,7 @@ public class CssTransformBox extends org.w3c.css.properties.css.CssTransformBox 
      * Creates a new CssTransformOrigin
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssTransformBox(ApplContext ac, CssExpression expression,
                            boolean check) throws InvalidParamException {
@@ -79,23 +78,19 @@ public class CssTransformBox extends org.w3c.css.properties.css.CssTransformBox 
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-            }
-        } else {
+        if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);
         }
+
+        CssIdent ident = val.getIdent();
+        if (!inherit.equals(ident) && (getAllowedValue(ident) == null)) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        value = val;
         expression.next();
     }
 

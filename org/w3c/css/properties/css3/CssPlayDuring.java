@@ -133,13 +133,13 @@ public class CssPlayDuring extends org.w3c.css.properties.css.CssPlayDuring {
                 break;
             case CssTypes.CSS_IDENT:
                 if (expression.getCount() == 1) {
-                    CssIdent id = (CssIdent) val;
-                    if (inherit.equals(id)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        value = val;
                         break;
                     }
-                    value = getAllowedIdent(id);
-                    if (value != null) {
+                    if (getAllowedIdent(id) != null) {
+                        value = val;
                         break;
                     }
                 }

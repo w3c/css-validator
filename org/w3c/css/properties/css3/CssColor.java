@@ -19,7 +19,6 @@ import org.w3c.css.values.CssValue;
 public class CssColor extends org.w3c.css.properties.css.CssColor {
 
     CssValue color = null;
-    CssValue value = null;
 
     /**
      * Create a new CssColor
@@ -56,8 +55,8 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
                 }
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (inherit.equals(val.getIdent())) {
+                    value = val;
                 } else {
                     color = new org.w3c.css.values.CssColor(ac, val.getIdent().toString());
                 }
@@ -116,6 +115,17 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      */
     public Object get() {
         return color;
+    }
+
+    /**
+     *
+     * @return the computed CssValue
+     */
+    public CssValue getValue() {
+        if (color != null) {
+            return color;
+        }
+        return value;
     }
 
     /**

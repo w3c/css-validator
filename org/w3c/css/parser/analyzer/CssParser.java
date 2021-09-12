@@ -429,10 +429,14 @@ public abstract class CssParser implements CssParserConstants {
 
             if (n.kind == CssParserConstants.IDENT) {
                 String s = convertIdent(val);
-            if ('-' == s.charAt(0)) {
-                expr.markVendorExtension();
-            }
-                    v.set(convertIdent(val), ac);
+                if ('-' == s.charAt(0)) {
+                        expr.markVendorExtension();
+                }
+                if (v.getRawType() == CssTypes.CSS_IDENT) {
+                        v = CssIdent.getIdent(s); // might be in the setValue call
+                } else {
+                        v.set(s, ac);
+                }
             } else if (n.kind == CssParserConstants.STRING) {
                     v.set(val, ac);
             } else {
@@ -7940,14 +7944,6 @@ n.image = Util.strip(n.image);
     finally { jj_save(14, xla); }
   }
 
-  private boolean jj_3R_320()
- {
-    if (jj_3R_195()) return true;
-    if (jj_scan_token(EQ)) return true;
-    if (jj_scan_token(NUMBER)) return true;
-    return false;
-  }
-
   private boolean jj_3R_205()
  {
     if (jj_3R_222()) return true;
@@ -9660,6 +9656,14 @@ n.image = Util.strip(n.image);
       if (jj_3R_328()) { jj_scanpos = xsp; break; }
     }
     if (jj_scan_token(RPAREN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_320()
+ {
+    if (jj_3R_195()) return true;
+    if (jj_scan_token(EQ)) return true;
+    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 

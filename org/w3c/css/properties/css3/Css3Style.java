@@ -35,6 +35,7 @@ import org.w3c.css.properties.css.CssBackgroundPositionX;
 import org.w3c.css.properties.css.CssBackgroundPositionY;
 import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.properties.css.CssBaselineShift;
+import org.w3c.css.properties.css.CssBaselineSource;
 import org.w3c.css.properties.css.CssBlockSize;
 import org.w3c.css.properties.css.CssBorderBlock;
 import org.w3c.css.properties.css.CssBorderBlockColor;
@@ -90,7 +91,6 @@ import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssContain;
 import org.w3c.css.properties.css.CssCounterSet;
-import org.w3c.css.properties.css.CssCustomProperty;
 import org.w3c.css.properties.css.CssDominantBaseline;
 import org.w3c.css.properties.css.CssFilter;
 import org.w3c.css.properties.css.CssFlex;
@@ -108,13 +108,20 @@ import org.w3c.css.properties.css.CssFloodOpacity;
 import org.w3c.css.properties.css.CssFontFeatureSettings;
 import org.w3c.css.properties.css.CssFontKerning;
 import org.w3c.css.properties.css.CssFontLanguageOverride;
+import org.w3c.css.properties.css.CssFontOpticalSizing;
+import org.w3c.css.properties.css.CssFontPalette;
 import org.w3c.css.properties.css.CssFontSynthesis;
+import org.w3c.css.properties.css.CssFontSynthesisSmallCaps;
+import org.w3c.css.properties.css.CssFontSynthesisStyle;
+import org.w3c.css.properties.css.CssFontSynthesisWeight;
 import org.w3c.css.properties.css.CssFontVariantAlternates;
 import org.w3c.css.properties.css.CssFontVariantCaps;
 import org.w3c.css.properties.css.CssFontVariantEastAsian;
+import org.w3c.css.properties.css.CssFontVariantEmoji;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssFontVariationSettings;
 import org.w3c.css.properties.css.CssForcedColorAdjust;
 import org.w3c.css.properties.css.CssGap;
 import org.w3c.css.properties.css.CssGrid;
@@ -145,6 +152,7 @@ import org.w3c.css.properties.css.CssInitialLetter;
 import org.w3c.css.properties.css.CssInitialLetterAlign;
 import org.w3c.css.properties.css.CssInitialLetterWrap;
 import org.w3c.css.properties.css.CssInlineSize;
+import org.w3c.css.properties.css.CssInlineSizing;
 import org.w3c.css.properties.css.CssInset;
 import org.w3c.css.properties.css.CssInsetBlock;
 import org.w3c.css.properties.css.CssInsetBlockEnd;
@@ -199,6 +207,7 @@ import org.w3c.css.properties.css.CssPerspectiveOrigin;
 import org.w3c.css.properties.css.CssPlaceContent;
 import org.w3c.css.properties.css.CssPlaceItems;
 import org.w3c.css.properties.css.CssPlaceSelf;
+import org.w3c.css.properties.css.CssPrintColorAdjust;
 import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
@@ -301,11 +310,7 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
-import java.util.HashMap;
-
 public class Css3Style extends ATSCStyle {
-
-    public HashMap<String, CssCustomProperty> customProperties = new HashMap<>();
 
     public org.w3c.css.properties.css.counterstyle.CssSpeakAs counterStyleCssSpeakAs;
     public CssSystem counterStyleCssSystem;
@@ -414,14 +419,16 @@ public class Css3Style extends ATSCStyle {
     public CssRubyPosition cssRubyPosition;
     public CssRubyAlign cssRubyAlign;
     public CssRubyMerge cssRubyMerge;
-    @Deprecated
-    CssRubyOverhang cssRubyOverhang;
+    public org.w3c.css.properties.css.CssRubyOverhang cssRubyOverhang;
+
     public CssAlignmentBaseline cssAlignmentBaseline;
     public CssBaselineShift cssBaselineShift;
     public CssDominantBaseline cssDominantBaseline;
     public CssInitialLetter cssInitialLetter;
     public CssInitialLetterAlign cssInitialLetterAlign;
     public CssInitialLetterWrap cssInitialLetterWrap;
+    public CssInlineSizing cssInlineSizing;
+    public CssBaselineSource cssBaselineSource;
 
     public CssOpacity cssOpacity;
     public CssBackgroundClip cssBackgroundClip;
@@ -452,6 +459,13 @@ public class Css3Style extends ATSCStyle {
     public CssFontVariantNumeric cssFontVariantNumeric;
     public CssFontFeatureSettings cssFontFeatureSettings;
     public CssFontVariantAlternates cssFontVariantAlternates;
+    public CssFontSynthesisSmallCaps cssFontSynthesisSmallCaps;
+    public CssFontSynthesisStyle cssFontSynthesisStyle;
+    public CssFontSynthesisWeight cssFontSynthesisWeight;
+    public CssFontVariantEmoji cssFontVariantEmoji;
+    public CssFontOpticalSizing cssFontOpticalSizing;
+    public CssFontPalette cssFontPalette;
+    public CssFontVariationSettings cssFontVariationSettings;
 
     public CssOverflowWrap cssOverflowWrap;
     public CssWordBreak cssWordBreak;
@@ -566,6 +580,7 @@ public class Css3Style extends ATSCStyle {
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
     public CssColorScheme cssColorScheme;
+    public CssPrintColorAdjust cssPrintColorAdjust;
 
     public CssBlockSize cssBlockSize;
     public CssInlineSize cssInlineSize;
@@ -1225,6 +1240,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return cssColorScheme;
+    }
+
+    public CssPrintColorAdjust getPrintColorAdjust() {
+        if (cssPrintColorAdjust == null) {
+            cssPrintColorAdjust =
+                    (CssPrintColorAdjust) style.CascadingOrder(new CssPrintColorAdjust(),
+                            style, selector);
+        }
+        return cssPrintColorAdjust;
     }
 
     public CssForcedColorAdjust getForcedColorAdjust() {
@@ -2070,12 +2094,11 @@ public class Css3Style extends ATSCStyle {
         return cssRubyMerge;
     }
 
-    @Deprecated
-    public CssRubyOverhang getRubyOverhang() {
+    public org.w3c.css.properties.css.CssRubyOverhang getRubyOverhang() {
         if (cssRubyOverhang == null) {
             cssRubyOverhang =
-                    (CssRubyOverhang) style.CascadingOrder(
-                            new CssRubyOverhang(), style, selector);
+                    (org.w3c.css.properties.css.CssRubyOverhang) style.CascadingOrder(
+                            new org.w3c.css.properties.css.CssRubyOverhang(), style, selector);
         }
         return cssRubyOverhang;
     }
@@ -2134,6 +2157,15 @@ public class Css3Style extends ATSCStyle {
         return cssTextAlignLast;
     }
 
+    public CssInlineSizing getInlineSizing() {
+        if (cssInlineSizing == null) {
+            cssInlineSizing =
+                    (CssInlineSizing) style.CascadingOrder(
+                            new CssInlineSizing(), style, selector);
+        }
+        return cssInlineSizing;
+    }
+
     public CssDominantBaseline getDominantBaseline() {
         if (cssDominantBaseline == null) {
             cssDominantBaseline =
@@ -2159,6 +2191,15 @@ public class Css3Style extends ATSCStyle {
                             new CssBaselineShift(), style, selector);
         }
         return cssBaselineShift;
+    }
+
+    public CssBaselineSource getBaselineSource() {
+        if (cssBaselineSource == null) {
+            cssBaselineSource =
+                    (CssBaselineSource) style.CascadingOrder(
+                            new CssBaselineSource(), style, selector);
+        }
+        return cssBaselineSource;
     }
 
     public CssInitialLetter getInitialLetter() {
@@ -2604,12 +2645,39 @@ public class Css3Style extends ATSCStyle {
     }
 
     public CssFontVariantPosition getFontVariantPosition() {
-        if (cssFontVariantCaps == null) {
-            cssFontVariantCaps =
-                    (CssFontVariantCaps) style.CascadingOrder(
-                            new CssFontVariantCaps(), style, selector);
+        if (cssFontVariantPosition == null) {
+            cssFontVariantPosition =
+                    (CssFontVariantPosition) style.CascadingOrder(
+                            new CssFontVariantPosition(), style, selector);
         }
         return cssFontVariantPosition;
+    }
+
+    public CssFontSynthesisSmallCaps getFontSynthesisSmallCaps() {
+        if (cssFontSynthesisSmallCaps == null) {
+            cssFontSynthesisSmallCaps =
+                    (CssFontSynthesisSmallCaps) style.CascadingOrder(
+                            new CssFontSynthesisSmallCaps(), style, selector);
+        }
+        return cssFontSynthesisSmallCaps;
+    }
+    
+    public CssFontSynthesisStyle getFontSynthesisStyle() {
+        if (cssFontSynthesisStyle == null) {
+            cssFontSynthesisStyle =
+                    (CssFontSynthesisStyle) style.CascadingOrder(
+                            new CssFontSynthesisStyle(), style, selector);
+        }
+        return cssFontSynthesisStyle;
+    }
+    
+    public CssFontSynthesisWeight getFontSynthesisWeight() {
+        if (cssFontSynthesisWeight == null) {
+            cssFontSynthesisWeight =
+                    (CssFontSynthesisWeight) style.CascadingOrder(
+                            new CssFontSynthesisWeight(), style, selector);
+        }
+        return cssFontSynthesisWeight;
     }
 
     public CssFontSynthesis getFontSynthesis() {
@@ -2639,6 +2707,15 @@ public class Css3Style extends ATSCStyle {
         return cssFontVariantLigatures;
     }
 
+    public CssFontVariantEmoji getFontVariantEmoji() {
+        if (cssFontVariantEmoji == null) {
+            cssFontVariantEmoji =
+                    (CssFontVariantEmoji) style.CascadingOrder(
+                            new CssFontVariantEmoji(), style, selector);
+        }
+        return cssFontVariantEmoji;
+    }
+    
     public CssFontVariantNumeric getFontVariantNumeric() {
         if (cssFontVariantNumeric == null) {
             cssFontVariantNumeric =
@@ -2648,6 +2725,24 @@ public class Css3Style extends ATSCStyle {
         return cssFontVariantNumeric;
     }
 
+    public CssFontOpticalSizing getFontOpticalSizing() {
+        if (cssFontOpticalSizing == null) {
+            cssFontOpticalSizing =
+                    (CssFontOpticalSizing) style.CascadingOrder(
+                            new CssFontOpticalSizing(), style, selector);
+        }
+        return cssFontOpticalSizing;
+    }
+
+    public CssFontPalette getFontPalette() {
+        if (cssFontPalette == null) {
+            cssFontPalette =
+                    (CssFontPalette) style.CascadingOrder(
+                            new CssFontPalette(), style, selector);
+        }
+        return cssFontPalette;
+    }
+    
     public CssFontFeatureSettings getFontFeatureSettings() {
         if (cssFontFeatureSettings == null) {
             cssFontFeatureSettings =
@@ -2655,6 +2750,15 @@ public class Css3Style extends ATSCStyle {
                             new CssFontFeatureSettings(), style, selector);
         }
         return cssFontFeatureSettings;
+    }
+
+    public CssFontVariationSettings getFontVariationSettings() {
+        if (cssFontVariationSettings == null) {
+            cssFontVariationSettings =
+                    (CssFontVariationSettings) style.CascadingOrder(
+                            new CssFontVariationSettings(), style, selector);
+        }
+        return cssFontVariationSettings;
     }
 
     public CssFontVariantAlternates getFontVariantAlternates() {
@@ -3349,17 +3453,6 @@ public class Css3Style extends ATSCStyle {
                 }
             }
         }
-    }
-
-    public CssCustomProperty getCustomProperty(String s) {
-        return customProperties.get(s);
-    }
-
-    public CssCustomProperty addCustomProperty(String s, CssCustomProperty p, boolean force) {
-        if (force) {
-            return customProperties.put(s, p);
-        }
-        return customProperties.putIfAbsent(s, p);
     }
 
     /**

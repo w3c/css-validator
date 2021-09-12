@@ -92,12 +92,12 @@ public class CssMinWidth extends org.w3c.css.properties.css.CssMinWidth {
                 v = parseFunctionValue(ac, val, caller);
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    v = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    v = val;
                 } else {
-                    CssIdent id = getAllowedIdent((CssIdent) val);
-                    if (id != null) {
-                        v = id;
+                    if (getAllowedIdent(id) != null) {
+                        v = val;
                     } else {
                         throw new InvalidParamException("unrecognize", ac);
                     }

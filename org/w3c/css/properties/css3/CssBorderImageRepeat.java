@@ -16,22 +16,22 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-repeat
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-image-repeat
  */
 public class CssBorderImageRepeat extends org.w3c.css.properties.css.CssBorderImageRepeat {
 
-    public static final CssIdent allowed_values[];
+    private static CssIdent[] allowed_values;
 
-    // stretch | repeat | round | space
     static {
-        allowed_values = new CssIdent[4];
-        allowed_values[0] = CssIdent.getIdent("stretch");
-        allowed_values[1] = CssIdent.getIdent("repeat");
-        allowed_values[2] = CssIdent.getIdent("round");
-        allowed_values[3] = CssIdent.getIdent("space");
+        String id_values[] = {"stretch", "repeat", "round", "space"};
+        allowed_values = new CssIdent[id_values.length];
+        int i = 0;
+        for (String s : id_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
     }
 
-    public final static CssIdent getMatchingIdent(CssIdent ident) {
+    public static CssIdent getMatchingIdent(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -51,8 +51,7 @@ public class CssBorderImageRepeat extends org.w3c.css.properties.css.CssBorderIm
      * Creates a new CssBorderImageWidth
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssBorderImageRepeat(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -70,16 +69,16 @@ public class CssBorderImageRepeat extends org.w3c.css.properties.css.CssBorderIm
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        valueList.add(inherit);
+                        valueList.add(val);
                         break;
                     }
-                    CssIdent id = getMatchingIdent((CssIdent) val);
-                    if (id != null) {
-                        valueList.add(id);
+                    if (getMatchingIdent(id) != null) {
+                        valueList.add(val);
                         break;
                     }
                     // unrecognized ident, let it fail

@@ -5,6 +5,7 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
@@ -12,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#alignment-baseline-property
+ * @spec https://www.w3.org/TR/2020/WD-css-inline-3-20200827/#propdef-alignment-baseline
  */
 public class CssAlignmentBaseline extends org.w3c.css.properties.css.CssAlignmentBaseline {
 
@@ -20,7 +21,7 @@ public class CssAlignmentBaseline extends org.w3c.css.properties.css.CssAlignmen
 
     static {
         String[] _allowed_values = {"baseline", "text-bottom", "alphabetic", "ideographic",
-                "middle", "central", "mathematical", "text-top", "bottom", "center", "top"};
+                "middle", "central", "mathematical", "text-top"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
         for (String s : _allowed_values) {
@@ -63,16 +64,25 @@ public class CssAlignmentBaseline extends org.w3c.css.properties.css.CssAlignmen
         val = expression.getValue();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
+                if (getAllowedIdent(id) == null) {
+                    // test for SVG
+                    if (ac.getCssProfile().equals(CssProfile.SVG)) {
+                        if (org.w3c.css.properties.svg.CssAlignmentBaseline.getAllowedIdent(id) == null) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                    } else {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",

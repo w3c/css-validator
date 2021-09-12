@@ -21,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-backgrounds-3-20171017/#the-background-repeat
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background-repeat
  */
 public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroundRepeat {
 
@@ -126,40 +126,37 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
                         caller.getPropertyName(), ac);
             }
 
-            CssIdent id_val = (CssIdent) val;
-            if (inherit.equals(id_val)) {
+            CssIdent id_val = val.getIdent();
+            if (CssIdent.isCssWide(id_val)) {
                 // if we got inherit after other values, fail
                 // if we got more than one value... fail
                 if ((values.size() > 0) || (expression.getCount() > 1)) {
                     throw new InvalidParamException("value", val,
                             caller.getPropertyName(), ac);
                 }
-                return inherit;
+                return val;
             } else {
-                CssIdent new_val;
                 // check values that must be alone
-                new_val = getSimpleValue(id_val);
-                if (new_val != null) {
+                if (getSimpleValue(id_val) != null) {
                     // if we already have a double value... it's an error
                     if (!is_complete) {
                         throw new InvalidParamException("value",
                                 val, caller.getPropertyName(), ac);
                     }
-                    values.add(new_val);
+                    values.add(val);
                     is_complete = true;
                 } else {
                     // the the one that may come in pairs
-                    new_val = getDoubleValue(id_val);
                     // not an allowed value !
-                    if (new_val == null) {
+                    if (getDoubleValue(id_val) == null) {
                         throw new InvalidParamException("value",
                                 val, caller.getPropertyName(), ac);
                     }
                     if (is_complete) {
                         vl = new CssValueList();
-                        vl.add(new_val);
+                        vl.add(val);
                     } else {
-                        vl.add(new_val);
+                        vl.add(val);
                         values.add(vl);
                     }
                     is_complete = !is_complete;

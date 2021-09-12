@@ -7,7 +7,6 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
@@ -17,7 +16,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-width
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-image-width
  */
 public class CssBorderImageWidth extends org.w3c.css.properties.css.CssBorderImageWidth {
 
@@ -42,8 +41,7 @@ public class CssBorderImageWidth extends org.w3c.css.properties.css.CssBorderIma
      * Creates a new CssBorderImageWidth
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssBorderImageWidth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -63,21 +61,20 @@ public class CssBorderImageWidth extends org.w3c.css.properties.css.CssBorderIma
                 case CssTypes.CSS_NUMBER:
                 case CssTypes.CSS_LENGTH:
                 case CssTypes.CSS_PERCENTAGE:
-                    CssCheckableValue num = val.getCheckableValue();
-                    num.checkPositiveness(ac, this);
+                    val.getCheckableValue().checkPositiveness(ac, getPropertyName());
                     valueList.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        valueList.add(inherit);
+                        valueList.add(val);
                         break;
                     }
-                    if (auto.equals(val)) {
-                        // fill is first or last and can't appear twice
-                        valueList.add(auto);
+                    if (getMatchingIdent(id) != null) {
+                        valueList.add(val);
                         break;
                     }
                     // unrecognized ident, let it fail

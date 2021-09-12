@@ -8,6 +8,7 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-animations-20120403/#animation-delay
+ * @spec https://www.w3.org/TR/2018/WD-css-animations-1-20181011/#propdef-animation-delay
  */
 public class CssAnimationDelay extends org.w3c.css.properties.css.CssAnimationDelay {
 
@@ -32,8 +33,7 @@ public class CssAnimationDelay extends org.w3c.css.properties.css.CssAnimationDe
      * Creates a new CssAnimationDelay
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssAnimationDelay(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -52,9 +52,9 @@ public class CssAnimationDelay extends org.w3c.css.properties.css.CssAnimationDe
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         gotinherit = true;
-                        values.add(inherit);
+                        values.add(val);
                         break;
                     }
                 default:

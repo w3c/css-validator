@@ -23,7 +23,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-transitions-20120403/#transition
+ * @spec https://www.w3.org/TR/2018/WD-css-animations-1-20181011/#propdef-animation
  */
 public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
 
@@ -53,8 +53,7 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
      * Creates a new CssAnimation
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssAnimation(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -70,12 +69,12 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (inherit.equals(val)) {
+            if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                value = inherit;
+                value = val;
                 expression.next();
                 return;
             }
@@ -229,46 +228,44 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
                             val.toString(),
                             caller.getPropertyName(), ac);
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
-                    CssIdent match;
-                    if (inherit.equals(ident)) {
+                    CssIdent id = val.getIdent();
+                    // already matched but in case it is an external call...
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        v.name = inherit;
+                        v.name = val;
                         break;
                     }
                     if (v.timingfunc == null) {
-                        match = CssAnimationTimingFunction.getAllowedIdent(ident);
-                        if (match != null) {
-                            v.timingfunc = match;
+                        if (CssAnimationTimingFunction.getAllowedIdent(id) != null) {
+                            v.timingfunc = val;
                             break;
                         }
                     }
                     if (v.direction == null) {
-                        match = CssAnimationDirection.getAllowedIdent(ident);
-                        if (match != null) {
-                            v.direction = match;
+                        if (CssAnimationDirection.getAllowedIdent(id) != null) {
+                            v.direction = val;
                             break;
                         }
                     }
                     if (v.fillmode == null) {
-                        match = CssAnimationFillMode.getAllowedIdent(ident);
-                        if (match != null) {
-                            v.fillmode = match;
+                        if (CssAnimationFillMode.getAllowedIdent(id) != null) {
+                            v.fillmode = val;
                             break;
                         }
                     }
                     if (v.itercount == null) {
-                        match = CssAnimationIterationCount.getAllowedIdent(ident);
-                        if (match != null) {
-                            v.itercount = match;
+                        if (CssAnimationIterationCount.getAllowedIdent(id) != null) {
+                            v.itercount = val;
                             break;
                         }
                     }
                     if (v.name == null) {
-                        v.name = CssAnimationName.getAllowedIdent(ac, ident);
-                        break;
+                        if (CssAnimationName.getAllowedIdent(ac, id) != null) {
+                            v.name = val;
+                            break;
+                        }
                     }
                     // already set, let it fail
                 default:

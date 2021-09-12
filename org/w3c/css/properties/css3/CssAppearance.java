@@ -86,20 +86,23 @@ public class CssAppearance extends org.w3c.css.properties.css.CssAppearance {
         val = expression.getValue();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     throw new InvalidParamException("value", val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
                 // output will use auto
                 if (isCompatAuto(id)) {
                     // need a specific warning to tell that it is seen as "auto"?
                     ac.getFrame().addWarning("value-unofficial");
-                    value = auto;
+                    // let's replace it if it was a real ident
+                    if (val.getRawType() == CssTypes.CSS_IDENT) {
+                        value = auto;
+                    }
                 }
             }
         } else {

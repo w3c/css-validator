@@ -81,11 +81,12 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                     expression.next();
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = inherit;
+                        value = val;
                         // TODO force individual values as inherit
                         expression.next();
                         break;
@@ -94,7 +95,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                         case 0:
                             // state 0, we can only have slice or repeat or image
                             // slice
-                            tval = CssBorderImageSlice.getMatchingIdent((CssIdent) val);
+                            tval = CssBorderImageSlice.getMatchingIdent(id);
                             if (tval != null) {
                                 if (slice != null) {
                                     throw new InvalidParamException("value", val.toString(),
@@ -119,7 +120,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                                 break;
                             }
                             // TODO check for border-image! (none)
-                            if (CssBorderImageSource.isMatchingIdent((CssIdent) val)) {
+                            if (CssBorderImageSource.isMatchingIdent(id)) {
                                 if (source != null) {
                                     throw new InvalidParamException("value", val.toString(),
                                             getPropertyName(), ac);
@@ -132,7 +133,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                         case 1:
                             // it can be only width or repeat.
                             // width
-                            tval = CssBorderImageWidth.getMatchingIdent((CssIdent) val);
+                            tval = CssBorderImageWidth.getMatchingIdent(id);
                             if (tval != null) {
                                 if (width != null) {
                                     throw new InvalidParamException("value", val.toString(),
@@ -164,7 +165,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                                 break;
                             }
                             // TODO check for border-image! (none)
-                            if (CssBorderImageSource.isMatchingIdent((CssIdent) val)) {
+                            if (CssBorderImageSource.isMatchingIdent(id)) {
                                 if (source != null) {
                                     throw new InvalidParamException("value", val.toString(),
                                             getPropertyName(), ac);
@@ -318,7 +319,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
         val = expression.getValue();
         op = expression.getOperator();
         if (val.getType() == CssTypes.CSS_IDENT) {
-            tval = CssBorderImageRepeat.getMatchingIdent((CssIdent) val);
+            tval = CssBorderImageRepeat.getMatchingIdent(val.getIdent());
             if (tval == null) {
                 return null;
             }
@@ -334,9 +335,9 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                 val = expression.getValue();
                 op = expression.getOperator();
                 if (val.getType() == CssTypes.CSS_IDENT) {
-                    tval = CssBorderImageRepeat.getMatchingIdent((CssIdent) val);
+                    tval = CssBorderImageRepeat.getMatchingIdent(val.getIdent());
                     if (tval != null) {
-                        exp.addValue(tval);
+                        exp.addValue(val);
                         expression.next();
                         if (op != SPACE) {
                             return exp;
@@ -363,7 +364,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                     exp.addValue(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    tval = CssBorderImageSlice.getMatchingIdent((CssIdent) val);
+                    tval = CssBorderImageSlice.getMatchingIdent(val.getIdent());
                     if (tval == null) {
                         return exp;
                     }
@@ -397,7 +398,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                     exp.addValue(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    tval = CssBorderImageWidth.getMatchingIdent((CssIdent) val);
+                    tval = CssBorderImageWidth.getMatchingIdent(val.getIdent());
                     if (tval == null) {
                         return exp;
                     }

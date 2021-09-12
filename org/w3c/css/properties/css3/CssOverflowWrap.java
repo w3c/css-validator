@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-overflow-wrap
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-overflow-wrap
  * <p/>
  * Note that word-wrap is also an alias for this.
  */
@@ -55,7 +55,7 @@ public class CssOverflowWrap extends org.w3c.css.properties.css.CssOverflowWrap 
      */
     public CssOverflowWrap(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        if (check && expression.getCount() > 2) {
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();
@@ -67,17 +67,13 @@ public class CssOverflowWrap extends org.w3c.css.properties.css.CssOverflowWrap 
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
+            CssIdent ident = val.getIdent();
+            if (!CssIdent.isCssWide(ident) && getAllowedValue(ident) == null) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
             }
+            value = val;
         } else {
             throw new InvalidParamException("value",
                     val.toString(),

@@ -67,7 +67,7 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
     URL baseURI = null;
 
     // StyleSheet styleSheet = new StyleSheet();
-    StyleSheetParser styleSheetParser = new StyleSheetParser();
+    StyleSheetParser styleSheetParser = null;
 
     boolean inStyle = false;
 
@@ -90,6 +90,7 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
         this.documentURI = baseURI;
         this.baseURI = baseURI;
         this.ac = ac;
+        this.styleSheetParser = new StyleSheetParser(ac);
     }
 
     public void setDocumentLocator(Locator locator) {

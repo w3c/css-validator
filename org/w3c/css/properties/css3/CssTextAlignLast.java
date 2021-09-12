@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-text-align-last
+ * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#text-align-last-property
  */
 public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLast {
 
@@ -68,11 +68,10 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        if (inherit.equals(val.getIdent())) {
+            value = val;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            if (getMatchingIdent(val.getIdent()) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);

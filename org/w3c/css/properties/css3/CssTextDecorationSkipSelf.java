@@ -61,12 +61,12 @@ public class CssTextDecorationSkipSelf extends org.w3c.css.properties.css.CssTex
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (inherit.equals(val.getIdent())) {
+                    value = val;
                     break;
                 }
-                value = getMatchingIdent((CssIdent) val);
-                if (value != null) {
+                if (getMatchingIdent(val.getIdent()) != null) {
+                    value = val;
                     break;
                 }
             default:

@@ -94,7 +94,7 @@ public class CssFontVariantPosition extends CssProperty {
      */
     public boolean equals(CssProperty property) {
         return (property instanceof CssFontVariantPosition &&
-                value.equals(((CssFontVariantPosition) property).value));
+                value.equals(property.value));
     }
 
 
@@ -106,9 +106,9 @@ public class CssFontVariantPosition extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css3Style) style).getFontKerning();
+            return ((Css3Style) style).getFontVariantPosition();
         } else {
-            return ((Css3Style) style).cssFontKerning;
+            return ((Css3Style) style).cssFontVariantPosition;
         }
     }
 }

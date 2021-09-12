@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-counter-set
+ * @spec https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#propdef-counter-set
  */
 public class CssCounterSet extends org.w3c.css.properties.css.CssCounterSet {
 
@@ -51,26 +51,31 @@ public class CssCounterSet extends org.w3c.css.properties.css.CssCounterSet {
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (inherit.equals(id)) {
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
                         break;
                     }
-                    if (none.equals(val)) {
-                        value = none;
+                    if (none.equals(id)) {
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
                         break;
                     }
-                    // check for reserved keyword
-                    if (CssIdent.isCssWide((CssIdent) val)) {
-                        throw new InvalidParamException("value", val,
-                                getPropertyName(), ac);
+                    // check for reserved keyword FIXME this should replace inherit check?
+                    if (CssIdent.isCssWide(id)) {
+                        value = val;
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                        break;
                     }
                     v.add(val);
                     intallowed = true;

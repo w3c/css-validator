@@ -36,8 +36,7 @@ public class CssTextEmphasis extends org.w3c.css.properties.css.CssTextEmphasis 
      * Creates a new CssTextEmphasis
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextEmphasis(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -64,13 +63,13 @@ public class CssTextEmphasis extends org.w3c.css.properties.css.CssTextEmphasis 
                     expression.next();
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
+                    CssIdent ident = val.getIdent();
                     if (inherit.equals(ident)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         expression.next();
                         return;
                     }

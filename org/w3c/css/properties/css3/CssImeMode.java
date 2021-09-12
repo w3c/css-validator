@@ -13,7 +13,8 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#ime-mode
+ * @spec https://www.w3.org/TR/2018/REC-css-ui-3-20180621/#input-method-editor
+ * @deprecated
  */
 public class CssImeMode extends org.w3c.css.properties.css.CssImeMode {
 
@@ -49,13 +50,14 @@ public class CssImeMode extends org.w3c.css.properties.css.CssImeMode {
      * Creates a new CssImeMode
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssImeMode(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
+
+        ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -66,18 +68,14 @@ public class CssImeMode extends org.w3c.css.properties.css.CssImeMode {
                     expression.getValue(),
                     getPropertyName(), ac);
         }
+        CssIdent id = val.getIdent();
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = getAllowedIdent((CssIdent) val);
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = val;
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 

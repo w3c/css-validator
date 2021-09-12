@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2013/CR-css-fonts-3-20131003/#propdef-font-size-adjust
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-size-adjust
  */
 public class CssFontSizeAdjust extends org.w3c.css.properties.css.CssFontSizeAdjust {
 
@@ -35,8 +35,7 @@ public class CssFontSizeAdjust extends org.w3c.css.properties.css.CssFontSizeAdj
      * Creates a new CssFontSizeAdjust
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontSizeAdjust(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -54,25 +53,20 @@ public class CssFontSizeAdjust extends org.w3c.css.properties.css.CssFontSizeAdj
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
-                    value = inherit;
-                } else {
-                    value = getAllowedIdent(id);
-                    if (value == null) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
-                    }
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || (getAllowedIdent(id) != null)) {
+                    value = val;
+                    break;
                 }
-                break;
+                throw new InvalidParamException("value",
+                        val, getPropertyName(), ac);
             case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkPositiveness(ac, getPropertyName());
                 value = val;
                 break;
             default:
                 throw new InvalidParamException("value",
-                        val.toString(),
-                        getPropertyName(), ac);
+                        val, getPropertyName(), ac);
         }
         expression.next();
 

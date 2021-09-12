@@ -7,7 +7,6 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-animations-20120403/#animation-iteration-count
+ * @spec https://www.w3.org/TR/2018/WD-css-animations-1-20181011/#propdef-animation-iteration-count
  */
 public class CssAnimationIterationCount extends org.w3c.css.properties.css.CssAnimationIterationCount {
 
@@ -40,8 +39,7 @@ public class CssAnimationIterationCount extends org.w3c.css.properties.css.CssAn
      * Creates a new CssAnimationIterationCount
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssAnimationIterationCount(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -58,20 +56,19 @@ public class CssAnimationIterationCount extends org.w3c.css.properties.css.CssAn
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    CssCheckableValue num = val.getCheckableValue();
-                    num.checkPositiveness(ac, this);
+                    val.getCheckableValue().checkPositiveness(ac, this);
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         singleVal = true;
-                        sValue = inherit;
-                        values.add(inherit);
+                        sValue = val;
+                        values.add(val);
                         break;
                     } else {
-                        CssIdent ident = getAllowedIdent((CssIdent) val);
-                        if (ident != null) {
-                            values.add(ident);
+                        if (getAllowedIdent(id) != null) {
+                            values.add(val);
                             break;
                         }
                     }

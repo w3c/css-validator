@@ -18,7 +18,8 @@ import org.w3c.css.values.CssValue;
 import java.math.BigDecimal;
 
 /**
- * @spec https://www.w3.org/TR/2018/CR-css-writing-modes-3-20180524/#propdef-glyph-orientation-vertical
+ * @spec https://www.w3.org/TR/2019/REC-css-writing-modes-3-20191210/#propdef-glyph-orientation-vertical
+ * @deprecated 
  */
 public class CssGlyphOrientationVertical extends org.w3c.css.properties.css.CssGlyphOrientationVertical {
 
@@ -82,6 +83,7 @@ public class CssGlyphOrientationVertical extends org.w3c.css.properties.css.CssG
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();
+        ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
         CssValue val;
         val = expression.getValue();
@@ -112,12 +114,9 @@ public class CssGlyphOrientationVertical extends org.w3c.css.properties.css.CssG
                 }
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                    break;
-                }
-                if (auto.equals(val)) {
-                    value = auto;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || auto.equals(id)) {
+                    value = val;
                     break;
                 }
             default:

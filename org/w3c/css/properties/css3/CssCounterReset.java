@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-counter-reset
+ * @spec https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#propdef-counter-reset
  */
 public class CssCounterReset extends org.w3c.css.properties.css.CssCounterReset {
 
@@ -51,8 +51,9 @@ public class CssCounterReset extends org.w3c.css.properties.css.CssCounterReset 
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (inherit.equals(id)) {
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
@@ -60,7 +61,7 @@ public class CssCounterReset extends org.w3c.css.properties.css.CssCounterReset 
                         break;
                     }
                     if (none.equals(val)) {
-                        value = none;
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
@@ -68,9 +69,13 @@ public class CssCounterReset extends org.w3c.css.properties.css.CssCounterReset 
                         break;
                     }
                     // check for reserved keyword
-                    if (CssIdent.isCssWide((CssIdent) val)) {
-                        throw new InvalidParamException("value", val,
-                                getPropertyName(), ac);
+                    if (CssIdent.isCssWide(id)) {
+                        value = val;
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                        break;
                     }
                     v.add(val);
                     intallowed = true;

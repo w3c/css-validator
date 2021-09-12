@@ -13,16 +13,15 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-page-floats-3-20150915/#propdef-float
+ * @spec https://www.w3.org/TR/2018/WD-css-logical-1-20180827/#float-clear
  */
 public class CssFloat extends org.w3c.css.properties.css.CssFloat {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"block-start", "block-end", "inline-start",
-                "inline-end", "snap-block", "snap-inline",
-                "left", "right", "top", "bottom", "none"};
+        String[] _allowed_values = {"both", "left", "right", "none",
+                "inline-start", "inline-end"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
         for (String s : _allowed_values) {
@@ -52,8 +51,7 @@ public class CssFloat extends org.w3c.css.properties.css.CssFloat {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssFloat(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -65,8 +63,7 @@ public class CssFloat extends org.w3c.css.properties.css.CssFloat {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssFloat(ApplContext ac, CssExpression expression,
                     boolean check) throws InvalidParamException {
@@ -82,16 +79,16 @@ public class CssFloat extends org.w3c.css.properties.css.CssFloat {
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",

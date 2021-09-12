@@ -48,8 +48,7 @@ public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDe
      * Creates a new CssTextDecorationStyle
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextDecorationStyle(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -66,17 +65,13 @@ public class CssTextDecorationStyle extends org.w3c.css.properties.css.CssTextDe
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = val;
+        CssIdent ident = val.getIdent();
+        if (!inherit.equals(ident) && (getMatchingIdent(ident) == null)) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 

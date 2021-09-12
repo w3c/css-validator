@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-auto-flow
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid-auto-flow
  */
 public class CssGridAutoFlow extends org.w3c.css.properties.css.CssGridAutoFlow {
 
@@ -64,7 +64,7 @@ public class CssGridAutoFlow extends org.w3c.css.properties.css.CssGridAutoFlow 
         }
         setByUser();
 
-        CssValue val, ident;
+        CssValue val;
         char op;
 
 
@@ -77,33 +77,33 @@ public class CssGridAutoFlow extends org.w3c.css.properties.css.CssGridAutoFlow 
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        values.add(inherit);
+                        values.add(val);
                         break;
                     }
-                    ident = getAllowedIdent((CssIdent) val);
-                    if (ident != null) {
+                    if (getAllowedIdent(id) != null) {
                         if (got_axis) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     getPropertyName(), ac);
                         } else {
                             got_axis = true;
-                            values.add(ident);
+                            values.add(val);
                             break;
                         }
                     }
-                    if (dense.equals(val)) {
+                    if (dense.equals(id)) {
                         // did we get another 'dense' ?
                         if (values.size() > 0 && !got_axis) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     getPropertyName(), ac);
                         }
-                        values.add(dense);
+                        values.add(val);
                         break;
                     }
                 default:

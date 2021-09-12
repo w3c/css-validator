@@ -65,13 +65,13 @@ public class CssSpeak extends org.w3c.css.properties.css.CssSpeak {
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 if (inherit.equals(id)) {
-                    value = inherit;
+                    value = val;
                     break;
                 } else {
-                    value = getAllowedIdent(id);
-                    if (value != null) {
+                    if (getAllowedIdent(id) != null) {
+                        value = val;
                         break;
                     }
                 }

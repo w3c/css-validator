@@ -55,7 +55,7 @@ public class CssTransitionDuration extends org.w3c.css.properties.css.CssTransit
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (inherit.equals(val.getIdent())) {
                         gotinherit = true;
                         values.add(inherit);
                         break;

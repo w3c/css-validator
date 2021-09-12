@@ -54,8 +54,7 @@ public class CssVoiceRate extends org.w3c.css.properties.css.CssVoiceRate {
      * Creates a new CssVoiceRate
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssVoiceRate(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -85,21 +84,19 @@ public class CssVoiceRate extends org.w3c.css.properties.css.CssVoiceRate {
                     pctValue = val;
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent id = (CssIdent) val;
+                    CssIdent id = val.getIdent();
                     if (inherit.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     inherit,
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        ideValue = inherit;
                         break;
                     } else {
-                        if (ideValue == null) {
-                            ideValue = getAllowedIdent(id);
-                            if (ideValue != null) {
-                                break;
-                            }
+                        if ((ideValue == null) && (getAllowedIdent(id) != null)) {
+                            ideValue = val;
+                            break;
                         }
                     }
                 default:
@@ -114,16 +111,14 @@ public class CssVoiceRate extends org.w3c.css.properties.css.CssVoiceRate {
             expression.next();
         }
         // now check what we have...
-        if (value != inherit) {
-            ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-            if (ideValue != null) {
-                v.add(ideValue);
-            }
-            if (pctValue != null) {
-                v.add(pctValue);
-            }
-            value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
+        ArrayList<CssValue> v = new ArrayList<CssValue>(2);
+        if (ideValue != null) {
+            v.add(ideValue);
         }
+        if (pctValue != null) {
+            v.add(pctValue);
+        }
+        value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
     }
 
     public CssVoiceRate(ApplContext ac, CssExpression expression)

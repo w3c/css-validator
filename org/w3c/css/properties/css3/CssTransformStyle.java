@@ -48,8 +48,7 @@ public class CssTransformStyle extends org.w3c.css.properties.css.CssTransformSt
      * Creates a new CssTransformStyle
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTransformStyle(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -66,17 +65,13 @@ public class CssTransformStyle extends org.w3c.css.properties.css.CssTransformSt
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = val;
+        CssIdent id = val.getIdent();
+        if (!inherit.equals(id) && (getMatchingIdent(id) == null)) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 

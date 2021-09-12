@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-filter-effects-1-20141125/#ColorInterpolationFiltersProperty
+ * @spec https://www.w3.org/TR/2018/WD-filter-effects-1-20181218/#propdef-color-interpolation-filters
  */
 public class CssColorInterpolationFilters extends org.w3c.css.properties.css.CssColorInterpolationFilters {
 
@@ -48,8 +48,7 @@ public class CssColorInterpolationFilters extends org.w3c.css.properties.css.Css
      * Creates a new CssColorInterpolationFilters
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssColorInterpolationFilters(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,16 +64,16 @@ public class CssColorInterpolationFilters extends org.w3c.css.properties.css.Css
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident)) {
+                value = val;
             } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
+                if (getAllowedValue(ident) == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
+                value = val;
             }
         } else {
             throw new InvalidParamException("value",

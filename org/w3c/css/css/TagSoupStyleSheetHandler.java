@@ -64,8 +64,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
     URL documentURI = null;
     URL baseURI = null;
 
-    //  StyleSheet styleSheet = new StyleSheet();
-    StyleSheetParser styleSheetParser = new StyleSheetParser();
+    StyleSheetParser styleSheetParser = null;
 
     boolean inStyle = false;
     String media = null;
@@ -85,6 +84,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
         this.documentURI = baseURI;
         this.baseURI = baseURI;
         this.ac = ac;
+        this.styleSheetParser = new StyleSheetParser(ac);
     }
 
     public void setDocumentLocator(Locator locator) {

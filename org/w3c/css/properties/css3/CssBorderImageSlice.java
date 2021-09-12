@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-slice
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-image-slice
  */
 public class CssBorderImageSlice extends org.w3c.css.properties.css.CssBorderImageSlice {
 
@@ -77,14 +77,15 @@ public class CssBorderImageSlice extends org.w3c.css.properties.css.CssBorderIma
                     valueList.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        valueList.add(inherit);
+                        valueList.add(val);
                         break;
                     }
-                    if (fill.equals(val)) {
+                    if (fill.equals(id)) {
                         // fill is first or last and can't appear twice
                         if (gotFill || (valueList.size() != 0 && expression.getRemainingCount() > 1)) {
                             throw new InvalidParamException("value", val.toString(),

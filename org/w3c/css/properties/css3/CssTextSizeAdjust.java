@@ -68,15 +68,17 @@ public class CssTextSizeAdjust extends org.w3c.css.properties.css.CssTextSizeAdj
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 if (inherit.equals(id)) {
-                    value = inherit;
+                    value = val;
+                    break;
                 } else {
-                    value = getAllowedIdent(id);
-                    if (value == null) {
+                    if (getAllowedIdent(id) == null) {
                         throw new InvalidParamException("value", val.toString(),
                                 getPropertyName(), ac);
                     }
+                    value = val;
+                    break;
                 }
             case CssTypes.CSS_NUMBER:
                 val.getCheckableValue().checkEqualsZero(ac, this);
@@ -95,7 +97,7 @@ public class CssTextSizeAdjust extends org.w3c.css.properties.css.CssTextSizeAdj
     }
 
     public boolean isDefault() {
-        return ((value == auto) || (value == initial));
+        return ((auto.equals(value)) || (initial.equals(value)));
     }
 
 }

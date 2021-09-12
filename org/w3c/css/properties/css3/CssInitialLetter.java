@@ -18,11 +18,31 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#propdef-initial-letter
+ * @spec https://www.w3.org/TR/2020/WD-css-inline-3-20200827/#propdef-initial-letter
  */
 public class CssInitialLetter extends org.w3c.css.properties.css.CssInitialLetter {
 
     CssIdent normal = CssIdent.getIdent("normal");
+
+    public static final CssIdent[] allowed_values;
+
+    static {
+        String[] _allowed_values = {"drop", "raise"};
+        allowed_values = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
     /**
      * Create a new CssInitialLetter
@@ -36,8 +56,7 @@ public class CssInitialLetter extends org.w3c.css.properties.css.CssInitialLette
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssInitialLetter(ApplContext ac, CssExpression expression,
                             boolean check) throws InvalidParamException {
@@ -68,18 +87,18 @@ public class CssInitialLetter extends org.w3c.css.properties.css.CssInitialLette
                     v.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    // we can have only one ident
-                    if (expression.getCount() > 1) {
-                        throw new InvalidParamException("value", expression.getValue(),
-                                getPropertyName(), ac);
-                    }
-                    CssIdent id = (CssIdent) val;
-                    if (inherit.equals(id)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id) || normal.equals(id)) {
+                        // we can have only one ident
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", expression.getValue(),
+                                    getPropertyName(), ac);
+                        }
+                        value = val;
                         break;
                     }
-                    if (normal.equals(id)) {
-                        value = normal;
+                    if (getAllowedIdent(id) != null) {
+                        v.add(val);
                         break;
                     }
                 default:
@@ -92,7 +111,12 @@ public class CssInitialLetter extends org.w3c.css.properties.css.CssInitialLette
             }
             expression.next();
         }
-        if (value != inherit) {
+        if (!v.isEmpty()) {
+            // sanity check, we cannot have two idents
+            if (v.size() == 2 && !got_number) {
+                throw new InvalidParamException("value", v.get(1),
+                        getPropertyName(), ac);
+            }
             value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
         }
     }

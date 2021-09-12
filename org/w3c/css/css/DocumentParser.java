@@ -51,7 +51,7 @@ public final class DocumentParser {
             mediatype = MimeType.TEXT_CSS;
         }
         if (mediatype.match(MimeType.TEXT_CSS) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
-            StyleSheetParser csshandler = new StyleSheetParser();
+            StyleSheetParser csshandler = new StyleSheetParser(ac);
             csshandler.parseStyleSheet(ac, reader, htmlURL);
             style = csshandler.getStyleSheet();
         } else if (mediatype.match(MimeType.TEXT_HTML) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
@@ -88,7 +88,7 @@ public final class DocumentParser {
 
         if (!"http".equals(urlProtocol) && !"https".equals(urlProtocol)) {
             if (urlLower.endsWith(".css")) {
-                StyleSheetParser parser = new StyleSheetParser();
+                StyleSheetParser parser = new StyleSheetParser(ac);
                 parser.parseURL(ac, htmlURL, null, null, media, StyleSheetOrigin.AUTHOR);
                 style = parser.getStyleSheet();
             } else if (urlLower.endsWith(".html") || urlLower.endsWith(".htm") ||
@@ -157,7 +157,7 @@ public final class DocumentParser {
                         style.setType("text/html");
                     }
                 } else if (contentType.match(MimeType.TEXT_CSS) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
-                    StyleSheetParser parser = new StyleSheetParser();
+                    StyleSheetParser parser = new StyleSheetParser(ac);
                     parser.parseURL(ac, htmlURL, null, null, media, StyleSheetOrigin.AUTHOR);
                     style = parser.getStyleSheet();
                 } else if ((contentType.match(MimeType.TEXT_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)

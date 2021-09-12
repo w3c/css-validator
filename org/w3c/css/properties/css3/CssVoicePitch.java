@@ -86,7 +86,7 @@ public class CssVoicePitch extends org.w3c.css.properties.css.CssVoicePitch {
                     value = val;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (inherit.equals(val.getIdent())) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", inherit,
                                     getPropertyName(), ac);
@@ -95,7 +95,7 @@ public class CssVoicePitch extends org.w3c.css.properties.css.CssVoicePitch {
                         break;
                     }
                     if (identVal == null) {
-                        CssIdent id = (CssIdent) val;
+                        CssIdent id = val.getIdent();
                         if (absolute.equals(id)) {
                             identVal = absolute;
                             value = absolute;

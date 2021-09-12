@@ -20,16 +20,19 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2011/CR-css3-background-20110215/#the-background-clip
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background-clip
+ * @spec https://compat.spec.whatwg.org/#the-webkit-background-clip-property
  */
 
 public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundClip {
 
     public final static CssIdent border_box;
     public static CssIdent[] allowed_values;
-    public final static String val[] = {"border-box", "padding-box", "content-box"};
+    // from https://compat.spec.whatwg.org/#the-webkit-background-clip-property
+    public static final CssIdent text = CssIdent.getIdent("text");
 
     static {
+        String val[] = {"border-box", "padding-box", "content-box"};
         border_box = CssIdent.getIdent("border-box");
         allowed_values = new CssIdent[val.length];
         int i = 0;
@@ -72,7 +75,6 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
         ArrayList<CssValue> values = new ArrayList<CssValue>();
 
         CssValue val;
-        CssIdent matchingIdent;
         char op;
 
         while (!expression.end()) {
@@ -80,19 +82,24 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent ident = val.getIdent();
+                    if (CssIdent.isCssWide(ident)) {
                         // if we got inherit after other values, fail
                         // if we got more than one value... fail
                         if ((values.size() > 0) || (expression.getCount() > 1)) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
-                        values.add(inherit);
+                        values.add(val);
                         break;
                     }
-                    matchingIdent = getMatchingIdent((CssIdent) val);
-                    if (matchingIdent != null) {
-                        values.add(matchingIdent);
+                    if (getMatchingIdent(ident) != null) {
+                        values.add(val);
+                        break;
+                    }
+                    if (text.equals(ident)) {
+                        ac.getFrame().addWarning("deprecated", val.toString());
+                        values.add(val);
                         break;
                     }
                 default:

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190319/#propdef-scroll-snap-type
+ * @spec https://www.w3.org/TR/2021/CR-css-scroll-snap-1-20210311/#propdef-scroll-snap-type
  */
 public class CssScrollSnapType extends org.w3c.css.properties.css.CssScrollSnapType {
 
@@ -69,8 +69,7 @@ public class CssScrollSnapType extends org.w3c.css.properties.css.CssScrollSnapT
      * Creates a new CssScrollSnapType
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssScrollSnapType(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -86,28 +85,28 @@ public class CssScrollSnapType extends org.w3c.css.properties.css.CssScrollSnapT
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value",
                                 expression.getValue(),
                                 getPropertyName(), ac);
                     }
-                    values.add(inherit);
+                    values.add(val);
                     break;
                 }
                 // 'none' is a strictness value, but can only appear alone
-                if (none.equals(val)) {
+                if (none.equals(ident)) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value",
                                 expression.getValue(),
                                 getPropertyName(), ac);
                     }
-                    values.add(none);
+                    values.add(val);
                     break;
                 }
-                CssIdent ident = getMatchingAxisIdent((CssIdent) val);
-                if (ident != null) {
-                    values.add(ident);
+                if (getMatchingAxisIdent(ident) != null) {
+                    values.add(val);
                     break;
                 }
                 // unrecognized... fail.
@@ -125,13 +124,9 @@ public class CssScrollSnapType extends org.w3c.css.properties.css.CssScrollSnapT
             val = expression.getValue();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        values.add(inherit);
-                        break;
-                    }
-                    CssIdent ident = getMatchingStrictnesssIdent((CssIdent) val);
-                    if (ident != null) {
-                        values.add(ident);
+                    CssIdent ident = val.getIdent();
+                    if (getMatchingStrictnesssIdent(ident) != null) {
+                        values.add(val);
                         break;
                     }
                     // unrecognized... fail.

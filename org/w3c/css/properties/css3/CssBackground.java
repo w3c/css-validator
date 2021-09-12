@@ -21,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120724/#the-background
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background
  * @see org.w3c.css.properties.css.CssBackgroundColor
  * @see org.w3c.css.properties.css.CssBackgroundImage
  * @see org.w3c.css.properties.css.CssBackgroundRepeat
@@ -43,8 +43,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBackground(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -56,8 +55,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBackground(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
@@ -75,12 +73,12 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (inherit.equals(val)) {
+            if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                value = inherit;
+                value = val;
                 expression.next();
                 return;
             }
@@ -118,9 +116,9 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
         transform_into_individual_values();
     }
 
-    private Object getCssBackgroundRepeatValue(ApplContext ac,
-                                               CssExpression expression,
-                                               boolean check)
+    private CssValue getCssBackgroundRepeatValue(ApplContext ac,
+                                                 CssExpression expression,
+                                                 boolean check)
             throws InvalidParamException {
         char op = expression.getOperator();
         CssExpression exp = new CssExpression();
@@ -133,8 +131,8 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
             if (!expression.end()) {
                 CssValue val = expression.getValue();
                 if ((val.getType() == CssTypes.CSS_IDENT) &&
-                        (CssBackgroundRepeat.isMatchingIdent((CssIdent) val))) {
-                    exp.addValue(expression.getValue());
+                        CssBackgroundRepeat.isMatchingIdent((val.getIdent()))) {
+                    exp.addValue(val);
                     exp.starts();
                     try {
                         repeat = new CssBackgroundRepeat(ac, exp, check);
@@ -146,12 +144,12 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                 }
             }
         }
-        return repeat.get();
+        return repeat.value;
     }
 
-    private Object getCssBackgroundSizeValue(ApplContext ac,
-                                             CssExpression expression,
-                                             boolean check)
+    private CssValue getCssBackgroundSizeValue(ApplContext ac,
+                                               CssExpression expression,
+                                               boolean check)
             throws InvalidParamException {
         char op = expression.getOperator();
         CssExpression exp = new CssExpression();
@@ -176,13 +174,13 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                 }
             }
         }
-        return bg_size.get();
+        return bg_size.value;
     }
 
 
-    private Object getCssBackgroundPositionValue(ApplContext ac,
-                                                 CssExpression expression,
-                                                 boolean check)
+    private CssValue getCssBackgroundPositionValue(ApplContext ac,
+                                                   CssExpression expression,
+                                                   boolean check)
             throws InvalidParamException {
         CssExpression exp = new CssExpression();
         char op = expression.getOperator();
@@ -218,7 +216,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
             expression.next();
             last_val--;
         }
-        return bg_pos.get();
+        return bg_pos.value;
     }
 
 
@@ -235,12 +233,11 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
         // bg-origin is IDENT
         // + color as CSS_COLOR or IDENT on final-layer
 
-        CssValue val;
+        CssValue val, res;
         char op;
         CssExpression exp;
         CssBackgroundValue v = new CssBackgroundValue();
         boolean next_is_size, got_size, prev_is_position;
-        Object res;
 
         next_is_size = false;
         got_size = false;
@@ -263,7 +260,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 
                     CssBackgroundColor bg_color;
                     bg_color = new CssBackgroundColor(ac, exp, check);
-                    v.color = (CssValue) bg_color.get();
+                    v.color = bg_color.value;
                     break;
 
                 case CssTypes.CSS_URL:
@@ -279,10 +276,10 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 
                     CssBackgroundImage bg_image;
                     bg_image = new CssBackgroundImage(ac, exp, check);
-                    res = bg_image.get();
+                    res = bg_image.value;
                     // we only have one vale so it should always be the case
-                    if (res instanceof CssValue) {
-                        v.bg_image = (CssValue) res;
+                    if (res != null) {
+                        v.bg_image = res;
                     } else {
                         throw new InvalidParamException("value", val,
                                 getPropertyName(), ac);
@@ -327,7 +324,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                         op = expression.getOperator();
                         prev_is_position = true;
                         // we only have one value so it should always be the case
-                        if (res instanceof CssValue) {
+                        if (res != null) {
                             v.bg_position = (CssValue) res;
                         } else {
                             throw new InvalidParamException("value", val,
@@ -339,7 +336,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                 case CssTypes.CSS_IDENT:
                     prev_is_position = false;
                     // inherit is already taken care of...
-                    CssIdent ident_val = (CssIdent) val;
+                    CssIdent ident_val = val.getIdent();
                     if (CssBackgroundAttachment.isMatchingIdent(ident_val)) {
                         if (v.attachment != null || next_is_size) {
                             throw new InvalidParamException("value", val,
@@ -350,10 +347,10 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 
                         CssBackgroundAttachment attachment;
                         attachment = new CssBackgroundAttachment(ac, exp, check);
-                        res = attachment.get();
+                        res = attachment.value;
                         // we only have one vale so it should always be the case
-                        if (res instanceof CssValue) {
-                            v.attachment = (CssValue) res;
+                        if (res != null) {
+                            v.attachment = res;
                         } else {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
@@ -371,10 +368,10 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                         exp.addValue(val);
 
                         bg_image = new CssBackgroundImage(ac, exp, check);
-                        res = bg_image.get();
+                        res = bg_image.value;
                         // we only have one vale so it should always be the case
-                        if (res instanceof CssValue) {
-                            v.bg_image = (CssValue) res;
+                        if (res != null) {
+                            v.bg_image = res;
                         } else {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
@@ -399,10 +396,10 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 
                             CssBackgroundClip clip;
                             clip = new CssBackgroundClip(ac, exp, check);
-                            res = clip.get();
+                            res = clip.value;
                             // we only have one vale so it should always be the case
-                            if (res instanceof CssValue) {
-                                v.clip = (CssValue) res;
+                            if (res != null) {
+                                v.clip = res;
                             } else {
                                 throw new InvalidParamException("value", val,
                                         getPropertyName(), ac);
@@ -414,10 +411,10 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 
                         CssBackgroundOrigin origin;
                         origin = new CssBackgroundOrigin(ac, exp, check);
-                        res = origin.get();
+                        res = origin.value;
                         // we only have one vale so it should always be the case
-                        if (res instanceof CssValue) {
-                            v.origin = (CssValue) res;
+                        if (res != null) {
+                            v.origin = res;
                         } else {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
@@ -433,7 +430,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                         op = expression.getOperator();
 
                         // we only have one vale so it should always be the case
-                        if (res instanceof CssValue) {
+                        if (res != null) {
                             v.repeat_style = (CssValue) res;
                         } else {
                             throw new InvalidParamException("value", val,
@@ -451,8 +448,8 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                             res = getCssBackgroundSizeValue(ac, expression, check);
                             op = expression.getOperator();
                             // we only have one vale so it should always be the case
-                            if (res instanceof CssValue) {
-                                v.bg_size = (CssValue) res;
+                            if (res != null) {
+                                v.bg_size = res;
                             } else {
                                 throw new InvalidParamException("value", val,
                                         getPropertyName(), ac);
@@ -476,8 +473,8 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                             op = expression.getOperator();
                             prev_is_position = true;
                             // we only have one vale so it should always be the case
-                            if (res instanceof CssValue) {
-                                v.bg_position = (CssValue) res;
+                            if (res != null) {
+                                v.bg_position = res;
                             } else {
                                 throw new InvalidParamException("value", val,
                                         getPropertyName(), ac);
@@ -512,7 +509,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                     exp.addValue(val);
 
                     bg_color = new CssBackgroundColor(ac, exp, check);
-                    v.color = (CssValue) bg_color.get();
+                    v.color = bg_color.value;
                     break;
                 // the infamous switch...
                 // note that we should check that we got something first.
@@ -543,62 +540,48 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
         //              <attachment> || <bg-origin>
         Object value;
         if (v.bg_image == null) {
-            value = (new CssBackgroundImage()).get();
-            if (value instanceof CssValue) {
-                v.bg_image_value = (CssValue) value;
-            }
+            v.bg_image_value = (new CssBackgroundImage()).value;
         } else {
             v.bg_image_value = v.bg_image;
         }
 
         if (v.bg_position == null) {
-            value = (new CssBackgroundPosition()).get();
-            if (value instanceof CssValue) {
-                v.bg_position_value = (CssValue) value;
-            }
+            v.bg_position_value = (new CssBackgroundPosition()).value;
         } else {
             v.bg_position_value = v.bg_position;
         }
 
         if (v.bg_size == null) {
-            value = (new CssBackgroundSize()).get();
-            if (value instanceof CssValue) {
-                v.bg_size_value = (CssValue) value;
-            }
+            v.bg_size_value = (new CssBackgroundSize()).value;
         } else {
             v.bg_size_value = v.bg_size;
         }
 
         if (v.repeat_style == null) {
-            value = (new CssBackgroundRepeat()).get();
-            if (value instanceof CssValue) {
-                v.repeat_style_value = (CssValue) value;
-            }
+            v.repeat_style_value = (new CssBackgroundRepeat()).value;
         } else {
             v.repeat_style_value = v.repeat_style;
         }
 
         if (v.attachment == null) {
-            value = (new CssBackgroundAttachment()).get();
-            if (value instanceof CssValue) {
-                v.attachment_value = (CssValue) value;
-            }
+            v.attachment_value = (new CssBackgroundAttachment()).value;
         } else {
             v.attachment_value = v.attachment;
         }
 
         if (v.origin == null) {
-            value = (new CssBackgroundOrigin()).get();
-            if (value instanceof CssValue) {
-                CssValue css_val = (CssValue) value;
-                v.origin_value = (CssValue) value;
-                // If 'background-origin' is present and its value matches a
-                // possible value for 'background-clip' then it also sets
-                //  'background-clip' to that value.
+            CssValue css_val = (new CssBackgroundOrigin()).value;
+            v.origin_value = (new CssBackgroundOrigin()).value;
+            // If 'background-origin' is present and its value matches a
+            // possible value for 'background-clip' then it also sets
+            //  'background-clip' to that value.
+            try {
                 if (v.clip == null && (css_val.getType() == CssTypes.CSS_IDENT) &&
-                        CssBackgroundClip.isMatchingIdent((CssIdent) css_val)) {
+                        CssBackgroundClip.isMatchingIdent(css_val.getIdent())) {
                     v.clip_value = v.origin_value;
                 }
+            } catch (InvalidParamException e) {
+                // should never happen if defaults are right
             }
         } else {
             v.origin_value = v.origin;

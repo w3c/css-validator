@@ -58,8 +58,7 @@ public class CssBreakBefore extends org.w3c.css.properties.css.CssBreakBefore {
      * @param ac         the context
      * @param expression The expression for this property
      * @param check      if checking is needed
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException Incorrect value
      */
     public CssBreakBefore(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
@@ -76,11 +75,11 @@ public class CssBreakBefore extends org.w3c.css.properties.css.CssBreakBefore {
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        CssIdent ident = val.getIdent();
+        if (CssIdent.isCssWide(ident)) {
+            value = val;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            if (getMatchingIdent(ident) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);

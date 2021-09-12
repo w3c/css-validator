@@ -50,8 +50,7 @@ public class CssFloatDefer extends org.w3c.css.properties.css.CssFloatDefer {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssFloatDefer(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -63,8 +62,7 @@ public class CssFloatDefer extends org.w3c.css.properties.css.CssFloatDefer {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssFloatDefer(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
@@ -79,19 +77,14 @@ public class CssFloatDefer extends org.w3c.css.properties.css.CssFloatDefer {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkInteger(ac, this);
+                val.getCheckableValue().checkInteger(ac, getPropertyName());
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || getAllowedIdent(id) != null) {
+                    value = val;
                     break;
-                } else {
-                    value = getAllowedIdent(id);
-                    if (value != null) {
-                        break;
-                    }
                 }
             default:
                 throw new InvalidParamException("value",

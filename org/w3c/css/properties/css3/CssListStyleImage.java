@@ -8,11 +8,12 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-list-style-image
+ * @spec https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#propdef-list-style-image
  */
 public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleImage {
 
@@ -62,12 +63,9 @@ public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleIm
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                    break;
-                }
-                if (none.equals(val)) {
-                    value = none;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || none.equals(id)) {
+                    value = val;
                     break;
                 }
             default:

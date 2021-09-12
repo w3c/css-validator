@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-numeric
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#font-variant-numeric-prop
  */
 public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVariantNumeric {
 
@@ -107,8 +107,7 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
      * Creates a new CssFontVariantNumeric
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontVariantNumeric(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -121,11 +120,11 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
         CssValue val;
         char op;
 
-        CssIdent fraValue = null;
-        CssIdent figValue = null;
-        CssIdent spaValue = null;
-        CssIdent zerValue = null;
-        CssIdent ordValue = null;
+        CssValue fraValue = null;
+        CssValue figValue = null;
+        CssValue spaValue = null;
+        CssValue zerValue = null;
+        CssValue ordValue = null;
         boolean match;
 
         while (!expression.end()) {
@@ -133,46 +132,45 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
             op = expression.getOperator();
 
             if (val.getType() == CssTypes.CSS_IDENT) {
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident) || normal.equals(ident)) {
                     if (expression.getCount() != 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
-                    value = inherit;
-                } else if (normal.equals(ident)) {
-                    if (expression.getCount() != 1) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
-                    }
-                    value = normal;
+                    value = val;
                 } else {
                     // no inherit, nor normal, test the up-to-three values
                     match = false;
                     if (figValue == null) {
-                        figValue = getNumericFigValues(ident);
-                        match = (figValue != null);
+                        match = (getNumericFigValues(ident) != null);
+                        if (match) {
+                            figValue = val;
+                        }
                     }
                     if (!match && fraValue == null) {
-                        fraValue = getNumericFraValues(ident);
-                        match = (fraValue != null);
+                        match = (getNumericFraValues(ident) != null);
+                        if (match) {
+                            fraValue = val;
+                        }
                     }
                     if (!match && spaValue == null) {
-                        spaValue = getNumericSpaValues(ident);
-                        match = (spaValue != null);
+                        match = (getNumericSpaValues(ident) != null);
+                        if (match) {
+                            spaValue = val;
+                        }
                     }
                     if (!match && zerValue == null) {
                         match = slashedZero.equals(ident);
                         if (match) {
-                            zerValue = slashedZero;
+                            zerValue = val;
                         }
                     }
                     if (!match && ordValue == null) {
                         match = ordinal.equals(ident);
                         if (match) {
-                            ordValue = ordinal;
+                            ordValue = val;
                         }
                     }
                     if (!match) {

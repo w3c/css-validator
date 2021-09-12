@@ -15,7 +15,7 @@ import org.w3c.css.values.CssValue;
 import java.util.Arrays;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-position
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant-position
  */
 public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVariantPosition {
 
@@ -50,8 +50,7 @@ public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVa
      * Creates a new CssFontVariantPosition
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontVariantPosition(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -66,23 +65,18 @@ public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVa
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-            }
-        } else {
+        if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);
         }
+        CssIdent ident = val.getIdent();
+        if (!CssIdent.isCssWide(ident) && (getAllowedValue(ident) == null)) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        value = val;
         expression.next();
     }
 

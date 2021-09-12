@@ -38,8 +38,7 @@ public class CssFontLanguageOverride extends org.w3c.css.properties.css.CssFontL
      * Creates a new CssFontLanguageOverride
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontLanguageOverride(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -56,39 +55,56 @@ public class CssFontLanguageOverride extends org.w3c.css.properties.css.CssFontL
 
         switch (val.getType()) {
             case CssTypes.CSS_STRING:
-                CssString s = (CssString) val;
-                // limit of 3 characters + two surrounding quotes
-                if (s.toString().length() != 5) {
-                    throw new InvalidParamException("value",
-                            expression.getValue().toString(),
-                            getPropertyName(), ac);
+                if (val.getRawType() == CssTypes.CSS_STRING) {
+                    CssString s = (CssString) val;
+                    int l = s.toString().length();
+                    // limit of 4characters + two surrounding quotes
+                    if ((l < 4) || (l > 6)) {
+                        throw new InvalidParamException("value",
+                                expression.getValue().toString(),
+                                getPropertyName(), ac);
+                    }
+                    // we extract the 2, 3 or 4 letters from the quotes...
+                    String tag = s.toString().substring(1, l - 1).toUpperCase();
+                    // align to 4
+                    switch (tag.length()) {
+                        case 1:
+                            tag = tag.concat("   ");
+                            break;
+                        case 2:
+                            tag = tag.concat("  ");
+                            break;
+                        case 3:
+                            tag = tag.concat(" ");
+                            break;
+                        default:
+                    }
+                    // valid values are specified here.
+                    int idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.tags, tag);
+                    if (idx < 0) {
+                        // TODO specific error code
+                        throw new InvalidParamException("value",
+                                expression.getValue().toString(),
+                                getPropertyName(), ac);
+                    }
+                    // check if deprecated
+                    idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.deprecated_tags, tag);
+                    if (idx >= 0) {
+                        ac.getFrame().addWarning("deprecated", tag);
+                    }
                 }
-                // we extract the 3 letters from the quotes...
-                String tag = s.toString().substring(1, 4).toUpperCase();
-                // valid values are specified here.
-                int idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.tags, tag);
-                if (idx < 0) {
-                    // TODO specific error code
-                    throw new InvalidParamException("value",
-                            expression.getValue().toString(),
-                            getPropertyName(), ac);
-                }
-                value = s;
+                value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
-                    value = inherit;
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident) || normal.equals(ident)) {
+                    value = val;
                     break;
                 }
-                if (normal.equals(ident)) {
-                    value = normal;
-                    break;
-                }
+                // unrecognized, let it fail
             default:
                 throw new InvalidParamException("value",
-                        expression.getValue().toString(),
-                        getPropertyName(), ac);
+                        val.toString(), getPropertyName(), ac);
         }
         expression.next();
     }

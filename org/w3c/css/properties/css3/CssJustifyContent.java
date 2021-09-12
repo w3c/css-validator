@@ -19,10 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * original
- * @spec https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#propdef-justify-content
- * replaced by
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-justify-content
+ * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-justify-content
  */
 public class CssJustifyContent extends org.w3c.css.properties.css.CssJustifyContent {
 
@@ -78,7 +75,7 @@ public class CssJustifyContent extends org.w3c.css.properties.css.CssJustifyCont
     public static CssValue parseJustifyContent(ApplContext ac, CssExpression expression,
                                                CssProperty caller)
             throws InvalidParamException {
-        CssValue val, value;
+        CssValue val;
         ArrayList<CssValue> values = new ArrayList<>();
         char op;
 
@@ -86,34 +83,31 @@ public class CssJustifyContent extends org.w3c.css.properties.css.CssJustifyCont
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
                 expression.next();
-                return inherit;
+                return val;
             }
             if (normal.equals(ident)) {
                 expression.next();
-                return normal;
+                return val;
             }
-            value = CssAlignContent.getContentDistribution(ident);
-            if (value != null) {
+            if (CssAlignContent.getContentDistribution(ident) != null) {
                 expression.next();
-                return value;
+                return val;
             }
-            // now try the two-values position, starting first with only one.
-            value = getContentPositionAndExtras(ident);
-            if (value != null) {
+            // now try the potential two-values position, starting first with only one.
+            if (getContentPositionAndExtras(ident) != null) {
                 expression.next();
-                return value;
+                return val;
             }
             // ok, at that point we need two values.
-            value = CssAlignContent.getOverflowPosition(ident);
-            if (value != null) {
-                values.add(value);
+            if (CssAlignContent.getOverflowPosition(ident) != null) {
+                values.add(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -127,12 +121,11 @@ public class CssJustifyContent extends org.w3c.css.properties.css.CssJustifyCont
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                value = getContentPositionAndExtras((CssIdent) val);
-                if (value == null) {
+                if (getContentPositionAndExtras(val.getIdent()) == null) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                values.add(value);
+                values.add(val);
                 expression.next();
                 return new CssValueList(values);
             }

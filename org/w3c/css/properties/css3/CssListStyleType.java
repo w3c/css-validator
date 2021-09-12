@@ -19,8 +19,8 @@ import java.util.Arrays;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-list-style-type
- * @spec https://www.w3.org/TR/2015/CR-css-counter-styles-3-20150611/#typedef-counter-style
+ * @spec https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#propdef-list-style-type
+ * @spec https://www.w3.org/TR/2021/CR-css-counter-styles-3-20210727/#typedef-counter-style
  */
 public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleType {
 
@@ -39,8 +39,9 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
                 "upper-latin", "cjk-earthly-branch", "cjk-heavenly-stem",
                 "lower-greek", "hiragana", "hiragana-iroha", "katakana",
                 "katakana-iroha", "disc", "circle", "square", "disclosure-open",
-                "disclosure-closed", "japanese-informal", "japanese-formal",
-                "korean-hangul-formal", "korean-hanja-informal",
+                "disclosure-closed", "cjk-earthly-branch", "cjk-heavenly-stem",
+                "japanese-informal", "japanese-formal",
+                "korean-hangul-formal", "korean-hanja-informal", "cjk-ideographic",
                 "korean-hanja-formal", "simp-chinese-informal", "simp-chinese-formal",
                 "trad-chinese-informal", "trad-chinese-formal", "ethiopic-numeric"};
         int i = 0;
@@ -86,8 +87,7 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssListStyleType(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -99,8 +99,7 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssListStyleType(ApplContext ac, CssExpression expression,
                             boolean check) throws InvalidParamException {
@@ -121,27 +120,23 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
+                CssIdent id = val.getIdent();
                 if (none.equals(id)) {
-                    value = none;
+                    value = val;
                     break;
                 }
-                if (inherit.equals(id)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 }
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     // it's still acceptable
                     // but the name should be listed in a
                     // @counter-style rule
-                    if (CssIdent.isCssWide(id)) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
-                    }
-                    value = id;
+                    // FIXME TODO check or add a warning
+                    value = val;
                 }
+                value = val;
                 break;
             default:
                 throw new InvalidParamException("value",
@@ -175,8 +170,7 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
                         throw new InvalidParamException("value", val,
                                 caller.getPropertyName(), ac);
                     }
-                    CssIdent ident = getSymbolsFunctionAllowedIdent((CssIdent) val);
-                    if (ident == null) {
+                    if (getSymbolsFunctionAllowedIdent(val.getIdent()) == null) {
                         throw new InvalidParamException("value", val,
                                 caller.getPropertyName(), ac);
                     }

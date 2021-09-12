@@ -24,7 +24,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#background-position
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background-position
  */
 public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgroundPosition {
 
@@ -80,8 +80,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
      * Creates a new CssBackgroundPosition
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssBackgroundPosition(ApplContext ac, CssExpression expression,
                                  boolean check) throws InvalidParamException {
@@ -97,14 +96,16 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
             val = expression.getValue();
             op = expression.getOperator();
 
-            if (inherit.equals(val)) {
-                if (expression.getCount() > 1) {
-                    throw new InvalidParamException("value", val,
-                            getPropertyName(), ac);
+            if (val.getType() == CssTypes.CSS_IDENT) {
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("value", val,
+                                getPropertyName(), ac);
+                    }
+                    value = val;
+                    expression.next();
+                    return;
                 }
-                value = inherit;
-                expression.next();
-                return;
             }
             if (b_val == null) {
                 b_val = new CssBackgroundPositionValue();
@@ -116,7 +117,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
             if (!expression.end()) {
                 // incomplete value followed by a comma... it's complete!
                 if (op == COMMA) {
-                    check(b_val, ac);
+                    check(b_val, ac, getPropertyName());
                     values.add(b_val);
                     b_val = null;
                 } else if (op != SPACE) {
@@ -127,14 +128,10 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
         }
         // if we reach the end in a value that can come in pair
         if (b_val != null) {
-            check(b_val, ac);
+            check(b_val, ac, getPropertyName());
             values.add(b_val);
         }
-        if (values.size() == 1) {
-            value = values.get(0);
-        } else {
-            value = new CssLayerList(values);
-        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
     }
 
     public CssBackgroundPosition(ApplContext ac, CssExpression expression)
@@ -158,7 +155,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                 (v.horizontal_offset == null));
     }
 
-    public void check(CssBackgroundPositionValue v, ApplContext ac)
+    public void check(CssBackgroundPositionValue v, ApplContext ac, String caller)
             throws InvalidParamException {
         int nb_keyword = 0;
         int nb_percentage = 0;
@@ -231,18 +228,18 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
             case 1:
                 switch (nb_values) {
                     case 1:
-                        CssIdent ident = (CssIdent) v.value.get(0);
+                        CssIdent ident = v.value.get(0).getIdent();
                         // ugly as we need to set values for equality tests
                         v.val_vertical = defaultPercent50;
                         v.val_horizontal = defaultPercent50;
                         ident = getMatchingIdent(ident);
                         if (ident != null) {
                             if (isVertical(ident)) {
-                                v.vertical = ident;
+                                v.vertical = v.value.get(0);
                                 v.val_vertical = identToPercent(ident);
                             } else {
                                 // horizontal || center
-                                v.horizontal = ident;
+                                v.horizontal = v.value.get(0);
                                 v.val_horizontal = identToPercent(ident);
                             }
                             break;
@@ -254,7 +251,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                         // and second vertical
                         CssValue val0 = v.value.get(0);
                         if (val0.getType() == CssTypes.CSS_IDENT) {
-                            ident = getMatchingIdent((CssIdent) val0);
+                            ident = getMatchingIdent(val0.getIdent());
                             if (ident == null) {
                                 throw new InvalidParamException("unrecognize",
                                         ident, getPropertyName(), ac);
@@ -263,7 +260,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                                 throw new InvalidParamException("incompatible",
                                         ident, v.value.get(1), ac);
                             }
-                            v.horizontal = ident;
+                            v.horizontal = val0;
                             v.val_horizontal = identToPercent(ident);
                             // and the vertical value...
                             v.vertical = v.value.get(1);
@@ -277,7 +274,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                                 throw new InvalidParamException("unrecognize",
                                         value1, getPropertyName(), ac);
                             }
-                            ident = getMatchingIdent((CssIdent) value1);
+                            ident = getMatchingIdent(value1.getIdent());
                             if (ident == null) {
                                 throw new InvalidParamException("unrecognize",
                                         ident, getPropertyName(), ac);
@@ -286,7 +283,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                                 throw new InvalidParamException("incompatible",
                                         val0, value1, ac);
                             }
-                            v.vertical = ident;
+                            v.vertical = value1;
                             v.val_vertical = identToPercent(ident);
                             // and the first value
                             v.horizontal = val0;
@@ -315,16 +312,16 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                 for (CssValue aValue : v.value) {
                     switch (aValue.getType()) {
                         case CssTypes.CSS_IDENT:
-                            aValue = getMatchingIdent((CssIdent) aValue);
-                            if (aValue == null) {
+                            CssIdent id = aValue.getIdent();
+                            if (getMatchingIdent(id) == null) {
                                 throw new InvalidParamException("unrecognize",
                                         aValue, getPropertyName(), ac);
                             }
                             got_ident = true;
                             if (id1 == null) {
-                                id1 = (CssIdent) aValue;
+                                id1 = id;
                             } else {
-                                id2 = (CssIdent) aValue;
+                                id2 = id;
                                 // we got both, let's check.
                                 if (((isVertical(id1) && isVertical(id2))) ||
                                         (isHorizontal(id1) && isHorizontal(id2))) {
@@ -334,7 +331,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                             }
                             break;
                         case CssTypes.CSS_NUMBER:
-                            aValue = aValue.getLength();
+                            aValue.getCheckableValue().checkEqualsZero(ac, caller);
                         case CssTypes.CSS_PERCENTAGE:
                         case CssTypes.CSS_LENGTH:
                             if (!got_ident) {
@@ -403,7 +400,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
 
     public static CssValue checkBackgroundPosition(ApplContext ac, CssExpression expression,
                                                    CssProperty caller)
-        throws InvalidParamException {
+            throws InvalidParamException {
         return checkSyntax(ac, expression, caller.getPropertyName());
     }
 
@@ -462,7 +459,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                 switch (nb_values) {
                     case 1:
                         // one value, one keyword... easy :)
-                        if (getMatchingIdent((CssIdent) v.get(0)) == null) {
+                        if (getMatchingIdent(v.get(0).getIdent()) == null) {
                             throw new InvalidParamException("value", v.get(0),
                                     caller, ac);
                         }
@@ -473,7 +470,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                         CssValue val0 = v.get(0);
                         CssIdent ident;
                         if (val0.getType() == CssTypes.CSS_IDENT) {
-                            ident = getMatchingIdent((CssIdent) val0);
+                            ident = getMatchingIdent(val0.getIdent());
                             if (ident == null) {
                                 throw new InvalidParamException("value", val0,
                                         caller, ac);
@@ -488,7 +485,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                                 throw new InvalidParamException("value", value1,
                                         caller, ac);
                             }
-                            ident = getMatchingIdent((CssIdent) value1);
+                            ident = getMatchingIdent(value1.getIdent());
                             if (ident == null) {
                                 throw new InvalidParamException("value", value1,
                                         caller, ac);
@@ -518,15 +515,15 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                 for (CssValue aValue : v) {
                     switch (aValue.getType()) {
                         case CssTypes.CSS_IDENT:
-                            if (getMatchingIdent((CssIdent) aValue) == null) {
+                            if (getMatchingIdent(aValue.getIdent()) == null) {
                                 throw new InvalidParamException("value", aValue,
                                         caller, ac);
                             }
                             got_ident = true;
                             if (id1 == null) {
-                                id1 = (CssIdent) aValue;
+                                id1 = aValue.getIdent();
                             } else {
-                                id2 = (CssIdent) aValue;
+                                id2 = aValue.getIdent();
                                 // we got both, let's check.
                                 if (((isVertical(id1) && isVertical(id2))) ||
                                         (isHorizontal(id1) && isHorizontal(id2))) {

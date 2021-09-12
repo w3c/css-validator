@@ -13,29 +13,10 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-color-adjust-1-20200402/#propdef-color-adjust
+ * @spec https://www.w3.org/TR/2021/WD-css-color-adjust-1-20210616/#propdef-color-adjust
+ * @see CssPrintColorAdjust
  */
 public class CssColorAdjust extends org.w3c.css.properties.css.CssColorAdjust {
-
-    private static CssIdent[] allowed_values;
-
-    static {
-        String id_values[] = {"economy", "exact"};
-        allowed_values = new CssIdent[id_values.length];
-        int i = 0;
-        for (String s : id_values) {
-            allowed_values[i++] = CssIdent.getIdent(s);
-        }
-    }
-
-    public static CssIdent getMatchingIdent(CssIdent ident) {
-        for (CssIdent id : allowed_values) {
-            if (id.equals(ident)) {
-                return id;
-            }
-        }
-        return null;
-    }
 
     /**
      * Create a new CssColorAdjust
@@ -65,11 +46,11 @@ public class CssColorAdjust extends org.w3c.css.properties.css.CssColorAdjust {
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
+        CssIdent ident = val.getIdent();
+        if (CssIdent.isCssWide(ident)) {
+            value = val;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            if (CssPrintColorAdjust.getMatchingIdent(ident) == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);

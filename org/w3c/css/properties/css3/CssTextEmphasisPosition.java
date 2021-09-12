@@ -102,9 +102,9 @@ public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextE
                     getPropertyName(), ac);
         }
 
-        CssIdent ident = (CssIdent) val;
+        CssIdent ident = val.getIdent();
         if (inherit.equals(ident)) {
-            value = inherit;
+            value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",
                         val.toString(),
@@ -146,7 +146,7 @@ public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextE
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                ident = (CssIdent) val;
+                ident = val.getIdent();
             } while (!expression.end());
             // now construct the value
             if (hValue != null && vValue != null) {

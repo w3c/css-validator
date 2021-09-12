@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190319/#propdef-scroll-snap-align
+ * @spec https://www.w3.org/TR/2021/CR-css-scroll-snap-1-20210311/#scroll-snap-align
  */
 public class CssScrollSnapAlign extends org.w3c.css.properties.css.CssScrollSnapAlign {
 
@@ -70,13 +70,16 @@ public class CssScrollSnapAlign extends org.w3c.css.properties.css.CssScrollSnap
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    values.add(inherit);
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    values.add(val);
                     break;
                 }
-                CssIdent ident = getMatchingIdent((CssIdent) val);
-                if (ident != null) {
-                    values.add(ident);
+                if (getMatchingIdent(ident) != null) {
+                    values.add(val);
                     break;
                 }
                 // unrecognized... fail.
@@ -94,13 +97,10 @@ public class CssScrollSnapAlign extends org.w3c.css.properties.css.CssScrollSnap
             val = expression.getValue();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        values.add(inherit);
-                        break;
-                    }
-                    CssIdent ident = getMatchingIdent((CssIdent) val);
-                    if (ident != null) {
-                        values.add(ident);
+                    CssIdent ident = val.getIdent();
+                    // can't have inherit second, so don't test for it
+                    if (getMatchingIdent(ident) != null) {
+                        values.add(val);
                         break;
                     }
                     // unrecognized... fail.

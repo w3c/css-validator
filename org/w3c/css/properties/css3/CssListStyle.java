@@ -39,8 +39,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssListStyle(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -52,8 +51,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssListStyle(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
@@ -99,22 +97,22 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
                     typeVal = val;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = inherit;
-                        imageVal = inherit;
-                        positionVal = inherit;
-                        typeVal = inherit;
+                        value = val;
+                        imageVal = val;
+                        positionVal = val;
+                        typeVal = val;
                         break;
                     }
-                    if (none.equals(val)) {
+                    if (none.equals(id)) {
                         nbnone++;
                         break;
                     }
                     // now we go to other values...
-                    CssIdent id = (CssIdent) val;
                     if (positionVal == null) {
                         positionVal = CssListStylePosition.getAllowedIdent(id);
                         if (positionVal != null) {
@@ -179,8 +177,8 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
             }
         }
 
-        // set the value
-        if (value != inherit) {
+        // set the value if we parse a non-wide value
+        if (nbnone != 0 || imageVal != null || typeVal != null || positionVal != null) {
             ArrayList<CssValue> v = new ArrayList<CssValue>();
             if (typeVal != null) {
                 v.add(typeVal);
@@ -197,10 +195,10 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
         }
         // then the shorthand values
         cssListStyleType = new CssListStyleType();
-        cssListStyleType.value = typeVal;
+        cssListStyleType.value = (typeVal == null) ? initial : typeVal;
         cssListStylePosition = new CssListStylePosition();
-        cssListStylePosition.value = positionVal;
+        cssListStylePosition.value = (positionVal == null) ? initial : positionVal;
         cssListStyleImage = new CssListStyleImage();
-        cssListStyleImage.value = imageVal;
+        cssListStyleImage.value = (imageVal == null) ? initial : imageVal;
     }
 }

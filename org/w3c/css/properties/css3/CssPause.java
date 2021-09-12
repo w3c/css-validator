@@ -81,9 +81,10 @@ public class CssPause extends org.w3c.css.properties.css.CssPause {
             }
             cssPauseAfter = new CssPauseAfter();
             cssPauseAfter.value = checkPauseValue(ac, expression, this);
-            if (cssPauseBefore.value == inherit || cssPauseAfter.value == inherit) {
+            if (((cssPauseBefore.value.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(cssPauseBefore.value.getIdent())) ||
+                    ((cssPauseAfter.value.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(cssPauseAfter.value.getIdent()))) {
                 throw new InvalidParamException("value",
-                        inherit, getPropertyName(), ac);
+                        cssPauseBefore.value, getPropertyName(), ac);
             }
             ArrayList<CssValue> values = new ArrayList<CssValue>(2);
             values.add(cssPauseBefore.value);
@@ -100,7 +101,7 @@ public class CssPause extends org.w3c.css.properties.css.CssPause {
     protected static CssValue checkPauseValue(ApplContext ac, CssExpression expression,
                                               CssProperty caller)
             throws InvalidParamException {
-        CssValue val, v;
+        CssValue val;
         char op;
 
         val = expression.getValue();
@@ -113,15 +114,14 @@ public class CssPause extends org.w3c.css.properties.css.CssPause {
                 expression.next();
                 return val;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
                     expression.next();
-                    return inherit;
+                    return val;
                 }
-                v = getAllowedIdent(id);
-                if (v != null) {
+                if (getAllowedIdent(id) != null) {
                     expression.next();
-                    return v;
+                    return val;
                 }
             default:
                 throw new InvalidParamException("value",

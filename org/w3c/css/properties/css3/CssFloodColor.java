@@ -8,10 +8,12 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-filter-effects-1-20141125/#FloodColorProperty
+ * @spec https://www.w3.org/TR/2018/WD-filter-effects-1-20181218/#propdef-flood-color
  */
 public class CssFloodColor extends org.w3c.css.properties.css.CssFloodColor {
 
@@ -26,8 +28,7 @@ public class CssFloodColor extends org.w3c.css.properties.css.CssFloodColor {
      * Creates a new CssFloodColor
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFloodColor(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -38,15 +39,15 @@ public class CssFloodColor extends org.w3c.css.properties.css.CssFloodColor {
         setByUser();
         CssValue val = expression.getValue();
 
-        if (inherit.equals(val)) {
-            value = inherit;
+        if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
+            value = val;
             expression.next();
         } else {
             try {
                 CssColor tcolor = new CssColor(ac, expression, check);
                 // instead of using getColor, we get the value directly
                 // as we can have idents
-                value = tcolor.color;
+                value = tcolor.getValue();
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),

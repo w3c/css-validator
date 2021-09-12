@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#baseline-shift-property
+ * @spec https://www.w3.org/TR/2020/WD-css-inline-3-20200827/#propdef-baseline-shift
  */
 
 public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShift {
@@ -21,7 +21,7 @@ public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShif
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"sub", "super"};
+        String[] _allowed_values = {"sub", "super", "top", "center", "bottom"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
         for (String s : _allowed_values) {
@@ -42,8 +42,7 @@ public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShif
      * Creates a new CssBaselineShift
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssBaselineShift(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,13 +64,13 @@ public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShif
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 }
-                value = getAllowedIdent(id);
-                if (value != null) {
+                if (getAllowedIdent(id) != null) {
+                    value = val;
                     break;
                 }
                 // unrecognized ident -> fail.

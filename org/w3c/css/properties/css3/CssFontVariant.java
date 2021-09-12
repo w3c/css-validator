@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#font-variant-prop
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant
  */
 public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
 
@@ -46,8 +46,7 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
      * Creates a new CssFontVariant
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontVariant(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -78,71 +77,72 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
                     altExp.addValue(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
-                    if (inherit.equals(ident)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id) || normal.equals(id)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
-                        break;
-                    } else if (normal.equals(ident)) {
-                        if (expression.getCount() != 1) {
-                            throw new InvalidParamException("value",
-                                    val.toString(),
-                                    getPropertyName(), ac);
-                        }
-                        value = normal;
+                        value = val;
                         // normal also resets the values of individual
                         // properties, so...
                         altValue = new CssFontVariantAlternates();
-                        altValue.value = normal;
+                        altValue.value = val;
                         capValue = new CssFontVariantCaps();
-                        capValue.value = normal;
+                        capValue.value = val;
                         asiValue = new CssFontVariantEastAsian();
-                        asiValue.value = normal;
+                        asiValue.value = val;
                         ligValue = new CssFontVariantLigatures();
-                        ligValue.value = normal;
+                        ligValue.value = val;
                         numValue = new CssFontVariantNumeric();
-                        numValue.value = normal;
+                        numValue.value = val;
+                        break;
+                    } else if (none.equals(id)) {
+                        value = val;
+                        altValue = new CssFontVariantAlternates();
+                        capValue = new CssFontVariantCaps();
+                        asiValue = new CssFontVariantEastAsian();
+                        ligValue = new CssFontVariantLigatures();
+                        ligValue.value = val;
+                        numValue = new CssFontVariantNumeric();
                         break;
                     } else {
                         // we test the possible values
                         // of the 5 possible properties
-                        if (CssFontVariantCaps.getCapsValue(ident) != null) {
+                        if (CssFontVariantCaps.getAllowedValue(id) != null) {
                             if (capExp == null) {
                                 capExp = new CssExpression();
                             }
-                            capExp.addValue(ident);
+                            capExp.addValue(id);
                             break;
                         }
-                        if (CssFontVariantNumeric.getAllowedValue(ident) != null) {
+                        if (CssFontVariantNumeric.getAllowedValue(id) != null) {
                             if (numExp == null) {
                                 numExp = new CssExpression();
                             }
-                            numExp.addValue(ident);
+                            numExp.addValue(id);
                             break;
                         }
-                        if (CssFontVariantLigatures.getAllowedValue(ident) != null) {
+                        if (CssFontVariantLigatures.getAllowedValue(id) != null) {
                             if (ligExp == null) {
                                 ligExp = new CssExpression();
                             }
-                            ligExp.addValue(ident);
+                            ligExp.addValue(id);
                             break;
                         }
-                        if (CssFontVariantEastAsian.getAllowedValue(ident) != null) {
+                        if (CssFontVariantEastAsian.getAllowedValue(id) != null) {
                             if (asiExp == null) {
                                 asiExp = new CssExpression();
                             }
-                            asiExp.addValue(ident);
+                            asiExp.addValue(id);
                             break;
                         }
-                        if (CssFontVariantAlternates.getAllowedIdent(ident) != null) {
+                        if (CssFontVariantAlternates.getAllowedIdent(id) != null) {
                             if (altExp == null) {
                                 altExp = new CssExpression();
                             }
-                            altExp.addValue(ident);
+                            altExp.addValue(id);
                             break;
                         }
                     }

@@ -19,17 +19,19 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-attachment
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-background-attachment
  */
 public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackgroundAttachment {
 
-    private static CssIdent[] allowed_values;
+    private static final CssIdent[] allowed_values;
 
     static {
-        allowed_values = new CssIdent[3];
-        allowed_values[0] = CssIdent.getIdent("scroll");
-        allowed_values[1] = CssIdent.getIdent("fixed");
-        allowed_values[2] = CssIdent.getIdent("local");
+        String[] id_values = {"scroll", "fixed", "local"};
+        allowed_values = new CssIdent[id_values.length];
+        int i = 0;
+        for (String s : id_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
     }
 
     public static boolean isMatchingIdent(CssIdent ident) {
@@ -63,8 +65,7 @@ public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackg
      * @param ac         the context
      * @param expression The expression for this property
      * @param check      if some length checking is required
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssBackgroundAttachment(ApplContext ac, CssExpression expression,
                                    boolean check) throws InvalidParamException {
@@ -82,22 +83,22 @@ public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackg
                 throw new InvalidParamException("value", val,
                         getPropertyName(), ac);
             }
-            if (inherit.equals(val)) {
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
                 // if we got inherit after other values, fail
                 // if we got more than one value... fail
                 if ((values.size() > 0) || (expression.getCount() > 1)) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                values.add(inherit);
+                values.add(val);
             } else {
                 // check that it's in the allowed values
-                CssValue new_val = getMatchingIdent((CssIdent) val);
-                if (new_val == null) {
+                if (getMatchingIdent(id) == null) {
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
                 }
-                values.add(new_val);
+                values.add(val);
             }
             expression.next();
             // and check that values are separated by commas
@@ -106,12 +107,7 @@ public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackg
                         Character.toString(op), ac);
             }
         }
-
-        if (values.size() == 1) {
-            value = values.get(0);
-        } else {
-            value = new CssLayerList(values);
-        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
     }
 
     public CssBackgroundAttachment(ApplContext ac, CssExpression expression)

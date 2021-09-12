@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValueList;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-top-right-radius
+ * @spec https://www.w3.org/TR/2021/CRD-css-backgrounds-3-20210726/#propdef-border-top-right-radius
  * @see CssBorderRadius
  */
 public class CssBorderTopRightRadius extends org.w3c.css.properties.css.CssBorderTopRightRadius {

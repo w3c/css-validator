@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-row-end
+ * @spec https://www.w3.org/TR/2020/CRD-css-grid-1-20201218/#propdef-grid-row-end
  */
 public class CssGridRowEnd extends org.w3c.css.properties.css.CssGridRowEnd {
 

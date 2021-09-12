@@ -52,9 +52,8 @@ public class CssOrder extends org.w3c.css.properties.css.CssOrder {
                 value = num;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
                     break;
                 }
                 // let it flow

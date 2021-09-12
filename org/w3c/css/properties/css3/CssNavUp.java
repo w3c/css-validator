@@ -9,7 +9,6 @@ import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssHashIdent;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssTypes;
@@ -67,8 +66,7 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
      * @param ac         The context
      * @param expression The expression for this property
      * @param check      true will test the number of parameters
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssNavUp(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -82,8 +80,7 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
      *
      * @param ac,        the Context
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssNavUp(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -108,8 +105,7 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
 
         switch (val.getType()) {
             case CssTypes.CSS_HASH_IDENT:
-                CssHashIdent hash = (CssHashIdent) val;
-                value = hash;
+                value = val;
                 // we got it, we must check if there are other values
                 if (expression.getRemainingCount() > 1) {
                     if (op != SPACE) {
@@ -118,26 +114,27 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
                                 ac);
                     }
                     ArrayList<CssValue> values = new ArrayList<CssValue>();
-                    values.add(hash);
+                    values.add(val);
                     expression.next();
                     val = expression.getValue();
                     switch (val.getType()) {
                         case CssTypes.CSS_IDENT:
-                            CssIdent match = getMatchingNonUniqueIdent((CssIdent) val);
-                            if (match == null) {
+                            if (getMatchingNonUniqueIdent(val.getIdent()) == null) {
                                 throw new InvalidParamException("value", val,
                                         caller.getPropertyName(), ac);
                             }
-                            values.add(match);
+                            values.add(val);
                             break;
                         case CssTypes.CSS_STRING:
-                            CssString s = (CssString) val;
-                            if (s.toString().charAt(1) == '_') {
-                                // TODO better error (do not start with _)
-                                throw new InvalidParamException("value", val,
-                                        caller.getPropertyName(), ac);
+                            if (val.getRawType() == CssTypes.CSS_STRING) {
+                                CssString s = (CssString) val;
+                                if (s.toString().charAt(1) == '_') {
+                                    // TODO better error (do not start with _)
+                                    throw new InvalidParamException("value", val,
+                                            caller.getPropertyName(), ac);
+                                }
                             }
-                            values.add(s);
+                            values.add(val);
                         default:
                             throw new InvalidParamException("value", val,
                                     caller.getPropertyName(), ac);
@@ -146,20 +143,20 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
                 }
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ide = (CssIdent) val;
-                if (inherit.equals(ide)) {
+                CssIdent ide = val.getIdent();
+                if (CssIdent.isCssWide(ide)) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value", inherit,
                                 caller.getPropertyName(), ac);
                     }
-                    value = inherit;
+                    value = val;
                     break;
                 } else if (auto.equals(ide)) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value", auto,
                                 caller.getPropertyName(), ac);
                     }
-                    value = auto;
+                    value = val;
                     break;
                 }
                 // let it fail

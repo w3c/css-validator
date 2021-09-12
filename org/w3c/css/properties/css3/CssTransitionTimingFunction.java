@@ -65,8 +65,7 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
      * Creates a new CssTransitionTimingFunction
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTransitionTimingFunction(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -87,13 +86,13 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (inherit.equals(val.getIdent())) {
                         singleVal = true;
                         sValue = inherit;
                         values.add(inherit);
                         break;
                     } else {
-                        CssIdent id = getAllowedIdent((CssIdent) val);
+                        CssIdent id = getAllowedIdent(val.getIdent());
                         if (id != null) {
                             values.add(id);
                             break;
@@ -163,9 +162,9 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
                         val.toString(),
                         caller.getPropertyName(), ac);
             }
-            if (start.equals(val)) {
+            if (start.equals(val.getIdent())) {
                 values.add(start);
-            } else if (end.equals(val)) {
+            } else if (end.equals(val.getIdent())) {
                 values.add(end);
             } else {
                 // unrecognized ident

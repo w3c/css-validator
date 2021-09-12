@@ -15,13 +15,12 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
+import java.util.ArrayList;
+
 /**
  * @spec https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#propdef-flex-flow
  */
 public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
-
-    // TODO: remove the two private value option and use the
-    // CssValueList for value instead.
 
     private CssFlexDirection flexDirection;
     private CssFlexWrap flexWrap;
@@ -39,8 +38,7 @@ public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
      * Creates a new CssFlexFlow
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFlexFlow(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -60,9 +58,9 @@ public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
-                    if (inherit.equals(ident)) {
-                        value = inherit;
+                    CssIdent ident = val.getIdent();
+                    if (CssIdent.isCssWide(ident)) {
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
@@ -71,14 +69,14 @@ public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
                         break;
                     }
                     if (directionVal == null) {
-                        directionVal = CssFlexDirection.getAllowedIdent(ident);
-                        if (directionVal != null) {
+                        if (CssFlexDirection.getAllowedIdent(ident) != null) {
+                            directionVal = val;
                             break;
                         }
                     }
                     if (wrapVal == null) {
-                        wrapVal = CssFlexWrap.getAllowedIdent(ident);
-                        if (wrapVal != null) {
+                        if (CssFlexWrap.getAllowedIdent(ident) != null) {
+                            wrapVal = val;
                             break;
                         }
                     }
@@ -96,11 +94,12 @@ public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
         // for addToStyle, redefinitions and equality check
         flexDirection = new CssFlexDirection();
         flexWrap = new CssFlexWrap();
-        if (value == inherit) {
-            flexDirection.value = inherit;
-            flexWrap.value = inherit;
+        if (wrapVal == null && directionVal == null) {
+            // css-wide ident
+            flexDirection.value = value;
+            flexWrap.value = value;
         } else {
-            CssValueList v = new CssValueList();
+            ArrayList<CssValue> v = new ArrayList<>();
             if (directionVal != null) {
                 v.add(directionVal);
                 flexDirection.value = directionVal;
@@ -109,7 +108,7 @@ public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
                 v.add(wrapVal);
                 flexWrap.value = wrapVal;
             }
-            value = v;
+            value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
         }
     }
 
