@@ -9,7 +9,6 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
@@ -46,23 +45,20 @@ public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    CssCheckableValue v = val.getCheckableValue();
-                    if (!v.isPositive()) {
+                    if (!val.getCheckableValue().isPositive()) {
                         ac.getFrame().addWarning("out-of-range", val.toString());
                         CssNumber nb = new CssNumber();
                         nb.setIntValue(0);
                         value = nb;
                         break;
                     }
-                    if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                        BigDecimal pp = ((CssNumber) val).getBigDecimalValue();
-                        if (pp.compareTo(BigDecimal.ONE) > 0) {
-                            ac.getFrame().addWarning("out-of-range", val.toString());
-                            CssNumber nb = new CssNumber();
-                            nb.setIntValue(1);
-                            value = nb;
-                            break;
-                        }
+                    BigDecimal pp = val.getNumber().getBigDecimalValue();
+                    if (pp.compareTo(BigDecimal.ONE) > 0) {
+                        ac.getFrame().addWarning("out-of-range", val.toString());
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(1);
+                        value = nb;
+                        break;
                     }
                 } else {
                     // we can only check if >= 0 for now
@@ -72,8 +68,7 @@ public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 // This starts with CSS Color 4
-                CssCheckableValue v = val.getCheckableValue();
-                if (!v.isPositive()) {
+                if (!val.getCheckableValue().isPositive()) {
                     ac.getFrame().addWarning("out-of-range", val.toString());
                     CssNumber nb = new CssNumber();
                     nb.setIntValue(0);
