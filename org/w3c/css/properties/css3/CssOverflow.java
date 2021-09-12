@@ -32,7 +32,7 @@ public class CssOverflow extends org.w3c.css.properties.css.CssOverflow {
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"visible", "hidden", "scroll", "auto"};
+        String[] _allowed_values = {"visible", "hidden", "clip", "scroll", "auto"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
         for (String s : _allowed_values) {
