@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-ligatures
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant-ligatures
  */
 public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontVariantLigatures {
 
@@ -128,8 +128,7 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
      * Creates a new CssFontVariantLigatures
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontVariantLigatures(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -142,10 +141,10 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
         CssValue val;
         char op;
 
-        CssIdent histValue = null;
-        CssIdent commonValue = null;
-        CssIdent discValue = null;
-        CssIdent altValue = null;
+        CssValue histValue = null;
+        CssValue commonValue = null;
+        CssValue discValue = null;
+        CssValue altValue = null;
         boolean match;
 
         while (!expression.end()) {
@@ -153,46 +152,40 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
             op = expression.getOperator();
 
             if (val.getType() == CssTypes.CSS_IDENT) {
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident) || normal.equals(ident) || none.equals(ident)) {
                     if (expression.getCount() != 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
-                    value = inherit;
-                } else if (normal.equals(ident)) {
-                    if (expression.getCount() != 1) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
-                    }
-                    value = normal;
-                } else if (none.equals(ident)) {
-                    if (expression.getCount() != 1) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
-                    }
-                    value = none;
+                    value = val;
                 } else {
                     // no inherit, nor normal, test the up-to-three values
                     match = false;
                     if (commonValue == null) {
-                        commonValue = getCommonLigValues(ident);
-                        match = (commonValue != null);
+                        match = (getCommonLigValues(ident) != null);
+                        if (match) {
+                            commonValue = val;
+                        }
                     }
                     if (!match && histValue == null) {
-                        histValue = getHistoricalLigValues(ident);
-                        match = (histValue != null);
+                        match = (getHistoricalLigValues(ident) != null);
+                        if (match) {
+                            histValue = val;
+                        }
                     }
                     if (!match && discValue == null) {
-                        discValue = getDiscretionaryLigValues(ident);
-                        match = (discValue != null);
+                        match = (getDiscretionaryLigValues(ident) != null);
+                        if (match) {
+                            discValue = val;
+                        }
                     }
                     if (!match && altValue == null) {
-                        altValue = getContextualAltValues(ident);
-                        match = (altValue != null);
+                        match = (getContextualAltValues(ident) != null);
+                        if (match) {
+                            altValue = val;
+                        }
                     }
                     if (!match) {
                         throw new InvalidParamException("value",

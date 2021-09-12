@@ -7,7 +7,6 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
@@ -16,7 +15,7 @@ import org.w3c.css.values.CssValue;
 import java.util.Arrays;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#font-size-prop
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-size
  */
 public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
@@ -24,7 +23,7 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
 
     static {
-        String[] absolute_values = {"xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"};
+        String[] absolute_values = {"xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large"};
         String[] relative_values = {"smaller", "larger"};
 
         allowed_values = new CssIdent[absolute_values.length + relative_values.length];
@@ -57,8 +56,7 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
      * Creates a new CssFontSize
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontSize(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -75,29 +73,20 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkEqualsZero(ac, this);
+                val.getCheckableValue().checkEqualsZero(ac, getPropertyName());
             case CssTypes.CSS_LENGTH:
             case CssTypes.CSS_PERCENTAGE:
-                CssCheckableValue l = val.getCheckableValue();
-                l.checkPositiveness(ac, this);
-                value = l;
+                val.getCheckableValue().checkPositiveness(ac, getPropertyName());
+                value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ident = (CssIdent) val;
-                if (inherit.equals(ident)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id) || getAllowedValue(id) != null) {
+                    value = val;
                     break;
                 }
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            expression.getValue().toString(),
-                            getPropertyName(), ac);
-                }
-                break;
             default:
-                throw new InvalidParamException("value",
-                        expression.getValue().toString(),
+                throw new InvalidParamException("value", val,
                         getPropertyName(), ac);
         }
         expression.next();

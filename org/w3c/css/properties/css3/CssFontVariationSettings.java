@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2021.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -21,42 +21,25 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-feature-settings
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variation-settings
  */
-public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFeatureSettings {
+public class CssFontVariationSettings extends org.w3c.css.properties.css.CssFontVariationSettings {
 
-    public static final CssIdent on, off, normal;
-
-    static {
-        on = CssIdent.getIdent("on");
-        off = CssIdent.getIdent("off");
-        normal = CssIdent.getIdent("normal");
-    }
-
-    public static final CssIdent getAllowedValue(CssIdent ident) {
-        if (on.equals(ident)) {
-            return on;
-        }
-        if (off.equals(ident)) {
-            return off;
-        }
-        return null;
-    }
-
+    static final CssIdent normal = CssIdent.getIdent("normal");
     /**
-     * Create a new CssFontFeatureSettings
+     * Create a new CssFontVariationSettings
      */
-    public CssFontFeatureSettings() {
+    public CssFontVariationSettings() {
         value = initial;
     }
 
     /**
-     * Creates a new CssFontFeatureSettings
+     * Creates a new CssFontVariationSettings
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssFontFeatureSettings(ApplContext ac, CssExpression expression, boolean check)
+    public CssFontVariationSettings(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
 
         setByUser();
@@ -72,7 +55,7 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
         while (!expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
-
+            
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
@@ -85,14 +68,9 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
                         value = val;
                         break;
                     }
-                    if (layervalues.size() == 1 && (getAllowedValue(id) != null)) {
-                        layervalues.add(val);
-                        break;
-                    }
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
-
                 case CssTypes.CSS_NUMBER:
                     if (layervalues.size() != 1) {
                         throw new InvalidParamException("value",
@@ -122,14 +100,9 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
             }
             expression.next();
             if (!layervalues.isEmpty()) {
-                if ((layervalues.size() == 2) || ((layervalues.size() == 1) && (op == COMMA))) {
-                    if (layervalues.size() == 1) {
-                       values.add(val);
-                       layervalues.clear();
-                    } else {
-                        values.add(new CssValueList(layervalues));
-                        layervalues = new ArrayList<>();
-                    }
+                if (layervalues.size() == 2) {
+                    values.add(new CssValueList(layervalues));
+                    layervalues = new ArrayList<>();
                     if (!expression.end()) {
                         if (op != COMMA) {
                             throw new InvalidParamException("operator",
@@ -146,7 +119,9 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
         }
         // sanity check
         if (layervalues.size() == 1) {
-            values.add(layervalues.get(0));
+            throw new InvalidParamException("value",
+                    layervalues.get(0).toString(),
+                    getPropertyName(), ac);
         }
         if (!values.isEmpty()) {
             value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
@@ -154,11 +129,10 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
 
     }
 
-    public CssFontFeatureSettings(ApplContext ac, CssExpression expression)
+    public CssFontVariationSettings(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
-
 
 }
 

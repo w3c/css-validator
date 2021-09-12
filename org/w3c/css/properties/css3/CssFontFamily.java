@@ -10,6 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
+import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -19,32 +20,21 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#font-family-prop
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-family
  */
 public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
 
     public static final ArrayList<CssIdent> genericNames;
-    public static final ArrayList<CssIdent> reservedNames;
 
     public static final String[] _genericNames = {
-            "serif",
-            "sans-serif",
-            "cursive",
-            "fantasy",
-            "monospace"};
-
-    public static final String[] _reservedNames = {"inherit",
-            "initial", "default"
-    };
+            "serif", "sans-serif", "cursive", "fantasy", "monospace",
+            "system-ui", "emoji", "math", "fangsong", "ui-serif",
+            "ui-sans-serif", "ui-monospace", "ui-rounded"};
 
     static {
         genericNames = new ArrayList<CssIdent>(_genericNames.length);
         for (String s : _genericNames) {
             genericNames.add(CssIdent.getIdent(s));
-        }
-        reservedNames = new ArrayList<CssIdent>(_reservedNames.length);
-        for (String s : _reservedNames) {
-            reservedNames.add(CssIdent.getIdent(s));
         }
     }
 
@@ -56,21 +46,13 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
         return null;
     }
 
-    static CssIdent getReservedFontName(CssIdent ident) {
-        int pos = reservedNames.indexOf(ident);
-        if (pos >= 0) {
-            return reservedNames.get(pos);
-        }
-        return null;
-    }
-
     private void checkExpression(ApplContext ac, ArrayList<CssValue> curval,
                                  ArrayList<CssIdent> values, boolean check) {
         CssIdent val;
         if (values.size() > 1) {
             // create a value out of that. We could even create
             // a CssString for the output (TODO ?)
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder("\"");
             boolean addSpace = false;
             for (CssIdent id : values) {
                 if (addSpace) {
@@ -80,19 +62,20 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
                 }
                 sb.append(id);
             }
+            sb.append('"');
             ac.getFrame().addWarning("with-space", 1);
-            val = new CssIdent(sb.toString());
+            curval.add(new CssString(sb.toString()));
         } else {
             val = values.get(0);
             // could be done in the consistency check, but...
             if (null != getGenericFontName(val)) {
                 hasGenericFontFamily = true;
             }
-            if (inherit.equals(val)) {
-                val = inherit;
+            if (CssIdent.isCssWide(val)) {
+                // should we warn?;
             }
+            curval.add(val);
         }
-        curval.add(val);
     }
 
     // final consistency check
@@ -101,8 +84,9 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
         // we need to check that we don't have 'inherit' in multiple values
         if (values.size() > 1) {
             for (CssValue val : values) {
-                if (inherit.equals(val)) {
-                    throw new InvalidParamException("unrecognize", ac);
+                if ((val.getType() == CssTypes.CSS_IDENT) && CssIdent.isCssWide(val.getIdent())) {
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
                 }
             }
         }
@@ -112,8 +96,7 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
      * Creates a new CssFontFamily
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontFamily(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -138,14 +121,14 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
                     break;
                 case CssTypes.CSS_IDENT:
                     ArrayList<CssIdent> idval = new ArrayList<CssIdent>();
-                    idval.add((CssIdent) val);
+                    idval.add(val.getIdent());
                     // we add idents if separated by spaces...
                     while (op == SPACE && expression.getRemainingCount() > 1) {
                         expression.next();
                         op = expression.getOperator();
                         val = expression.getValue();
                         if (val.getType() == CssTypes.CSS_IDENT) {
-                            idval.add((CssIdent) val);
+                            idval.add(val.getIdent());
                         } else {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);

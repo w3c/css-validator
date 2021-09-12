@@ -108,13 +108,20 @@ import org.w3c.css.properties.css.CssFloodOpacity;
 import org.w3c.css.properties.css.CssFontFeatureSettings;
 import org.w3c.css.properties.css.CssFontKerning;
 import org.w3c.css.properties.css.CssFontLanguageOverride;
+import org.w3c.css.properties.css.CssFontOpticalSizing;
+import org.w3c.css.properties.css.CssFontPalette;
 import org.w3c.css.properties.css.CssFontSynthesis;
+import org.w3c.css.properties.css.CssFontSynthesisSmallCaps;
+import org.w3c.css.properties.css.CssFontSynthesisStyle;
+import org.w3c.css.properties.css.CssFontSynthesisWeight;
 import org.w3c.css.properties.css.CssFontVariantAlternates;
 import org.w3c.css.properties.css.CssFontVariantCaps;
 import org.w3c.css.properties.css.CssFontVariantEastAsian;
+import org.w3c.css.properties.css.CssFontVariantEmoji;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssFontVariationSettings;
 import org.w3c.css.properties.css.CssForcedColorAdjust;
 import org.w3c.css.properties.css.CssGap;
 import org.w3c.css.properties.css.CssGrid;
@@ -452,6 +459,13 @@ public class Css3Style extends ATSCStyle {
     public CssFontVariantNumeric cssFontVariantNumeric;
     public CssFontFeatureSettings cssFontFeatureSettings;
     public CssFontVariantAlternates cssFontVariantAlternates;
+    public CssFontSynthesisSmallCaps cssFontSynthesisSmallCaps;
+    public CssFontSynthesisStyle cssFontSynthesisStyle;
+    public CssFontSynthesisWeight cssFontSynthesisWeight;
+    public CssFontVariantEmoji cssFontVariantEmoji;
+    public CssFontOpticalSizing cssFontOpticalSizing;
+    public CssFontPalette cssFontPalette;
+    public CssFontVariationSettings cssFontVariationSettings;
 
     public CssOverflowWrap cssOverflowWrap;
     public CssWordBreak cssWordBreak;
@@ -1236,7 +1250,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPrintColorAdjust;
     }
-    
+
     public CssForcedColorAdjust getForcedColorAdjust() {
         if (cssForcedColorAdjust == null) {
             cssForcedColorAdjust =
@@ -2151,7 +2165,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInlineSizing;
     }
-    
+
     public CssDominantBaseline getDominantBaseline() {
         if (cssDominantBaseline == null) {
             cssDominantBaseline =
@@ -2631,12 +2645,39 @@ public class Css3Style extends ATSCStyle {
     }
 
     public CssFontVariantPosition getFontVariantPosition() {
-        if (cssFontVariantCaps == null) {
-            cssFontVariantCaps =
-                    (CssFontVariantCaps) style.CascadingOrder(
-                            new CssFontVariantCaps(), style, selector);
+        if (cssFontVariantPosition == null) {
+            cssFontVariantPosition =
+                    (CssFontVariantPosition) style.CascadingOrder(
+                            new CssFontVariantPosition(), style, selector);
         }
         return cssFontVariantPosition;
+    }
+
+    public CssFontSynthesisSmallCaps getFontSynthesisSmallCaps() {
+        if (cssFontSynthesisSmallCaps == null) {
+            cssFontSynthesisSmallCaps =
+                    (CssFontSynthesisSmallCaps) style.CascadingOrder(
+                            new CssFontSynthesisSmallCaps(), style, selector);
+        }
+        return cssFontSynthesisSmallCaps;
+    }
+    
+    public CssFontSynthesisStyle getFontSynthesisStyle() {
+        if (cssFontSynthesisStyle == null) {
+            cssFontSynthesisStyle =
+                    (CssFontSynthesisStyle) style.CascadingOrder(
+                            new CssFontSynthesisStyle(), style, selector);
+        }
+        return cssFontSynthesisStyle;
+    }
+    
+    public CssFontSynthesisWeight getFontSynthesisWeight() {
+        if (cssFontSynthesisWeight == null) {
+            cssFontSynthesisWeight =
+                    (CssFontSynthesisWeight) style.CascadingOrder(
+                            new CssFontSynthesisWeight(), style, selector);
+        }
+        return cssFontSynthesisWeight;
     }
 
     public CssFontSynthesis getFontSynthesis() {
@@ -2666,6 +2707,15 @@ public class Css3Style extends ATSCStyle {
         return cssFontVariantLigatures;
     }
 
+    public CssFontVariantEmoji getFontVariantEmoji() {
+        if (cssFontVariantEmoji == null) {
+            cssFontVariantEmoji =
+                    (CssFontVariantEmoji) style.CascadingOrder(
+                            new CssFontVariantEmoji(), style, selector);
+        }
+        return cssFontVariantEmoji;
+    }
+    
     public CssFontVariantNumeric getFontVariantNumeric() {
         if (cssFontVariantNumeric == null) {
             cssFontVariantNumeric =
@@ -2675,6 +2725,24 @@ public class Css3Style extends ATSCStyle {
         return cssFontVariantNumeric;
     }
 
+    public CssFontOpticalSizing getFontOpticalSizing() {
+        if (cssFontOpticalSizing == null) {
+            cssFontOpticalSizing =
+                    (CssFontOpticalSizing) style.CascadingOrder(
+                            new CssFontOpticalSizing(), style, selector);
+        }
+        return cssFontOpticalSizing;
+    }
+
+    public CssFontPalette getFontPalette() {
+        if (cssFontPalette == null) {
+            cssFontPalette =
+                    (CssFontPalette) style.CascadingOrder(
+                            new CssFontPalette(), style, selector);
+        }
+        return cssFontPalette;
+    }
+    
     public CssFontFeatureSettings getFontFeatureSettings() {
         if (cssFontFeatureSettings == null) {
             cssFontFeatureSettings =
@@ -2682,6 +2750,15 @@ public class Css3Style extends ATSCStyle {
                             new CssFontFeatureSettings(), style, selector);
         }
         return cssFontFeatureSettings;
+    }
+
+    public CssFontVariationSettings getFontVariationSettings() {
+        if (cssFontVariationSettings == null) {
+            cssFontVariationSettings =
+                    (CssFontVariationSettings) style.CascadingOrder(
+                            new CssFontVariationSettings(), style, selector);
+        }
+        return cssFontVariationSettings;
     }
 
     public CssFontVariantAlternates getFontVariantAlternates() {

@@ -1,7 +1,7 @@
-// $Id$
+// 
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2021.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css;
 
@@ -12,33 +12,32 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @version $Revision$
  * @since CSS3
  */
-public class CssFontVariantPosition extends CssProperty {
+public class CssFontSynthesisSmallCaps extends CssProperty {
 
 
     /**
-     * Create a new CssFontVariantPosition
+     * Create a new CssFontSynthesisSmallCaps
      */
-    public CssFontVariantPosition() {
+    public CssFontSynthesisSmallCaps() {
     }
 
     /**
-     * Creates a new CssFontVariantPosition
+     * Creates a new CssFontSynthesisSmallCaps
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
+     * @throws InvalidParamException
      *          Expressions are incorrect
      */
-    public CssFontVariantPosition(ApplContext ac, CssExpression expression, boolean check)
+    public CssFontSynthesisSmallCaps(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         throw new InvalidParamException("value",
                 expression.getValue().toString(),
                 getPropertyName(), ac);
     }
 
-    public CssFontVariantPosition(ApplContext ac, CssExpression expression)
+    public CssFontSynthesisSmallCaps(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -55,7 +54,7 @@ public class CssFontVariantPosition extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "font-variant-position";
+        return "font-synthesis-small-caps";
     }
 
     /**
@@ -80,10 +79,10 @@ public class CssFontVariantPosition extends CssProperty {
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
         Css3Style s = (Css3Style) style;
-        if (s.cssFontVariantPosition != null) {
+        if (s.cssFontSynthesisSmallCaps != null) {
             style.addRedefinitionWarning(ac, this);
         }
-        s.cssFontVariantPosition = this;
+        s.cssFontSynthesisSmallCaps = this;
     }
 
 
@@ -93,7 +92,7 @@ public class CssFontVariantPosition extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssFontVariantPosition &&
+        return (property instanceof CssFontSynthesisSmallCaps &&
                 value.equals(property.value));
     }
 
@@ -106,9 +105,9 @@ public class CssFontVariantPosition extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css3Style) style).getFontVariantPosition();
+            return ((Css3Style) style).getFontSynthesisSmallCaps();
         } else {
-            return ((Css3Style) style).cssFontVariantPosition;
+            return ((Css3Style) style).cssFontSynthesisSmallCaps;
         }
     }
 }

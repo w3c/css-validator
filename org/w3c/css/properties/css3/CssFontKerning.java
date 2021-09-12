@@ -12,17 +12,31 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
+import java.util.Arrays;
+
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-kerning
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-kerning
  */
 public class CssFontKerning extends org.w3c.css.properties.css.CssFontKerning {
 
-    public static final CssIdent normal;
-    public static final CssIdent auto;
+    public static final CssIdent[] allowedValues;
 
     static {
-        auto = CssIdent.getIdent("auto");
-        normal = CssIdent.getIdent("normal");
+        String[] _allowedValues = {"auto", "normal", "none"};
+        allowedValues = new CssIdent[_allowedValues.length];
+        for (int i = 0; i < allowedValues.length; i++) {
+            allowedValues[i] = CssIdent.getIdent(_allowedValues[i]);
+        }
+        Arrays.sort(allowedValues);
+    }
+
+    public static final CssIdent getAllowedValue(CssIdent ident) {
+        for (CssIdent id : allowedValues) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
     }
 
     /**
@@ -36,8 +50,7 @@ public class CssFontKerning extends org.w3c.css.properties.css.CssFontKerning {
      * Creates a new CssFontKerning
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontKerning(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -52,26 +65,18 @@ public class CssFontKerning extends org.w3c.css.properties.css.CssFontKerning {
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else if (normal.equals(ident)) {
-                value = normal;
-            } else if (auto.equals(ident)) {
-                value = auto;
-            } else if (none.equals(ident)) {
-                value = none;
-            } else {
-                throw new InvalidParamException("value",
-                        val.toString(),
-                        getPropertyName(), ac);
-            }
-        } else {
+        if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);
         }
+        CssIdent ident = val.getIdent();
+        if (!CssIdent.isCssWide(ident) && (getAllowedValue(ident) == null)) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        value = val;
         expression.next();
     }
 

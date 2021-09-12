@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-alternates
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant-alternates
  */
 public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFontVariantAlternates {
 
@@ -65,7 +65,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
                         getPropertyName(), ac);
             }
             expression.next();
-            if (expression.getRemainingCount() > 0) {
+            if (!expression.end()) {
                 if (op != CssOperator.COMMA) {
                     throw new InvalidParamException("operator",
                             Character.toString(op), ac);
@@ -78,8 +78,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
      * Creates a new CssFontVariantAlternates
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontVariantAlternates(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -91,13 +90,13 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
         CssValue val;
         char op;
 
-        CssFunction stylistic = null;
-        CssIdent histValue = null;
-        CssFunction styleSet = null;
-        CssFunction charVariant = null;
-        CssFunction swash = null;
-        CssFunction ornaments = null;
-        CssFunction annotation = null;
+        CssValue stylistic = null;
+        CssValue histValue = null;
+        CssValue styleSet = null;
+        CssValue charVariant = null;
+        CssValue swash = null;
+        CssValue ornaments = null;
+        CssValue annotation = null;
         boolean match;
 
         while (!expression.end()) {
@@ -106,29 +105,22 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
-                    if (inherit.equals(ident)) {
+                    CssIdent ident = val.getIdent();
+                    if (CssIdent.isCssWide(ident) || normal.equals(ident)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
-                    } else if (normal.equals(ident)) {
-                        if (expression.getCount() != 1) {
-                            throw new InvalidParamException("value",
-                                    val.toString(),
-                                    getPropertyName(), ac);
-                        }
-                        value = normal;
+                        value = val;
                     } else {
                         // no inherit, nor normal, test the up-to-(now one) values
                         match = false;
                         if (histValue == null) {
-                            if (historicalForms.equals(ident)) {
-                                histValue = historicalForms;
-                                value = histValue;
-                                match = true;
+                            match = historicalForms.equals(ident);
+                            if (match) {
+                                histValue = val;
+                                value = val;
                             }
                         }
                         if (!match) {

@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2021.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -15,14 +15,14 @@ import org.w3c.css.values.CssValue;
 import java.util.Arrays;
 
 /**
- * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant-position
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-synthesis-style
  */
-public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVariantPosition {
+public class CssFontSynthesisStyle extends org.w3c.css.properties.css.CssFontSynthesisStyle {
 
     public static final CssIdent[] allowedValues;
 
     static {
-        String[] _allowedValues = {"normal", "sub", "super"};
+        String[] _allowedValues = {"auto", "none"};
         allowedValues = new CssIdent[_allowedValues.length];
         for (int i = 0; i < allowedValues.length; i++) {
             allowedValues[i] = CssIdent.getIdent(_allowedValues[i]);
@@ -40,19 +40,19 @@ public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVa
     }
 
     /**
-     * Create a new CssFontVariantPosition
+     * Create a new CssFontSynthesisStyle
      */
-    public CssFontVariantPosition() {
+    public CssFontSynthesisStyle() {
         value = initial;
     }
 
     /**
-     * Creates a new CssFontVariantPosition
+     * Creates a new CssFontSynthesisStyle
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssFontVariantPosition(ApplContext ac, CssExpression expression, boolean check)
+    public CssFontSynthesisStyle(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -80,7 +80,7 @@ public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVa
         expression.next();
     }
 
-    public CssFontVariantPosition(ApplContext ac, CssExpression expression)
+    public CssFontSynthesisStyle(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

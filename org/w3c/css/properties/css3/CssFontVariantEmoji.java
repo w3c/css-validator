@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2021.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -15,44 +15,44 @@ import org.w3c.css.values.CssValue;
 import java.util.Arrays;
 
 /**
- * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant-position
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-variant-emoji
  */
-public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVariantPosition {
+public class CssFontVariantEmoji extends org.w3c.css.properties.css.CssFontVariantEmoji {
 
-    public static final CssIdent[] allowedValues;
+    public static final CssIdent[] emojiValues;
+    public static final String _emojiValues[] = {"auto", "text", "emoji", "unicode"};
 
     static {
-        String[] _allowedValues = {"normal", "sub", "super"};
-        allowedValues = new CssIdent[_allowedValues.length];
-        for (int i = 0; i < allowedValues.length; i++) {
-            allowedValues[i] = CssIdent.getIdent(_allowedValues[i]);
+        emojiValues = new CssIdent[_emojiValues.length];
+        int i = 0;
+        for (String s : _emojiValues) {
+            emojiValues[i++] = CssIdent.getIdent(s);
         }
-        Arrays.sort(allowedValues);
+        Arrays.sort(emojiValues);
     }
 
     public static final CssIdent getAllowedValue(CssIdent ident) {
-        for (CssIdent id : allowedValues) {
-            if (id.equals(ident)) {
-                return id;
-            }
+        int idx = Arrays.binarySearch(emojiValues, ident);
+        if (idx >= 0) {
+            return emojiValues[idx];
         }
         return null;
     }
 
     /**
-     * Create a new CssFontVariantPosition
+     * Create a new CssFontVariantEmoji
      */
-    public CssFontVariantPosition() {
+    public CssFontVariantEmoji() {
         value = initial;
     }
 
     /**
-     * Creates a new CssFontVariantPosition
+     * Creates a new CssFontVariantEmoji
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssFontVariantPosition(ApplContext ac, CssExpression expression, boolean check)
+    public CssFontVariantEmoji(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -80,9 +80,10 @@ public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVa
         expression.next();
     }
 
-    public CssFontVariantPosition(ApplContext ac, CssExpression expression)
+    public CssFontVariantEmoji(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
+
 }
 
