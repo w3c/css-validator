@@ -24,7 +24,7 @@ public class CssFontStyle extends org.w3c.css.properties.css.CssFontStyle {
 
     static final String[] _allowed_values = {"italic", "normal", "oblique"};
     static final ArrayList<CssIdent> allowed_values;
-    static final CssIdent oblique = CssIdent.getIdent("oblique");
+    static public final CssIdent oblique = CssIdent.getIdent("oblique");
 
     static {
         allowed_values = new ArrayList<CssIdent>(_allowed_values.length);

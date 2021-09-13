@@ -302,6 +302,7 @@ import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
 import org.w3c.css.properties.css.fontface.CssFontDisplay;
 import org.w3c.css.properties.css.fontface.CssFontStretch;
+import org.w3c.css.properties.css.fontface.CssFontStyle;
 import org.w3c.css.properties.css.fontface.CssFontWeight;
 import org.w3c.css.properties.css.viewport.CssMaxZoom;
 import org.w3c.css.properties.css.viewport.CssMinZoom;
@@ -582,6 +583,7 @@ public class Css3Style extends ATSCStyle {
     public CssFontDisplay fontFaceCssFontDisplay;
     public CssFontWeight fontFaceCssFontWeight;
     public CssFontStretch fontFaceCssFontStretch;
+    public CssFontStyle fontFaceCssFontStyle;
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1300,6 +1302,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return fontFaceCssFontStretch;
+    }
+
+    public CssFontStyle getFontFaceCssFontStyle() {
+        if (fontFaceCssFontStyle == null) {
+            fontFaceCssFontStyle =
+                    (CssFontStyle) style.CascadingOrder(new CssFontStyle(),
+                            style, selector);
+        }
+        return fontFaceCssFontStyle;
     }
     
     public CssFontWeight getFontFaceCssFontWeight() {
