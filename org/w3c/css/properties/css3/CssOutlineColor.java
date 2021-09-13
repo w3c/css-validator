@@ -56,18 +56,19 @@ public class CssOutlineColor extends org.w3c.css.properties.css.CssOutlineColor 
                 break;
             case CssTypes.CSS_HASH_IDENT:
                 org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-                c.setShortRGBColor(ac, val.toString());
-                value = c;
+                c.setShortRGBColor(ac, val.getHashIdent().toString());
+                value = val;
                 expression.next();
                 break;
             case CssTypes.CSS_IDENT:
-                if (invert.equals(val)) {
-                    value = invert;
+                CssIdent id = val.getIdent();
+                if (invert.equals(id)) {
+                    value = val;
                     expression.next();
                     break;
                 }
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     expression.next();
                     break;
                 }
