@@ -62,6 +62,8 @@ public class CssFontWeight extends org.w3c.css.properties.css.fontface.CssFontWe
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
+                        values.add(val);
+                        break;
                     }
                     if (getAllowedAbsoluteValue(id) != null) {
                         values.add(val);
