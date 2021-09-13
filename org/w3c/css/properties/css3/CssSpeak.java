@@ -69,11 +69,16 @@ public class CssSpeak extends org.w3c.css.properties.css.CssSpeak {
                 if (inherit.equals(id)) {
                     value = val;
                     break;
-                } else {
-                    if (getAllowedIdent(id) != null) {
-                        value = val;
-                        break;
-                    }
+                }
+                if (getAllowedIdent(id) != null) {
+                    value = val;
+                    break;
+                }
+                // report old values as deprecated
+                if (org.w3c.css.properties.css21.CssSpeak.getAllowedIdent(id) != null) {
+                    ac.getFrame().addWarning("deprecated", val.toString());
+                    value = val;
+                    break;
                 }
             default:
                 throw new InvalidParamException("value",
