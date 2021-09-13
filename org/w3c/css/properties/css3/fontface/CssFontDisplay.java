@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-fonts-4-20180410/#font-display-desc
+ * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#font-display-desc
  */
 public class CssFontDisplay extends org.w3c.css.properties.css.fontface.CssFontDisplay {
 
@@ -48,8 +48,7 @@ public class CssFontDisplay extends org.w3c.css.properties.css.fontface.CssFontD
      * Creates a new CssFontDisplay
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFontDisplay(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -67,8 +66,8 @@ public class CssFontDisplay extends org.w3c.css.properties.css.fontface.CssFontD
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                value = getAllowedIdent((CssIdent) val);
-                if (value != null) {
+                if (getAllowedIdent(val.getIdent()) != null) {
+                    value = val;
                     break;
                 }
             default:
