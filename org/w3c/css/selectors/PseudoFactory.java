@@ -22,20 +22,31 @@ import org.w3c.css.util.InvalidParamException;
 public class PseudoFactory {
 
     private static final String[] PSEUDOCLASS_CONSTANTSCSS3 = {
-            "link", "visited", "active", "focus", "target",
-            "hover", "first-child", "enabled", "disabled",
-            "checked", "indeterminate", "root", "last-child",
+            // https://www.w3.org/TR/2018/WD-selectors-4-20181121/#location
+            "any-link", "link", "visited", "local-link", "target",
+            "target-within", "scope",
+            // https://www.w3.org/TR/2018/WD-selectors-4-20181121/#useraction-pseudos
+            "hover", "active", "focus", "focus-visible", "focus-within",
+            // https://www.w3.org/TR/2018/WD-selectors-4-20181121/#time-pseudos
+            "current", "past", "future",
+            // https://www.w3.org/TR/2018/WD-selectors-4-20181121/#resource-pseudos
+            "playing", "paused",
+            // https://www.w3.org/TR/2018/WD-selectors-4-20181121/#input-pseudos
+            "enabled", "disabled", "read-only", "read-write", "placeholder-shown",
+            "default", "checked", "indeterminate",
+            "blank", "valid", "invalid", "in-range", "out-of-range", "required", "optional",
+            "user-invalid",
+            // https://www.w3.org/TR/2018/WD-selectors-4-20181121/#structural-pseudos
+            "root", "empty", "first-child", "last-child", "only-child",
             "first-of-type", "last-of-type", "only-of-type",
-            "only-child", "empty",
-            "fullscreen", "default", "valid", "invalid", "in-range",
-            "out-of-range", "required", "optional", "read-only",
-            "read-write", "defined", "placeholder-shown",
-            // from selectors-4, unstable list (20190626)
-            "any-link", "local-link", "target-within", "scope",
-            "focus-visible", "focus-within", "current", "past",
-            "future", "playing", "paused", "blank", "user-invalid",
-
-
+            // https://www.w3.org/TR/2018/WD-css-page-3-20181018/#page-selectors
+            "left", "right", "first",
+            // https://www.w3.org/TR/2014/WD-css-scoping-1-20140403/#selectordef-host0
+            "host",
+            // https://fullscreen.spec.whatwg.org/#:fullscreen-pseudo-class
+            "fullscreen",
+            // https://html.spec.whatwg.org/multipage/semantics-other.html#pseudo-classes
+            "autofill", "defined"
     };
 
     private static final String[] PSEUDOCLASS_CONSTANTSCSS2 = {
@@ -64,7 +75,9 @@ public class PseudoFactory {
             // https://www.w3.org/TR/2020/WD-css-pseudo-4-20201231/#treelike
             "before", "after", "marker", "placeholder", "file-selector-button",
             // https://fullscreen.spec.whatwg.org/#::backdrop-pseudo-element
-            "backdrop"
+            "backdrop",
+            // https://www.w3.org/TR/2019/CR-webvtt1-20190404/#css-extensions
+            "cue", "cue-region"
     };
 
     private static final String[] PSEUDOELEMENT_CONSTANTSCSS2 = {
