@@ -57,8 +57,14 @@ public class PseudoFactory {
     };
 
     private static final String[] PSEUDOELEMENT_CONSTANTSCSS3 = {
-            "first-line", "first-letter", "before", "after", "marker",
-            "selection", "placeholder", "backdrop"
+            // https://www.w3.org/TR/2020/WD-css-pseudo-4-20201231/#typographic-pseudos
+            "first-line", "first-letter",
+            // https://www.w3.org/TR/2020/WD-css-pseudo-4-20201231/#highlight-pseudos
+            "selection", "target-text", "spelling-error", "grammar-error",
+            // https://www.w3.org/TR/2020/WD-css-pseudo-4-20201231/#treelike
+            "before", "after", "marker", "placeholder", "file-selector-button",
+            // https://fullscreen.spec.whatwg.org/#::backdrop-pseudo-element
+            "backdrop"
     };
 
     private static final String[] PSEUDOELEMENT_CONSTANTSCSS2 = {
