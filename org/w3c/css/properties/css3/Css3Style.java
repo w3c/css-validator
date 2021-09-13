@@ -301,6 +301,7 @@ import org.w3c.css.properties.css.counterstyle.CssSuffix;
 import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
 import org.w3c.css.properties.css.fontface.CssFontDisplay;
+import org.w3c.css.properties.css.fontface.CssFontWeight;
 import org.w3c.css.properties.css.viewport.CssMaxZoom;
 import org.w3c.css.properties.css.viewport.CssMinZoom;
 import org.w3c.css.properties.css.viewport.CssOrientation;
@@ -578,6 +579,7 @@ public class Css3Style extends ATSCStyle {
     public CssPlaceItems cssPlaceItems;
 
     public CssFontDisplay fontFaceCssFontDisplay;
+    public CssFontWeight fontFaceCssFontWeight;
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1287,6 +1289,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return fontFaceCssFontDisplay;
+    }
+
+    public CssFontWeight getFontFaceCssFontWeight() {
+        if (fontFaceCssFontWeight == null) {
+            fontFaceCssFontWeight =
+                    (CssFontWeight) style.CascadingOrder(new CssFontWeight(),
+                            style, selector);
+        }
+        return fontFaceCssFontWeight;
     }
 
     public CssPlaceItems getPlaceItems() {
