@@ -9,6 +9,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -56,6 +57,17 @@ public class CssFontWeight extends org.w3c.css.properties.css.fontface.CssFontWe
             op = expression.getOperator();
 
             switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                        CssNumber num = val.getNumber();
+                        num.checkGreaterEqualThan(ac, 1, this);
+                        num.checkLowerEqualThan(ac, 1000, this);
+                    } else {
+                        // can at least check it is positive
+                        val.getCheckableValue().checkStrictPositiveness(ac, getPropertyName());
+                    }
+                    values.add(val);
+                    break;
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
                     if (auto.equals(id)) {
