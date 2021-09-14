@@ -566,7 +566,8 @@ TOKEN :
 <DEFAULT>
     TOKEN :
 {
-    < CDO : "<!--" >
+    < SCO : "/*" >
+  | < CDO : "<!--" >
   | < CDC : "-->" >
   | < INCLUDES  : <TILDE> "=" >
   | < DASHMATCH : "|=" >
@@ -934,9 +935,18 @@ void afterImportDeclaration() :
 		new ParseException(ac.getMsg().getString("parser.import_not_allowed"));
 		addError(e, ret);
 	    } else {
-		ParseException e = 
-	     new ParseException(ac.getMsg().getString("generator.unrecognize"));
-		addError(e, ret);
+		// ignore unterminated comment
+		CssVersion version = ac.getCssVersion();
+                if (!ret.startsWith("/*") || (version.compareTo(CssVersion.CSS3) < 0)) {
+		    ParseException e = new ParseException(ac.getMsg().getString("generator.unrecognize"));
+		    addError(e, ret);
+		} else {
+		    // read until the end
+		    Token t = getToken(0);
+                    while(t.kind != EOF) {
+			t = getNextToken();
+                    }
+                }
 	    }
 	}
 	) ignoreStatement() )*
@@ -2017,8 +2027,47 @@ void ruleSet() :
 		currentContext = null;
 	    }
     } catch (ParseException e) {
-    if ((ac.getCssProfile() != CssProfile.MOBILE) && !context_set.isEmpty()) {
-		addError(e, skipStatement());
+	if ((ac.getCssProfile() != CssProfile.MOBILE) && !context_set.isEmpty()) {
+		String ret = skipStatement();
+		CssVersion version = ac.getCssVersion();
+		Token t1 = getToken(1);
+		if (version.compareTo(CssVersion.CSS3) < 0) {
+			addError(e, ret);
+		} else if ((ret != null) && !ret.startsWith("/*") && (t1 != null && t1.kind == EOF)) {
+			addError(e, ret);
+		} else {
+		// unterminated comment, skip until EOF
+			Token t = getToken(0);
+			while(t.kind != EOF) {
+				t = getNextToken();
+			}
+			// then process
+			if (version.compareTo(CssVersion.CSS3) >= 0) {
+				markRule = true;
+       		         	if (value_set != null) {
+       		             		boolean first = true; 
+       		             		for (CssSelectors sel : context_set) {
+       		                 		if (first) {
+       		                     			handleRule(sel, value_set);
+       		                     			first = false;
+       		                 		} else {
+       		                     			// we need to duplicate properties in that case 
+       		                 			// as property holds reference to the selectors and it interact
+       		                     			// badly with conflict detection
+       		                    			int vsize = value_set.size();
+       		                     			ArrayList<CssProperty> v = new ArrayList<CssProperty>(vsize);
+       		                 			for (CssProperty p : value_set) {
+       		                         			v.add(p.duplicate());
+       		                     			}
+       		                     			handleRule(sel, v);
+       		                 		}
+       		            	 }
+       		             	setSelectorList(context_set);
+       		             	endOfRule();
+			}
+                }
+                currentContext = null;
+		}
 	}
     } catch (TokenMgrError e) {
 	addError(new ParseException(e.getMessage()), skipStatement());
