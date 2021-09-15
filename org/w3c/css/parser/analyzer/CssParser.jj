@@ -2033,7 +2033,7 @@ void ruleSet() :
 		Token t1 = getToken(1);
 		if (version.compareTo(CssVersion.CSS3) < 0) {
 			addError(e, ret);
-		} else if ((ret != null) && !ret.startsWith("/*") && (t1 != null && t1.kind == EOF)) {
+		} else if ((ret != null) && !ret.startsWith("/*") && (t1 != null && t1.kind != EOF)) {
 			addError(e, ret);
 		} else {
 		// unterminated comment, skip until EOF
