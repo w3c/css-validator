@@ -2030,16 +2030,20 @@ void ruleSet() :
 	if ((ac.getCssProfile() != CssProfile.MOBILE) && !context_set.isEmpty()) {
 		String ret = skipStatement();
 		CssVersion version = ac.getCssVersion();
-		Token t1 = getToken(1);
+		Token t1 = getToken(0);
 		if (version.compareTo(CssVersion.CSS3) < 0) {
 			addError(e, ret);
 		} else if ((ret != null) && !ret.startsWith("/*") && (t1 != null && t1.kind != EOF)) {
 			addError(e, ret);
+		} else if (!context_set.isEmpty() && value_set == null) {
+			addError(e, ret);
 		} else {
-		// unterminated comment, skip until EOF
-			Token t = getToken(0);
-			while(t.kind != EOF) {
-				t = getNextToken();
+			if ((ret != null) && ret.startsWith("/*")) {
+			// unterminated comment, skip until EOF
+				Token t = getToken(0);
+				while(t.kind != EOF) {
+					t = getNextToken();
+				}
 			}
 			// then process
 			if (version.compareTo(CssVersion.CSS3) >= 0) {
@@ -3571,12 +3575,12 @@ String skipStatement() {
 	}
 	first = false;
     }
-    
+    getNextToken();
     // skip white space
-    while (tok.kind == S) {
+/*    while (tok.kind == S) {
 	getNextToken();
 	tok = getToken(1);
-    }
+    } */
     String statement = s.toString().trim();
     return statement;
 }
@@ -3598,6 +3602,7 @@ String skip_to_matching_brace() {
 	} else if (tok.kind == RBRACE) {
 	    nesting--;
 	    if (nesting == 0) {
+		s.append(tok.image);
 		break;
 	    }
 	}
