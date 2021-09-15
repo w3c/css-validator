@@ -98,6 +98,10 @@ public abstract class CssValue {
         throw new ClassCastException("unknown");
     }
 
+    public CssString getString() throws InvalidParamException {
+        throw new ClassCastException("unknown");
+    }
+
     /**
      * Does this value contain a "\9" CSS declaration hack?
      */

@@ -93,22 +93,20 @@ public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmph
         CssValue val;
         char op;
 
-        CssIdent styleValue = null;
-        CssIdent formValue = null;
+        CssValue styleValue = null;
+        CssValue formValue = null;
 
         val = expression.getValue();
         op = expression.getOperator();
 
         switch (val.getType()) {
             case CssTypes.CSS_STRING:
-                if (val.getRawType() == CssTypes.CSS_STRING) {
-                    CssString s = (CssString) val;
-                    // limit of 1 character + two surrounding quotes
-                    // TODO might be a warning only
-                    if (s.toString().length() != 3) {
-                        throw new InvalidParamException("value",
-                                s, getPropertyName(), ac);
-                    }
+                CssString s = val.getString();
+                // limit of 1 character + two surrounding quotes
+                // TODO might be a warning only
+                if (s.toString().length() != 3) {
+                    throw new InvalidParamException("value",
+                            s, getPropertyName(), ac);
                 }
                 if (check && expression.getCount() != 1) {
                     throw new InvalidParamException("value",
@@ -119,7 +117,7 @@ public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmph
                 break;
             case CssTypes.CSS_IDENT:
                 CssIdent ident = val.getIdent();
-                if (inherit.equals(ident)) {
+                if (CssIdent.isCssWide(ident)) {
                     value = val;
                     if (check && expression.getCount() != 1) {
                         throw new InvalidParamException("value",
@@ -139,12 +137,16 @@ public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmph
                     do {
                         match = false;
                         if (styleValue == null) {
-                            styleValue = getShapeStyle(ident);
-                            match = (styleValue != null);
+                            match = (getShapeStyle(ident) != null);
+                            if (match) {
+                                styleValue = val;
+                            }
                         }
                         if (!match && formValue == null) {
-                            formValue = getShapeForm(ident);
-                            match = (formValue != null);
+                            match = (getShapeForm(ident) != null);
+                            if (match) {
+                                formValue = val;
+                            }
                         }
                         if (!match) {
                             throw new InvalidParamException("value",

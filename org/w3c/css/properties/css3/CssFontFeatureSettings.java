@@ -102,17 +102,15 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
                     layervalues.add(val);
                     break;
                 case CssTypes.CSS_STRING:
-                    if (val.getRawType() == CssTypes.CSS_STRING) {
-                        CssString s = (CssString) val;
-                        int l = s.toString().length();
-                        // limit of 4characters + two surrounding quotes
-                        if (s.toString().length() != 6) {
-                            throw new InvalidParamException("value",
-                                    expression.getValue().toString(),
-                                    getPropertyName(), ac);
-                        }
-                        // FIXME TODO check
+                    CssString s = val.getString();
+                    int l = s.toString().length();
+                    // limit of 4characters + two surrounding quotes
+                    if (s.toString().length() != 6) {
+                        throw new InvalidParamException("value",
+                                expression.getValue().toString(),
+                                getPropertyName(), ac);
                     }
+                    // FIXME TODO check
                     layervalues.add(val);
                     break;
                 default:
@@ -124,8 +122,8 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
             if (!layervalues.isEmpty()) {
                 if ((layervalues.size() == 2) || ((layervalues.size() == 1) && (op == COMMA))) {
                     if (layervalues.size() == 1) {
-                       values.add(val);
-                       layervalues.clear();
+                        values.add(val);
+                        layervalues.clear();
                     } else {
                         values.add(new CssValueList(layervalues));
                         layervalues = new ArrayList<>();

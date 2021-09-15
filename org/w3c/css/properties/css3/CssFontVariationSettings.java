@@ -26,6 +26,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 public class CssFontVariationSettings extends org.w3c.css.properties.css.CssFontVariationSettings {
 
     static final CssIdent normal = CssIdent.getIdent("normal");
+
     /**
      * Create a new CssFontVariationSettings
      */
@@ -55,7 +56,7 @@ public class CssFontVariationSettings extends org.w3c.css.properties.css.CssFont
         while (!expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
-            
+
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
@@ -80,17 +81,15 @@ public class CssFontVariationSettings extends org.w3c.css.properties.css.CssFont
                     layervalues.add(val);
                     break;
                 case CssTypes.CSS_STRING:
-                    if (val.getRawType() == CssTypes.CSS_STRING) {
-                        CssString s = (CssString) val;
-                        int l = s.toString().length();
-                        // limit of 4characters + two surrounding quotes
-                        if (s.toString().length() != 6) {
-                            throw new InvalidParamException("value",
-                                    expression.getValue().toString(),
-                                    getPropertyName(), ac);
-                        }
-                        // FIXME TODO check
+                    CssString s = val.getString();
+                    int l = s.toString().length();
+                    // limit of 4characters + two surrounding quotes
+                    if (s.toString().length() != 6) {
+                        throw new InvalidParamException("value",
+                                expression.getValue().toString(),
+                                getPropertyName(), ac);
                     }
+                    // FIXME TODO check
                     layervalues.add(val);
                     break;
                 default:

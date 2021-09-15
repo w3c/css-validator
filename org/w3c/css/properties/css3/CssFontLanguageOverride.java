@@ -55,43 +55,41 @@ public class CssFontLanguageOverride extends org.w3c.css.properties.css.CssFontL
 
         switch (val.getType()) {
             case CssTypes.CSS_STRING:
-                if (val.getRawType() == CssTypes.CSS_STRING) {
-                    CssString s = (CssString) val;
-                    int l = s.toString().length();
-                    // limit of 4characters + two surrounding quotes
-                    if ((l < 4) || (l > 6)) {
-                        throw new InvalidParamException("value",
-                                expression.getValue().toString(),
-                                getPropertyName(), ac);
-                    }
-                    // we extract the 2, 3 or 4 letters from the quotes...
-                    String tag = s.toString().substring(1, l - 1).toUpperCase();
-                    // align to 4
-                    switch (tag.length()) {
-                        case 1:
-                            tag = tag.concat("   ");
-                            break;
-                        case 2:
-                            tag = tag.concat("  ");
-                            break;
-                        case 3:
-                            tag = tag.concat(" ");
-                            break;
-                        default:
-                    }
-                    // valid values are specified here.
-                    int idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.tags, tag);
-                    if (idx < 0) {
-                        // TODO specific error code
-                        throw new InvalidParamException("value",
-                                expression.getValue().toString(),
-                                getPropertyName(), ac);
-                    }
-                    // check if deprecated
-                    idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.deprecated_tags, tag);
-                    if (idx >= 0) {
-                        ac.getFrame().addWarning("deprecated", tag);
-                    }
+                CssString s = val.getString();
+                int l = s.toString().length();
+                // limit of 4characters + two surrounding quotes
+                if ((l < 4) || (l > 6)) {
+                    throw new InvalidParamException("value",
+                            expression.getValue().toString(),
+                            getPropertyName(), ac);
+                }
+                // we extract the 2, 3 or 4 letters from the quotes...
+                String tag = s.toString().substring(1, l - 1).toUpperCase();
+                // align to 4
+                switch (tag.length()) {
+                    case 1:
+                        tag = tag.concat("   ");
+                        break;
+                    case 2:
+                        tag = tag.concat("  ");
+                        break;
+                    case 3:
+                        tag = tag.concat(" ");
+                        break;
+                    default:
+                }
+                // valid values are specified here.
+                int idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.tags, tag);
+                if (idx < 0) {
+                    // TODO specific error code
+                    throw new InvalidParamException("value",
+                            expression.getValue().toString(),
+                            getPropertyName(), ac);
+                }
+                // check if deprecated
+                idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.deprecated_tags, tag);
+                if (idx >= 0) {
+                    ac.getFrame().addWarning("deprecated", tag);
                 }
                 value = val;
                 break;

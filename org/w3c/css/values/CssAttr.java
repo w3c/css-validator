@@ -128,7 +128,7 @@ public class CssAttr extends CssCheckableValue {
                         throw new InvalidParamException("unrecognize", ac);
                     }
                     if (val.getType() == CssTypes.CSS_IDENT) {
-                        computed_type = _checkType((CssIdent) val);
+                        computed_type = _checkType(val.getIdent());
                         value_type = val;
                         break;
                     }

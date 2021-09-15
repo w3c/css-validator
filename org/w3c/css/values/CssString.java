@@ -87,4 +87,9 @@ public class CssString extends CssValue {
                 this.value.equals(((CssString) value).value));
     }
 
+    @Override
+    public CssString getString()
+            throws InvalidParamException {
+        return this;
+    }
 }

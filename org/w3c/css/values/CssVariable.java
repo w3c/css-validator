@@ -357,6 +357,14 @@ public class CssVariable extends CssCheckableValue {
     }
 
     @Override
+    public CssString getString() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_STRING) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getString();
+    }
+
+    @Override
     public CssFunction getFunction() throws InvalidParamException {
         if (computed_type != CssTypes.CSS_FUNCTION) {
             throw new ClassCastException("unknown");

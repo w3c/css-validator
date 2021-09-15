@@ -126,13 +126,11 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
                             values.add(val);
                             break;
                         case CssTypes.CSS_STRING:
-                            if (val.getRawType() == CssTypes.CSS_STRING) {
-                                CssString s = (CssString) val;
-                                if (s.toString().charAt(1) == '_') {
-                                    // TODO better error (do not start with _)
-                                    throw new InvalidParamException("value", val,
-                                            caller.getPropertyName(), ac);
-                                }
+                            CssString s = val.getString();
+                            if (s.toString().charAt(1) == '_') {
+                                // TODO better error (do not start with _)
+                                throw new InvalidParamException("value", val,
+                                        caller.getPropertyName(), ac);
                             }
                             values.add(val);
                         default:
