@@ -149,7 +149,7 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
 
     protected static void parseFunctionValues(ApplContext ac, CssValue func, String caller)
             throws InvalidParamException {
-        CssFunction function = (CssFunction) func;
+        CssFunction function = func.getFunction();
         String fname = function.getName().toLowerCase();
 
         switch (fname) {

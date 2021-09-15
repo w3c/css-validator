@@ -118,7 +118,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
                     values.add(val);
                     break;
                 case CssTypes.CSS_FUNCTION:
-                    CssFunction f = (CssFunction) val;
+                    CssFunction f = val.getFunction();
                     switch (f.getName()) {
                         case "counter":
                             checkCounterFunction(ac, f, this);
@@ -146,7 +146,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
                     break;
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
-                    if (inherit.equals(id)) {
+                    if (CssIdent.isCssWide(id)) {
                         values.add(val);
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
@@ -196,7 +196,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
 
                 switch (val.getType()) {
                     case CssTypes.CSS_FUNCTION:
-                        CssFunction f = (CssFunction) val;
+                        CssFunction f = val.getFunction();
                         switch (f.getName()) {
                             case "counter":
                                 checkCounterFunction(ac, f, this);

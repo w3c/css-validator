@@ -120,7 +120,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 
     protected static void parseFunctionValues(ApplContext ac, CssValue func, CssProperty caller)
             throws InvalidParamException {
-        CssFunction function = (CssFunction) func;
+        CssFunction function = func.getFunction();
         String fname = function.getName().toLowerCase();
         // waiting for jdk7 for the string-based switch/case
 

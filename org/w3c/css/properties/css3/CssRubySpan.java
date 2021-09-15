@@ -72,7 +72,7 @@ public class CssRubySpan extends CssProperty {
             expression.next();
             return;
         } else if (val instanceof CssFunction) {
-            CssFunction attr = (CssFunction) val;
+            CssFunction attr = val.getFunction();
             CssExpression params = attr.getParameters();
             CssValue v = params.getValue();
             if (attr.getName().equals("attr")) {

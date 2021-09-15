@@ -114,7 +114,7 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
 
         switch (val.getType()) {
             case CssTypes.CSS_FUNCTION:
-                value = parseSymbolsFunction(ac, (CssFunction) val, this);
+                value = parseSymbolsFunction(ac, val, this);
                 break;
             case CssTypes.CSS_STRING:
                 value = val;
@@ -149,9 +149,10 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
     /**
      * @spec https://www.w3.org/TR/2015/CR-css-counter-styles-3-20150611/#funcdef-symbols
      */
-    protected static CssFunction parseSymbolsFunction(ApplContext ac, CssFunction function,
+    protected static CssFunction parseSymbolsFunction(ApplContext ac, CssValue value,
                                                       CssProperty caller)
             throws InvalidParamException {
+        CssFunction function = value.getFunction();
         CssExpression exp = function.getParameters();
         CssValue val;
         char op;

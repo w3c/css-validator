@@ -219,7 +219,7 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
 
     protected static CssValue parseFunctionValues(ApplContext ac, CssValue func, CssProperty caller)
             throws InvalidParamException {
-        CssFunction function = (CssFunction) func;
+        CssFunction function = func.getFunction();
         String fname = function.getName().toLowerCase();
         if (steps_func.equals(fname)) {
             return parseStepsFunction(ac, function.getParameters(), caller);

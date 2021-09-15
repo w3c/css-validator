@@ -57,8 +57,7 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
      * Create a new CssColumnWidth
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException Incorrect value
      */
     public CssColumnWidth(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
@@ -83,7 +82,7 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
                 value = val;
                 break;
             case CssTypes.CSS_FUNCTION:
-                value = parseFitContentFunction(ac, (CssFunction) val, this);
+                value = parseFitContentFunction(ac, val, this);
                 break;
             case CssTypes.CSS_IDENT:
                 CssIdent ident = val.getIdent();
@@ -124,10 +123,11 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
     /**
      * @spec https://www.w3.org/TR/2018/WD-css-sizing-3-20180304/#valdef-column-width-fit-content-length-percentage
      */
-    protected static CssFunction parseFitContentFunction(ApplContext ac, CssFunction function,
+    protected static CssFunction parseFitContentFunction(ApplContext ac, CssValue value,
                                                          CssProperty caller)
             throws InvalidParamException {
 
+        CssFunction function = value.getFunction();
         CssExpression exp = function.getParameters();
         CssValue val;
 

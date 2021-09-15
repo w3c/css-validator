@@ -132,20 +132,20 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
                     break;
                 case CssTypes.CSS_FUNCTION:
                     match = false;
-                    CssFunction func = (CssFunction) val;
+                    CssFunction func = val.getFunction();
                     String funcname = func.getName().toLowerCase();
                     if (stylistic == null) {
                         if ("stylistic".equals(funcname)) {
                             checkFuncExpression(ac, func.getParameters(), false);
-                            stylistic = func;
-                            value = stylistic;
+                            stylistic = val;
+                            value = val;
                             match = true;
                         }
                     }
                     if (!match && styleSet == null) {
                         if ("styleset".equals(funcname)) {
                             checkFuncExpression(ac, func.getParameters(), true);
-                            styleSet = func;
+                            styleSet = val;
                             value = styleSet;
                             match = true;
                         }
@@ -153,7 +153,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
                     if (!match && charVariant == null) {
                         if ("character-variant".equals(funcname)) {
                             checkFuncExpression(ac, func.getParameters(), true);
-                            charVariant = func;
+                            charVariant = val;
                             value = charVariant;
                             match = true;
                         }
@@ -161,7 +161,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
                     if (!match && swash == null) {
                         if ("swash".equals(funcname)) {
                             checkFuncExpression(ac, func.getParameters(), false);
-                            swash = func;
+                            swash = val;
                             value = swash;
                             match = true;
                         }
@@ -169,7 +169,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
                     if (!match && ornaments == null) {
                         if ("ornaments".equals(funcname)) {
                             checkFuncExpression(ac, func.getParameters(), false);
-                            ornaments = func;
+                            ornaments = val;
                             value = ornaments;
                             match = true;
                         }
@@ -177,7 +177,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
                     if (!match && annotation == null) {
                         if ("annotation".equals(funcname)) {
                             checkFuncExpression(ac, func.getParameters(), false);
-                            annotation = func;
+                            annotation = val;
                             value = annotation;
                             match = true;
                         }

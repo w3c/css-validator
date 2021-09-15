@@ -81,7 +81,8 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
                 }
                 values.add(val);
             } else {
-                values.add(parseTrackSize(ac, val, this));
+                parseTrackSize(ac, val, this);
+                values.add(val);
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator", op,
@@ -103,7 +104,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
             case CssTypes.CSS_FLEX:
                 return parseTrackBreadth(ac, value, caller);
             case CssTypes.CSS_FUNCTION:
-                CssFunction function = (CssFunction) value;
+                CssFunction function = value.getFunction();
                 String fname = function.getName().toLowerCase();
                 if (minmax.equals(fname)) {
                     return parseMinmaxFunction(ac, function,
@@ -128,7 +129,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
             case CssTypes.CSS_PERCENTAGE:
                 return parseFixedBreadth(ac, value, caller);
             case CssTypes.CSS_FUNCTION:
-                CssFunction function = (CssFunction) value;
+                CssFunction function = value.getFunction();
                 String fname = function.getName().toLowerCase();
                 if (minmax.equals(fname)) {
                     try {

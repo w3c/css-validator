@@ -114,7 +114,7 @@ public class CssMinWidth extends org.w3c.css.properties.css.CssMinWidth {
     protected static CssValue parseFunctionValue(ApplContext ac, CssValue value,
                                                  CssProperty caller)
             throws InvalidParamException {
-        CssFunction function = (CssFunction) value;
+        CssFunction function = value.getFunction();
         if (!fit_content_func.equalsIgnoreCase(function.getName())) {
             throw new InvalidParamException("value", value.toString(),
                     caller.getPropertyName(), ac);

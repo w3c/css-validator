@@ -68,7 +68,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
                 color = val;
                 break;
             case CssTypes.CSS_FUNCTION:
-                CssFunction attr = (CssFunction) val;
+                CssFunction attr = val.getFunction();
                 CssExpression params = attr.getParameters();
                 String fname = attr.getName();
 

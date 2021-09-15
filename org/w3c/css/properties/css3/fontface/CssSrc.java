@@ -172,7 +172,7 @@ public class CssSrc extends org.w3c.css.properties.css.fontface.CssSrc {
                     values.add(val);
                     break;
                 case CssTypes.CSS_FUNCTION:
-                    CssFunction f = (CssFunction) val;
+                    CssFunction f = val.getFunction();
                     String funcName = f.getName().toLowerCase();
                     switch (funcName) {
                         case "local":
@@ -255,7 +255,7 @@ public class CssSrc extends org.w3c.css.properties.css.fontface.CssSrc {
                 op = exp.getOperator();
                 switch (val.getType()) {
                     case CssTypes.CSS_FUNCTION:
-                        CssFunction subf = (CssFunction) val;
+                        CssFunction subf = val.getFunction();
                         String subfname = subf.getName().toLowerCase();
                         switch (subfname) {
                             case "features":

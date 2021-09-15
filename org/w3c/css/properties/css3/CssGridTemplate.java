@@ -330,9 +330,10 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
                     got_size = true;
                     break;
                 case CssTypes.CSS_FUNCTION:
-                    CssFunction function = (CssFunction) val;
+                    CssFunction function = val.getFunction();
                     if (repeat_func.equals(function.getName())) {
-                        values.add(parseRepeatFunction(ac, function, RepeatType.TRACK_REPEAT, caller));
+                        parseRepeatFunction(ac, function, RepeatType.TRACK_REPEAT, caller);
+                        values.add(val);
                         got_line_names = false;
                         got_size = true;
                         break;
@@ -462,13 +463,15 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
                             val.toString(),
                             caller.getPropertyName(), ac);
                 case CssTypes.CSS_FUNCTION:
-                    CssFunction function = (CssFunction) val;
+                    CssFunction function = val.getFunction();
                     if (repeat_func.equals(function.getName())) {
                         if (exp.getRemainingCount() == 1) {
-                            values.add(parseRepeatFunction(ac, function, RepeatType.AUTO_REPEAT, caller));
+                            parseRepeatFunction(ac, function, RepeatType.AUTO_REPEAT, caller);
+                            values.add(val);
                             got_auto = true;
                         } else {
-                            values.add(parseRepeatFunction(ac, function, RepeatType.FIXED_REPEAT, caller));
+                            parseRepeatFunction(ac, function, RepeatType.FIXED_REPEAT, caller);
+                            values.add(val);
                         }
                         got_line_names = false;
                         break;

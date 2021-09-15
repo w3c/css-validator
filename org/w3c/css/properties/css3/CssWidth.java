@@ -125,7 +125,7 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
                                                  CssProperty caller)
             throws InvalidParamException {
         // FIXME cast
-        CssFunction function = (CssFunction) value;
+        CssFunction function = value.getFunction();
         if (!fit_content_func.equalsIgnoreCase(function.getName())) {
             throw new InvalidParamException("value", value.toString(),
                     caller.getPropertyName(), ac);

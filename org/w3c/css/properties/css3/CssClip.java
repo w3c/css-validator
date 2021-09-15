@@ -51,7 +51,7 @@ public class CssClip extends org.w3c.css.properties.css.CssClip {
 
         switch (val.getType()) {
             case CssTypes.CSS_FUNCTION:
-                CssFunction func = (CssFunction) val;
+                CssFunction func = val.getFunction();
                 String funcname = func.getName().toLowerCase();
                 if (!funcname.equals("rect")) {
                     throw new InvalidParamException("value", val,
