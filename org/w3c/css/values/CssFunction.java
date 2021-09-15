@@ -7,6 +7,7 @@
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 
 /**
  * A CSS function.
@@ -80,5 +81,10 @@ public class CssFunction extends CssValue {
         // @@FIXME
         return (value instanceof CssFunction &&
                 this.name.equals(((CssFunction) value).name));
+    }
+
+    @Override
+    public CssFunction getFunction() throws InvalidParamException {
+        return this;
     }
 }

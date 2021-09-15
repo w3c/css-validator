@@ -355,4 +355,12 @@ public class CssVariable extends CssCheckableValue {
         }
         return _exp_value.getHashIdent();
     }
+
+    @Override
+    public CssFunction getFunction() throws InvalidParamException {
+        if (computed_type != CssTypes.CSS_FUNCTION) {
+            throw new ClassCastException("unknown");
+        }
+        return _exp_value.getFunction();
+    }
 }
