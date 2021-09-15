@@ -563,18 +563,16 @@ public class ApplContext {
             namespaces = new HashMap<URL, HashMap<String, String>>();
         }
         // reformat the prefix if null.
-        if ((prefix == null) || prefix.isEmpty()) {
-            prefix = defaultPrefix;
-        }
+        String realPrefix = ((prefix != null) && !prefix.isEmpty()) ? prefix : defaultPrefix;
 
         HashMap<String, String> nsdefs = namespaces.get(url);
         if (nsdefs == null) {
             nsdefs = new HashMap<String, String>();
-            nsdefs.put(prefix, nsname);
+            nsdefs.put(realPrefix, nsname);
             namespaces.put(url, nsdefs);
         } else {
             // do we need to check if we have a redefinition ?
-            nsdefs.put(prefix, nsname);
+            nsdefs.put(realPrefix, nsname);
         }
     }
 
@@ -587,14 +585,12 @@ public class ApplContext {
         if (prefix.equals("*")) { // any ns, always true
             return true;
         }
-        if (prefix.isEmpty()) {
-            prefix = "*defaultprefix*";
-        }
+        String realPrefix = (!prefix.isEmpty()) ? prefix : defaultPrefix;
         HashMap<String, String> nsdefs = namespaces.get(url);
         if (nsdefs == null) {
             return false;
         }
-        return nsdefs.containsKey(prefix);
+        return nsdefs.containsKey(realPrefix);
     }
 
     /**
