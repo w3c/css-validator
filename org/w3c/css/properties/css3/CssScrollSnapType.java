@@ -137,7 +137,11 @@ public class CssScrollSnapType extends org.w3c.css.properties.css.CssScrollSnapT
             }
             expression.next();
         }
-        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        if (values.size() == 1) {
+            value = values.get(0);
+        } else {
+            value = new CssValueList(values);
+        }
     }
 
     public CssScrollSnapType(ApplContext ac, CssExpression expression)
