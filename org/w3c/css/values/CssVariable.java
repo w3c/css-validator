@@ -361,6 +361,10 @@ public class CssVariable extends CssCheckableValue {
         if (computed_type != CssTypes.CSS_FUNCTION) {
             throw new ClassCastException("unknown");
         }
+        CssFunction f = _exp_value.getFunction();
+        if (f.getParameters() != null) {
+            f.getParameters().starts();
+        }
         return _exp_value.getFunction();
     }
 }
