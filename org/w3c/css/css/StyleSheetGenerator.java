@@ -8,6 +8,8 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.apache.velocity.tools.ToolManager;
+import org.apache.velocity.tools.config.ConfigurationUtils;
+import org.apache.velocity.tools.config.FactoryConfiguration;
 import org.w3c.css.error.ErrorReportHTML;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
@@ -84,13 +86,15 @@ public class StyleSheetGenerator extends StyleReport {
         }
 
         try {
-            Velocity.setProperty(RuntimeConstants.RESOURCE_LOADER,
-                    "classpath");
+            Velocity.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
             Velocity.setProperty("classpath.resource.loader.class",
                     ClasspathResourceLoader.class.getName());
             Velocity.init();
-            velocityToolManager = new ToolManager();
-            velocityToolManager.configure("org/w3c/css/css/velocity-tools.xml");
+
+            FactoryConfiguration f;
+            f = ConfigurationUtils.findInClasspath("org/apache/velocity/tools/generic/tools.xml");
+            velocityToolManager = new ToolManager(false, false);
+            velocityToolManager.configure(f);
         } catch (Exception e) {
             System.err.println("Failed to initialize Velocity. " +
                     "Validator might not work as expected.");
