@@ -22,11 +22,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
@@ -79,10 +77,10 @@ public class TranslationTableGenerator {
             path = new URI(path).getPath();
             Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path);
             Velocity.addProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path + "../css/");
-            Velocity.setProperty(Velocity.RUNTIME_LOG,
-                    "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
-
-            Velocity.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.AvalonLogChute");
+            //         Velocity.setProperty(Velocity.RUNTIME_LOG,
+            //                "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
+            //
+            // Velocity.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.AvalonLogChute");
             Velocity.init();
 
             Template tpl = Velocity.getTemplate(template_name, "UTF-8");

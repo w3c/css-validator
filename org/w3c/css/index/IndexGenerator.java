@@ -22,8 +22,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -90,10 +88,8 @@ public class IndexGenerator {
              */
             Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path);
             Velocity.addProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path + "../../../../");
-            Velocity.setProperty(Velocity.RUNTIME_LOG,
-                    "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
-
-            Velocity.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.AvalonLogChute");
+//            Velocity.setProperty(Velocity.RUNTIME_LOG_NAME,
+//                    "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
             Velocity.init();
             if (!new File(path + template_name).exists()) {
                 template_name = template_name;
