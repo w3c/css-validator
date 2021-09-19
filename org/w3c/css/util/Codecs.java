@@ -39,6 +39,7 @@
 package org.w3c.css.util;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -108,11 +109,11 @@ public class Codecs {
      * found, or the contents of the part.
      * @throws IOException If any file operation fails.
      */
-    public final static synchronized ArrayList<ImmutablePair<String, Object>> mpFormDataDecode(byte[] data,
-                                                                                               String cont_type)
+    public final static synchronized ArrayList<Pair<String, Object>> mpFormDataDecode(byte[] data,
+                                                                                      String cont_type)
             throws IOException {
 
-        ArrayList<ImmutablePair<String, Object>> pList = new ArrayList<>();
+        ArrayList<Pair<String, Object>> pList = new ArrayList<>();
 
         // Find and extract boundary string
         String bndstr = getParameter("boundary", cont_type);
