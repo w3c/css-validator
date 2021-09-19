@@ -233,7 +233,6 @@ public abstract class CssParser implements CssParserConstants {
      *
      * @param ident  The ident for this at-rule (for example: 'font-face')
      * @param string The string associate to this at-rule
-     * @see          org.w3c.css.parser.analyzer.Couple
      */
     public abstract void handleAtRule(String ident, String string);
 
@@ -720,7 +719,7 @@ if (charsetdeclared && !reinited) {
                          (space1Token.specialToken != null) ||
                          (n.specialToken != null) ||
                          (semicolonToken.specialToken != null) ||
-                         (n.image.charAt(0) != '\u005c"')
+                         (n.image.charAt(0) != '\"')
                         ) {
                         {if (true) throw new ParseException(ac.getMsg().getString(
                                                      "parser.charsetspecial"));}
@@ -978,7 +977,7 @@ is_url = true;
               ((CssURL) val).set(v.image, ac, url);
               nsname = (String) val.get();
               if ((nsname.charAt(0) == '"')
-                  || (nsname.charAt(0) == '\u005c'')) {
+                  || (nsname.charAt(0) == '\'')) {
                   nsname = nsname.substring(1, nsname.length()-1);
               }
       break;
@@ -1064,7 +1063,7 @@ val = new CssURL();
                 ((CssURL) val).set(n.image, ac, url);
                 importFile = (String) val.get();
                 if ((importFile.charAt(0) == '"')
-                    || (importFile.charAt(0) == '\u005c'')) {
+                    || (importFile.charAt(0) == '\'')) {
                     importFile = importFile.substring(1, importFile.length()-1);
                 }
                 is_url = true;
@@ -4662,9 +4661,9 @@ if (n.image.charAt(0) == '.') {
         if (p != null) {
             // FIXME should be > CSS3
             if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-                StringBuilder sb = new StringBuilder("namespace \u005c"");
+                StringBuilder sb = new StringBuilder("namespace \"");
                 if (n != null) sb.append(n.toString());
-                sb.append("\u005c"");
+                sb.append("\"");
                 ac.getFrame()
                    .addError(new CssError(getSourceFile(), getBeginLine(),
                        getBeginColumn(), getEndLine(), getEndColumn(),
@@ -4676,8 +4675,8 @@ if (n.image.charAt(0) == '.') {
                 if (!ac.isNamespaceDefined(getURL(), prefix)) {
                     // ns is not defined
                     addError(new ParseException("Undefined namespace"),
-                             ": The namespace \u005c""+prefix
-                             +"\u005c" is not defined. "
+                             ": The namespace \""+prefix
+                             +"\" is not defined. "
                              + prefix );
                     removeThisRule();
                 }
@@ -5166,14 +5165,14 @@ n.image = n.image.substring(1);
 
       if (version != CssVersion.CSS1) {
               // the id with the first digit escaped
-              String cl = "\u005c\u005c" + Integer.toString(n.image.charAt(0), 16);
+              String cl = "\\" + Integer.toString(n.image.charAt(0), 16);
               cl += n.image.substring(1);
 
               addError(new ParseException(ac.getMsg().getString(
                 "parser.old_id")),
-                "To make \u005c"." + n.image + "\u005c" a valid id, CSS2" +
+                "To make \"." + n.image + "\" a valid id, CSS2" +
                 " requires the first digit to be escaped " +
-                "(\u005c"#" + cl + "\u005c")");
+                "(\"#" + cl + "\")");
               // for css > 1, we add the rule to have a context, 
               // and we then remove it
               s.addId(new IdSelector(n.image));
@@ -5912,7 +5911,7 @@ setValue(new CssVolume(), exp, operator, n, SPL);
       case DIMEN:{
         n = jj_consume_token(DIMEN);
 String dimen = n.image.trim();
-            if ("0\u005c\u005c0".equals(dimen) && ac.getTreatCssHacksAsWarnings()) {
+            if ("0\\0".equals(dimen) && ac.getTreatCssHacksAsWarnings()) {
                 exp.markCssHack();
                 ac.getFrame().addWarning("css-hack", dimen);
             } else {
@@ -6228,7 +6227,7 @@ setValue(new CssVolume(), exp, operator, n, SPL);
       case DIMEN:{
         n = jj_consume_token(DIMEN);
 String dimen = n.image.trim();
-          if ("0\u005c\u005c0".equals(dimen) && ac.getTreatCssHacksAsWarnings()) {
+          if ("0\\0".equals(dimen) && ac.getTreatCssHacksAsWarnings()) {
               exp.markCssHack();
               ac.getFrame().addWarning("css-hack", dimen);
           } else {
@@ -7760,14 +7759,14 @@ n.image = Util.strip(n.image);
   String convertStringIndex(String s, int start, int len, boolean escapeFirst) throws ParseException {int index = start;
     int t;
     int maxCount = 0;
-    if ((start == 0) && (len == s.length()) && (s.indexOf('\u005c\u005c') == -1)) {
+    if ((start == 0) && (len == s.length()) && (s.indexOf('\\') == -1)) {
         return s;
     }
     StringBuilder buf = new StringBuilder(len);
 
     while (index < len) {
         char c = s.charAt(index);
-        if (c == '\u005c\u005c') {
+        if (c == '\\') {
             if (++index < len) {
                 c = s.charAt(index);
                 switch (c) {
@@ -7788,15 +7787,15 @@ n.image = Util.strip(n.image);
                             numValue = (numValue<<4) | t;
                             index++;
                         } else {
-                            if (c == ' ' || c == '\u005ct' ||
-                                c == '\u005cn' || c == '\u005cf' ) {
+                            if (c == ' ' || c == '\t' ||
+                                c == '\n' || c == '\f' ) {
                                 // skip the latest white space
                                 index++;
-                            } else if ( c == '\u005cr' ) {
+                            } else if ( c == '\r' ) {
                                 index++;
                                 // special case for \r\n
                                 if (index+1 < len) {
-                                    if (s.charAt(index + 1) == '\u005cn') {
+                                    if (s.charAt(index + 1) == '\n') {
                                         index++;
                                     }
                                 }
@@ -7812,7 +7811,7 @@ n.image = Util.strip(n.image);
                                 || (numValue == 45) // -
                                 )
                             ) {
-                            buf.append('\u005c\u005c');
+                            buf.append('\\');
                         }
                         buf.append((char) numValue);
                         break;
@@ -7823,14 +7822,14 @@ n.image = Util.strip(n.image);
                         b[--t] = hexdigits[numValue & 0xF];
                         numValue >>>= 4;
                     }
-                    buf.append('\u005c\u005c').append(b);
+                    buf.append('\\').append(b);
                     break;
-                case '\u005cn':
-                case '\u005cf':
+                case '\n':
+                case '\f':
                     break;
-                case '\u005cr':
+                case '\r':
                     if (index + 1 < len) {
-                        if (s.charAt(index + 1) == '\u005cn') {
+                        if (s.charAt(index + 1) == '\n') {
                             index ++;
                         }
                     }
@@ -7849,7 +7848,7 @@ n.image = Util.strip(n.image);
                     buf.append(c);
                     break;
                 default:
-                    buf.append('\u005c\u005c').append(c);
+                    buf.append('\\').append(c);
                 }
             } else {
                 throw new ParseException("invalid string");
@@ -7873,7 +7872,7 @@ n.image = Util.strip(n.image);
   }
 
   String hexEscapeFirst(String s) throws ParseException {StringBuilder sb = new StringBuilder();
-    sb.append('\u005c\u005c').append(Integer.toString(s.charAt(0), 16));
+    sb.append('\\').append(Integer.toString(s.charAt(0), 16));
     char c = s.charAt(1);
     if (((c >= '0') && (c <= '9')) ||
         ((c >= 'A') && (c <= 'F')) ||

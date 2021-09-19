@@ -253,7 +253,6 @@ public abstract class CssParser {
      *
      * @param ident  The ident for this at-rule (for example: 'font-face')
      * @param string The string associate to this at-rule
-     * @see          org.w3c.css.parser.analyzer.Couple
      */  
     public abstract void handleAtRule(String ident, String string);
 

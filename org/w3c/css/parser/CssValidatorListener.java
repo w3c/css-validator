@@ -44,7 +44,6 @@ public interface CssValidatorListener {
      *
      * @param ident The ident for this at-rule (for example: 'font-face')
      * @param value The string representation of this at-rule
-     * @see org.w3c.css.parser.analyzer.Couple
      */
     public void handleAtRule(ApplContext ac, String ident, String value);
 
