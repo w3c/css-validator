@@ -38,7 +38,11 @@
 
 package org.w3c.css.util;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 /**
  * This class collects various encoders and decoders.
@@ -98,15 +102,17 @@ public class Codecs {
      * @param cont_type the content type header (must contain the
      *                  boundary string).
      * @return an array of name/value pairs, one for each part;
-     *         the name is the 'name' attribute given in the
-     *         Content-Disposition header; the value is either
-     *         the name of the file if a filename attribute was
-     *         found, or the contents of the part.
+     * the name is the 'name' attribute given in the
+     * Content-Disposition header; the value is either
+     * the name of the file if a filename attribute was
+     * found, or the contents of the part.
      * @throws IOException If any file operation fails.
      */
-    public final static synchronized NVPair[] mpFormDataDecode(byte[] data,
-                                                               String cont_type)
+    public final static synchronized ArrayList<ImmutablePair<String, Object>> mpFormDataDecode(byte[] data,
+                                                                                               String cont_type)
             throws IOException {
+
+        ArrayList<ImmutablePair<String, Object>> pList = new ArrayList<>();
 
         // Find and extract boundary string
         String bndstr = getParameter("boundary", cont_type);
@@ -119,9 +125,9 @@ public class Codecs {
                 boundary = new byte[bndstr.length() + 6],
                 endbndry = new byte[bndstr.length() + 6];
 
-        srtbndry = ("--" + bndstr + "\n").getBytes();
-        boundary = ("\n--" + bndstr + "\n").getBytes();
-        endbndry = ("\n--" + bndstr + "--").getBytes();
+        srtbndry = ("--" + bndstr + "\n").getBytes(StandardCharsets.ISO_8859_1);
+        boundary = ("\n--" + bndstr + "\n").getBytes(StandardCharsets.ISO_8859_1);
+        endbndry = ("\n--" + bndstr + "--").getBytes(StandardCharsets.ISO_8859_1);
 
         if (debugMode) {
             System.err.println("[START OF DATA]");
@@ -163,7 +169,6 @@ public class Codecs {
 
         start += srtbndry.length;
 
-        NVPair[] res = new NVPair[10];
         boolean done = false;
         int idx;
 
@@ -314,20 +319,14 @@ public class Codecs {
             } else {                    // It's simple data
                 value = new String(data, start, end - start);
             }
-
-            if (idx >= res.length) {
-                res = Util.resizeArray(res, idx + 10);
-            }
-
-            res[idx] = new NVPair(name, value);
+            pList.add(new ImmutablePair<>(name, value));
             if (debugMode) {
                 System.err.println("[ADD " + name + ',' + value + ','
                         + value.getClass() + ']');
             }
             start = end + boundary.length;
         }
-
-        return Util.resizeArray(res, idx);
+        return pList;
     }
 
 
@@ -364,14 +363,14 @@ public class Codecs {
                 pbeg = vend + 1;
             }
             while (pbeg < len - 1
-                    && (Util.isWhiteSpace(hdr.charAt(pbeg)) || (hdr.charAt(pbeg) == ';'))) {
+                    && (Character.isWhitespace(hdr.charAt(pbeg)) || (hdr.charAt(pbeg) == ';'))) {
                 pbeg++;
             }
             if (pbeg == len - 1) return null;
             pend = hdr.indexOf('=', pbeg + 1);    // get '='
             if (pend == -1) return null;
             vbeg = pend + 1;
-            while (Util.isWhiteSpace(hdr.charAt(--pend))) ;
+            while (Character.isWhitespace(hdr.charAt(--pend))) ;
             pend++;
 
             if (debugMode) {
@@ -379,7 +378,7 @@ public class Codecs {
             }
             // mark parameter value
 
-            while (vbeg < len && Util.isWhiteSpace(hdr.charAt(vbeg))) vbeg++;
+            while (vbeg < len && Character.isWhitespace(hdr.charAt(vbeg))) vbeg++;
             if (vbeg == len) return null;
 
             vend = vbeg;
@@ -390,7 +389,7 @@ public class Codecs {
             } else {                    // is a simple token
                 vend = hdr.indexOf(';', vbeg);
                 if (vend == -1) vend = hdr.length();
-                while (Util.isWhiteSpace(hdr.charAt(--vend))) ;
+                while (Character.isWhitespace(hdr.charAt(--vend))) ;
                 vend++;
             }
             if (hdr.regionMatches(true, pbeg, param, 0, pend - pbeg)) {

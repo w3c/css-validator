@@ -90,7 +90,7 @@ public final class CssSelectors extends SelectorsList
         super(ac);
         style = ac.getCssSelectorsStyle();
         try {
-            properties = (CssStyle) style.newInstance();
+            properties = (CssStyle) style.getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +101,7 @@ public final class CssSelectors extends SelectorsList
         super();
         CssSelectors.style = style;
         try {
-            properties = (CssStyle) style.newInstance();
+            properties = (CssStyle) style.getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -484,7 +484,7 @@ public final class CssSelectors extends SelectorsList
         if (Init) {
             // yes I invalidate all properties too !
             try {
-                properties = (CssStyle) style.newInstance();
+                properties = (CssStyle) style.getConstructor().newInstance();
             } catch (Exception e) {
                 e.printStackTrace();
             }

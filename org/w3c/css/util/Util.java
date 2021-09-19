@@ -105,15 +105,6 @@ public final class Util {
         return true;
     }
 
-    // Methods
-
-    public final static NVPair[] resizeArray(NVPair[] src, int new_size) {
-        NVPair tmp[] = new NVPair[new_size];
-        System.arraycopy(src, 0, tmp, 0,
-                (src.length < new_size ? src.length : new_size));
-        return (NVPair[]) tmp;
-    }
-
     /**
      * Creates an array of distances to speed up the search in findStr().
      * The returned array should be passed as the second argument to
@@ -122,7 +113,7 @@ public final class Util {
      * @param search the search string (same as the first argument to
      *               findStr()).
      * @return an array of distances (to be passed as the second argument to
-     *         findStr()).
+     * findStr()).
      */
     public final static int[] compile_search(byte[] search) {
         int[] cmp = {0, 1, 0, 1, 0, 1};
@@ -145,7 +136,7 @@ public final class Util {
                     cmp[5] = cmp[3];
                     cmp[2] = idx;
                     cmp[3] = end - idx;
-                } else if ((end - idx) > cmp[3]) {
+                } else if ((end - idx) > cmp[5]) {
                     cmp[4] = idx;
                     cmp[5] = end - idx;
                 }
@@ -165,23 +156,24 @@ public final class Util {
      * @param search the string to search for.
      * @param cmp    the the array returned by compile_search.
      * @param str    the string in which to look for <var>search</var>.
-     * @param beg    the position at which to start the search in
+     * @param begin  the position at which to start the search in
      *               <var>str</var>.
      * @param end    the position at which to end the search in <var>str</var>.
      * @return the position in <var>str</var> where <var>search</var> was
-     *         found, or -1 if not found.
+     * found, or -1 if not found.
      */
     public final static int findStr(byte[] search, int[] cmp, byte[] str,
-                                    int beg, int end) {
-        int c1f = cmp[0],
-                c1l = cmp[1],
-                d1 = c1l - c1f,
-                c2f = cmp[2],
-                c2l = cmp[3],
-                d2 = c2l - c2f,
-                c3f = cmp[4],
-                c3l = cmp[5],
-                d3 = c3l - c3f;
+                                    int begin, int end) {
+        int beg = begin;
+        int c1f = cmp[0];
+        int c1l = cmp[1];
+        int d1 = c1l - c1f;
+        int c2f = cmp[2];
+        int c2l = cmp[3];
+        int d2 = c2l - c2f;
+        int c3f = cmp[4];
+        int c3l = cmp[5];
+        int d3 = c3l - c3f;
 
         Find:
         while (beg + search.length <= end) {
@@ -230,7 +222,7 @@ public final class Util {
         if (s != null) {
             int len = s.length();
             int i = 0;
-            while (i < len && isWhiteSpace(s.charAt(i))) {
+            while (i < len && Character.isWhitespace(s.charAt(i))) {
                 i++;
             }
             if (i == 0) {
@@ -252,20 +244,11 @@ public final class Util {
         char[] news = new char[s.length()];
 
         for (char c : s.toCharArray()) {
-            if (!isWhiteSpace(c)) {
+            if (!Character.isWhitespace(c)) {
                 news[index++] = c;
             }
         }
         return new String(news, 0, index);
-    }
-
-    /**
-     * Returns <code>true</code> if the character is a whitespace character
-     *
-     * @param c the character
-     */
-    public final static boolean isWhiteSpace(char c) {
-        return c == ' ' || c == '\n' || c == '\r' || c == '\t';
     }
 
     /**
