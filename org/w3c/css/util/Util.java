@@ -200,12 +200,6 @@ public final class Util {
             return beg;
     }
 
-    // ADD 09/15/97
-
-    public final static boolean isSpace(char c) {
-        return c == ' ';
-    }
-
     /**
      * Print a message on System.err only if the user wants debug trace.
      */
