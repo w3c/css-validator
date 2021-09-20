@@ -1867,19 +1867,14 @@ void atRuleDeclaration() :
 {
     n=<ATKEYWORD>
 	{
-		if (n.toString().charAt(1) == '-') {
-			if (ac.getTreatVendorExtensionsAsWarnings()) {
-				ac.getFrame() //
-					.addWarning("at-rule", //
-						n.toString());
-			} else {
-				addAtRuleError();
-			}
+		if ((n.toString().charAt(1) == '-') &&
+		    ac.getTreatVendorExtensionsAsWarnings()) {
+			ac.getFrame().addWarning("at-rule", n.toString());
 		} else {
 			addAtRuleError();
 		}
-	    skipStatement();
-	}
+		skipStatement();
+	} ( <S> )*
 }
 
 JAVACODE
@@ -2032,19 +2027,12 @@ void ruleSet() :
 		Token t1 = getToken(0);
 		if (version.compareTo(CssVersion.CSS3) < 0) {
 			addError(e, ret);
-		} else if ((ret != null) && !ret.startsWith("/*") && (t1 != null && t1.kind != EOF)) {
+		} else if ((ret != null) && !ret.contains("/*") && (t1 != null && t1.kind != EOF)) {
 			addError(e, ret);
 		} else if (!context_set.isEmpty() && value_set == null) {
 			addError(e, ret);
 		} else {
-			if ((ret != null) && ret.startsWith("/*")) {
-			// unterminated comment, skip until EOF
-				Token t = getToken(0);
-				while(t.kind != EOF) {
-					t = getNextToken();
-				}
-			}
-			// then process
+			// unterminated comment... let's process
 			if (version.compareTo(CssVersion.CSS3) >= 0) {
 				markRule = true;
        		         	if (value_set != null) {
@@ -2067,6 +2055,8 @@ void ruleSet() :
        		            	 }
        		             	setSelectorList(context_set);
        		             	endOfRule();
+			} else {
+				addError(e, ret);
 			}
                 }
                 currentContext = null;
@@ -3550,17 +3540,28 @@ String skipStatement() {
 		    break;
 		}
 	    } 
-	    s.append(tok.image);
 	    if (tok.kind == LBRACE) {
+	        s.append(tok.image);
 		getNextToken();
 		s.append(skip_to_matching_brace());
 		getNextToken();
 		tok = getToken(1);
 		break;
 	    } else if ((tok.kind == RBRACE) || (tok.kind == SEMICOLON)) {
+	        s.append(tok.image);
+		// we might need a mode here, skip to brace or to semicolon (or both)
 		getNextToken();
 		tok = getToken(1);
 		break;
+	    } else if ((tok.kind == SCO) && (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0)) {
+		// we found a comment start, meaning it is not terminated, we
+		// must "eat" until EOF
+		do {
+			tok = getNextToken();
+		} while (tok.kind != EOF);
+		break;
+            } else {
+		s.append(tok.image);
 	    }
 	    getNextToken();
 	} catch (TokenMgrError tokenerror) {
@@ -3574,12 +3575,11 @@ String skipStatement() {
 	}
 	first = false;
     }
-    getNextToken();
     // skip white space
-/*    while (tok.kind == S) {
+    while (tok.kind == S) {
 	getNextToken();
-	tok = getToken(1);
-    } */
+ 	tok = getToken(1);
+    }
     String statement = s.toString().trim();
     return statement;
 }
