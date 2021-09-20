@@ -13,7 +13,6 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
@@ -199,7 +198,7 @@ public class FontFamily extends FontProperty implements CssOperator {
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
         return false; //@@ FIXME
@@ -213,9 +212,9 @@ public class FontFamily extends FontProperty implements CssOperator {
 
         name.getChars(0, count, src, 0);
         for (int i = 0; i < count; i++)
-            if (i == 0 || !Util.isWhiteSpace(src[i]) ||
-                    (Util.isWhiteSpace(src[i]) &&
-                            !Util.isWhiteSpace(dst[index])))
+            if (i == 0 || !Character.isWhitespace(src[i]) ||
+                    (Character.isWhitespace(src[i]) &&
+                            !Character.isWhitespace(dst[index])))
                 dst[++index] = src[i];
 
         return new String(dst, 0, index + 1);

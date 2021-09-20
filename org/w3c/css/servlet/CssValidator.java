@@ -7,6 +7,7 @@
 
 package org.w3c.css.servlet;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.w3c.css.css.CssParser;
 import org.w3c.css.css.DocumentParser;
@@ -26,7 +27,6 @@ import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.FakeFile;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.NVPair;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
 import org.w3c.www.mime.MimeType;
@@ -576,8 +576,8 @@ public final class CssValidator extends HttpServlet {
         try {
             buf = new byte[count];
             System.arraycopy(general, 0, buf, 0, count);
-            for (NVPair pair : Codecs.mpFormDataDecode(buf, req.getContentType())) {
-                switch (pair.getName()) {
+            for (Pair<String, ?> pair : Codecs.mpFormDataDecode(buf, req.getContentType())) {
+                switch (pair.getKey()) {
                     case opt_file:
                         file = (FakeFile) pair.getValue();
                         break;
