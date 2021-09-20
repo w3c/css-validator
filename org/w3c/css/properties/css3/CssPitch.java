@@ -16,6 +16,7 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-pitch
  * @deprecated
  */
+@Deprecated
 public class CssPitch extends org.w3c.css.properties.css.CssPitch {
 
     public static final CssIdent[] allowed_values;

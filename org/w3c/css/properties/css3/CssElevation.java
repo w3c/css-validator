@@ -18,6 +18,7 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-elevation
  * @deprecated
  */
+@Deprecated
 public class CssElevation extends org.w3c.css.properties.css.CssElevation {
     public static final CssIdent[] allowed_values;
 

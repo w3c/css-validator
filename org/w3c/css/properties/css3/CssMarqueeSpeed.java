@@ -16,6 +16,7 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-speed
  * @deprecated
  */
+@Deprecated
 public class CssMarqueeSpeed extends org.w3c.css.properties.css.CssMarqueeSpeed {
 
     private static final CssIdent[] allowed_values;

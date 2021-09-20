@@ -20,7 +20,8 @@ import static org.w3c.css.values.CssOperator.COMMA;
 /**
  * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#icon
  */
-@Deprecated public class CssIcon extends org.w3c.css.properties.css.CssIcon {
+@Deprecated
+public class CssIcon extends org.w3c.css.properties.css.CssIcon {
 
     public static final CssIdent auto = CssIdent.getIdent("auto");
 
@@ -35,8 +36,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
      * Creates a new CssIcon
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssIcon(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {

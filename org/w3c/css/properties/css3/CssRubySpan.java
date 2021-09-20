@@ -29,7 +29,7 @@ import java.util.Vector;
  * <EM>Media:</EM>:interactive
  * @deprecated 
  */
-
+@Deprecated
 public class CssRubySpan extends CssProperty {
 
     CssValue rubyspan;

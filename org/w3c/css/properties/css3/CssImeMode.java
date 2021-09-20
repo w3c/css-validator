@@ -16,6 +16,7 @@ import org.w3c.css.values.CssValue;
  * @spec https://www.w3.org/TR/2018/REC-css-ui-3-20180621/#input-method-editor
  * @deprecated
  */
+@Deprecated
 public class CssImeMode extends org.w3c.css.properties.css.CssImeMode {
 
     public static final CssIdent[] allowed_values;

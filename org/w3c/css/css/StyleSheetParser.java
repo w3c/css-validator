@@ -365,6 +365,7 @@ public final class StyleSheetParser
      * @see #parseStyleElement(ApplContext, InputStream, String, String, URL, int)
      * @deprecated Replaced by parseStyleElement
      */
+    @Deprecated
     public void parseStyleElement(ApplContext ac, String input, URL url, int lineno) {
         parseStyleElement(ac, new StringReader(input), null, null, url, lineno);
     }
@@ -475,6 +476,7 @@ public final class StyleSheetParser
      * @see #parseStyleAttribute(ApplContext, InputStream, String, URL, int)
      * @deprecated Replaced by parseStyleAttribute
      */
+    @Deprecated
     public void parseStyleAttribute(ApplContext ac, String input, String id,
                                     URL url, int lineno) {
         parseStyleAttribute(ac, new ByteArrayInputStream(input.getBytes()),

@@ -21,6 +21,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
  * @spec https://www.w3.org/TR/2021/CRD-css-masking-1-20210805/#propdef-clip
  * @deprecated
  */
+@Deprecated
 public class CssClip extends org.w3c.css.properties.css.CssClip {
 
     public static final CssIdent auto = CssIdent.getIdent("auto");

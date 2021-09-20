@@ -16,6 +16,7 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-direction
  * @deprecated
  */
+@Deprecated
 public class CssMarqueeDirection extends org.w3c.css.properties.css.CssMarqueeDirection {
 
     private static CssIdent[] allowed_values;

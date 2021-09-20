@@ -17,6 +17,7 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-play-count
  * @deprecated
  */
+@Deprecated
 public class CssMarqueePlayCount extends org.w3c.css.properties.css.CssMarqueePlayCount {
 
     private static CssIdent infinite;

@@ -17,6 +17,7 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/aural.html#propdef-speech-rate
  * @deprecated
  */
+@Deprecated
 public class CssSpeechRate extends org.w3c.css.properties.css.CssSpeechRate {
 
     public static final CssIdent[] allowed_values;

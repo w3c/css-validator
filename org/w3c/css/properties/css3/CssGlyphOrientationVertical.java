@@ -21,6 +21,7 @@ import java.math.BigDecimal;
  * @spec https://www.w3.org/TR/2019/REC-css-writing-modes-3-20191210/#propdef-glyph-orientation-vertical
  * @deprecated 
  */
+@Deprecated
 public class CssGlyphOrientationVertical extends org.w3c.css.properties.css.CssGlyphOrientationVertical {
 
     public CssIdent auto = CssIdent.getIdent("auto");

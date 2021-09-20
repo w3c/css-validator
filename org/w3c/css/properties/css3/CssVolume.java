@@ -15,9 +15,10 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @pec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-volume
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-volume
  * @deprecated
  */
+@Deprecated
 public class CssVolume extends org.w3c.css.properties.css.CssVolume {
 
     public static final CssIdent[] allowed_values;

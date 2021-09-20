@@ -21,6 +21,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-play-during
  * @deprecated
  */
+@Deprecated
 public class CssPlayDuring extends org.w3c.css.properties.css.CssPlayDuring {
 
     public static final CssIdent auto, mix, repeat;

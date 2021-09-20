@@ -16,6 +16,7 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-stress
  * @deprecated
  */
+@Deprecated
 public class CssStress extends org.w3c.css.properties.css.CssStress {
 
     /**

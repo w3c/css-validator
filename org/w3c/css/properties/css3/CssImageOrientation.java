@@ -20,6 +20,7 @@ import java.util.ArrayList;
  * @spec https://www.w3.org/TR/2020/CRD-css-images-3-20201217/#propdef-image-orientation
  * @deprecated
  */
+@Deprecated
 public class CssImageOrientation extends org.w3c.css.properties.css.CssImageOrientation {
 
     public static final CssIdent[] allowed_values;

@@ -70,6 +70,7 @@ public class CssURL extends CssValue {
      * @throws InvalidParamException The unit is incorrect
      * @deprecated
      */
+    @Deprecated
     public void set(String s, ApplContext ac)
             throws InvalidParamException {
         throw new InvalidParamException("Deprecated method invocation", ac);
