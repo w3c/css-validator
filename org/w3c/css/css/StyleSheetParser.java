@@ -28,7 +28,6 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -359,18 +358,6 @@ public final class StyleSheetParser
     }
 
     /**
-     * @param input the inputStream containing the style data
-     * @param url   the name of the file the style element was read in.
-     * @throws IOException an IO error
-     * @see #parseStyleElement(ApplContext, InputStream, String, String, URL, int)
-     * @deprecated Replaced by parseStyleElement
-     */
-    @Deprecated
-    public void parseStyleElement(ApplContext ac, String input, URL url, int lineno) {
-        parseStyleElement(ac, new StringReader(input), null, null, url, lineno);
-    }
-
-    /**
      * Parse a style element. The Style element always comes from the user
      *
      * @param input the input stream containing the style data
@@ -466,21 +453,6 @@ public final class StyleSheetParser
                     -1, e));
             notifyErrors(er);
         }
-    }
-
-    /**
-     * @param input the inputStream containing the style data
-     * @param id    the uniq id
-     * @param url   the name of the file the style element was read in.
-     * @throws IOException an IO error
-     * @see #parseStyleAttribute(ApplContext, InputStream, String, URL, int)
-     * @deprecated Replaced by parseStyleAttribute
-     */
-    @Deprecated
-    public void parseStyleAttribute(ApplContext ac, String input, String id,
-                                    URL url, int lineno) {
-        parseStyleAttribute(ac, new ByteArrayInputStream(input.getBytes()),
-                id, url, lineno);
     }
 
     public void setStyle(Class style) {

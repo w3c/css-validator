@@ -67,26 +67,6 @@ public interface CssParser {
     /**
      * Parse a STYLE element.
      * The real difference between this method and the precedent
-     * is that this method can take a string. The URL is used
-     * to resolve import statement and URL statement in the style
-     * sheet.
-     * <p/>
-     * For a backward compatibility, <code>parseStyleElement</code> and
-     * <code>parseStyleAttribute</code> use a string for the input.
-     *
-     * @param input  the input string.
-     * @param url    the URL where the input stream comes from.
-     * @param lineno The number line in the source document.
-     *               It is used for error message
-     * @see #parseStyleElement(ApplContext, InputStream, String, String, URL, int)
-     * @deprecated Replaced by parseStyleElement
-     */
-    public abstract void parseStyleElement(ApplContext ac, String input,
-                                           URL url, int lineno);
-
-    /**
-     * Parse a STYLE element.
-     * The real difference between this method and the precedent
      * is that this method can take an InputStream. The URL is used
      * to resolve import statement and URL statement in the style
      * sheet.
@@ -117,27 +97,6 @@ public interface CssParser {
     public abstract void parseStyleElement(ApplContext ac, Reader reader,
                                            String title, String media, URL url,
                                            int lineno);
-
-
-    /**
-     * Parser a STYLE attribute.
-     * Here, you must generate your own uniq id for the context.
-     * After, you can reference this style attribute by the id.
-     * <p/>
-     * <strong>Be careful, the id must be uniq !</strong>
-     * <p/>
-     * For a backward compatibility, <code>parseStyleElement</code> and
-     * <code>parseStyleAttribute</code> use a string for the input.
-     *
-     * @param ac     the validation context
-     * @param input  the input string.
-     * @param id     your uniq id to reference this style attribute.
-     * @param url    the URL where the input stream comes from.
-     * @param lineno The number line in the source document. It is used for error message.
-     * @see #parseStyleAttribute(ApplContext, InputStream, String, URL, int)
-     * @deprecated Replaced by parseStyleAttribute
-     */
-    public abstract void parseStyleAttribute(ApplContext ac, String input, String id, URL url, int lineno);
 
     /**
      * Parser a STYLE attribute.
