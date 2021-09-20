@@ -576,7 +576,7 @@ public final class CssValidator extends HttpServlet {
         try {
             buf = new byte[count];
             System.arraycopy(general, 0, buf, 0, count);
-            for (Pair<String,Object> pair : Codecs.mpFormDataDecode(buf, req.getContentType())) {
+            for (Pair<String, ?> pair : Codecs.mpFormDataDecode(buf, req.getContentType())) {
                 switch (pair.getKey()) {
                     case opt_file:
                         file = (FakeFile) pair.getValue();

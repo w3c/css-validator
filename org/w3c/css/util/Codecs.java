@@ -109,11 +109,11 @@ public class Codecs {
      * found, or the contents of the part.
      * @throws IOException If any file operation fails.
      */
-    public final static synchronized ArrayList<Pair<String, Object>> mpFormDataDecode(byte[] data,
+    public final static synchronized ArrayList<Pair<String, ?>> mpFormDataDecode(byte[] data,
                                                                                       String cont_type)
             throws IOException {
 
-        ArrayList<Pair<String, Object>> pList = new ArrayList<>();
+        ArrayList<Pair<String, ?>> pList = new ArrayList<>();
 
         // Find and extract boundary string
         String bndstr = getParameter("boundary", cont_type);
