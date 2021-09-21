@@ -430,7 +430,7 @@ error.bg_order: In the CSS3 background definition, \u201Cbg_position\u201D must 
 
 warning.deprecatedmedia: The media \u201C%s\u201D has been deprecated
 error.deprecatedmedia: The media \u201C%s\u201D has been deprecated
-deprecatedmediafeature: Deprecated media feature \u201C%s\u201D. For guidance, see the Deprecated Media Features section in the current Media Queries specification.
+error.deprecatedmediafeature: Deprecated media feature \u201C%s\u201D. For guidance, see the Deprecated Media Features section in the current Media Queries specification.
 error.nomediarestrictor: Mediarestrictor not defined in this CSS level
 error.nomediafeature: Media features are not defined in this CSS level
 error.nomodifiershortmedia: No prefixes are allowed for media features with no value

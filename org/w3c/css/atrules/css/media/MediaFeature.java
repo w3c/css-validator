@@ -1,7 +1,6 @@
 package org.w3c.css.atrules.css.media;
 
 import org.w3c.css.css.StyleSheetOrigin;
-import org.w3c.css.parser.analyzer.ParseException;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -42,6 +41,7 @@ public abstract class MediaFeature implements StyleSheetOrigin {
 
     /**
      * Set the combinator used in more complex expressions.
+     *
      * @param combinator, the combinator string (and, or etc...)
      */
     public void setCombinator(String combinator) {
@@ -50,7 +50,8 @@ public abstract class MediaFeature implements StyleSheetOrigin {
 
     /**
      * Get the combinator string if present, null otherwise
-     * @return  a String
+     *
+     * @return a String
      */
     public String getCombinator() {
         return combinator;
@@ -63,9 +64,9 @@ public abstract class MediaFeature implements StyleSheetOrigin {
         } else {
             feature = getFeatureName();
         }
-        ac.getFrame().addError(new CssError(new ParseException(
-                String.format(ac.getMsg().getString("deprecatedmediafeature"),
-                        feature))));
+        CssError err = new CssError(new InvalidParamException("deprecatedmediafeature",
+                feature, ac));
+        ac.getFrame().addError(err);
     }
 
     /**
