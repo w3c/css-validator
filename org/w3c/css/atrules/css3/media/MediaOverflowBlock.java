@@ -14,14 +14,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-overflow-block
+ * @spec https://www.w3.org/TR/2020/CR-mediaqueries-4-20200721/#descdef-media-overflow-block
  */
 public class MediaOverflowBlock extends MediaFeature {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"none", "scroll", "optional-paged", "paged"};
+        String[] _allowed_values = {"none", "scroll", "paged"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -48,8 +48,7 @@ public class MediaOverflowBlock extends MediaFeature {
      * Create a new MediaOverflowBlock.
      *
      * @param expression The expression for this media feature
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public MediaOverflowBlock(ApplContext ac, String modifier,
                               CssExpression expression, boolean check)
