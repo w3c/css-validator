@@ -367,5 +367,6 @@ vext_errors: Ошибки
 vext_warnings: Предупреждения
 
 warning.deprecatedmedia: Среда "\u201C%s\u201D" устарела.
+error.deprecatedmedia: Среда "\u201C%s\u201D" устарела.
 warning.link-type: Вы должны добавить атрибут 'type' со значением 'text/css' к элементу 'link'
 warning.vendor-extension: Свойство \u201C%s\u201D - неизвестное расширение поставщика

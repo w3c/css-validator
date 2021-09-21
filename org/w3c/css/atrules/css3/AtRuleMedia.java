@@ -9,24 +9,23 @@ import org.w3c.css.atrules.css.media.Media;
 import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.parser.AtRule;
 import org.w3c.css.parser.CssError;
-import org.w3c.css.parser.analyzer.ParseException;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/
+ * @spec https://www.w3.org/TR/2020/CR-mediaqueries-4-20200721/#media-types
  */
 
 public class AtRuleMedia extends org.w3c.css.atrules.css.AtRuleMedia {
     static final String[] mediaType = {
-            "all", "print", "screen", "speech"
+            "all", "print", "screen"
     };
 
     static final String[] deprecatedMedia = {
             "aural", "braille", "embossed", "handheld", "projection",
-            "tty", "tv"
+            "speech", "tty", "tv"
     };
 
     /**
@@ -35,7 +34,7 @@ public class AtRuleMedia extends org.w3c.css.atrules.css.AtRuleMedia {
      * @throws InvalidParamException the medium doesn't exist
      */
     public org.w3c.css.atrules.css.AtRuleMedia addMedia(String restrictor, String medium,
-                                                  ApplContext ac) throws InvalidParamException {
+                                                        ApplContext ac) throws InvalidParamException {
         Media media = new Media();
         if (restrictor != null) {
             // the grammar construct will build a restrictor as 'not' or 'only'
@@ -63,11 +62,9 @@ public class AtRuleMedia extends org.w3c.css.atrules.css.AtRuleMedia {
             if (medium.equals(s)) {
                 // error because the current Media Queries spec states that
                 // "Authors *must not* use these media types"
-                ac.getFrame().addError(
-                        new CssError(new ParseException(String.format(
-                                ac.getMsg()
-                                        .getString("warning.deprecatedmedia"),
-                                medium))));
+                CssError error;
+                error = new CssError(new InvalidParamException("deprecatedmedia", medium, ac));
+                ac.getFrame().addError(error);
                 allMedia.add(new Media(s));
                 return this;
             }

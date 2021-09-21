@@ -393,6 +393,7 @@ error.strictly-positive: \u201C%s\u201D jest niepoprawny, dozwolone są jedynie 
 error.typevaluemismatch: Wartość \u201C%s\u201D jest niekompatybilna z zadeklarowanym typem <\u201C%s\u201D>
 vendorext: Rozszerzenia Dostawców
 warning.deprecatedmedia: Medium "\u201C%s\u201D" jest przestarzałe
+error.deprecatedmedia: Medium "\u201C%s\u201D" jest przestarzałe
 warning.noexproperty: Właściwość \u201C%s\u201D nie istnieje
 error.errortoken: Nieoczekiwana zawartość "\u201C%s\u201D" w wierszu \u201C%s\u201D, oczekiwano tokena \u201C%s\u201D (pominięto \u201C%s\u201D)
 warning.vendor-ext-pseudo-element: \u201C%s\u201D jest nieznanym przedrostkiem pseudo-elementu

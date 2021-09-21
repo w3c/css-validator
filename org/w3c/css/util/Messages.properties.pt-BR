@@ -403,6 +403,7 @@ vext_errors: Erros
 vext_warnings: Alertas
 warning.deprecated: O valor '\u201C%s\u201D' está em desuso
 warning.deprecatedmedia: A mídia "\u201C%s\u201D" está em desuso
+error.deprecatedmedia: A mídia "\u201C%s\u201D" está em desuso
 warning.deprecatedproperty: A propriedade '\u201C%s\u201D' está em desuso
 warning.greaterequal: O valor \u201C%s\u201D será interpretado como \u201C%s\u201D
 warning.link-type: Deve ser declarado o atributo 'type' com valor 'text/css' para o elemento link

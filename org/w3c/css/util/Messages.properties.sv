@@ -389,6 +389,7 @@ vext_warnings: Varningar
 warning.link-type: Du bör addera ett 'type'-attribut med värde 'text/css' till 'link'-elementet
 
 warning.deprecatedmedia: Media "\u201C%s\u201D" har nedgraderats
+error.deprecatedmedia: Media "\u201C%s\u201D" har nedgraderats
 error.nomodifiershortmedia: Prefix kan inte användas för mediafunktionaliteter utan värden
 error.nomodifiermedia: Mediafunktionalitet \u201C%s\u201D stöder inte prefix
 error.grid: Enbart 0 och 1 är giltiga värden för grid
