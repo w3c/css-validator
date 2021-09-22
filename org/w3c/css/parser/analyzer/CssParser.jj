@@ -3232,6 +3232,11 @@ CssCheckableValue mathproduct() :
                          c.markCssVariable();
                      }
                  }
+                | v2=functionenv() {
+                     if (v2.getType() == CssTypes.CSS_ENV) {
+                         c.markCssVariable();
+                     }
+                 }
                )
            )
          ) {
@@ -3344,6 +3349,7 @@ char operator = ' ';
     | v=mathclamp()
     | v=attr()
     | v=functionvar()
+    | v=functionenv()
 ) {
      return v;
    }
