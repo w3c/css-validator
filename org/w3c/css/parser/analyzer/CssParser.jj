@@ -70,6 +70,7 @@ import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssClamp;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssComparator;
+import org.w3c.css.values.CssEnv;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFlexibleLength;
 import org.w3c.css.values.CssFrequency;
@@ -431,6 +432,10 @@ public abstract class CssParser {
             if (v.getType() == CssTypes.CSS_VARIABLE) {
                 expr.markCssVariable();
             }
+	} else if ( token == FUNCTIONENV ) {
+            if (v.getType() == CssTypes.CSS_ENV) {
+                expr.markCssVariable();
+            }
         } else if ( token == FUNCTIONCALC ) {
                CssCalc c = (CssCalc) v;
                if (c.hasCssVariable()) {
@@ -773,7 +778,8 @@ TOKEN [IGNORE_CASE] :
     | <FUNCTIONMAX   : "max("   >
     | <FUNCTIONCLAMP : "clamp(" >
     | <FUNCTIONATTR  : "attr("  >
-    | <FUNCTIONVAR   : "var(" >
+    | <FUNCTIONVAR   : "var("   >
+    | <FUNCTIONENV   : "env("   >
 }
 
 <DEFAULT>
@@ -2948,6 +2954,7 @@ void term(CssExpression exp) :
         | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
         | func=functionvar() { setValue(func, exp, operator, null, FUNCTIONVAR); }
+        | func=functionenv() { setValue(func, exp, operator, null, FUNCTIONENV); }
         | func=function() { setValue(func, exp, operator, null, FUNCTION); }
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
         | n=<DIV>  { setValue(new CssSwitch(), exp, operator, n, DIV); }
@@ -3362,6 +3369,38 @@ CssExpression exp = null;
   }
 }
 
+CssCheckableValue functionenv() :
+{ Token n;
+ CssExpression exp = null;
+ CssExpression e;
+ CssEnv env = null;
+ String skipped = null;
+}
+{
+  <FUNCTIONENV> ( <S> )* n=<IDENT> ( <S> )* {
+     env = new CssEnv(ac, convertIdent(n.image));
+     e = new CssExpression();
+  }
+  (  term(e) )*
+  ( <COMMA> ( <S> )* try {
+                         exp = expr()
+                      } catch (ParseException pe) {
+                         skipped = skip_to_matching_paren();
+                         // FIXME do something meaningful with that string
+                         exp = null;
+                      }
+   )? <RPAREN>
+   {
+       env.setNumberExp(e);
+       if (exp != null) {
+	   env.setDeclaration(exp);
+       } else if (skipped != null) {
+	// do something fancy here
+       }
+       return env;
+   }
+}
+
 CssCheckableValue functionvar() :
 { Token n;
  CssExpression exp = null;
@@ -3633,6 +3672,7 @@ String skip_to_matching_paren() {
             case FUNCTIONCLAMP:
             case FUNCTIONATTR:
             case FUNCTIONVAR:
+	    case FUNCTIONENV:
                 s.append(tok.image);
                 nesting++;
                 getNextToken();
