@@ -9,6 +9,7 @@ package org.w3c.css.values;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 
 import java.math.BigDecimal;
@@ -90,7 +91,13 @@ public class CssPercentage extends CssCheckableValue {
     public void set(String s, ApplContext ac) throws InvalidParamException {
         int slength = s.length();
         if (s.charAt(slength - 1) != '%') {
-            throw new InvalidParamException("percentage", s, ac);
+            throw new InvalidParamException("percent", s, ac);
+        }
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+            // check for scientific notation in CSS < 3
+            if (s.indexOf('e') >= 0 || s.indexOf('E') >= 0) {
+                throw new InvalidParamException("percent", s, ac);
+            }
         }
         this.value = new BigDecimal(s.substring(0, slength - 1));
     }

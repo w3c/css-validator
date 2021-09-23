@@ -7,6 +7,7 @@ package org.w3c.css.values;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 
 import java.math.BigDecimal;
@@ -52,7 +53,14 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
      * @param s  the string representation of the frequency.
      * @param ac For errors and warnings reports.
      */
-    public void set(String s, ApplContext ac) {
+    public void set(String s, ApplContext ac)
+            throws InvalidParamException {
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+            // check for scientific notation in CSS < 3
+            if (s.indexOf('e') >= 0 || s.indexOf('E') >= 0) {
+                throw new InvalidParamException("value", "number", s, ac);
+            }
+        }
         value = new BigDecimal(s);
         isInt = (s.indexOf('.') < 0);
 /*		CSS integers are not value-based integers.

@@ -542,7 +542,7 @@ SPECIAL_TOKEN :
   | < #INVALID2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* >  
   | < #_IDENT     : ( <MINUS> )? <NMSTART> ( <NMCHAR> )* >
   | < #NAME       : ( <NMCHAR> )+ >
-  | < #NUM        : ( ["0"-"9"] )+ | ( ["0"-"9"] )* "." ( ["0"-"9"] )+ >
+  | < #NUM        : ( ( ["0"-"9"] )+ | ( ["0"-"9"] )* "." ( ["0"-"9"] )+ ) ( "e" ( "+" | "-" )? ( ["0"-"9"] )+ )? >
   | < #_STRING    : <STRING1> | <STRING2> >
   | < #_INVALID   : <INVALID1> | <INVALID2> >
   | < #_URL       : ( [ "!", "#", "$", "%", "&", "*"-"[", "]"-"~" ] | <NONASCII> | <ESCAPE> )* >

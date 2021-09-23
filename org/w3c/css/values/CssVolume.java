@@ -6,6 +6,7 @@
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 
 import java.math.BigDecimal;
@@ -36,8 +37,7 @@ public class CssVolume extends CssCheckableValue {
      * Set the value of this length.
      *
      * @param s the string representation of the length.
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The unit is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The unit is incorrect
      */
     public void set(String s, ApplContext ac) throws InvalidParamException {
         String low_s = s.toLowerCase();
@@ -66,7 +66,14 @@ public class CssVolume extends CssCheckableValue {
                 throw new InvalidParamException("unit", s, ac);
         }
         try {
-            value = new BigDecimal(low_s.substring(0, unitIdx));
+            String num_s = low_s.substring(0, unitIdx);
+            if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+                // check for scientific notation in CSS < 3
+                if (num_s.indexOf('e') >= 0 || num_s.indexOf('E') >= 0) {
+                    throw new InvalidParamException("invalid-number", num_s, ac);
+                }
+            }
+            value = new BigDecimal(num_s);
         } catch (NumberFormatException nex) {
             throw new InvalidParamException("invalid-number",
                     low_s.substring(0, unitIdx), ac);
