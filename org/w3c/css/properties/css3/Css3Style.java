@@ -301,6 +301,7 @@ import org.w3c.css.properties.css.counterstyle.CssSuffix;
 import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
 import org.w3c.css.properties.css.fontface.CssFontDisplay;
+import org.w3c.css.properties.css.fontface.CssFontNamedInstance;
 import org.w3c.css.properties.css.fontface.CssFontStretch;
 import org.w3c.css.properties.css.fontface.CssFontStyle;
 import org.w3c.css.properties.css.fontface.CssFontWeight;
@@ -584,6 +585,7 @@ public class Css3Style extends ATSCStyle {
     public CssFontWeight fontFaceCssFontWeight;
     public CssFontStretch fontFaceCssFontStretch;
     public CssFontStyle fontFaceCssFontStyle;
+    public CssFontNamedInstance fontFaceCssFontNamedInstance;
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1286,6 +1288,15 @@ public class Css3Style extends ATSCStyle {
         return pageCssMarks;
     }
 
+    public CssFontNamedInstance getFontFaceCssFontNamedInstance() {
+        if (fontFaceCssFontNamedInstance == null) {
+            fontFaceCssFontNamedInstance =
+                    (CssFontNamedInstance) style.CascadingOrder(new CssFontNamedInstance(),
+                            style, selector);
+        }
+        return fontFaceCssFontNamedInstance;
+    }
+    
     public CssFontDisplay getFontFaceCssFontDisplay() {
         if (fontFaceCssFontDisplay == null) {
             fontFaceCssFontDisplay =
