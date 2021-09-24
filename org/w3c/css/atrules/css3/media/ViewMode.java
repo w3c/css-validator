@@ -17,7 +17,9 @@ import java.util.ArrayList;
 
 /**
  * @spec http://www.w3.org/TR/2012/REC-view-mode-20120619/#the--view-mode--media-feature
+ * @deprecated
  */
+@Deprecated
 public class ViewMode extends MediaFeature {
 
 	static ArrayList<CssIdent> allowed_values;
@@ -47,6 +49,7 @@ public class ViewMode extends MediaFeature {
 					CssExpression expression, boolean check)
 			throws InvalidParamException {
 
+		ac.getFrame().addWarning("deprecatedmediafeature", getFeatureName());
 		if (modifier != null) {
 			throw new InvalidParamException("nomodifiermedia",
 					getFeatureName(), ac);

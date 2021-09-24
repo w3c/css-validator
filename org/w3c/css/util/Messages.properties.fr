@@ -449,6 +449,7 @@ error.bg_order: Dans la définition de CSS3 background, 'bg_position' doit appar
 warning.deprecatedmedia: L'utilisation du media "\u201C%s\u201D" est déconseillée
 error.deprecatedmedia: L'utilisation du media "\u201C%s\u201D" est déconseillée
 error.deprecatedmediafeature: La propriétés de media \u201C%s\u201D est déconseillée. Pour plus d'information, regardez la section "Deprecated Media Features" dans la version actuelle de la spécification Media Queries.
+warning.deprecatedmediafeature: La propriétés de media \u201C%s\u201D est déconseillée. Pour plus d'information, regardez la section "Deprecated Media Features" dans la version actuelle de la spécification Media Queries.
 
 error.nomediarestrictor: Les limitations de media ne sont pas définies dans ce niveau de CSS
 error.nomediafeature: Les propriétés de media ne sont pas définies dans ce niveau de CSS
