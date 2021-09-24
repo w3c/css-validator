@@ -125,7 +125,7 @@ public class CssPropertyFactory implements Cloneable {
             }
         }
 
-        classname = properties.getProperty("mediafeature" + "." + feature.toLowerCase());
+        classname = properties.getProperty("mf" + "." + feature.toLowerCase());
         if (classname == null) {
             throw vendorMediaException(ac, atRule, feature);
         }
