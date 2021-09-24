@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-update
+ * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-update
  */
 public class MediaUpdate extends MediaFeature {
 
@@ -71,8 +71,8 @@ public class MediaUpdate extends MediaFeature {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    value = getAllowedValue((CssIdent) val);
-                    if (value != null) {
+                    if (getAllowedValue(val.getIdent()) != null) {
+                        value = val;
                         break;
                     }
                     // let it flow through the exception

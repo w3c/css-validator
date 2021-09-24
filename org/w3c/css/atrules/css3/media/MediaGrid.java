@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#grid
+ * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-grid
  */
 public class MediaGrid extends MediaFeature {
 
@@ -28,8 +28,7 @@ public class MediaGrid extends MediaFeature {
      * Create a new MediaGrid.
      *
      * @param expression The expression for this media feature
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public MediaGrid(ApplContext ac, String modifier,
                      CssExpression expression, boolean check)
@@ -50,15 +49,19 @@ public class MediaGrid extends MediaFeature {
             CssValue val = expression.getValue();
             // it must be a >=0 integer only
             if (val.getType() == CssTypes.CSS_NUMBER) {
-                val.getCheckableValue().checkInteger(ac, this);
-                // FIXME TODO, calc() case.
-                CssNumber valnum = (CssNumber) val;
-                int gridval = valnum.getInt();
-                if (gridval != 0 && gridval != 1) {
-                    throw new InvalidParamException("grid",
-                            val.toString(), ac);
+                val.getCheckableValue().checkInteger(ac, getFeatureName());
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    CssNumber valnum = (CssNumber) val;
+                    int gridval = valnum.getInt();
+                    if (gridval != 0 && gridval != 1) {
+                        throw new InvalidParamException("grid",
+                                val.toString(), ac);
+                    }
+                } else {
+                    // best we can do is >=0
+                    val.getCheckableValue().checkPositiveness(ac, getFeatureName());
                 }
-                value = valnum;
+                value = val;
             } else {
                 throw new InvalidParamException("unrecognize", ac);
             }

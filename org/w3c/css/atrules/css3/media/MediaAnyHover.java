@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-any-hover
+ * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-any-hover
  */
 public class MediaAnyHover extends MediaFeature {
 
@@ -48,8 +48,7 @@ public class MediaAnyHover extends MediaFeature {
      * Create a new MediaPAnyointer
      *
      * @param expression The expression for this media feature
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public MediaAnyHover(ApplContext ac, String modifier,
                          CssExpression expression, boolean check)
@@ -71,8 +70,8 @@ public class MediaAnyHover extends MediaFeature {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    value = getAllowedValue((CssIdent) val);
-                    if (value != null) {
+                    if (getAllowedValue(val.getIdent()) != null) {
+                        value = val;
                         break;
                     }
                     // let it flow through the exception

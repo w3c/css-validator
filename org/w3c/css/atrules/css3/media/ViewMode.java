@@ -66,7 +66,7 @@ public class ViewMode extends MediaFeature {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_IDENT:
-					int idx = allowed_values.indexOf((CssIdent) val);
+					int idx = allowed_values.indexOf(val.getIdent());
 					if (idx != -1) {
 						value = allowed_values.get(idx);
 						break;

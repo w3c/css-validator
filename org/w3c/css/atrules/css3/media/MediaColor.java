@@ -15,7 +15,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#color
+ * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-color
  */
 public class MediaColor extends MediaRangeFeature {
 

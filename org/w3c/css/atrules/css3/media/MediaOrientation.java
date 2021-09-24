@@ -14,15 +14,28 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#orientation
+ * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-orientation
  */
 public class MediaOrientation extends MediaFeature {
 
-    static CssIdent portrait, landscape;
+    public static final CssIdent[] allowed_values;
 
     static {
-        portrait = CssIdent.getIdent("portrait");
-        landscape = CssIdent.getIdent("landscape");
+        String[] _allowed_values = {"portrait", "landscape"};
+        allowed_values = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
     }
 
     /**
@@ -35,8 +48,7 @@ public class MediaOrientation extends MediaFeature {
      * Create a new MediaOrientation.
      *
      * @param expression The expression for this media feature
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public MediaOrientation(ApplContext ac, String modifier,
                             CssExpression expression, boolean check)
@@ -58,13 +70,8 @@ public class MediaOrientation extends MediaFeature {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    CssIdent id = (CssIdent) val;
-                    if (portrait.equals(id)) {
-                        value = portrait;
-                        break;
-                    }
-                    if (landscape.equals(id)) {
-                        value = landscape;
+                    if (getAllowedIdent(val.getIdent()) != null) {
+                        value = val;
                         break;
                     }
                     // let it flow through the exception

@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/CR-mediaqueries-4-20200721/#descdef-media-overflow-block
+ * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-overflow-block
  */
 public class MediaOverflowBlock extends MediaFeature {
 
@@ -70,7 +70,7 @@ public class MediaOverflowBlock extends MediaFeature {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    value = getAllowedValue((CssIdent) val);
+                    value = getAllowedValue(val.getIdent());
                     if (value != null) {
                         break;
                     }

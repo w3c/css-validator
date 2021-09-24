@@ -15,7 +15,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-height
+ * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-height
  */
 public class MediaHeight extends MediaRangeFeature {
 

@@ -11,15 +11,17 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssComparator;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssResolution;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-resolution
+ * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-resolution
  */
 public class MediaResolution extends MediaRangeFeature {
 
+    static CssIdent infinite = CssIdent.getIdent("infinite");
+    
     /**
      * Create a new MediaResolution
      */
@@ -47,6 +49,11 @@ public class MediaResolution extends MediaRangeFeature {
             CssValue val = expression.getValue();
             // it must be a >=0 integer only
             switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    if (infinite.equals(val.getIdent())) {
+                        value = val;
+                        break;
+                    }
                 case CssTypes.CSS_COMPARATOR:
                     if (modifier != null) {
                         throw new InvalidParamException("nomodifierrangemedia",
@@ -92,9 +99,9 @@ public class MediaResolution extends MediaRangeFeature {
         }
         CssValue val = expression.getValue();
         CssValue value = null;
+        // FIXME is "infinite" allowed in comparisons?
         if (val.getType() == CssTypes.CSS_RESOLUTION) {
-            CssResolution valnum = (CssResolution) val;
-            value = valnum;
+            value = val;
         } else {
             throw new InvalidParamException("unrecognize", ac);
         }
