@@ -38,7 +38,7 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
         }
     }
 
-    static CssIdent getGenericFontName(CssIdent ident) {
+    static public CssIdent getGenericFontName(CssIdent ident) {
         int pos = genericNames.indexOf(ident);
         if (pos >= 0) {
             return genericNames.get(pos);
