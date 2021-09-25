@@ -19,17 +19,38 @@ import org.w3c.css.values.CssValue;
 public class CssFontWeight extends org.w3c.css.properties.css.CssFontWeight {
 
     public static final CssIdent[] allowed_values;
-    static final String[] _allowed_values = {"normal", "bold", "bolder", "lighter"};
+    public static final CssIdent[] absolute_values;
 
     static {
-        allowed_values = new CssIdent[_allowed_values.length];
-        for (int i = 0; i < allowed_values.length; i++) {
-            allowed_values[i] = CssIdent.getIdent(_allowed_values[i]);
+        String[] _absolute_values = {"normal", "bold"};
+        String[] _non_absolute_values = {"bolder", "lighter"};
+        int i = 0;
+        absolute_values = new CssIdent[_absolute_values.length];
+        for (String s : _absolute_values) {
+            absolute_values[i++] = CssIdent.getIdent(s);
+        }
+        i = 0;
+        // here we concatenate the two
+        allowed_values = new CssIdent[_absolute_values.length + _non_absolute_values.length];
+        for (String s : _absolute_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        for (String s : _non_absolute_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
         }
     }
 
     public static final CssIdent getAllowedValue(CssIdent ident) {
         for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
+    public static final CssIdent getAllowedAbsoluteValue(CssIdent ident) {
+        for (CssIdent id : absolute_values) {
             if (id.equals(ident)) {
                 return id;
             }
