@@ -308,6 +308,7 @@ import org.w3c.css.properties.css.fontface.CssFontStretch;
 import org.w3c.css.properties.css.fontface.CssFontStyle;
 import org.w3c.css.properties.css.fontface.CssFontWeight;
 import org.w3c.css.properties.css.fontface.CssLineGapOverride;
+import org.w3c.css.properties.css.fontface.CssUnicodeRange;
 import org.w3c.css.properties.css.viewport.CssMaxZoom;
 import org.w3c.css.properties.css.viewport.CssMinZoom;
 import org.w3c.css.properties.css.viewport.CssOrientation;
@@ -592,6 +593,7 @@ public class Css3Style extends ATSCStyle {
     public CssAscentOverride fontFaceCssAscentOverride;
     public CssDescentOverride fontFaceCssDescentOverride;
     public CssLineGapOverride fontFaceCssLineGapOverride;
+    public CssUnicodeRange fontFaceCssUnicodeRange;
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1294,6 +1296,15 @@ public class Css3Style extends ATSCStyle {
         return pageCssMarks;
     }
 
+    public CssUnicodeRange getFontFaceCssUnicodeRange() {
+        if (fontFaceCssUnicodeRange == null) {
+            fontFaceCssUnicodeRange =
+                    (CssUnicodeRange) style.CascadingOrder(new CssUnicodeRange(),
+                            style, selector);
+        }
+        return fontFaceCssUnicodeRange;
+    }
+    
     public CssAscentOverride getFontFaceCssAscentOverride() {
         if (fontFaceCssAscentOverride == null) {
             fontFaceCssAscentOverride =
