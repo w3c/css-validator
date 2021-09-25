@@ -60,6 +60,13 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
             throws InvalidParamException {
 
         setByUser();
+        value = parseFontFeatureSettings(ac, expression, getPropertyName());
+    }
+
+    public static final CssValue parseFontFeatureSettings(ApplContext ac,
+                                                          CssExpression expression,
+                                                          String caller)
+            throws InvalidParamException {
 
         CssValue val;
         char op;
@@ -79,25 +86,20 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
                     if (CssIdent.isCssWide(id) || normal.equals(id)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("value",
-                                    val.toString(),
-                                    getPropertyName(), ac);
+                                    val.toString(), caller, ac);
                         }
-                        value = val;
-                        break;
+                        return val;
                     }
                     if (layervalues.size() == 1 && (getAllowedValue(id) != null)) {
                         layervalues.add(val);
                         break;
                     }
                     throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-
+                            val.toString(), caller, ac);
                 case CssTypes.CSS_NUMBER:
                     if (layervalues.size() != 1) {
                         throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
+                                val.toString(), caller, ac);
                     }
                     layervalues.add(val);
                     break;
@@ -108,7 +110,7 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
                     if (s.toString().length() != 6) {
                         throw new InvalidParamException("value",
                                 expression.getValue().toString(),
-                                getPropertyName(), ac);
+                                caller, ac);
                     }
                     // FIXME TODO check
                     layervalues.add(val);
@@ -116,7 +118,7 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
                 default:
                     throw new InvalidParamException("value",
                             val.toString(),
-                            getPropertyName(), ac);
+                            caller, ac);
             }
             expression.next();
             if (!layervalues.isEmpty()) {
@@ -147,9 +149,9 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
             values.add(layervalues.get(0));
         }
         if (!values.isEmpty()) {
-            value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+            return (values.size() == 1) ? values.get(0) : new CssLayerList(values);
         }
-
+        return null;
     }
 
     public CssFontFeatureSettings(ApplContext ac, CssExpression expression)

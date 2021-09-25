@@ -596,6 +596,7 @@ public class Css3Style extends ATSCStyle {
     public CssLineGapOverride fontFaceCssLineGapOverride;
     public CssUnicodeRange fontFaceCssUnicodeRange;
     public org.w3c.css.properties.css.fontface.CssFontFamily fontFaceCssFontFamily;
+    public org.w3c.css.properties.css.fontface.CssFontFeatureSettings fontFaceCssFontFeatureSettings;
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1305,6 +1306,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return fontFaceCssFontFamily;
+    }
+
+    public org.w3c.css.properties.css.fontface.CssFontFeatureSettings getFontFaceCssFontFeatureSettings() {
+        if (fontFaceCssFontFeatureSettings == null) {
+            fontFaceCssFontFeatureSettings =
+                    (org.w3c.css.properties.css.fontface.CssFontFeatureSettings) style.CascadingOrder(new org.w3c.css.properties.css.fontface.CssFontFeatureSettings(),
+                            style, selector);
+        }
+        return fontFaceCssFontFeatureSettings;
     }
     
     public CssUnicodeRange getFontFaceCssUnicodeRange() {
