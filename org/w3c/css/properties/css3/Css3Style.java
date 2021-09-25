@@ -597,7 +597,8 @@ public class Css3Style extends ATSCStyle {
     public CssUnicodeRange fontFaceCssUnicodeRange;
     public org.w3c.css.properties.css.fontface.CssFontFamily fontFaceCssFontFamily;
     public org.w3c.css.properties.css.fontface.CssFontFeatureSettings fontFaceCssFontFeatureSettings;
-
+    public org.w3c.css.properties.css.fontface.CssFontVariationSettings fontFaceCssFontVariationSettings;
+    
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
     public CssColorScheme cssColorScheme;
@@ -1315,6 +1316,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return fontFaceCssFontFeatureSettings;
+    }
+
+    public org.w3c.css.properties.css.fontface.CssFontVariationSettings getFontFaceCssFontVariationSettings() {
+        if (fontFaceCssFontVariationSettings == null) {
+            fontFaceCssFontVariationSettings =
+                    (org.w3c.css.properties.css.fontface.CssFontVariationSettings) style.CascadingOrder(new org.w3c.css.properties.css.fontface.CssFontVariationSettings(),
+                            style, selector);
+        }
+        return fontFaceCssFontVariationSettings;
     }
     
     public CssUnicodeRange getFontFaceCssUnicodeRange() {

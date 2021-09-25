@@ -45,6 +45,14 @@ public class CssFontVariationSettings extends org.w3c.css.properties.css.CssFont
 
         setByUser();
 
+        value = parseFontVariationSettings(ac, expression, getPropertyName());
+    }
+
+    public static final CssValue parseFontVariationSettings(ApplContext ac,
+                                                            CssExpression expression,
+                                                            String caller)
+            throws InvalidParamException {
+
         CssValue val;
         char op;
 
@@ -63,20 +71,16 @@ public class CssFontVariationSettings extends org.w3c.css.properties.css.CssFont
                     if (CssIdent.isCssWide(id) || normal.equals(id)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("value",
-                                    val.toString(),
-                                    getPropertyName(), ac);
+                                    val.toString(), caller, ac);
                         }
-                        value = val;
-                        break;
+                        return val;
                     }
                     throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
+                            val.toString(), caller, ac);
                 case CssTypes.CSS_NUMBER:
                     if (layervalues.size() != 1) {
                         throw new InvalidParamException("value",
-                                val.toString(),
-                                getPropertyName(), ac);
+                                val.toString(), caller, ac);
                     }
                     layervalues.add(val);
                     break;
@@ -87,15 +91,14 @@ public class CssFontVariationSettings extends org.w3c.css.properties.css.CssFont
                     if (s.toString().length() != 6) {
                         throw new InvalidParamException("value",
                                 expression.getValue().toString(),
-                                getPropertyName(), ac);
+                                caller, ac);
                     }
                     // FIXME TODO check
                     layervalues.add(val);
                     break;
                 default:
                     throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
+                            val.toString(), caller, ac);
             }
             expression.next();
             if (!layervalues.isEmpty()) {
@@ -120,12 +123,12 @@ public class CssFontVariationSettings extends org.w3c.css.properties.css.CssFont
         if (layervalues.size() == 1) {
             throw new InvalidParamException("value",
                     layervalues.get(0).toString(),
-                    getPropertyName(), ac);
+                    caller, ac);
         }
         if (!values.isEmpty()) {
-            value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+            return (values.size() == 1) ? values.get(0) : new CssLayerList(values);
         }
-
+        return null;
     }
 
     public CssFontVariationSettings(ApplContext ac, CssExpression expression)
