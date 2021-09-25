@@ -301,6 +301,7 @@ import org.w3c.css.properties.css.counterstyle.CssSuffix;
 import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
 import org.w3c.css.properties.css.fontface.CssAscentOverride;
+import org.w3c.css.properties.css.fontface.CssDescentOverride;
 import org.w3c.css.properties.css.fontface.CssFontDisplay;
 import org.w3c.css.properties.css.fontface.CssFontNamedInstance;
 import org.w3c.css.properties.css.fontface.CssFontStretch;
@@ -588,6 +589,7 @@ public class Css3Style extends ATSCStyle {
     public CssFontStyle fontFaceCssFontStyle;
     public CssFontNamedInstance fontFaceCssFontNamedInstance;
     public CssAscentOverride fontFaceCssAscentOverride;
+    public CssDescentOverride fontFaceCssDescentOverride;
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1297,6 +1299,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return fontFaceCssAscentOverride;
+    }
+
+    public CssDescentOverride getFontFaceCssDescentOverride() {
+        if (fontFaceCssDescentOverride == null) {
+            fontFaceCssDescentOverride =
+                    (CssDescentOverride) style.CascadingOrder(new CssDescentOverride(),
+                            style, selector);
+        }
+        return fontFaceCssDescentOverride;
     }
     
     public CssFontNamedInstance getFontFaceCssFontNamedInstance() {
