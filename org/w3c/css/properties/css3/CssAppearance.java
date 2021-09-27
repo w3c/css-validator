@@ -98,7 +98,8 @@ public class CssAppearance extends org.w3c.css.properties.css.CssAppearance {
                 // output will use auto
                 if (isCompatAuto(id)) {
                     // need a specific warning to tell that it is seen as "auto"?
-                    ac.getFrame().addWarning("value-unofficial");
+                    ac.getFrame().addWarning("value-unofficial",
+                            val.toString(), getPropertyName());
                     // let's replace it if it was a real ident
                     if (val.getRawType() == CssTypes.CSS_IDENT) {
                         value = auto;
