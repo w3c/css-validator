@@ -11,6 +11,8 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 
+import java.util.Locale;
+
 import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
@@ -645,7 +647,7 @@ public class CssColor extends CssValue {
      */
     protected void setIdentColor(ApplContext ac, String s)
             throws InvalidParamException {
-        String lower_s = s.toLowerCase();
+        String lower_s = s.toLowerCase(Locale.ENGLISH);
         switch (ac.getCssVersion()) {
             case CSS1:
                 rgb = CssColorCSS1.getRGB(lower_s);
@@ -692,7 +694,12 @@ public class CssColor extends CssValue {
                 }
                 color = CssColorCSS3.getSystem(lower_s);
                 if (color != null) {
-                    ac.getFrame().addWarning("deprecated", s);
+                    break;
+                }
+                if (CssColorCSS3.getDeprecatedSystem(lower_s) != null) {
+                    ac.getFrame().addWarning("deprecated_replacement", s, color.toString());
+                    // FIXME should we use the replacement in output style?
+                    color = s;
                     break;
                 }
                 color = CssColorCSS3.getIdentColor(lower_s);

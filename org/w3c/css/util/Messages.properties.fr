@@ -432,8 +432,9 @@ error.unrecognized.link: La balise link ou l'instruction de traitement\
  xml-stylesheet ne sont pas reconnues.
 
 warning.otherprofile: propriété \u201C%s\u201D n'existe pas dans ce profile mais est validée conforme à un autre profile
-warning.deprecated: La valeur '\u201C%s\u201D' est déconseillée
-warning.deprecatedproperty: La propriété '\u201C%s\u201D' est déconseillée
+warning.deprecated: La valeur \u201C%s\u201D est déconseillée
+warning.deprecatedproperty: La propriété \u201C%s\u201D est déconseillée
+warning.deprecated_replacement: La valeur \u201C%s\u201D est déconseillée, utilisez plutôt \u201C%s2\u201D
 
 #used by org.w3c.css.parser.analyzer.CssParser
 error.nocomb: Le Combinateur de sélecteurs \u201C%s\u201D n'est pas admis dans ce profile ou cette version

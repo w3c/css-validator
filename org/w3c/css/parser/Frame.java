@@ -111,6 +111,21 @@ public class Frame {
      *
      * @param warningMessage the warning message
      *                       (see org.w3c.css.util.Messages.properties).
+     * @param param1         An add-on message.
+     * @param param2         An add-on message.
+     * @see org.w3c.css.util.Warning
+     */
+    public void addWarning(String warningMessage, String param1, String param2) {
+        warnings.addWarning(new Warning(getSourceFile(), getLine(),
+                warningMessage, 0,
+                new String[]{param1, param2}, ac));
+    }
+
+    /**
+     * Adds a warning to this frame with a message.
+     *
+     * @param warningMessage the warning message
+     *                       (see org.w3c.css.util.Messages.properties).
      * @param messages       Some add-on messages.
      * @see org.w3c.css.util.Warning
      */

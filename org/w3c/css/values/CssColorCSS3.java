@@ -5,12 +5,16 @@
 package org.w3c.css.values;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * @spec https://www.w3.org/TR/2016/WD-css-color-4-20160705/
  */
 public class CssColorCSS3 {
     protected static final HashMap<String, RGB> definedRGBColorsCSS3;
+    protected static final HashMap<String, String> definedSystemColorsCSS3;
+    protected static final HashMap<String, String> definedDeprecatedSystemColorsCSS3;
+
     private static final RGBA trans;
 
     static final CssIdent currentColor = CssIdent.getIdent("currentColor");
@@ -26,10 +30,12 @@ public class CssColorCSS3 {
         return null;
     }
 
-    // those are the same as CSS2, let's use that
-    // and note that they are deprecated...
     public static String getSystem(String ident) {
-        return CssColorCSS2.definedSystemColorsCSS2.get(ident);
+        return definedSystemColorsCSS3.get(ident);
+    }
+
+    public static String getDeprecatedSystem(String ident) {
+        return definedDeprecatedSystemColorsCSS3.get(ident);
     }
 
     // special case for currentColor and possible ident-only defined colors.
@@ -193,5 +199,34 @@ public class CssColorCSS3 {
         definedRGBColorsCSS3.put("whitesmoke", new RGB(true, 245, 245, 245));
         definedRGBColorsCSS3.put("yellow", new RGB(true, 255, 255, 0));
         definedRGBColorsCSS3.put("yellowgreen", new RGB(true, 154, 205, 50));
+
+        // https://www.w3.org/TR/2021/WD-css-color-4-20210601/#typedef-system-color
+        definedSystemColorsCSS3 = new HashMap<>();
+        String[] _system_colors = {"Canvas", "CanvasText", "LinkText", "VisitedText", "ActiveText",
+                "ButtonFace", "ButtonText", "ButtonBorder", "Field", "FieldText", "Highlight",
+                "HighlightText", "Mark", "MarkText", "GrayText"};
+        for (String s : _system_colors) {
+            definedSystemColorsCSS3.put(s.toLowerCase(Locale.ENGLISH), s);
+        }
+
+        // https://www.w3.org/TR/2021/WD-css-color-4-20210601/#deprecated-system-colors
+        definedDeprecatedSystemColorsCSS3 = new HashMap<>();
+        String[] _deprecated_system_colors = {"ActiveBorder", "ActiveCaption", "AppWorkspace",
+                "Background", "ButtonHighlight", "ButtonShadow", "CaptionText",
+                "InactiveBorder", "InactiveCaption", "InactiveCaptionText", "InfoBackground",
+                "InfoText", "Menu", "MenuText", "Scrollbar", "ThreeDDarkShadow",
+                "ThreeDFace", "ThreeDHighlight", "ThreeDLightShadow", "ThreeDShadow",
+                "Window", "WindowFrame", "WindowText"};
+        String[] _deprecated_replacement_colors = {"ButtonBorder", "CanvasText", "Canvas",
+                "Canvas", "ButtonFace", "ButtonFace", "CanvasText",
+                "ButtonBorder", "Canvas", "GrayText", "Canvas",
+                "CanvasText", "Canvas", "CanvasText", "Canvas", "ButtonBorder",
+                "ButtonFace", "ButtonBorder", "ButtonBorder", "ButtonBorder",
+                "Canvas", "ButtonBorder", "CanvasText"};
+        for (int i = 0; i < _deprecated_system_colors.length; i++) {
+            definedDeprecatedSystemColorsCSS3.put(_deprecated_system_colors[i].toLowerCase(Locale.ENGLISH),
+                    _deprecated_replacement_colors[i]);
+        }
+
     }
 }

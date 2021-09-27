@@ -417,6 +417,7 @@ error.onlyATSC: \u201C%s\u201D this function is only for the atsc-tv medium
 warning.otherprofile: property \u201C%s\u201D does not exist for this profile, but is validated conforming to another profile
 warning.deprecated: The value \u201C%s\u201D is deprecated
 warning.deprecatedproperty: The property \u201C%s\u201D is deprecated
+warning.deprecated_replacement: The value \u201C%s1\u201D is deprecated, use \u201C%s2\u201D instead
 
 warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected
 
