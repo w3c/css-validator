@@ -18,6 +18,10 @@ public class AttributeAny extends AttributeSelector {
         super(name);
     }
 
+    public AttributeAny(String name, String prefix) {
+        super(name, prefix);
+    }
+
     public boolean canApply(Selector other) {
         return true;
     }

@@ -21,6 +21,13 @@ public class AttributeBegin extends AttributeSelector {
         this.value = value;
     }
 
+    public AttributeBegin(String name, String value, String prefix) {
+        setName(name);
+        this.value = value;
+        setPrefix(prefix);
+
+    }
+
     /**
      * @return Returns the value.
      */
@@ -95,7 +102,9 @@ public class AttributeBegin extends AttributeSelector {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append('[').append(getName()).append("|=\"").append(value).append("\"]");
+        sb.append('[').append(getPrefixedName());
+        sb.append("|=\"").append(value).append('"');
+        sb.append(getEndingString());
         return sb.toString();
     }
 
