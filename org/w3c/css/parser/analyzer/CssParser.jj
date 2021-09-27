@@ -1441,20 +1441,20 @@ void page_selector_list(AtRulePage pageRule) :
 }
 {
     (
-     ( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
+     ( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList<String>(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
 	pageRule.addSelector(ns, ps, ac);
 	ns = null; ps = null;
     }
-     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
+     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList<String>(); } ps.add(":"+convertIdent(p.image)); }  )+ {
 	pageRule.addSelector(null, ps, ac);
 	ps = null;
     } ) ( <S> ) *
     ( <COMMA> ( <S> )* (
-			( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
+			( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList<String>(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
 	pageRule.addSelector(ns, ps, ac);
 	ns = null; ps = null;
     }
-     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
+     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList<String>(); } ps.add(":"+convertIdent(p.image)); }  )+ {
 	pageRule.addSelector(null, ps, ac);
 	ps = null;
     } ) ( <S> )* )*
@@ -2374,7 +2374,7 @@ void element_name(CssSelectors s) :
 		   .addError(new CssError(getSourceFile(), getBeginLine(),
 		       getBeginColumn(), getEndLine(), getEndColumn(),
 		           new InvalidParamException("notversion",
-			       "namespace", ac.getCssVersionString(), ac)));
+			       sb.toString(), ac.getCssVersionString(), ac)));
 		removeThisRule();
 	    } else if (n!=null) {
 		prefix = convertIdent(n.image);
@@ -2416,10 +2416,12 @@ void attrib(CssSelectors s) :
 {
     Token att = null;
     Token val = null;
+    Token mod = null;
+    Token pre = null;
     int selectorType = CssSelectors.ATTRIBUTE_ANY;
 }
 {
-    <LBRACKET> ( <S> )* att=ident() ( <S> )*
+    <LBRACKET> ( <S> )* ( LOOKAHEAD(2) (pre=ident() | pre=<ANY>)? "|" )? att=ident() ( <S> )*
 	( (<EQ> { selectorType = CssSelectors.ATTRIBUTE_EXACT; }
         | <INCLUDES> { selectorType = CssSelectors.ATTRIBUTE_ONE_OF; }
 	| <DASHMATCH> { selectorType = CssSelectors.ATTRIBUTE_BEGIN; }
@@ -2432,76 +2434,104 @@ void attrib(CssSelectors s) :
 	   | val=<STRING> 
 	       { val.image = convertStringIndex(val.image, 1, val.image.length() -1, false);} 
 	   ) 
-	   ( <S> )* )?
-  <RBRACKET>
+	   ( LOOKAHEAD(2) ( <S> )+ mod=ident() )? ( <S> )*  )?
+    <RBRACKET>
       {
-	  if (ac.getCssVersion() == CssVersion.CSS1) {
-	      StringBuilder reason;
-	      CssParseException cp;
-	      ParseException p;
-	      reason = new StringBuilder(" [");
-	      if (att != null) {
-		  reason.append(convertIdent(att.image));
-	      }
-	      if (val != null ) {
-		  reason.append('=').append(val.image);
-	      }
-	      reason.append(']');
-	      p = new ParseException(ac.getMsg().getString("parser.attrcss1")+
-				     reason.toString());
-	      cp = new CssParseException(p);
-	      ac.getFrame()
-	         .addError(new CssError(getSourceFile(), getBeginLine(),
-	             getBeginColumn(), getEndLine(), getEndColumn(), cp));
-	      removeThisRule();
-	  }
-	  if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
-	      try {
-		  s.addAttribute(new AttributeAny(att.image.toLowerCase()));
-//                s.addAttribute(att.image.toLowerCase(), null, selectorType);
-              } catch (InvalidParamException e) {
-	          removeThisRule();
-	          ac.getFrame()
-	             .addError(new CssError(getSourceFile(), getBeginLine(),
-	                 getBeginColumn(), getEndLine(), getEndColumn(), e));
-              }
-	  } else {
-	      AttributeSelector attribute;
-              switch(selectorType) {
-              case CssSelectors.ATTRIBUTE_BEGIN:
-        	  attribute = new AttributeBegin(att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_EXACT:
-        	  attribute = new AttributeExact(att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_ONE_OF:
-        	  attribute = new AttributeOneOf(ac, att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_START:
-        	  attribute = new AttributeStart(att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_SUBSTR:
-        	  attribute = new AttributeSubstr(att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_SUFFIX:
-        	  attribute = new AttributeSuffix(att.image.toLowerCase(), val.image);
-        	  break;
-              default:
-        	  attribute = new AttributeExact(att.image.toLowerCase(), val.image);
-              	  break;
-              }
-	      try {
-		  s.addAttribute(attribute);
+	if (ac.getCssVersion() == CssVersion.CSS1) {
+		StringBuilder reason;
+		CssParseException cp;
+		ParseException p;
+		reason = new StringBuilder(" [");
+		if (att != null) {
+			reason.append(convertIdent(att.image));
+		}
+		if (val != null ) {
+			reason.append('=').append(val.image);
+		}
+		reason.append(']');
+		p = new ParseException(ac.getMsg().getString("parser.attrcss1")+
+					reason.toString());
+		cp = new CssParseException(p);
+		ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+					getBeginColumn(), getEndLine(), getEndColumn(), cp));
+		removeThisRule();
+	}
+	if ((mod != null) && ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+		String reason = mod.image;
+		ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+					getBeginColumn(), getEndLine(), getEndColumn(),
+					new InvalidParamException("notversion",
+					reason, ac.getCssVersionString(), ac)));
+
+                removeThisRule();
+	}
+	if ((pre != null) && ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+		StringBuilder sb = new StringBuilder("namespace \"").append(pre.image).append('"');
+		ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+					getBeginColumn(), getEndLine(), getEndColumn(),
+					new InvalidParamException("notversion",
+					sb.toString(), ac.getCssVersionString(), ac)));
+		removeThisRule();
+	}
+	if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
+		try {
+			AttributeSelector as;
+			as = new AttributeAny(att.image.toLowerCase());
+			if (pre != null) {
+				as.setPrefix(pre.image);
+			}
+			if (mod != null) {
+				as.setModifier(mod.image, ac);
+			}
+			s.addAttribute(as);
+//                      s.addAttribute(att.image.toLowerCase(), null, selectorType);
+		} catch (InvalidParamException e) {
+			removeThisRule();
+			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+						getBeginColumn(), getEndLine(), getEndColumn(), e));
+		}
+	} else {
+		AttributeSelector attribute;
+		switch(selectorType) {
+			case CssSelectors.ATTRIBUTE_BEGIN:
+				attribute = new AttributeBegin(att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_EXACT:
+				attribute = new AttributeExact(att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_ONE_OF:
+				attribute = new AttributeOneOf(ac, att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_START:
+				attribute = new AttributeStart(att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_SUBSTR:
+				attribute = new AttributeSubstr(att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_SUFFIX:
+				attribute = new AttributeSuffix(att.image.toLowerCase(), val.image);
+				break;
+			default:
+				attribute = new AttributeExact(att.image.toLowerCase(), val.image);
+			break;
+		}
+		try {
+			if (pre != null) {
+				attribute.setPrefix(pre.image);
+			}
+			if (mod != null) {
+				attribute.setModifier(mod.image, ac);
+			}
+			s.addAttribute(attribute);
 //	      	  s.addAttribute(att.image.toLowerCase(), val.image, 
 //			     selectorType);
-	      } catch (InvalidParamException e) {
-	     	  removeThisRule();
-	          ac.getFrame()
-	             .addError(new CssError(getSourceFile(), getBeginLine(),
-	                 getBeginColumn(), getEndLine(), getEndColumn(), e));
-      	      } 
-	  }
-      }
+		} catch (InvalidParamException e) {
+			removeThisRule();
+			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+						getBeginColumn(), getEndLine(), getEndColumn(), e));
+		}
+	}
+    }
 }
 
 void negation(CssSelectors s) :
