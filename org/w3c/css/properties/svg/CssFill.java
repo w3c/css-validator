@@ -79,8 +79,9 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
@@ -88,22 +89,22 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
                         }
                         break;
                     }
-                    if (none.equals(val)) {
+                    if (none.equals(id)) {
                         if ((expression.getCount() > 1 && !gotFuncIRI) || (expression.getCount() > 2 && gotFuncIRI)) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     property.getPropertyName(), ac);
                         }
-                        values.add(none);
+                        values.add(val);
                         break;
                     }
-                    if (currentColor.equals(val)) {
+                    if (currentColor.equals(id)) {
                         if ((expression.getCount() > 1 && !gotFuncIRI) || (expression.getCount() > 2 && gotFuncIRI)) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     property.getPropertyName(), ac);
                         }
-                        values.add(currentColor);
+                        values.add(val);
                         gotColor = true;
                         break;
                     }
@@ -144,9 +145,9 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
                                 property.getPropertyName(), ac);
                     }
                     CssColor c = new CssColor();
-                    c.setShortRGBColor(ac, val.toString());
+                    c.setShortRGBColor(ac, val.getHashIdent().toString());
                     gotColor = true;
-                    values.add(c);
+                    values.add(val);
                     break;
                 case CssTypes.CSS_COLOR:
                     if (gotColor) {
