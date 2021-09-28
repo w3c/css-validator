@@ -1969,7 +1969,7 @@ void ruleSet() :
 }
 {
     try {
-	contextual=selector()
+	contextual=selector_list()
 	    { 
 		if (contextual != null) {
 		    context_set.add(contextual); 
@@ -1977,7 +1977,7 @@ void ruleSet() :
 	    }
 	
 	( <COMMA> ( <S> )*
-	  contextual=selector()
+	  contextual=selector_list()
 	    { 
 		if (contextual != null) {
 		    context_set.add(contextual); 
@@ -2129,7 +2129,7 @@ ArrayList<CssProperty> attributeDeclarations() :
 /**
  * @exception ParseException exception during the parse
  */
-CssSelectors selector() :
+CssSelectors selector_list() :
 {   char comb;
     CssSelectors current; }
 {
