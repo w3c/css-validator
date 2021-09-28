@@ -2240,14 +2240,14 @@ CssSelectors simple_selector(CssSelectors next) :
 }
 {
 
-    element_name(selector) ( hash(selector) | _class(selector)
-			     | attrib(selector) | pseudo(selector) 
+    type_selector(selector) ( id_selector(selector) | class_selector(selector)
+			     | attribute_selector(selector) | pseudo(selector)
 			     | negation(selector) )*
-	{   
+	{
 	    return selector;
 	}
-    | ( hash(selector) | _class(selector) | attrib(selector) 
-	| pseudo(selector) | negation(selector) )+ 
+    | ( id_selector(selector) | class_selector(selector) | attribute_selector(selector)
+	| pseudo(selector) | negation(selector) )+
 	{
 	    return selector;
 	}
@@ -2256,7 +2256,7 @@ CssSelectors simple_selector(CssSelectors next) :
 /**
  * @exception ParseException exception during the parse
  */
-void _class(CssSelectors s) :
+void class_selector(CssSelectors s) :
 {Token n; }
 {
     /*  "." n=<IDENT> { */
@@ -2355,7 +2355,7 @@ Token deprecated_class() :
 /**
  * @exception ParseException exception during the parse
  */
-void element_name(CssSelectors s) :
+void type_selector(CssSelectors s) :
 {
     Token n=null;
     Token p=null;
@@ -2412,7 +2412,7 @@ void element_name(CssSelectors s) :
 /**
  * @exception ParseException exception during the parse
  */
-void attrib(CssSelectors s) :
+void attribute_selector(CssSelectors s) :
 {
     Token att = null;
     Token val = null;
@@ -2544,10 +2544,10 @@ void negation(CssSelectors s) :
 
     <FUNCTIONNOT> ( <S> )*
 	(
-	 element_name(ns) |
-	 hash(ns) | 
-	 _class(ns) |
-	 attrib(ns) | 
+	 type_selector(ns) |
+	 id_selector(ns) |
+	 class_selector(ns) |
+	 attribute_selector(ns) |
 	 pseudo(ns)
 	 )
 	( <S> )* <RPAREN>
@@ -2628,7 +2628,7 @@ CssExpression param = null;
 /**
  * @exception ParseException exception during the parse
  */
-void hash(CssSelectors s) :
+void id_selector(CssSelectors s) :
 {Token n; }
 {
   n=<HASHIDENT>  {
