@@ -65,16 +65,19 @@ public class CssDominantBaseline extends org.w3c.css.properties.css.CssDominantB
         val = expression.getValue();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = (CssIdent) val;
-            if (inherit.equals(id)) {
-                value = inherit;
+            CssIdent id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
+                value = val;
             } else {
-                value = getAllowedIdent(id);
-                if (value == null) {
+                if (getAllowedIdent(id) == null) {
                     // we also check if CSS version is CSS3 and onward.
                     if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
-                        value = org.w3c.css.properties.css3.CssDominantBaseline.getAllowedIdent(id);
+                        if (org.w3c.css.properties.css3.CssDominantBaseline.getAllowedIdent(id) != null) {
+                            value = val;
+                        }
                     }
+                }  else {
+                    value = val;
                 }
                 if (value == null) {
                     throw new InvalidParamException("value",

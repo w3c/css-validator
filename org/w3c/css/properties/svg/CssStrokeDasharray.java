@@ -8,6 +8,7 @@ package org.w3c.css.properties.svg;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -31,8 +32,7 @@ public class CssStrokeDasharray extends org.w3c.css.properties.css.CssStrokeDash
      * Creates a new CssStrokeDasharray
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssStrokeDasharray(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -60,12 +60,13 @@ public class CssStrokeDasharray extends org.w3c.css.properties.css.CssStrokeDash
                                 val.toString(),
                                 getPropertyName(), ac);
                     }
-                    if (inherit.equals(val)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        value = val;
                         break;
                     }
-                    if (none.equals(val)) {
-                        value = none;
+                    if (none.equals(id)) {
+                        value = val;
                         break;
                     }
                 default:

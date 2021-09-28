@@ -9,6 +9,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -42,8 +43,7 @@ public class CssStrokeOpacity extends org.w3c.css.properties.css.CssStrokeOpacit
      * Creates a new CssStrokeOpacity
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssStrokeOpacity(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -72,8 +72,8 @@ public class CssStrokeOpacity extends org.w3c.css.properties.css.CssStrokeOpacit
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
                     break;
                 }
             default:

@@ -51,8 +51,7 @@ public class CssMaskBorderMode extends org.w3c.css.properties.css.CssMaskBorderM
      * Creates a new CssMaskBorderMode
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMaskBorderMode(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -71,16 +70,12 @@ public class CssMaskBorderMode extends org.w3c.css.properties.css.CssMaskBorderM
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    if (expression.getCount() > 1) {
-                        throw new InvalidParamException("unrecognize", ac);
-                    }
-                    value = inherit;
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
                     break;
                 }
-                CssIdent id = getAllowedIdent((CssIdent) val);
-                if (id != null) {
-                    value = id;
+                if (getAllowedIdent(val.getIdent()) != null) {
+                    value = val;
                     break;
                 }
             default:

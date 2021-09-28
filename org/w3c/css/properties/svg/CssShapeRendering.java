@@ -48,8 +48,7 @@ public class CssShapeRendering extends org.w3c.css.properties.css.CssShapeRender
      * Creates a new CssShapeRendering
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssShapeRendering(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,16 +64,13 @@ public class CssShapeRendering extends org.w3c.css.properties.css.CssShapeRender
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident) || getAllowedValue(ident) != null) {
+                value = val;
             } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
             }
         } else {
             throw new InvalidParamException("value",

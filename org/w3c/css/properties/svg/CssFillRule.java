@@ -50,8 +50,7 @@ public class CssFillRule extends org.w3c.css.properties.css.CssFillRule {
      * Creates a new CssFillRule
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFillRule(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -68,16 +67,13 @@ public class CssFillRule extends org.w3c.css.properties.css.CssFillRule {
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = getAllowedIdent((CssIdent) val);
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
+        CssIdent id = val.getIdent();
+        if (CssIdent.isCssWide(id) || getAllowedIdent(id) != null) {
             value = val;
+        } else {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
         }
         expression.next();
     }

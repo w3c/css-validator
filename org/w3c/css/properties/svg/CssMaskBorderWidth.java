@@ -35,8 +35,7 @@ public class CssMaskBorderWidth extends org.w3c.css.properties.css.CssMaskBorder
      * Creates a new CssMaskBorderWidth
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMaskBorderWidth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -69,20 +68,21 @@ public class CssMaskBorderWidth extends org.w3c.css.properties.css.CssMaskBorder
                     v.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
-                    if (auto.equals(val)) {
+                    if (auto.equals(id)) {
                         if (nb_width >= 4) {
                             throw new InvalidParamException("unrecognize", val.toString(),
                                     getPropertyName(), ac);
                         }
                         nb_width++;
-                        v.add(auto);
+                        v.add(val);
                         break;
                     }
                 default:

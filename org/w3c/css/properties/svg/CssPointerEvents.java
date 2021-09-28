@@ -51,8 +51,7 @@ public class CssPointerEvents extends org.w3c.css.properties.css.CssPointerEvent
      * Creates a new CssPointerEvents
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssPointerEvents(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -68,20 +67,19 @@ public class CssPointerEvents extends org.w3c.css.properties.css.CssPointerEvent
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident)) {
+                value = val;
             } else if (auto.equals(ident)) {
-                value = auto;
+                value = val;
                 ac.getFrame().addWarning("value-unofficial", //
                         new String[]{"auto", "pointer-events"});
+            } else if (getAllowedValue(ident) != null) {
+                value = val;
             } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
             }
         } else {
             throw new InvalidParamException("value",

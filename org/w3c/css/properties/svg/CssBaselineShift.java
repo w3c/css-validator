@@ -44,8 +44,7 @@ public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShif
      * Creates a new CssBaselineShift
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssBaselineShift(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -61,19 +60,19 @@ public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShif
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 // zero is a valid length. otherwise it will fail.
-                val.getLength();
+                val.getCheckableValue().checkEqualsZero(ac, getPropertyName());
             case CssTypes.CSS_LENGTH:
             case CssTypes.CSS_PERCENTAGE:
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent id = (CssIdent) val;
-                if (inherit.equals(id)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 }
-                value = getAllowedIdent(id);
-                if (value != null) {
+                if (getAllowedIdent(id) != null) {
+                    value = val;
                     break;
                 }
                 // unrecognized ident -> fail.

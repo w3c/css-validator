@@ -74,21 +74,22 @@ public class CssStopColor extends org.w3c.css.properties.css.CssStopColor {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        value = val;
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     property.getPropertyName(), ac);
                         }
                     }
-                    if (currentColor.equals(val)) {
+                    if (currentColor.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     property.getPropertyName(), ac);
                         }
-                        values.add(currentColor);
+                        values.add(val);
                     }
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value",
@@ -115,7 +116,7 @@ public class CssStopColor extends org.w3c.css.properties.css.CssStopColor {
                         case CSS_2015:
                         case CSS:
                         default:
-                            values.add((new org.w3c.css.properties.css3.CssColor(ac, nex, check)).getColor());
+                            values.add((new org.w3c.css.properties.css3.CssColor(ac, nex, check)).getValue());
                             break;
                     }
                     gotColor = true;
@@ -127,9 +128,9 @@ public class CssStopColor extends org.w3c.css.properties.css.CssStopColor {
                                 property.getPropertyName(), ac);
                     }
                     CssColor c = new CssColor();
-                    c.setShortRGBColor(ac, val.toString());
+                    c.setShortRGBColor(ac, val.getHashIdent().toString());
                     gotColor = true;
-                    values.add(c);
+                    values.add(val);
                     break;
                 case CssTypes.CSS_COLOR:
                     if (gotColor) {
@@ -141,7 +142,7 @@ public class CssStopColor extends org.w3c.css.properties.css.CssStopColor {
                     values.add(val);
                     break;
                 case CssTypes.CSS_FUNCTION:
-                    CssFunction f = (CssFunction) val;
+                    CssFunction f = val.getFunction();
                     if (gotColor || gotIccColor) {
                         throw new InvalidParamException("value",
                                 val.toString(),

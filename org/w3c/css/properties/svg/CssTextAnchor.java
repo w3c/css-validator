@@ -28,7 +28,7 @@ public class CssTextAnchor extends org.w3c.css.properties.css.CssTextAnchor {
         }
     }
 
-    public static final CssIdent getAllowedValue(CssIdent ident) {
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -48,8 +48,7 @@ public class CssTextAnchor extends org.w3c.css.properties.css.CssTextAnchor {
      * Creates a new CssTextAnchor
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextAnchor(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -64,23 +63,19 @@ public class CssTextAnchor extends org.w3c.css.properties.css.CssTextAnchor {
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
-            } else {
-                value = getAllowedValue(ident);
-                if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-            }
-        } else {
+        if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
-                    val.toString(),
+                    expression.getValue(),
                     getPropertyName(), ac);
         }
+        // ident, so inherit, or allowed value
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        value = val;
         expression.next();
     }
 
