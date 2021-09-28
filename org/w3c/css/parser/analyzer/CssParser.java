@@ -4326,7 +4326,7 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
     case IDENT:
     case ANY:
     case 137:{
-      element_name(selector);
+      type_selector(selector);
       label_118:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -4355,7 +4355,7 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case HASHIDENT:
         case HASH:{
-          hash(selector);
+          id_selector(selector);
           break;
           }
         case RELFONTLENGTH:
@@ -4367,11 +4367,11 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
         case RESOLUTION:
         case DIMEN:
         case CLASS:{
-          _class(selector);
+          class_selector(selector);
           break;
           }
         case LBRACKET:{
-          attrib(selector);
+          attribute_selector(selector);
           break;
           }
         case COLON:
@@ -4412,7 +4412,7 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case HASHIDENT:
         case HASH:{
-          hash(selector);
+          id_selector(selector);
           break;
           }
         case RELFONTLENGTH:
@@ -4424,11 +4424,11 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
         case RESOLUTION:
         case DIMEN:
         case CLASS:{
-          _class(selector);
+          class_selector(selector);
           break;
           }
         case LBRACKET:{
-          attrib(selector);
+          attribute_selector(selector);
           break;
           }
         case COLON:
@@ -4483,7 +4483,7 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
 /**
  * @exception ParseException exception during the parse
  */
-  final public void _class(CssSelectors s) throws ParseException {Token n;
+  final public void class_selector(CssSelectors s) throws ParseException {Token n;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case CLASS:{
       /*  "." n=<IDENT> { */
@@ -4621,7 +4621,7 @@ if (n.image.charAt(0) == '.') {
 /**
  * @exception ParseException exception during the parse
  */
-  final public void element_name(CssSelectors s) throws ParseException {Token n=null;
+  final public void type_selector(CssSelectors s) throws ParseException {Token n=null;
     Token p=null;
     String prefix = null;
     if (jj_2_5(2)) {
@@ -4722,7 +4722,7 @@ if (ac.getCssVersion() != CssVersion.CSS1) {
 /**
  * @exception ParseException exception during the parse
  */
-  final public void attrib(CssSelectors s) throws ParseException {Token att = null;
+  final public void attribute_selector(CssSelectors s) throws ParseException {Token att = null;
     Token val = null;
     Token mod = null;
     Token pre = null;
@@ -5025,12 +5025,12 @@ if (ac.getCssVersion() == CssVersion.CSS1) {
     case IDENT:
     case ANY:
     case 137:{
-      element_name(ns);
+      type_selector(ns);
       break;
       }
     case HASHIDENT:
     case HASH:{
-      hash(ns);
+      id_selector(ns);
       break;
       }
     case RELFONTLENGTH:
@@ -5042,11 +5042,11 @@ if (ac.getCssVersion() == CssVersion.CSS1) {
     case RESOLUTION:
     case DIMEN:
     case CLASS:{
-      _class(ns);
+      class_selector(ns);
       break;
       }
     case LBRACKET:{
-      attrib(ns);
+      attribute_selector(ns);
       break;
       }
     case COLON:
@@ -5241,7 +5241,7 @@ try {
 /**
  * @exception ParseException exception during the parse
  */
-  final public void hash(CssSelectors s) throws ParseException {Token n;
+  final public void id_selector(CssSelectors s) throws ParseException {Token n;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case HASHIDENT:{
       n = jj_consume_token(HASHIDENT);
