@@ -49,8 +49,7 @@ public class CssWritingMode extends org.w3c.css.properties.css.CssWritingMode {
      * Creates a new CssWritingMode
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssWritingMode(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -67,23 +66,20 @@ public class CssWritingMode extends org.w3c.css.properties.css.CssWritingMode {
 
         if (val.getType() == CssTypes.CSS_IDENT) {
             boolean isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
-            CssIdent ident = (CssIdent) val;
-            if (inherit.equals(ident)) {
-                value = inherit;
+            CssIdent ident = val.getIdent();
+            if (CssIdent.isCssWide(ident)) {
+                value = val;
             } else {
-                value = getAllowedIdent(ident);
                 CssIdent css3ident = null;
                 if (isCss3) {
                     css3ident = org.w3c.css.properties.css3.CssWritingMode.getAllowedIdent(ident);
                 }
-                if (value == null && css3ident == null) {
+                if (getAllowedIdent(ident) == null && css3ident == null) {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
                 }
-                if (value == null) {
-                    value = css3ident;
-                }
+                value = val;
                 if (css3ident == null && isCss3) {
                     // Css3 and onward, the SVG values are deprecated, add a warning
                     ac.getFrame().addWarning("deprecated", getPropertyName());

@@ -8,6 +8,7 @@ package org.w3c.css.properties.svg;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -32,8 +33,7 @@ public class CssMaskBorderOutset extends org.w3c.css.properties.css.CssMaskBorde
      * Creates a new CssMaskBorderOutset
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMaskBorderOutset(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -59,11 +59,11 @@ public class CssMaskBorderOutset extends org.w3c.css.properties.css.CssMaskBorde
                     v.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
                 default:

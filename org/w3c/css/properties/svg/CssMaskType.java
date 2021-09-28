@@ -49,8 +49,7 @@ public class CssMaskType extends org.w3c.css.properties.css.CssMaskType {
      * Creates a new CssMaskType
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMaskType(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -63,13 +62,13 @@ public class CssMaskType extends org.w3c.css.properties.css.CssMaskType {
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 }
-                CssIdent id = getAllowedIdent((CssIdent) val);
-                if (id != null) {
-                    value = id;
+                if (getAllowedIdent(id) != null) {
+                    value = val;
                     break;
                 }
             default:

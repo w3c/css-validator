@@ -89,8 +89,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
      * Creates a new CssClipPath
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssClipPath(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -110,7 +109,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
             switch (val.getType()) {
                 case CssTypes.CSS_FUNCTION:
                     if (!gotBasicShape) {
-                        CssFunction func = (CssFunction) val;
+                        CssFunction func = val.getFunction();
                         String funcname = func.getName().toLowerCase();
                         switch (funcname) {
                             case "inset":
@@ -139,19 +138,19 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                     value = val;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        value = inherit;
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        value = val;
                         break;
                     }
-                    if (none.equals(val)) {
-                        value = none;
+                    if (none.equals(id)) {
+                        value = val;
                         break;
                     }
                     if (!gotGeometryBox) {
-                        CssIdent ident = getGeometryBoxAllowedValue((CssIdent) val);
-                        if (ident != null) {
+                        if (getGeometryBoxAllowedValue(id) != null) {
                             gotGeometryBox = true;
-                            values.add(ident);
+                            values.add(val);
                             break;
                         }
                     }
@@ -198,7 +197,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                     }
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inset_round.equals((CssIdent) val)) {
+                    if (inset_round.equals(val.getIdent())) {
                         // the remainder must be a border-radius
                         CssExpression nex = new CssExpression();
                         expression.next();
@@ -253,9 +252,8 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                     gotRadius = true;
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
-                    CssIdent id = getShapeRadiusAllowedValue(ident);
-                    if (id != null) {
+                    CssIdent ident = val.getIdent();
+                    if (getShapeRadiusAllowedValue(ident) != null) {
                         if (gotRadius) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
@@ -318,9 +316,8 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                     nbRadius++;
                     break;
                 case CssTypes.CSS_IDENT:
-                    CssIdent ident = (CssIdent) val;
-                    CssIdent id = getShapeRadiusAllowedValue(ident);
-                    if (id != null) {
+                    CssIdent ident = val.getIdent();
+                    if (getShapeRadiusAllowedValue(ident) != null) {
                         if (nbRadius >= 2) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
@@ -385,9 +382,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                 case CssTypes.CSS_IDENT:
                     // can only happen at the beginning.
                     if (!gotFillRule && nbPoints == 0 && nbShapeArgs == 0) {
-                        CssIdent ident = (CssIdent) val;
-                        CssIdent id = CssFillRule.getAllowedIdent(ident);
-                        if (id != null) {
+                        if (CssFillRule.getAllowedIdent(val.getIdent()) != null) {
                             gotFillRule = true;
                             break;
                         }

@@ -51,12 +51,13 @@ public class CssColorProfile extends org.w3c.css.properties.css.CssColorProfile 
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 }
-                if (sRBG.equals(val)) {
-                    value = sRBG;
+                if (sRBG.equals(id)) {
+                    value = val;
                     break;
                 }
                 // or else it's a name

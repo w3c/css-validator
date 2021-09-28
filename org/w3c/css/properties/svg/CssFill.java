@@ -43,8 +43,7 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
      * Creates a new CssFill
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssFill(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -168,7 +167,7 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
                     values.add(val);
                     break;
                 case CssTypes.CSS_FUNCTION:
-                    CssFunction f = (CssFunction) val;
+                    CssFunction f = val.getFunction();
                     if (gotColor || gotFuncIRI || gotIccColor) {
                         throw new InvalidParamException("value",
                                 val.toString(),

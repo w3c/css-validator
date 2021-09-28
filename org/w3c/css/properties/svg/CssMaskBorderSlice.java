@@ -35,8 +35,7 @@ public class CssMaskBorderSlice extends org.w3c.css.properties.css.CssMaskBorder
      * Creates a new CssMaskBorderSlice
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMaskBorderSlice(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -64,18 +63,19 @@ public class CssMaskBorderSlice extends org.w3c.css.properties.css.CssMaskBorder
                     v.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
-                    if (fill.equals(val)) {
+                    if (fill.equals(id)) {
                         if (nb_slice == 0 || expression.getRemainingCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        v.add(fill);
+                        v.add(val);
                         break;
                     }
                 default:

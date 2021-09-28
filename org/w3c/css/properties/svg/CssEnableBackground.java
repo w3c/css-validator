@@ -67,26 +67,27 @@ public class CssEnableBackground extends org.w3c.css.properties.css.CssEnableBac
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
-                    if (accumulate.equals(val)) {
+                    if (accumulate.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     val.toString(),
                                     getPropertyName(), ac);
                         }
-                        value = accumulate;
+                        value = val;
                         break;
                     }
-                    if (id_new.equals(val) && !got_new) {
-                        values.add(id_new);
+                    if (id_new.equals(id) && !got_new) {
+                        values.add(val);
                         got_new = true;
                         break;
                     }

@@ -54,8 +54,7 @@ public class CssMaskMode extends org.w3c.css.properties.css.CssMaskMode {
      * Creates a new CssMaskMode
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMaskMode(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -72,16 +71,16 @@ public class CssMaskMode extends org.w3c.css.properties.css.CssMaskMode {
 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
-                    CssIdent id = getAllowedIdent((CssIdent) val);
-                    if (id != null) {
-                        v.add(id);
+                    if (getAllowedIdent(id) != null) {
+                        v.add(val);
                         break;
                     }
                 default:
