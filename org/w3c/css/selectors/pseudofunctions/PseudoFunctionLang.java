@@ -5,6 +5,12 @@
 package org.w3c.css.selectors.pseudofunctions;
 
 import org.w3c.css.selectors.PseudoFunctionSelector;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+
+import java.util.IllformedLocaleException;
+import java.util.Locale;
+import java.util.Locale.Builder;
 
 /**
  * PseudoFunctionLang<br />
@@ -12,9 +18,36 @@ import org.w3c.css.selectors.PseudoFunctionSelector;
  */
 public class PseudoFunctionLang extends PseudoFunctionSelector {
 
-    public PseudoFunctionLang(String name, String lang) {
+    public PseudoFunctionLang(String name, String lang, ApplContext ac)
+            throws InvalidParamException {
         setName(name);
+        parseLang(ac, lang, name);
         setParam(lang);
+    }
+
+    /**
+     * verify a language tag per BCP47
+     *
+     * @param ac     the ApplContext
+     * @param lang   the language tag
+     * @param caller the property/selector/context calling for verification
+     * @throws InvalidParamException if invalid
+     */
+    public static final void parseLang(ApplContext ac, String lang, String caller)
+            throws InvalidParamException {
+        try {
+            String lang_tag = lang;
+            if (lang.charAt(0) == '"' || lang.charAt(0) == '\'') {
+                // trim the string
+                lang_tag = lang.substring(1, lang.lastIndexOf(lang.charAt(0)));
+            }
+            // use Locale builder parsing to check BCP 47 values
+            Builder builder = new Builder();
+            builder.setLanguageTag(lang_tag);
+            Locale l = builder.build();
+        } catch (IllformedLocaleException ex) {
+            throw new InvalidParamException("value", lang, caller, ac);
+        }
     }
 
 }

@@ -203,7 +203,7 @@ public class PseudoFactory {
                     "null pseudofunction", ac);
         }
         if (name.equals("lang")) {
-            return new PseudoFunctionLang(name, value);
+            return new PseudoFunctionLang(name, value, ac);
         }
         if (name.equals("not")) {
             return new PseudoFunctionNot(name, value);
