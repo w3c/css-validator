@@ -5,6 +5,7 @@
 package org.w3c.css.selectors;
 
 import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionHas;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionIs;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionLang;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNot;
@@ -245,6 +246,9 @@ public class PseudoFactory {
         }
         if (name.equals("where")) {
             return new PseudoFunctionWhere(name, value);
+        }
+        if (name.equals("has")) {
+            return new PseudoFunctionHas(name, value);
         }
         throw new InvalidParamException("pseudo",
                 ":" + name, ac);

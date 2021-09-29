@@ -58,7 +58,7 @@ public final class CssSelectors extends SelectorsList
     /**
      * The next context.
      */
-    protected CssSelectors next;
+    protected CssSelectors next = null;
 
     // true if the element is a block-level element
     private boolean isBlock;

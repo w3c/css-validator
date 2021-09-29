@@ -1981,6 +1981,27 @@ ArrayList<CssSelectors> selector_list() :
 	}		
 }
 
+ArrayList<CssSelectors> relative_selector_list() :
+{
+        CssSelectors selector;
+        ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
+}
+{
+        selector=relative_selector() {
+                if (selector != null) {
+                        context_set.add(selector);
+                }
+        }
+        ( <COMMA> selector=relative_selector() {
+                if (selector != null) {
+                        context_set.add(selector);
+                }
+        } )*
+        {
+                return context_set;
+        }
+}
+
 /**
  * @exception ParseException exception during the parse
  */
@@ -2136,6 +2157,38 @@ ArrayList<CssProperty> attributeDeclarations() :
     }
 }
 
+CssSelectors relative_selector() :
+{
+	String comb;
+	CssSelectors current;
+} 
+{
+	comb=combinator() {
+		current = new CssSelectors(ac);
+		               switch(comb) {
+                        case "+":
+                                current.addNextSiblingCombinator();
+                                break;
+                        case ">":
+                                current.addChildCombinator();
+                                break;
+                        case "~":
+                                current.addSubsequentSiblingCombinator();
+                                break;
+                        case "||":
+                                current.addColumnCombinator();
+                                break;
+                        default:
+                                current.addDescendantCombinator();
+                }                  
+	}
+	// FIXME should be complex_selector
+	current=simple_selector(current)
+	{
+		return current;
+	}
+
+}
 /**
  * @exception ParseException exception during the parse
  */
@@ -2619,7 +2672,7 @@ String error_str = null;
                                                 getBeginColumn(), getEndLine(), getEndColumn(), e));
                 }
 	    }
-	    | ( n=<FUNCTIONHAS> ( <S> )* selector_list=selector_list() /* FIXME should be relative list */ ) {
+	    | ( n=<FUNCTIONHAS> selector_list=relative_selector_list() ) {
 		try {
                         s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
                 } catch(InvalidParamException e) {
