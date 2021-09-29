@@ -3880,7 +3880,7 @@ if (ac.getTreatCssHacksAsWarnings()) {
     ArrayList<CssProperty> value_set = null;
     currentContext = context_set;
     try {
-      contextual = selector();
+      contextual = selector_list();
 if (contextual != null) {
                     context_set.add(contextual);
                 }
@@ -3909,7 +3909,7 @@ if (contextual != null) {
           }
           jj_consume_token(S);
         }
-        contextual = selector();
+        contextual = selector_list();
 if (contextual != null) {
                     context_set.add(contextual);
                 }
@@ -4179,7 +4179,7 @@ if (!wrong_value) {
 /**
  * @exception ParseException exception during the parse
  */
-  final public CssSelectors selector() throws ParseException {char comb;
+  final public CssSelectors selector_list() throws ParseException {char comb;
     CssSelectors current;
     try {
       current = simple_selector(null);
