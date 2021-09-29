@@ -40,12 +40,8 @@ import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
-import org.w3c.css.selectors.ChildSelector;
 import org.w3c.css.selectors.ClassSelector;
-import org.w3c.css.selectors.DescendantSelector;
-import org.w3c.css.selectors.GeneralSiblingSelector;
 import org.w3c.css.selectors.IdSelector;
 import org.w3c.css.selectors.TypeSelector;
 import org.w3c.css.selectors.UniversalSelector;
@@ -581,6 +577,7 @@ TOKEN :
   | < GREATEREQ : <_W> ">=" >
   | < COMMA     : <_W> "," >
   | < TILDE     : <_W> "~" >
+  | < TWOPIPES  : <_W> "||" >
 }
 
 <DEFAULT>
@@ -1897,16 +1894,17 @@ void operator(CssExpression expr) :
 /**
  * @exception ParseException exception during the parse
  */
-char combinator() :
+String combinator() :
 {
-    char connector = ' ';
+    String connector = " ";
 }
 {
-    ( (   <PLUS> { connector = '+' ; }
-        | <GREATER> { connector = '>' ; }
-        | <TILDE> { connector = '~' ; }
+    ( (   <PLUS> { connector = "+" ; }
+        | <GREATER> { connector = ">" ; }
+        | <TILDE> { connector = "~" ; }
+        | <TWOPIPES> { connector = "||"; }
       ) ( <S> )* 
-    | ( <S> )+ { connector = ' ' ; }
+    | ( <S> )+ { connector = " " ; }
     )
     {
 	return connector;
@@ -2130,7 +2128,7 @@ ArrayList<CssProperty> attributeDeclarations() :
  * @exception ParseException exception during the parse
  */
 CssSelectors selector_list() :
-{   char comb;
+{   String comb;
     CssSelectors current; }
 {
     try {
@@ -2140,35 +2138,35 @@ CssSelectors selector_list() :
 		if ((ac.getCssProfile() == CssProfile.MOBILE) ||
 			getAtRule().toString().equals("@media atsc-tv") ||
 			(ac.getCssVersion() == CssVersion.CSS1)) {
-			if (comb == '+') {
-			    throw new InvalidParamException("nocomb", "+", ac);
-			}
-			if (comb == '>') {
-			    throw new InvalidParamException("nocomb", ">", ac);
+			if (comb.equals("+") || comb.equals(">")) {
+			    throw new InvalidParamException("nocomb", comb, ac);
 			}
 		} else if (ac.getCssProfile() == CssProfile.TV) {
-			if (comb == '+') {
-			    throw new InvalidParamException("nocomb", "+", ac);
+			if (comb.equals("+")) {
+			    throw new InvalidParamException("nocomb", comb, ac);
 		    }
 		}
 		// if version < CSS3, ~ is undefined
 		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-		    if (comb == '~') {
-			    throw new InvalidParamException("nocomb", "~", ac);
+		    if (comb.equals("~") || comb.equals("||")) {
+			    throw new InvalidParamException("nocomb", comb, ac);
 		    }
 		}
 		switch(comb) {
-		case '+': 
-		current.addAdjacentSibling(new AdjacentSiblingSelector());
-		break;
-		case '>':
-		current.addChild(new ChildSelector());
-		break;
-		case '~':
-		current.addGeneralSibling(new GeneralSiblingSelector());
-		break;
-		default:
-		current.addDescendant(new DescendantSelector());
+			case "+":
+				current.addNextSiblingCombinator();
+				break;
+			case ">":
+				current.addChildCombinator();
+				break;
+			case "~":
+				current.addSubsequentSiblingCombinator();
+				break;
+			case "||":
+				current.addColumnCombinator();
+				break;
+			default:
+				current.addDescendantCombinator();
 		}                  
 		//current.setConnector(comb); 
 	    }

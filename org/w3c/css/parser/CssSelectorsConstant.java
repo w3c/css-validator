@@ -51,20 +51,15 @@ public interface CssSelectorsConstant {
      */
     public static final int ATTRIBUTE_LENGTH = 10;
 
-    /**
-     * descendant connector
-     */
-    public static final char DESCENDANT = ' ';
-    /**
-     * child connector
-     */
-    public static final char CHILD = '>';
-    /**
-     * adjacent sibling connector
-     */
-    public static final char ADJACENT_SIBLING = '+';
-    /**
-     * general sibling connector
-     */
-    public static final char GENERAL_SIBLING = '~';
+    // See https://www.w3.org/TR/2018/WD-selectors-4-20181121/#combinators
+
+    public static final String DESCENDANT_COMBINATOR = " ";
+
+    public static final String CHILD_COMBINATOR = ">";
+
+    public static final String NEXT_SIBLING_COMBINATOR = "+";
+
+    public static final String SUBSEQUENT_SIBLING_COMBINATOR = "~";
+
+    public static final String COLUMN_COMBINATOR = "||";
 }

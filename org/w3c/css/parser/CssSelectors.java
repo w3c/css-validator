@@ -10,11 +10,7 @@ package org.w3c.css.parser;
 import org.w3c.css.atrules.css.AtRuleFontFace;
 import org.w3c.css.atrules.css.AtRulePage;
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
-import org.w3c.css.selectors.ChildSelector;
-import org.w3c.css.selectors.DescendantSelector;
-import org.w3c.css.selectors.GeneralSiblingSelector;
 import org.w3c.css.selectors.PseudoClassSelector;
 import org.w3c.css.selectors.PseudoElementSelector;
 import org.w3c.css.selectors.PseudoFactory;
@@ -57,7 +53,7 @@ public final class CssSelectors extends SelectorsList
      */
     String element;
 
-    char connector = DESCENDANT;
+    String connector = DESCENDANT_COMBINATOR;
 
     /**
      * The next context.
@@ -265,27 +261,34 @@ public final class CssSelectors extends SelectorsList
         hashElement = element.hashCode();
     }
 
-    public void addDescendant(DescendantSelector descendant)
+    public void addDescendantCombinator()
             throws InvalidParamException {
-        super.addDescendant(descendant);
-        connector = DESCENDANT;
+        super.addDescendantCombinator();
+        connector = DESCENDANT_COMBINATOR;
     }
 
-    public void addChild(ChildSelector child) throws InvalidParamException {
-        super.addChild(child);
-        connector = CHILD;
+    public void addChildCombinator()
+            throws InvalidParamException {
+        super.addChildCombinator();
+        connector = CHILD_COMBINATOR;
     }
 
-    public void addAdjacentSibling(AdjacentSiblingSelector adjacent)
+    public void addNextSiblingCombinator()
             throws InvalidParamException {
-        super.addAdjacentSibling(adjacent);
-        connector = ADJACENT_SIBLING;
+        super.addNextSiblingCombinator();
+        connector = NEXT_SIBLING_COMBINATOR;
     }
 
-    public void addGeneralSibling(GeneralSiblingSelector sibling)
+    public void addSubsequentSiblingCombinator()
             throws InvalidParamException {
-        super.addGeneralSibling(sibling);
-        connector = GENERAL_SIBLING;
+        super.addSubsequentSiblingCombinator();
+        connector = SUBSEQUENT_SIBLING_COMBINATOR;
+    }
+
+    public void addColumnCombinator()
+            throws InvalidParamException {
+        super.addColumnCombinator();
+        connector = COLUMN_COMBINATOR;
     }
 
 
@@ -381,8 +384,8 @@ public final class CssSelectors extends SelectorsList
 		*/
 
     /*
-        * Mark as final, ie: no more modification to the structure.
-        */
+     * Mark as final, ie: no more modification to the structure.
+     */
     public void markAsFinal() {
         // if something has been changed, reset to force recomputing
         if (!isFinal) {
@@ -585,7 +588,7 @@ public final class CssSelectors extends SelectorsList
         Util.verbose("canMatch for attributes :" + result);
 
         if ((hashElement != selector.hashElement) && hashElement != 0) {
-            if ((connector == DESCENDANT) && (selector.next != null)) {
+            if ((connector == DESCENDANT_COMBINATOR) && (selector.next != null)) {
                 // here we are in this case :
                 // H1 and HTML BODY H1 EM
                 // H1 can't match EM but EM have next

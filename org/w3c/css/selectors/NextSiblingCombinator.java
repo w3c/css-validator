@@ -5,30 +5,30 @@
 package org.w3c.css.selectors;
 
 /**
- * Child<br />
- * Created: Sep 1, 2005 3:58:00 PM<br />
+ * Adjacent<br />
+ * Created: Sep 1, 2005 3:59:08 PM<br />
  */
-public class ChildSelector implements Selector {
+public class NextSiblingCombinator implements Selector {
 
     /**
      * @see Selector#toString()
      */
     public String toString() {
-        return " > ";
+        return " + ";
     }
 
     /**
      * @see Selector#getName()
      */
     public String getName() {
-        return ">";
+        return "+";
     }
 
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
-        return true;
+        return false;
     }
 
 }

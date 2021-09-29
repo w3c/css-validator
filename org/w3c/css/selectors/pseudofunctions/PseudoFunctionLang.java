@@ -36,6 +36,10 @@ public class PseudoFunctionLang extends PseudoFunctionSelector {
     public static final void parseLang(ApplContext ac, String lang, String caller)
             throws InvalidParamException {
         try {
+            // FIXME validate ranges and not only TAGS.
+            if (lang.contains("*")) {
+                return;
+            }
             String lang_tag = lang;
             if (lang.charAt(0) == '"' || lang.charAt(0) == '\'') {
                 // trim the string

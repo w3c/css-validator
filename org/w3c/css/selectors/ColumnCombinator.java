@@ -1,27 +1,27 @@
-// $Id$
-// Author: Jean-Guilhem Rouel
-// (c) COPYRIGHT MIT, ERCIM and Keio, 2005.
+//
+// Author: Yves Lafon <ylafon@w3.org>
+//
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2021.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.selectors;
 
 /**
- * Adjacent<br />
- * Created: Sep 1, 2005 3:59:08 PM<br />
+ * Column Combinator
  */
-public class AdjacentSiblingSelector implements Selector {
+public class ColumnCombinator implements Selector {
 
     /**
      * @see Selector#toString()
      */
     public String toString() {
-        return " + ";
+        return " || ";
     }
 
     /**
      * @see Selector#getName()
      */
     public String getName() {
-        return "+";
+        return "||";
     }
 
     /**

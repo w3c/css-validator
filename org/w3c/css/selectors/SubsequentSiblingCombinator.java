@@ -6,7 +6,7 @@ package org.w3c.css.selectors;
 /**
  * GeneralSibling<br />
  */
-public class GeneralSiblingSelector implements Selector {
+public class SubsequentSiblingCombinator implements Selector {
 
     /**
      * @see Selector#toString()

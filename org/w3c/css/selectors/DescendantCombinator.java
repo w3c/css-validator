@@ -8,7 +8,7 @@ package org.w3c.css.selectors;
  * Descendant<br />
  * Created: Sep 1, 2005 3:57:40 PM<br />
  */
-public class DescendantSelector implements Selector {
+public class DescendantCombinator implements Selector {
 
     /**
      * @see Selector#toString()

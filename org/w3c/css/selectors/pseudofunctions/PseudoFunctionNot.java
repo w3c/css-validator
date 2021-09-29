@@ -4,6 +4,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.selectors.pseudofunctions;
 
+import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.selectors.PseudoFunctionSelector;
 
 /**
@@ -15,6 +16,10 @@ public class PseudoFunctionNot extends PseudoFunctionSelector {
     public PseudoFunctionNot(String name, String value) {
         setName(name);
         setParam(value);
+    }
+
+    public PseudoFunctionNot(String name, CssSelectors selector_list) {
+        this(name, selector_list.toString());
     }
 
 }
