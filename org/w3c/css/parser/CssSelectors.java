@@ -255,6 +255,23 @@ public final class CssSelectors extends SelectorsList
         }
     }
 
+    public void setPseudoFun(String pseudo, ArrayList<CssSelectors> selector_list)
+            throws InvalidParamException {
+
+        CssVersion version = ac.getCssVersion();
+        String[] ps = PseudoFactory.getPseudoFunction(version);
+        if (ps != null) {
+            for (String s : ps) {
+                if (pseudo.equals(s)) {
+                    addPseudoFunction(PseudoFactory.newPseudoFunction(pseudo, selector_list, ac));
+                    return;
+                }
+            }
+            throw new InvalidParamException("pseudo", ":" + pseudo, ac);
+        }
+    }
+
+
     public void addType(TypeSelector type) throws InvalidParamException {
         super.addType(type);
         element = type.getName();
@@ -620,5 +637,22 @@ public final class CssSelectors extends SelectorsList
                               CssSelectors[] allSelectors) {
         CssStyle style = getStyle();
         style.findConflicts(ac, warnings, this, allSelectors);
+    }
+
+    public static String toArrayString(ArrayList<CssSelectors> selectors) {
+        if (selectors == null) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (CssSelectors s : selectors) {
+            if (!first) {
+                sb.append(", ");
+            } else {
+                first = false;
+            }
+            sb.append(s);
+        }
+        return sb.toString();
     }
 }

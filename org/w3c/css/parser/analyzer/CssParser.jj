@@ -759,11 +759,15 @@ TOKEN [IGNORE_CASE] :
     < CLASS : "." <IDENT> >
 }
 
-/* FIXED, added a spacial case for lang pseudoclass */
+/* FIXED, added a special case for lang pseudoclass */
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
     < FUNCTIONLANG   : "lang("  >
+    | <FUNCTIONDIR   : "dir("   >
+    | <FUNCTIONIS    : "is("    >
+    | <FUNCTIONWHERE : "where(" >
+    | <FUNCTIONHAS   : "has("   >
     | <FUNCTIONNOT   : ":not("  >
     | <FUNCTIONCALC  : "calc(" | "-moz-calc(" | "-webkit-calc(" >
     | <FUNCTIONMIN   : "min("   >
@@ -1956,33 +1960,41 @@ String property() :
    ( <S> )*
 }
 
+ArrayList<CssSelectors> selector_list() :
+{
+	CssSelectors selector;
+	ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
+}
+{
+	selector=selector() {
+		if (selector != null) {
+			context_set.add(selector);
+		}
+	}
+	( <COMMA> ( <S> )* selector=selector() {
+		if (selector != null) {
+			context_set.add(selector);
+		}
+	} )*
+	{
+		return context_set;
+	}		
+}
+
 /**
  * @exception ParseException exception during the parse
  */
 void ruleSet() :
-{ CssSelectors contextual;
-    ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
+{ 
+    ArrayList<CssSelectors> context_set = null;
     ArrayList<CssProperty> value_set = null;
     currentContext = context_set;
 }
 {
     try {
-	contextual=selector_list()
-	    { 
-		if (contextual != null) {
-		    context_set.add(contextual); 
-		}
-	    }
-	
-	( <COMMA> ( <S> )*
-	  contextual=selector_list()
-	    { 
-		if (contextual != null) {
-		    context_set.add(contextual); 
-		}
-	    }  
-	  )*
-	    <LBRACE> {
+	context_set = selector_list()
+
+	<LBRACE> {
 	    validSelector = (context_set.size() > 0);
 	}
 	( <S> )*
@@ -2127,7 +2139,7 @@ ArrayList<CssProperty> attributeDeclarations() :
 /**
  * @exception ParseException exception during the parse
  */
-CssSelectors selector_list() :
+CssSelectors selector() :
 {   String comb;
     CssSelectors current; }
 {
@@ -2561,6 +2573,7 @@ void pseudo(CssSelectors s) :
 {Token n;
 Token language = null;
 CssExpression param = null;
+ArrayList<CssSelectors> selector_list = null;
 }
 {
     <PSEUDOELEMENT_SYM> ( ( n=ident()
@@ -2594,7 +2607,7 @@ CssExpression param = null;
 		}
 	    } )
 		  // FXIXME rewrite to make :lang( use a special case
-		  | ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=ident() | language=<STRING> ) ( <S> )* ) {
+		  | ( ( n=<FUNCTIONLANG> ( <S> )* ( language=ident() | language=<STRING> ) ( <S> )* ) {
 		try {
 		    s.setPseudoFun(convertStringIndex(n.image, 0,
 						      n.image.length() -1, false).toLowerCase(),
@@ -2606,6 +2619,15 @@ CssExpression param = null;
 			       getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
 	    }
+	    | ( ( n=<FUNCTIONIS> | n=<FUNCTIONWHERE> ) ( <S> )* selector_list=selector_list() ) {
+		try {
+			s.setPseudoFun(convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
+		} catch(InvalidParamException e) {
+			removeThisRule();
+			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+						getBeginColumn(), getEndLine(), getEndColumn(), e));
+		}
+            }
 	    | ( n=<FUNCTION> ( <S> )* param=expression() ) {
 		try {
 		    s.setPseudoFun(convertStringIndex(n.image, 0,
@@ -3654,6 +3676,10 @@ String skip_to_matching_paren() {
             case LPAREN:
             case FUNCTION:
             case FUNCTIONLANG:
+	    case FUNCTIONDIR:
+	    case FUNCTIONIS:
+	    case FUNCTIONWHERE:
+	    case FUNCTIONHAS:
             case FUNCTIONNOT:
             case FUNCTIONCALC:
             case FUNCTIONMIN:
