@@ -768,7 +768,7 @@ TOKEN [IGNORE_CASE] :
     | <FUNCTIONIS    : "is("    >
     | <FUNCTIONWHERE : "where(" >
     | <FUNCTIONHAS   : "has("   >
-    | <FUNCTIONNOT   : ":not("  >
+    | <FUNCTIONNOT   : "not("  >
     | <FUNCTIONCALC  : "calc(" | "-moz-calc(" | "-webkit-calc(" >
     | <FUNCTIONMIN   : "min("   >
     | <FUNCTIONMAX   : "max("   >
@@ -2251,13 +2251,12 @@ CssSelectors simple_selector(CssSelectors next) :
 {
 
     type_selector(selector) ( id_selector(selector) | class_selector(selector)
-			     | attribute_selector(selector) | pseudo(selector)
-			     | negation(selector) )*
+			     | attribute_selector(selector) | pseudo(selector) )*
 	{
 	    return selector;
 	}
     | ( id_selector(selector) | class_selector(selector) | attribute_selector(selector)
-	| pseudo(selector) | negation(selector) )+
+	| pseudo(selector) )+
 	{
 	    return selector;
 	}
@@ -2544,28 +2543,6 @@ void attribute_selector(CssSelectors s) :
     }
 }
 
-void negation(CssSelectors s) :
-{
-    Token n;
-    CssSelectors ns = new CssSelectors(ac, null);
-}
-{ // S* negation_arg S* ')'
-    // type_selector | universal | HASH | class | attrib | pseudo
-
-    <FUNCTIONNOT> ( <S> )*
-	(
-	 type_selector(ns) |
-	 id_selector(ns) |
-	 class_selector(ns) |
-	 attribute_selector(ns) |
-	 pseudo(ns)
-	 )
-	( <S> )* <RPAREN>
-	{ 
-	    s.setPseudoFun("not", ns.toString());
-	}
-}
-
 /**
  * @exception ParseException exception during the parse
  */
@@ -2574,6 +2551,7 @@ void pseudo(CssSelectors s) :
 Token language = null;
 CssExpression param = null;
 ArrayList<CssSelectors> selector_list = null;
+String error_str = null;
 }
 {
     <PSEUDOELEMENT_SYM> ( ( n=ident()
@@ -2609,8 +2587,7 @@ ArrayList<CssSelectors> selector_list = null;
 		  // FXIXME rewrite to make :lang( use a special case
 		  | ( ( n=<FUNCTIONLANG> ( <S> )* ( language=ident() | language=<STRING> ) ( <S> )* ) {
 		try {
-		    s.setPseudoFun(convertStringIndex(n.image, 0,
-						      n.image.length() -1, false).toLowerCase(),
+		    s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
 				   convertIdent(language.image));
 		} catch(InvalidParamException e) {
 			removeThisRule();
@@ -2619,20 +2596,41 @@ ArrayList<CssSelectors> selector_list = null;
 			       getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
 	    }
-	    | ( ( n=<FUNCTIONIS> | n=<FUNCTIONWHERE> ) ( <S> )* selector_list=selector_list() ) {
+	    | ( ( n=<FUNCTIONIS> | n=<FUNCTIONNOT> ) ( <S> )* selector_list=selector_list() ) {
 		try {
-			s.setPseudoFun(convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
+			s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
 		} catch(InvalidParamException e) {
 			removeThisRule();
 			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
 						getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
-            }
+            } // we must be more forgiving for :where()
+            | ( n=<FUNCTIONWHERE> ( <S> )* try {  selector_list=selector_list()  } catch (ParseException ignored) {
+						s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
+								skip_to_matching_paren());
+						}
+	      )
+		{
+               try {
+                        s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
+                } catch(InvalidParamException e) {
+                        removeThisRule();
+                        ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+                                                getBeginColumn(), getEndLine(), getEndColumn(), e));
+                }
+	    }
+	    | ( n=<FUNCTIONHAS> ( <S> )* selector_list=selector_list() /* FIXME should be relative list */ ) {
+		try {
+                        s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
+                } catch(InvalidParamException e) {
+                        removeThisRule();
+                        ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+                                                getBeginColumn(), getEndLine(), getEndColumn(), e));
+                }
+	    }
 	    | ( n=<FUNCTION> ( <S> )* param=expression() ) {
 		try {
-		    s.setPseudoFun(convertStringIndex(n.image, 0,
-						      n.image.length() -1, 
-						      false).toLowerCase(),
+		    s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
 				   param.toString());
 		} catch(InvalidParamException e) {
 		    removeThisRule();
