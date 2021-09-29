@@ -239,7 +239,7 @@ public final class CssSelectors extends SelectorsList
         throw new InvalidParamException("pseudo", "::" + pseudo, ac);
     }
 
-    public void setPseudoFun(String pseudo, String param)
+    public void setPseudoFun(ApplContext ac, String pseudo, String param)
             throws InvalidParamException {
 
         CssVersion version = ac.getCssVersion();
@@ -255,7 +255,7 @@ public final class CssSelectors extends SelectorsList
         }
     }
 
-    public void setPseudoFun(String pseudo, ArrayList<CssSelectors> selector_list)
+    public void setPseudoFun(ApplContext ac, String pseudo, ArrayList<CssSelectors> selector_list)
             throws InvalidParamException {
 
         CssVersion version = ac.getCssVersion();
