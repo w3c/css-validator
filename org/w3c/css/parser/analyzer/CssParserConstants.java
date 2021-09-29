@@ -409,7 +409,7 @@ public interface CssParserConstants {
     "\"is(\"",
     "\"where(\"",
     "\"has(\"",
-    "\":not(\"",
+    "\"not(\"",
     "<FUNCTIONCALC>",
     "\"min(\"",
     "\"max(\"",
