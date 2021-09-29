@@ -251,25 +251,33 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int FUNCTIONLANG = 120;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 121;
+  int FUNCTIONDIR = 121;
   /** RegularExpression Id. */
-  int FUNCTIONCALC = 122;
+  int FUNCTIONIS = 122;
   /** RegularExpression Id. */
-  int FUNCTIONMIN = 123;
+  int FUNCTIONWHERE = 123;
   /** RegularExpression Id. */
-  int FUNCTIONMAX = 124;
+  int FUNCTIONHAS = 124;
   /** RegularExpression Id. */
-  int FUNCTIONCLAMP = 125;
+  int FUNCTIONNOT = 125;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 126;
+  int FUNCTIONCALC = 126;
   /** RegularExpression Id. */
-  int FUNCTIONVAR = 127;
+  int FUNCTIONMIN = 127;
   /** RegularExpression Id. */
-  int FUNCTION = 128;
+  int FUNCTIONMAX = 128;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 129;
+  int FUNCTIONCLAMP = 129;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 130;
+  int FUNCTIONATTR = 130;
+  /** RegularExpression Id. */
+  int FUNCTIONVAR = 131;
+  /** RegularExpression Id. */
+  int FUNCTION = 132;
+  /** RegularExpression Id. */
+  int HTMLSTARTTAG = 133;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 134;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -397,6 +405,10 @@ public interface CssParserConstants {
     "<UNICODERANGE>",
     "<CLASS>",
     "\"lang(\"",
+    "\"dir(\"",
+    "\"is(\"",
+    "\"where(\"",
+    "\"has(\"",
     "\":not(\"",
     "<FUNCTIONCALC>",
     "\"min(\"",
