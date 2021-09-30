@@ -40,12 +40,8 @@ import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
-import org.w3c.css.selectors.ChildSelector;
 import org.w3c.css.selectors.ClassSelector;
-import org.w3c.css.selectors.DescendantSelector;
-import org.w3c.css.selectors.GeneralSiblingSelector;
 import org.w3c.css.selectors.IdSelector;
 import org.w3c.css.selectors.TypeSelector;
 import org.w3c.css.selectors.UniversalSelector;
@@ -581,6 +577,7 @@ TOKEN :
   | < GREATEREQ : <_W> ">=" >
   | < COMMA     : <_W> "," >
   | < TILDE     : <_W> "~" >
+  | < TWOPIPES  : <_W> "||" >
 }
 
 <DEFAULT>
@@ -762,12 +759,16 @@ TOKEN [IGNORE_CASE] :
     < CLASS : "." <IDENT> >
 }
 
-/* FIXED, added a spacial case for lang pseudoclass */
+/* FIXED, added a special case for lang pseudoclass */
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
     < FUNCTIONLANG   : "lang("  >
-    | <FUNCTIONNOT   : ":not("  >
+    | <FUNCTIONDIR   : "dir("   >
+    | <FUNCTIONIS    : "is("    >
+    | <FUNCTIONWHERE : "where(" >
+    | <FUNCTIONHAS   : "has("   >
+    | <FUNCTIONNOT   : "not("  >
     | <FUNCTIONCALC  : "calc(" | "-moz-calc(" | "-webkit-calc(" >
     | <FUNCTIONMIN   : "min("   >
     | <FUNCTIONMAX   : "max("   >
@@ -1441,20 +1442,20 @@ void page_selector_list(AtRulePage pageRule) :
 }
 {
     (
-     ( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
+     ( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList<String>(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
 	pageRule.addSelector(ns, ps, ac);
 	ns = null; ps = null;
     }
-     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
+     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList<String>(); } ps.add(":"+convertIdent(p.image)); }  )+ {
 	pageRule.addSelector(null, ps, ac);
 	ps = null;
     } ) ( <S> ) *
     ( <COMMA> ( <S> )* (
-			( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
+			( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList<String>(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
 	pageRule.addSelector(ns, ps, ac);
 	ns = null; ps = null;
     }
-     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
+     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList<String>(); } ps.add(":"+convertIdent(p.image)); }  )+ {
 	pageRule.addSelector(null, ps, ac);
 	ps = null;
     } ) ( <S> )* )*
@@ -1897,16 +1898,17 @@ void operator(CssExpression expr) :
 /**
  * @exception ParseException exception during the parse
  */
-char combinator() :
+String combinator() :
 {
-    char connector = ' ';
+    String connector = " ";
 }
 {
-    ( (   <PLUS> { connector = '+' ; }
-        | <GREATER> { connector = '>' ; }
-        | <TILDE> { connector = '~' ; }
+     ( (  <PLUS> { connector = "+" ; }
+        | <GREATER> { connector = ">" ; }
+        | <TILDE> { connector = "~" ; }
+        | <TWOPIPES> { connector = "||"; }
       ) ( <S> )* 
-    | ( <S> )+ { connector = ' ' ; }
+    | ( <S> )+ { connector = " " ; }
     )
     {
 	return connector;
@@ -1958,33 +1960,62 @@ String property() :
    ( <S> )*
 }
 
+ArrayList<CssSelectors> selector_list() :
+{
+	CssSelectors selector;
+	ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
+}
+{
+	selector=complex_selector(null) {
+		if (selector != null) {
+			context_set.add(selector);
+		}
+	}
+	( <COMMA> ( <S> )* selector=complex_selector(null) {
+		if (selector != null) {
+			context_set.add(selector);
+		}
+	} )*
+	{
+		return context_set;
+	}		
+}
+
+ArrayList<CssSelectors> relative_selector_list() :
+{
+        CssSelectors selector;
+        ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
+}
+{
+        selector=relative_selector() {
+                if (selector != null) {
+                        context_set.add(selector);
+                }
+        }
+        ( <COMMA> selector=relative_selector() {
+                if (selector != null) {
+                        context_set.add(selector);
+                }
+        } )*
+        {
+                return context_set;
+        }
+}
+
 /**
  * @exception ParseException exception during the parse
  */
 void ruleSet() :
-{ CssSelectors contextual;
-    ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
+{ 
+    ArrayList<CssSelectors> context_set = null;
     ArrayList<CssProperty> value_set = null;
     currentContext = context_set;
 }
 {
     try {
-	contextual=selector()
-	    { 
-		if (contextual != null) {
-		    context_set.add(contextual); 
-		}
-	    }
-	
-	( <COMMA> ( <S> )*
-	  contextual=selector()
-	    { 
-		if (contextual != null) {
-		    context_set.add(contextual); 
-		}
-	    }  
-	  )*
-	    <LBRACE> {
+	context_set = selector_list()
+
+	<LBRACE> {
 	    validSelector = (context_set.size() > 0);
 	}
 	( <S> )*
@@ -2126,93 +2157,36 @@ ArrayList<CssProperty> attributeDeclarations() :
     }
 }
 
-/**
- * @exception ParseException exception during the parse
- */
-CssSelectors selector() :
-{   char comb;
-    CssSelectors current; }
+CssSelectors relative_selector() :
 {
-    try {
-	current=simple_selector(null) 
-	    (  
-	    comb=combinator() {
-		if ((ac.getCssProfile() == CssProfile.MOBILE) ||
-			getAtRule().toString().equals("@media atsc-tv") ||
-			(ac.getCssVersion() == CssVersion.CSS1)) {
-			if (comb == '+') {
-			    throw new InvalidParamException("nocomb", "+", ac);
-			}
-			if (comb == '>') {
-			    throw new InvalidParamException("nocomb", ">", ac);
-			}
-		} else if (ac.getCssProfile() == CssProfile.TV) {
-			if (comb == '+') {
-			    throw new InvalidParamException("nocomb", "+", ac);
-		    }
-		}
-		// if version < CSS3, ~ is undefined
-		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-		    if (comb == '~') {
-			    throw new InvalidParamException("nocomb", "~", ac);
-		    }
-		}
-		switch(comb) {
-		case '+': 
-		current.addAdjacentSibling(new AdjacentSiblingSelector());
-		break;
-		case '>':
-		current.addChild(new ChildSelector());
-		break;
-		case '~':
-		current.addGeneralSibling(new GeneralSiblingSelector());
-		break;
-		default:
-		current.addDescendant(new DescendantSelector());
-		}                  
-		//current.setConnector(comb); 
-	    }
-	      current=simple_selector(current) 
-	      )* 
-	    { return current; }
-    }
-    catch (InvalidParamException ie) {    
-	//	skipStatement();
-	//	removeThisRule();
-	ac.getFrame()
-	   .addError(new CssError(getSourceFile(), getBeginLine(),
-	       getBeginColumn(), getEndLine(), getEndColumn(), ie));
-	Token t = getToken(1);
-	StringBuilder s = new StringBuilder();
-	s.append(getToken(0).image);
-	// eat until , { or EOF
-	while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-	    s.append(t.image);
-	    getNextToken();
-	    t = getToken(1);
+	String comb;
+	CssSelectors current;
+} 
+{
+	comb=combinator() {
+		current = new CssSelectors(ac);
+		               switch(comb) {
+                        case "+":
+                                current.addNextSiblingCombinator();
+                                break;
+                        case ">":
+                                current.addChildCombinator();
+                                break;
+                        case "~":
+                                current.addSubsequentSiblingCombinator();
+                                break;
+                        case "||":
+                                current.addColumnCombinator();
+                                break;
+                        default:
+                                current.addDescendantCombinator();
+                }                  
 	}
-	return null;
-    }
-    catch (ParseException e) {
-	//	validSelector = false;
-	Token t = getToken(1);
-	StringBuilder s = new StringBuilder("[");
-	s.append(getToken(0).image);
-	// eat until , { or EOF
-	while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-	    s.append(t.image);
-	    getNextToken();
-	    t = getToken(1);
+	current=complex_selector(current)
+	{
+		return current;
 	}
-	s.append(']');
-	//	if (validSelector) {
-	addError(e, s.toString());
-	    //	} else {
-	    //  addError(e,"");
-	    //	}
-	validSelector = true;
-	return null;    	
-    }
+
 }
 
 /**
@@ -2240,23 +2214,135 @@ CssSelectors simple_selector(CssSelectors next) :
 }
 {
 
-    element_name(selector) ( hash(selector) | _class(selector)
-			     | attrib(selector) | pseudo(selector) 
-			     | negation(selector) )*
-	{   
-	    return selector;
-	}
-    | ( hash(selector) | _class(selector) | attrib(selector) 
-	| pseudo(selector) | negation(selector) )+ 
+    type_selector(selector) ( id_selector(selector) | class_selector(selector)
+			     | attribute_selector(selector) | pseudo(selector) )*
 	{
 	    return selector;
+	}
+    | ( id_selector(selector) | class_selector(selector) | attribute_selector(selector)
+	| pseudo(selector) )+
+	{
+	    return selector;
+	}
+}
+
+CssSelectors subclass_selector(CssSelectors selector) :
+{
+}
+{
+	( id_selector(selector)
+	| class_selector(selector)
+	| attribute_selector(selector)
+	| pseudo_class_selector(selector)
+	)
+	{
+		return selector;
+	}
+}
+
+CssSelectors complex_selector(CssSelectors sel) :
+{
+	String comb;
+	CssSelectors current;
+}
+{
+	try {
+		current=compound_selector(sel)
+	        ( ( comb=combinator() {
+			if ((ac.getCssProfile() == CssProfile.MOBILE) ||
+				getAtRule().toString().equals("@media atsc-tv") ||
+				(ac.getCssVersion() == CssVersion.CSS1)) {
+				if (comb.equals("+") || comb.equals(">")) {
+					throw new InvalidParamException("nocomb", comb, ac);
+				}
+			} else if (ac.getCssProfile() == CssProfile.TV) {
+				if (comb.equals("+")) {
+					throw new InvalidParamException("nocomb", comb, ac);
+				}
+			}
+			// if version < CSS3, ~ is undefined
+			if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+				if (comb.equals("~") || comb.equals("||")) {
+					throw new InvalidParamException("nocomb", comb, ac);
+				}
+			}
+			switch(comb) {
+				case "+":
+					current.addNextSiblingCombinator();
+					break;
+				case ">":
+					current.addChildCombinator();
+					break;
+				case "~":
+					current.addSubsequentSiblingCombinator();
+					break;
+				case "||":
+					current.addColumnCombinator();
+					break;
+				default:
+					current.addDescendantCombinator();
+			}
+		} )?
+		current=compound_selector(current)
+		)*
+		{
+			return current;
+		}
+	} catch (InvalidParamException ie) {
+        //      skipStatement();
+        //      removeThisRule();
+		ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+							getBeginColumn(), getEndLine(), getEndColumn(), ie));
+		Token t = getToken(1);
+		StringBuilder s = new StringBuilder();
+		s.append(getToken(0).image);
+	        // eat until , { or EOF
+		while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+			s.append(t.image);
+			getNextToken();
+			t = getToken(1);
+		}
+		return null;
+	} catch (ParseException e) {
+	//      validSelector = false;
+		Token t = getToken(1);
+		StringBuilder s = new StringBuilder("[");
+		s.append(getToken(0).image);
+		// eat until , { or EOF
+		while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+			s.append(t.image);
+			getNextToken();
+			t = getToken(1);
+		}
+		s.append(']');
+        //      if (validSelector) {
+		addError(e, s.toString());
+            //  } else {
+            //  addError(e,"");
+            //  }
+		validSelector = true;
+		return null;
+	}
+
+}
+
+CssSelectors compound_selector(CssSelectors next) :
+{
+	CssSelectors selector = new CssSelectors(ac, next);
+        selector.setAtRule(getAtRule());
+}
+{
+	( LOOKAHEAD(3) ( ( ( type_selector(selector) )?  ( LOOKAHEAD(2) subclass_selector(selector) )+ ) ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )* )
+	| ( type_selector(selector) ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )* )
+	| ( ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )+ ) ) {
+		return selector;
 	}
 }
 
 /**
  * @exception ParseException exception during the parse
  */
-void _class(CssSelectors s) :
+void class_selector(CssSelectors s) :
 {Token n; }
 {
     /*  "." n=<IDENT> { */
@@ -2355,7 +2441,7 @@ Token deprecated_class() :
 /**
  * @exception ParseException exception during the parse
  */
-void element_name(CssSelectors s) :
+void type_selector(CssSelectors s) :
 {
     Token n=null;
     Token p=null;
@@ -2374,7 +2460,7 @@ void element_name(CssSelectors s) :
 		   .addError(new CssError(getSourceFile(), getBeginLine(),
 		       getBeginColumn(), getEndLine(), getEndColumn(),
 		           new InvalidParamException("notversion",
-			       "namespace", ac.getCssVersionString(), ac)));
+			       sb.toString(), ac.getCssVersionString(), ac)));
 		removeThisRule();
 	    } else if (n!=null) {
 		prefix = convertIdent(n.image);
@@ -2412,14 +2498,16 @@ void element_name(CssSelectors s) :
 /**
  * @exception ParseException exception during the parse
  */
-void attrib(CssSelectors s) :
+void attribute_selector(CssSelectors s) :
 {
     Token att = null;
     Token val = null;
+    Token mod = null;
+    Token pre = null;
     int selectorType = CssSelectors.ATTRIBUTE_ANY;
 }
 {
-    <LBRACKET> ( <S> )* att=ident() ( <S> )*
+    <LBRACKET> ( <S> )* ( LOOKAHEAD(2) (pre=ident() | pre=<ANY>)? "|" )? att=ident() ( <S> )*
 	( (<EQ> { selectorType = CssSelectors.ATTRIBUTE_EXACT; }
         | <INCLUDES> { selectorType = CssSelectors.ATTRIBUTE_ONE_OF; }
 	| <DASHMATCH> { selectorType = CssSelectors.ATTRIBUTE_BEGIN; }
@@ -2432,128 +2520,145 @@ void attrib(CssSelectors s) :
 	   | val=<STRING> 
 	       { val.image = convertStringIndex(val.image, 1, val.image.length() -1, false);} 
 	   ) 
-	   ( <S> )* )?
-  <RBRACKET>
+	   ( LOOKAHEAD(2) ( <S> )+ mod=ident() )? ( <S> )*  )?
+    <RBRACKET>
       {
-	  if (ac.getCssVersion() == CssVersion.CSS1) {
-	      StringBuilder reason;
-	      CssParseException cp;
-	      ParseException p;
-	      reason = new StringBuilder(" [");
-	      if (att != null) {
-		  reason.append(convertIdent(att.image));
-	      }
-	      if (val != null ) {
-		  reason.append('=').append(val.image);
-	      }
-	      reason.append(']');
-	      p = new ParseException(ac.getMsg().getString("parser.attrcss1")+
-				     reason.toString());
-	      cp = new CssParseException(p);
-	      ac.getFrame()
-	         .addError(new CssError(getSourceFile(), getBeginLine(),
-	             getBeginColumn(), getEndLine(), getEndColumn(), cp));
-	      removeThisRule();
-	  }
-	  if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
-	      try {
-		  s.addAttribute(new AttributeAny(att.image.toLowerCase()));
-//                s.addAttribute(att.image.toLowerCase(), null, selectorType);
-              } catch (InvalidParamException e) {
-	          removeThisRule();
-	          ac.getFrame()
-	             .addError(new CssError(getSourceFile(), getBeginLine(),
-	                 getBeginColumn(), getEndLine(), getEndColumn(), e));
-              }
-	  } else {
-	      AttributeSelector attribute;
-              switch(selectorType) {
-              case CssSelectors.ATTRIBUTE_BEGIN:
-        	  attribute = new AttributeBegin(att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_EXACT:
-        	  attribute = new AttributeExact(att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_ONE_OF:
-        	  attribute = new AttributeOneOf(ac, att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_START:
-        	  attribute = new AttributeStart(att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_SUBSTR:
-        	  attribute = new AttributeSubstr(att.image.toLowerCase(), val.image);
-        	  break;
-              case CssSelectors.ATTRIBUTE_SUFFIX:
-        	  attribute = new AttributeSuffix(att.image.toLowerCase(), val.image);
-        	  break;
-              default:
-        	  attribute = new AttributeExact(att.image.toLowerCase(), val.image);
-              	  break;
-              }
-	      try {
-		  s.addAttribute(attribute);
+	if (ac.getCssVersion() == CssVersion.CSS1) {
+		StringBuilder reason;
+		CssParseException cp;
+		ParseException p;
+		reason = new StringBuilder(" [");
+		if (att != null) {
+			reason.append(convertIdent(att.image));
+		}
+		if (val != null ) {
+			reason.append('=').append(val.image);
+		}
+		reason.append(']');
+		p = new ParseException(ac.getMsg().getString("parser.attrcss1")+
+					reason.toString());
+		cp = new CssParseException(p);
+		ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+					getBeginColumn(), getEndLine(), getEndColumn(), cp));
+		removeThisRule();
+	}
+	if ((mod != null) && ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+		String reason = mod.image;
+		ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+					getBeginColumn(), getEndLine(), getEndColumn(),
+					new InvalidParamException("notversion",
+					reason, ac.getCssVersionString(), ac)));
+
+                removeThisRule();
+	}
+	if ((pre != null) && ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+		StringBuilder sb = new StringBuilder("namespace \"").append(pre.image).append('"');
+		ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+					getBeginColumn(), getEndLine(), getEndColumn(),
+					new InvalidParamException("notversion",
+					sb.toString(), ac.getCssVersionString(), ac)));
+		removeThisRule();
+	}
+	if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
+		try {
+			AttributeSelector as;
+			as = new AttributeAny(att.image.toLowerCase());
+			if (pre != null) {
+				as.setPrefix(pre.image);
+			}
+			if (mod != null) {
+				as.setModifier(mod.image, ac);
+			}
+			s.addAttribute(as);
+//                      s.addAttribute(att.image.toLowerCase(), null, selectorType);
+		} catch (InvalidParamException e) {
+			removeThisRule();
+			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+						getBeginColumn(), getEndLine(), getEndColumn(), e));
+		}
+	} else {
+		AttributeSelector attribute;
+		switch(selectorType) {
+			case CssSelectors.ATTRIBUTE_BEGIN:
+				attribute = new AttributeBegin(att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_EXACT:
+				attribute = new AttributeExact(att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_ONE_OF:
+				attribute = new AttributeOneOf(ac, att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_START:
+				attribute = new AttributeStart(att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_SUBSTR:
+				attribute = new AttributeSubstr(att.image.toLowerCase(), val.image);
+				break;
+			case CssSelectors.ATTRIBUTE_SUFFIX:
+				attribute = new AttributeSuffix(att.image.toLowerCase(), val.image);
+				break;
+			default:
+				attribute = new AttributeExact(att.image.toLowerCase(), val.image);
+			break;
+		}
+		try {
+			if (pre != null) {
+				attribute.setPrefix(pre.image);
+			}
+			if (mod != null) {
+				attribute.setModifier(mod.image, ac);
+			}
+			s.addAttribute(attribute);
 //	      	  s.addAttribute(att.image.toLowerCase(), val.image, 
 //			     selectorType);
-	      } catch (InvalidParamException e) {
-	     	  removeThisRule();
-	          ac.getFrame()
-	             .addError(new CssError(getSourceFile(), getBeginLine(),
-	                 getBeginColumn(), getEndLine(), getEndColumn(), e));
-      	      } 
-	  }
-      }
+		} catch (InvalidParamException e) {
+			removeThisRule();
+			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+						getBeginColumn(), getEndLine(), getEndColumn(), e));
+		}
+	}
+    }
 }
 
-void negation(CssSelectors s) :
+void pseudo_element_selector(CssSelectors s) :
 {
-    Token n;
-    CssSelectors ns = new CssSelectors(ac, null);
+	Token n;
 }
-{ // S* negation_arg S* ')'
-    // type_selector | universal | HASH | class | attrib | pseudo
-
-    <FUNCTIONNOT> ( <S> )*
-	(
-	 element_name(ns) |
-	 hash(ns) | 
-	 _class(ns) |
-	 attrib(ns) | 
-	 pseudo(ns)
-	 )
-	( <S> )* <RPAREN>
-	{ 
-	    s.setPseudoFun("not", ns.toString());
+{
+	<PSEUDOELEMENT_SYM> ( n=ident() ) {
+		try {
+		// should be >CSS3
+			if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
+				s.addPseudoElement(convertIdent(n.image).toLowerCase());
+			} else {
+				throw new InvalidParamException("pseudo-element",
+								"::" + convertIdent(n.image).toLowerCase(),
+								ac.getCssVersionString() ,ac);
+			}
+		} catch(InvalidParamException e) {
+			validSelector = false;
+			throw new ParseException(e.getMessage());
+		}
 	}
 }
 
+void pseudo(CssSelectors s) :
+{}
+{
+	pseudo_element_selector(s) | pseudo_class_selector(s)
+
+}
 /**
  * @exception ParseException exception during the parse
  */
-void pseudo(CssSelectors s) :
+void pseudo_class_selector(CssSelectors s) :
 {Token n;
 Token language = null;
 CssExpression param = null;
+ArrayList<CssSelectors> selector_list = null;
+String error_str = null;
 }
 {
-    <PSEUDOELEMENT_SYM> ( ( n=ident()
-	{ 
-	    try {
-	    // should be >CSS3
-		if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
-		    s.addPseudoElement(convertIdent(n.image).toLowerCase());
-		} else {
-		    throw new InvalidParamException("pseudo-element",
-						    "::" + convertIdent(n.image).toLowerCase() ,
-						    ac.getCssVersionString() ,ac);
-		}
-	    } catch(InvalidParamException e) {
-		//	removeThisRule();
-		//		ac.getFrame().addError(new CssError(e));
-		validSelector = false;
-		throw new ParseException(e.getMessage());
-	    }
-	} ) )
-	|  
 	<COLON> ( ( n=ident()
 	    { 
 		try {
@@ -2566,10 +2671,9 @@ CssExpression param = null;
 		}
 	    } )
 		  // FXIXME rewrite to make :lang( use a special case
-		  | ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=ident() | language=<STRING> ) ( <S> )* ) {
+		  | ( ( n=<FUNCTIONLANG> ( <S> )* ( language=ident() | language=<STRING> ) ( <S> )* ) {
 		try {
-		    s.setPseudoFun(convertStringIndex(n.image, 0,
-						      n.image.length() -1, false).toLowerCase(),
+		    s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
 				   convertIdent(language.image));
 		} catch(InvalidParamException e) {
 			removeThisRule();
@@ -2578,11 +2682,41 @@ CssExpression param = null;
 			       getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
 	    }
+	    | ( ( n=<FUNCTIONIS> | n=<FUNCTIONNOT> ) ( <S> )* selector_list=selector_list() ) {
+		try {
+			s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
+		} catch(InvalidParamException e) {
+			removeThisRule();
+			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+						getBeginColumn(), getEndLine(), getEndColumn(), e));
+		}
+            } // we must be more forgiving for :where()
+            | ( n=<FUNCTIONWHERE> ( <S> )* try {  selector_list=selector_list()  } catch (ParseException ignored) {
+						s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
+								skip_to_matching_paren());
+						}
+	      )
+		{
+               try {
+                        s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
+                } catch(InvalidParamException e) {
+                        removeThisRule();
+                        ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+                                                getBeginColumn(), getEndLine(), getEndColumn(), e));
+                }
+	    }
+	    | ( n=<FUNCTIONHAS> selector_list=relative_selector_list() ) {
+		try {
+                        s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
+                } catch(InvalidParamException e) {
+                        removeThisRule();
+                        ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+                                                getBeginColumn(), getEndLine(), getEndColumn(), e));
+                }
+	    }
 	    | ( n=<FUNCTION> ( <S> )* param=expression() ) {
 		try {
-		    s.setPseudoFun(convertStringIndex(n.image, 0,
-						      n.image.length() -1, 
-						      false).toLowerCase(),
+		    s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
 				   param.toString());
 		} catch(InvalidParamException e) {
 		    removeThisRule();
@@ -2598,7 +2732,7 @@ CssExpression param = null;
 /**
  * @exception ParseException exception during the parse
  */
-void hash(CssSelectors s) :
+void id_selector(CssSelectors s) :
 {Token n; }
 {
   n=<HASHIDENT>  {
@@ -3626,6 +3760,10 @@ String skip_to_matching_paren() {
             case LPAREN:
             case FUNCTION:
             case FUNCTIONLANG:
+	    case FUNCTIONDIR:
+	    case FUNCTIONIS:
+	    case FUNCTIONWHERE:
+	    case FUNCTIONHAS:
             case FUNCTIONNOT:
             case FUNCTIONCALC:
             case FUNCTIONMIN:

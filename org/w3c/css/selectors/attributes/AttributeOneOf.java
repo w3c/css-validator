@@ -69,12 +69,6 @@ public class AttributeOneOf extends AttributeSelector {
         return false;
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('[').append(getName()).append("~=\"").append(value).append("\"]");
-        return sb.toString();
-    }
-
     private String[] computeValues() {
         values = value.split("\\s");
         return values;
@@ -102,6 +96,14 @@ public class AttributeOneOf extends AttributeSelector {
                 }
             }
         }
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append('[').append(getPrefixedName());
+        sb.append("~=\"").append(value).append('"');
+        sb.append(getEndingString());
+        return sb.toString();
     }
 
 }

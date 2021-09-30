@@ -7,6 +7,11 @@ package org.w3c.css.selectors;
 import org.w3c.css.selectors.attributes.AttributeAny;
 import org.w3c.css.selectors.attributes.AttributeBegin;
 import org.w3c.css.selectors.attributes.AttributeExact;
+import org.w3c.css.selectors.combinators.ChildCombinator;
+import org.w3c.css.selectors.combinators.ColumnCombinator;
+import org.w3c.css.selectors.combinators.DescendantCombinator;
+import org.w3c.css.selectors.combinators.NextSiblingCombinator;
+import org.w3c.css.selectors.combinators.SubsequentSiblingCombinator;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
@@ -124,16 +129,10 @@ public class SelectorsList {
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
     public void addSelector(Selector selector) throws InvalidParamException {
-        if (selectors.size() > 0) {
-            Selector last = selectors.get(selectors.size() - 1);
-            if (last instanceof PseudoElementSelector
-                    && !(selector instanceof PseudoClassSelector
-                    && ((PseudoClassSelector) selector)
-                    .isUserAction())) {
-                throw new InvalidParamException("pseudo-element-not-last",
-                        selector, last, ac);
-            }
-        }
+        /* FIXME TODO
+           the grammar is checking the basic structure but specific rules
+           should appear here
+         */
         selectors.add(selector);
         stringrep = null;
     }
@@ -173,22 +172,20 @@ public class SelectorsList {
     /**
      * Adds a descendant selector
      *
-     * @param descendant the descendant selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addDescendant(DescendantSelector descendant)
+    public void addDescendantCombinator()
             throws InvalidParamException {
-        addSelector(descendant);
+        addSelector(new DescendantCombinator());
     }
 
     /**
      * Adds a child selector
      *
-     * @param child the child selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addChild(ChildSelector child) throws InvalidParamException {
-        addSelector(child);
+    public void addChildCombinator() throws InvalidParamException {
+        addSelector(new ChildCombinator());
     }
 
     /**
@@ -226,25 +223,33 @@ public class SelectorsList {
     }
 
     /**
-     * Adds an adjacent sibling selector
+     * Adds a next sibling combinator
      *
-     * @param adjacent the adjacent selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addAdjacentSibling(AdjacentSiblingSelector adjacent)
+    public void addNextSiblingCombinator()
             throws InvalidParamException {
-        addSelector(adjacent);
+        addSelector(new NextSiblingCombinator());
     }
 
     /**
-     * Adds an adjacent sibling selector
+     * Adds an subsequent sibling combinator
      *
-     * @param sibling the adjacent selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addGeneralSibling(GeneralSiblingSelector sibling)
+    public void addSubsequentSiblingCombinator()
             throws InvalidParamException {
-        addSelector(sibling);
+        addSelector(new SubsequentSiblingCombinator());
+    }
+
+    /**
+     * Adds an column combinator
+     *
+     * @throws InvalidParamException when trying to add a selector after a pseudo-element
+     */
+    public void addColumnCombinator()
+            throws InvalidParamException {
+        addSelector(new ColumnCombinator());
     }
 
     /**
@@ -340,15 +345,15 @@ public class SelectorsList {
         try {
             s.addType(new TypeSelector("E"));
             s.addAttribute(new AttributeExact("foo", "warning"));
-            s.addChild(new ChildSelector());
+            s.addChildCombinator();
             s.addType(new TypeSelector("F"));
             s.addAttribute(new AttributeBegin("lang", "en"));
             s.addAttribute(new AttributeAny("bar"));
-            s.addAdjacentSibling(new AdjacentSiblingSelector());
+            s.addNextSiblingCombinator();
             s.addType(new TypeSelector("G"));
             s.addId(new IdSelector("id"));
             s.addAttribute(new AttributeAny("blop"));
-            s.addDescendant(new DescendantSelector());
+            s.addDescendantCombinator();
             s.addType(new TypeSelector("H"));
 
             System.out.println(s);

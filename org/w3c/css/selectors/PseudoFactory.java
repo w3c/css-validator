@@ -4,16 +4,22 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.selectors;
 
+import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionHas;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionIs;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionLang;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNot;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthChild;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastChild;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastOfType;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthOfType;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionWhere;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
+
+import java.util.ArrayList;
 
 /**
  * PseudoFactory<br />
@@ -203,7 +209,7 @@ public class PseudoFactory {
                     "null pseudofunction", ac);
         }
         if (name.equals("lang")) {
-            return new PseudoFunctionLang(name, value);
+            return new PseudoFunctionLang(name, value, ac);
         }
         if (name.equals("not")) {
             return new PseudoFunctionNot(name, value);
@@ -219,6 +225,30 @@ public class PseudoFactory {
         }
         if (name.equals("nth-last-of-type")) {
             return new PseudoFunctionNthLastOfType(name, value);
+        }
+        throw new InvalidParamException("pseudo",
+                ":" + name, ac);
+    }
+
+    public static PseudoFunctionSelector newPseudoFunction(String name,
+                                                           ArrayList<CssSelectors> value,
+                                                           ApplContext ac)
+            throws InvalidParamException {
+        if (name == null) {
+            throw new InvalidParamException("pseudo",
+                    "null pseudofunction", ac);
+        }
+        if (name.equals("not")) {
+            return new PseudoFunctionNot(name, value);
+        }
+        if (name.equals("is")) {
+            return new PseudoFunctionIs(name, value);
+        }
+        if (name.equals("where")) {
+            return new PseudoFunctionWhere(name, value);
+        }
+        if (name.equals("has")) {
+            return new PseudoFunctionHas(name, value);
         }
         throw new InvalidParamException("pseudo",
                 ":" + name, ac);
