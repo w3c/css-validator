@@ -129,16 +129,10 @@ public class SelectorsList {
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
     public void addSelector(Selector selector) throws InvalidParamException {
-        if (selectors.size() > 0) {
-            Selector last = selectors.get(selectors.size() - 1);
-            if (last instanceof PseudoElementSelector
-                    && !(selector instanceof PseudoClassSelector
-                    && ((PseudoClassSelector) selector)
-                    .isUserAction())) {
-                throw new InvalidParamException("pseudo-element-not-last",
-                        selector, last, ac);
-            }
-        }
+        /* FIXME TODO
+           the grammar is checking the basic structure but specific rules
+           should appear here
+         */
         selectors.add(selector);
         stringrep = null;
     }

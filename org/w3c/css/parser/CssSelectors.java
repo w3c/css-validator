@@ -71,7 +71,7 @@ public final class CssSelectors extends SelectorsList
     //private int hashGeneral;
 
     // The CssStyle to use
-    private static Class style;
+    private static Class<?> style;
 
     // see isEmpty and addProperty
     private boolean Init;
@@ -93,7 +93,7 @@ public final class CssSelectors extends SelectorsList
         this.ac = ac;
     }
 
-    private CssSelectors(Class style) {
+    private CssSelectors(Class<?> style) {
         super();
         CssSelectors.style = style;
         try {
@@ -130,7 +130,7 @@ public final class CssSelectors extends SelectorsList
      *
      * @param style0 the style
      */
-    public void setStyle(Class style0) {
+    public void setStyle(Class<?> style0) {
         Util.verbose("Style is : " + style0);
         style = style0;
     }
@@ -605,7 +605,7 @@ public final class CssSelectors extends SelectorsList
         Util.verbose("canMatch for attributes :" + result);
 
         if ((hashElement != selector.hashElement) && hashElement != 0) {
-            if ((connector == DESCENDANT_COMBINATOR) && (selector.next != null)) {
+            if ((connector.equals(DESCENDANT_COMBINATOR)) && (selector.next != null)) {
                 // here we are in this case :
                 // H1 and HTML BODY H1 EM
                 // H1 can't match EM but EM have next

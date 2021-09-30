@@ -1903,7 +1903,7 @@ String combinator() :
     String connector = " ";
 }
 {
-    ( (   <PLUS> { connector = "+" ; }
+     ( (  <PLUS> { connector = "+" ; }
         | <GREATER> { connector = ">" ; }
         | <TILDE> { connector = "~" ; }
         | <TWOPIPES> { connector = "||"; }
@@ -1966,12 +1966,12 @@ ArrayList<CssSelectors> selector_list() :
 	ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
 }
 {
-	selector=selector() {
+	selector=complex_selector(null) {
 		if (selector != null) {
 			context_set.add(selector);
 		}
 	}
-	( <COMMA> ( <S> )* selector=selector() {
+	( <COMMA> ( <S> )* selector=complex_selector(null) {
 		if (selector != null) {
 			context_set.add(selector);
 		}
@@ -2182,100 +2182,11 @@ CssSelectors relative_selector() :
                                 current.addDescendantCombinator();
                 }                  
 	}
-	// FIXME should be complex_selector
-	current=simple_selector(current)
+	current=complex_selector(current)
 	{
 		return current;
 	}
 
-}
-/**
- * @exception ParseException exception during the parse
- */
-CssSelectors selector() :
-{   String comb;
-    CssSelectors current; }
-{
-    try {
-	current=simple_selector(null) 
-	    (  
-	    comb=combinator() {
-		if ((ac.getCssProfile() == CssProfile.MOBILE) ||
-			getAtRule().toString().equals("@media atsc-tv") ||
-			(ac.getCssVersion() == CssVersion.CSS1)) {
-			if (comb.equals("+") || comb.equals(">")) {
-			    throw new InvalidParamException("nocomb", comb, ac);
-			}
-		} else if (ac.getCssProfile() == CssProfile.TV) {
-			if (comb.equals("+")) {
-			    throw new InvalidParamException("nocomb", comb, ac);
-		    }
-		}
-		// if version < CSS3, ~ is undefined
-		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-		    if (comb.equals("~") || comb.equals("||")) {
-			    throw new InvalidParamException("nocomb", comb, ac);
-		    }
-		}
-		switch(comb) {
-			case "+":
-				current.addNextSiblingCombinator();
-				break;
-			case ">":
-				current.addChildCombinator();
-				break;
-			case "~":
-				current.addSubsequentSiblingCombinator();
-				break;
-			case "||":
-				current.addColumnCombinator();
-				break;
-			default:
-				current.addDescendantCombinator();
-		}                  
-		//current.setConnector(comb); 
-	    }
-	      current=simple_selector(current) 
-	      )* 
-	    { return current; }
-    }
-    catch (InvalidParamException ie) {    
-	//	skipStatement();
-	//	removeThisRule();
-	ac.getFrame()
-	   .addError(new CssError(getSourceFile(), getBeginLine(),
-	       getBeginColumn(), getEndLine(), getEndColumn(), ie));
-	Token t = getToken(1);
-	StringBuilder s = new StringBuilder();
-	s.append(getToken(0).image);
-	// eat until , { or EOF
-	while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-	    s.append(t.image);
-	    getNextToken();
-	    t = getToken(1);
-	}
-	return null;
-    }
-    catch (ParseException e) {
-	//	validSelector = false;
-	Token t = getToken(1);
-	StringBuilder s = new StringBuilder("[");
-	s.append(getToken(0).image);
-	// eat until , { or EOF
-	while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-	    s.append(t.image);
-	    getNextToken();
-	    t = getToken(1);
-	}
-	s.append(']');
-	//	if (validSelector) {
-	addError(e, s.toString());
-	    //	} else {
-	    //  addError(e,"");
-	    //	}
-	validSelector = true;
-	return null;    	
-    }
 }
 
 /**
@@ -2312,6 +2223,119 @@ CssSelectors simple_selector(CssSelectors next) :
 	| pseudo(selector) )+
 	{
 	    return selector;
+	}
+}
+
+CssSelectors subclass_selector(CssSelectors selector) :
+{
+}
+{
+	( id_selector(selector)
+	| class_selector(selector)
+	| attribute_selector(selector)
+	| pseudo_class_selector(selector)
+	)
+	{
+		return selector;
+	}
+}
+
+CssSelectors complex_selector(CssSelectors sel) :
+{
+	String comb;
+	CssSelectors current;
+}
+{
+	try {
+		current=compound_selector(sel)
+	        ( ( comb=combinator() {
+			if ((ac.getCssProfile() == CssProfile.MOBILE) ||
+				getAtRule().toString().equals("@media atsc-tv") ||
+				(ac.getCssVersion() == CssVersion.CSS1)) {
+				if (comb.equals("+") || comb.equals(">")) {
+					throw new InvalidParamException("nocomb", comb, ac);
+				}
+			} else if (ac.getCssProfile() == CssProfile.TV) {
+				if (comb.equals("+")) {
+					throw new InvalidParamException("nocomb", comb, ac);
+				}
+			}
+			// if version < CSS3, ~ is undefined
+			if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+				if (comb.equals("~") || comb.equals("||")) {
+					throw new InvalidParamException("nocomb", comb, ac);
+				}
+			}
+			switch(comb) {
+				case "+":
+					current.addNextSiblingCombinator();
+					break;
+				case ">":
+					current.addChildCombinator();
+					break;
+				case "~":
+					current.addSubsequentSiblingCombinator();
+					break;
+				case "||":
+					current.addColumnCombinator();
+					break;
+				default:
+					current.addDescendantCombinator();
+			}
+		} )?
+		current=compound_selector(current)
+		)*
+		{
+			return current;
+		}
+	} catch (InvalidParamException ie) {
+        //      skipStatement();
+        //      removeThisRule();
+		ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+							getBeginColumn(), getEndLine(), getEndColumn(), ie));
+		Token t = getToken(1);
+		StringBuilder s = new StringBuilder();
+		s.append(getToken(0).image);
+	        // eat until , { or EOF
+		while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+			s.append(t.image);
+			getNextToken();
+			t = getToken(1);
+		}
+		return null;
+	} catch (ParseException e) {
+	//      validSelector = false;
+		Token t = getToken(1);
+		StringBuilder s = new StringBuilder("[");
+		s.append(getToken(0).image);
+		// eat until , { or EOF
+		while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+			s.append(t.image);
+			getNextToken();
+			t = getToken(1);
+		}
+		s.append(']');
+        //      if (validSelector) {
+		addError(e, s.toString());
+            //  } else {
+            //  addError(e,"");
+            //  }
+		validSelector = true;
+		return null;
+	}
+
+}
+
+CssSelectors compound_selector(CssSelectors next) :
+{
+	CssSelectors selector = new CssSelectors(ac, next);
+        selector.setAtRule(getAtRule());
+}
+{
+	( LOOKAHEAD(3) ( ( ( type_selector(selector) )?  ( LOOKAHEAD(2) subclass_selector(selector) )+ ) ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )* )
+	| ( type_selector(selector) ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )* )
+	| ( ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )+ ) ) {
+		return selector;
 	}
 }
 
@@ -2596,10 +2620,38 @@ void attribute_selector(CssSelectors s) :
     }
 }
 
+void pseudo_element_selector(CssSelectors s) :
+{
+	Token n;
+}
+{
+	<PSEUDOELEMENT_SYM> ( n=ident() ) {
+		try {
+		// should be >CSS3
+			if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
+				s.addPseudoElement(convertIdent(n.image).toLowerCase());
+			} else {
+				throw new InvalidParamException("pseudo-element",
+								"::" + convertIdent(n.image).toLowerCase(),
+								ac.getCssVersionString() ,ac);
+			}
+		} catch(InvalidParamException e) {
+			validSelector = false;
+			throw new ParseException(e.getMessage());
+		}
+	}
+}
+
+void pseudo(CssSelectors s) :
+{}
+{
+	pseudo_element_selector(s) | pseudo_class_selector(s)
+
+}
 /**
  * @exception ParseException exception during the parse
  */
-void pseudo(CssSelectors s) :
+void pseudo_class_selector(CssSelectors s) :
 {Token n;
 Token language = null;
 CssExpression param = null;
@@ -2607,25 +2659,6 @@ ArrayList<CssSelectors> selector_list = null;
 String error_str = null;
 }
 {
-    <PSEUDOELEMENT_SYM> ( ( n=ident()
-	{ 
-	    try {
-	    // should be >CSS3
-		if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
-		    s.addPseudoElement(convertIdent(n.image).toLowerCase());
-		} else {
-		    throw new InvalidParamException("pseudo-element",
-						    "::" + convertIdent(n.image).toLowerCase() ,
-						    ac.getCssVersionString() ,ac);
-		}
-	    } catch(InvalidParamException e) {
-		//	removeThisRule();
-		//		ac.getFrame().addError(new CssError(e));
-		validSelector = false;
-		throw new ParseException(e.getMessage());
-	    }
-	} ) )
-	|  
 	<COLON> ( ( n=ident()
 	    { 
 		try {
