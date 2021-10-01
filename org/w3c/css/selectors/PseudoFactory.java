@@ -6,6 +6,8 @@ package org.w3c.css.selectors;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionHas;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionHost;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionHostContext;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionIs;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionLang;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNot;
@@ -13,6 +15,7 @@ import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthChild;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastChild;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastOfType;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthOfType;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionSlotted;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionWhere;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssProfile;
@@ -83,7 +86,9 @@ public class PseudoFactory {
             // https://fullscreen.spec.whatwg.org/#::backdrop-pseudo-element
             "backdrop",
             // https://www.w3.org/TR/2019/CR-webvtt1-20190404/#css-extensions
-            "cue", "cue-region"
+            "cue", "cue-region",
+            // https://www.w3.org/TR/2014/WD-css-scoping-1-20140403/ (20211001 draft)
+            "content", "shadow"
     };
 
     private static final String[] PSEUDOELEMENT_CONSTANTSCSS2 = {
@@ -94,10 +99,12 @@ public class PseudoFactory {
             "first-line", "first-letter"
     };
 
-    private static final String[] PSEUDOFUNCTION_CONSTANTSCSS3 = {
+    private static final String[] PSEUDOCLASS_FUNCTION_CONSTANTSCSS3 = {
             "nth-child", "nth-last-child", "nth-of-type", "nth-last-of-type",
             "lang", "not" // from selectors-4 unstable list (20190624)
-            , "nth-col", "nth-last-col", "is", "where", "has", "dir"
+            , "nth-col", "nth-last-col", "is", "where", "has", "dir",
+            // // https://www.w3.org/TR/2014/WD-css-scoping-1-20140403/
+            "host", "host-context", "slotted"
     };
 
     private static final String[] PSEUDOFUNCTION_CONSTANTSCSS2 = {
@@ -167,7 +174,7 @@ public class PseudoFactory {
             case CSS21:
                 return PSEUDOFUNCTION_CONSTANTSCSS2;
             case CSS3:
-                return PSEUDOFUNCTION_CONSTANTSCSS3;
+                return PSEUDOCLASS_FUNCTION_CONSTANTSCSS3;
             case CSS1:
             default:
                 return null;
@@ -226,6 +233,15 @@ public class PseudoFactory {
         if (name.equals("nth-last-of-type")) {
             return new PseudoFunctionNthLastOfType(name, value);
         }
+        if (name.equals("slotted")) {
+            return new PseudoFunctionSlotted(name, value);
+        }
+        if (name.equals("host")) {
+            return new PseudoFunctionSlotted(name, value);
+        }
+        if (name.equals("host-context")) {
+            return new PseudoFunctionSlotted(name, value);
+        }
         throw new InvalidParamException("pseudo",
                 ":" + name, ac);
     }
@@ -249,6 +265,15 @@ public class PseudoFactory {
         }
         if (name.equals("has")) {
             return new PseudoFunctionHas(name, value);
+        }
+        if (name.equals("slotted")) {
+            return new PseudoFunctionSlotted(name, value);
+        }
+        if (name.equals("host")) {
+            return new PseudoFunctionHost(name, value);
+        }
+        if (name.equals("host-context")) {
+            return new PseudoFunctionHostContext(name, value);
         }
         throw new InvalidParamException("pseudo",
                 ":" + name, ac);

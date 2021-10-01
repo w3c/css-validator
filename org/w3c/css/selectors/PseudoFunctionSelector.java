@@ -12,6 +12,7 @@ public class PseudoFunctionSelector implements Selector {
 
     private String name;
     private Object param;
+    private boolean isElement = false;
     private String representation = null;
 
     /**
@@ -55,6 +56,13 @@ public class PseudoFunctionSelector implements Selector {
         this.param = param;
     }
 
+    public void setAsPseudoElement() {
+        isElement = true;
+    }
+
+    public void setAsPseudoClass() {
+        isElement = false;
+    }
     /**
      * Returns the specifictiy of this pseudo-function
      *
@@ -77,6 +85,9 @@ public class PseudoFunctionSelector implements Selector {
     public String toString() {
         if (representation == null) {
             StringBuilder sb = new StringBuilder();
+            if (isElement) {
+                sb.append(':');
+            }
             sb.append(':');
             sb.append(name);
             sb.append('(');

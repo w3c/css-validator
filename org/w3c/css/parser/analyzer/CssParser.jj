@@ -763,18 +763,21 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-    < FUNCTIONLANG   : "lang("  >
-    | <FUNCTIONDIR   : "dir("   >
-    | <FUNCTIONIS    : "is("    >
-    | <FUNCTIONWHERE : "where(" >
-    | <FUNCTIONHAS   : "has("   >
-    | <FUNCTIONNOT   : "not("  >
-    | <FUNCTIONCALC  : "calc(" | "-moz-calc(" | "-webkit-calc(" >
-    | <FUNCTIONMIN   : "min("   >
-    | <FUNCTIONMAX   : "max("   >
-    | <FUNCTIONCLAMP : "clamp(" >
-    | <FUNCTIONATTR  : "attr("  >
-    | <FUNCTIONVAR   : "var(" >
+    < FUNCTIONLANG         : "lang("         >
+    | <FUNCTIONDIR         : "dir("          >
+    | <FUNCTIONIS          : "is("           >
+    | <FUNCTIONWHERE       : "where("        >
+    | <FUNCTIONHAS         : "has("          >
+    | <FUNCTIONSLOTTED     : "slotted("      >
+    | <FUNCTIONHOST        : "host("         >
+    | <FUNCTIONHOSTCONTEXT : "host-context(" >
+    | <FUNCTIONNOT         : "not("          >
+    | <FUNCTIONCALC        : "calc(" | "-moz-calc(" | "-webkit-calc(" >
+    | <FUNCTIONMIN         : "min("          >
+    | <FUNCTIONMAX         : "max("          >
+    | <FUNCTIONCLAMP       : "clamp("        >
+    | <FUNCTIONATTR        : "attr("         >
+    | <FUNCTIONVAR         : "var("          >
 }
 
 <DEFAULT>
@@ -2623,9 +2626,10 @@ void attribute_selector(CssSelectors s) :
 void pseudo_element_selector(CssSelectors s) :
 {
 	Token n;
+	CssSelectors sel = null;
 }
 {
-	<PSEUDOELEMENT_SYM> ( n=ident() ) {
+	<PSEUDOELEMENT_SYM> ( ( n=ident() {
 		try {
 		// should be >CSS3
 			if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
@@ -2640,6 +2644,19 @@ void pseudo_element_selector(CssSelectors s) :
 			throw new ParseException(e.getMessage());
 		}
 	}
+	)
+	| ( ( n=<FUNCTIONSLOTTED> ) ( <S> )* sel=compound_selector(null) <RPAREN> ) {
+		try {
+			ArrayList<CssSelectors> list = new ArrayList<CssSelectors>();
+			list.add(sel);
+			s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), list);
+		} catch(InvalidParamException e) {
+			removeThisRule();
+			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+						getBeginColumn(), getEndLine(), getEndColumn(), e));
+		}
+	}
+	)
 }
 
 void pseudo(CssSelectors s) :
@@ -2656,6 +2673,7 @@ void pseudo_class_selector(CssSelectors s) :
 Token language = null;
 CssExpression param = null;
 ArrayList<CssSelectors> selector_list = null;
+CssSelectors sel = null;
 String error_str = null;
 }
 {
@@ -2713,6 +2731,17 @@ String error_str = null;
                         ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
                                                 getBeginColumn(), getEndLine(), getEndColumn(), e));
                 }
+	    }
+	    | ( ( n=<FUNCTIONHOST> | n=<FUNCTIONHOSTCONTEXT> ) ( <S> )* sel=compound_selector(null) ) {
+		try {
+			ArrayList<CssSelectors> list = new ArrayList<CssSelectors>();
+			list.add(sel);
+			s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), list);
+		} catch(InvalidParamException e) {
+			removeThisRule();
+			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+						getBeginColumn(), getEndLine(), getEndColumn(), e));
+		}
 	    }
 	    | ( n=<FUNCTION> ( <S> )* param=expression() ) {
 		try {
@@ -3764,6 +3793,9 @@ String skip_to_matching_paren() {
 	    case FUNCTIONIS:
 	    case FUNCTIONWHERE:
 	    case FUNCTIONHAS:
+	    case FUNCTIONHOST:
+	    case FUNCTIONHOSTCONTEXT:
+	    case FUNCTIONSLOTTED:
             case FUNCTIONNOT:
             case FUNCTIONCALC:
             case FUNCTIONMIN:
