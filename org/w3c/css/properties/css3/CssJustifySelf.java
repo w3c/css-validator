@@ -20,6 +20,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @spec https://www.w3.org/TR/2020/WD-css-align-3-20200421/#propdef-justify-self
+ * @see CssAlignSelf
  */
 public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
 
@@ -149,7 +150,20 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                if (getSelfPositionAddExtras(val.getIdent()) == null) {
+                if ((CssAlignSelf.getSelfPosition(val.getIdent()) == null)
+                        && (getSelfPositionAddExtras(val.getIdent()) == null)) {
+                    throw new InvalidParamException("value", val.toString(),
+                            caller.getPropertyName(), ac);
+                }
+                values.add(val);
+                expression.next();
+                return new CssValueList(values);
+            } else {
+                if (val.getType() != CssTypes.CSS_IDENT) {
+                    throw new InvalidParamException("value", val.toString(),
+                            caller.getPropertyName(), ac);
+                }
+                if (CssAlignSelf.getSelfPosition(val.getIdent()) == null) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }

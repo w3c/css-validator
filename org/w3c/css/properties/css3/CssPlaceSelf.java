@@ -37,8 +37,7 @@ public class CssPlaceSelf extends org.w3c.css.properties.css.CssPlaceSelf {
      * Creates a new CssAlignSelf
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssPlaceSelf(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -66,9 +65,14 @@ public class CssPlaceSelf extends org.w3c.css.properties.css.CssPlaceSelf {
             }
             values.add(val);
             alignSelf.value = val;
-
-            val = CssJustifySelf.parseJustifySelf(ac, expression, this);
-            if (!expression.end()) {
+            CssExpression ex = new CssExpression();
+            while (!expression.end()) {
+                ex.addValue(expression.getValue());
+                ex.setOperator(expression.getOperator());
+                expression.next();
+            }
+            val = CssJustifySelf.parseJustifySelf(ac, ex, this);
+            if (!ex.end()) {
                 throw new InvalidParamException("value", expression.getValue().toString(),
                         getPropertyName(), ac);
             }
