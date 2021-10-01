@@ -2645,7 +2645,7 @@ void pseudo_element_selector(CssSelectors s) :
 		}
 	}
 	)
-	| ( ( n=<FUNCTIONSLOTTED> ) ( <S> )* sel=compound_selector(null) <RPAREN> ) {
+	| ( ( n=<FUNCTIONSLOTTED> ) ( <S> )* sel=compound_selector(null) ( <S> )* <RPAREN> ) {
 		try {
 			ArrayList<CssSelectors> list = new ArrayList<CssSelectors>();
 			list.add(sel);
@@ -2732,7 +2732,7 @@ String error_str = null;
                                                 getBeginColumn(), getEndLine(), getEndColumn(), e));
                 }
 	    }
-	    | ( ( n=<FUNCTIONHOST> | n=<FUNCTIONHOSTCONTEXT> ) ( <S> )* sel=compound_selector(null) ) {
+	    | ( ( n=<FUNCTIONHOST> | n=<FUNCTIONHOSTCONTEXT> ) ( <S> )* sel=compound_selector(null) ( <S> )* ) {
 		try {
 			ArrayList<CssSelectors> list = new ArrayList<CssSelectors>();
 			list.add(sel);
