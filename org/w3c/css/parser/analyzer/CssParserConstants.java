@@ -259,25 +259,31 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int FUNCTIONHAS = 124;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 125;
+  int FUNCTIONSLOTTED = 125;
   /** RegularExpression Id. */
-  int FUNCTIONCALC = 126;
+  int FUNCTIONHOST = 126;
   /** RegularExpression Id. */
-  int FUNCTIONMIN = 127;
+  int FUNCTIONHOSTCONTEXT = 127;
   /** RegularExpression Id. */
-  int FUNCTIONMAX = 128;
+  int FUNCTIONNOT = 128;
   /** RegularExpression Id. */
-  int FUNCTIONCLAMP = 129;
+  int FUNCTIONCALC = 129;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 130;
+  int FUNCTIONMIN = 130;
   /** RegularExpression Id. */
-  int FUNCTIONVAR = 131;
+  int FUNCTIONMAX = 131;
   /** RegularExpression Id. */
-  int FUNCTION = 132;
+  int FUNCTIONCLAMP = 132;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 133;
+  int FUNCTIONATTR = 133;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 134;
+  int FUNCTIONVAR = 134;
+  /** RegularExpression Id. */
+  int FUNCTION = 135;
+  /** RegularExpression Id. */
+  int HTMLSTARTTAG = 136;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 137;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -409,6 +415,9 @@ public interface CssParserConstants {
     "\"is(\"",
     "\"where(\"",
     "\"has(\"",
+    "\"slotted(\"",
+    "\"host(\"",
+    "\"host-context(\"",
     "\"not(\"",
     "<FUNCTIONCALC>",
     "\"min(\"",
