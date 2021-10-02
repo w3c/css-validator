@@ -27,6 +27,7 @@ import org.w3c.css.util.Warnings;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.FileSystems;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -91,8 +92,19 @@ public class StyleSheetGenerator extends StyleReport {
                     ClasspathResourceLoader.class.getName());
             Velocity.init();
 
+            String[] _path_comp = {"org", "apache", "velocity", "tools", "generic", "tools.xml"};
+            StringBuilder sb_path = new StringBuilder();
+            boolean is_first = true;
+            for (String s : _path_comp) {
+                if (!is_first) {
+                    sb_path.append(FileSystems.getDefault().getSeparator());
+                } else {
+                    is_first = false;
+                }
+                sb_path.append(s);
+            }
             FactoryConfiguration f;
-            f = ConfigurationUtils.findInClasspath("org/apache/velocity/tools/generic/tools.xml");
+            f = ConfigurationUtils.findInClasspath(sb_path.toString());
             velocityToolManager = new ToolManager(false, false);
             velocityToolManager.configure(f);
         } catch (Exception e) {
@@ -202,7 +214,13 @@ public class StyleSheetGenerator extends StyleReport {
         produceStyleSheet();
 
         try {
-            template = Velocity.getTemplate("org/w3c/css/css/" + template_file);
+            String[] _template_dir = {"org", "w3c", "css", "css"};
+            StringBuilder sb_template_file = new StringBuilder();
+            for (String s : _template_dir) {
+                sb_template_file.append(s).append(FileSystems.getDefault().getSeparator());
+            }
+            sb_template_file.append(template_file);
+            template = Velocity.getTemplate(sb_template_file.toString());
             template.setEncoding("utf-8");
         } catch (ResourceNotFoundException rnfe) {
             System.err.println(rnfe.getMessage());
