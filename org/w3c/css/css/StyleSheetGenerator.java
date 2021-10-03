@@ -93,7 +93,7 @@ public class StyleSheetGenerator extends StyleReport {
             Velocity.init();
 
             String[] _path_comp = {"org", "apache", "velocity", "tools", "generic", "tools.xml"};
-            StringBuilder sb_path = new StringBuilder();
+            StringBuilder sb_path = new StringBuilder("");
             boolean is_first = true;
             for (String s : _path_comp) {
                 if (!is_first) {
@@ -105,7 +105,7 @@ public class StyleSheetGenerator extends StyleReport {
             }
             FactoryConfiguration f;
             f = ConfigurationUtils.findInClasspath(sb_path.toString());
-            velocityToolManager = new ToolManager(false, false);
+            velocityToolManager = new ToolManager(false, true);
             velocityToolManager.configure(f);
         } catch (Exception e) {
             System.err.println("Failed to initialize Velocity. " +
@@ -119,6 +119,7 @@ public class StyleSheetGenerator extends StyleReport {
     }
 
     public StyleSheetGenerator(ApplContext ac, String title, StyleSheet style,
+
                                String document, int warningLevel) {
         ArrayList<CssRuleList> items;
 
@@ -214,13 +215,8 @@ public class StyleSheetGenerator extends StyleReport {
         produceStyleSheet();
 
         try {
-            String[] _template_dir = {"org", "w3c", "css", "css"};
-            StringBuilder sb_template_file = new StringBuilder();
-            for (String s : _template_dir) {
-                sb_template_file.append(s).append(FileSystems.getDefault().getSeparator());
-            }
-            sb_template_file.append(template_file);
-            template = Velocity.getTemplate(sb_template_file.toString());
+            String _template_dir = "org/w3c/css/css/";
+            template = Velocity.getTemplate(_template_dir + template_file);
             template.setEncoding("utf-8");
         } catch (ResourceNotFoundException rnfe) {
             System.err.println(rnfe.getMessage());
