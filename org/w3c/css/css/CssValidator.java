@@ -11,6 +11,7 @@ package org.w3c.css.css;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.Messages;
 import org.w3c.css.util.Util;
 import org.w3c.tools.resources.ProtocolException;
 import org.w3c.www.mime.MimeType;
@@ -23,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -94,7 +96,7 @@ public class CssValidator {
         // first, we get the parameters and create an application context
         try {
             style.getParams(args);
-            style.ac = new ApplContext((String) style.params.get("lang"));
+            style.ac = new ApplContext(style.params.get("lang"));
             System.err.println(style.params);
         } catch (Exception e) {
             System.out.println("Usage: java org.w3c.css.css.CssValidator " +
@@ -115,24 +117,40 @@ public class CssValidator {
                     "projection, screen, tty, tv, presentation");
             System.out.println("\t-output OUTPUT, --output=OUTPUT");
             System.out.println("\t\tPrints the result in the selected format");
-            System.out.println("\t\tPossible values for OUTPUT are text (default), xhtml, " +
-                    "html (same result as xhtml), soap12");
+            System.out.println("\t\tPossible values for OUTPUT are ");
+            System.out.print("\t\t");
+            System.out.println(StyleSheetGenerator.printAvailableFormatList("text"));
             System.out.println("\t-lang LANG, --lang=LANG");
             System.out.println("\t\tPrints the result in the specified language");
-            System.out.println("\t\tPossible values for LANG are " +
-                    "de, en (default), es, fr, ja, ko, nl, zh-cn, pl, it");
+            System.out.println("\t\tPossible values for LANG are ");
+            ArrayList<String> languages_name = Messages.languages_name;
+            Collections.sort(languages_name);
+            boolean isFirst = true;
+            for (String s : languages_name) {
+                if (!isFirst) {
+                    System.out.print(", ");
+                } else {
+                    System.out.print("\t\t");
+                    isFirst = false;
+                }
+                System.out.print(s);
+                if ("en".equals(s)) {
+                    System.out.print(" (default)");
+                }
+            }
+            System.out.println("");
             System.out.println("\t-warning WARN, --warning=WARN");
             System.out.println("\t\tWarnings verbosity level");
             System.out.println("\t\tPossible values for WARN are -1 (no " +
-                    "warning), 0, 1, 2 (default, all the warnings");
+                    "warning), 0, 1, 2 (default, all the warnings)");
             System.out.println("\t-vextwarning true, --vextwarning=true");
             System.out.println("\t\tTreat Vendor Extensions as warnings");
             System.out.println("\t\tPossible values for vextwarning are true or false " +
-                    "(default, is false");
+                    "(default)");
             System.out.println();
             System.out.println("URL");
             System.out.println("\tURL can either represent a distant " +
-                    "web resource (http://) or a local file (file:/)");
+                    "web resource (https://) or a local file (file:/)");
             System.out.println();
             System.out.println("EXIT STATUS");
             System.out.println("return 0 on success, 1 for fatal errors, 10 to 110 for " +

@@ -30,6 +30,7 @@ import java.io.PrintWriter;
 import java.nio.file.FileSystems;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -243,6 +244,25 @@ public class StyleSheetGenerator extends StyleReport {
             out.println("   File : " + getDocumentName(key));
         }
         out.flush();
+    }
+
+    public static String printAvailableFormatList(String def) {
+        Enumeration<?> e = availableFormat.propertyNames();
+        StringBuilder sb = new StringBuilder();
+        ArrayList<String> t = (ArrayList<String>) Collections.list(e);
+        Collections.sort(t);
+        boolean isFirst = true;
+        for (String s : t) {
+            if (!isFirst) {
+                sb.append(", ");
+            }
+            isFirst = false;
+            sb.append(s);
+            if (s.equals(def)) {
+                sb.append(" (default)");
+            }
+        }
+        return sb.toString();
     }
 
 
