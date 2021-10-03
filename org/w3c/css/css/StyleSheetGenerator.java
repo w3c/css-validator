@@ -8,8 +8,7 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.apache.velocity.tools.ToolManager;
-import org.apache.velocity.tools.config.ConfigurationUtils;
-import org.apache.velocity.tools.config.FactoryConfiguration;
+import org.apache.velocity.tools.generic.EscapeTool;
 import org.w3c.css.error.ErrorReportHTML;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
@@ -27,7 +26,6 @@ import org.w3c.css.util.Warnings;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.FileSystems;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,22 +90,7 @@ public class StyleSheetGenerator extends StyleReport {
             Velocity.setProperty("classpath.resource.loader.class",
                     ClasspathResourceLoader.class.getName());
             Velocity.init();
-
-            String[] _path_comp = {"org", "apache", "velocity", "tools", "generic", "tools.xml"};
-            StringBuilder sb_path = new StringBuilder("");
-            boolean is_first = true;
-            for (String s : _path_comp) {
-                if (!is_first) {
-                    sb_path.append(FileSystems.getDefault().getSeparator());
-                } else {
-                    is_first = false;
-                }
-                sb_path.append(s);
-            }
-            FactoryConfiguration f;
-            f = ConfigurationUtils.findInClasspath(sb_path.toString());
-            velocityToolManager = new ToolManager(false, true);
-            velocityToolManager.configure(f);
+            velocityToolManager = new ToolManager();
         } catch (Exception e) {
             System.err.println("Failed to initialize Velocity. " +
                     "Validator might not work as expected.");
@@ -130,6 +113,7 @@ public class StyleSheetGenerator extends StyleReport {
         this.template_file = availableFormat.getProperty(document);
 
         context = new VelocityContext(velocityToolManager.createContext());
+        context.put("esc", new EscapeTool());
         // add a static ref for templates that needs to do some escaping
         context.put("Messages", Messages.class);
         // adjust the source name if needed
