@@ -2675,6 +2675,7 @@ CssExpression param = null;
 ArrayList<CssSelectors> selector_list = null;
 CssSelectors sel = null;
 String error_str = null;
+CssExpression exp = new CssExpression();
 }
 {
 	<COLON> ( ( n=ident()
@@ -2688,11 +2689,9 @@ String error_str = null;
 	                   getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
 	    } )
-		  // FXIXME rewrite to make :lang( use a special case
-		  | ( ( n=<FUNCTIONLANG> ( <S> )* ( language=ident() | language=<STRING> ) ( <S> )* ) {
+	    | ( ( ( n=<FUNCTIONDIR> | n=<FUNCTIONLANG> ) ( <S> )* term(exp) ) {
 		try {
-		    s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
-				   convertIdent(language.image));
+		    s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), exp);
 		} catch(InvalidParamException e) {
 			removeThisRule();
 			ac.getFrame()

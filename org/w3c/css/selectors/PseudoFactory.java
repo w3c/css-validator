@@ -5,6 +5,7 @@
 package org.w3c.css.selectors;
 
 import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionDir;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionHas;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionHost;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionHostContext;
@@ -21,6 +22,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 
 import java.util.ArrayList;
 
@@ -215,9 +217,6 @@ public class PseudoFactory {
             throw new InvalidParamException("pseudo",
                     "null pseudofunction", ac);
         }
-        if (name.equals("lang")) {
-            return new PseudoFunctionLang(name, value, ac);
-        }
         if (name.equals("not")) {
             return new PseudoFunctionNot(name, value);
         }
@@ -274,6 +273,24 @@ public class PseudoFactory {
         }
         if (name.equals("host-context")) {
             return new PseudoFunctionHostContext(name, value);
+        }
+        throw new InvalidParamException("pseudo",
+                ":" + name, ac);
+    }
+
+    public static PseudoFunctionSelector newPseudoFunction(String name,
+                                                           CssExpression exp,
+                                                           ApplContext ac)
+            throws InvalidParamException {
+        if (name == null) {
+            throw new InvalidParamException("pseudo",
+                    "null pseudofunction", ac);
+        }
+        if (name.equals("dir")) {
+            return new PseudoFunctionDir(name, exp, ac);
+        }
+        if (name.equals("lang")) {
+            return new PseudoFunctionLang(name, exp, ac);
         }
         throw new InvalidParamException("pseudo",
                 ":" + name, ac);

@@ -25,6 +25,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warnings;
+import org.w3c.css.values.CssExpression;
 
 import java.util.ArrayList;
 
@@ -264,6 +265,22 @@ public final class CssSelectors extends SelectorsList
             for (String s : ps) {
                 if (pseudo.equals(s)) {
                     addPseudoFunction(PseudoFactory.newPseudoFunction(pseudo, selector_list, ac));
+                    return;
+                }
+            }
+            throw new InvalidParamException("pseudo", ":" + pseudo, ac);
+        }
+    }
+
+    public void setPseudoFun(ApplContext ac, String pseudo, CssExpression expression)
+            throws InvalidParamException {
+
+        CssVersion version = ac.getCssVersion();
+        String[] ps = PseudoFactory.getPseudoFunction(version);
+        if (ps != null) {
+            for (String s : ps) {
+                if (pseudo.equals(s)) {
+                    addPseudoFunction(PseudoFactory.newPseudoFunction(pseudo, expression, ac));
                     return;
                 }
             }

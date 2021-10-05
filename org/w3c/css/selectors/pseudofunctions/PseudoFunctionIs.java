@@ -11,7 +11,7 @@ import org.w3c.css.selectors.PseudoFunctionSelector;
 import java.util.ArrayList;
 
 /**
- * PseudoFunctionNot
+ * PseudoFunctionIs
  */
 public class PseudoFunctionIs extends PseudoFunctionSelector {
 

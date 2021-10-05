@@ -97,4 +97,16 @@ public class PseudoFunctionSelector implements Selector {
         }
         return representation;
     }
+
+    public String functionName() {
+        StringBuilder sb = new StringBuilder();
+        if (isElement) {
+            sb.append(':');
+        }
+        sb.append(':');
+        sb.append(name);
+        sb.append('(');
+        sb.append(')');
+        return sb.toString();
+    }
 }
