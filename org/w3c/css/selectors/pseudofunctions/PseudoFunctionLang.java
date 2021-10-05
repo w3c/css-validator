@@ -14,6 +14,7 @@ import org.w3c.css.values.CssValue;
 import java.util.IllformedLocaleException;
 import java.util.Locale;
 import java.util.Locale.Builder;
+import java.util.MissingResourceException;
 
 /**
  * PseudoFunctionLang<br />
@@ -65,8 +66,9 @@ public class PseudoFunctionLang extends PseudoFunctionSelector {
             Builder builder = new Builder();
             builder.setLanguageTag(lang);
             Locale l = builder.build();
+            lang = l.getISO3Language();
             return val;
-        } catch (IllformedLocaleException ex) {
+        } catch (MissingResourceException|IllformedLocaleException ex) {
             throw new InvalidParamException("value", lang, caller, ac);
         }
     }
