@@ -271,29 +271,33 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int FUNCTIONNTHLASTCHILD = 130;
   /** RegularExpression Id. */
-  int FUNCTIONNTHOFTYPE = 131;
+  int FUNCTIONNTHCOL = 131;
   /** RegularExpression Id. */
-  int FUNCTIONNTHLASTOFTYPE = 132;
+  int FUNCTIONNTHLASTCOL = 132;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 133;
+  int FUNCTIONNTHOFTYPE = 133;
   /** RegularExpression Id. */
-  int FUNCTIONCALC = 134;
+  int FUNCTIONNTHLASTOFTYPE = 134;
   /** RegularExpression Id. */
-  int FUNCTIONMIN = 135;
+  int FUNCTIONNOT = 135;
   /** RegularExpression Id. */
-  int FUNCTIONMAX = 136;
+  int FUNCTIONCALC = 136;
   /** RegularExpression Id. */
-  int FUNCTIONCLAMP = 137;
+  int FUNCTIONMIN = 137;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 138;
+  int FUNCTIONMAX = 138;
   /** RegularExpression Id. */
-  int FUNCTIONVAR = 139;
+  int FUNCTIONCLAMP = 139;
   /** RegularExpression Id. */
-  int FUNCTION = 140;
+  int FUNCTIONATTR = 140;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 141;
+  int FUNCTIONVAR = 141;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 142;
+  int FUNCTION = 142;
+  /** RegularExpression Id. */
+  int HTMLSTARTTAG = 143;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 144;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -431,6 +435,8 @@ public interface CssParserConstants {
     "\"host-context(\"",
     "\"nth-child(\"",
     "\"nth-last-child(\"",
+    "\"nth-col(\"",
+    "\"nth-last-col(\"",
     "\"nth-of-type(\"",
     "\"nth-last-of-type(\"",
     "\"not(\"",
