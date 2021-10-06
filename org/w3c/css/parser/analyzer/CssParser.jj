@@ -775,6 +775,8 @@ TOKEN [IGNORE_CASE] :
     | <FUNCTIONHOSTCONTEXT   : "host-context("     >
     | <FUNCTIONNTHCHILD      : "nth-child("        >
     | <FUNCTIONNTHLASTCHILD  : "nth-last-child("   >
+    | <FUNCTIONNTHCOL        : "nth-col("          >
+    | <FUNCTIONNTHLASTCOL    : "nth-last-col("     >
     | <FUNCTIONNTHOFTYPE     : "nth-of-type("      >
     | <FUNCTIONNTHLASTOFTYPE : "nth-last-of-type(" >
     | <FUNCTIONNOT           : "not("              >
@@ -2797,6 +2799,17 @@ CssANPlusB anpb = null;
                                                 getBeginColumn(), getEndLine(), getEndColumn(), e));
                 }
 	    }
+	    | ( ( n=<FUNCTIONNTHCOL> | n=<FUNCTIONNTHLASTCOL> ) ( <S> )*
+		( ( anpb=anplusb() ( <S> )* ) | error_str=skip_to_matching_paren() ) ) {
+		try {
+			exp.addValue(anpb);
+                        s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), exp);
+                } catch(InvalidParamException e) {
+                        removeThisRule();
+                        ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+                                                getBeginColumn(), getEndLine(), getEndColumn(), e));
+                }
+	    }
 	    | ( n=<FUNCTION> ( <S> )* param=expression() ) {
 		try {
 		    s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
@@ -3852,6 +3865,8 @@ String skip_to_matching_paren() {
 	    case FUNCTIONSLOTTED:
 	    case FUNCTIONNTHCHILD:
 	    case FUNCTIONNTHLASTCHILD:
+	    case FUNCTIONNTHCOL:
+	    case FUNCTIONNTHLASTCOL:
 	    case FUNCTIONNTHOFTYPE:
 	    case FUNCTIONNTHLASTOFTYPE:
             case FUNCTIONNOT:

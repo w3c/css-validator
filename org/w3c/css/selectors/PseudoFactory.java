@@ -13,6 +13,7 @@ import org.w3c.css.selectors.pseudofunctions.PseudoFunctionIs;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionLang;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNot;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthChild;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthCol;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastChild;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastOfType;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthOfType;
@@ -279,6 +280,12 @@ public class PseudoFactory {
         }
         if (name.equals("lang")) {
             return new PseudoFunctionLang(name, exp, ac);
+        }
+        if (name.equals("nth-col")) {
+            return new PseudoFunctionNthCol(name, exp, ac);
+        }
+        if (name.equals("nth-last-col")) {
+            return new PseudoFunctionNthCol(name, exp, ac);
         }
         throw new InvalidParamException("pseudo",
                 ":" + name, ac);
