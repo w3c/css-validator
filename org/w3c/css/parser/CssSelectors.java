@@ -288,6 +288,24 @@ public final class CssSelectors extends SelectorsList
         }
     }
 
+    public void setPseudoFun(ApplContext ac, String pseudo, CssExpression expression,
+                             ArrayList<CssSelectors> selector_list)
+            throws InvalidParamException {
+
+        CssVersion version = ac.getCssVersion();
+        String[] ps = PseudoFactory.getPseudoFunction(version);
+        if (ps != null) {
+            for (String s : ps) {
+                if (pseudo.equals(s)) {
+                    addPseudoFunction(PseudoFactory.newPseudoFunction(pseudo, expression,
+                            selector_list, ac));
+                    return;
+                }
+            }
+            throw new InvalidParamException("pseudo", ":" + pseudo, ac);
+        }
+    }
+
 
     public void addType(TypeSelector type) throws InvalidParamException {
         super.addType(type);

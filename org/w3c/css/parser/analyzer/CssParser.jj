@@ -59,6 +59,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.WarningParamException;
 import org.w3c.css.values.CssAngle;
+import org.w3c.css.values.CssANPlusB;
 import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssBracket;
 import org.w3c.css.values.CssCalc;
@@ -671,6 +672,7 @@ TOKEN [IGNORE_CASE] :
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> ( "Hz" | "kHz" ) >
   | < RESOLUTION : <NUM> ( "dpi" | "dpcm" | "dppx" | "x") >
+  | < AN         : <NUM> "n" >
   | < DIMEN_9    : <NUM> <NMSTART> ( <NMCHAR> )* "\\9" >
   | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
   | < PERCENTAGE : <NUM> "%" >
@@ -763,21 +765,25 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-    < FUNCTIONLANG         : "lang("         >
-    | <FUNCTIONDIR         : "dir("          >
-    | <FUNCTIONIS          : "is("           >
-    | <FUNCTIONWHERE       : "where("        >
-    | <FUNCTIONHAS         : "has("          >
-    | <FUNCTIONSLOTTED     : "slotted("      >
-    | <FUNCTIONHOST        : "host("         >
-    | <FUNCTIONHOSTCONTEXT : "host-context(" >
-    | <FUNCTIONNOT         : "not("          >
-    | <FUNCTIONCALC        : "calc(" | "-moz-calc(" | "-webkit-calc(" >
-    | <FUNCTIONMIN         : "min("          >
-    | <FUNCTIONMAX         : "max("          >
-    | <FUNCTIONCLAMP       : "clamp("        >
-    | <FUNCTIONATTR        : "attr("         >
-    | <FUNCTIONVAR         : "var("          >
+    < FUNCTIONLANG           : "lang("             >
+    | <FUNCTIONDIR           : "dir("              >
+    | <FUNCTIONIS            : "is("               >
+    | <FUNCTIONWHERE         : "where("            >
+    | <FUNCTIONHAS           : "has("              >
+    | <FUNCTIONSLOTTED       : "slotted("          >
+    | <FUNCTIONHOST          : "host("             >
+    | <FUNCTIONHOSTCONTEXT   : "host-context("     >
+    | <FUNCTIONNTHCHILD      : "nth-child("        >
+    | <FUNCTIONNTHLASTCHILD  : "nth-last-child("   >
+    | <FUNCTIONNTHOFTYPE     : "nth-of-type("      >
+    | <FUNCTIONNTHLASTOFTYPE : "nth-last-of-type(" >
+    | <FUNCTIONNOT           : "not("              >
+    | <FUNCTIONCALC          : "calc(" | "-moz-calc(" | "-webkit-calc(" >
+    | <FUNCTIONMIN           : "min("              >
+    | <FUNCTIONMAX           : "max("              >
+    | <FUNCTIONCLAMP         : "clamp("            >
+    | <FUNCTIONATTR          : "attr("             >
+    | <FUNCTIONVAR           : "var("              >
 }
 
 <DEFAULT>
@@ -1929,6 +1935,37 @@ char unaryOperator() :
     | <PLUS> { return '+'; }
 }
 
+CssANPlusB anplusb() :
+{
+	Token n = null;
+	Token b = null;
+	char op = ' ';
+	char pb = ' ';
+	CssANPlusB anpb = new CssANPlusB();
+}
+{
+		// odd/even/n-2/-n-3 ...
+	( n=ident() ( LOOKAHEAD(2) ( <S> )* ( ( pb=unaryOperator() ( <S> )* )?  b=<NUMBER> ) )? ) {
+		anpb.set(n.image, pb, ((b != null) ? b.image : null), "An+B", ac);
+		return anpb;
+	}
+		// +/-num (so no N)
+	| LOOKAHEAD(2) ( ( op=unaryOperator() )? b=<NUMBER> ) {
+		anpb.set(""+op+b.image, ac);
+		return anpb;
+	}
+		// generic aN+b including aN and N+b where N is mandatory
+	| LOOKAHEAD(2) ( ( op=unaryOperator() )? n=<AN> ( LOOKAHEAD(2) ( <S> )* ( pb=unaryOperator() ( <S> )* )? ( b=<NUMBER> ) )? ) {
+		anpb.set(op, n.image, pb, b.image, "An+B", ac);
+		return anpb;
+	}
+		// DIMEN may match 2n- and possibly another number after
+	| ( ( op=unaryOperator() )? n=<DIMEN> ( LOOKAHEAD(2) ( <S> )* b=<NUMBER> )? ) {
+		anpb.set(op, n.image, ((b != null) ? b.image : null), "An+B", ac);
+		return anpb;
+	}
+}
+
 /**
  * @exception ParseException exception during the parse
  */
@@ -2251,7 +2288,7 @@ CssSelectors complex_selector(CssSelectors sel) :
 {
 	try {
 		current=compound_selector(sel)
-	        ( ( comb=combinator() {
+	        ( LOOKAHEAD(2) ( comb=combinator() {
 			if ((ac.getCssProfile() == CssProfile.MOBILE) ||
 				getAtRule().toString().equals("@media atsc-tv") ||
 				(ac.getCssVersion() == CssVersion.CSS1)) {
@@ -2669,13 +2706,17 @@ void pseudo(CssSelectors s) :
  * @exception ParseException exception during the parse
  */
 void pseudo_class_selector(CssSelectors s) :
-{Token n;
+{
+Token n;
+Token id = null;
 Token language = null;
 CssExpression param = null;
 ArrayList<CssSelectors> selector_list = null;
 CssSelectors sel = null;
 String error_str = null;
+String prefix = null;
 CssExpression exp = new CssExpression();
+CssANPlusB anpb = null;
 }
 {
 	<COLON> ( ( n=ident()
@@ -2699,7 +2740,7 @@ CssExpression exp = new CssExpression();
 			       getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
 	    }
-	    | ( ( n=<FUNCTIONIS> | n=<FUNCTIONNOT> ) ( <S> )* selector_list=selector_list() ) {
+	    | ( ( n=<FUNCTIONIS> | n=<FUNCTIONNOT> ) ( <S> )* selector_list=selector_list() ( <S> )* ) {
 		try {
 			s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
 		} catch(InvalidParamException e) {
@@ -2708,7 +2749,7 @@ CssExpression exp = new CssExpression();
 						getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
             } // we must be more forgiving for :where()
-            | ( n=<FUNCTIONWHERE> ( <S> )* try {  selector_list=selector_list()  } catch (ParseException ignored) {
+            | ( n=<FUNCTIONWHERE> ( <S> )* try {  selector_list=selector_list() ( <S> )* } catch (ParseException ignored) {
 						s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(),
 								skip_to_matching_paren());
 						}
@@ -2722,7 +2763,7 @@ CssExpression exp = new CssExpression();
                                                 getBeginColumn(), getEndLine(), getEndColumn(), e));
                 }
 	    }
-	    | ( n=<FUNCTIONHAS> selector_list=relative_selector_list() ) {
+	    | ( n=<FUNCTIONHAS> selector_list=relative_selector_list() ( <S> )* ) {
 		try {
                         s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), selector_list);
                 } catch(InvalidParamException e) {
@@ -2741,6 +2782,20 @@ CssExpression exp = new CssExpression();
 			ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
 						getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
+	    }
+	    | ( ( n=<FUNCTIONNTHCHILD> | n=<FUNCTIONNTHLASTCHILD> | n=<FUNCTIONNTHOFTYPE> | n=<FUNCTIONNTHLASTOFTYPE> ) ( <S> )*
+		( ( anpb=anplusb() ( <S> )* ( id=ident() ( <S> )* selector_list=selector_list() ( <S> )* )? ) | error_str=skip_to_matching_paren() ) ) {
+		try {
+			exp.addValue(anpb);
+			if (id != null) {
+				setValue(new CssIdent(), exp, ' ', id, IDENT);
+			}
+                        s.setPseudoFun(ac, convertStringIndex(n.image, 0, n.image.length() -1, false).toLowerCase(), exp, selector_list);
+                } catch(InvalidParamException e) {
+                        removeThisRule();
+                        ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+                                                getBeginColumn(), getEndLine(), getEndColumn(), e));
+                }
 	    }
 	    | ( n=<FUNCTION> ( <S> )* param=expression() ) {
 		try {
@@ -3795,6 +3850,10 @@ String skip_to_matching_paren() {
 	    case FUNCTIONHOST:
 	    case FUNCTIONHOSTCONTEXT:
 	    case FUNCTIONSLOTTED:
+	    case FUNCTIONNTHCHILD:
+	    case FUNCTIONNTHLASTCHILD:
+	    case FUNCTIONNTHOFTYPE:
+	    case FUNCTIONNTHLASTOFTYPE:
             case FUNCTIONNOT:
             case FUNCTIONCALC:
             case FUNCTIONMIN:

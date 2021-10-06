@@ -220,18 +220,6 @@ public class PseudoFactory {
         if (name.equals("not")) {
             return new PseudoFunctionNot(name, value);
         }
-        if (name.equals("nth-child")) {
-            return new PseudoFunctionNthChild(name, value);
-        }
-        if (name.equals("nth-last-child")) {
-            return new PseudoFunctionNthLastChild(name, value);
-        }
-        if (name.equals("nth-of-type")) {
-            return new PseudoFunctionNthOfType(name, value);
-        }
-        if (name.equals("nth-last-of-type")) {
-            return new PseudoFunctionNthLastOfType(name, value);
-        }
         if (name.equals("slotted")) {
             return new PseudoFunctionSlotted(name, value);
         }
@@ -291,6 +279,32 @@ public class PseudoFactory {
         }
         if (name.equals("lang")) {
             return new PseudoFunctionLang(name, exp, ac);
+        }
+        throw new InvalidParamException("pseudo",
+                ":" + name, ac);
+    }
+
+    public static PseudoFunctionSelector newPseudoFunction(String name,
+                                                           CssExpression exp,
+                                                           ArrayList<CssSelectors> selector_list,
+
+                                                           ApplContext ac)
+            throws InvalidParamException {
+        if (name == null) {
+            throw new InvalidParamException("pseudo",
+                    "null pseudofunction", ac);
+        }
+        if (name.equals("nth-child")) {
+            return new PseudoFunctionNthChild(name, exp, selector_list, ac);
+        }
+        if (name.equals("nth-last-child")) {
+            return new PseudoFunctionNthLastChild(name, exp, selector_list, ac);
+        }
+        if (name.equals("nth-of-type")) {
+            return new PseudoFunctionNthOfType(name, exp, selector_list, ac);
+        }
+        if (name.equals("nth-last-of-type")) {
+            return new PseudoFunctionNthLastOfType(name, exp, selector_list, ac);
         }
         throw new InvalidParamException("pseudo",
                 ":" + name, ac);
