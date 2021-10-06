@@ -34,6 +34,7 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
     CssAnimationDirection cssAnimationDirection = null;
     CssAnimationFillMode cssAnimationFillMode = null;
     CssAnimationIterationCount cssAnimationIterationCount = null;
+    CssAnimationPlayState cssAnimationPlayState = null;
 
     /**
      * Create a new CssAnimation
@@ -47,6 +48,7 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
         cssAnimationIterationCount = new CssAnimationIterationCount();
         cssAnimationFillMode = new CssAnimationFillMode();
         cssAnimationDirection = new CssAnimationDirection();
+        cssAnimationPlayState = new CssAnimationPlayState();
     }
 
     /**
@@ -133,6 +135,10 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
                 cssAnimationFillMode = new CssAnimationFillMode();
                 cssAnimationFillMode.value = v.fillmode;
             }
+            if (v.playState != null) {
+                cssAnimationPlayState = new CssAnimationPlayState();
+                cssAnimationPlayState.value = v.playState;
+            }
         } else {
             // TODO explode the layers for addToStyle...
             value = new CssLayerList(values);
@@ -174,6 +180,9 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
         if (cssAnimationFillMode != null) {
             cssAnimationFillMode.addToStyle(ac, style);
         }
+        if (cssAnimationPlayState != null) {
+            cssAnimationPlayState.addToStyle(ac, style);
+        }
     }
 
     private CssAnimationValue checkLayer(ApplContext ac,
@@ -183,7 +192,7 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
         CssAnimationValue v = new CssAnimationValue();
         // here we know we have the right operator, we just need to check
         // everything else.
-        if (expression.getCount() > 7) {
+        if (expression.getCount() > 8) {
             throw new InvalidParamException("unrecognize", ac);
         }
         CssValue val;
@@ -261,6 +270,12 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
                             break;
                         }
                     }
+                    if (v.playState == null) {
+                        if (CssAnimationPlayState.getAllowedIdent(id) != null) {
+                            v.playState = val;
+                            break;
+                        }
+                    }
                     if (v.name == null) {
                         if (CssAnimationName.getAllowedIdent(ac, id) != null) {
                             v.name = val;
@@ -287,6 +302,7 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
         CssValue itercount = null;
         CssValue direction = null;
         CssValue fillmode = null;
+        CssValue playState = null;
 
 
         public String toString() {
