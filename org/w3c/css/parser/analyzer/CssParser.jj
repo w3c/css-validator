@@ -1953,7 +1953,11 @@ CssANPlusB anplusb() :
 	}
 		// +/-num (so no N)
 	| LOOKAHEAD(2) ( ( op=unaryOperator() )? b=<NUMBER> ) {
-		anpb.set(""+op+b.image, ac);
+		if (op == ' ') {
+			anpb.set(b.image, ac);
+		} else {
+			anpb.set(""+op+b.image, ac);
+		}
 		return anpb;
 	}
 		// generic aN+b including aN and N+b where N is mandatory
