@@ -8580,10 +8580,13 @@ n.image = Util.strip(n.image);
   String convertStringIndex(String s, int start, int len, boolean escapeFirst) throws ParseException {int index = start;
     int t;
     int maxCount = 0;
+    boolean gotWhiteSpace = false;
+    int count = 0;
     if ((start == 0) && (len == s.length()) && (s.indexOf('\\') == -1)) {
         return s;
     }
     StringBuilder buf = new StringBuilder(len);
+    maxCount = ((ac.getCssVersion() == CssVersion.CSS1) ?  4 : 6);
 
     while (index < len) {
         char c = s.charAt(index);
@@ -8596,11 +8599,7 @@ n.image = Util.strip(n.image);
                 case 'a': case 'b': case 'c': case 'd': case 'e': case 'f':
                 case 'A': case 'B': case 'C': case 'D': case 'E': case 'F':
                     int numValue = Character.digit(c, 16);
-                    int count = 1;
-                    if (maxCount == 0) {
-                        maxCount = ((ac.getCssVersion() == CssVersion.CSS1) ?
-                                    4 : 6);
-                    }
+                    count = 1;
                     while (index + 1 < len) {
                         c = s.charAt(index+1);
                         t = Character.digit(c, 16);
@@ -8612,8 +8611,10 @@ n.image = Util.strip(n.image);
                                 c == '\n' || c == '\f' ) {
                                 // skip the latest white space
                                 index++;
+                                gotWhiteSpace = true;
                             } else if ( c == '\r' ) {
                                 index++;
+                                gotWhiteSpace = true;
                                 // special case for \r\n
                                 if (index+1 < len) {
                                     if (s.charAt(index + 1) == '\n') {
@@ -8637,8 +8638,15 @@ n.image = Util.strip(n.image);
                         buf.append((char) numValue);
                         break;
                     }
-                    char b[] = new char[maxCount];
-                    t = maxCount;
+                    char b[];
+                    // we fully escape when we have a space
+                    if (gotWhiteSpace) {
+                        b  = new char[maxCount];
+                        t = maxCount;
+                    } else {
+                        b = new char[count];
+                        t = count;
+                    }
                     while (t > 0) {
                         b[--t] = hexdigits[numValue & 0xF];
                         numValue >>>= 4;
