@@ -76,7 +76,7 @@ public class CssTextCombineUpright extends org.w3c.css.properties.css.CssTextCom
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (inherit.equals(val.getIdent())) {
+        if (CssIdent.isCssWide(val.getIdent())) {
             value = val;
         } else {
             value = getAllowedIdent(val.getIdent());

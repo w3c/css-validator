@@ -100,7 +100,7 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
                         getPropertyName(), ac);
             }
             id = val.getIdent();
-            if (inherit.equals(id)) {
+            if (CssIdent.isCssWide(id)) {
                 if (expression.getCount() != 1) {
                     throw new InvalidParamException("value",
                             val.toString(),

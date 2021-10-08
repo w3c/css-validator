@@ -64,7 +64,7 @@ public class CssTextEmphasis extends org.w3c.css.properties.css.CssTextEmphasis 
                     break;
                 case CssTypes.CSS_IDENT:
                     CssIdent ident = val.getIdent();
-                    if (inherit.equals(ident)) {
+                    if (CssIdent.isCssWide(ident)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);

@@ -50,8 +50,7 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
      * Creates a new CssTextAlignLast
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextAlignLast(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -68,16 +67,12 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (inherit.equals(val.getIdent())) {
-            value = val;
-        } else {
-            if (getMatchingIdent(val.getIdent()) == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = val;
+        if (!CssIdent.isCssWide(val.getIdent()) && getMatchingIdent(val.getIdent()) == null) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
         }
+        value = val;
         expression.next();
     }
 

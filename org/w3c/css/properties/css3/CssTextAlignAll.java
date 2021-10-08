@@ -48,8 +48,7 @@ public class CssTextAlignAll extends org.w3c.css.properties.css.CssTextAlignAll 
      * Creates a new CssTextAlignAll
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextAlignAll(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -65,16 +64,14 @@ public class CssTextAlignAll extends org.w3c.css.properties.css.CssTextAlignAll 
                     expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (inherit.equals(val.getIdent())) {
-            value = val;
-        } else {
-            if (getAllowedIdent(val.getIdent()) == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = val;
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+
         }
+        value = val;
         expression.next();
     }
 

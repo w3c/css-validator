@@ -85,7 +85,7 @@ public class CssTransformBox extends org.w3c.css.properties.css.CssTransformBox 
         }
 
         CssIdent ident = val.getIdent();
-        if (!inherit.equals(ident) && (getAllowedValue(ident) == null)) {
+        if (!CssIdent.isCssWide(ident) && (getAllowedValue(ident) == null)) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);

@@ -54,6 +54,8 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
         CssValue hangVal = null;
         CssValue eachVal = null;
 
+        value = null;
+
         while (!expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
@@ -77,8 +79,8 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
                     break;
                 case CssTypes.CSS_IDENT:
                     CssIdent ident = val.getIdent();
-                    if (inherit.equals(ident)) {
-                        value = inherit;
+                    if (CssIdent.isCssWide(ident)) {
+                        value = val;
                         if (check && expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
@@ -100,7 +102,7 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
             expression.next();
         }
         // sanity check, we must have a length or percentage
-        if (value != inherit) {
+        if (value == null) {
             if (sizeVal == null) {
                 throw new InvalidParamException("value",
                         expression.toString(), getPropertyName(), ac);

@@ -77,8 +77,7 @@ public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextE
      * Creates a new CssTextEmphasisPosition
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTextEmphasisPosition(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -103,7 +102,7 @@ public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextE
         }
 
         CssIdent ident = val.getIdent();
-        if (inherit.equals(ident)) {
+        if (CssIdent.isCssWide(ident)) {
             value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",

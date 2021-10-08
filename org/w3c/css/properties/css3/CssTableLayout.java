@@ -48,8 +48,7 @@ public class CssTableLayout extends org.w3c.css.properties.css.CssTableLayout {
      * Creates a new CssTableLayout
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTableLayout(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -64,23 +63,19 @@ public class CssTableLayout extends org.w3c.css.properties.css.CssTableLayout {
         val = expression.getValue();
         op = expression.getOperator();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent id = val.getIdent();
-            if (inherit.equals(id)) {
-                value = val;
-            } else {
-                if (getAllowedIdent(id) == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
-                }
-                value = val;
-            }
-        } else {
+        if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);
         }
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+
+        }
+        value = val;
         expression.next();
     }
 

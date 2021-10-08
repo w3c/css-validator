@@ -68,7 +68,7 @@ public class CssTextDecorationThickness extends org.w3c.css.properties.css.CssTe
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val.getIdent())) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     value = val;
                     break;
                 }

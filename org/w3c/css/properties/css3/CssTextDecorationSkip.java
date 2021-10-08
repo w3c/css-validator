@@ -85,14 +85,7 @@ public class CssTextDecorationSkip extends org.w3c.css.properties.css.CssTextDec
         }
 
         CssIdent ident = val.getIdent();
-        if (inherit.equals(ident)) {
-            value = val;
-            if (check && expression.getCount() != 1) {
-                throw new InvalidParamException("value",
-                        val.toString(),
-                        getPropertyName(), ac);
-            }
-        } else if (none.equals(ident)) {
+        if (CssIdent.isCssWide(ident) || none.equals(ident)) {
             value = val;
             if (check && expression.getCount() != 1) {
                 throw new InvalidParamException("value",

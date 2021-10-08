@@ -99,8 +99,8 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
             } else {
                 // so we have an ident...
                 CssIdent ident = val.getIdent();
-                if (inherit.equals(ident)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
                     if (check && expression.getCount() != 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),

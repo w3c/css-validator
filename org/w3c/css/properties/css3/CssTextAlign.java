@@ -65,16 +65,14 @@ public class CssTextAlign extends org.w3c.css.properties.css.CssTextAlign {
                     expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (inherit.equals(val.getIdent())) {
-            value = val;
-        } else {
-            if (getAllowedIdent(val.getIdent()) == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = val;
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+
         }
+        value = val;
         expression.next();
     }
 

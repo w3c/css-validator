@@ -61,7 +61,7 @@ public class CssTextDecorationSkipInk extends org.w3c.css.properties.css.CssText
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val.getIdent())) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     value = val;
                     break;
                 }
