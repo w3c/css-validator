@@ -123,7 +123,7 @@ public class CssTouchAction extends org.w3c.css.properties.css.CssTouchAction {
                         getPropertyName(), ac);
             }
             id = val.getIdent();
-            if (id.equals(inherit)) {
+            if (CssIdent.isCssWide(id)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),

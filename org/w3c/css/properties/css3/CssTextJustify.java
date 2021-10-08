@@ -67,7 +67,7 @@ public class CssTextJustify extends org.w3c.css.properties.css.CssTextJustify {
         // ident, so inherit, or allowed value
         CssIdent id = val.getIdent();
 
-        if (!inherit.equals(id) && (getMatchingIdent(id) == null)) {
+        if (!CssIdent.isCssWide(id) && (getMatchingIdent(id) == null)) {
             throw new InvalidParamException("value",
                     expression.getValue(),
                     getPropertyName(), ac);

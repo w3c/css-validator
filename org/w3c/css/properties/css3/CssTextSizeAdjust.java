@@ -69,7 +69,7 @@ public class CssTextSizeAdjust extends org.w3c.css.properties.css.CssTextSizeAdj
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
                 CssIdent id = val.getIdent();
-                if (inherit.equals(id)) {
+                if (CssIdent.isCssWide(id)) {
                     value = val;
                     break;
                 } else {

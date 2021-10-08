@@ -85,26 +85,26 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
                         getPropertyName(), ac);
             }
             // ident, so inherit, or allowed value
-            if (inherit.equals(val.getIdent())) {
+            if (CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                values.add(inherit);
+                values.add(val);
             } else if (none.equals(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                values.add(none);
+                values.add(val);
             } else if (fullWidth.equals(val.getIdent()) && !got_full_width) {
                 got_full_width = true;
-                values.add(fullWidth);
+                values.add(val);
             } else if (fullSizeKana.equals(val.getIdent()) && !got_full_size_kana) {
                 got_full_size_kana = true;
-                values.add(fullSizeKana);
+                values.add(val);
             } else if (!got_action) {
                 if (getMatchingActionIdent(val.getIdent()) == null) {
                     throw new InvalidParamException("value",

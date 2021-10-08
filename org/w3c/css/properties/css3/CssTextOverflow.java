@@ -69,7 +69,7 @@ public class CssTextOverflow extends org.w3c.css.properties.css.CssTextOverflow 
                     getPropertyName(), ac);
         }
         CssIdent id = val.getIdent();
-        if (!inherit.equals(id) && (getAllowedIdent(id) == null)) {
+        if (!CssIdent.isCssWide(id) && (getAllowedIdent(id) == null)) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);

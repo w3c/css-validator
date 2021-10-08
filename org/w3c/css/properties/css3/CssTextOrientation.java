@@ -65,7 +65,7 @@ public class CssTextOrientation extends org.w3c.css.properties.css.CssTextOrient
                     getPropertyName(), ac);
         }
         CssIdent id = val.getIdent();
-        if (!inherit.equals(id) && (getAllowedIdent(id) == null)) {
+        if (!CssIdent.isCssWide(id) && (getAllowedIdent(id) == null)) {
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
