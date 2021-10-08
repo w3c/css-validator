@@ -67,20 +67,20 @@ public class CssScrollPaddingInline extends org.w3c.css.properties.css.CssScroll
                 _longhand_start.value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value",
                                 expression.getValue(),
                                 getPropertyName(), ac);
                     }
-                    values.add(inherit);
-                    _longhand_start.value = inherit;
-                    _longhand_end.value = inherit;
+                    values.add(val);
+                    _longhand_start.value = val;
+                    _longhand_end.value = val;
                     break;
                 }
-                if (auto.equals(val)) {
-                    values.add(auto);
-                    _longhand_start.value = auto;
+                if (auto.equals(val.getIdent())) {
+                    values.add(val);
+                    _longhand_start.value = val;
                     break;
                 }
             default:

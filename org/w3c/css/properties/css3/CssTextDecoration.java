@@ -56,6 +56,7 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
         CssValue thiValue = null;
         CssExpression linExp = null;
         CssExpression thiExp = null;
+        boolean gotCssWide = false;
 
         int state = 0;
 
@@ -101,6 +102,7 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
                 CssIdent ident = val.getIdent();
                 if (CssIdent.isCssWide(ident)) {
                     value = val;
+                    gotCssWide = true;
                     if (check && expression.getCount() != 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),
@@ -202,7 +204,7 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
             got++;
         }
         // and generate the value;
-        if (value != inherit && got > 1) {
+        if (!gotCssWide && got > 1) {
             ArrayList<CssValue> v = new ArrayList<CssValue>(4);
             if (lineValue != null) {
                 v.add(lineValue.value);

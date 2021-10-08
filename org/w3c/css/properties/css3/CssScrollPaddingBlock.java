@@ -42,8 +42,7 @@ public class CssScrollPaddingBlock extends org.w3c.css.properties.css.CssScrollP
      * Creates a new CssScrollPaddingBlock
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssScrollPaddingBlock(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -68,20 +67,20 @@ public class CssScrollPaddingBlock extends org.w3c.css.properties.css.CssScrollP
                 _longhand_start.value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value",
                                 expression.getValue(),
                                 getPropertyName(), ac);
                     }
                     values.add(val);
-                    _longhand_start.value = inherit;
-                    _longhand_end.value = inherit;
+                    _longhand_start.value = val;
+                    _longhand_end.value = val;
                     break;
                 }
-                if (auto.equals(val)) {
-                    values.add(auto);
-                    _longhand_start.value = auto;
+                if (auto.equals(val.getIdent())) {
+                    values.add(val);
+                    _longhand_start.value = val;
                     break;
                 }
             default:
@@ -107,8 +106,8 @@ public class CssScrollPaddingBlock extends org.w3c.css.properties.css.CssScrollP
                     break;
                 case CssTypes.CSS_IDENT:
                     if (auto.equals(val)) {
-                        values.add(auto);
-                        _longhand_end.value = auto;
+                        values.add(val);
+                        _longhand_end.value = val;
                         break;
                     }
                 default:

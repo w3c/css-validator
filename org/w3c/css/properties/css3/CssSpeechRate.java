@@ -78,12 +78,12 @@ public class CssSpeechRate extends org.w3c.css.properties.css.CssSpeechRate {
                 break;
             case CssTypes.CSS_IDENT:
                 CssIdent id = val.getIdent();
-                if (inherit.equals(id)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 } else {
-                    value = getAllowedIdent(id);
-                    if (value != null) {
+                    if (getAllowedIdent(id) != null) {
+                        value = val;
                         break;
                     }
                 }

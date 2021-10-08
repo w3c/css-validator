@@ -81,7 +81,7 @@ public class CssSpeakAs extends org.w3c.css.properties.css.CssSpeakAs {
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
-                    if (inherit.equals(id)) {
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }

@@ -62,7 +62,7 @@ public class CssTextDecorationSkipBox extends org.w3c.css.properties.css.CssText
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
                 if (CssIdent.isCssWide(val.getIdent())) {
-                    value = inherit;
+                    value = val;
                     break;
                 }
                 if (getMatchingIdent(val.getIdent()) != null) {

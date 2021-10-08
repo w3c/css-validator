@@ -79,20 +79,20 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
                     setValue(i, val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
                                     expression.getValue(),
                                     getPropertyName(), ac);
                         }
                         values.add(val);
-                        _longhand_top.value = inherit;
-                        _longhand_right.value = inherit;
-                        _longhand_bottom.value = inherit;
-                        _longhand_left.value = inherit;
+                        _longhand_top.value = val;
+                        _longhand_right.value = val;
+                        _longhand_bottom.value = val;
+                        _longhand_left.value = val;
                         break;
                     }
-                    if (auto.equals(val)) {
+                    if (auto.equals(val.getIdent())) {
                         values.add(val);
                         setValue(i, val);
                         break;
@@ -162,13 +162,13 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
                 expression.next();
                 return val;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     expression.next();
-                    return inherit;
+                    return val;
                 }
                 if (auto.equals(val)) {
                     expression.next();
-                    return auto;
+                    return val;
                 }
             default:
                 throw new InvalidParamException("value",
