@@ -70,7 +70,7 @@ public class CssUnicodeBidi extends org.w3c.css.properties.css.CssUnicodeBidi {
                     getPropertyName(), ac);
         }
         CssIdent id = val.getIdent();
-        if (!inherit.equals(id) && (getAllowedIdent(id) == null)) {
+        if (!CssIdent.isCssWide(id) && (getAllowedIdent(id) == null)) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);

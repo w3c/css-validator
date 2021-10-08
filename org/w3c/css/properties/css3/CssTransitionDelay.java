@@ -8,6 +8,7 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -32,8 +33,7 @@ public class CssTransitionDelay extends org.w3c.css.properties.css.CssTransition
      * Creates a new CssTransitionDelay
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssTransitionDelay(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -52,9 +52,9 @@ public class CssTransitionDelay extends org.w3c.css.properties.css.CssTransition
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val.getIdent())) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         gotinherit = true;
-                        values.add(inherit);
+                        values.add(val);
                         break;
                     }
                 default:

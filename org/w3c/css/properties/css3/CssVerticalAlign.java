@@ -89,7 +89,7 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
                     break;
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
-                    if (inherit.equals(id)) {
+                    if (CssIdent.isCssWide(id)) {
                         // inherit can only be alone
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", expression.getValue(),

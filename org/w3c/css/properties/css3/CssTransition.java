@@ -200,17 +200,17 @@ public class CssTransition extends org.w3c.css.properties.css.CssTransition {
                             caller.getPropertyName(), ac);
                 case CssTypes.CSS_IDENT:
                     CssIdent ident = val.getIdent();
-                    if (inherit.equals(ident)) {
+                    if (CssIdent.isCssWide(ident)) {
                         if (expression.getCount() != 1) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        v.property = inherit;
+                        v.property = val;
                         break;
                     }
                     if (v.timingfunc == null) {
                         CssIdent match = CssTransitionTimingFunction.getAllowedIdent(ident);
                         if (match != null) {
-                            v.timingfunc = match;
+                            v.timingfunc = val;
                             break;
                         }
                     }

@@ -68,7 +68,7 @@ public class CssUserSelect extends org.w3c.css.properties.css.CssUserSelect {
 
         if (val.getType() == CssTypes.CSS_IDENT) {
             CssIdent id = val.getIdent();
-            if (inherit.equals(id)) {
+            if (CssIdent.isCssWide(id)) {
                 value = val;
             } else {
                 if (getAllowedIdent(id) == null) {

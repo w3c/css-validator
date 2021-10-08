@@ -86,15 +86,14 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val.getIdent())) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         singleVal = true;
-                        sValue = inherit;
-                        values.add(inherit);
+                        sValue = val;
+                        values.add(val);
                         break;
                     } else {
-                        CssIdent id = getAllowedIdent(val.getIdent());
-                        if (id != null) {
-                            values.add(id);
+                        if (getAllowedIdent(val.getIdent()) != null) {
+                            values.add(val);
                             break;
                         }
                         // if not recognized, let it fail

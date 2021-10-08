@@ -69,7 +69,7 @@ public class CssVisibility extends org.w3c.css.properties.css.CssVisibility {
                     getPropertyName(), ac);
         }
         CssIdent id = val.getIdent();
-        if (!inherit.equals(id) && (getAllowedIdent(id) == null)) {
+        if (!CssIdent.isCssWide(id) && (getAllowedIdent(id) == null)) {
                 throw new InvalidParamException("value",
                         val.toString(),
                         getPropertyName(), ac);

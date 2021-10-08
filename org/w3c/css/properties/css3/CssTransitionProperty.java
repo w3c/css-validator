@@ -66,17 +66,17 @@ public class CssTransitionProperty extends org.w3c.css.properties.css.CssTransit
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val.getIdent())) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         singleVal = true;
-                        sValue = inherit;
-                        values.add(inherit);
+                        sValue = val;
+                        values.add(val);
                     } else {
                         CssIdent ident = getAllowedIdent(ac, val.getIdent());
                         if (ident == none) {
                             singleVal = true;
-                            sValue = none;
+                            sValue = val;
                         }
-                        values.add(ident);
+                        values.add(val);
                     }
                     break;
                 default:
