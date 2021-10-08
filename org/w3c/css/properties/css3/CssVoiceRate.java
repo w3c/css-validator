@@ -85,13 +85,13 @@ public class CssVoiceRate extends org.w3c.css.properties.css.CssVoiceRate {
                     break;
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
-                    if (inherit.equals(id)) {
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
-                                    inherit,
+                                    val.toString(),
                                     getPropertyName(), ac);
                         }
-                        ideValue = inherit;
+                        ideValue = val;
                         break;
                     } else {
                         if ((ideValue == null) && (getAllowedIdent(id) != null)) {

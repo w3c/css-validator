@@ -73,7 +73,7 @@ public class CssVoiceBalance extends org.w3c.css.properties.css.CssVoiceBalance 
                 break;
             case CssTypes.CSS_IDENT:
                 CssIdent id = val.getIdent();
-                if (inherit.equals(id)) {
+                if (CssIdent.isCssWide(id)) {
                     value = val;
                     break;
                 }

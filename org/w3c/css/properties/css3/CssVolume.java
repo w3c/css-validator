@@ -51,8 +51,7 @@ public class CssVolume extends org.w3c.css.properties.css.CssVolume {
      * Creates a new CssVolume
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssVolume(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -86,12 +85,12 @@ public class CssVolume extends org.w3c.css.properties.css.CssVolume {
                 break;
             case CssTypes.CSS_IDENT:
                 CssIdent id = val.getIdent();
-                if (inherit.equals(id)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
                 } else {
-                    value = getAllowedIdent(id);
-                    if (value != null) {
+                    if (getAllowedIdent(id) != null) {
+                        value = val;
                         break;
                     }
                 }

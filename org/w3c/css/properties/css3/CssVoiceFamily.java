@@ -156,12 +156,8 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
                         break;
                     case CssTypes.CSS_IDENT:
                         CssIdent id = val.getIdent();
-                        if (inherit.equals(id)) {
+                        if (CssIdent.isCssWide(id) || preserve.equals(id)) {
                             // FIXME need to do better here
-                            val = inherit;
-                        } else if (preserve.equals(id)) {
-                            // FIXME need to do better here
-                            val = preserve;
                         }
                         if (nameVal == null) {
                             nameVal = val;
@@ -172,7 +168,7 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
-                        identl.add(val.getIdent());
+                        identl.add(val);
                         break;
                     case CssTypes.CSS_NUMBER:
                         CssCheckableValue n = val.getCheckableValue();
@@ -222,7 +218,7 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
                     }
                 }
             }
-            // now addthe value...
+            // now add the value...
             curval.add(new CssValueList(values));
 
         }

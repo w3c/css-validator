@@ -88,10 +88,10 @@ public class CssVoiceVolume extends org.w3c.css.properties.css.CssVoiceVolume {
                     break;
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
-                    if (inherit.equals(id)) {
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
-                                    inherit,
+                                    val,
                                     getPropertyName(), ac);
                         }
                         value = val;
@@ -99,7 +99,7 @@ public class CssVoiceVolume extends org.w3c.css.properties.css.CssVoiceVolume {
                     } else if (silent.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
-                                    silent,
+                                    val,
                                     getPropertyName(), ac);
                         }
                         value = val;

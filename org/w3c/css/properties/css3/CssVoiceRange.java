@@ -86,19 +86,19 @@ public class CssVoiceRange extends org.w3c.css.properties.css.CssVoiceRange {
                     value = val;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val.getIdent())) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", inherit,
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
                     if (identVal == null) {
                         CssIdent id = val.getIdent();
                         if (absolute.equals(id)) {
-                            identVal = absolute;
-                            value = absolute;
+                            identVal = val;
+                            value = val;
                             break;
                         }
                         identVal = getAllowedIdent(id);

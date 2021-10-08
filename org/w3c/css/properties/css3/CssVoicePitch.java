@@ -56,8 +56,7 @@ public class CssVoicePitch extends org.w3c.css.properties.css.CssVoicePitch {
      * Creates a new CssVoicePitch
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssVoicePitch(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -86,19 +85,19 @@ public class CssVoicePitch extends org.w3c.css.properties.css.CssVoicePitch {
                     value = val;
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val.getIdent())) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", inherit,
                                     getPropertyName(), ac);
                         }
-                        value = inherit;
+                        value = val;
                         break;
                     }
                     if (identVal == null) {
                         CssIdent id = val.getIdent();
                         if (absolute.equals(id)) {
-                            identVal = absolute;
-                            value = absolute;
+                            identVal = val;
+                            value = val;
                             break;
                         }
                         identVal = getAllowedIdent(id);
