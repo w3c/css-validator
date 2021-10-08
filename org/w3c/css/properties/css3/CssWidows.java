@@ -35,8 +35,7 @@ public class CssWidows extends org.w3c.css.properties.css.CssWidows {
      * @param ac         The context
      * @param expression The expression for this property
      * @param check      true will test the number of parameters
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssWidows(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -56,8 +55,7 @@ public class CssWidows extends org.w3c.css.properties.css.CssWidows {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                CssIdent ide = val.getIdent();
-                if (inherit.equals(ide)) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     value = val;
                     break;
                 }
@@ -73,8 +71,7 @@ public class CssWidows extends org.w3c.css.properties.css.CssWidows {
      *
      * @param ac,        the Context
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssWidows(ApplContext ac, CssExpression expression)
             throws InvalidParamException {

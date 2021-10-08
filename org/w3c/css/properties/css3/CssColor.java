@@ -10,6 +10,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -55,7 +56,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
                 }
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val.getIdent())) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     value = val;
                 } else {
                     color = new org.w3c.css.values.CssColor(ac, val.getIdent().toString());

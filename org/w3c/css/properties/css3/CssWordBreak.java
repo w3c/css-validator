@@ -22,7 +22,7 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
     static {
         String[] _allowed_values = {"normal", "keep-all", "break-all",
-            "break-word"};
+                "break-word"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -51,8 +51,7 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
      * Creates a new CssWorkBreak
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssWordBreak(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -69,7 +68,7 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
         if (val.getType() == CssTypes.CSS_IDENT) {
             CssIdent ident = val.getIdent();
-            if (inherit.equals(ident)) {
+            if (CssIdent.isCssWide(ident)) {
                 value = val;
             } else {
                 if (getAllowedValue(ident) == null) {
@@ -79,7 +78,7 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
                 }
                 value = val;
                 // break-word is deprecated
-                if (break_word.equals(val.getIdent())) {
+                if (break_word.equals(ident)) {
                     ac.getFrame().addWarning("deprecated", val.toString());
                 }
             }

@@ -78,17 +78,18 @@ public class CssColorScheme extends org.w3c.css.properties.css.CssColorScheme {
                         getPropertyName(), ac);
             }
             // ident, so inherit, or allowed value
-            if (inherit.equals(val)) {
+            CssIdent id = val.getIdent();
+            if (inherit.equals(id)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
-                value = inherit;
-            } else if (normal.equals(val)) {
+                value = val;
+            } else if (normal.equals(id)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
-                value = normal;
-            } else if (only.equals(val)) {
+                value = val;
+            } else if (only.equals(id)) {
                 if (gotOnly) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
@@ -96,10 +97,10 @@ public class CssColorScheme extends org.w3c.css.properties.css.CssColorScheme {
                     throw new InvalidParamException("unrecognize", ac);
                 }
                 gotOnly = true;
-                values.add(only);
-            } else if (light.equals(val)) {
+                values.add(val);
+            } else if (light.equals(id)) {
                 gotLight = true;
-                values.add(light);
+                values.add(val);
             } else {
                 values.add(val);
             }

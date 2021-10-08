@@ -9,6 +9,7 @@ import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -61,6 +62,8 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
             }
             cssCueAfter = new CssCueAfter();
             cssCueAfter.value = checkCueValue(ac, expression, this);
+            // FIXME check for double reserved keyword instead of just inherit
+            // as a value
             if (cssCueBefore.value == inherit || cssCueAfter.value == inherit) {
                 throw new InvalidParamException("value",
                         inherit, getPropertyName(), ac);
@@ -113,17 +116,17 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
                 expression.next();
                 return val;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("value",
-                                inherit, caller.getPropertyName(), ac);
+                                val, caller.getPropertyName(), ac);
                     }
                     expression.next();
-                    return inherit;
+                    return val;
                 }
-                if (none.equals(val)) {
+                if (none.equals(val.getIdent())) {
                     expression.next();
-                    return none;
+                    return val;
                 }
             default:
                 throw new InvalidParamException("value",

@@ -51,14 +51,6 @@ public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIn
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
-                    if (inherit.equals(id)) {
-                        value = val;
-                        if (expression.getCount() > 1) {
-                            throw new InvalidParamException("value", val,
-                                    getPropertyName(), ac);
-                        }
-                        break;
-                    }
                     if (none.equals(id)) {
                         value = val;
                         if (expression.getCount() > 1) {

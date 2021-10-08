@@ -50,11 +50,12 @@ public class CssLetterSpacing extends org.w3c.css.properties.css.CssLetterSpacin
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     break;
-                } else if (normal.equals(val)) {
-                    value = normal;
+                } else if (normal.equals(id)) {
+                    value = val;
                     break;
                 }
             default:

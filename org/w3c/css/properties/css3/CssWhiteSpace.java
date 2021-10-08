@@ -66,7 +66,7 @@ public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (inherit.equals(val.getIdent())) {
+        if (CssIdent.isCssWide(val.getIdent())) {
             value = val;
         } else if (getMatchingIdent(val.getIdent()) != null) {
             value = val;

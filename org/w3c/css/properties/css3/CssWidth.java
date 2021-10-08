@@ -87,11 +87,11 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
         CssValue val = expression.getValue();
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val.getIdent())) {
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
                     v = val;
                 } else {
-                    CssIdent id = getAllowedIdent(val.getIdent());
-                    if (id != null) {
+                    if (getAllowedIdent(id) != null) {
                         v = val;
                     } else {
                         throw new InvalidParamException("unrecognize", ac);

@@ -54,22 +54,23 @@ public class CssIcon extends org.w3c.css.properties.css.CssIcon {
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
-                                    inherit.toString(),
+                                    val.toString(),
                                     getPropertyName(), ac);
                         }
-                        values.add(inherit);
+                        values.add(val);
                         break;
                     }
-                    if (auto.equals(val)) {
+                    if (auto.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value",
-                                    auto.toString(),
+                                    val.toString(),
                                     getPropertyName(), ac);
                         }
-                        values.add(auto);
+                        values.add(val);
                         break;
                     }
                 default:

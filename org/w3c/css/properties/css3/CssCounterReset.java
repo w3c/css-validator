@@ -52,14 +52,6 @@ public class CssCounterReset extends org.w3c.css.properties.css.CssCounterReset 
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
                     CssIdent id = val.getIdent();
-                    if (inherit.equals(id)) {
-                        value = val;
-                        if (expression.getCount() > 1) {
-                            throw new InvalidParamException("value", val,
-                                    getPropertyName(), ac);
-                        }
-                        break;
-                    }
                     if (none.equals(val)) {
                         value = val;
                         if (expression.getCount() > 1) {

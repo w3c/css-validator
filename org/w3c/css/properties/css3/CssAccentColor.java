@@ -61,13 +61,14 @@ public class CssAccentColor extends org.w3c.css.properties.css.CssAccentColor {
                 expression.next();
                 break;
             case CssTypes.CSS_IDENT:
-                if (auto.equals(val)) {
-                    value = auto;
+                CssIdent id = val.getIdent();
+                if (auto.equals(id)) {
+                    value = val;
                     expression.next();
                     break;
                 }
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(id)) {
+                    value = val;
                     expression.next();
                     break;
                 }

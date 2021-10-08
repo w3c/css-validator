@@ -8,6 +8,7 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -44,12 +45,13 @@ public class CssDirection extends org.w3c.css.properties.css.CssDirection {
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (val.equals(inherit)) {
-            value = inherit;
-        } else if (val.equals(ltr)) {
-            value = ltr;
-        } else if (val.equals(rtl)) {
-            value = rtl;
+        CssIdent id = val.getIdent();
+        if (CssIdent.isCssWide(id)) {
+            value = val;
+        } else if (id.equals(ltr)) {
+            value = val;
+        } else if (id.equals(rtl)) {
+            value = val;
         } else {
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);

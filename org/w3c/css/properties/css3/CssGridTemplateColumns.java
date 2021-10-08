@@ -34,8 +34,7 @@ public class CssGridTemplateColumns extends org.w3c.css.properties.css.CssGridTe
      * Creates a new CssGridTemplateColumns
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssGridTemplateColumns(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -50,19 +49,20 @@ public class CssGridTemplateColumns extends org.w3c.css.properties.css.CssGridTe
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
-                    values.add(inherit);
+                    values.add(val);
                     expression.next();
                     break;
                 }
-                if (none.equals(val)) {
+                if (none.equals(id)) {
                     if (expression.getCount() > 1) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
-                    values.add(none);
+                    values.add(val);
                     expression.next();
                     break;
                 }

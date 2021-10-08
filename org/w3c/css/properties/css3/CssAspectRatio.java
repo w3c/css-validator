@@ -78,16 +78,17 @@ public class CssAspectRatio extends org.w3c.css.properties.css.CssAspectRatio {
                     throw new InvalidParamException("value", val.toString(),
                             getPropertyName(), ac);
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    CssIdent id = val.getIdent();
+                    if (inherit.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("value", val.toString(),
                                     getPropertyName(), ac);
                         }
-                        v.add(inherit);
+                        v.add(val);
                         break;
                     }
-                    if (auto.equals(val)) {
-                        v.add(auto);
+                    if (auto.equals(id)) {
+                        v.add(val);
                         break;
                     }
                     // unrecognize ident, let it fail

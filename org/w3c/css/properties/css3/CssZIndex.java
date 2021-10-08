@@ -54,7 +54,7 @@ public class CssZIndex extends org.w3c.css.properties.css.CssZIndex {
                 break;
             case CssTypes.CSS_IDENT:
                 CssIdent ide = val.getIdent();
-                if (inherit.equals(ide)) {
+                if (CssIdent.isCssWide(ide)) {
                     value = val;
                     break;
                 } else if (auto.equals(ide)) {
