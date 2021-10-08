@@ -641,8 +641,7 @@ TOKEN :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-  < URLPREFIX   : "url(" >
-  |  < URL         : <URLPREFIX> ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* <RPAREN> >
+  < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* <RPAREN> >
 }
 
 <DEFAULT>
