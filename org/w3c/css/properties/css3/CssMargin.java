@@ -80,13 +80,14 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
                     v.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        v.add(inherit);
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
+                        v.add(val);
                         gotInherit = true;
                         break;
                     }
-                    if (auto.equals(val)) {
-                        v.add(auto);
+                    if (auto.equals(id)) {
+                        v.add(val);
                         break;
                     }
                     // if not inherit, or not an ident
@@ -113,11 +114,11 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
             if (v.size() > 1) {
                 throw new InvalidParamException("unrecognize", ac);
             }
-            value = inherit;
-            marginBottom.value = inherit;
-            marginTop.value = inherit;
-            marginLeft.value = inherit;
-            marginRight.value = inherit;
+            value = v.get(0);
+            marginBottom.value = value;
+            marginTop.value = value;
+            marginLeft.value = value;
+            marginRight.value = value;
         } else {
             switch (v.size()) {
                 case 1:
@@ -174,13 +175,14 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
                 expression.next();
                 return val;
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                CssIdent id = val.getIdent();
+                if (CssIdent.isCssWide(id)) {
                     expression.next();
-                    return inherit;
+                    return val;
                 }
-                if (auto.equals(val)) {
+                if (auto.equals(id)) {
                     expression.next();
-                    return auto;
+                    return val;
                 }
                 // if not inherit, or not an ident
                 // let it flow to the exception

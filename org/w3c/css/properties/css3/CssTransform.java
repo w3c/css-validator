@@ -11,6 +11,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -82,15 +83,16 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val.getIdent())) {
+                    CssIdent id = val.getIdent();
+                    if (CssIdent.isCssWide(id)) {
                         singleVal = true;
-                        sValue = inherit;
-                        values.add(inherit);
+                        sValue = val;
+                        values.add(val);
                         break;
-                    } else if (none.equals(val)) {
+                    } else if (none.equals(id)) {
                         singleVal = true;
-                        sValue = none;
-                        values.add(none);
+                        sValue = val;
+                        values.add(val);
                         break;
                     }
                     // if not recognized, let it fail
