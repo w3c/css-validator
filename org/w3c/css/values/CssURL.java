@@ -9,9 +9,11 @@ package org.w3c.css.values;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.StringUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 /**
  * <H3>
@@ -86,8 +88,9 @@ public class CssURL extends CssValue {
      */
     public void set(String s, ApplContext ac, URL base)
             throws InvalidParamException {
-        String urlHeading = s.substring(0, 3).toLowerCase();
-        String urlname = s.substring(4, s.length() - 1).trim();
+        int ppos = s.indexOf('(');
+        String urlHeading = s.substring(0, ppos).toLowerCase();
+        String urlname = s.substring(ppos + 1, s.length() - 1).trim();
         this.base = base;
 
         urlname = urlname.trim();
@@ -109,8 +112,10 @@ public class CssURL extends CssValue {
 
         value = filterURLData(urlname);
         full = null;
-        if (!urlHeading.startsWith("url"))
+        urlHeading = StringUtils.convertIdent(urlHeading, ac).toLowerCase(Locale.ENGLISH);
+        if (!urlHeading.startsWith("url")) {
             throw new InvalidParamException("url", s, ac);
+        }
         // special case for data url...
         if (urlname.contains("data:")) {
             // no more processing.
