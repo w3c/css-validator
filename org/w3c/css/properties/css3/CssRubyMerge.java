@@ -62,7 +62,7 @@ public class CssRubyMerge extends org.w3c.css.properties.css.CssRubyMerge {
 
         if (val.getType() == CssTypes.CSS_IDENT) {
             CssIdent ident = val.getIdent();
-            if (inherit.equals(ident)) {
+            if (CssIdent.isCssWide(ident)) {
                 value = val;
             } else {
                 if (getAllowedIdent(ident) == null) {

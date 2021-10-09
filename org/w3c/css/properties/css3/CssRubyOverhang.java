@@ -70,7 +70,7 @@ public class CssRubyOverhang extends org.w3c.css.properties.css.CssRubyOverhang 
         }
         // ident, so inherit, or allowed value
         CssIdent ident = val.getIdent();
-        if (!inherit.equals(ident) && (getMatchingIdent(ident) == null)) {
+        if (!CssIdent.isCssWide(ident) && (getMatchingIdent(ident) == null)) {
             throw new InvalidParamException("value",
                     expression.getValue(),
                     getPropertyName(), ac);

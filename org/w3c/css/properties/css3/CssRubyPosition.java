@@ -83,7 +83,7 @@ public class CssRubyPosition extends org.w3c.css.properties.css.CssRubyPosition 
                         getPropertyName(), ac);
             }
             CssIdent ident = val.getIdent();
-            if (inherit.equals(ident) || inter_char.equals(ident)) {
+            if (CssIdent.isCssWide(ident) || inter_char.equals(ident)) {
                 // single values
                 if (expression.getCount() != 1) {
                     throw new InvalidParamException("value",

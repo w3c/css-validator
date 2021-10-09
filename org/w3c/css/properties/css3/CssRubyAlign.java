@@ -68,7 +68,7 @@ public class CssRubyAlign extends org.w3c.css.properties.css.CssRubyAlign {
                     expression.getValue(),
                     getPropertyName(), ac);
         }
-        if (inherit.equals(val.getIdent())) {
+        if (CssIdent.isCssWide(val.getIdent())) {
             value = val;
         } else {
             if (getAllowedIdent(val.getIdent()) == null) {

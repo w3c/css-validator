@@ -12,6 +12,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -55,12 +56,12 @@ public class CssPerspective extends org.w3c.css.properties.css.CssPerspective {
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (none.equals(val)) {
-                    value = none;
+                if (none.equals(val.getIdent())) {
+                    value = val;
                     break;
                 }
-                if (inherit.equals(val)) {
-                    value = inherit;
+                if (CssIdent.isCssWide(val.getIdent())) {
+                    value = val;
                     break;
                 }
             default:
