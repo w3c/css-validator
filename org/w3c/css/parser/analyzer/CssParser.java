@@ -3740,7 +3740,7 @@ if (op == ' ') {
         } else {
           ;
         }
-anpb.set(op, n.image, pb, b.image, "An+B", ac);
+anpb.set(op, n.image, pb, ((b!=null) ? b.image : null), "An+B", ac);
                 {if ("" != null) return anpb;}
       } else {
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {

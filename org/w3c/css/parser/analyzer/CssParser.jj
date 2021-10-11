@@ -1962,7 +1962,7 @@ CssANPlusB anplusb() :
 	}
 		// generic aN+b including aN and N+b where N is mandatory
 	| LOOKAHEAD(2) ( ( op=unaryOperator() )? n=<AN> ( LOOKAHEAD(2) ( <S> )* ( pb=unaryOperator() ( <S> )* )? ( b=<NUMBER> ) )? ) {
-		anpb.set(op, n.image, pb, b.image, "An+B", ac);
+		anpb.set(op, n.image, pb, ((b!=null) ? b.image : null), "An+B", ac);
 		return anpb;
 	}
 		// DIMEN may match 2n- and possibly another number after
