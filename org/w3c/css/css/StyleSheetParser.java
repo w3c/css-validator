@@ -24,10 +24,12 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
+import org.w3c.css.util.UnescapeFilterReader;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -289,7 +291,12 @@ public final class StyleSheetParser
 
 //	    if (cssFouffa == null) {
             String charset = ac.getCharsetForURL(url);
-            cssFouffa = new CssFouffa(ac, reader, url, lineno);
+            if (ac.getCssVersion().compareTo(CssVersion.CSS2) >=0 ) {
+                cssFouffa = new CssFouffa(ac, new UnescapeFilterReader(new BufferedReader(reader)), url, lineno);
+            } else {
+                cssFouffa = new CssFouffa(ac, reader, url, lineno);
+
+            }
             cssFouffa.addListener(this);
 //	    } else {
 //		cssFouffa.ReInit(ac, input, url, lineno);
