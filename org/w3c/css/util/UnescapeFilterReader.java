@@ -16,20 +16,23 @@ public class UnescapeFilterReader extends FilterReader {
         int esc;
         int c = in.read();
         // https://www.w3.org/TR/css-syntax-3/#input-preprocessing
-        if (c == 13) { // U+000D CARRIAGE RETURN (CR)
+        if (c == 0x000d) { // U+000D CARRIAGE RETURN (CR)
             mark(1);
             c = in.read();
             // eat any LF
-            if (c != 10) { // U+000A LINE FEED (LF)
+            if (c != 0x000a) { // U+000A LINE FEED (LF)
                 reset();
             }
-            return 10; // U+000A LINE FEED (LF)
+            return 0x000a; // U+000A LINE FEED (LF)
         }
-        if (c == 12) { //U+000C FORM FEED (FF)
-            return 10;// U+000A LINE FEED (LF)
+        if (c == 0x000c) { //U+000C FORM FEED (FF)
+            return 0x000a;// U+000A LINE FEED (LF)
         }
         if (c == 0) { // U+0000 NULL
-            return 65533; // U+FFFD REPLACEMENT CHARACTER
+            return 0xffd; // U+FFFD REPLACEMENT CHARACTER
+        }
+        if (c >= 0xd800 && c <= 0xdfff) { // surrogate
+            return 0xfffd;
         }
 
         // now specific case of CSS unicode escape for ascii values [A-Za-z0-9].
@@ -94,16 +97,18 @@ public class UnescapeFilterReader extends FilterReader {
         }
         for (i = 0, j = 0; i < l; i++) {
             // pre-processing
-            if (chars[i] == 13) {
-                chars[j++] = 10;
+            if (chars[i] == 0x000d) {
+                chars[j++] = 0x000a;
                 // test for CRLF
-                if (i + 1 < l && chars[i + 1] == 10) {
+                if (i + 1 < l && chars[i + 1] == 0x000a) {
                     i++;
                 }
-            } else if (chars[i] == 12) {
-                chars[j++] = 10;
+            } else if (chars[i] == 0x000c) {
+                chars[j++] = 0x000a;
             } else if (chars[i] == 0) {
-                chars[j++] = 65533;
+                chars[j++] = 0xfffd;
+            } else if (chars[i] >= 0xd800 && chars[i] <= 0xdfff) {
+                chars[j++] = 0xfffd;
             }
             // escaping
 
