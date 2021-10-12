@@ -696,9 +696,9 @@ public class CssColor extends CssValue {
                 if (color != null) {
                     break;
                 }
-                if (CssColorCSS3.getDeprecatedSystem(lower_s) != null) {
+                color = CssColorCSS3.getDeprecatedSystem(lower_s);
+                if (color != null) {
                     ac.getFrame().addWarning("deprecated_replacement", s, color.toString());
-                    // FIXME should we use the replacement in output style?
                     color = s;
                     break;
                 }
