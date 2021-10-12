@@ -36,7 +36,7 @@ public class UnescapeFilterReader extends FilterReader {
         if (c != '\\') {
             return c;
         }
-        mark(6);
+        in.mark(6);
         int val = 0;
         for (int i = 0; i < 6; i++) {
             esc = in.read();
@@ -50,33 +50,33 @@ public class UnescapeFilterReader extends FilterReader {
                 val = (val << 4) + (esc - 87);
             } else if (esc == 10 || esc == 9 || esc == 32) { // CSS whitespace.
                 // U+000A LINE FEED, U+0009 CHARACTER TABULATION, or U+0020 SPACE.
-                if ((val > 96 && val < 124) || (val > 64 && val < 91) || (val > 47 && val < 58)) {
+                if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
                     return val;
                 }
             } else {
-                if ((val > 96 && val < 124) || (val > 64 && val < 91) || (val > 47 && val < 58)) {
+                if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
                     //we must unread 1
-                    reset();
+                    in.reset();
                     i++;
                     for (int j = 0; j < i; j++) {
                         in.read();
                     }
                     return val;
                 }
-                reset();
+                in.reset();
                 return c;
             }
         }
         // we read up to 6 char test value first
-        if ((val <= 96 || val >= 124) && (val <= 64 || val >= 91) && (val <= 47 || val >= 58)) {
-            reset();
+        if ((val <= 96 || val >= 124) && (val <= 64 || val >= 91)) {
+            in.reset();
             return c;
         }
         mark(1);
         c = in.read();
         // not a CSS WHITESPACE
         if (c != 10 && c != 9 && c != 32) {
-            reset();
+            in.reset();
         }
         return val;
     }
@@ -84,6 +84,8 @@ public class UnescapeFilterReader extends FilterReader {
     @Override
     public int read(char[] cbuf, int off, int len) throws IOException {
         int i, j, k, l, cki;
+        boolean ignoreEscape = false;
+
         char[] chars = new char[len];
         in.mark(len);
         l = super.read(chars, 0, len);
@@ -108,6 +110,7 @@ public class UnescapeFilterReader extends FilterReader {
             if (chars[i] == '\\') {
                 int val = 0;
                 boolean escaped = false;
+                ignoreEscape = false;
                 for (k = 1; k < 7 && k + i < l; k++) {
                     cki = chars[k + i];
                     // 0-9
@@ -120,12 +123,14 @@ public class UnescapeFilterReader extends FilterReader {
                         val = (val << 4) + (cki - 87);
                     } else if (cki == 10 || cki == 9 || cki == 32) { // CSS whitespace.
                         // U+000A LINE FEED, U+0009 CHARACTER TABULATION, or U+0020 SPACE.
-                        if ((val > 96 && val < 124) || (val > 64 && val < 91) || (val > 47 && val < 58)) {
+                        if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
                             chars[j++] = (char) val;
                             escaped = true;
                             i += k;
-                            break;
                         }
+                        escaped = true;
+                        ignoreEscape = true;
+                        break;
                     } else {
                         if (val == 0) {
                             if ((cki > 96 && cki < 124) || (cki > 64 && cki < 91)) {
@@ -133,42 +138,49 @@ public class UnescapeFilterReader extends FilterReader {
                                 break;
                             }
                         }
-                        if ((val > 96 && val < 124) || (val > 64 && val < 91) || (val > 47 && val < 58)) {
+                        if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
                             chars[j++] = (char) val;
                             escaped = true;
                             i += k - 1;
                             break;
+                        } else {
+                            ignoreEscape = true;
                         }
                     }
                 }
-                if (k == 7 && !escaped) {
-                    if ((val > 96 && val < 124) || (val > 64 && val < 91) || (val > 47 && val < 58)) {
-                        chars[j++] = (char) val;
-                        escaped = true;
-                        i += k - 1;
-                        if (i + 1 < l) {
-                            cki = chars[i + 1];
-                            // skip extra space
-                            if (cki == 10 || cki == 9 || cki == 32) {
-                                i++;
+                if (!ignoreEscape) {
+                    if (k == 7 && !escaped) {
+                        if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
+                            chars[j++] = (char) val;
+                            escaped = true;
+                            i += k - 1;
+                            if (i + 1 < l) {
+                                cki = chars[i + 1];
+                                // skip extra space
+                                if (cki == 10 || cki == 9 || cki == 32) {
+                                    i++;
+                                }
                             }
-                        }
-                    } else {
-                        // do nothing
-                        chars[j++] = chars[i];
-                    }
-                } else {
-                    // we reached the end, unescaping didn't happen let's stop here
-                    // unless we are the last
-                    if (!escaped) {
-                        if (j != 0) {
-                            in.reset();
-                            in.skip(i);
-                            break;
                         } else {
+                            // do nothing
+                            ignoreEscape = true;
                             chars[j++] = chars[i];
                         }
+                    } else {
+                        // we reached the end, unescaping didn't happen let's stop here
+                        // unless we are the last
+                        if (!escaped) {
+                            if (j != 0) {
+                                in.reset();
+                                in.skip(i);
+                                break;
+                            } else {
+                                chars[j++] = chars[i];
+                            }
+                        }
                     }
+                } else {
+                    chars[j++] = chars[i];
                 }
             } else {
                 chars[j++] = chars[i];
