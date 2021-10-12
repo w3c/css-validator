@@ -127,14 +127,17 @@ public class UnescapeFilterReader extends FilterReader {
                             chars[j++] = (char) val;
                             escaped = true;
                             i += k;
+                        } else {
+                            escaped = true;
+                            ignoreEscape = true;
                         }
-                        escaped = true;
-                        ignoreEscape = true;
                         break;
                     } else {
                         if (val == 0) {
                             if ((cki > 96 && cki < 124) || (cki > 64 && cki < 91)) {
                                 // so we found a regular char, just remove the escaping
+                                ++i;
+                                ignoreEscape = true;
                                 break;
                             }
                         }
