@@ -755,12 +755,6 @@ TOKEN [IGNORE_CASE] :
   | < UNICODERANGE : "U+" <RANGE> | "U+" <UNI> "-" <UNI> >
 }
 
-<DEFAULT>
-    TOKEN:
-{
-    < CLASS : "." <IDENT> >
-}
-
 /* FIXED, added a special case for lang pseudoclass */
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
@@ -1994,7 +1988,7 @@ String property() :
                 }
                 return currentProperty;
                }
-  | ( n=<HASHIDENT> | n=<CLASS> | n=<ATKEYWORD> ) {
+  | ( n=<HASHIDENT> | ( <DOT> n=<IDENT> ) | n=<ATKEYWORD> ) {
          if (ac.getTreatCssHacksAsWarnings()) {
                               ac.getFrame().addWarning("css-hack", n.image);
                               // should we continue and validate the content, or skip ?
@@ -2391,12 +2385,9 @@ CssSelectors compound_selector(CssSelectors next) :
 void class_selector(CssSelectors s) :
 {Token n; }
 {
-    /*  "." n=<IDENT> { */
-    n=<CLASS> {
+    ( <DOT> n=<IDENT> ) {
 	try {
-	    s.addClass(new ClassSelector(convertClassIdent(n.image.substring(1))));
-	    //        s.addAttribute("class", convertIdent(n.image.substring(1)),
-	    //           CssSelectors.ATTRIBUTE_CLASS_SEL);
+	    s.addClass(new ClassSelector(convertClassIdent(n.image)));
 	} catch (InvalidParamException e) {
 	    //	    removeThisRule();
 	     ac.getFrame()
