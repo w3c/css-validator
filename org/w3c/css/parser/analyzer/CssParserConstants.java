@@ -249,55 +249,53 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int UNICODERANGE = 119;
   /** RegularExpression Id. */
-  int CLASS = 120;
+  int FUNCTIONLANG = 120;
   /** RegularExpression Id. */
-  int FUNCTIONLANG = 121;
+  int FUNCTIONDIR = 121;
   /** RegularExpression Id. */
-  int FUNCTIONDIR = 122;
+  int FUNCTIONIS = 122;
   /** RegularExpression Id. */
-  int FUNCTIONIS = 123;
+  int FUNCTIONWHERE = 123;
   /** RegularExpression Id. */
-  int FUNCTIONWHERE = 124;
+  int FUNCTIONHAS = 124;
   /** RegularExpression Id. */
-  int FUNCTIONHAS = 125;
+  int FUNCTIONSLOTTED = 125;
   /** RegularExpression Id. */
-  int FUNCTIONSLOTTED = 126;
+  int FUNCTIONHOST = 126;
   /** RegularExpression Id. */
-  int FUNCTIONHOST = 127;
+  int FUNCTIONHOSTCONTEXT = 127;
   /** RegularExpression Id. */
-  int FUNCTIONHOSTCONTEXT = 128;
+  int FUNCTIONNTHCHILD = 128;
   /** RegularExpression Id. */
-  int FUNCTIONNTHCHILD = 129;
+  int FUNCTIONNTHLASTCHILD = 129;
   /** RegularExpression Id. */
-  int FUNCTIONNTHLASTCHILD = 130;
+  int FUNCTIONNTHCOL = 130;
   /** RegularExpression Id. */
-  int FUNCTIONNTHCOL = 131;
+  int FUNCTIONNTHLASTCOL = 131;
   /** RegularExpression Id. */
-  int FUNCTIONNTHLASTCOL = 132;
+  int FUNCTIONNTHOFTYPE = 132;
   /** RegularExpression Id. */
-  int FUNCTIONNTHOFTYPE = 133;
+  int FUNCTIONNTHLASTOFTYPE = 133;
   /** RegularExpression Id. */
-  int FUNCTIONNTHLASTOFTYPE = 134;
+  int FUNCTIONNOT = 134;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 135;
+  int FUNCTIONCALC = 135;
   /** RegularExpression Id. */
-  int FUNCTIONCALC = 136;
+  int FUNCTIONMIN = 136;
   /** RegularExpression Id. */
-  int FUNCTIONMIN = 137;
+  int FUNCTIONMAX = 137;
   /** RegularExpression Id. */
-  int FUNCTIONMAX = 138;
+  int FUNCTIONCLAMP = 138;
   /** RegularExpression Id. */
-  int FUNCTIONCLAMP = 139;
+  int FUNCTIONATTR = 139;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 140;
+  int FUNCTIONVAR = 140;
   /** RegularExpression Id. */
-  int FUNCTIONVAR = 141;
+  int FUNCTION = 141;
   /** RegularExpression Id. */
-  int FUNCTION = 142;
+  int HTMLSTARTTAG = 142;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 143;
-  /** RegularExpression Id. */
-  int HTMLENDTAG = 144;
+  int HTMLENDTAG = 143;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -424,7 +422,6 @@ public interface CssParserConstants {
     "<RANGE>",
     "<UNI>",
     "<UNICODERANGE>",
-    "<CLASS>",
     "\"lang(\"",
     "\"dir(\"",
     "\"is(\"",
