@@ -33,9 +33,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -367,27 +369,45 @@ public final class StyleSheetParser
     public void parseStyleElement(ApplContext ac, InputStream input,
                                   String title, String media,
                                   URL url, int lineno) {
-        InputStreamReader reader = null;
+        // FIXME better handling of charset using a charset detection library
         String charset = ac.getCharsetForURL(url);
-        try {
-            reader = new InputStreamReader(input, (charset == null) ?
-                    "iso-8859-1" : charset);
-        } catch (UnsupportedEncodingException uex) {
-            Errors er = new Errors();
-            er.addError(new org.w3c.css.parser.CssError(url.toString(),
-                    -1, uex));
-            notifyErrors(er);
-        } catch (Exception ex) {
-            // in case of error, ignore it.
-            reader = null;
-            if (Util.onDebug) {
-                System.err.println("Error in StyleSheet.parseStyleElement(" + title + ","
-                        + url + "," + lineno + ")");
+        Charset c = null;
+        if (charset == null) {
+            parseStyleElement(ac, input, null, title,
+                    media, url, lineno);
+        } else {
+            try {
+                c = Charset.forName(charset);
+            } catch (UnsupportedCharsetException ucx) {
+                Errors er = new Errors();
+                er.addError(new org.w3c.css.parser.CssError(url.toString(),
+                        -1, ucx));
+                notifyErrors(er);
+            } catch (Exception ex) {
+                // in case of error, ignore it.
+                if (Util.onDebug) {
+                    System.err.println("Error in StyleSheet.parseStyleElement(" + title + ","
+                            + url + "," + lineno + ")");
+                }
             }
+            parseStyleElement(ac, input, c, title, media, url, lineno);
         }
-        if (reader != null) {
-            parseStyleElement(ac, reader, title, media, url, lineno);
-        }
+    }
+
+    /**
+     * Parse a style element. The Style element always comes from the user
+     *
+     * @param input the input stream containing the style data
+     * @param url   the name of the file the style element was read in.
+     * @throws IOException an IO error
+     */
+    public void parseStyleElement(ApplContext ac, InputStream input,
+                                  Charset charset,
+                                  String title, String media,
+                                  URL url, int lineno) {
+        InputStreamReader reader = null;
+        reader = new InputStreamReader(input, (charset == null) ? StandardCharsets.ISO_8859_1 : charset);
+        parseStyleElement(ac, reader, title, media, url, lineno);
     }
 
     /**

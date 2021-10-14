@@ -42,6 +42,9 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -110,7 +113,7 @@ public class Codecs {
      * @throws IOException If any file operation fails.
      */
     public final static synchronized ArrayList<Pair<String, ?>> mpFormDataDecode(byte[] data,
-                                                                                      String cont_type)
+                                                                                 String cont_type)
             throws IOException {
 
         ArrayList<Pair<String, ?>> pList = new ArrayList<>();
@@ -318,9 +321,25 @@ public class Codecs {
 
                 value = file;
             } else {                    // It's simple data
-                value = new String(data, start, end - start);
+                if (name.equals("text")) {
+                    try {
+                        CharsetDecoder decoder = StandardCharsets.UTF_8.newDecoder();
+                        decoder.decode(ByteBuffer.wrap(data, start, end - start));
+                        value = new String(data, start, end - start, StandardCharsets.UTF_8);
+                        pList.add(new ImmutablePair<>("textcharset", StandardCharsets.UTF_8));
+                    } catch (CharacterCodingException ignoredEx) {
+                        value = new String(data, start, end - start, StandardCharsets.ISO_8859_1);
+                        pList.add(new ImmutablePair<>("textcharset", StandardCharsets.ISO_8859_1));
+                    }
+                } else {
+                    value = new String(data, start, end - start, StandardCharsets.ISO_8859_1);
+                }
+                //               value = new String(data, start, end - start);
             }
-            pList.add(new ImmutablePair<>(name, value));
+            // reserved name for fake text charset
+            if (!name.equals("textcharset")) {
+                pList.add(new ImmutablePair<>(name, value));
+            }
             if (debugMode) {
                 System.err.println("[ADD " + name + ',' + value + ','
                         + value.getClass() + ']');
