@@ -46,6 +46,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.charset.Charset;
 
 /**
  * This class is a servlet to use the validator.
@@ -65,6 +66,7 @@ public final class CssValidator extends HttpServlet {
 
     final static String opt_file = "file";
     final static String opt_text = "text";
+    final static String opt_textcharset = "textcharset";
     final static String opt_lang = "lang";
     final static String opt_output = "output";
     final static String opt_warning = "warning";
@@ -517,6 +519,7 @@ public final class CssValidator extends HttpServlet {
         CssParser parser = null;
         FakeFile file = null;
         String text = null;
+        Charset textcharset = null;
         String output = null;
         //boolean XMLinput = false;
         String warning = null;
@@ -583,6 +586,9 @@ public final class CssValidator extends HttpServlet {
                         break;
                     case opt_text:
                         text = (String) pair.getValue();
+                        break;
+                    case opt_textcharset:
+                        textcharset = (Charset) pair.getValue();
                         break;
                     case opt_lang:
                         lang = (String) pair.getValue();
@@ -688,7 +694,7 @@ public final class CssValidator extends HttpServlet {
                 handleScam(ac, text, res, output, warningLevel, errorReport);
                 return;
             }
-            ac.setFakeText(text);
+            ac.setFakeText(text, textcharset);
             fileName = "TextArea";
             Util.verbose("- " + fileName + " Data -");
             Util.verbose(text);
@@ -717,7 +723,7 @@ public final class CssValidator extends HttpServlet {
             if (isCSS) {
                 //if CSS:
                 parser = new StyleSheetParser(ac);
-                parser.parseStyleElement(ac, is, null, ac.getMedium(),
+                parser.parseStyleElement(ac, is, textcharset, null, ac.getMedium(),
                         new URL(fileName), 0);
 
                 handleRequest(ac, res, fileName, parser.getStyleSheet(),

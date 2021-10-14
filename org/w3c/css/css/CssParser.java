@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.net.URL;
+import java.nio.charset.Charset;
 
 /**
  * This class describes how to implements your cascading
@@ -78,6 +79,25 @@ public interface CssParser {
      * @param lineno The number line in the source document. It is used for error message
      */
     public abstract void parseStyleElement(ApplContext ac, InputStream input,
+                                           String title, String media, URL url,
+                                           int lineno);
+
+    /**
+     * Parse a STYLE element.
+     * The real difference between this method and the precedent
+     * is that this method can take an InputStream. The URL is used
+     * to resolve import statement and URL statement in the style
+     * sheet.
+     *
+     * @param input  the input stream.
+     * @param charset the charset for that input stream.
+     * @param title  the title of the style element
+     * @param media  the media of the style element
+     * @param url    the URL where the input stream comes from.
+     * @param lineno The number line in the source document. It is used for error message
+     */
+    public abstract void parseStyleElement(ApplContext ac, InputStream input,
+                                           Charset charset,
                                            String title, String media, URL url,
                                            int lineno);
 

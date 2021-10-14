@@ -103,6 +103,7 @@ public class ApplContext {
 
     FakeFile fakefile = null;
     String faketext = null;
+    Charset faketextcharset = null;
     URL fakeurl = null;
 
     URL referrer = null;
@@ -508,23 +509,29 @@ public class ApplContext {
     /**
      * store content of entered text
      */
-    public void setFakeText(String faketext) {
+    public void setFakeText(String faketext, Charset faketextcharset) {
         this.faketext = faketext;
+        this.faketextcharset = faketextcharset;
+
     }
 
     public InputStream getFakeInputStream(URL source)
             throws IOException {
         InputStream is = null;
+        Charset c = null;
         if (fakefile != null) {
             is = fakefile.getInputStream();
         }
         if (faketext != null) {
-            is = new ByteArrayInputStream(faketext.getBytes());
+            is = new ByteArrayInputStream(faketext.getBytes(faketextcharset));
+            c = faketextcharset;
         }
         if (is == null) {
             return null;
         }
-        Charset c = getCharsetObjForURL(source);
+        if (c == null) {
+            c = getCharsetObjForURL(source);
+        }
         if (c == null) {
             UnicodeInputStream uis = new UnicodeInputStream(is);
             String guessedCharset = uis.getEncodingFromStream();
