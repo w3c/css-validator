@@ -20,7 +20,7 @@ public class CssFloat extends org.w3c.css.properties.css.CssFloat {
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"both", "left", "right", "none",
+        String[] _allowed_values = {"left", "right", "none",
                 "inline-start", "inline-end"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
