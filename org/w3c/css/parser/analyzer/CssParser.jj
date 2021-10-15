@@ -1988,7 +1988,7 @@ String property() :
                 }
                 return currentProperty;
                }
-  | ( n=<HASHIDENT> | ( <DOT> n=<IDENT> ) | n=<ATKEYWORD> ) {
+  | ( n=<HASHIDENT> | ( <DOT> n=ident() ) | n=<ATKEYWORD> ) {
          if (ac.getTreatCssHacksAsWarnings()) {
                               ac.getFrame().addWarning("css-hack", n.image);
                               // should we continue and validate the content, or skip ?
@@ -2385,7 +2385,7 @@ CssSelectors compound_selector(CssSelectors next) :
 void class_selector(CssSelectors s) :
 {Token n; }
 {
-    ( <DOT> n=<IDENT> ) {
+    ( <DOT> n=ident() ) {
 	try {
 	    s.addClass(new ClassSelector(convertClassIdent(n.image)));
 	} catch (InvalidParamException e) {

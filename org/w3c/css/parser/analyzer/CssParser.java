@@ -4009,7 +4009,7 @@ currentProperty = convertIdent(n.image);
         }
       case DOT:{
         jj_consume_token(DOT);
-        n = jj_consume_token(IDENT);
+        n = ident();
         break;
         }
       case ATKEYWORD:{
@@ -4854,7 +4854,7 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case DOT:{
       jj_consume_token(DOT);
-      n = jj_consume_token(IDENT);
+      n = ident();
 try {
             s.addClass(new ClassSelector(convertClassIdent(n.image)));
         } catch (InvalidParamException e) {
@@ -9639,7 +9639,7 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_417()
  {
     if (jj_scan_token(DOT)) return true;
-    if (jj_scan_token(IDENT)) return true;
+    if (jj_3R_231()) return true;
     return false;
   }
 
@@ -11233,7 +11233,7 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_365()
  {
     if (jj_scan_token(DOT)) return true;
-    if (jj_scan_token(IDENT)) return true;
+    if (jj_3R_231()) return true;
     return false;
   }
 
