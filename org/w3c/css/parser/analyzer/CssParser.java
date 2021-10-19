@@ -37,10 +37,11 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.StringUtils;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.WarningParamException;
-import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssANPlusB;
+import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssBracket;
 import org.w3c.css.values.CssCalc;
@@ -73,6 +74,8 @@ import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssVariable;
 import org.w3c.css.values.CssVolume;
+
+import static org.w3c.css.util.StringUtils.convertIdent;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8580,127 +8583,32 @@ n.image = Util.strip(n.image);
     addError(e, s.toString());
   }
 
-  String convertStringIndex(String s, int start, int len, boolean escapeFirst) throws ParseException {int index = start;
-    int t;
-    int maxCount = 0;
-    boolean gotWhiteSpace = false;
-    int count = 0;
-    if ((start == 0) && (len == s.length()) && (s.indexOf('\\') == -1)) {
-        return s;
-    }
-    StringBuilder buf = new StringBuilder(len);
-    maxCount = ((ac.getCssVersion() == CssVersion.CSS1) ?  4 : 6);
-
-    while (index < len) {
-        char c = s.charAt(index);
-        if (c == '\\') {
-            if (++index < len) {
-                c = s.charAt(index);
-                switch (c) {
-                case '0': case '1': case '2': case '3': case '4':
-                case '5': case '6': case '7': case '8': case '9':
-                case 'a': case 'b': case 'c': case 'd': case 'e': case 'f':
-                case 'A': case 'B': case 'C': case 'D': case 'E': case 'F':
-                    int numValue = Character.digit(c, 16);
-                    count = 1;
-                    while (index + 1 < len) {
-                        c = s.charAt(index+1);
-                        t = Character.digit(c, 16);
-                        if (t != -1 && count++ < maxCount) {
-                            numValue = (numValue<<4) | t;
-                            index++;
-                        } else {
-                            if (c == ' ' || c == '\t' ||
-                                c == '\n' || c == '\f' ) {
-                                // skip the latest white space
-                                index++;
-                                gotWhiteSpace = true;
-                            } else if ( c == '\r' ) {
-                                index++;
-                                gotWhiteSpace = true;
-                                // special case for \r\n
-                                if (index+1 < len) {
-                                    if (s.charAt(index + 1) == '\n') {
-                                        index++;
-                                    }
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    if (!escapeFirst && numValue < 255 && numValue>31) {
-                        if (! ( (numValue>96 && numValue<123) // [a-z]
-                                || (numValue>64 && numValue<91) // [A-Z]
-                                || (numValue>47 && numValue<58) // [0-9]
-                                || (numValue == 95) // _
-                                || (numValue == 45) // -
-                                )
-                            ) {
-                            buf.append('\\');
-                        }
-                        buf.append((char) numValue);
-                        break;
-                    }
-                    char b[];
-                    // we fully escape when we have a space
-                    if (gotWhiteSpace) {
-                        b  = new char[maxCount];
-                        t = maxCount;
-                    } else {
-                        b = new char[count];
-                        t = count;
-                    }
-                    while (t > 0) {
-                        b[--t] = hexdigits[numValue & 0xF];
-                        numValue >>>= 4;
-                    }
-                    buf.append('\\').append(b);
-                    break;
-                case '\n':
-                case '\f':
-                    break;
-                case '\r':
-                    if (index + 1 < len) {
-                        if (s.charAt(index + 1) == '\n') {
-                            index ++;
-                        }
-                    }
-                    break;
-                case '-' : case '_' : case 'g' : case 'G' :
-                case 'h' : case 'H' : case 'i' : case 'I' :
-                case 'j' : case 'J' : case 'k' : case 'K' :
-                case 'l' : case 'L' : case 'm' : case 'M' :
-                case 'n' : case 'N' : case 'o' : case 'O' :
-                case 'p' : case 'P' : case 'q' : case 'Q' :
-                case 'r' : case 'R' : case 's' : case 'S' :
-                case 't' : case 'T' : case 'u' : case 'U' :
-                case 'v' : case 'V' : case 'w' : case 'W' :
-                case 'x' : case 'X' : case 'y' : case 'Y' :
-                case 'z' : case 'Z' :
-                    buf.append(c);
-                    break;
-                default:
-                    buf.append('\\').append(c);
-                }
-            } else {
+  public String convertStringIndex(String s, int start, int len, boolean escapeFirst) throws ParseException {try {
+                return StringUtils.convertStringIndex(s, start, len, escapeFirst, ac);
+        } catch (InvalidParamException nex) {
                 throw new ParseException("invalid string");
-            }
-        } else {
-            buf.append(c);
         }
-        escapeFirst = false;
-        index++;
-    }
-    return buf.toString();
   }
 
-  String convertIdent(String s) throws ParseException {return convertStringIndex(s, 0, s.length(), false);
+  String convertIdent(String s) throws ParseException, ParseException {try {
+                return StringUtils.convertIdent(s, ac);
+        } catch (InvalidParamException nex) {
+                throw new ParseException("invalid string");
+        }
   }
 
-  String convertClassIdent(String s) throws ParseException {return convertStringIndex(s, 0, s.length(), true);
+  String convertClassIdent(String s) throws ParseException {try {
+                return StringUtils.convertClassIdent(s, ac);
+        } catch (InvalidParamException nex) {
+                throw new ParseException("invalid string");
+        }
   }
 
-  String convertString(String s) throws ParseException {return convertStringIndex(s, 0, s.length(), false);
+  String convertString(String s) throws ParseException {try {
+                return StringUtils.convertString(s, ac);
+        } catch (InvalidParamException nex) {
+                throw new ParseException("invalid string");
+        }
   }
 
   String hexEscapeFirst(String s) throws ParseException {StringBuilder sb = new StringBuilder();
