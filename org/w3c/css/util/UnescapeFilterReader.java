@@ -89,13 +89,14 @@ public class UnescapeFilterReader extends FilterReader {
         int i, j, k, l, cki;
         boolean ignoreEscape = false;
 
-        char[] chars = new char[len];
-        in.mark(len);
-        l = super.read(chars, 0, len);
+        char[] chars = new char[len + 8];
+        in.mark(len + 8);
+        l = super.read(chars, 0, len + 8);
+
         if (l <= 0) {
             return l;
         }
-        for (i = 0, j = 0; i < l; i++) {
+        for (i = 0, j = 0; i < l && j < len; i++) {
             // pre-processing
             if (chars[i] == 0x000d) {
                 chars[j++] = 0x000a;
@@ -196,6 +197,11 @@ public class UnescapeFilterReader extends FilterReader {
         }
 
         System.arraycopy(chars, 0, cbuf, off, j);
+        // as we read more to read a past escaped character, we must "unread" those.
+        if (i < l) {
+            in.reset();
+            in.skip(i);
+        }
         return j;
     }
 }
