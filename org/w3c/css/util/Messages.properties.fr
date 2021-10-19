@@ -412,9 +412,9 @@ warning.notversion: \u201C%s\u201D ne peut être utilisé dans cette version de 
 
 warning.noothermedium : Certaines propriétés relatives à d'autres media peuvent ne pas s'appliquer à ce medium
 warning.notforusermedium : La propriété \u201C%s\u201D n'existe pas pour ce medium d'utilisateur
-warning.vendor-extension : La propriété \u201C%s\u201D est une extension propriétaire inconnue
-warning.vendor-ext-pseudo-class : La pseudo-classe \u201C%s\u201D est une extension propriétaire inconnue
-warning.vendor-ext-pseudo-element : Le pseudo-élément \u201C%s\u201D est une extension propriétaire inconnue
+warning.vendor-extension : La propriété \u201C%s\u201D est une extension propriétaire
+warning.vendor-ext-pseudo-class : La pseudo-classe \u201C%s\u201D est une extension propriétaire
+warning.vendor-ext-pseudo-element : Le pseudo-élément \u201C%s\u201D est une extension propriétaire
 error.noatruleyet : Excepté @import, les règles @ ne sont pas supportés en CSS1 : \u201C%s\u201D
 error.notformobile : \u201C%s\u201D ne peut pas être utilisé pour le profile mobile
 error.notforatsc: \u201C%s\u201D ne peut pas être utilisé pour le profil ATSC
