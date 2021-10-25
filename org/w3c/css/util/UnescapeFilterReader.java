@@ -53,11 +53,11 @@ public class UnescapeFilterReader extends FilterReader {
                 val = (val << 4) + (esc - 87);
             } else if (esc == 10 || esc == 9 || esc == 32) { // CSS whitespace.
                 // U+000A LINE FEED, U+0009 CHARACTER TABULATION, or U+0020 SPACE.
-                if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
+                if ((val > 96 && val < 123) || (val > 64 && val < 91)) {
                     return val;
                 }
             } else {
-                if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
+                if ((val > 96 && val < 123) || (val > 64 && val < 91)) {
                     //we must unread 1
                     in.reset();
                     i++;
@@ -71,7 +71,7 @@ public class UnescapeFilterReader extends FilterReader {
             }
         }
         // we read up to 6 char test value first
-        if ((val <= 96 || val >= 124) && (val <= 64 || val >= 91)) {
+        if ((val <= 96 || val >= 123) && (val <= 64 || val >= 91)) {
             in.reset();
             return c;
         }
@@ -129,7 +129,7 @@ public class UnescapeFilterReader extends FilterReader {
                         val = (val << 4) + (cki - 87);
                     } else if (cki == 10 || cki == 9 || cki == 32) { // CSS whitespace.
                         // U+000A LINE FEED, U+0009 CHARACTER TABULATION, or U+0020 SPACE.
-                        if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
+                        if ((val > 96 && val < 123) || (val > 64 && val < 91)) {
                             chars[j++] = (char) val;
                             escaped = true;
                             i += k;
@@ -140,26 +140,27 @@ public class UnescapeFilterReader extends FilterReader {
                         break;
                     } else {
                         if (val == 0) {
-                            if ((cki > 96 && cki < 124) || (cki > 64 && cki < 91)) {
+                            if ((cki > 96 && cki < 123) || (cki > 64 && cki < 91)) {
                                 // so we found a regular char, just remove the escaping
                                 ++i;
                                 ignoreEscape = true;
                                 break;
                             }
                         }
-                        if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
+                        if ((val > 96 && val < 123) || (val > 64 && val < 91)) {
                             chars[j++] = (char) val;
                             escaped = true;
                             i += k - 1;
                             break;
                         } else {
                             ignoreEscape = true;
+                            break;
                         }
                     }
                 }
                 if (!ignoreEscape) {
                     if (k == 7 && !escaped) {
-                        if ((val > 96 && val < 124) || (val > 64 && val < 91)) {
+                        if ((val > 96 && val < 123) || (val > 64 && val < 91)) {
                             chars[j++] = (char) val;
                             escaped = true;
                             i += k - 1;
