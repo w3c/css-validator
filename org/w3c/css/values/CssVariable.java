@@ -127,7 +127,7 @@ public class CssVariable extends CssCheckableValue {
     private boolean _isCheckableType(int type) {
         switch (type) {
             case CssTypes.CSS_ANGLE:
-            case CssTypes.CSS_CLAMP:
+            case CssTypes.CSS_MATH_FUNCTION:
             case CssTypes.CSS_FLEX:
             case CssTypes.CSS_FREQUENCY:
             case CssTypes.CSS_LENGTH:

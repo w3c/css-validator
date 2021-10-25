@@ -65,7 +65,6 @@ import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssBracket;
 import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssCheckableValue;
-import org.w3c.css.values.CssClamp;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssComparator;
 import org.w3c.css.values.CssExpression;
@@ -76,8 +75,7 @@ import org.w3c.css.values.CssHashIdent;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssImage;
 import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssMax;
-import org.w3c.css.values.CssMin;
+import org.w3c.css.values.CssMathFunction;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssPercentage;
@@ -776,8 +774,8 @@ TOKEN [IGNORE_CASE] :
     | <FUNCTIONNTHLASTOFTYPE : "nth-last-of-type(" >
     | <FUNCTIONNOT           : "not("              >
     | <FUNCTIONCALC          : "calc(" | "-moz-calc(" | "-webkit-calc(" >
-    | <FUNCTIONMIN           : "min("              >
-    | <FUNCTIONMAX           : "max("              >
+    | <FUNCTIONMATHN         : "min(" | "max(" | "hypot(" >
+    | <FUNCTIONMATH1         : "sin(" | "cos(" | "tan(" | "asin(" | "acos(" | "atan(" | "sqrt(" | "log(" | "exp(" | "sign(" >
     | <FUNCTIONCLAMP         : "clamp("            >
     | <FUNCTIONATTR          : "attr("             >
     | <FUNCTIONVAR           : "var("              >
@@ -3169,8 +3167,7 @@ void term(CssExpression exp) :
         ) 
       )
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTIONCALC); }
-        | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
-        | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
+        | func=mathfunction() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
         | func=functionvar() { setValue(func, exp, operator, null, FUNCTIONVAR); }
@@ -3263,8 +3260,7 @@ void mediaterm(CssExpression exp) :
     }
    | (  func=function() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathcalc() { setValue(func, exp, operator, null, FUNCTIONCALC); }
-      | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
-      | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
+      | func=mathfunction() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); }
      ) ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -3303,41 +3299,19 @@ void mediaterm(CssExpression exp) :
     ) ( <S> )* )
 }
 
-CssCheckableValue mathmin() :
+CssCheckableValue mathfunction() :
 {
     CssCheckableValue v;
-    CssMin c;
+    CssMathFunction c;
     Token n;
 }
 {
-    ( n=<FUNCTIONMIN>  ( <S> )* v=mathsum() {
-       if (v.getRawType() != CssTypes.CSS_MIN) {
-           c = new CssMin(v);
-        } else {
-           c = (CssMin) v;
-        }
-    }
-	( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
-		c.addValue(v);
-	} ( <S> )* )* <RPAREN> ) {
-	c.validate();
-    return c;
-  }
-}
-
-CssCheckableValue mathmax() :
-{
-    CssCheckableValue v;
-    CssMax c;
-    Token n;
-}
-{
-    ( n=<FUNCTIONMAX>  ( <S> )* v=mathsum() {
-       if (v.getRawType() != CssTypes.CSS_MAX) {
-           c = new CssMax(v);
-        } else {
-           c = (CssMax) v;
-        }
+    ( n=<FUNCTIONMATHN>  ( <S> )* v=mathsum() {
+//       if (v.getRawType() != CssTypes.CSS_MATH_FUNCTION) {
+           c = new CssMathFunction(ac, n.image, v);
+//        } else {
+//           c = (CssMathFunction) v;
+//        }
     }
 	( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
 	        c.addValue(v);
@@ -3350,13 +3324,16 @@ CssCheckableValue mathmax() :
 CssCheckableValue mathclamp() :
 {
     CssCheckableValue v1, v2, v3;
-CssClamp c;
-Token n;
+    CssMathFunction c;
+    Token n;
 }
 {
     ( n=<FUNCTIONCLAMP>  ( <S> )* v1=mathsum() ( <S> )* <COMMA> ( <S> )* v2=mathsum() ( <S> )*
       <COMMA> ( <S> )* v3=mathsum() ( <S> )* <RPAREN> ) {
-	c = new CssClamp(ac, v1, v2, v3);
+	c = new CssMathFunction(ac, n.image);
+        c.addValue(v1);
+        c.addValue(v2);
+        c.addValue(v3);
 	c.validate();
 	return c;
     }
@@ -3558,8 +3535,7 @@ char operator = ' ';
     )
     | ( <LPAREN> ( <S> )* v=mathsum() ( <S> )* <RPAREN> ) { ((CssCalc) v).setParenthesis(); }
     | v=mathcalc()
-    | v=mathmax()
-    | v=mathmin()
+    | v=mathfunction()
     | v=mathclamp()
     | v=attr()
     | v=functionvar()
@@ -3867,8 +3843,8 @@ String skip_to_matching_paren() {
 	    case FUNCTIONNTHLASTOFTYPE:
             case FUNCTIONNOT:
             case FUNCTIONCALC:
-            case FUNCTIONMIN:
-            case FUNCTIONMAX:
+            case FUNCTIONMATHN:
+            case FUNCTIONMATH1:
             case FUNCTIONCLAMP:
             case FUNCTIONATTR:
             case FUNCTIONVAR:

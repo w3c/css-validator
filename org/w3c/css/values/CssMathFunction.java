@@ -13,20 +13,20 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
- * CSS max().
+ * CSS mathfunction().
  *
  * @spec https://www.w3.org/TR/2019/WD-css-values-4-20190131/#funcdef-max
  */
-public class CssMax extends CssCheckableValue {
+public class CssMathFunction extends CssCheckableValue {
 
-    public static final int type = CssTypes.CSS_MAX;
+    public static final int type = CssTypes.CSS_MATH_FUNCTION;
 
     public final int getRawType() {
         return type;
     }
 
     public final int getType() {
-        if (computed_type == CssTypes.CSS_MAX) {
+        if (computed_type == CssTypes.CSS_MATH_FUNCTION) {
             return type;
         }
         return computed_type;
@@ -35,26 +35,31 @@ public class CssMax extends CssCheckableValue {
     ApplContext ac;
     int computed_type = CssTypes.CSS_UNKNOWN;
     ArrayList<CssValue> values = null;
+    String prefix = null;
     String _toString = null;
 
 
     /**
      * Create a new CssCalc
      */
-    public CssMax() {
+    public CssMathFunction(String prefix) {
+        this.prefix = prefix;
     }
 
-    public CssMax(ApplContext ac) {
-        this(ac, null);
+    public CssMathFunction(ApplContext ac, String prefix) {
+        this(ac, prefix, null);
     }
 
-    public CssMax(CssValue value) {
-        this(null, value);
+    public CssMathFunction(String prefix, CssValue value) {
+        this(null, prefix, value);
     }
 
-    public CssMax(ApplContext ac, CssValue value) {
+    public CssMathFunction(ApplContext ac, String prefix, CssValue value) {
         if (ac != null) {
             this.ac = ac;
+        }
+        if (prefix != null) {
+            this.prefix = prefix;
         }
         if (value != null) {
             computed_type = value.getType();
@@ -86,7 +91,7 @@ public class CssMax extends CssCheckableValue {
      * @param value
      * @return
      */
-    public CssMax addValue(CssValue value)
+    public CssMathFunction addValue(CssValue value)
             throws InvalidParamException {
         boolean first = false;
         if (values == null) {
@@ -118,7 +123,7 @@ public class CssMax extends CssCheckableValue {
 
     private void _computeResultingType(boolean first)
             throws InvalidParamException {
-        int valtype = CssTypes.CSS_MAX;
+        int valtype = CssTypes.CSS_MATH_FUNCTION;
         boolean firstVal = true;
         CssValue prevVal = null;
 
@@ -181,7 +186,7 @@ public class CssMax extends CssCheckableValue {
     public String toString() {
         if (_toString == null) {
             StringBuilder sb = new StringBuilder();
-            sb.append("max(").append(toStringUnprefixed()).append(')');
+            sb.append(prefix).append(toStringUnprefixed()).append(')');
             _toString = sb.toString();
         }
         return _toString;
@@ -229,10 +234,10 @@ public class CssMax extends CssCheckableValue {
      * @param value The other value.
      */
     public boolean equals(Object value) {
-        if (!(value instanceof CssMax)) {
+        if (!(value instanceof CssMathFunction)) {
             return false;
         }
-        CssMax other = (CssMax) value;
+        CssMathFunction other = (CssMathFunction) value;
         boolean match;
         // this is inherently wrong, as we should check only the min value, but in that case we
         // would need to explicitly compute them which is not done.
