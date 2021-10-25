@@ -281,9 +281,9 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int FUNCTIONCALC = 135;
   /** RegularExpression Id. */
-  int FUNCTIONMIN = 136;
+  int FUNCTIONMATHN = 136;
   /** RegularExpression Id. */
-  int FUNCTIONMAX = 137;
+  int FUNCTIONMATH1 = 137;
   /** RegularExpression Id. */
   int FUNCTIONCLAMP = 138;
   /** RegularExpression Id. */
@@ -438,8 +438,8 @@ public interface CssParserConstants {
     "\"nth-last-of-type(\"",
     "\"not(\"",
     "<FUNCTIONCALC>",
-    "\"min(\"",
-    "\"max(\"",
+    "<FUNCTIONMATHN>",
+    "<FUNCTIONMATH1>",
     "\"clamp(\"",
     "\"attr(\"",
     "\"var(\"",
