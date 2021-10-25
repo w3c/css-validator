@@ -36,15 +36,11 @@ public class CssUnicodeRange extends org.w3c.css.properties.css.fontface.CssUnic
      */
     public CssUnicodeRange(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        if (check && expression.getCount() > 2) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-
-        setByUser();
-
         char op;
         CssValue val;
         ArrayList<CssValue> values = new ArrayList<>();
+
+        setByUser();
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -65,7 +61,6 @@ public class CssUnicodeRange extends org.w3c.css.properties.css.fontface.CssUnic
                 throw new InvalidParamException("operator",
                         Character.toString(op), ac);
             }
-            expression.next();
         }
         if (values.isEmpty()) {
             throw new InvalidParamException("few-value", getPropertyName(), ac);
