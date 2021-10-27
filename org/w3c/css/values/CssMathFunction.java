@@ -123,6 +123,47 @@ public class CssMathFunction extends CssCheckableValue {
 
     private void _computeResultingType(boolean first)
             throws InvalidParamException {
+        switch (prefix) {
+            case "clamp(":
+            case "min(":
+            case "max(":
+            case "hypot(":
+                _computeResultingTypeList(first);
+                break;
+            case "sin(":
+            case "cos(":
+            case "tan(":
+            case "asin(":
+            case "acos(":
+            case "atan(":
+                _computeResultingTypeTrig(first);
+                break;
+            default:
+                throw new InvalidParamException("unrecognize", ac);
+        }
+
+    }
+
+    private void _computeResultingTypeTrig(boolean first)
+            throws InvalidParamException {
+        int valtype;
+        if (values.size() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        valtype = values.get(0).getType();
+        if ((valtype == CssTypes.CSS_NUMBER) || (valtype == CssTypes.CSS_ANGLE)) {
+            if (prefix.startsWith("a")) {
+                computed_type = CssTypes.CSS_ANGLE;
+            } else {
+                computed_type = CssTypes.CSS_NUMBER;
+            }
+        } else {
+            throw new InvalidParamException("incompatibletypes", toString(), ac);
+        }
+    }
+
+    private void _computeResultingTypeList(boolean first)
+            throws InvalidParamException {
         int valtype = CssTypes.CSS_MATH_FUNCTION;
         boolean firstVal = true;
         CssValue prevVal = null;

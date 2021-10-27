@@ -28,6 +28,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
     ApplContext ac;
     BigDecimal value;
     boolean isInt = false;
+    String _strval = null;
 
     /**
      * Create a new CssNumber
@@ -55,14 +56,34 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
      */
     public void set(String s, ApplContext ac)
             throws InvalidParamException {
+        boolean negate = false;
+        String val;
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
             // check for scientific notation in CSS < 3
             if (s.indexOf('e') >= 0 || s.indexOf('E') >= 0) {
                 throw new InvalidParamException("value", "number", s, ac);
             }
         }
-        value = new BigDecimal(s);
-        isInt = (s.indexOf('.') < 0);
+        if (s.startsWith("-")) {
+            negate = true;
+            val = s.substring(1);
+        } else if (s.startsWith("+")) {
+            val = s.substring(1);
+        } else {
+            val = s;
+        }
+
+        if (val.equalsIgnoreCase("pi")) {
+            value = BigDecimal.valueOf(Math.PI);
+            isInt = false;
+            _strval = "pi";
+        } else if (val.equalsIgnoreCase("e")) {
+            value = BigDecimal.valueOf(Math.E);
+            isInt = false;
+            _strval = "e";
+        } else {
+            value = new BigDecimal(val);
+            isInt = (val.indexOf('.') < 0);
 /*		CSS integers are not value-based integers.
         try {
 			value.toBigIntegerExact();
@@ -70,6 +91,13 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 		} catch (ArithmeticException e) {
 			isInt = false;
 		} */
+        }
+        if (negate) {
+            value = value.negate();
+            if (_strval != null) {
+                _strval = '-' + _strval;
+            }
+        }
         this.ac = ac;
     }
 
@@ -242,6 +270,9 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
      * Returns a string representation of the object.
      */
     public String toString() {
+        if (_strval != null) {
+            return _strval;
+        }
         return value.toPlainString();
     }
 
