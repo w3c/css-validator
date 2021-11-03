@@ -287,17 +287,19 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int FUNCTIONMATH2 = 138;
   /** RegularExpression Id. */
-  int FUNCTIONCLAMP = 139;
+  int FUNCTIONROUND = 139;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 140;
+  int FUNCTIONCLAMP = 140;
   /** RegularExpression Id. */
-  int FUNCTIONVAR = 141;
+  int FUNCTIONATTR = 141;
   /** RegularExpression Id. */
-  int FUNCTION = 142;
+  int FUNCTIONVAR = 142;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 143;
+  int FUNCTION = 143;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 144;
+  int HTMLSTARTTAG = 144;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 145;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -443,6 +445,7 @@ public interface CssParserConstants {
     "<FUNCTIONMATHN>",
     "<FUNCTIONMATH1>",
     "<FUNCTIONMATH2>",
+    "\"round(\"",
     "\"clamp(\"",
     "\"attr(\"",
     "\"var(\"",
