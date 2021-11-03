@@ -278,6 +278,15 @@ public class CssMathFunction extends CssCheckableValue {
         }
         if (vsize == 2) {
             valtype1 = values.get(0).getType();
+            // parsing artefact
+            if (valtype1 == CssTypes.CSS_IDENT) {
+                try {
+                    CssNumber n = new CssNumber();
+                    n.set(values.get(0).getIdent().toString(), ac);
+                    valtype1 = CssTypes.CSS_NUMBER;
+                } catch (Exception ignored) {
+                }
+            }
             valtype2 = values.get(1).getType();
         } else {  // 3 values
             CssValue v = values.get(0);

@@ -3338,8 +3338,8 @@ CssCheckableValue mathfunctionround() :
 }
 {
     ( n=<FUNCTIONROUND> { c = new CssMathFunction(ac, n.image); }
-        ( <S> )* ( LOOKAHEAD(2) v=mathsum() { c.addValue(v); }
-     | n=<IDENT> { c.addValue(CssIdent.getIdent(convertIdent(n.image))); } )
+        ( <S> )* (  LOOKAHEAD(2) n=<IDENT> { c.addValue(CssIdent.getIdent(convertIdent(n.image))); } 
+     | v=mathsum() { c.addValue(v); } )
         ( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
                 c.addValue(v);
         } ( <S> )* )* <RPAREN> ) {
