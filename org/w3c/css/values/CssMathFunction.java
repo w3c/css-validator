@@ -32,6 +32,27 @@ public class CssMathFunction extends CssCheckableValue {
         return computed_type;
     }
 
+    public static final CssIdent[] rounding_values;
+
+    static {
+        String[] _allowed_rounding_values = {"nearest", "up", "down",
+                "to-zero"};
+        int i = 0;
+        rounding_values = new CssIdent[_allowed_rounding_values.length];
+        for (String s : _allowed_rounding_values) {
+            rounding_values[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static final boolean isAllowedRounding(CssIdent ident) {
+        for (CssIdent id : rounding_values) {
+            if (id.equals(ident)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     ApplContext ac;
     int computed_type = CssTypes.CSS_UNKNOWN;
     ArrayList<CssValue> values = null;
@@ -121,14 +142,14 @@ public class CssMathFunction extends CssCheckableValue {
         return type;
     }
 
-    private void _computeResultingType(boolean first)
+    private void _computeResultingType(boolean is_final)
             throws InvalidParamException {
         switch (prefix) {
             case "clamp(":
             case "min(":
             case "max(":
             case "hypot(":
-                _computeResultingTypeList(first);
+                _computeResultingTypeList(is_final);
                 break;
             case "sin(":
             case "cos(":
@@ -136,7 +157,47 @@ public class CssMathFunction extends CssCheckableValue {
             case "asin(":
             case "acos(":
             case "atan(":
-                _computeResultingTypeTrig(first);
+                if (is_final) {
+                    _computeResultingTypeTrig(is_final);
+                }
+                break;
+            case "exp(":
+            case "sqrt(":
+                _computeResultingTypeOneNum(is_final);
+                break;
+            case "pow(":
+                if (is_final) {
+                    _computeResultingTypeTwoNum(is_final);
+                }
+                break;
+            case "log(":
+                if (is_final) {
+                    _computeResultingTypeTwoNumOpt(is_final);
+                }
+                break;
+            case "mod(":
+            case "rem(":
+                if (is_final) {
+                    _computeResultingTypeTwoAny(is_final);
+                }
+                break;
+            case "abs(":
+                _computeResultingTypeOneAny(is_final);
+                break;
+            case "atan2(":
+                if (is_final) {
+                    _computeResultingTypeAtan2(is_final);
+                }
+                break;
+            case "sign(":
+                if (is_final) {
+                    _computeResultingTypeSign(is_final);
+                }
+                break;
+            case "round(":
+                if (is_final) {
+                    _computeResultingTypeRound(is_final);
+                }
                 break;
             default:
                 throw new InvalidParamException("unrecognize", ac);
@@ -144,7 +205,133 @@ public class CssMathFunction extends CssCheckableValue {
 
     }
 
-    private void _computeResultingTypeTrig(boolean first)
+    private void _computeResultingTypeOneNum(boolean is_final)
+            throws InvalidParamException {
+        int valtype;
+        if (values.size() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        valtype = values.get(0).getType();
+        if (valtype == CssTypes.CSS_NUMBER) {
+            computed_type = CssTypes.CSS_NUMBER;
+        } else {
+            throw new InvalidParamException("incompatibletypes", toString(), ac);
+        }
+    }
+
+    private void _computeResultingTypeTwoNum(boolean is_final)
+            throws InvalidParamException {
+        int valtype1, valtype2;
+        if (values.size() != 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        valtype1 = values.get(0).getType();
+        valtype2 = values.get(1).getType();
+        if ((valtype1 == CssTypes.CSS_NUMBER) && (valtype2 == CssTypes.CSS_NUMBER)) {
+            computed_type = CssTypes.CSS_NUMBER;
+        } else {
+            throw new InvalidParamException("incompatibletypes", toString(), ac);
+        }
+    }
+
+    // used for log(A, B?)
+    private void _computeResultingTypeTwoNumOpt(boolean is_final)
+            throws InvalidParamException {
+        int valtype;
+        if (values.size() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        valtype = values.get(0).getType();
+        if (valtype != CssTypes.CSS_NUMBER) {
+            throw new InvalidParamException("incompatibletypes", toString(), ac);
+        }
+        if (values.size() > 1) {
+            valtype = values.get(1).getType();
+            if (valtype != CssTypes.CSS_NUMBER) {
+                throw new InvalidParamException("incompatibletypes", toString(), ac);
+            }
+        }
+        computed_type = CssTypes.CSS_NUMBER;
+    }
+
+    private void _computeResultingTypeAtan2(boolean is_final)
+            throws InvalidParamException {
+        int valtype1, valtype2;
+        if (values.size() != 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        valtype1 = values.get(0).getType();
+        valtype2 = values.get(1).getType();
+        if (valtype1 == valtype2) {
+            computed_type = CssTypes.CSS_ANGLE;
+        } else {
+            throw new InvalidParamException("incompatibletypes", toString(), ac);
+        }
+    }
+
+    private void _computeResultingTypeRound(boolean is_final)
+            throws InvalidParamException {
+        int valtype1, valtype2;
+        int vsize = values.size();
+        if ((vsize < 2) || (vsize > 3)) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        if (vsize == 2) {
+            valtype1 = values.get(0).getType();
+            valtype2 = values.get(1).getType();
+        } else {  // 3 values
+            CssValue v = values.get(0);
+            if (v.getType() != CssTypes.CSS_IDENT) {
+                throw new InvalidParamException("incompatibletypes", toString(), ac);
+            }
+            if (!isAllowedRounding(v.getIdent())) {
+                throw new InvalidParamException("incompatibletypes", toString(), ac);
+            }
+            valtype1 = values.get(1).getType();
+            valtype2 = values.get(2).getType();
+        }
+        if (valtype1 == valtype2) {
+            computed_type = valtype1;
+        } else {
+            throw new InvalidParamException("incompatibletypes", toString(), ac);
+        }
+
+    }
+
+    private void _computeResultingTypeSign(boolean is_final)
+            throws InvalidParamException {
+        if (values.size() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        computed_type = CssTypes.CSS_NUMBER;
+    }
+
+    private void _computeResultingTypeOneAny(boolean is_final)
+            throws InvalidParamException {
+        int valtype;
+        if (values.size() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        valtype = values.get(0).getType();
+        computed_type = valtype;
+    }
+
+    private void _computeResultingTypeTwoAny(boolean is_final)
+            throws InvalidParamException {
+        int valtype1, valtype2;
+        if (values.size() != 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        valtype1 = values.get(0).getType();
+        valtype2 = values.get(1).getType();
+        if (valtype1 == valtype2) {
+            computed_type = valtype1;
+        } else {
+            throw new InvalidParamException("incompatibletypes", toString(), ac);
+        }
+    }
+
+    private void _computeResultingTypeTrig(boolean is_final)
             throws InvalidParamException {
         int valtype;
         if (values.size() > 1) {
@@ -162,7 +349,7 @@ public class CssMathFunction extends CssCheckableValue {
         }
     }
 
-    private void _computeResultingTypeList(boolean first)
+    private void _computeResultingTypeList(boolean is_final)
             throws InvalidParamException {
         int valtype = CssTypes.CSS_MATH_FUNCTION;
         boolean firstVal = true;
