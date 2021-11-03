@@ -777,6 +777,7 @@ TOKEN [IGNORE_CASE] :
     | <FUNCTIONMATHN         : "min(" | "max(" | "hypot(" >
     | <FUNCTIONMATH1         : "sin(" | "cos(" | "tan(" | "asin(" | "acos(" | "atan(" | "sqrt(" | "exp(" | "abs(" | "sign(" >
     | <FUNCTIONMATH2         : "mod(" | "rem(" | "atan2(" | "pow(" | "log(" >
+    | <FUNCTIONROUND         : "round("            >
     | <FUNCTIONCLAMP         : "clamp("            >
     | <FUNCTIONATTR          : "attr("             >
     | <FUNCTIONVAR           : "var("              >
@@ -3305,7 +3306,7 @@ CssCheckableValue mathfunction() :
 	CssCheckableValue v;
 }
 {
-	( v=mathfunction1() | v=mathfunction2() | v=mathfunctionn() ) {
+	( v=mathfunction1() | v=mathfunction2() | v=mathfunctionn() | v=mathfunctionround() ) {
 		return v;
 	}
 }
@@ -3328,6 +3329,25 @@ CssCheckableValue mathfunctionn() :
     return c;
   }
 }
+
+CssCheckableValue mathfunctionround() :
+{
+    CssCheckableValue v;
+    CssMathFunction c;
+    Token n;
+}
+{
+    ( n=<FUNCTIONROUND> { c = new CssMathFunction(ac, n.image); }
+        ( <S> )* ( LOOKAHEAD(2) v=mathsum() { c.addValue(v); }
+     | n=<IDENT> { c.addValue(CssIdent.getIdent(convertIdent(n.image))); } )
+        ( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
+                c.addValue(v);
+        } ( <S> )* )* <RPAREN> ) {
+        c.validate();
+    return c;
+  }
+}
+
 
 CssCheckableValue mathfunction1() :
 {
@@ -3891,6 +3911,7 @@ String skip_to_matching_paren() {
             case FUNCTIONMATH1:
             case FUNCTIONMATH2:
             case FUNCTIONCLAMP:
+            case FUNCTIONROUND:
             case FUNCTIONATTR:
             case FUNCTIONVAR:
                 s.append(tok.image);
