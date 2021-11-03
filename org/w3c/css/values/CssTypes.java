@@ -34,11 +34,9 @@ public class CssTypes {
     public static final int CSS_FLEX = 21;
     public static final int CSS_BRACKET = 22;
     public static final int CSS_COMPARATOR = 23;
-    public static final int CSS_MIN = 24;
-    public static final int CSS_MAX = 25;
-    public static final int CSS_CLAMP = 26;
-    public static final int CSS_VARIABLE = 27;
-    public static final int CSS_VARIABLE_DEFINITION = 28;
+    public static final int CSS_MATH_FUNCTION = 24;
+    public static final int CSS_VARIABLE = 25;
+    public static final int CSS_VARIABLE_DEFINITION = 26;
 
     // not really a property value
     public static final int CSS_ANPLUSB = 48;

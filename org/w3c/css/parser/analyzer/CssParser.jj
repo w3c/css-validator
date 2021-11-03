@@ -65,7 +65,6 @@ import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssBracket;
 import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssCheckableValue;
-import org.w3c.css.values.CssClamp;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssComparator;
 import org.w3c.css.values.CssExpression;
@@ -76,8 +75,7 @@ import org.w3c.css.values.CssHashIdent;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssImage;
 import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssMax;
-import org.w3c.css.values.CssMin;
+import org.w3c.css.values.CssMathFunction;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssPercentage;
@@ -647,20 +645,18 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-  < RELFONTLENGTH  : <NUM> "em"
-                   | <NUM> "ex"
-	           | <NUM> "cap"
-                   | <NUM> "ch"
-	           | <NUM> "ic"
-	           | <NUM> "lh"
-	           | <NUM> "rlh"
-                   | <NUM> "rem" >
-  | <RELVIEWLENGTH : <NUM> "vw"
-                   | <NUM> "vh"
-	           | <NUM> "vi"
-	           | <NUM> "vb"
-                   | <NUM> "vmin"
-                   | <NUM> "vmax" >
+  < RELFONTLENGTH  : <NUM> ( "r" )? "em"
+                   | <NUM> ( "r" )? "ex"
+	           | <NUM> ( "r" )? "cap"
+                   | <NUM> ( "r" )? "ch"
+	           | <NUM> ( "r" )? "ic"
+	           | <NUM> ( "r" )? "lh" >
+  | <RELVIEWLENGTH : <NUM> ( "s" | "l" | "d" )? "vw"
+                   | <NUM> ( "s" | "l" | "d" )? "vh"
+	           | <NUM> ( "s" | "l" | "d" )? "vi"
+	           | <NUM> ( "s" | "l" | "d" )? "vb"
+                   | <NUM> ( "s" | "l" | "d" )? "vmin"
+                   | <NUM> ( "s" | "l" | "d" )? "vmax" >
   | <ABSOLUTLENGTH : <NUM> "cm"
                    | <NUM> "mm"
                    | <NUM> "q"
@@ -778,8 +774,10 @@ TOKEN [IGNORE_CASE] :
     | <FUNCTIONNTHLASTOFTYPE : "nth-last-of-type(" >
     | <FUNCTIONNOT           : "not("              >
     | <FUNCTIONCALC          : "calc(" | "-moz-calc(" | "-webkit-calc(" >
-    | <FUNCTIONMIN           : "min("              >
-    | <FUNCTIONMAX           : "max("              >
+    | <FUNCTIONMATHN         : "min(" | "max(" | "hypot(" >
+    | <FUNCTIONMATH1         : "sin(" | "cos(" | "tan(" | "asin(" | "acos(" | "atan(" | "sqrt(" | "exp(" | "abs(" | "sign(" >
+    | <FUNCTIONMATH2         : "mod(" | "rem(" | "atan2(" | "pow(" | "log(" >
+    | <FUNCTIONROUND         : "round("            >
     | <FUNCTIONCLAMP         : "clamp("            >
     | <FUNCTIONATTR          : "attr("             >
     | <FUNCTIONVAR           : "var("              >
@@ -3171,8 +3169,7 @@ void term(CssExpression exp) :
         ) 
       )
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTIONCALC); }
-        | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
-        | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
+        | func=mathfunction() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
         | func=functionvar() { setValue(func, exp, operator, null, FUNCTIONVAR); }
@@ -3265,8 +3262,7 @@ void mediaterm(CssExpression exp) :
     }
    | (  func=function() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathcalc() { setValue(func, exp, operator, null, FUNCTIONCALC); }
-      | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
-      | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
+      | func=mathfunction() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); }
      ) ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -3305,41 +3301,26 @@ void mediaterm(CssExpression exp) :
     ) ( <S> )* )
 }
 
-CssCheckableValue mathmin() :
+CssCheckableValue mathfunction() :
 {
-    CssCheckableValue v;
-    CssMin c;
-    Token n;
+	CssCheckableValue v;
 }
 {
-    ( n=<FUNCTIONMIN>  ( <S> )* v=mathsum() {
-       if (v.getRawType() != CssTypes.CSS_MIN) {
-           c = new CssMin(v);
-        } else {
-           c = (CssMin) v;
-        }
-    }
-	( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
-		c.addValue(v);
-	} ( <S> )* )* <RPAREN> ) {
-	c.validate();
-    return c;
-  }
+	( v=mathfunction1() | v=mathfunction2() | v=mathfunctionn() | v=mathfunctionround() ) {
+		return v;
+	}
 }
 
-CssCheckableValue mathmax() :
+
+CssCheckableValue mathfunctionn() :
 {
     CssCheckableValue v;
-    CssMax c;
+    CssMathFunction c;
     Token n;
 }
 {
-    ( n=<FUNCTIONMAX>  ( <S> )* v=mathsum() {
-       if (v.getRawType() != CssTypes.CSS_MAX) {
-           c = new CssMax(v);
-        } else {
-           c = (CssMax) v;
-        }
+    ( n=<FUNCTIONMATHN>  ( <S> )* v=mathsum() {
+           c = new CssMathFunction(ac, n.image, v);
     }
 	( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
 	        c.addValue(v);
@@ -3349,16 +3330,74 @@ CssCheckableValue mathmax() :
   }
 }
 
+CssCheckableValue mathfunctionround() :
+{
+    CssCheckableValue v;
+    CssMathFunction c;
+    Token n;
+}
+{
+    ( n=<FUNCTIONROUND> { c = new CssMathFunction(ac, n.image); }
+        ( <S> )* (  LOOKAHEAD(2) n=<IDENT> { c.addValue(CssIdent.getIdent(convertIdent(n.image))); } 
+     | v=mathsum() { c.addValue(v); } )
+        ( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
+                c.addValue(v);
+        } ( <S> )* )* <RPAREN> ) {
+        c.validate();
+    return c;
+  }
+}
+
+
+CssCheckableValue mathfunction1() :
+{
+    CssCheckableValue v;
+    CssMathFunction c;
+    Token n;
+}
+{
+    ( n=<FUNCTIONMATH1>  ( <S> )* v=mathsum() {
+           c = new CssMathFunction(ac, n.image, v);
+    }
+    ( <S> )* <RPAREN> ) {
+        c.validate();
+    return c;
+  }
+}
+
+CssCheckableValue mathfunction2() :
+{
+    CssCheckableValue v;
+    CssMathFunction c;
+    Token n;
+}
+{
+    ( n=<FUNCTIONMATH2>  ( <S> )* v=mathsum() {
+           c = new CssMathFunction(ac, n.image, v);
+    }
+        ( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
+                c.addValue(v);
+        } ( <S> )* )? <RPAREN> ) {
+        c.validate();
+    return c;
+  }
+}
+
+
+
 CssCheckableValue mathclamp() :
 {
     CssCheckableValue v1, v2, v3;
-CssClamp c;
-Token n;
+    CssMathFunction c;
+    Token n;
 }
 {
     ( n=<FUNCTIONCLAMP>  ( <S> )* v1=mathsum() ( <S> )* <COMMA> ( <S> )* v2=mathsum() ( <S> )*
       <COMMA> ( <S> )* v3=mathsum() ( <S> )* <RPAREN> ) {
-	c = new CssClamp(ac, v1, v2, v3);
+	c = new CssMathFunction(ac, n.image);
+        c.addValue(v1);
+        c.addValue(v2);
+        c.addValue(v3);
 	c.validate();
 	return c;
     }
@@ -3479,7 +3518,7 @@ CssCheckableValue calcnumbervalue() :
 }
 {
  (
- ( ( operator=unaryOperator() )? n=<NUMBER> { v = new CssNumber(); v.set(addOperator(operator, n.image), ac); } ) |
+ ( ( operator=unaryOperator() )? ( n=<NUMBER> | n=<IDENT> ) { v = new CssNumber(); v.set(addOperator(operator, n.image), ac); } ) |
  ( <LPAREN> ( <S> )* v=calcnumbersum() ( <S> )* <RPAREN> { try { ((CssCalc) v).setParenthesis(); } catch (Exception ex) { ex.printStackTrace();}} )
  ) {
   return v;
@@ -3548,7 +3587,7 @@ CssCheckableValue v = null;
 char operator = ' ';
 }
 {
-    ( ( operator=unaryOperator() )? ( n=<NUMBER> { v = new CssNumber(); v.set(addOperator(operator, n.image), ac); }
+    ( ( operator=unaryOperator() )? ( ( n=<NUMBER> | n=<IDENT> ) { v = new CssNumber(); v.set(addOperator(operator, n.image), ac); }
     | n=<PERCENTAGE> { v = new CssPercentage(); v.set(addOperator(operator, n.image), ac); }
     | n=<RELFONTLENGTH> { v = new CssLength(); v.set(addOperator(operator, n.image), ac); } 
     | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(addOperator(operator, n.image), ac); }
@@ -3560,8 +3599,7 @@ char operator = ' ';
     )
     | ( <LPAREN> ( <S> )* v=mathsum() ( <S> )* <RPAREN> ) { ((CssCalc) v).setParenthesis(); }
     | v=mathcalc()
-    | v=mathmax()
-    | v=mathmin()
+    | v=mathfunction()
     | v=mathclamp()
     | v=attr()
     | v=functionvar()
@@ -3869,9 +3907,11 @@ String skip_to_matching_paren() {
 	    case FUNCTIONNTHLASTOFTYPE:
             case FUNCTIONNOT:
             case FUNCTIONCALC:
-            case FUNCTIONMIN:
-            case FUNCTIONMAX:
+            case FUNCTIONMATHN:
+            case FUNCTIONMATH1:
+            case FUNCTIONMATH2:
             case FUNCTIONCLAMP:
+            case FUNCTIONROUND:
             case FUNCTIONATTR:
             case FUNCTIONVAR:
                 s.append(tok.image);
