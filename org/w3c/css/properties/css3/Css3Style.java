@@ -198,6 +198,7 @@ import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssOverflowX;
 import org.w3c.css.properties.css.CssOverflowY;
 import org.w3c.css.properties.css.CssOverscrollBehavior;
+import org.w3c.css.properties.css.CssOverscrollBehaviorBlock;
 import org.w3c.css.properties.css.CssOverscrollBehaviorInline;
 import org.w3c.css.properties.css.CssOverscrollBehaviorX;
 import org.w3c.css.properties.css.CssOverscrollBehaviorY;
@@ -677,6 +678,7 @@ public class Css3Style extends ATSCStyle {
     public CssOverscrollBehaviorX cssOverscrollBehaviorX;
     public CssOverscrollBehaviorY cssOverscrollBehaviorY;
     public CssOverscrollBehavior cssOverscrollBehavior;
+    public CssOverscrollBehaviorBlock cssOverscrollBehaviorBlock;
     public CssOverscrollBehaviorInline cssOverscrollBehaviorInline;
 
     public CssOverscrollBehavior getOverscrollBehavior() {
@@ -706,6 +708,15 @@ public class Css3Style extends ATSCStyle {
         return cssOverscrollBehaviorY;
     }
 
+    public CssOverscrollBehaviorBlock getOverscrollBehaviorBlock() {
+        if (cssOverscrollBehaviorBlock == null) {
+            cssOverscrollBehaviorBlock =
+                    (CssOverscrollBehaviorBlock) style.CascadingOrder(new CssOverscrollBehaviorBlock(),
+                            style, selector);
+        }
+        return cssOverscrollBehaviorBlock;
+    }
+    
     public CssOverscrollBehaviorInline getOverscrollBehaviorInline() {
         if (cssOverscrollBehaviorInline == null) {
             cssOverscrollBehaviorInline =
