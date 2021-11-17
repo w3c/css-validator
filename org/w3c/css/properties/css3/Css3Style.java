@@ -197,6 +197,9 @@ import org.w3c.css.properties.css.CssOverflowStyle;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssOverflowX;
 import org.w3c.css.properties.css.CssOverflowY;
+import org.w3c.css.properties.css.CssOverscrollBehavior;
+import org.w3c.css.properties.css.CssOverscrollBehaviorX;
+import org.w3c.css.properties.css.CssOverscrollBehaviorY;
 import org.w3c.css.properties.css.CssPaddingBlock;
 import org.w3c.css.properties.css.CssPaddingBlockEnd;
 import org.w3c.css.properties.css.CssPaddingBlockStart;
@@ -669,6 +672,37 @@ public class Css3Style extends ATSCStyle {
     public CssTextDecorationSkipSpaces cssTextDecorationSkipSpaces;
     public CssScrollbarWidth cssScrollbarWidth;
     public CssScrollbarColor cssScrollbarColor;
+
+    public CssOverscrollBehaviorX cssOverscrollBehaviorX;
+    public CssOverscrollBehaviorY cssOverscrollBehaviorY;
+    public CssOverscrollBehavior cssOverscrollBehavior;
+
+    public CssOverscrollBehavior getOverscrollBehavior() {
+        if (cssOverscrollBehavior == null) {
+            cssOverscrollBehavior =
+                    (CssOverscrollBehavior) style.CascadingOrder(new CssOverscrollBehavior(),
+                            style, selector);
+        }
+        return cssOverscrollBehavior;
+    }
+
+    public CssOverscrollBehaviorX getOverscrollBehaviorX() {
+        if (cssOverscrollBehaviorX == null) {
+            cssOverscrollBehaviorX =
+                    (CssOverscrollBehaviorX) style.CascadingOrder(new CssOverscrollBehaviorX(),
+                            style, selector);
+        }
+        return cssOverscrollBehaviorX;
+    }
+
+    public CssOverscrollBehaviorY getOverscrollBehaviorY() {
+        if (cssOverscrollBehaviorY == null) {
+            cssOverscrollBehaviorY =
+                    (CssOverscrollBehaviorY) style.CascadingOrder(new CssOverscrollBehaviorY(),
+                            style, selector);
+        }
+        return cssOverscrollBehaviorY;
+    }
 
     public CssScrollbarColor getScrollbarColor() {
         if (cssScrollbarColor == null) {
