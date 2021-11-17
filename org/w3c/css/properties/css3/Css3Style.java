@@ -198,6 +198,7 @@ import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssOverflowX;
 import org.w3c.css.properties.css.CssOverflowY;
 import org.w3c.css.properties.css.CssOverscrollBehavior;
+import org.w3c.css.properties.css.CssOverscrollBehaviorInline;
 import org.w3c.css.properties.css.CssOverscrollBehaviorX;
 import org.w3c.css.properties.css.CssOverscrollBehaviorY;
 import org.w3c.css.properties.css.CssPaddingBlock;
@@ -676,6 +677,7 @@ public class Css3Style extends ATSCStyle {
     public CssOverscrollBehaviorX cssOverscrollBehaviorX;
     public CssOverscrollBehaviorY cssOverscrollBehaviorY;
     public CssOverscrollBehavior cssOverscrollBehavior;
+    public CssOverscrollBehaviorInline cssOverscrollBehaviorInline;
 
     public CssOverscrollBehavior getOverscrollBehavior() {
         if (cssOverscrollBehavior == null) {
@@ -702,6 +704,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return cssOverscrollBehaviorY;
+    }
+
+    public CssOverscrollBehaviorInline getOverscrollBehaviorInline() {
+        if (cssOverscrollBehaviorInline == null) {
+            cssOverscrollBehaviorInline =
+                    (CssOverscrollBehaviorInline) style.CascadingOrder(new CssOverscrollBehaviorInline(),
+                            style, selector);
+        }
+        return cssOverscrollBehaviorInline;
     }
 
     public CssScrollbarColor getScrollbarColor() {
