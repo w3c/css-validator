@@ -8,9 +8,9 @@ package org.w3c.css.properties.css3.fontface;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
@@ -65,7 +65,7 @@ public class CssUnicodeRange extends org.w3c.css.properties.css.fontface.CssUnic
         if (values.isEmpty()) {
             throw new InvalidParamException("few-value", getPropertyName(), ac);
         }
-        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
     }
 
     public CssUnicodeRange(ApplContext ac, CssExpression expression)
