@@ -131,7 +131,7 @@ public class IndexGenerator {
                     ++count;
                 }
             }
-            Velocity.getLog().info("IndexGenerator : " + count + " index file(s) created or modified");
+    //        Velocity.getLog().info("IndexGenerator : " + count + " index file(s) created or modified");
             done = true;
         } catch (ResourceNotFoundException e) {
             e.printStackTrace();
