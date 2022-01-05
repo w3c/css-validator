@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2021/WD-css-scrollbars-1-20210829/#propdef-scrollbar-color
+ * @spec https://www.w3.org/TR/2021/CR-css-scrollbars-1-20211209/#propdef-scrollbar-color
  */
 public class CssScrollbarColor extends org.w3c.css.properties.css.CssScrollbarColor {
 
@@ -74,7 +74,7 @@ public class CssScrollbarColor extends org.w3c.css.properties.css.CssScrollbarCo
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     if (expression.getCount() != 1) {
                         throw new InvalidParamException("value",
                                 val.toString(),
@@ -143,7 +143,7 @@ public class CssScrollbarColor extends org.w3c.css.properties.css.CssScrollbarCo
             val = expression.getValue();
             switch (val.getType()) {
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
+                    if (CssIdent.isCssWide(val.getIdent())) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);

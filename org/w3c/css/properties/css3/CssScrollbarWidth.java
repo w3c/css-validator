@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2021/WD-css-scrollbars-1-20210829/#propdef-scrollbar-width
+ * @spec https://www.w3.org/TR/2021/CR-css-scrollbars-1-20211209/#propdef-scrollbar-width
  */
 public class CssScrollbarWidth extends org.w3c.css.properties.css.CssScrollbarWidth {
 
@@ -66,7 +66,7 @@ public class CssScrollbarWidth extends org.w3c.css.properties.css.CssScrollbarWi
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
+                if (CssIdent.isCssWide(val.getIdent())) {
                     value = val;
                     break;
                 } else {
