@@ -127,9 +127,9 @@ content-type: text/html; charset=utf-8
 content-language: pl
 output-encoding-name: utf-8
 
-# Można zmienić poziom ostrzeżeń w następujšcy sposób (przykład) :
+# Można zmienić poziom ostrzeżeń w następujący sposób (przykład) :
 # warning.redefinition.level: 5
-#  poziom jest liczbš pomiędzy 0 i 9 (wszystkie inne wartoci sš ignorowane)
+#  poziom jest liczbą pomiędzy 0 i 9 (wszystkie inne wartości są ignorowane)
 warning.redefinition: Redefiniowanie \u201C%s\u201D
 
 # used by xml parser
@@ -140,24 +140,24 @@ warning.same-colors: Takie same kolory dla \u201C%s\u201D i \u201C%s\u201D
 warning.no-color: Brak koloru w background-color
 warning.no-background-color: Brak background-color with your color
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Chociaż nazwy kolorów nie sš wrażliwe na wielkoć czcionki, zaleca się aby używać kombinacji małej i dużej czcionki, co uczyni nazwy bardziej czytelnymi: \u201C%s\u201D
-warning.no-generic-family: \u201C%s\u201D: Zaleca się aby rodziny czcionek rodzajowych były stosowane w ostatecznoci
-warning.with-space: nazwy rodzin czcionek zawierajšce białe znaki powinny być w cudzysłowiu. Jeli pominie się cudzysłów, białe znaki \
-przed i po nazwie sš ignorowane oraz cišg białych znaków wewnštrz nazwy \
-jest przekształcony w jednš spację. 
+#warning.color.mixed-capitalization: Chociaż nazwy kolorów nie są wrażliwe na wielkość czcionki, zaleca się aby używać kombinacji małej i dużej czcionki, co uczyni nazwy bardziej czytelnymi: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Zaleca się aby rodziny czcionek rodzajowych były stosowane w ostateczności
+warning.with-space: nazwy rodzin czcionek zawierające białe znaki powinny być w cudzysłowiu. Jeśli pominie się cudzysłów, białe znaki \
+przed i po nazwie są ignorowane oraz ciąg białych znaków wewnątrz nazwy \
+jest przekształcony w jedną spację. 
 warning.no-padding: Zaleca się aby mieć padding z kolorem tła
 warning.same-colors2: Takie same kolory dla color i background-color w dwóch miejscach \u201C%s\u201D i \u201C%s\u201D
-warning.relative-absolute: Istniejš długoci absolutne i relatywne w \u201C%s\u201D. To nie jest mocny arkusz stylów.
+warning.relative-absolute: Istnieją długości absolutne i relatywne w \u201C%s\u201D. To nie jest mocny arkusz stylów.
  by org.w3c.css.properties.CssSelectors
 warning.unknown-html: \u201C%s\u201D nie jest elementem HTML
-warning.html-inside: Element HTML nie może znajdować się wewnštrz innego elementu
-warning.body-inside: Element BODY nie może być wewnštrz innego elementu z wyjštkiem HTML
+warning.html-inside: Element HTML nie może znajdować się wewnątrz innego elementu
+warning.body-inside: Element BODY nie może być wewnątrz innego elementu z wyjątkiem HTML
 warning.pseudo-classes: Anchor pseudo-class \u201C%s\u201D nie działa na inne elementy poza 'A'
 
 # nie użyte przez org.w3c.css.properties.CssSelectors na czas obecny
-warning.noinside: \u201C%s\u201D nie może być wewnštrz elementu inline 
-warning.withblock: Uwaga. Pseudo-elementy mogš być dołšczone jedynie do elementu block-level 
-warning.block-level: Właciwoć tš stosuje się jedynie do elementów block-level.
+warning.noinside: \u201C%s\u201D nie może być wewnątrz elementu inline 
+warning.withblock: Uwaga. Pseudo-elementy mogą być dołączone jedynie do elementu block-level 
+warning.block-level: Właściwość tą stosuje się jedynie do elementów block-level.
 
 # użyte przez org.w3c.css.parser.Frame
 warning.no-declaration: No declarations in the rule
@@ -169,50 +169,50 @@ warning.unsupported-import: Imported style sheets are not checked in direct inpu
 warning.out-of-range: \u201C%s\u201D is out of range
 error.invalid-color: Invalid RGB function
 
-warning.marker: Właciwoć marker-offset stosuje się do elementów z 'display: marker'
+warning.marker: Właściwość marker-offset stosuje się do elementów z 'display: marker'
 
 # użyte przez org.w3c.css.properties.ACssStyle
-warning.relative: Zastosowanie jednostek relatywnych we właciwoci \u201C%s\u201D daje w rezultacie silniejszy arkusz stylów
+warning.relative: Zastosowanie jednostek relatywnych we właściwości \u201C%s\u201D daje w rezultacie silniejszy arkusz stylów
 
 # użyte przez org.w3c.css.css.StyleSheetParser i org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Niestety ale at-rule \u201C%s\u201D jest nie wdrożony.
 warning.at-rule: Niestety ale at-rule \u201C%s\u201D jest nie wdrożony.
 
-# użyte przez wszystkie właciwoci i wartoci
+# użyte przez wszystkie właściwości i wartości
 error.operator: \u201C%s\u201D jest niepoprawnym operatorem
-error.negative-value: Wartoci negatywne \u201C%s\u201D sš niedozwolone
-error.few-value: Zbyt mało wartoci dla właciwoci \u201C%s\u201D
+error.negative-value: Wartości negatywne \u201C%s\u201D są niedozwolone
+error.few-value: Zbyt mało wartości dla właściwości \u201C%s\u201D
 
-# Uwaga! Wartoci sš pierwsze
-# Można napisać co takiego : Dla color, blue nie jest wartociš poprawnš 
-error.value: \u201C%s\u201D nie jest wartociš \u201C%s\u201D 
+# Uwaga! Wartości są pierwsze
+# Można napisać coś takiego : Dla color, blue nie jest wartością poprawną 
+error.value: \u201C%s\u201D nie jest wartością \u201C%s\u201D 
 
 #użyte przez org.w3c.css.properties3.CssToggleGroup
-error.groupname: \u201C%s\u201D nie jest poprawnš groupname. Zastosuj poprawny identyfikator
+error.groupname: \u201C%s\u201D nie jest poprawną groupname. Zastosuj poprawny identyfikator
 
 #użyte przez org.w3c.css.properties3.CssGroupReset
-error.nogroup: \u201C%s\u201D nie jest ustalona przez właciwoć toggle-group
+error.nogroup: \u201C%s\u201D nie jest ustalona przez właściwość toggle-group
 
 #użyte przez org.w3c.css.properties3.CssGlyphOrVert
-error.anglevalue: Wartoć powinna być pomiędzy -360 i 360 oraz podzielna przez 90
+error.anglevalue: Wartość powinna być pomiędzy -360 i 360 oraz podzielna przez 90
 
 #użyte przez org.w3c.css.properties3.CssTextKashidaSpace
-error.percentage: Oczekuje się wartoci procentowej
+error.percentage: Oczekuje się wartości procentowej
 
 #użyte przez org.w3c.css.properties.CssTextAlign
-warning.xsl: Wartoć \u201C%s\u201D stosuje się jedynie w XSL
+warning.xsl: Wartość \u201C%s\u201D stosuje się jedynie w XSL
 
 #użyte przez org.w3c.css.parser.analyzer.CssParser
-warning.medialist : medialist powinna zaczšć się z 'media :' \u201C%s\u201D
+warning.medialist : medialist powinna zacząć się z 'media :' \u201C%s\u201D
 error.nocomb: Kombinator \u201C%s\u201D pomiędzy selektorami nie jest dozwolony w tym profilu lub wersji
 
 #użyte przez org.w3c.css.properties.CssDirection
-warning.direction: Zamiast stosować 'direction' dla elemetów block-level, zastosuj nowš własnoć CSS3 'writing-mode' 
+warning.direction: Zamiast stosować 'direction' dla elemetów block-level, zastosuj nową własność CSS3 'writing-mode' 
 
 # użyte przez org.w3c.css.properties.CssTextDecoration
 error.same-value: \u201C%s\u201D pojawia się dwukrotnie
 
-error.generic-family.quote: Nazwy rodzin rodzajowych sš słowami kluczowymi i nie mogš być cytowane.
+error.generic-family.quote: Nazwy rodzin rodzajowych są słowami kluczowymi i nie mogą być cytowane.
 
 # użyte przez org.w3c.css.properties.CssClip
 error.shape: Niepoprawna definicja shape rect(<top>,<right>,<bottom>,<left>)
@@ -229,35 +229,35 @@ error.format: Niepoprawna definicja format, format(<string>[,<string>]*)
 error.local: Niepoprawna definicja, local(<string>|<ident>+)
 
 # użyte przez org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: \u201C%s\u201D nie jest poprawnš jednostkš
+error.unit: \u201C%s\u201D nie jest poprawną jednostką
 
 # użyte przez org.w3c.css.aural.ACssAzimuth
 error.degree: Pozycja musi być wyrażona w stopniach.
 
 # użyte przez org.w3c.css.aural.ACssElevation
-error.elevation.range: Okrela elewację jako kšt pomiędzy '-90deg' i '90deg'.
+error.elevation.range: Określa elewację jako kąt pomiędzy '-90deg' i '90deg'.
 
 # użyte przez org.w3c.css.aural.ACssPitchRange
-error.range: Wartoć jest poza zasięgiem. Wartoć powinna być pomiędzy '0' i '100'.
+error.range: Wartość jest poza zasięgiem. Wartość powinna być pomiędzy '0' i '100'.
 
 # użyte przez org.w3c.css.properties.CssTextShadow
-error.two-lengths: Shadow offset jest okrelony dwoma wartociami <length>. (Blur radius może być okrelony po shadow offset.)
+error.two-lengths: Shadow offset jest określony dwoma wartościami <length>. (Blur radius może być określony po shadow offset.)
 
-error.integer: Liczba ta musi być liczbš całkowitš.
+error.integer: Liczba ta musi być liczbą całkowitą.
 error.comma: Brak przecinka jako separatora.
 
 # użyte przez org.w3c.css.values.CssPercentage
-error.percent: \u201C%s\u201D jest niepoprawnš wartociš procentowš
+error.percent: \u201C%s\u201D jest niepoprawną wartością procentową
 
 # użyte przez org.w3c.css.values.CssString
-error.string: \u201C%s\u201D jest niepoprawnym cišgiem
+error.string: \u201C%s\u201D jest niepoprawnym ciągiem
 
 # użyte przez org.w3c.css.values.CssURL
 error.url: \u201C%s\u201D jest niepoprawnym URL
 
 # użyte przez org.w3c.css.values.CssColor
 error.rgb: \u201C%s\u201D nie jest prawidłowym numerem koloru 3 lub 6 hexadecimals 
-error.angle: \u201C%s\u201D jest niepoprawnym kštem. Wartoć powinna być pomiędzy 0 i 360
+error.angle: \u201C%s\u201D jest niepoprawnym kątem. Wartość powinna być pomiędzy 0 i 360
 
 # użyte przez org.w3c.css.values.CssNumber
 error.zero: Jedynie 0 może być \u201C%s\u201D. Musisz wstawić jednostkę po numerze
@@ -266,39 +266,39 @@ warning.zero: Jedynie 0 może być \u201C%s\u201D. Musisz wstawić jednostkę po
 # użyte przez org.w3c.css.parser.CssPropertyFactory 
 error.noexistence: WłaWłaściwość \u201C%s\u201D nie istnieje w \u201C%s\u201D, ale istnieje w \u201C%s\u201D
 warning.noexistence: Właściwość \u201C%s\u201D nie istnieje w \u201C%s\u201D, ale istnieje w \u201C%s\u201D
-error.noexistence-media: Właciwoć \u201C%s\u201D nie istnieje dla media \u201C%s\u201D
+error.noexistence-media: Właściwość \u201C%s\u201D nie istnieje dla media \u201C%s\u201D
 error.noexistence-at-all: Właściwość \u201C%s\u201D nie istnieje
-warning.noexistence-media: Właciwoć \u201C%s\u201D nie istnieje dla media \u201C%s\u201D
-warning.notforusermedium : Właciwoć \u201C%s\u201D nie istnieje dla tego usermedium
-warning.noothermedium : Właciwoć dla innych mediów może nie działać dla usermedium
+warning.noexistence-media: Właściwość \u201C%s\u201D nie istnieje dla media \u201C%s\u201D
+warning.notforusermedium : Właściwość \u201C%s\u201D nie istnieje dla tego usermedium
+warning.noothermedium : Właściwość dla innych mediów może nie działać dla usermedium
 # użyte przez org.w3c.css.parser.AtRule*
-error.noatruleyet : Inne @rules poza @import nie sš wspierane przez CSS1 \u201C%s\u201D
+error.noatruleyet : Inne @rules poza @import nie są wspierane przez CSS1 \u201C%s\u201D
 # użyte przez org.w3c.css.parser.analyzer.CssParser
-error.notforcss1 : Wartoć \u201C%s\u201D nie istnieje w CSS1
+error.notforcss1 : Wartość \u201C%s\u201D nie istnieje w CSS1
 warning.pseudo: Nieznany pesudo-element lub pseudo-klasa \u201C%s\u201D w domyślnym profilu (\u201C%s\u201D)
 warning.nocomb: Kombinator \u201C%s\u201D pomiędzy selektorami nie jest dozwolony w tym profilu (\u201C%s\u201D)
 warning.charsetspecial: Ten profil ma ściśle określoną składnię dla reguły @charset: @charset, dokładnie jedna spacja, nazwa kodowania w cudzysłowie, średnik.
 warning.notversion: \u201C%s\u201D nie może zostać użyty z tą wersją CSS: \u201C%s\u201D
 
 # użyte przez org.w3c.css.parser.CssFouffa
-error.unrecognize: Zbyt dużo wartoci lub wartoci nie rozpoznane
+error.unrecognize: Zbyt dużo wartości lub wartości nie rozpoznane
 
 # użyte przez org.w3c.css.parser.CssFouffa
-generator.unrecognize: Błšd parsowania
+generator.unrecognize: Błąd parsowania
 generator.dontmixhtml: Błąd parsowania: Arkusz styli nie powinien zawierać składni HTML.
 
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: Unknown error
 
 # użyte przez org.w3c.css.parser.CssSelectors
-error.pseudo-element: Pseudo-element \u201C%s\u201D nie może pojawić się w następujšcym kontekcie \u201C%s\u201D
-error.pseudo-class: Pseudo-class .\u201C%s\u201D nie może pojawić się w następujšcym kontekcie HTML \u201C%s\u201D
+error.pseudo-element: Pseudo-element \u201C%s\u201D nie może pojawić się w następującym kontekście \u201C%s\u201D
+error.pseudo-class: Pseudo-class .\u201C%s\u201D nie może pojawić się w następującym kontekście HTML \u201C%s\u201D
 error.pseudo: Niznany pseudo-element lub pseudo-class \u201C%s\u201D
-error.id: Selektor ID #\u201C%s\u201D jest niepoprawny ! Tylko jeden selektor ID może być okrelony w selektorze prostym: \u201C%s\u201D.
-error.space: Jeli stosuje się selektor atrybutu ~=, wyraz w wartoci \u201C%s\u201D nie powinien zawierać spacji.
+error.id: Selektor ID #\u201C%s\u201D jest niepoprawny ! Tylko jeden selektor ID może być określony w selektorze prostym: \u201C%s\u201D.
+error.space: Jeśli stosuje się selektor atrybutu ~=, wyraz w wartości \u201C%s\u201D nie powinien zawierać spacji.
 error.todo : Niestety, ale funkcja \u201C%s\u201D nie została jeszcze wdrożona.
-error.incompatible: \u201C%s\u201D i \u201C%s\u201D sš niekompatybilne
-warning.incompatible: \u201C%s\u201D i \u201C%s\u201D sš niekompatybilne
+error.incompatible: \u201C%s\u201D i \u201C%s\u201D są niekompatybilne
+warning.incompatible: \u201C%s\u201D i \u201C%s\u201D są niekompatybilne
 error.notformobile : \u201C%s\u201D nie może być zastosowany w profilu mobilnym
 error.notforatsc : \u201C%s\u201D nie może być zastosowany w profilu ATSC
 error.notfortv : \u201C%s\u201D nie może być zastosowany w profilu TV
@@ -311,8 +311,8 @@ error.unrecognized.link: Nierozpoznany link element lub xml-stylesheet PI.
 
 # użyte przez StyleSheetGeneratorHTML
 generator.context: Kontekst
-generator.request: Wystšpił błšd podczas przetwarzania twojego arkusza stylów. \
-Proszę ponowić probę lub wysłać e-mail pod adres plh@w3.org.
+generator.request: Wystąpił błąd podczas przetwarzania twojego arkusza stylów. \
+Proszę ponowić prośbę lub wysłać e-mail pod adres plh@w3.org.
 generator.unrecognized: Nierozpoznane
 generator.invalid-number: Niepoprawny numer
 generator.property: Niepoprawny numer
@@ -323,48 +323,48 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 
 
 # użyte przez parser
-parser.semi-colon: próba znalezienia rednika przed nazwš właciwoci. Dodaj go
+parser.semi-colon: próba znalezienia średnika przed nazwą właściwości. Dodaj go
 
 parser.unknown-dimension: Nieznany wymiar
 
 
-parser.old_class: W CSS1, nazwa klasy może zaczšć się od cyfry (".55ft"), \
-chyba, że jest to wymiar (".55in"). W CSS2 takie klasy sš parsowane jako \
-nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
+parser.old_class: W CSS1, nazwa klasy może zacząć się od cyfry (".55ft"), \
+chyba, że jest to wymiar (".55in"). W CSS2 takie klasy są parsowane jako \
+nieznane wymiary (aby pozwolić na późniejsze dodawanie jednostek)
 
-parser.old_id:W CSS1 nazwa id może zaczšć się od cyfry("#55ft"), \
-chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy sš parsowane jako \
-nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
+parser.old_id:W CSS1 nazwa id może zacząć się od cyfry("#55ft"), \
+chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy są parsowane jako \
+nieznane wymiary (aby pozwolić na późniejsze dodawanie jednostek)
 
-parser.class_dim:W CSS1 nazwa klasy może zaczšć się od cyfry (".55ft"), \
+parser.class_dim:W CSS1 nazwa klasy może zacząć się od cyfry (".55ft"), \
 chyba, że jest to wymiar (".55in").
 
-parser.id_dim:W CSS1 nazwa id  może zaczšć się od cyfry ("#55ft"), \
+parser.id_dim:W CSS1 nazwa id  może zacząć się od cyfry ("#55ft"), \
 chyba, że jest to wymiar ("#55in").
 
-parser.charset:Reguła @charset może pojawić się jedynie na poczštku \
-arkusza. Upewnij się, że nie ma przed niš spacji.
+parser.charset:Reguła @charset może pojawić się jedynie na początku \
+arkusza. Upewnij się, że nie ma przed nią spacji.
 
 parser.charsetspecial:Ten profil ma specyficzny syntax dla @charset: \
 @charset dokładnie po jednej spacji a następnie nazwa kodowania \
-w cudzysłowie zakończona bezporednio rednikiem.
+w cudzysłowie zakończona bezpośrednio średnikiem.
 
-warning.old_id:W CSS1 nazwa id  może zaczšć się od cyfry ("#55ft"), \
-chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy sš parsowane jako \
-nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
+warning.old_id:W CSS1 nazwa id  może zacząć się od cyfry ("#55ft"), \
+chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy są parsowane jako \
+nieznane wymiary (aby pozwolić na późniejsze dodawanie jednostek)
 
 warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
-chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy sš parsowane jako \
-nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
+chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy są parsowane jako \
+nieznane wymiary (aby pozwolić na późniejsze dodawanie jednostek)
 
 # użyte przez servlet
-servlet.invalid-request: Wysłałe niewłaciwe polecenie.
+servlet.invalid-request: Wysłałeś niewłaściwe polecenie.
 servlet.process: Nie można przetworzyć obiektu
 
 warning.atsc : \u201C%s\u201D może nie być wspieranym przez medium atsc-tv
 error.onlyATSC : \u201C%s\u201D ta funkcja jest jedynie dla medium atsc-tv
 
-warning.otherprofile : właciwoć \u201C%s\u201D nie istnieje dla tego profilu, ale wykazuje zgodnoć z innym profilem
+warning.otherprofile : właściwość \u201C%s\u201D nie istnieje dla tego profilu, ale wykazuje zgodność z innym profilem
 
 warning.float-no-width: W (x)HTML+CSS elementy pływające muszą mieć określoną szerokość. Nie dotyczy to tylko elementów z szerokością przypisaną domyślnie (html, img, input, textarea, select i object)
 parser.charsetcss1: Reguły @charset nie mogą być używane w CSS1
