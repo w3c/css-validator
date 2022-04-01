@@ -78,19 +78,14 @@ congrats: 恭喜恭喜
 # variables because the position of the link in the sentence varies in different languages
 doc_validates_before_link: 恭喜恭喜，此文档已经通过
 doc_validates_after_link: 校验!
-no_errors_interoperable_msg: 为了告诉你的访客你曾致力于建立交互性的网页 \
-你可以显示这个图标在任意经过检验的网页上。这里是 \
-你用作加入图标到你的网页上的HTML代码：
+no_errors_interoperable_msg: 为了告诉你的访客你曾致力于创建具有交互性的网页，你可以在任意经过检验的网页上显示这个图标。添加图标的HTML代码：
 valid_CSS: Valid CSS!
 # <!-- close the img tag with > instead of /> if using HTML<= 4.01 -->
 no_errors_close_tags_msg: close the img tag with &gt; instead of /&gt; if using HTML &lt;= 4.01
-no_errors_dl_local_msg: 如果你喜欢的话，你可以下载这个图象到你的网站目录下，并且 \
-改变以上的代码段以关联到你的当地图象而不是这个服务器。 
-no_errors_create_link_msg: 如果你愿意建立连接到此页 (例如，这个校验结果) \
-以便以后更加容易地再校验次页，或者容许其它人校验 \
-你的网页，其 URI 是：
+no_errors_dl_local_msg: 如果你喜欢的话，你可以下载这个图象到你的网站目录下，并且改变以上的代码段以关联到你的当地图象而不是这个服务器。 
+no_errors_create_link_msg: 如果你愿意链接到此页（比如这个校验结果）以便以后更加容易地再校验此页，或者容许其它人校验你的网页，其 URI 是：
 no_errors_forHTML_only_msg: 仅使用于HTML文档
-no_errors_bookmark_msg: 或者，你可以加入当前也到你的书签或列表中。
+no_errors_bookmark_msg: 或者，你可以把当前页添加到你的书签或列表中。
 note_valide_html: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="http://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。 
 top: Top
 # hook_html_validator <!-- generated on the fly -->
