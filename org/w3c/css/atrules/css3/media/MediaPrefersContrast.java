@@ -14,14 +14,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-mediaqueries-5-20200731/#descdef-media-prefers-contrast
+ * @spec https://www.w3.org/TR/2021/WD-mediaqueries-5-20211218/#prefers-contrast
  */
 public class MediaPrefersContrast extends MediaFeature {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"no-preference", "high", "low", "forced"};
+        String[] _allowed_values = {"no-preference", "less", "more", "custom"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
