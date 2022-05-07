@@ -11,6 +11,7 @@ import org.w3c.css.util.InvalidParamException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * CSS mathfunction().
@@ -64,7 +65,7 @@ public class CssMathFunction extends CssCheckableValue {
      * Create a new CssCalc
      */
     public CssMathFunction(String prefix) {
-        this.prefix = prefix;
+        this.prefix = prefix.toLowerCase(Locale.ENGLISH);
     }
 
     public CssMathFunction(ApplContext ac, String prefix) {
@@ -80,7 +81,7 @@ public class CssMathFunction extends CssCheckableValue {
             this.ac = ac;
         }
         if (prefix != null) {
-            this.prefix = prefix;
+            this.prefix = prefix.toLowerCase(Locale.ENGLISH);
         }
         if (value != null) {
             computed_type = value.getType();
