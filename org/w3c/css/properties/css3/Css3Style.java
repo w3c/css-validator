@@ -91,6 +91,7 @@ import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssContain;
+import org.w3c.css.properties.css.CssContentVisibility;
 import org.w3c.css.properties.css.CssCounterSet;
 import org.w3c.css.properties.css.CssDominantBaseline;
 import org.w3c.css.properties.css.CssFilter;
@@ -680,7 +681,17 @@ public class Css3Style extends ATSCStyle {
     public CssOverscrollBehavior cssOverscrollBehavior;
     public CssOverscrollBehaviorBlock cssOverscrollBehaviorBlock;
     public CssOverscrollBehaviorInline cssOverscrollBehaviorInline;
+    public CssContentVisibility cssContentVisibility;
 
+    public CssContentVisibility getContentVisibility() {
+        if (cssContentVisibility == null) {
+            cssContentVisibility =
+                    (CssContentVisibility) style.CascadingOrder(new CssContentVisibility(),
+                            style, selector);
+        }
+        return cssContentVisibility;
+    }
+    
     public CssOverscrollBehavior getOverscrollBehavior() {
         if (cssOverscrollBehavior == null) {
             cssOverscrollBehavior =
