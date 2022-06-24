@@ -53,6 +53,7 @@ public class StyleSheet {
         errors = new Errors();
         warnings = new Warnings();
         cascading = new CssCascadingOrder();
+        customProperties = new HashMap<>();
     }
 
     public void setWarningLevel(int warningLevel) {
