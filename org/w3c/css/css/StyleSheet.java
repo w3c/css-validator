@@ -7,6 +7,15 @@
 
 package org.w3c.css.css;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
+
+import org.w3c.css.atrules.css.AtRuleMedia;
+import org.w3c.css.atrules.css.media.Media;
 import org.w3c.css.parser.AtRule;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
@@ -237,6 +246,18 @@ public class StyleSheet {
     }
 
     public void newAtRule(AtRule atRule) {
+    	if(atRule instanceof AtRuleMedia) {
+    		AtRuleMedia arm = (AtRuleMedia) atRule;
+    		List<Media> toRemove = new ArrayList<>();
+    		for(Media m : arm.allMedia) {
+    			if(m == null || m.toString() == null || "null".equalsIgnoreCase(m.toString())) {
+    				toRemove.add(m);
+    			}
+    		}
+    		arm.allMedia.removeAll(toRemove);
+    		atRule = arm;
+    	}
+    	
         CssRuleList rulelist = new CssRuleList();
         rulelist.addAtRule(atRule);
         atRuleList.add(rulelist);
