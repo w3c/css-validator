@@ -478,4 +478,4 @@ error.typevaluemismatch: La valeur \u201C%s\u201D est incompatible avec sa défi
 
 error.emptymedia: En CSS2, l'indication du type de media dans la règle @media est ogligatoire
 
-error.email: Les adresses email ne peuvent être validées par cet outil, il est possible que vous soyez victime d'une escroquerie
+error.email: Les adresses email ne peuvent être validées par cet outil, utlisez une URL en http ou https

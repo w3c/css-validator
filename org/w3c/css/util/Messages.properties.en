@@ -454,7 +454,7 @@ error.typevaluemismatch: The value \u201C%s\u201D is incompatible with its type 
 
 error.emptymedia: In CSS2, the media type in @media is mandatory
 
-error.email: email addresses cannot be validated by this tool, you might be scammed
+error.email: This tool cannot be used with email addresses. Please enter a valid URL and try again.
 
 error.nomodifierrangemedia: No prefixes are allowed for range media features
 error.comparator: The \u201C%s\u201D and \u201C%s\u201D comparators are not compatible in a media feature of type \u201Crange\u201D
