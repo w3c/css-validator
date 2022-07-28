@@ -206,7 +206,9 @@ public class CssANPlusB extends CssValue {
                 sb.append('n');
             }
             if (b != null) {
-                sb.append(operator);
+            	if(operator != '\0') {
+            		sb.append(operator);
+            	}
                 sb.append(b.toPlainString());
             }
             representation = sb.toString();
