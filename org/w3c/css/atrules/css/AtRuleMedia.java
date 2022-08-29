@@ -31,8 +31,16 @@ public abstract class AtRuleMedia extends AtRule {
      * Adds a media
      */
     public AtRuleMedia addMedia(Media m) {
-        allMedia.add(m);
+        if (m != null) {
+            allMedia.add(m);
+        }
         return this;
+    }
+
+    public void removeLastMedia() {
+        if (!allMedia.isEmpty()) {
+            allMedia.remove(allMedia.size() - 1);
+        }
     }
 
     /**
@@ -62,7 +70,7 @@ public abstract class AtRuleMedia extends AtRule {
 
     public String getCurrentMedia() {
         if (!allMedia.isEmpty()) {
-            return allMedia.get(allMedia.size()-1).getMedia();
+            return allMedia.get(allMedia.size() - 1).getMedia();
         }
         return null;
     }
@@ -85,6 +93,7 @@ public abstract class AtRuleMedia extends AtRule {
         return "";
 
     }
+
     /**
      * Use to display the value part of the @media rule
      * used where the value is used, like as an option in @import

@@ -1193,6 +1193,10 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
             mediaRule.addMediaFeature(mf, ac);
 	    mf.setCombinator(comb);
 	    // mf.setParens();
+        } else {
+            if (defaultMedia) {
+                mediaRule.removeLastMedia();
+            }
         }
     }
 }
