@@ -261,9 +261,16 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
             v = exp.getValue();
             if (v.getType() == CssTypes.CSS_IDENT) {
                 if (null == CssListStyleType.getAllowedIdent(v.getIdent())) {
-                    throw new InvalidParamException("value", v,
-                            property.getPropertyName(), ac);
+                    // here we should check existing name counter-style.
+                    // and release a warning if not
+                    // we should first add a warning here to highlight the issue
+                    // (non-existent style should behave like decimal)
+                    // throw new InvalidParamException("value", v,
+                    //                                  property.getPropertyName(), ac);
                 }
+            } else {
+                throw new InvalidParamException("value", v,
+                        property.getPropertyName(), ac);
             }
         }
     }
