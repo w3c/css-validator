@@ -29,7 +29,7 @@ public class UnescapeFilterReader extends FilterReader {
             return 0x000a;// U+000A LINE FEED (LF)
         }
         if (c == 0) { // U+0000 NULL
-            return 0xffd; // U+FFFD REPLACEMENT CHARACTER
+            return 0xfffd; // U+FFFD REPLACEMENT CHARACTER
         }
         if (c >= 0xd800 && c <= 0xdfff) { // surrogate
             return 0xfffd;
