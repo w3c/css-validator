@@ -50,6 +50,7 @@ public final class StyleSheetParser
         implements CssValidatorListener, CssParser {
 
     private static Constructor co = null;
+    private static boolean isPreprocessed;
 
     static {
         try {
@@ -64,8 +65,13 @@ public final class StyleSheetParser
     CssFouffa cssFouffa;
     StyleSheet style = new StyleSheet();
 
-    public StyleSheetParser(ApplContext ac) {
+    public StyleSheetParser(ApplContext ac, boolean isPreprocessed) {
+        this.isPreprocessed = isPreprocessed;
         ac.setStyleSheet(getStyleSheet());
+    }
+
+    public StyleSheetParser(ApplContext ac) {
+        new StyleSheetParser(ac, false);
     }
 
     public void reInit() {
@@ -293,7 +299,8 @@ public final class StyleSheetParser
 
 //	    if (cssFouffa == null) {
             String charset = ac.getCharsetForURL(url);
-            if (ac.getCssVersion().compareTo(CssVersion.CSS2) >=0 ) {
+            if (ac.getCssVersion().compareTo(CssVersion.CSS2) >=0
+                    && !isPreprocessed) {
                 cssFouffa = new CssFouffa(ac, new UnescapeFilterReader(new BufferedReader(reader)), url, lineno);
             } else {
                 cssFouffa = new CssFouffa(ac, reader, url, lineno);
