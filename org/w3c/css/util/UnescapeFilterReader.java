@@ -3,6 +3,7 @@ package org.w3c.css.util;
 import java.io.FilterReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.Character;
 
 public class UnescapeFilterReader extends FilterReader {
 
@@ -32,7 +33,14 @@ public class UnescapeFilterReader extends FilterReader {
             return 0xfffd; // U+FFFD REPLACEMENT CHARACTER
         }
         if (c >= 0xd800 && c <= 0xdfff) { // surrogate
-            return 0xfffd;
+            if (!Character.isHighSurrogate((char) c)) {
+                return 0xfffd;
+            }
+            mark(1);
+            if (!Character.isLowSurrogate((char) in.read())) {
+                return 0xfffd;
+            }
+            reset();
         }
 
         // now specific case of CSS unicode escape for ascii values [A-Za-z0-9].
@@ -109,7 +117,15 @@ public class UnescapeFilterReader extends FilterReader {
             } else if (chars[i] == 0) {
                 chars[j++] = 0xfffd;
             } else if (chars[i] >= 0xd800 && chars[i] <= 0xdfff) {
-                chars[j++] = 0xfffd;
+                if (i + 1 >= l) {
+                    chars[j++] = 0xfffd;
+                } else if (!Character.isHighSurrogate((char) chars[i])) {
+                    chars[j++] = 0xfffd;
+                } else if (!Character.isLowSurrogate((char) chars[i + 1])) {
+                    chars[j++] = 0xfffd;
+                }
+                i++;
+                j++;
             }
             // escaping
 
