@@ -78,11 +78,13 @@ public class CssImageRendering extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        SVGBasicStyle s = (SVGBasicStyle) style;
-        if (s.cssImageRendering != null) {
-            style.addRedefinitionWarning(ac, this);
-        }
-        s.cssImageRendering = this;
+    	if(style instanceof SVGBasicStyle) {
+    		SVGBasicStyle s = (SVGBasicStyle) style;
+    		if (s.cssImageRendering != null) {
+    			style.addRedefinitionWarning(ac, this);
+    		}
+    		s.cssImageRendering = this;
+    	}
     }
 
 
