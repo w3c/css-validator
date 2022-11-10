@@ -52,6 +52,7 @@ import org.w3c.css.properties.css.CssBorderBlockStyle;
 import org.w3c.css.properties.css.CssBorderBlockWidth;
 import org.w3c.css.properties.css.CssBorderEndEndRadius;
 import org.w3c.css.properties.css.CssBorderEndStartRadius;
+import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssBorderImageSource;
 import org.w3c.css.properties.css.CssBorderInline;
 import org.w3c.css.properties.css.CssBorderInlineColor;
@@ -566,6 +567,7 @@ public class Css3Style extends ATSCStyle {
     public CssObjectPosition cssObjectPosition;
     public CssImageOrientation cssImageOrientation;
     public CssImageResolution cssImageResolution;
+    public CssImageRendering cssImageRendering;
 
     CssRubySpan cssRubySpan;
 
@@ -1795,6 +1797,13 @@ public class Css3Style extends ATSCStyle {
             counterStyleCssNegative = (org.w3c.css.properties.css.counterstyle.CssNegative) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssNegative(), style, selector);
         }
         return counterStyleCssNegative;
+    }
+
+    public CssImageRendering getImageRendering() {
+        if (cssImageRendering == null) {
+            cssImageRendering = (CssImageRendering) style.CascadingOrder(new CssImageRendering(), style, selector);
+        }
+        return cssImageRendering;
     }
 
     public CssBorderImageSource getBorderImageSource() {

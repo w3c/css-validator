@@ -17,7 +17,6 @@ import org.w3c.css.properties.css.CssEnableBackground;
 import org.w3c.css.properties.css.CssFillOpacity;
 import org.w3c.css.properties.css.CssGlyphOrientationHorizontal;
 import org.w3c.css.properties.css.CssGlyphOrientationVertical;
-import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssKerning;
 import org.w3c.css.properties.css.CssMask;
 import org.w3c.css.properties.css.CssPointerEvents;
@@ -34,7 +33,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
     public CssColorRendering cssColorRendering;
     public CssShapeRendering cssShapeRendering;
     public CssTextRendering cssTextRendering;
-    public CssImageRendering cssImageRendering;
     public CssTextAnchor cssTextAnchor;
     public CssFillOpacity cssFillOpacity;
     public CssStrokeOpacity cssStrokeOpacity;
@@ -57,15 +55,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
                             style, selector);
         }
         return cssColorInterpolation;
-    }
-
-    public CssImageRendering getImageRendering() {
-        if (cssImageRendering == null) {
-            cssImageRendering =
-                    (CssImageRendering) style.CascadingOrder(new CssImageRendering(),
-                            style, selector);
-        }
-        return cssImageRendering;
     }
 
     public CssColorRendering getColorRendering() {

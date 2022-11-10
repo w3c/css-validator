@@ -6,7 +6,7 @@
 package org.w3c.css.properties.css;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.svg.SVGBasicStyle;
+import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -78,7 +78,7 @@ public class CssImageRendering extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        SVGBasicStyle s = (SVGBasicStyle) style;
+        Css3Style s = (Css3Style) style;
         if (s.cssImageRendering != null) {
             style.addRedefinitionWarning(ac, this);
         }
@@ -105,9 +105,9 @@ public class CssImageRendering extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((SVGBasicStyle) style).getImageRendering();
+            return ((Css3Style) style).getImageRendering();
         } else {
-            return ((SVGBasicStyle) style).cssImageRendering;
+            return ((Css3Style) style).cssImageRendering;
         }
     }
 }
