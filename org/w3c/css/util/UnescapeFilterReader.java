@@ -31,9 +31,6 @@ public class UnescapeFilterReader extends FilterReader {
         if (c == 0) { // U+0000 NULL
             return 0xfffd; // U+FFFD REPLACEMENT CHARACTER
         }
-        if (c >= 0xd800 && c <= 0xdfff) { // surrogate
-            return 0xfffd;
-        }
 
         // now specific case of CSS unicode escape for ascii values [A-Za-z0-9].
         if (c != '\\') {
@@ -107,8 +104,6 @@ public class UnescapeFilterReader extends FilterReader {
             } else if (chars[i] == 0x000c) {
                 chars[j++] = 0x000a;
             } else if (chars[i] == 0) {
-                chars[j++] = 0xfffd;
-            } else if (chars[i] >= 0xd800 && chars[i] <= 0xdfff) {
                 chars[j++] = 0xfffd;
             }
             // escaping
