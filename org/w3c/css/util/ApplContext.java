@@ -593,6 +593,9 @@ public class ApplContext {
             return true;
         }
         String realPrefix = (!prefix.isEmpty()) ? prefix : defaultPrefix;
+        if (namespaces == null) { // no ns defined -> fail
+            return false;
+        }
         HashMap<String, String> nsdefs = namespaces.get(url);
         if (nsdefs == null) {
             return false;
