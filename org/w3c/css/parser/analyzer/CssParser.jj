@@ -2377,7 +2377,7 @@ CssSelectors compound_selector(CssSelectors next) :
         selector.setAtRule(getAtRule());
 }
 {
-	( LOOKAHEAD(3) ( ( ( type_selector(selector) )?  ( LOOKAHEAD(2) subclass_selector(selector) )+ ) ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )* )
+	( LOOKAHEAD(4) ( ( ( type_selector(selector) )?  ( LOOKAHEAD(1) subclass_selector(selector) )+ ) ( LOOKAHEAD(1) pseudo_element_selector(selector) ( LOOKAHEAD(1) pseudo_class_selector(selector) )* )* )
 	| ( type_selector(selector) ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )* )
 	| ( ( LOOKAHEAD(2) pseudo_element_selector(selector) ( LOOKAHEAD(2) pseudo_class_selector(selector) )* )+ ) ) {
 		return selector;
