@@ -41,6 +41,7 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
     CssFontVariantEastAsian asiValue = null;
     CssFontVariantLigatures ligValue = null;
     CssFontVariantNumeric numValue = null;
+    CssFontVariantPosition posValue = null;
 
     /**
      * Creates a new CssFontVariant
@@ -63,6 +64,7 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
         CssExpression capExp = null;
         CssExpression numExp = null;
         CssExpression asiExp = null;
+        CssExpression posExp = null;
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -138,6 +140,13 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
                             asiExp.addValue(id);
                             break;
                         }
+                        if (CssFontVariantPosition.getAllowedValue(id) != null) {
+                            if (posExp == null) {
+                                posExp = new CssExpression();
+                            }
+                            posExp.addValue(id);
+                            break;
+                        }
                         if (CssFontVariantAlternates.getAllowedIdent(id) != null) {
                             if (altExp == null) {
                                 altExp = new CssExpression();
@@ -165,6 +174,7 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
             CssFontVariantEastAsian asiValue = null;
             CssFontVariantLigatures ligValue = null;
             CssFontVariantNumeric numValue = null;
+            CssFontVariantPosition posValue = null;
             ArrayList<CssValue> vlist = new ArrayList<CssValue>(5);
             if (altExp != null) {
                 altValue = new CssFontVariantAlternates(ac, altExp, check);
@@ -181,6 +191,10 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
             if (ligExp != null) {
                 ligValue = new CssFontVariantLigatures(ac, ligExp, check);
                 vlist.add(ligValue.value);
+            }
+            if (posExp != null) {
+                posValue = new CssFontVariantPosition(ac, posExp, check);
+                vlist.add(posValue.value);
             }
             if (numExp != null) {
                 numValue = new CssFontVariantNumeric(ac, numExp, check);
@@ -220,6 +234,9 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
         }
         if (numValue != null) {
             numValue.addToStyle(ac, style);
+        }
+        if (posValue != null) {
+            posValue.addToStyle(ac, style);
         }
     }
 }
