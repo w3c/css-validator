@@ -2062,6 +2062,9 @@ void ruleSet() :
 
 	<LBRACE> {
 	    validSelector = (context_set.size() > 0);
+            if (validSelector) {
+                currentContext = context_set;
+            }
 	}
 	( <S> )*
 	    value_set=declarations()
