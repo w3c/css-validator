@@ -33,11 +33,11 @@
       <and>
         <available file="lib/jigsaw-2.2.6.jar"/>
         <available file="lib/commons-beanutils-1.9.4.jar"/>
-        <available file="lib/commons-collections-3.2.2.jar"/>
+        <available file="lib/commons-collections4-4.4.jar"/>
         <available file="lib/commons-digester-1.8.1.jar"/>
         <available file="lib/commons-digester3-3.2.jar"/>
         <available file="lib/commons-lang-2.6.jar"/>
-        <available file="lib/commons-lang3-3.12.0.jar"/>
+        <available file="lib/commons-lang3-3.14.0.jar"/>
         <available file="lib/commons-logging-1.2.jar"/>
         <available file="lib/commons-text-1.11.0.jar"/>
         <available file="lib/commons-validator-1.7.jar"/>
@@ -61,11 +61,11 @@
 
     <get dest="tmp/jigsaw-2.2.6.jar" src="https://repo1.maven.org/maven2/org/w3c/jigsaw/jigsaw/2.2.6/jigsaw-2.2.6.jar" usetimestamp="true"/>
     <get dest="tmp/commons-beanutils-1.9.4.jar" src="https://repo1.maven.org/maven2/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar" usetimestamp="true"/>
-    <get dest="tmp/commons-collections-3.2.2.jar" src="https://repo1.maven.org/maven2/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar" usetimestamp="true"/>
+    <get dest="tmp/commons-collections4-4.4.jar" src="https://repo1.maven.org/maven2/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar" usetimestamp="true"/>
     <get dest="tmp/commons-digester-1.8.1.jar" src="https://repo1.maven.org/maven2/commons-digester/commons-digester/1.8.1/commons-digester-1.8.1.jar" usetimestamp="true"/>
     <get dest="tmp/commons-digester3-3.2.jar" src="https://repo1.maven.org/maven2/org/apache/commons/commons-digester3/3.2/commons-digester3-3.2.jar" usetimestamp="true"/>
     <get dest="tmp/commons-lang-2.6.jar" src="https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" usetimestamp="true"/>
-    <get dest="tmp/commons-lang3-3.12.0.jar" src="https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar" usetimestamp="true"/>
+    <get dest="tmp/commons-lang3-3.14.0.jar" src="https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar" usetimestamp="true"/>
     <get dest="tmp/commons-text-1.11.0.jar" src="https://repo1.maven.org/maven2/org/apache/commons/commons-text/1.11.0/commons-text-1.11.0.jar" usetimestamp="true"/>
     <get dest="tmp/commons-logging-1.2.jar" src="https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" usetimestamp="true"/>
     <get dest="tmp/commons-validator-1.7.jar" src="https://repo1.maven.org/maven2/commons-validator/commons-validator/1.7/commons-validator-1.7.jar" usetimestamp="true"/>
@@ -83,11 +83,11 @@
     <copy file="tmp/servlet-api-2.5-6.0.1.jar" tofile="lib/servlet-api-2.5-6.0.1.jar"/>
     <copy file="tmp/jigsaw-2.2.6.jar" tofile="lib/jigsaw-2.2.6.jar"/>
     <copy file="tmp/commons-beanutils-1.9.4.jar" tofile="lib/commons-beanutils-1.9.4.jar"/>
-    <copy file="tmp/commons-collections-3.2.2.jar" tofile="lib/commons-collections-3.2.2.jar"/>
+    <copy file="tmp/commons-collections4-4.4.jar" tofile="lib/commons-collections4-4.4.jar"/>
     <copy file="tmp/commons-digester-1.8.1.jar" tofile="lib/commons-digester-1.8.1.jar"/>
     <copy file="tmp/commons-digester3-3.2.jar" tofile="lib/commons-digester3-3.2.jar"/>
     <copy file="tmp/commons-lang-2.6.jar" tofile="lib/commons-lang-2.6.jar"/>
-    <copy file="tmp/commons-lang3-3.12.0.jar" tofile="lib/commons-lang3-3.12.0.jar"/>
+    <copy file="tmp/commons-lang3-3.14.0.jar" tofile="lib/commons-lang3-3.14.0.jar"/>
     <copy file="tmp/commons-text-1.11.0.jar" tofile="lib/commons-text-1.11.0.jar"/>
     <copy file="tmp/commons-logging-1.2.jar" tofile="lib/commons-logging-1.2.jar"/>
     <copy file="tmp/commons-validator-1.7.jar" tofile="lib/commons-validator-1.7.jar"/>
