@@ -19,6 +19,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @spec https://www.w3.org/TR/2020/WD-css-contain-2-20201216/#propdef-contain
+ * @spec https://www.w3.org/TR/2021/WD-css-contain-3-20211221/#contain-property
  */
 public class CssContain extends org.w3c.css.properties.css.CssContain {
 
@@ -34,7 +35,13 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
             allowed_single_values[i++] = CssIdent.getIdent(s);
         }
         // "style" added as of css-contain-2 but at-risk
-        String[] _allowed_multiple_values = {"size", "layout", "paint", "style"};
+        String[] _allowed_multiple_values = {
+            "size",
+            "inline-size",
+            "layout",
+            "paint",
+            "style",
+        };
         i = 0;
         allowed_multiple_values = new CssIdent[_allowed_multiple_values.length];
         for (String s : _allowed_multiple_values) {
