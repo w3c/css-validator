@@ -297,6 +297,7 @@ import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
+import org.w3c.css.properties.css.CssWordSpaceTransform;
 import org.w3c.css.properties.css.CssWritingMode;
 import org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols;
 import org.w3c.css.properties.css.counterstyle.CssFallback;
@@ -684,7 +685,17 @@ public class Css3Style extends ATSCStyle {
     public CssOverscrollBehaviorBlock cssOverscrollBehaviorBlock;
     public CssOverscrollBehaviorInline cssOverscrollBehaviorInline;
     public CssContentVisibility cssContentVisibility;
+    
+    public CssWordSpaceTransform cssWordSpaceTransform;
 
+    public CssWordSpaceTransform getWordSpaceTransform() {
+        if (cssWordSpaceTransform == null) {
+            cssWordSpaceTransform =
+                    (CssWordSpaceTransform) style.CascadingOrder(new CssWordSpaceTransform(),
+                            style, selector);
+        }
+        return cssWordSpaceTransform;
+    }
     public CssContentVisibility getContentVisibility() {
         if (cssContentVisibility == null) {
             cssContentVisibility =
