@@ -53,7 +53,7 @@ public class CssTextWrapMode extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "content-visibility";
+        return "text-wrap-mode";
     }
 
     /**
