@@ -299,6 +299,7 @@ import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.CssWordSpaceTransform;
+import org.w3c.css.properties.css.CssWrapAfter;
 import org.w3c.css.properties.css.CssWrapInside;
 import org.w3c.css.properties.css.CssWritingMode;
 import org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols;
@@ -691,7 +692,17 @@ public class Css3Style extends ATSCStyle {
     public CssWordSpaceTransform cssWordSpaceTransform;
     public CssTextWrapMode cssTextWrapMode;
     public CssWrapInside cssWrapInside;
+    public CssWrapAfter cssWrapAfter;
 
+    public CssWrapAfter getWrapAfter() {
+        if (cssWrapAfter == null) {
+            cssWrapAfter =
+                    (CssWrapAfter) style.CascadingOrder(new CssWrapAfter(),
+                            style, selector);
+        }
+        return cssWrapAfter;
+    }
+    
     public CssWrapInside getWrapInside() {
         if (cssWrapInside == null) {
             cssWrapInside =
