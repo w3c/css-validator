@@ -278,6 +278,7 @@ import org.w3c.css.properties.css.CssTextSizeAdjust;
 import org.w3c.css.properties.css.CssTextUnderlineOffset;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
 import org.w3c.css.properties.css.CssTextWrapMode;
+import org.w3c.css.properties.css.CssTextWrapStyle;
 import org.w3c.css.properties.css.CssTouchAction;
 import org.w3c.css.properties.css.CssTransform;
 import org.w3c.css.properties.css.CssTransformBox;
@@ -692,6 +693,7 @@ public class Css3Style extends ATSCStyle {
 
     public CssWordSpaceTransform cssWordSpaceTransform;
     public CssTextWrapMode cssTextWrapMode;
+    public CssTextWrapStyle cssTextWrapStyle;
     public CssWrapInside cssWrapInside;
     public CssWrapAfter cssWrapAfter;
     public CssWrapBefore cssWrapBefore;
@@ -723,6 +725,15 @@ public class Css3Style extends ATSCStyle {
         return cssWrapInside;
     }
 
+    public CssTextWrapStyle getTextWrapStyle() {
+        if (cssTextWrapStyle == null) {
+            cssTextWrapStyle =
+                    (CssTextWrapStyle) style.CascadingOrder(new CssTextWrapStyle(),
+                            style, selector);
+        }
+        return cssTextWrapStyle;
+    }
+    
     public CssTextWrapMode getTextWrapMode() {
         if (cssTextWrapMode == null) {
             cssTextWrapMode =
