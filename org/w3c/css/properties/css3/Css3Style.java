@@ -300,6 +300,7 @@ import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.CssWordSpaceTransform;
 import org.w3c.css.properties.css.CssWrapAfter;
+import org.w3c.css.properties.css.CssWrapBefore;
 import org.w3c.css.properties.css.CssWrapInside;
 import org.w3c.css.properties.css.CssWritingMode;
 import org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols;
@@ -693,7 +694,17 @@ public class Css3Style extends ATSCStyle {
     public CssTextWrapMode cssTextWrapMode;
     public CssWrapInside cssWrapInside;
     public CssWrapAfter cssWrapAfter;
+    public CssWrapBefore cssWrapBefore;
 
+    public CssWrapBefore getWrapBefore() {
+        if (cssWrapBefore == null) {
+            cssWrapBefore =
+                    (CssWrapBefore) style.CascadingOrder(new CssWrapBefore(),
+                            style, selector);
+        }
+        return cssWrapBefore;
+    }
+    
     public CssWrapAfter getWrapAfter() {
         if (cssWrapAfter == null) {
             cssWrapAfter =
