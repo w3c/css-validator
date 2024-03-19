@@ -277,6 +277,7 @@ import org.w3c.css.properties.css.CssTextOverflow;
 import org.w3c.css.properties.css.CssTextSizeAdjust;
 import org.w3c.css.properties.css.CssTextUnderlineOffset;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
+import org.w3c.css.properties.css.CssTextWrap;
 import org.w3c.css.properties.css.CssTextWrapMode;
 import org.w3c.css.properties.css.CssTextWrapStyle;
 import org.w3c.css.properties.css.CssTouchAction;
@@ -612,7 +613,7 @@ public class Css3Style extends ATSCStyle {
     public org.w3c.css.properties.css.fontface.CssFontFamily fontFaceCssFontFamily;
     public org.w3c.css.properties.css.fontface.CssFontFeatureSettings fontFaceCssFontFeatureSettings;
     public org.w3c.css.properties.css.fontface.CssFontVariationSettings fontFaceCssFontVariationSettings;
-    
+
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
     public CssColorScheme cssColorScheme;
@@ -697,6 +698,7 @@ public class Css3Style extends ATSCStyle {
     public CssWrapInside cssWrapInside;
     public CssWrapAfter cssWrapAfter;
     public CssWrapBefore cssWrapBefore;
+    public CssTextWrap cssTextWrap;
 
     public CssWrapBefore getWrapBefore() {
         if (cssWrapBefore == null) {
@@ -706,7 +708,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssWrapBefore;
     }
-    
+
     public CssWrapAfter getWrapAfter() {
         if (cssWrapAfter == null) {
             cssWrapAfter =
@@ -715,7 +717,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssWrapAfter;
     }
-    
+
     public CssWrapInside getWrapInside() {
         if (cssWrapInside == null) {
             cssWrapInside =
@@ -723,6 +725,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return cssWrapInside;
+    }
+
+    public CssTextWrap getTextWrap() {
+        if (cssTextWrap == null) {
+            cssTextWrap =
+                    (CssTextWrap) style.CascadingOrder(new CssTextWrap(),
+                            style, selector);
+        }
+        return cssTextWrap;
     }
 
     public CssTextWrapStyle getTextWrapStyle() {
@@ -733,7 +744,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextWrapStyle;
     }
-    
+
     public CssTextWrapMode getTextWrapMode() {
         if (cssTextWrapMode == null) {
             cssTextWrapMode =
@@ -751,6 +762,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssWordSpaceTransform;
     }
+
     public CssContentVisibility getContentVisibility() {
         if (cssContentVisibility == null) {
             cssContentVisibility =
@@ -759,7 +771,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssContentVisibility;
     }
-    
+
     public CssOverscrollBehavior getOverscrollBehavior() {
         if (cssOverscrollBehavior == null) {
             cssOverscrollBehavior =
@@ -795,7 +807,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssOverscrollBehaviorBlock;
     }
-    
+
     public CssOverscrollBehaviorInline getOverscrollBehaviorInline() {
         if (cssOverscrollBehaviorInline == null) {
             cssOverscrollBehaviorInline =
@@ -1461,7 +1473,7 @@ public class Css3Style extends ATSCStyle {
         }
         return fontFaceCssFontVariationSettings;
     }
-    
+
     public CssUnicodeRange getFontFaceCssUnicodeRange() {
         if (fontFaceCssUnicodeRange == null) {
             fontFaceCssUnicodeRange =
@@ -1479,7 +1491,7 @@ public class Css3Style extends ATSCStyle {
         }
         return fontFaceCssFontLanguageOverride;
     }
-    
+
     public CssAscentOverride getFontFaceCssAscentOverride() {
         if (fontFaceCssAscentOverride == null) {
             fontFaceCssAscentOverride =
@@ -1515,7 +1527,7 @@ public class Css3Style extends ATSCStyle {
         }
         return fontFaceCssFontNamedInstance;
     }
-    
+
     public CssFontDisplay getFontFaceCssFontDisplay() {
         if (fontFaceCssFontDisplay == null) {
             fontFaceCssFontDisplay =
@@ -1542,7 +1554,7 @@ public class Css3Style extends ATSCStyle {
         }
         return fontFaceCssFontStyle;
     }
-    
+
     public CssFontWeight getFontFaceCssFontWeight() {
         if (fontFaceCssFontWeight == null) {
             fontFaceCssFontWeight =
