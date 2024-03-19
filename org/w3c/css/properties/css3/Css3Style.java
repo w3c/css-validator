@@ -299,6 +299,7 @@ import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.CssWordSpaceTransform;
+import org.w3c.css.properties.css.CssWrapInside;
 import org.w3c.css.properties.css.CssWritingMode;
 import org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols;
 import org.w3c.css.properties.css.counterstyle.CssFallback;
@@ -686,10 +687,19 @@ public class Css3Style extends ATSCStyle {
     public CssOverscrollBehaviorBlock cssOverscrollBehaviorBlock;
     public CssOverscrollBehaviorInline cssOverscrollBehaviorInline;
     public CssContentVisibility cssContentVisibility;
-    
+
     public CssWordSpaceTransform cssWordSpaceTransform;
     public CssTextWrapMode cssTextWrapMode;
+    public CssWrapInside cssWrapInside;
 
+    public CssWrapInside getWrapInside() {
+        if (cssWrapInside == null) {
+            cssWrapInside =
+                    (CssWrapInside) style.CascadingOrder(new CssWrapInside(),
+                            style, selector);
+        }
+        return cssWrapInside;
+    }
 
     public CssTextWrapMode getTextWrapMode() {
         if (cssTextWrapMode == null) {
@@ -699,6 +709,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTextWrapMode;
     }
+
     public CssWordSpaceTransform getWordSpaceTransform() {
         if (cssWordSpaceTransform == null) {
             cssWordSpaceTransform =
