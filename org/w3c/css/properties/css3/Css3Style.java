@@ -298,6 +298,7 @@ import org.w3c.css.properties.css.CssVoiceRange;
 import org.w3c.css.properties.css.CssVoiceRate;
 import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
+import org.w3c.css.properties.css.CssWhiteSpaceCollapse;
 import org.w3c.css.properties.css.CssWhiteSpaceTrim;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
@@ -700,6 +701,7 @@ public class Css3Style extends ATSCStyle {
     public CssWrapAfter cssWrapAfter;
     public CssWrapBefore cssWrapBefore;
     public CssTextWrap cssTextWrap;
+    public CssWhiteSpaceCollapse cssWhiteSpaceCollapse;
     public CssWhiteSpaceTrim cssWhiteSpaceTrim;
 
     public CssWhiteSpaceTrim getWhiteSpaceTrim() {
@@ -709,6 +711,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return cssWhiteSpaceTrim;
+    }
+
+    public CssWhiteSpaceCollapse getWhiteSpaceCollapse() {
+        if (cssWhiteSpaceCollapse == null) {
+            cssWhiteSpaceCollapse =
+                    (CssWhiteSpaceCollapse) style.CascadingOrder(new CssWhiteSpaceCollapse(),
+                            style, selector);
+        }
+        return cssWhiteSpaceCollapse;
     }
     
     public CssWrapBefore getWrapBefore() {
