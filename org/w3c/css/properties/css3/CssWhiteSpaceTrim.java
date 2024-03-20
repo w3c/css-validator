@@ -18,28 +18,23 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-transform
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-white-space-trim
  */
-public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssTextTransform {
+public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssWhiteSpaceTrim {
 
-    private static CssIdent[] allowed_action_values;
-    private static CssIdent fullWidth, fullSizeKana;
-
+    private final static CssIdent[] allowed_values;
 
     static {
-        fullWidth = CssIdent.getIdent("full-width");
-        fullSizeKana = CssIdent.getIdent("full-size-kana");
-
-        String id_values[] = {"capitalize", "uppercase", "lowercase"};
-        allowed_action_values = new CssIdent[id_values.length];
+        String[] id_values = {"discard-before", "discard-after", "discard-inner"};
+        allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
-            allowed_action_values[i++] = CssIdent.getIdent(s);
+            allowed_values[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static CssIdent getMatchingActionIdent(CssIdent ident) {
-        for (CssIdent id : allowed_action_values) {
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
             }
@@ -48,28 +43,25 @@ public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssTextTransfo
     }
 
     /**
-     * Create a new CssTextTransform
+     * Create a new CssWhiteSpaceTrim
      */
     public CssWhiteSpaceTrim() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextTransform
+     * Creates a new CssWhiteSpaceTrim
      *
      * @param expression The expression for this property
-     * @throws InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
     public CssWhiteSpaceTrim(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
+        CssIdent id;
         char op;
         ArrayList<CssValue> values = new ArrayList<>();
-        boolean got_action = false;
-        boolean got_full_width = false;
-        boolean got_full_size_kana = false;
 
         if (check && expression.getCount() > 3) {
             throw new InvalidParamException("unrecognize", ac);
@@ -99,19 +91,14 @@ public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssTextTransfo
                             getPropertyName(), ac);
                 }
                 values.add(val);
-            } else if (fullWidth.equals(val.getIdent()) && !got_full_width) {
-                got_full_width = true;
-                values.add(val);
-            } else if (fullSizeKana.equals(val.getIdent()) && !got_full_size_kana) {
-                got_full_size_kana = true;
-                values.add(val);
-            } else if (!got_action) {
-                if (getMatchingActionIdent(val.getIdent()) == null) {
+            } else if ((id = getAllowedIdent(val.getIdent())) != null) {
+                // check for duplicates.
+                // TODO Should it be a warning instead?
+                if (values.contains(id)) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                got_action = true;
                 values.add(val);
             } else {
                 throw new InvalidParamException("value",
@@ -125,6 +112,7 @@ public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssTextTransfo
             expression.next();
         }
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+
     }
 
     public CssWhiteSpaceTrim(ApplContext ac, CssExpression expression)
