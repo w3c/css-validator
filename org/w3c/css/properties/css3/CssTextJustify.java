@@ -11,16 +11,24 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-text-justify
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#text-justify-property
  */
 public class CssTextJustify extends org.w3c.css.properties.css.CssTextJustify {
 
     private static CssIdent[] allowed_values;
+    private static CssIdent no_compress, distribute;
 
     static {
-        String id_values[] = {"auto", "none", "inter-word", "inter-character"};
+        no_compress = CssIdent.getIdent("no-compress");
+        distribute = CssIdent.getIdent("distribute");
+        String id_values[] = {"auto", "none", "inter-word", "inter-character", "ruby", "distribute"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -52,28 +60,66 @@ public class CssTextJustify extends org.w3c.css.properties.css.CssTextJustify {
      */
     public CssTextJustify(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        setByUser();
-        CssValue val = expression.getValue();
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
+        CssValue val;
+        CssExpression trimexp = null;
+        CssIdent id;
+        boolean got_no_compress = false;
+        char op;
 
-        if (check && expression.getCount() > 1) {
+        setByUser();
+
+        if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        CssIdent id = val.getIdent();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-        if (!CssIdent.isCssWide(id) && (getMatchingIdent(id) == null)) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
+            if (val.getType() != CssTypes.CSS_IDENT) {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
+            id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                values.add(val);
+            } else if (id.equals(no_compress)) {
+                if (got_no_compress) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                got_no_compress = true;
+                values.add(val);
+            } else if (getMatchingIdent(id) != null) {
+                if (!got_no_compress && !values.isEmpty()) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                values.add(val);
+                if (distribute.equals(id)) {
+                    ac.getFrame().addWarning("deprecated", distribute.toString());
+                }
+            } else {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            expression.next();
         }
-        value = val;
-        expression.next();
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
     public CssTextJustify(ApplContext ac, CssExpression expression)
