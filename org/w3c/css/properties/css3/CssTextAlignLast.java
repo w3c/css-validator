@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#text-align-last-property
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-align-last
  */
 public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLast {
 
