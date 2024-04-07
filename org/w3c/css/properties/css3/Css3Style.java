@@ -54,6 +54,7 @@ import org.w3c.css.properties.css.CssBorderEndEndRadius;
 import org.w3c.css.properties.css.CssBorderEndStartRadius;
 import org.w3c.css.properties.css.CssHyphenateCharacter;
 import org.w3c.css.properties.css.CssHyphenateLimitChars;
+import org.w3c.css.properties.css.CssHyphenateLimitLast;
 import org.w3c.css.properties.css.CssHyphenateLimitLines;
 import org.w3c.css.properties.css.CssHyphenateLimitZone;
 import org.w3c.css.properties.css.CssImageRendering;
@@ -711,6 +712,16 @@ public class Css3Style extends ATSCStyle {
     public CssHyphenateLimitZone cssHyphenateLimitZone;
     public CssHyphenateLimitChars cssHyphenateLimitChars;
     public CssHyphenateLimitLines cssHyphenateLimitLines;
+    public CssHyphenateLimitLast cssHyphenateLimitLast;
+
+    public CssHyphenateLimitLast getHyphenateLimitLast() {
+        if (cssHyphenateLimitLast == null) {
+            cssHyphenateLimitLast =
+                    (CssHyphenateLimitLast) style.CascadingOrder(new CssHyphenateLimitLast(),
+                            style, selector);
+        }
+        return cssHyphenateLimitLast;
+    }
 
     public CssHyphenateLimitLines getHyphenateLimitLines() {
         if (cssHyphenateLimitLines == null) {
@@ -720,7 +731,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssHyphenateLimitLines;
     }
-    
+
     public CssHyphenateLimitChars getHyphenateLimitChars() {
         if (cssHyphenateLimitChars == null) {
             cssHyphenateLimitChars =
@@ -729,7 +740,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssHyphenateLimitChars;
     }
-    
+
     public CssHyphenateLimitZone getHyphenateLimitZone() {
         if (cssHyphenateLimitZone == null) {
             cssHyphenateLimitZone =
@@ -738,7 +749,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssHyphenateLimitZone;
     }
-    
+
     public CssHyphenateCharacter getHyphenateCharacter() {
         if (cssHyphenateCharacter == null) {
             cssHyphenateCharacter =
@@ -747,7 +758,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssHyphenateCharacter;
     }
-    
+
     public CssWhiteSpaceTrim getWhiteSpaceTrim() {
         if (cssWhiteSpaceTrim == null) {
             cssWhiteSpaceTrim =
