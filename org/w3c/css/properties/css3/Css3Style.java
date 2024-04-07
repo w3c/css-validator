@@ -276,6 +276,7 @@ import org.w3c.css.properties.css.CssTextEmphasis;
 import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
+import org.w3c.css.properties.css.CssTextGroupAlign;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextOrientation;
 import org.w3c.css.properties.css.CssTextOverflow;
@@ -713,6 +714,16 @@ public class Css3Style extends ATSCStyle {
     public CssHyphenateLimitChars cssHyphenateLimitChars;
     public CssHyphenateLimitLines cssHyphenateLimitLines;
     public CssHyphenateLimitLast cssHyphenateLimitLast;
+    public CssTextGroupAlign cssTextGroupAlign;
+
+    public CssTextGroupAlign getTextGroupAlign() {
+        if (cssTextGroupAlign == null) {
+            cssTextGroupAlign =
+                    (CssTextGroupAlign) style.CascadingOrder(new CssTextGroupAlign(),
+                            style, selector);
+        }
+        return cssTextGroupAlign;
+    }
 
     public CssHyphenateLimitLast getHyphenateLimitLast() {
         if (cssHyphenateLimitLast == null) {
