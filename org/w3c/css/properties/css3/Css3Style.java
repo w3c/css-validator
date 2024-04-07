@@ -54,6 +54,7 @@ import org.w3c.css.properties.css.CssBorderEndEndRadius;
 import org.w3c.css.properties.css.CssBorderEndStartRadius;
 import org.w3c.css.properties.css.CssHyphenateCharacter;
 import org.w3c.css.properties.css.CssHyphenateLimitChars;
+import org.w3c.css.properties.css.CssHyphenateLimitLines;
 import org.w3c.css.properties.css.CssHyphenateLimitZone;
 import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssBorderImageSource;
@@ -709,7 +710,17 @@ public class Css3Style extends ATSCStyle {
     public CssHyphenateCharacter cssHyphenateCharacter;
     public CssHyphenateLimitZone cssHyphenateLimitZone;
     public CssHyphenateLimitChars cssHyphenateLimitChars;
+    public CssHyphenateLimitLines cssHyphenateLimitLines;
 
+    public CssHyphenateLimitLines getHyphenateLimitLines() {
+        if (cssHyphenateLimitLines == null) {
+            cssHyphenateLimitLines =
+                    (CssHyphenateLimitLines) style.CascadingOrder(new CssHyphenateLimitLines(),
+                            style, selector);
+        }
+        return cssHyphenateLimitLines;
+    }
+    
     public CssHyphenateLimitChars getHyphenateLimitChars() {
         if (cssHyphenateLimitChars == null) {
             cssHyphenateLimitChars =
