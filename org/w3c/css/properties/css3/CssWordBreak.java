@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-word-break
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-word-break
  */
 public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
@@ -21,8 +21,8 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
     public static final CssIdent break_word;
 
     static {
-        String[] _allowed_values = {"normal", "keep-all", "break-all",
-                "break-word"};
+        String[] _allowed_values = {"normal", "break-all", "keep-all", "manual",
+                "auto-phrase", "break-word"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
