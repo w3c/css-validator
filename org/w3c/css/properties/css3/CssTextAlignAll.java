@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-text-align-all
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-align-all
  */
 public class CssTextAlignAll extends org.w3c.css.properties.css.CssTextAlignAll {
 
@@ -59,19 +59,33 @@ public class CssTextAlignAll extends org.w3c.css.properties.css.CssTextAlignAll 
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        CssIdent id = val.getIdent();
-        if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
+        switch (val.getType()) {
+            case CssTypes.CSS_IDENT:
+                CssIdent id = val.getIdent();
+                if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
 
+                }
+                value = val;
+                break;
+            case CssTypes.CSS_STRING:
+                if (val.getRawType() == CssTypes.CSS_STRING) {
+                    // string length must be 1, so 3 including delimiters
+                    if (val.toString().length() > 3) {
+                        throw new InvalidParamException("value",
+                                expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                }
+                value = val;
+                break;
+            default:
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
         }
-        value = val;
         expression.next();
     }
 
