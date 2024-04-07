@@ -5,6 +5,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -58,12 +59,27 @@ public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssWhiteSpaceT
     public CssWhiteSpaceTrim(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
-        CssValue val = expression.getValue();
-        CssIdent id;
-        char op;
-        ArrayList<CssValue> values = new ArrayList<>();
 
         if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+
+        value = checkWhiteSpaceTrim(ac, expression, this);
+    }
+
+    public CssWhiteSpaceTrim(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
+
+    public static CssValue checkWhiteSpaceTrim(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
+        CssValue val;
+        CssIdent id;
+        char op;
+
+        if (expression.getCount() > 3) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
@@ -74,21 +90,21 @@ public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssWhiteSpaceT
             if (val.getType() != CssTypes.CSS_IDENT) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
-                        getPropertyName(), ac);
+                        caller.getPropertyName(), ac);
             }
             // ident, so inherit, or allowed value
             if (CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
-                            getPropertyName(), ac);
+                            caller.getPropertyName(), ac);
                 }
                 values.add(val);
             } else if (none.equals(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
-                            getPropertyName(), ac);
+                            caller.getPropertyName(), ac);
                 }
                 values.add(val);
             } else if ((id = getAllowedIdent(val.getIdent())) != null) {
@@ -97,27 +113,22 @@ public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssWhiteSpaceT
                 if (values.contains(id)) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
-                            getPropertyName(), ac);
+                            caller.getPropertyName(), ac);
                 }
                 values.add(val);
             } else {
                 throw new InvalidParamException("value",
                         expression.getValue(),
-                        getPropertyName(), ac);
+                        caller.getPropertyName(), ac);
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator", op,
-                        getPropertyName(), ac);
+                        caller.getPropertyName(), ac);
             }
             expression.next();
         }
-        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-
+        return (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssWhiteSpaceTrim(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
 }
 
