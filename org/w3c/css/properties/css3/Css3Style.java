@@ -52,6 +52,7 @@ import org.w3c.css.properties.css.CssBorderBlockStyle;
 import org.w3c.css.properties.css.CssBorderBlockWidth;
 import org.w3c.css.properties.css.CssBorderEndEndRadius;
 import org.w3c.css.properties.css.CssBorderEndStartRadius;
+import org.w3c.css.properties.css.CssHyphenateCharacter;
 import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssBorderImageSource;
 import org.w3c.css.properties.css.CssBorderInline;
@@ -703,7 +704,17 @@ public class Css3Style extends ATSCStyle {
     public CssTextWrap cssTextWrap;
     public CssWhiteSpaceCollapse cssWhiteSpaceCollapse;
     public CssWhiteSpaceTrim cssWhiteSpaceTrim;
+    public CssHyphenateCharacter cssHyphenateCharacter;
 
+    public CssHyphenateCharacter getHyphenateCharacter() {
+        if (cssHyphenateCharacter == null) {
+            cssHyphenateCharacter =
+                    (CssHyphenateCharacter) style.CascadingOrder(new CssHyphenateCharacter(),
+                            style, selector);
+        }
+        return cssHyphenateCharacter;
+    }
+    
     public CssWhiteSpaceTrim getWhiteSpaceTrim() {
         if (cssWhiteSpaceTrim == null) {
             cssWhiteSpaceTrim =
@@ -721,7 +732,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssWhiteSpaceCollapse;
     }
-    
+
     public CssWrapBefore getWrapBefore() {
         if (cssWrapBefore == null) {
             cssWrapBefore =
