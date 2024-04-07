@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-line-break
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-line-break
  */
 public class CssLineBreak extends org.w3c.css.properties.css.CssLineBreak {
 
@@ -48,8 +48,7 @@ public class CssLineBreak extends org.w3c.css.properties.css.CssLineBreak {
      * Creates a new CssLineBreak
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssLineBreak(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
