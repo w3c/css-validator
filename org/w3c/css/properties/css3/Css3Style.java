@@ -174,6 +174,7 @@ import org.w3c.css.properties.css.CssJustifyItems;
 import org.w3c.css.properties.css.CssJustifySelf;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssLinePadding;
 import org.w3c.css.properties.css.CssMarginBlock;
 import org.w3c.css.properties.css.CssMarginBlockEnd;
 import org.w3c.css.properties.css.CssMarginBlockStart;
@@ -715,7 +716,17 @@ public class Css3Style extends ATSCStyle {
     public CssHyphenateLimitLines cssHyphenateLimitLines;
     public CssHyphenateLimitLast cssHyphenateLimitLast;
     public CssTextGroupAlign cssTextGroupAlign;
+    public CssLinePadding cssLinePadding;
 
+    public CssLinePadding getLinePadding() {
+        if (cssLinePadding == null) {
+            cssLinePadding =
+                    (CssLinePadding) style.CascadingOrder(new CssLinePadding(),
+                            style, selector);
+        }
+        return cssLinePadding;
+    }
+    
     public CssTextGroupAlign getTextGroupAlign() {
         if (cssTextGroupAlign == null) {
             cssTextGroupAlign =
