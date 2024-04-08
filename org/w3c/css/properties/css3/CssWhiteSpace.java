@@ -120,8 +120,8 @@ public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
                 if (trimexp == null) {
                     trimexp = new CssExpression();
                 }
-                trimexp.setOperator(op);
                 trimexp.addValue(val);
+                trimexp.setOperator(op);
             } else {
                 // nothing we know...
                 throw new InvalidParamException("value",
