@@ -26,8 +26,7 @@ public class CssTextGroupAlign extends CssProperty {
      * Creates a new CssTextgroupAlign
      *
      * @param expression The expression for this property
-     * @throws InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
     public CssTextGroupAlign(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
