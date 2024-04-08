@@ -283,6 +283,7 @@ import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextOrientation;
 import org.w3c.css.properties.css.CssTextOverflow;
 import org.w3c.css.properties.css.CssTextSizeAdjust;
+import org.w3c.css.properties.css.CssTextSpacingTrim;
 import org.w3c.css.properties.css.CssTextUnderlineOffset;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
 import org.w3c.css.properties.css.CssTextWrap;
@@ -719,6 +720,16 @@ public class Css3Style extends ATSCStyle {
     public CssTextGroupAlign cssTextGroupAlign;
     public CssLinePadding cssLinePadding;
     public CssTextAutospace cssTextAutospace;
+    public CssTextSpacingTrim cssTextSpacingTrim;
+
+    public CssTextSpacingTrim getTextSpacingTrim() {
+        if (cssTextSpacingTrim == null) {
+            cssTextSpacingTrim =
+                    (CssTextSpacingTrim) style.CascadingOrder(new CssTextSpacingTrim(),
+                            style, selector);
+        }
+        return cssTextSpacingTrim;
+    }
     
     public CssTextAutospace getTextAutospace() {
         if (cssTextAutospace == null) {
