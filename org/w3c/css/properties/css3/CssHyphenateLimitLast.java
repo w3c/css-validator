@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, Beihang, 2012.
+// (c) COPYRIGHT World Wide Web Consortium, 2024.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,25 +13,21 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @pec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-hyphens
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-hyphenate-limit-zone
  */
-public class CssHyphens extends org.w3c.css.properties.css.CssHyphens {
-
-    public static final CssIdent[] allowed_values;
+public class CssHyphenateLimitLast extends org.w3c.css.properties.css.CssHyphenateLimitZone {
+    private final static CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"manual", "auto"}; // none is also present
-        allowed_values = new CssIdent[_allowed_values.length];
+        String[] id_values = {"none", "always", "column", "page", "spread"};
+        allowed_values = new CssIdent[id_values.length];
         int i = 0;
-        for (String s : _allowed_values) {
+        for (String s : id_values) {
             allowed_values[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static final CssIdent getAllowedValue(CssIdent ident) {
-        if (none.equals(ident)) {
-            return none;
-        }
+    public static CssIdent getAllowedIdent(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -41,47 +37,48 @@ public class CssHyphens extends org.w3c.css.properties.css.CssHyphens {
     }
 
     /**
-     * Create a new CssHyphens
+     * Create a new CssHyphenateLimitZone
      */
-    public CssHyphens() {
+    public CssHyphenateLimitLast() {
         value = initial;
     }
 
     /**
-     * Creates a new CssHyphens
+     * Creates a new CssHyphenateLimitZone
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssHyphens(ApplContext ac, CssExpression expression, boolean check)
+    public CssHyphenateLimitLast(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
+        setByUser();
+
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
-        setByUser();
 
-        CssValue val;
-        char op;
-
-        val = expression.getValue();
-        op = expression.getOperator();
+        CssValue val = expression.getValue();
 
         if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
-                    val.toString(),
+                    expression.getValue(),
                     getPropertyName(), ac);
         }
+
         CssIdent ident = val.getIdent();
-        if (!CssIdent.isCssWide(ident) && getAllowedValue(ident) == null) {
+        if (CssIdent.isCssWide(ident)) {
+            value = val;
+        } else if (getAllowedIdent(ident) != null) {
+            value = val;
+        } else {
             throw new InvalidParamException("value",
-                    val.toString(),
+                    expression.getValue(),
                     getPropertyName(), ac);
         }
-        value = val;
         expression.next();
     }
 
-    public CssHyphens(ApplContext ac, CssExpression expression)
+    public CssHyphenateLimitLast(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

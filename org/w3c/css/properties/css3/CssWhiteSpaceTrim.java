@@ -1,10 +1,11 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang, 2012.
+// (c) COPYRIGHT World Wide Web Consortium, 2024.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -18,28 +19,23 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-transform
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-white-space-trim
  */
-public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransform {
+public class CssWhiteSpaceTrim extends org.w3c.css.properties.css.CssWhiteSpaceTrim {
 
-    private static CssIdent[] allowed_action_values;
-    private static CssIdent fullWidth, fullSizeKana;
-
+    private final static CssIdent[] allowed_values;
 
     static {
-        fullWidth = CssIdent.getIdent("full-width");
-        fullSizeKana = CssIdent.getIdent("full-size-kana");
-
-        String id_values[] = {"capitalize", "uppercase", "lowercase"};
-        allowed_action_values = new CssIdent[id_values.length];
+        String[] id_values = {"discard-before", "discard-after", "discard-inner"};
+        allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
-            allowed_action_values[i++] = CssIdent.getIdent(s);
+            allowed_values[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static CssIdent getMatchingActionIdent(CssIdent ident) {
-        for (CssIdent id : allowed_action_values) {
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
             }
@@ -48,30 +44,42 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
     }
 
     /**
-     * Create a new CssTextTransform
+     * Create a new CssWhiteSpaceTrim
      */
-    public CssTextTransform() {
+    public CssWhiteSpaceTrim() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextTransform
+     * Creates a new CssWhiteSpaceTrim
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssTextTransform(ApplContext ac, CssExpression expression, boolean check)
+    public CssWhiteSpaceTrim(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
-        CssValue val = expression.getValue();
-        char op;
-        ArrayList<CssValue> values = new ArrayList<>();
-        boolean got_action = false;
-        boolean got_full_width = false;
-        boolean got_full_size_kana = false;
 
         if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+
+        value = checkWhiteSpaceTrim(ac, expression, this);
+    }
+
+    public CssWhiteSpaceTrim(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
+
+    public static CssValue checkWhiteSpaceTrim(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
+        CssValue val;
+        CssIdent id;
+        char op;
+
+        if (expression.getCount() > 3) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
@@ -82,54 +90,45 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
             if (val.getType() != CssTypes.CSS_IDENT) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
-                        getPropertyName(), ac);
+                        caller.getPropertyName(), ac);
             }
             // ident, so inherit, or allowed value
             if (CssIdent.isCssWide(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
-                            getPropertyName(), ac);
+                            caller.getPropertyName(), ac);
                 }
                 values.add(val);
             } else if (none.equals(val.getIdent())) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
-                            getPropertyName(), ac);
+                            caller.getPropertyName(), ac);
                 }
                 values.add(val);
-            } else if (fullWidth.equals(val.getIdent()) && !got_full_width) {
-                got_full_width = true;
-                values.add(val);
-            } else if (fullSizeKana.equals(val.getIdent()) && !got_full_size_kana) {
-                got_full_size_kana = true;
-                values.add(val);
-            } else if (!got_action) {
-                if (getMatchingActionIdent(val.getIdent()) == null) {
+            } else if ((id = getAllowedIdent(val.getIdent())) != null) {
+                // check for duplicates.
+                // TODO Should it be a warning instead?
+                if (values.contains(id)) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
-                            getPropertyName(), ac);
+                            caller.getPropertyName(), ac);
                 }
-                got_action = true;
                 values.add(val);
             } else {
                 throw new InvalidParamException("value",
                         expression.getValue(),
-                        getPropertyName(), ac);
+                        caller.getPropertyName(), ac);
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator", op,
-                        getPropertyName(), ac);
+                        caller.getPropertyName(), ac);
             }
             expression.next();
         }
-        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        return (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssTextTransform(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
 }
 

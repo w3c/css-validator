@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-hanging-punctuation
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-hanging-punctuation
  */
 public class CssHangingPunctuation extends org.w3c.css.properties.css.CssHangingPunctuation {
 

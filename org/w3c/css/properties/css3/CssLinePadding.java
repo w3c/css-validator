@@ -1,4 +1,4 @@
-// 
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT World Wide Web Consortium, 2024.
@@ -7,32 +7,30 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-tab-size
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-line-padding
  */
-public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
+public class CssLinePadding extends org.w3c.css.properties.css.CssLinePadding {
 
     /**
-     * Create a new CssTabSize
+     * Create a new CssLinePadding
      */
-    public CssTabSize() {
+    public CssLinePadding() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTabSize
+     * Creates a new CssLinePadding
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssTabSize(ApplContext ac, CssExpression expression, boolean check)
+    public CssLinePadding(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -40,31 +38,30 @@ public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
+
         switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                CssCheckableValue number = val.getCheckableValue();
-                number.checkInteger(ac, this);
-                number.checkPositiveness(ac, this);
-                value = val;
-                break;
-            case CssTypes.CSS_LENGTH:
-                CssCheckableValue l = val.getCheckableValue();
-                l.checkPositiveness(ac, this);
-                value = val;
-                break;
             case CssTypes.CSS_IDENT:
                 if (CssIdent.isCssWide(val.getIdent())) {
                     value = val;
                     break;
                 }
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+            case CssTypes.CSS_LENGTH:
+                value = val;
+                break;
             default:
                 throw new InvalidParamException("value",
-                        val, getPropertyName(), ac);
+                        expression.getValue(),
+                        getPropertyName(), ac);
         }
         expression.next();
     }
 
-    public CssTabSize(ApplContext ac, CssExpression expression)
+    public CssLinePadding(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-text-indent
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-indent
  */
 public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
 

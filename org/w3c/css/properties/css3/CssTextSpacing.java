@@ -18,28 +18,25 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-transform
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-spacing
+ * @see CssTextAutospace
+ * @see CssTextSpacingTrim
  */
-public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransform {
+public class CssTextSpacing extends org.w3c.css.properties.css.CssTextSpacing {
 
-    private static CssIdent[] allowed_action_values;
-    private static CssIdent fullWidth, fullSizeKana;
-
+    private static CssIdent[] allowed_values;
 
     static {
-        fullWidth = CssIdent.getIdent("full-width");
-        fullSizeKana = CssIdent.getIdent("full-size-kana");
-
-        String id_values[] = {"capitalize", "uppercase", "lowercase"};
-        allowed_action_values = new CssIdent[id_values.length];
+        String[] id_values = {"none", "auto"};
+        allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
-            allowed_action_values[i++] = CssIdent.getIdent(s);
+            allowed_values[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static CssIdent getMatchingActionIdent(CssIdent ident) {
-        for (CssIdent id : allowed_action_values) {
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
             }
@@ -47,33 +44,30 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
         return null;
     }
 
+
     /**
-     * Create a new CssTextTransform
+     * Create a new CssTextSpacing
      */
-    public CssTextTransform() {
+    public CssTextSpacing() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextTransform
+     * Creates a new CssTextSpacing
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssTextTransform(ApplContext ac, CssExpression expression, boolean check)
+    public CssTextSpacing(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        setByUser();
-        CssValue val = expression.getValue();
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
+        CssValue val;
+        CssExpression spacexp = null;
+        boolean has_trim = false;
+        CssIdent id;
         char op;
-        ArrayList<CssValue> values = new ArrayList<>();
-        boolean got_action = false;
-        boolean got_full_width = false;
-        boolean got_full_size_kana = false;
 
-        if (check && expression.getCount() > 3) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
+        setByUser();
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -84,35 +78,39 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
                         expression.getValue(),
                         getPropertyName(), ac);
             }
-            // ident, so inherit, or allowed value
-            if (CssIdent.isCssWide(val.getIdent())) {
+            id = val.getIdent();
+            if (CssIdent.isCssWide(id)) {
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
                 values.add(val);
-            } else if (none.equals(val.getIdent())) {
+            } else if (getAllowedIdent(id) != null) {
+                // the single values
                 if (expression.getCount() > 1) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
                 values.add(val);
-            } else if (fullWidth.equals(val.getIdent()) && !got_full_width) {
-                got_full_width = true;
-                values.add(val);
-            } else if (fullSizeKana.equals(val.getIdent()) && !got_full_size_kana) {
-                got_full_size_kana = true;
-                values.add(val);
-            } else if (!got_action) {
-                if (getMatchingActionIdent(val.getIdent()) == null) {
+            } else if (CssTextSpacingTrim.getSpacingTrimIdent(id) != null) {
+                if (has_trim) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                got_action = true;
+                has_trim = true;
                 values.add(val);
+            } else if (CssTextAutospace.getAutospaceIdent(id) != null) {
+                if (spacexp == null) {
+                    spacexp = new CssExpression();
+                }
+                // FIXME one way would be to add _all_ the matching idents
+                // FIXME then refuse new ones (as avoid values being mixed between
+                // FIXME autospace and spacing-trim)
+                spacexp.addValue(val);
+                spacexp.setOperator(op);
             } else {
                 throw new InvalidParamException("value",
                         expression.getValue(),
@@ -124,12 +122,16 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
             }
             expression.next();
         }
+        if (spacexp != null) {
+            values.add(CssTextAutospace.checkAutoSpace(ac, spacexp, this));
+        }
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssTextTransform(ApplContext ac, CssExpression expression)
+    public CssTextSpacing(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
+
 }
 

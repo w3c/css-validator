@@ -52,6 +52,11 @@ import org.w3c.css.properties.css.CssBorderBlockStyle;
 import org.w3c.css.properties.css.CssBorderBlockWidth;
 import org.w3c.css.properties.css.CssBorderEndEndRadius;
 import org.w3c.css.properties.css.CssBorderEndStartRadius;
+import org.w3c.css.properties.css.CssHyphenateCharacter;
+import org.w3c.css.properties.css.CssHyphenateLimitChars;
+import org.w3c.css.properties.css.CssHyphenateLimitLast;
+import org.w3c.css.properties.css.CssHyphenateLimitLines;
+import org.w3c.css.properties.css.CssHyphenateLimitZone;
 import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssBorderImageSource;
 import org.w3c.css.properties.css.CssBorderInline;
@@ -169,6 +174,7 @@ import org.w3c.css.properties.css.CssJustifyItems;
 import org.w3c.css.properties.css.CssJustifySelf;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssLinePadding;
 import org.w3c.css.properties.css.CssMarginBlock;
 import org.w3c.css.properties.css.CssMarginBlockEnd;
 import org.w3c.css.properties.css.CssMarginBlockStart;
@@ -256,6 +262,7 @@ import org.w3c.css.properties.css.CssSpeakAs;
 import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignAll;
 import org.w3c.css.properties.css.CssTextAlignLast;
+import org.w3c.css.properties.css.CssTextAutospace;
 import org.w3c.css.properties.css.CssTextCombineUpright;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
@@ -271,12 +278,18 @@ import org.w3c.css.properties.css.CssTextEmphasis;
 import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
+import org.w3c.css.properties.css.CssTextGroupAlign;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextOrientation;
 import org.w3c.css.properties.css.CssTextOverflow;
 import org.w3c.css.properties.css.CssTextSizeAdjust;
+import org.w3c.css.properties.css.CssTextSpacing;
+import org.w3c.css.properties.css.CssTextSpacingTrim;
 import org.w3c.css.properties.css.CssTextUnderlineOffset;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
+import org.w3c.css.properties.css.CssTextWrap;
+import org.w3c.css.properties.css.CssTextWrapMode;
+import org.w3c.css.properties.css.CssTextWrapStyle;
 import org.w3c.css.properties.css.CssTouchAction;
 import org.w3c.css.properties.css.CssTransform;
 import org.w3c.css.properties.css.CssTransformBox;
@@ -295,8 +308,14 @@ import org.w3c.css.properties.css.CssVoiceRange;
 import org.w3c.css.properties.css.CssVoiceRate;
 import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
+import org.w3c.css.properties.css.CssWhiteSpaceCollapse;
+import org.w3c.css.properties.css.CssWhiteSpaceTrim;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
+import org.w3c.css.properties.css.CssWordSpaceTransform;
+import org.w3c.css.properties.css.CssWrapAfter;
+import org.w3c.css.properties.css.CssWrapBefore;
+import org.w3c.css.properties.css.CssWrapInside;
 import org.w3c.css.properties.css.CssWritingMode;
 import org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols;
 import org.w3c.css.properties.css.counterstyle.CssFallback;
@@ -606,7 +625,7 @@ public class Css3Style extends ATSCStyle {
     public org.w3c.css.properties.css.fontface.CssFontFamily fontFaceCssFontFamily;
     public org.w3c.css.properties.css.fontface.CssFontFeatureSettings fontFaceCssFontFeatureSettings;
     public org.w3c.css.properties.css.fontface.CssFontVariationSettings fontFaceCssFontVariationSettings;
-    
+
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
     public CssColorScheme cssColorScheme;
@@ -685,6 +704,197 @@ public class Css3Style extends ATSCStyle {
     public CssOverscrollBehaviorInline cssOverscrollBehaviorInline;
     public CssContentVisibility cssContentVisibility;
 
+    public CssWordSpaceTransform cssWordSpaceTransform;
+    public CssTextWrapMode cssTextWrapMode;
+    public CssTextWrapStyle cssTextWrapStyle;
+    public CssWrapInside cssWrapInside;
+    public CssWrapAfter cssWrapAfter;
+    public CssWrapBefore cssWrapBefore;
+    public CssTextWrap cssTextWrap;
+    public CssWhiteSpaceCollapse cssWhiteSpaceCollapse;
+    public CssWhiteSpaceTrim cssWhiteSpaceTrim;
+    public CssHyphenateCharacter cssHyphenateCharacter;
+    public CssHyphenateLimitZone cssHyphenateLimitZone;
+    public CssHyphenateLimitChars cssHyphenateLimitChars;
+    public CssHyphenateLimitLines cssHyphenateLimitLines;
+    public CssHyphenateLimitLast cssHyphenateLimitLast;
+    public CssTextGroupAlign cssTextGroupAlign;
+    public CssLinePadding cssLinePadding;
+    public CssTextAutospace cssTextAutospace;
+    public CssTextSpacingTrim cssTextSpacingTrim;
+    public CssTextSpacing cssTextSpacing;
+
+    public CssTextSpacing getTextSpacing() {
+        if (cssTextSpacing == null) {
+            cssTextSpacing =
+                    (CssTextSpacing) style.CascadingOrder(new CssTextSpacing(),
+                            style, selector);
+        }
+        return cssTextSpacing;
+    }
+
+    public CssTextSpacingTrim getTextSpacingTrim() {
+        if (cssTextSpacingTrim == null) {
+            cssTextSpacingTrim =
+                    (CssTextSpacingTrim) style.CascadingOrder(new CssTextSpacingTrim(),
+                            style, selector);
+        }
+        return cssTextSpacingTrim;
+    }
+    
+    public CssTextAutospace getTextAutospace() {
+        if (cssTextAutospace == null) {
+            cssTextAutospace =
+                    (CssTextAutospace) style.CascadingOrder(new CssTextAutospace(),
+                            style, selector);
+        }
+        return cssTextAutospace;
+    }
+    
+    public CssLinePadding getLinePadding() {
+        if (cssLinePadding == null) {
+            cssLinePadding =
+                    (CssLinePadding) style.CascadingOrder(new CssLinePadding(),
+                            style, selector);
+        }
+        return cssLinePadding;
+    }
+    
+    public CssTextGroupAlign getTextGroupAlign() {
+        if (cssTextGroupAlign == null) {
+            cssTextGroupAlign =
+                    (CssTextGroupAlign) style.CascadingOrder(new CssTextGroupAlign(),
+                            style, selector);
+        }
+        return cssTextGroupAlign;
+    }
+
+    public CssHyphenateLimitLast getHyphenateLimitLast() {
+        if (cssHyphenateLimitLast == null) {
+            cssHyphenateLimitLast =
+                    (CssHyphenateLimitLast) style.CascadingOrder(new CssHyphenateLimitLast(),
+                            style, selector);
+        }
+        return cssHyphenateLimitLast;
+    }
+
+    public CssHyphenateLimitLines getHyphenateLimitLines() {
+        if (cssHyphenateLimitLines == null) {
+            cssHyphenateLimitLines =
+                    (CssHyphenateLimitLines) style.CascadingOrder(new CssHyphenateLimitLines(),
+                            style, selector);
+        }
+        return cssHyphenateLimitLines;
+    }
+
+    public CssHyphenateLimitChars getHyphenateLimitChars() {
+        if (cssHyphenateLimitChars == null) {
+            cssHyphenateLimitChars =
+                    (CssHyphenateLimitChars) style.CascadingOrder(new CssHyphenateLimitChars(),
+                            style, selector);
+        }
+        return cssHyphenateLimitChars;
+    }
+
+    public CssHyphenateLimitZone getHyphenateLimitZone() {
+        if (cssHyphenateLimitZone == null) {
+            cssHyphenateLimitZone =
+                    (CssHyphenateLimitZone) style.CascadingOrder(new CssHyphenateLimitZone(),
+                            style, selector);
+        }
+        return cssHyphenateLimitZone;
+    }
+
+    public CssHyphenateCharacter getHyphenateCharacter() {
+        if (cssHyphenateCharacter == null) {
+            cssHyphenateCharacter =
+                    (CssHyphenateCharacter) style.CascadingOrder(new CssHyphenateCharacter(),
+                            style, selector);
+        }
+        return cssHyphenateCharacter;
+    }
+
+    public CssWhiteSpaceTrim getWhiteSpaceTrim() {
+        if (cssWhiteSpaceTrim == null) {
+            cssWhiteSpaceTrim =
+                    (CssWhiteSpaceTrim) style.CascadingOrder(new CssWhiteSpaceTrim(),
+                            style, selector);
+        }
+        return cssWhiteSpaceTrim;
+    }
+
+    public CssWhiteSpaceCollapse getWhiteSpaceCollapse() {
+        if (cssWhiteSpaceCollapse == null) {
+            cssWhiteSpaceCollapse =
+                    (CssWhiteSpaceCollapse) style.CascadingOrder(new CssWhiteSpaceCollapse(),
+                            style, selector);
+        }
+        return cssWhiteSpaceCollapse;
+    }
+
+    public CssWrapBefore getWrapBefore() {
+        if (cssWrapBefore == null) {
+            cssWrapBefore =
+                    (CssWrapBefore) style.CascadingOrder(new CssWrapBefore(),
+                            style, selector);
+        }
+        return cssWrapBefore;
+    }
+
+    public CssWrapAfter getWrapAfter() {
+        if (cssWrapAfter == null) {
+            cssWrapAfter =
+                    (CssWrapAfter) style.CascadingOrder(new CssWrapAfter(),
+                            style, selector);
+        }
+        return cssWrapAfter;
+    }
+
+    public CssWrapInside getWrapInside() {
+        if (cssWrapInside == null) {
+            cssWrapInside =
+                    (CssWrapInside) style.CascadingOrder(new CssWrapInside(),
+                            style, selector);
+        }
+        return cssWrapInside;
+    }
+
+    public CssTextWrap getTextWrap() {
+        if (cssTextWrap == null) {
+            cssTextWrap =
+                    (CssTextWrap) style.CascadingOrder(new CssTextWrap(),
+                            style, selector);
+        }
+        return cssTextWrap;
+    }
+
+    public CssTextWrapStyle getTextWrapStyle() {
+        if (cssTextWrapStyle == null) {
+            cssTextWrapStyle =
+                    (CssTextWrapStyle) style.CascadingOrder(new CssTextWrapStyle(),
+                            style, selector);
+        }
+        return cssTextWrapStyle;
+    }
+
+    public CssTextWrapMode getTextWrapMode() {
+        if (cssTextWrapMode == null) {
+            cssTextWrapMode =
+                    (CssTextWrapMode) style.CascadingOrder(new CssTextWrapMode(),
+                            style, selector);
+        }
+        return cssTextWrapMode;
+    }
+
+    public CssWordSpaceTransform getWordSpaceTransform() {
+        if (cssWordSpaceTransform == null) {
+            cssWordSpaceTransform =
+                    (CssWordSpaceTransform) style.CascadingOrder(new CssWordSpaceTransform(),
+                            style, selector);
+        }
+        return cssWordSpaceTransform;
+    }
+
     public CssContentVisibility getContentVisibility() {
         if (cssContentVisibility == null) {
             cssContentVisibility =
@@ -693,7 +903,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssContentVisibility;
     }
-    
+
     public CssOverscrollBehavior getOverscrollBehavior() {
         if (cssOverscrollBehavior == null) {
             cssOverscrollBehavior =
@@ -729,7 +939,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssOverscrollBehaviorBlock;
     }
-    
+
     public CssOverscrollBehaviorInline getOverscrollBehaviorInline() {
         if (cssOverscrollBehaviorInline == null) {
             cssOverscrollBehaviorInline =
@@ -1395,7 +1605,7 @@ public class Css3Style extends ATSCStyle {
         }
         return fontFaceCssFontVariationSettings;
     }
-    
+
     public CssUnicodeRange getFontFaceCssUnicodeRange() {
         if (fontFaceCssUnicodeRange == null) {
             fontFaceCssUnicodeRange =
@@ -1413,7 +1623,7 @@ public class Css3Style extends ATSCStyle {
         }
         return fontFaceCssFontLanguageOverride;
     }
-    
+
     public CssAscentOverride getFontFaceCssAscentOverride() {
         if (fontFaceCssAscentOverride == null) {
             fontFaceCssAscentOverride =
@@ -1449,7 +1659,7 @@ public class Css3Style extends ATSCStyle {
         }
         return fontFaceCssFontNamedInstance;
     }
-    
+
     public CssFontDisplay getFontFaceCssFontDisplay() {
         if (fontFaceCssFontDisplay == null) {
             fontFaceCssFontDisplay =
@@ -1476,7 +1686,7 @@ public class Css3Style extends ATSCStyle {
         }
         return fontFaceCssFontStyle;
     }
-    
+
     public CssFontWeight getFontFaceCssFontWeight() {
         if (fontFaceCssFontWeight == null) {
             fontFaceCssFontWeight =

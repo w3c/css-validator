@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2021/CRD-css-text-3-20210422/#propdef-overflow-wrap
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-overflow-wrap
  * <p/>
  * Note that word-wrap is also an alias for this.
  */

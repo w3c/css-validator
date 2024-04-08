@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang, 2012.
+// (c) COPYRIGHT World Wide Web Consortium, 2024.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -18,19 +18,18 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-transform
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-word-space-transform
  */
-public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransform {
+public class CssWordSpaceTransform extends org.w3c.css.properties.css.CssWordSpaceTransform {
 
     private static CssIdent[] allowed_action_values;
-    private static CssIdent fullWidth, fullSizeKana;
+    private static CssIdent autoPhrase;
 
 
     static {
-        fullWidth = CssIdent.getIdent("full-width");
-        fullSizeKana = CssIdent.getIdent("full-size-kana");
+        autoPhrase = CssIdent.getIdent("auto-phrase");
 
-        String id_values[] = {"capitalize", "uppercase", "lowercase"};
+        String id_values[] = {"space", "ideographic-space"};
         allowed_action_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -38,7 +37,7 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
         }
     }
 
-    public static CssIdent getMatchingActionIdent(CssIdent ident) {
+    public static CssIdent getMatchingMainIdent(CssIdent ident) {
         for (CssIdent id : allowed_action_values) {
             if (id.equals(ident)) {
                 return id;
@@ -48,30 +47,29 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
     }
 
     /**
-     * Create a new CssTextTransform
+     * Create a new CssWordSpaceTransform
      */
-    public CssTextTransform() {
+    public CssWordSpaceTransform() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextTransform
+     * Creates a new CssWordSPaceTransform
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
+     * @throws InvalidParamException
      *          Expressions are incorrect
      */
-    public CssTextTransform(ApplContext ac, CssExpression expression, boolean check)
+    public CssWordSpaceTransform(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
         char op;
         ArrayList<CssValue> values = new ArrayList<>();
-        boolean got_action = false;
-        boolean got_full_width = false;
-        boolean got_full_size_kana = false;
+        boolean got_main = false;
+        boolean got_auto = false;
 
-        if (check && expression.getCount() > 3) {
+        if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
@@ -99,19 +97,16 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
                             getPropertyName(), ac);
                 }
                 values.add(val);
-            } else if (fullWidth.equals(val.getIdent()) && !got_full_width) {
-                got_full_width = true;
+            } else if (autoPhrase.equals(val.getIdent()) && !got_auto) {
+                got_auto = true;
                 values.add(val);
-            } else if (fullSizeKana.equals(val.getIdent()) && !got_full_size_kana) {
-                got_full_size_kana = true;
-                values.add(val);
-            } else if (!got_action) {
-                if (getMatchingActionIdent(val.getIdent()) == null) {
+            } else if (!got_main) {
+                if (getMatchingMainIdent(val.getIdent()) == null) {
                     throw new InvalidParamException("value",
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                got_action = true;
+                got_main = true;
                 values.add(val);
             } else {
                 throw new InvalidParamException("value",
@@ -127,7 +122,7 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssTextTransform(ApplContext ac, CssExpression expression)
+    public CssWordSpaceTransform(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

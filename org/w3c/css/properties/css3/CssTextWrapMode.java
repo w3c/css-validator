@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, Beihang, 2012.
+// (c) COPYRIGHT World Wide Web Consortium, 2024.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,26 +13,25 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @pec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-hyphens
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-wrap-mode
  */
-public class CssHyphens extends org.w3c.css.properties.css.CssHyphens {
+public class CssTextWrapMode extends org.w3c.css.properties.css.CssTextWrapMode {
 
-    public static final CssIdent[] allowed_values;
+    private static CssIdent[] allowed_idents;
+
 
     static {
-        String[] _allowed_values = {"manual", "auto"}; // none is also present
-        allowed_values = new CssIdent[_allowed_values.length];
+
+        String id_values[] = {"wrap", "nowrap"};
+        allowed_idents = new CssIdent[id_values.length];
         int i = 0;
-        for (String s : _allowed_values) {
-            allowed_values[i++] = CssIdent.getIdent(s);
+        for (String s : id_values) {
+            allowed_idents[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static final CssIdent getAllowedValue(CssIdent ident) {
-        if (none.equals(ident)) {
-            return none;
-        }
-        for (CssIdent id : allowed_values) {
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_idents) {
             if (id.equals(ident)) {
                 return id;
             }
@@ -41,20 +40,21 @@ public class CssHyphens extends org.w3c.css.properties.css.CssHyphens {
     }
 
     /**
-     * Create a new CssHyphens
+     * Create a new CssTextWrapMode
      */
-    public CssHyphens() {
+    public CssTextWrapMode() {
         value = initial;
     }
 
     /**
-     * Creates a new CssHyphens
+     * Creates a new CssTextWrapMode
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssHyphens(ApplContext ac, CssExpression expression, boolean check)
+    public CssTextWrapMode(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
+
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
@@ -67,12 +67,11 @@ public class CssHyphens extends org.w3c.css.properties.css.CssHyphens {
         op = expression.getOperator();
 
         if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    val.toString(),
+            throw new InvalidParamException("value", val,
                     getPropertyName(), ac);
         }
-        CssIdent ident = val.getIdent();
-        if (!CssIdent.isCssWide(ident) && getAllowedValue(ident) == null) {
+        CssIdent id = val.getIdent();
+        if (!CssIdent.isCssWide(id) && (getAllowedIdent(id) == null)) {
             throw new InvalidParamException("value",
                     val.toString(),
                     getPropertyName(), ac);
@@ -81,10 +80,9 @@ public class CssHyphens extends org.w3c.css.properties.css.CssHyphens {
         expression.next();
     }
 
-    public CssHyphens(ApplContext ac, CssExpression expression)
+    public CssTextWrapMode(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
-
 }
 

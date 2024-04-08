@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, Keio, 2012.
+// (c) COPYRIGHT World Wide Web Consortium, 2024.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,15 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-align
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-hyphenate-character
  */
-public class CssTextAlign extends org.w3c.css.properties.css.CssTextAlign {
+public class CssHyphenateCharacter extends org.w3c.css.properties.css.CssHyphenateCharacter {
 
-    private static CssIdent[] allowed_values;
+    private final static CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"start", "end", "left", "right", "center",
-                "justify", "match-parent", "justify-all"};
+        String[] id_values = {"auto"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -39,60 +38,58 @@ public class CssTextAlign extends org.w3c.css.properties.css.CssTextAlign {
     }
 
     /**
-     * Create a new CssTextAlign
+     * Create a new CssHyphenateCharacter
      */
-    public CssTextAlign() {
+    public CssHyphenateCharacter() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextAlign
+     * Creates a new CssHyphenateCharacter
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssTextAlign(ApplContext ac, CssExpression expression, boolean check)
+    public CssHyphenateCharacter(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
-        CssValue val = expression.getValue();
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
+        CssValue val = expression.getValue();
+
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                CssIdent id = val.getIdent();
-                if (!CssIdent.isCssWide(id) && getAllowedIdent(id) == null) {
-                    throw new InvalidParamException("value",
-                            expression.getValue(),
-                            getPropertyName(), ac);
-
+                CssIdent ident = val.getIdent();
+                if (CssIdent.isCssWide(ident)) {
+                    value = val;
+                    break;
                 }
-                value = val;
-                break;
+                if (getAllowedIdent(ident) != null) {
+                    value = val;
+                    break;
+                }
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
             case CssTypes.CSS_STRING:
-                if (val.getRawType() == CssTypes.CSS_STRING) {
-                    // string length must be 1, so 3 including delimiters
-                    if (val.toString().length() > 3) {
-                        throw new InvalidParamException("value",
-                                expression.getValue(),
-                                getPropertyName(), ac);
-                    }
-                }
                 value = val;
                 break;
             default:
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
+
         }
         expression.next();
     }
 
-    public CssTextAlign(ApplContext ac, CssExpression expression)
+    public CssHyphenateCharacter(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
+
 }
 

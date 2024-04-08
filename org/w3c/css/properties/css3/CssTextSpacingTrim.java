@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, Beihang, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,24 +13,29 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-align-last
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-spacing-trim
  */
-public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLast {
+public class CssTextSpacingTrim extends org.w3c.css.properties.css.CssTextSpacingTrim {
 
     private static CssIdent[] allowed_values;
+    private static CssIdent[] spacing_trim;
 
-    //
     static {
-        String id_values[] = {"auto", "start", "end",
-                "left", "right", "center", "justify", "match-parent"};
-        allowed_values = new CssIdent[id_values.length];
+        String[] id_values = {"space-all", "normal", "trim-auto", "trim-start", "space-first", "trim-all"};
+        String[] other_values = {"auto"};
+        allowed_values = new CssIdent[id_values.length + other_values.length];
+        spacing_trim = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
+            spacing_trim[i] = CssIdent.getIdent(s);
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        for (String s : other_values) {
             allowed_values[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static CssIdent getMatchingIdent(CssIdent ident) {
+    public static CssIdent getAllowedIdent(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -39,20 +44,29 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
         return null;
     }
 
+    public static CssIdent getSpacingTrimIdent(CssIdent ident) {
+        for (CssIdent id : spacing_trim) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
     /**
-     * Create a new CssTextAlignLast
+     * Create a new CssTextSpacingTrim
      */
-    public CssTextAlignLast() {
+    public CssTextSpacingTrim() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextAlignLast
+     * Creates a new CssTextSpacingTrim
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssTextAlignLast(ApplContext ac, CssExpression expression, boolean check)
+    public CssTextSpacingTrim(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -67,7 +81,7 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
                     getPropertyName(), ac);
         }
         // ident, so inherit, or allowed value
-        if (!CssIdent.isCssWide(val.getIdent()) && getMatchingIdent(val.getIdent()) == null) {
+        if (!CssIdent.isCssWide(val.getIdent()) && getAllowedIdent(val.getIdent()) == null) {
             throw new InvalidParamException("value",
                     expression.getValue(),
                     getPropertyName(), ac);
@@ -76,7 +90,7 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
         expression.next();
     }
 
-    public CssTextAlignLast(ApplContext ac, CssExpression expression)
+    public CssTextSpacingTrim(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

@@ -13,25 +13,23 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @pec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-hyphens
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-text-group-align
  */
-public class CssHyphens extends org.w3c.css.properties.css.CssHyphens {
+public class CssTextGroupAlign extends org.w3c.css.properties.css.CssTextGroupAlign {
 
-    public static final CssIdent[] allowed_values;
+    private static CssIdent[] allowed_values;
 
+    //
     static {
-        String[] _allowed_values = {"manual", "auto"}; // none is also present
-        allowed_values = new CssIdent[_allowed_values.length];
+        String id_values[] = {"none", "start", "end", "left", "right", "center"};
+        allowed_values = new CssIdent[id_values.length];
         int i = 0;
-        for (String s : _allowed_values) {
+        for (String s : id_values) {
             allowed_values[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static final CssIdent getAllowedValue(CssIdent ident) {
-        if (none.equals(ident)) {
-            return none;
-        }
+    public static CssIdent getMatchingIdent(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -41,47 +39,43 @@ public class CssHyphens extends org.w3c.css.properties.css.CssHyphens {
     }
 
     /**
-     * Create a new CssHyphens
+     * Create a new CssTextGroupAlign
      */
-    public CssHyphens() {
+    public CssTextGroupAlign() {
         value = initial;
     }
 
     /**
-     * Creates a new CssHyphens
+     * Creates a new CssTextGroupAlign
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssHyphens(ApplContext ac, CssExpression expression, boolean check)
+    public CssTextGroupAlign(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
+
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
-        setByUser();
-
-        CssValue val;
-        char op;
-
-        val = expression.getValue();
-        op = expression.getOperator();
 
         if (val.getType() != CssTypes.CSS_IDENT) {
             throw new InvalidParamException("value",
-                    val.toString(),
+                    expression.getValue(),
                     getPropertyName(), ac);
         }
-        CssIdent ident = val.getIdent();
-        if (!CssIdent.isCssWide(ident) && getAllowedValue(ident) == null) {
+        // ident, so inherit, or allowed value
+        if (!CssIdent.isCssWide(val.getIdent()) && getMatchingIdent(val.getIdent()) == null) {
             throw new InvalidParamException("value",
-                    val.toString(),
+                    expression.getValue(),
                     getPropertyName(), ac);
         }
         value = val;
         expression.next();
     }
 
-    public CssHyphens(ApplContext ac, CssExpression expression)
+    public CssTextGroupAlign(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
