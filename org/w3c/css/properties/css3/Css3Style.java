@@ -262,6 +262,7 @@ import org.w3c.css.properties.css.CssSpeakAs;
 import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignAll;
 import org.w3c.css.properties.css.CssTextAlignLast;
+import org.w3c.css.properties.css.CssTextAutospace;
 import org.w3c.css.properties.css.CssTextCombineUpright;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
@@ -717,7 +718,17 @@ public class Css3Style extends ATSCStyle {
     public CssHyphenateLimitLast cssHyphenateLimitLast;
     public CssTextGroupAlign cssTextGroupAlign;
     public CssLinePadding cssLinePadding;
-
+    public CssTextAutospace cssTextAutospace;
+    
+    public CssTextAutospace getTextAutospace() {
+        if (cssTextAutospace == null) {
+            cssTextAutospace =
+                    (CssTextAutospace) style.CascadingOrder(new CssTextAutospace(),
+                            style, selector);
+        }
+        return cssTextAutospace;
+    }
+    
     public CssLinePadding getLinePadding() {
         if (cssLinePadding == null) {
             cssLinePadding =
