@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-letter-spacing
+ * @spec https://www.w3.org/TR/2024/WD-css-text-4-20240219/#propdef-letter-spacing
  */
 public class CssLetterSpacing extends org.w3c.css.properties.css.CssLetterSpacing {
 
