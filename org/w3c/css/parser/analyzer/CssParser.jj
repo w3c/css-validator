@@ -3680,11 +3680,11 @@ CssCheckableValue functionvar() :
  */
 CssValue function() :
 {Token n,p = null,q = null;
- CssExpression exp;
+ CssExpression exp = new CssExpression();
  CssColor color = new CssColor();
 }
 {
-    n=<FUNCTION> ( <S> )*  ( LOOKAHEAD(2) exp=expr()
+    n=<FUNCTION> ( <S> )*  ( LOOKAHEAD(2) ( exp=expr() )?
     ")" { 
 	String funcname = n.image.toLowerCase();
 	if (funcname.equals("rgb(")) {
