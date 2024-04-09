@@ -163,7 +163,7 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
             case opacity:
             case saturate:
             case sepia:
-                parseOneNonNegativeNumPercent(ac, function.getParameters(), caller);
+                parseAtMostOneNonNegativeNumPercent(ac, function.getParameters(), caller);
                 break;
             case drop_shadow:
                 parseDropShadowFunction(ac, function.getParameters(), caller);
@@ -206,11 +206,15 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
     }
 
     // parse one value of type (CssTypes.XXX)
-    private static void parseOneNonNegativeNumPercent(ApplContext ac, CssExpression expression,
+    private static void parseAtMostOneNonNegativeNumPercent(ApplContext ac, CssExpression expression,
                                                       String caller)
             throws InvalidParamException {
         if (expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
+        }
+        // empty? -> OK
+        if (expression.getCount() == 0) {
+            return;
         }
         CssValue val = expression.getValue();
         char op = expression.getOperator();
