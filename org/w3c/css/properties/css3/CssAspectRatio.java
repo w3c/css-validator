@@ -104,7 +104,10 @@ public class CssAspectRatio extends org.w3c.css.properties.css.CssAspectRatio {
             expression.next();
         }
         // if things are not entirely parsed
-        if (v.size() == 0 || (ratio_state != 0 && ratio_state != 3)) {
+        if (ratio_state == 1) {
+            // so we got only one number
+            v.add(new CssRatio(dividend));
+        } else if (v.isEmpty() || (ratio_state != 0 && ratio_state != 3)) {
             throw new InvalidParamException("value",
                     expression.toStringFromStart(),
                     getPropertyName(), ac);

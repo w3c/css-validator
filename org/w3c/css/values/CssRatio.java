@@ -65,6 +65,18 @@ public class CssRatio extends CssValue {
         this.h = h;
     }
 
+    public CssRatio(CssValue gw) {
+        if (gw.getRawType() == CssTypes.CSS_NUMBER) {
+            try {
+                this.w = gw.getNumber().getBigDecimalValue();
+            } catch (Exception ex) {
+                this.gw = gw;
+            }
+        } else {
+            this.gw = gw;
+        }
+    }
+
     public CssRatio(CssValue gw, CssValue gh) {
         if (gw.getRawType() == CssTypes.CSS_NUMBER) {
             try {
@@ -145,6 +157,9 @@ public class CssRatio extends CssValue {
         } else {
             sb.append(gw.toString()).append(' ');
         }
+        if (h == null && gh == null) {
+            return sb.toString();
+        }
         sb.append('/');
         if (h != null) {
             sb.append(h.toPlainString());
@@ -163,6 +178,9 @@ public class CssRatio extends CssValue {
         try {
             CssRatio other = (CssRatio) value;
             // check that the ratio are the same
+            if (h == null && gh == null) {
+                return (other.h == null) && (other.gh == null) && (w.compareTo(other.w) == 0);
+            }
             BigDecimal ratio, other_ratio;
             ratio = w.divide(h, RoundingMode.CEILING);
             other_ratio = other.w.divide(other.h, RoundingMode.CEILING);
