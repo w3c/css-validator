@@ -39,8 +39,6 @@ public class CssCalc extends CssCheckableValue {
     boolean hasParen = false;
     String _toString = null;
     boolean implicit_function = true;
-    boolean contains_variable = false;
-
 
     /**
      * Create a new CssCalc
@@ -70,14 +68,6 @@ public class CssCalc extends CssCheckableValue {
         }
         computed_type = value.getType();
         val1 = value;
-    }
-
-    public boolean hasCssVariable() {
-        return contains_variable;
-    }
-
-    public void markCssVariable() {
-        contains_variable = true;
     }
 
     public void setImplicitFunction(boolean v) {

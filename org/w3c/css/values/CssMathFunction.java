@@ -215,6 +215,9 @@ public class CssMathFunction extends CssCheckableValue {
         valtype = values.get(0).getType();
         if (valtype == CssTypes.CSS_NUMBER) {
             computed_type = CssTypes.CSS_NUMBER;
+        } else if (valtype == CssTypes.CSS_VARIABLE) {
+            markCssVariable();
+            computed_type = valtype;
         } else {
             throw new InvalidParamException("incompatibletypes", toString(), ac);
         }
@@ -230,6 +233,19 @@ public class CssMathFunction extends CssCheckableValue {
         valtype2 = values.get(1).getType();
         if ((valtype1 == CssTypes.CSS_NUMBER) && (valtype2 == CssTypes.CSS_NUMBER)) {
             computed_type = CssTypes.CSS_NUMBER;
+        } else if ((valtype1 == CssTypes.CSS_VARIABLE) || (valtype2 == CssTypes.CSS_VARIABLE)) {
+            if (valtype1 == CssTypes.CSS_VARIABLE) {
+                if ((valtype2 == CssTypes.CSS_NUMBER) || (valtype2 == CssTypes.CSS_VARIABLE)) {
+                    computed_type = valtype2;
+                } else {
+                    // one type is not NUMBER
+                    throw new InvalidParamException("incompatibletypes", toString(), ac);
+                }
+            } else if (valtype1 == CssTypes.CSS_NUMBER) {
+                computed_type = valtype1;
+            } else {
+                throw new InvalidParamException("incompatibletypes", toString(), ac);
+            }
         } else {
             throw new InvalidParamException("incompatibletypes", toString(), ac);
         }
@@ -243,16 +259,29 @@ public class CssMathFunction extends CssCheckableValue {
             throw new InvalidParamException("unrecognize", ac);
         }
         valtype = values.get(0).getType();
-        if (valtype != CssTypes.CSS_NUMBER) {
-            throw new InvalidParamException("incompatibletypes", toString(), ac);
-        }
-        if (values.size() > 1) {
-            valtype = values.get(1).getType();
-            if (valtype != CssTypes.CSS_NUMBER) {
+        if (valtype == CssTypes.CSS_NUMBER) {
+            computed_type = valtype;
+        } else {
+            if (valtype == CssTypes.CSS_VARIABLE) {
+                markCssVariable();
+                computed_type = CssTypes.CSS_VARIABLE;
+            } else {
                 throw new InvalidParamException("incompatibletypes", toString(), ac);
             }
         }
-        computed_type = CssTypes.CSS_NUMBER;
+        if (values.size() > 1) {
+            valtype = values.get(1).getType();
+            // computed type is set, just verify that it matches
+            if (valtype != CssTypes.CSS_NUMBER) {
+                if (valtype == CssTypes.CSS_VARIABLE) {
+                    if (computed_type != valtype) {
+                        markCssVariable();
+                    }
+                } else {
+                    throw new InvalidParamException("incompatibletypes", toString(), ac);
+                }
+            }
+        }
     }
 
     private void _computeResultingTypeAtan2(boolean is_final)
@@ -263,6 +292,32 @@ public class CssMathFunction extends CssCheckableValue {
         }
         valtype1 = values.get(0).getType();
         valtype2 = values.get(1).getType();
+        if ((valtype1 == CssTypes.CSS_VARIABLE) || (valtype2 == CssTypes.CSS_VARIABLE)) {
+            markCssVariable();
+            if (valtype1 != CssTypes.CSS_VARIABLE) {
+                if (valtype1 != CssTypes.CSS_PERCENTAGE &&
+                        valtype1 != CssTypes.CSS_LENGTH &&
+                        valtype1 != CssTypes.CSS_NUMBER) {
+                    throw new InvalidParamException("incompatibletypes", toString(), ac);
+                }
+            } else if (valtype2 != CssTypes.CSS_VARIABLE) {
+                if (valtype2 != CssTypes.CSS_PERCENTAGE &&
+                        valtype2 != CssTypes.CSS_LENGTH &&
+                        valtype2 != CssTypes.CSS_NUMBER) {
+                    throw new InvalidParamException("incompatibletypes", toString(), ac);
+                }
+            } else {
+                // both are variables.
+                computed_type = valtype1;
+            }
+            computed_type = CssTypes.CSS_ANGLE;
+            return;
+        }
+        if (valtype1 != CssTypes.CSS_PERCENTAGE &&
+                valtype1 != CssTypes.CSS_LENGTH &&
+                valtype1 != CssTypes.CSS_NUMBER) {
+            throw new InvalidParamException("incompatibletypes", toString(), ac);
+        }
         if (valtype1 == valtype2) {
             computed_type = CssTypes.CSS_ANGLE;
         } else {
@@ -287,10 +342,30 @@ public class CssMathFunction extends CssCheckableValue {
                     valtype1 = CssTypes.CSS_NUMBER;
                 } catch (Exception ignored) {
                 }
+            } else if (valtype1 == CssTypes.CSS_VARIABLE) {
+                markCssVariable();
+                valtype2 = values.get(1).getType();
+                if (valtype2 == CssTypes.CSS_VARIABLE) {
+                    computed_type = valtype1;
+                    return;
+                } else {
+                    if (valtype2 != CssTypes.CSS_PERCENTAGE &&
+                            valtype2 != CssTypes.CSS_LENGTH &&
+                            valtype2 != CssTypes.CSS_NUMBER) {
+                        throw new InvalidParamException("incompatibletypes", toString(), ac);
+                    }
+                    computed_type = valtype2;
+                    return;
+                }
+            } else if (valtype1 != CssTypes.CSS_PERCENTAGE &&
+                    valtype1 != CssTypes.CSS_LENGTH &&
+                    valtype1 != CssTypes.CSS_NUMBER) {
+                throw new InvalidParamException("incompatibletypes", toString(), ac);
             }
             valtype2 = values.get(1).getType();
         } else {  // 3 values
             CssValue v = values.get(0);
+            // FIXME TODO need to care about rounding type being an unresolved var() ?
             if (v.getType() != CssTypes.CSS_IDENT) {
                 throw new InvalidParamException("incompatibletypes", toString(), ac);
             }
@@ -300,18 +375,46 @@ public class CssMathFunction extends CssCheckableValue {
             valtype1 = values.get(1).getType();
             valtype2 = values.get(2).getType();
         }
-        if (valtype1 == valtype2) {
+        if (valtype1 == CssTypes.CSS_VARIABLE) {
+            markCssVariable();
+            if (valtype2 == CssTypes.CSS_VARIABLE) {
+                computed_type = valtype1;
+                return;
+            } else {
+                if (valtype2 != CssTypes.CSS_PERCENTAGE &&
+                        valtype2 != CssTypes.CSS_LENGTH &&
+                        valtype2 != CssTypes.CSS_NUMBER) {
+                    throw new InvalidParamException("incompatibletypes", toString(), ac);
+                }
+                computed_type = valtype2;
+                return;
+            }
+        } else if (valtype2 == CssTypes.CSS_VARIABLE) {
+            markCssVariable();
+            if (valtype1 != CssTypes.CSS_PERCENTAGE &&
+                    valtype1 != CssTypes.CSS_LENGTH &&
+                    valtype1 != CssTypes.CSS_NUMBER) {
+                throw new InvalidParamException("incompatibletypes", toString(), ac);
+            }
+            computed_type = valtype1;
+            return;
+        }
+        if ((valtype1 == valtype2) && (valtype1 == CssTypes.CSS_PERCENTAGE ||
+                valtype1 == CssTypes.CSS_LENGTH ||
+                valtype1 == CssTypes.CSS_NUMBER)) {
             computed_type = valtype1;
         } else {
             throw new InvalidParamException("incompatibletypes", toString(), ac);
         }
-
     }
 
     private void _computeResultingTypeSign(boolean is_final)
             throws InvalidParamException {
         if (values.size() > 1) {
             throw new InvalidParamException("unrecognize", ac);
+        }
+        if (values.get(0).getType() == CssTypes.CSS_VARIABLE) {
+            markCssVariable();
         }
         computed_type = CssTypes.CSS_NUMBER;
     }
@@ -323,6 +426,9 @@ public class CssMathFunction extends CssCheckableValue {
             throw new InvalidParamException("unrecognize", ac);
         }
         valtype = values.get(0).getType();
+        if (valtype == CssTypes.CSS_VARIABLE) {
+            markCssVariable();
+        }
         computed_type = valtype;
     }
 
@@ -334,6 +440,18 @@ public class CssMathFunction extends CssCheckableValue {
         }
         valtype1 = values.get(0).getType();
         valtype2 = values.get(1).getType();
+        if ((valtype1 == CssTypes.CSS_VARIABLE) || (valtype2 == CssTypes.CSS_VARIABLE)) {
+            markCssVariable();
+            if (valtype1 != CssTypes.CSS_VARIABLE) {
+                computed_type = valtype1;
+            } else if (valtype2 != CssTypes.CSS_VARIABLE) {
+                computed_type = valtype2;
+            } else {
+                // default to CssVariable
+                computed_type = valtype1;
+            }
+            return;
+        }
         if (valtype1 == valtype2) {
             computed_type = valtype1;
         } else {
@@ -348,7 +466,15 @@ public class CssMathFunction extends CssCheckableValue {
             throw new InvalidParamException("unrecognize", ac);
         }
         valtype = values.get(0).getType();
-        if ((valtype == CssTypes.CSS_NUMBER) || (valtype == CssTypes.CSS_ANGLE)) {
+        if (valtype == CssTypes.CSS_VARIABLE) {
+            markCssVariable();
+            if (prefix.startsWith("a")) {
+                computed_type = CssTypes.CSS_ANGLE;
+            } else {
+                computed_type = CssTypes.CSS_NUMBER;
+            }
+        } else if ((valtype == CssTypes.CSS_NUMBER) || (valtype == CssTypes.CSS_ANGLE)) {
+            // FIXME should check cos(angle | 0) and acos(number) to be more precise
             if (prefix.startsWith("a")) {
                 computed_type = CssTypes.CSS_ANGLE;
             } else {
@@ -368,6 +494,11 @@ public class CssMathFunction extends CssCheckableValue {
         for (CssValue v : values) {
             if (firstVal) {
                 valtype = v.getType();
+                // Variable? defer to the next type
+                if (valtype == CssTypes.CSS_VARIABLE) {
+                    markCssVariable();
+                    continue;
+                }
                 _checkAcceptableType(valtype);
                 computed_type = valtype;
                 firstVal = false;
@@ -391,6 +522,11 @@ public class CssMathFunction extends CssCheckableValue {
                     continue;
                 }
                 if (v.getType() == CssTypes.CSS_NUMBER && v.getNumber().isZero()) {
+                    continue;
+                }
+                // if it is a variable without a computed type, skip it
+                if ((v.getType() == CssTypes.CSS_VARIABLE) || (v.getRawType() == CssTypes.CSS_VARIABLE)) {
+                    markCssVariable();
                     continue;
                 }
                 throw new InvalidParamException("incompatibletypes", toStringUnprefixed(), ac);

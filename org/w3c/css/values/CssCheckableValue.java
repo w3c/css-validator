@@ -21,6 +21,15 @@ public abstract class CssCheckableValue extends CssValue {
 
     abstract public boolean isZero();
 
+    boolean contains_variable = false;
+
+    public boolean hasCssVariable() {
+        return contains_variable;
+    }
+
+    public void markCssVariable() {
+        contains_variable = true;
+    }
 
     /**
      * check if the value is positive or null
