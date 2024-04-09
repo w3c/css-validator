@@ -19,12 +19,15 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @spec https://www.w3.org/TR/2020/WD-css-contain-2-20201216/#propdef-contain
+ * @spec https://www.w3.org/TR/2022/WD-css-contain-3-20220818/#contain-property
  */
 public class CssContain extends org.w3c.css.properties.css.CssContain {
 
     public static final CssIdent[] allowed_single_values;
     public static final CssIdent[] allowed_multiple_values;
     public static final CssIdent auto = CssIdent.getIdent("auto");
+    public static final CssIdent size = CssIdent.getIdent("size");
+    public static final CssIdent inline_size = CssIdent.getIdent("inline-size");
 
     static {
         String[] _allowed_single_values = {"none", "strict", "content"};
@@ -34,7 +37,7 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
             allowed_single_values[i++] = CssIdent.getIdent(s);
         }
         // "style" added as of css-contain-2 but at-risk
-        String[] _allowed_multiple_values = {"size", "layout", "paint", "style"};
+        String[] _allowed_multiple_values = {"size", "inline-size", "layout", "paint", "style"};
         i = 0;
         allowed_multiple_values = new CssIdent[_allowed_multiple_values.length];
         for (String s : _allowed_multiple_values) {
@@ -60,6 +63,10 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
         return null;
     }
 
+    public static boolean isExclusiveIdent(CssIdent ident) {
+        return (size.equals(ident) || inline_size.equals(ident));
+    }
+
     /**
      * Create a new CssContain
      */
@@ -79,6 +86,7 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
         char op;
         CssIdent id, ident;
         boolean got_single = false;
+        boolean got_exclusive = false;
 
         setByUser();
 
@@ -128,6 +136,15 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
+            }
+            if (isExclusiveIdent(ident)) {
+                if (got_exclusive) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                } else {
+                    got_exclusive = true;
+                }
             }
             idvalues.add(ident);
             values.add(val);
