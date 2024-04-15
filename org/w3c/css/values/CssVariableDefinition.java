@@ -42,7 +42,11 @@ public class CssVariableDefinition extends CssValue {
      * @param exp the <EM>CssExpression</EM>
      */
     public CssVariableDefinition(CssExpression exp) {
-        expression = exp;
+        if (exp.getCount() > 0) {
+            expression = exp;
+        } else {
+            unparsable_value = "";
+        }
     }
 
     /**

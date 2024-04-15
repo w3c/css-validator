@@ -2956,13 +2956,13 @@ try {
  */
 CssProperty declaration() :
 { String string_property;
-  CssExpression values;
+  CssExpression values = null;
   boolean important = false;
 }
 {
 try {
      string_property=property() <COLON> ( <S> )* 
-      values=expr() ( important=prio() )?
+      ( values=expr() )? ( important=prio() )?
     {
 	try {
             if (string_property == null) {
@@ -2973,20 +2973,25 @@ try {
 	    if (incompatible_error) {
 		throw new InvalidParamException("notforcss1", "inherit", ac);
 	    }
-
-	    if (values.getCount() != 0) {
+	    if (values == null) {
+		values = new CssExpression();
+	    }
+	    if (values.getCount() != 0 || string_property.startsWith("--")) {
 		CssProperty p = handleDeclaration(string_property.toLowerCase(),
 						  values, important);
 		// Did the property recognize all values in the expression ?
 
 		if (!values.end() && ac.getMedium() == null) {
-		        addError(new InvalidParamException("unrecognize", "", ac),
+		   addError(new InvalidParamException("unrecognize", "", ac),
 			     values);
 		} else {
-		    // ok, return the new property
-		    return p;
+                    // ok, return the new property
+                    return p;
 		}
-	    }
+            } else if (values.getCount() == 0) {
+                // old behaviour throw when a property has an empty expression
+                throw new ParseException();
+            }
 	} catch (InvalidParamException e) {
             incompatible_error = false;
             if (e instanceof WarningParamException) {
