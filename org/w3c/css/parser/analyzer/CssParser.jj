@@ -2207,11 +2207,11 @@ ArrayList<CssProperty> attributeDeclarations() :
 
 CssSelectors relative_selector() :
 {
-	String comb;
+	String comb = "*none*";
 	CssSelectors current;
 } 
 {
-	comb=combinator() {
+	( comb=combinator() )? {
 		current = new CssSelectors(ac);
 		               switch(comb) {
                         case "+":
@@ -2226,6 +2226,8 @@ CssSelectors relative_selector() :
                         case "||":
                                 current.addColumnCombinator();
                                 break;
+			case "*none*":
+				break;
                         default:
                                 current.addDescendantCombinator();
                 }                  
