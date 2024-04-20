@@ -2292,7 +2292,7 @@ CssSelectors subclass_selector(CssSelectors selector) :
 
 CssSelectors complex_selector(CssSelectors sel) :
 {
-	String comb;
+	String comb = "*none*";
 	CssSelectors current;
 }
 {
@@ -2328,6 +2328,8 @@ CssSelectors complex_selector(CssSelectors sel) :
 					break;
 				case "||":
 					current.addColumnCombinator();
+					break;
+				case "*none*":
 					break;
 				default:
 					current.addDescendantCombinator();
