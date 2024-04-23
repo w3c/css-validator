@@ -80,7 +80,13 @@ public class AtRuleMedia extends org.w3c.css.atrules.css.AtRuleMedia {
      */
     public void addMediaFeature(MediaFeature feature, ApplContext ac)
             throws InvalidParamException {
-        Media latest = allMedia.get(allMedia.size() - 1);
+        Media latest;
+        if (allMedia.isEmpty()) {
+            latest = new Media();
+            allMedia.add(latest);
+        } else {
+            latest = allMedia.get(allMedia.size() - 1);
+        }
         latest.addFeature(feature);
     }
 
