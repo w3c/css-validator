@@ -2978,7 +2978,12 @@ try {
 		throw new InvalidParamException("notforcss1", "inherit", ac);
 	    }
 	    if (values == null) {
-		values = new CssExpression();
+                if (string_property.startsWith("--")) {
+			values = new CssExpression();
+		} else {
+			// old behaviour for empty properties
+			throw new ParseException();
+		}
 	    }
 	    if (values.getCount() != 0 || string_property.startsWith("--")) {
 		CssProperty p = handleDeclaration(string_property.toLowerCase(),
@@ -2992,9 +2997,6 @@ try {
                     // ok, return the new property
                     return p;
 		}
-            } else if (values.getCount() == 0) {
-                // old behaviour throw when a property has an empty expression
-                throw new ParseException();
             }
 	} catch (InvalidParamException e) {
             incompatible_error = false;
