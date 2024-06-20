@@ -268,6 +268,7 @@ warning.zero: Únicamente 0 puede ser un \u201C%s\u201D. Debe especificarse una 
 error.noexistence-at-all: La propiedad \u201C%s\u201D no existe
 error.noexistence-media: La propiedad \u201C%s\u201D no existe en el medio \u201C%s\u201D
 error.noexistence: La propiedad \u201C%s\u201D no existe en \u201C%s\u201D pero existe en \u201C%s\u201D
+error.noexistence-typo: La propiedad \u201C%s\u201D no existe. El nombre más parecido, de una propiedad válida, es \u201C%s\u201D
 warning.noexistence: La propiedad \u201C%s\u201D no existe en \u201C%s\u201D pero existe en \u201C%s\u201D
 warning.noexistence-media: La propiedad \u201C%s\u201D no existe en el medio \u201C%s\u201D
 warning.notforusermedium : La propiedad \u201C%s\u201D no existe en este medio de usuario
