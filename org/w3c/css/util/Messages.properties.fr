@@ -421,7 +421,7 @@ error.notforatsc: \u201C%s\u201D ne peut pas être utilisé pour le profil ATSC
 error.notfortv: \u201C%s\u201D ne peut pas être utilisé pour le profil TV
 error.notversion: \u201C%s\u201D ne peut pas être utilisé pour cette version CSS: \u201C%s\u201D
 
-warning.css-variable: En raison de laur nature dynamique, les variables CSS ne sont pas vérifiées statiquement
+warning.css-variable: En raison de leur nature dynamique, les variables CSS ne sont pas vérifiées statiquement
 
 warning.css-hack : \u201C%s\u201D est un hack CSS
 
