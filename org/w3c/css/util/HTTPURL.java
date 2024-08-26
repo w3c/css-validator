@@ -226,6 +226,10 @@ public class HTTPURL {
                 System.err.println("with [" + ac.getCredential() + ']');
             }
         }
+        // setting timeouts
+        urlC.setConnectTimeout(ac.getConnectTimeout());
+        urlC.setReadTimeout(ac.getReadTimeout());
+
         // avoid all kind of caches
         urlC.setRequestProperty("Pragma", "no-cache");
         urlC.setRequestProperty("Cache-Control", "no-cache, no-store");
@@ -289,7 +293,7 @@ public class HTTPURL {
                     } catch (Exception ex) {
                         // usually a NPE when Location is absent on a redirect.
                         // in any case, we will count this as non existent result.
-                        throw new FileNotFoundException(url + ":" + " Error in "+status);
+                        throw new FileNotFoundException(url + ":" + " Error in " + status);
                     } finally {
                         httpURL.disconnect();
                     }

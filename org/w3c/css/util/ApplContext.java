@@ -54,12 +54,15 @@ public class ApplContext {
             uriCharset = c;
             fromBom = fb;
         }
+
         private BomEncoding(Charset c) {
             this(c, false);
         }
+
         private BomEncoding() {
         }
     }
+
     // charset definition of traversed URLs
     private HashMap<URL, BomEncoding> uricharsets = null;
 
@@ -71,6 +74,9 @@ public class ApplContext {
     public static String noPrefix = "*noprefix*";
 
     private ArrayList<URL> linkedmedia = new ArrayList<URL>();
+
+    int readTimeout = 60000; // ms
+    int connectTimeout = 5000; // ms
 
     String credential = null;
     String lang;
@@ -322,7 +328,6 @@ public class ApplContext {
      * Change the behaviour of error reporting for vendor extensions.
      *
      * @param treatVendorExtensionsAsWarnings
-     *
      */
     public void setTreatVendorExtensionsAsWarnings(
             boolean treatVendorExtensionsAsWarnings) {
@@ -619,5 +624,21 @@ public class ApplContext {
      */
     public URL getReferrer() {
         return referrer;
+    }
+
+    public int getReadTimeout() {
+        return readTimeout;
+    }
+
+    public void setReadTimeout(int timeout) {
+        readTimeout = timeout;
+    }
+
+    public int getConnectTimeout() {
+        return connectTimeout;
+    }
+
+    public void setConnectTimeout(int timeout) {
+        connectTimeout = timeout;
     }
 }
