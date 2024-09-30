@@ -133,12 +133,12 @@ output-encoding-name: utf-8
 warning.redefinition: Redefiniowanie \u201C%s\u201D
 
 # used by xml parser
-warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
+warning.style-inside-comment: Nie umieszczaj reguł stylu w komentarzach HTML, ponieważ user agent możę je usunąć
 
 # użyte przez org.w3c.css.properties.Css1Style
 warning.same-colors: Takie same kolory dla \u201C%s\u201D i \u201C%s\u201D
 warning.no-color: Brak koloru w background-color
-warning.no-background-color: Brak background-color with your color
+warning.no-background-color: Brak background-color z twoim kolorem
 #warning.color.mixed-capitalization is now obsolete
 #warning.color.mixed-capitalization: Chociaż nazwy kolorów nie są wrażliwe na wielkość czcionki, zaleca się aby używać kombinacji małej i dużej czcionki, co uczyni nazwy bardziej czytelnymi: \u201C%s\u201D
 warning.no-generic-family: \u201C%s\u201D: Zaleca się aby rodziny czcionek rodzajowych były stosowane w ostateczności
@@ -160,14 +160,14 @@ warning.withblock: Uwaga. Pseudo-elementy mogą być dołączone jedynie do elem
 warning.block-level: Właściwość tą stosuje się jedynie do elementów block-level.
 
 # użyte przez org.w3c.css.parser.Frame
-warning.no-declaration: No declarations in the rule
+warning.no-declaration: Brak deklaracji w regule
 
 # used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
-warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
+warning.unsupported-import: Zaimportowane arkusze stylów nie są sprawdzane w trybach bezpośredniego wprowadzania i przesyłania plików
 
 # użyte przez org.w3c.css.values.CssColor
-warning.out-of-range: \u201C%s\u201D is out of range
-error.invalid-color: Invalid RGB function
+warning.out-of-range: \u201C%s\u201D jest poza zakresem
+error.invalid-color: Nieprawidłowa funkcja RGB
 
 warning.marker: Właściwość marker-offset stosuje się do elementów z 'display: marker'
 
@@ -264,7 +264,7 @@ error.zero: Jedynie 0 może być \u201C%s\u201D. Musisz wstawić jednostkę po n
 warning.zero: Jedynie 0 może być \u201C%s\u201D. Musisz wstawić jednostkę po numerze
 
 # użyte przez org.w3c.css.parser.CssPropertyFactory 
-error.noexistence: WłaWłaściwość \u201C%s\u201D nie istnieje w \u201C%s\u201D, ale istnieje w \u201C%s\u201D
+error.noexistence: Właściwość \u201C%s\u201D nie istnieje w \u201C%s\u201D, ale istnieje w \u201C%s\u201D
 warning.noexistence: Właściwość \u201C%s\u201D nie istnieje w \u201C%s\u201D, ale istnieje w \u201C%s\u201D
 error.noexistence-media: Właściwość \u201C%s\u201D nie istnieje dla media \u201C%s\u201D
 error.noexistence-at-all: Właściwość \u201C%s\u201D nie istnieje
@@ -281,7 +281,7 @@ warning.charsetspecial: Ten profil ma ściśle określoną składnię dla reguł
 warning.notversion: \u201C%s\u201D nie może zostać użyty z tą wersją CSS: \u201C%s\u201D
 
 # użyte przez org.w3c.css.parser.CssFouffa
-error.unrecognize: Zbyt dużo wartości lub wartości nie rozpoznane
+error.unrecognize: Zbyt dużo wartości lub wartości nierozpoznane
 
 # użyte przez org.w3c.css.parser.CssFouffa
 generator.unrecognize: Błąd parsowania
@@ -345,15 +345,15 @@ chyba, że jest to wymiar ("#55in").
 parser.charset:Reguła @charset może pojawić się jedynie na początku \
 arkusza. Upewnij się, że nie ma przed nią spacji.
 
-parser.charsetspecial:Ten profil ma specyficzny syntax dla @charset: \
+parser.charsetspecial:Ten profil ma specyficzną składnię dla @charset: \
 @charset dokładnie po jednej spacji a następnie nazwa kodowania \
 w cudzysłowie zakończona bezpośrednio średnikiem.
 
-warning.old_id:W CSS1 nazwa id  może zacząć się od cyfry ("#55ft"), \
+warning.old_id:W CSS1 nazwa id może zacząć się od cyfry ("#55ft"), \
 chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy są parsowane jako \
 nieznane wymiary (aby pozwolić na późniejsze dodawanie jednostek)
 
-warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+warning.old_class:W CSS1, nazwa klasy może zacząć się od cyfry ("#55ft"), \
 chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy są parsowane jako \
 nieznane wymiary (aby pozwolić na późniejsze dodawanie jednostek)
 
