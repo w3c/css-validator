@@ -197,7 +197,8 @@ public class StyleSheetGenerator extends StyleReport {
 
         produceError();
         produceWarning();
-        produceStyleSheet();
+        if (CssValidator.showCSS)
+            produceStyleSheet();
 
         try {
             String _template_dir = "org/w3c/css/css/";
