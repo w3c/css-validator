@@ -75,6 +75,7 @@ public class CssClip extends org.w3c.css.properties.css.CssClip {
                 throw new InvalidParamException("value", val,
                         getPropertyName(), ac);
         }
+        expression.next();
     }
 
     public CssClip(ApplContext ac, CssExpression expression)
