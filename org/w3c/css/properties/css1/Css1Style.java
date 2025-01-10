@@ -39,8 +39,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -1051,7 +1050,7 @@ class RelativeAndAbsolute {
             case CssTypes.CSS_PERCENTAGE:
                 // FIXME, it depends on the unit of the parent in the cascade.
                 try {
-                    CssPercentage percent = value.getPercentage();
+                    CssCheckableValue percent = value.getCheckableValue();
                     if (!percent.isZero()) {
                         relative = true;
                     }
@@ -1061,13 +1060,15 @@ class RelativeAndAbsolute {
                 break;
             case CssTypes.CSS_LENGTH:
                 try {
-                    CssLength length = value.getLength();
+                    CssCheckableValue length = value.getCheckableValue();
                     // 0 is always 0, no need to check
                     if (!length.isZero()) {
-                        if (length.isAbsolute()) {
-                            absolute = true;
-                        } else {
-                            relative = true;
+                        if (length.getRawType() == CssTypes.CSS_LENGTH) {
+                            if (length.getLength().isAbsolute()) {
+                                absolute = true;
+                            } else {
+                                relative = true;
+                            }
                         }
                     }
                 } catch (InvalidParamException ipe) {
