@@ -7,7 +7,7 @@
 
 package org.w3c.css.parser;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.text.similarity.LevenshteinDistance;
 import org.w3c.css.atrules.css.AtRuleMedia;
 import org.w3c.css.atrules.css.media.Media;
 import org.w3c.css.atrules.css.media.MediaFeature;
@@ -328,6 +328,7 @@ public class CssPropertyFactory implements Cloneable {
     }
 
     private String findClosestPropertyName(AtRule atRule, ApplContext ac, String property) {
+        LevenshteinDistance levenshtein = LevenshteinDistance.getDefaultInstance();
         int mindist = 100000;
         int dist;
         Set<String> propertyList = PropertiesLoader.getProfile(ac.getPropertyKey()).keySet();
@@ -339,7 +340,7 @@ public class CssPropertyFactory implements Cloneable {
             property = sb.toString();
         }
         for (String s : propertyList) {
-            dist = StringUtils.getLevenshteinDistance(property, s);
+            dist = levenshtein.apply(property, s);
             if (dist >= 0 && dist < mindist) {
                 bestFit = s;
                 mindist = dist;
