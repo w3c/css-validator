@@ -491,12 +491,12 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
                     "http://xml.org/sax/features/namespace-prefixes", true);
             xmlParser.setFeature("http://xml.org/sax/features/validation",
                     false);
-            /*
-            * xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
-            * false);
-            * xmlParser.setFeature("http://xml.org/sax/features/external-general-entities",
-            * false);
-            */
+           /* readded 20250128, check report if things break */ 
+            xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
+            false);
+            xmlParser.setFeature("http://xml.org/sax/features/external-general-entities",
+            false);
+           /*     */
         } catch (Exception ex) {
             ex.printStackTrace();
         }
