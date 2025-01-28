@@ -3465,7 +3465,7 @@ CssCheckableValue mathsum() :
 			  nb_pre_sp = 0;
     }
 	// special case for "-" as it can't match like <PLUS> (<PLUS> is <_W>* "+")
-	( LOOKAHEAD(2) ( o=<PLUS> | ( ( <S> { nb_pre_sp++; }  )* o=<MINUS> ) ) { 
+	( LOOKAHEAD(2) ( o=<PLUS> | ( ( <S> { nb_pre_sp++; }  )* o=<MINUS> ) ) {
 	    if (o.image.length() < 2 && nb_pre_sp == 0) {
 		throw new ParseException(ac.getMsg().getString("parser.calcwhitespace"));
 	    }
@@ -3722,6 +3722,14 @@ CssValue function() :
         } else if (funcname.equals("device-cmyk(")) {
             color.setDeviceCMYKColor(ac, exp);
             return color;
+        } else if (funcname.equals("light-dark(")) {
+	    color.setLightDark(ac, exp);
+	    return color;
+/*
+        } else if (funcname.equals("color-mix(")) {
+	    color.setColorMix(ac, exp);
+	    return color;
+*/
 	} else if (funcname.equals("image(")) {
 	    CssImage img = new CssImage();
 	    img.setImageList(exp, ac);

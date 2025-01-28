@@ -8650,6 +8650,14 @@ String funcname = n.image.toLowerCase();
         } else if (funcname.equals("device-cmyk(")) {
             color.setDeviceCMYKColor(ac, exp);
             {if ("" != null) return color;}
+        } else if (funcname.equals("light-dark(")) {
+            color.setLightDark(ac, exp);
+            {if ("" != null) return color;}
+/*
+        } else if (funcname.equals("color-mix(")) {
+	    color.setColorMix(ac, exp);
+	    return color;
+*/
         } else if (funcname.equals("image(")) {
             CssImage img = new CssImage();
             img.setImageList(exp, ac);

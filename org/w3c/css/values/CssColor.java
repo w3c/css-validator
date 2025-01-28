@@ -36,6 +36,7 @@ public class CssColor extends CssValue {
     LAB lab = null;
     LCH lch = null;
     DeviceCMYK cmyk = null;
+    LightDark lightdark = null;
 
     boolean contains_variable = false;
 
@@ -114,6 +115,24 @@ public class CssColor extends CssValue {
         return "*invalid*";
     }
 
+    public void setLightDark(ApplContext ac, CssExpression exp)
+            throws InvalidParamException {
+        if ((exp == null) || (exp.getCount() != 2)) {
+              throw new InvalidParamException("invalid-color", ac);
+        }
+        LightDark ld = new LightDark();
+        CssValue l = exp.getValue();
+        char op = exp.getOperator();
+        if (l == null || op != COMMA) {
+            throw new InvalidParamException("invalid-color", ac);
+        }
+        exp.next();
+        CssValue d = exp.getValue();
+        ld.setLight(ac, l);
+        ld.setDark(ac, d);
+        this.lightdark = ld;
+        exp.next();
+    }
 
     public void setRGBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
@@ -1379,5 +1398,20 @@ public class CssColor extends CssValue {
         }
     }
 
+    /**
+     * Parse a LightDark color.
+     * format: light-dark( <color>, <color>) [ / <alpha-value> ]? ) |
+     */
+    public void setLightDarkColor(ApplContext ac, CssExpression exp)
+            throws InvalidParamException {
+        // light-dark defined in CSS3 and onward
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("light-dark(").append(exp.toStringFromStart()).append(')');
+            throw new InvalidParamException("notversion", sb.toString(),
+                    ac.getCssVersionString(), ac);
+        }
+        lightdark = new LightDark();
+    }
 }
 
