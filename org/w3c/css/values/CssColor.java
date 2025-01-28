@@ -1035,6 +1035,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("colorfunc", exp, "Lab", ac);
         }
         switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_PERCENTAGE:
             case CssTypes.CSS_VARIABLE:
                 lab.setL(ac, val);
