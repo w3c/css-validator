@@ -458,6 +458,19 @@ public class CssColor extends CssValue {
 
         if (exp.hasCssVariable()) {
             markCssVariable();
+            if (exp.getCount() < 3) {
+                // check if we can expand
+                while (!exp.end()) {
+                    val = exp.getValue();
+                    if (val.getRawType() == CssTypes.CSS_VARIABLE) {
+                        CssExpression varexp = ((CssVariable) val).getVariableExpression();
+                        if ((varexp != null) && (varexp.getCount() > 1)) {
+                            // TODO something fancy, merging expression
+                            return;
+                        }
+                    }
+                }
+            }
         }
 
         if (val == null || (!separator_space && (op != COMMA))) {
