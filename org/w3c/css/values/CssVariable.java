@@ -49,6 +49,24 @@ public class CssVariable extends CssCheckableValue {
         return computed_type;
     }
 
+    public final CssExpression getVariableExpression() {
+        if (ac != null) {
+            StyleSheet s = ac.getStyleSheet();
+            if (s != null) {
+                CssCustomProperty cp = s.getCustomProperty(variable_name);
+                if (cp != null) {
+                    CssVariableDefinition vd = (CssVariableDefinition) cp.value;
+                    if (vd != null) {
+                        if (vd.size() > 0) {
+                            return vd.expression;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     String variable_name = null;
     ApplContext ac;
     int computed_type = CssTypes.CSS_UNKNOWN;
