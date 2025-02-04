@@ -36,6 +36,7 @@ public class CssImage extends CssValue {
     static final CssIdent ellipse = CssIdent.getIdent("ellipse");
     static final CssIdent from = CssIdent.getIdent("from");
     static final CssIdent[] extent_keywords;
+    static final CssIdent[] image_tags;
 
     static {
         String _val[] = {"closest-corner", "closest-side",
@@ -44,6 +45,12 @@ public class CssImage extends CssValue {
         int i = 0;
         for (String s : _val) {
             extent_keywords[i++] = CssIdent.getIdent(s);
+        }
+        String _img_tags[] = { "ltr", "rtl"};
+        image_tags = new CssIdent[_img_tags.length];
+        i = 0;
+        for (String s: _img_tags) {
+            image_tags[i++] = CssIdent.getIdent(s);
         }
     }
 
@@ -79,6 +86,15 @@ public class CssImage extends CssValue {
 
     public static CssIdent getExtentIdent(CssIdent ident) {
         for (CssIdent id : extent_keywords) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
+    public static CssIdent getImageTag(CssIdent ident)  {
+        for (CssIdent id : image_tags) {
             if (id.equals(ident)) {
                 return id;
             }
