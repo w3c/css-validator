@@ -215,6 +215,13 @@ CSS Ελεγκτή Εγκυρότητας.</p>
       </td>
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>Εμφάνιση επεκτάσεων ως προειδοποιήσεις.
+        <code>true</code> ως προειδοποιήσεις <code>false</code> ως σφάλματα.
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
