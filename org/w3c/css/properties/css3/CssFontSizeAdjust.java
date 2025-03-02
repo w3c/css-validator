@@ -11,15 +11,40 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2021/WD-css-fonts-4-20210729/#propdef-font-size-adjust
+ * @spec https://www.w3.org/TR/2024/WD-css-fonts-5-20240206/#propdef-font-size-adjust
  */
 public class CssFontSizeAdjust extends org.w3c.css.properties.css.CssFontSizeAdjust {
 
+    public static final CssIdent[] optionalIdentValues;
+    public static final CssIdent from_font;
+
+    static {
+        String[] _optionalIdentValues = {"ex-height", "cap-height", "ch-width",
+                "ic-width", "ic-height"};
+        optionalIdentValues = new CssIdent[_optionalIdentValues.length];
+        for (int i = 0; i < optionalIdentValues.length; i++) {
+            optionalIdentValues[i] = CssIdent.getIdent(_optionalIdentValues[i]);
+        }
+        from_font = CssIdent.getIdent("from-font");
+    }
+
+    public static final CssIdent getOptionalIdent(CssIdent ident) {
+        for (CssIdent id : optionalIdentValues) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
     public static final CssIdent getAllowedIdent(CssIdent ident) {
-        if (none.equals(ident)) {
-            return none;
+        if (from_font.equals(ident)) {
+            return from_font;
         }
         return null;
     }
@@ -39,37 +64,74 @@ public class CssFontSizeAdjust extends org.w3c.css.properties.css.CssFontSizeAdj
      */
     public CssFontSizeAdjust(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        if (check && expression.getCount() > 1) {
+        if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
         setByUser();
 
         CssValue val;
+        CssValueList vl = null;
         char op;
+        boolean got_option = false;
+        
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-        val = expression.getValue();
-        op = expression.getOperator();
-
-        switch (val.getType()) {
-            case CssTypes.CSS_IDENT:
-                CssIdent id = val.getIdent();
-                if (CssIdent.isCssWide(id) || (getAllowedIdent(id) != null)) {
-                    value = val;
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    CssIdent id = val.getIdent();
+                    if (expression.getCount() == 1) {
+                        if (CssIdent.isCssWide(id) || (getAllowedIdent(id) != null) || none.equals(id)) {
+                            value = val;
+                            break;
+                        }
+                        throw new InvalidParamException("value",
+                                val, getPropertyName(), ac);
+                    } else {
+                        if (!got_option) {
+                            got_option = (getOptionalIdent(id) != null);
+                            if (got_option) {
+                                vl = new CssValueList();
+                                vl.add(val);
+                            } else {
+                                throw new InvalidParamException("value",
+                                        val, getPropertyName(), ac);
+                            }
+                        } else {
+                            // got_option is true, so vl was created
+                            if (getAllowedIdent(id) != null) {
+                                vl.add(val);
+                            } else {
+                                throw new InvalidParamException("value",
+                                        val, getPropertyName(), ac);
+                            }
+                        }
+                    }
                     break;
-                }
-                throw new InvalidParamException("value",
-                        val, getPropertyName(), ac);
-            case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkPositiveness(ac, getPropertyName());
-                value = val;
-                break;
-            default:
-                throw new InvalidParamException("value",
-                        val, getPropertyName(), ac);
+                case CssTypes.CSS_NUMBER:
+                    val.getCheckableValue().checkPositiveness(ac, getPropertyName());
+                    if (got_option) {
+                        vl.add(val);
+                    } else {
+                        value = val;
+                    }
+                    break;
+                default:
+                    throw new InvalidParamException("value",
+                            val, getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            expression.next();
         }
-        expression.next();
-
+        // reassign if we got multiple values
+        if (got_option) {
+            value = vl;
+        }
     }
 
     public CssFontSizeAdjust(ApplContext ac, CssExpression expression)
