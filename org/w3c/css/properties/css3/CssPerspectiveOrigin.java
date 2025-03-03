@@ -18,13 +18,15 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#perspective-origin
+ * @spec https://www.w3.org/TR/2021/WD-css-transforms-2-20211109/#propdef-perspective-origin
  */
 public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspectiveOrigin {
 
     public static CssIdent[] allowed_values;
     public static CssIdent center, top, bottom, left, right;
 
+    // FIXME this should be a generic 'position' parsing
+    
     static {
         top = CssIdent.getIdent("top");
         bottom = CssIdent.getIdent("bottom");

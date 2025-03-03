@@ -13,8 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-transforms-2-20200303/#propdef-backface-visibility
-
+ * @spec https://www.w3.org/TR/2021/WD-css-transforms-2-20211109/#propdef-backface-visibility
  */
 public class CssBackfaceVisibility extends org.w3c.css.properties.css.CssBackfaceVisibility {
 
