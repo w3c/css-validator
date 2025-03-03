@@ -230,6 +230,7 @@ import org.w3c.css.properties.css.CssRowGap;
 import org.w3c.css.properties.css.CssRubyAlign;
 import org.w3c.css.properties.css.CssRubyMerge;
 import org.w3c.css.properties.css.CssRubyPosition;
+import org.w3c.css.properties.css.CssScale;
 import org.w3c.css.properties.css.CssScrollBehavior;
 import org.w3c.css.properties.css.CssScrollMargin;
 import org.w3c.css.properties.css.CssScrollMarginBlock;
@@ -564,6 +565,7 @@ public class Css3Style extends ATSCStyle {
     public CssTransformOrigin cssTransformOrigin;
     public CssTransform cssTransform;
     public CssTransformBox cssTransformBox;
+    public CssScale cssScale;
 
     public CssBoxSizing cssBoxSizing;
     public CssResize cssResize;
@@ -724,6 +726,15 @@ public class Css3Style extends ATSCStyle {
     public CssTextSpacingTrim cssTextSpacingTrim;
     public CssTextSpacing cssTextSpacing;
 
+    public CssScale getScale() {
+        if (cssScale == null) {
+            cssScale =
+                    (CssScale) style.CascadingOrder(new CssScale(),
+                            style, selector);
+        }
+        return cssScale;
+    }
+    
     public CssTextSpacing getTextSpacing() {
         if (cssTextSpacing == null) {
             cssTextSpacing =
