@@ -469,7 +469,9 @@ public class CssColor extends CssValue {
                             return;
                         }
                     }
+                    exp.next();
                 }
+                return;
             }
         }
 
