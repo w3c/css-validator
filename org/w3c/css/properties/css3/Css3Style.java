@@ -301,6 +301,7 @@ import org.w3c.css.properties.css.CssTransitionDelay;
 import org.w3c.css.properties.css.CssTransitionDuration;
 import org.w3c.css.properties.css.CssTransitionProperty;
 import org.w3c.css.properties.css.CssTransitionTimingFunction;
+import org.w3c.css.properties.css.CssTranslate;
 import org.w3c.css.properties.css.CssUserSelect;
 import org.w3c.css.properties.css.CssVoiceBalance;
 import org.w3c.css.properties.css.CssVoiceDuration;
@@ -725,7 +726,17 @@ public class Css3Style extends ATSCStyle {
     public CssTextAutospace cssTextAutospace;
     public CssTextSpacingTrim cssTextSpacingTrim;
     public CssTextSpacing cssTextSpacing;
+    public CssTranslate cssTranslate;
 
+    public CssTranslate getTranslate() {
+        if (cssTranslate == null) {
+            cssTranslate =
+                    (CssTranslate) style.CascadingOrder(new CssTranslate(),
+                            style, selector);
+        }
+        return cssTranslate;
+    }
+    
     public CssScale getScale() {
         if (cssScale == null) {
             cssScale =
