@@ -17,7 +17,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-transforms-2-20200303/#propdef-perspective
+ * @spec https://www.w3.org/TR/2021/WD-css-transforms-2-20211109/#propdef-perspective
  */
 
 public class CssPerspective extends org.w3c.css.properties.css.CssPerspective {

@@ -23,6 +23,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @spec https://www.w3.org/TR/2019/CR-css-transforms-1-20190214/#propdef-transform
+ * @spec https://www.w3.org/TR/2021/WD-css-transforms-2-20211109/#transform-functions
  */
 public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 
@@ -139,11 +140,12 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
                 parseTranslateAxisFunction(ac, function.getParameters(), caller);
                 break;
             case scale:
-                parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_NUMBER, caller);
+                parseAtMostX(ac, function.getParameters(), 2,
+                        CssTypes.CSS_NUMBER, CssTypes.CSS_PERCENTAGE, caller);
                 break;
             case scaleX:
             case scaleY:
-                parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
+                parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, CssTypes.CSS_PERCENTAGE, caller);
                 break;
             case rotate:
                 parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
@@ -189,6 +191,24 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
                         func.toString(),
                         caller.getPropertyName(), ac);
         }
+    }
+
+    private static void parsePerspective(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        if (expression.getCount() == 0) {
+            throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+        }
+        CssValue val = expression.getValue();
+        if (val.getType() == CssTypes.CSS_IDENT) {
+            if (none.equals(val.getIdent())) {
+                return;
+            }
+            // if not none, it will fail later
+        }
+        parseOneX(ac, expression, CssTypes.CSS_LENGTH, caller);
     }
 
     private static void parseExactlyNX(ApplContext ac, CssExpression expression,
@@ -241,6 +261,56 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
         }
     }
 
+    // parse at most n values of type (CssTypes.XXX)
+    private static void parseAtMostX(ApplContext ac, CssExpression expression,
+                                     int atMost, int type1, int type2, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() > atMost) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue val;
+        char op;
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            // special case, 0 can be a length or an angle...
+            if (val.getType() == CssTypes.CSS_NUMBER) {
+                switch (type1) {
+                    case CssTypes.CSS_LENGTH:
+                        val.getLength();
+                        break;
+                    case CssTypes.CSS_ANGLE:
+                        val.getAngle();
+                    case CssTypes.CSS_NUMBER:
+                        break;
+                    default:
+                        switch (type2) {
+                            case CssTypes.CSS_LENGTH:
+                                val.getLength();
+                                break;
+                            case CssTypes.CSS_ANGLE:
+                                val.getAngle();
+                            case CssTypes.CSS_NUMBER:
+                                break;
+                            default:
+                                throw new InvalidParamException("value",
+                                        val.toString(),
+                                        caller.getPropertyName(), ac);
+                        }
+                }
+            } else if ((val.getType() != type1) && (val.getType() != type2)) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        caller.getPropertyName(), ac);
+            }
+            expression.next();
+            if (!expression.end() && (op != COMMA)) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op), ac);
+            }
+        }
+    }
+
     // parse one value of type (CssTypes.XXX)
     private static void parseOneX(ApplContext ac, CssExpression expression,
                                   int type, CssProperty caller)
@@ -263,6 +333,37 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
             }
         }
         if (val.getType() != type) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    caller.getPropertyName(), ac);
+        }
+        expression.next();
+    }
+
+    // parse one value of type (CssTypes.XXX)
+    private static void parseOneX(ApplContext ac, CssExpression expression,
+                                  int type1, int type2, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        if (expression.getCount() == 0) {
+            throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+        }
+        CssValue val;
+        val = expression.getValue();
+        // special case, 0 can be a length or an angle...
+        if (val.getType() == CssTypes.CSS_NUMBER) {
+            if (type1 == CssTypes.CSS_LENGTH || type1 == CssTypes.CSS_ANGLE ||
+                    type1 == CssTypes.CSS_PERCENTAGE || type2 == CssTypes.CSS_PERCENTAGE ||
+                    type2 == CssTypes.CSS_LENGTH || type2 == CssTypes.CSS_ANGLE) {
+                // if not zero, it will fail
+                val.getCheckableValue().checkEqualsZero(ac, caller.getPropertyName());
+                expression.next();
+                return;
+            }
+        }
+        if (val.getType() != type1 && val.getType() != type2) {
             throw new InvalidParamException("value",
                     val.toString(),
                     caller.getPropertyName(), ac);

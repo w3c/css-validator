@@ -226,10 +226,12 @@ import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
+import org.w3c.css.properties.css.CssRotate;
 import org.w3c.css.properties.css.CssRowGap;
 import org.w3c.css.properties.css.CssRubyAlign;
 import org.w3c.css.properties.css.CssRubyMerge;
 import org.w3c.css.properties.css.CssRubyPosition;
+import org.w3c.css.properties.css.CssScale;
 import org.w3c.css.properties.css.CssScrollBehavior;
 import org.w3c.css.properties.css.CssScrollMargin;
 import org.w3c.css.properties.css.CssScrollMarginBlock;
@@ -300,6 +302,7 @@ import org.w3c.css.properties.css.CssTransitionDelay;
 import org.w3c.css.properties.css.CssTransitionDuration;
 import org.w3c.css.properties.css.CssTransitionProperty;
 import org.w3c.css.properties.css.CssTransitionTimingFunction;
+import org.w3c.css.properties.css.CssTranslate;
 import org.w3c.css.properties.css.CssUserSelect;
 import org.w3c.css.properties.css.CssVoiceBalance;
 import org.w3c.css.properties.css.CssVoiceDuration;
@@ -564,6 +567,7 @@ public class Css3Style extends ATSCStyle {
     public CssTransformOrigin cssTransformOrigin;
     public CssTransform cssTransform;
     public CssTransformBox cssTransformBox;
+    public CssScale cssScale;
 
     public CssBoxSizing cssBoxSizing;
     public CssResize cssResize;
@@ -723,7 +727,36 @@ public class Css3Style extends ATSCStyle {
     public CssTextAutospace cssTextAutospace;
     public CssTextSpacingTrim cssTextSpacingTrim;
     public CssTextSpacing cssTextSpacing;
+    public CssTranslate cssTranslate;
+    public CssRotate cssRotate;
 
+    public CssRotate getRotate() {
+        if (cssRotate == null) {
+            cssRotate =
+                    (CssRotate) style.CascadingOrder(new CssRotate(),
+                            style, selector);
+        }
+        return cssRotate;
+    }
+
+    public CssTranslate getTranslate() {
+        if (cssTranslate == null) {
+            cssTranslate =
+                    (CssTranslate) style.CascadingOrder(new CssTranslate(),
+                            style, selector);
+        }
+        return cssTranslate;
+    }
+    
+    public CssScale getScale() {
+        if (cssScale == null) {
+            cssScale =
+                    (CssScale) style.CascadingOrder(new CssScale(),
+                            style, selector);
+        }
+        return cssScale;
+    }
+    
     public CssTextSpacing getTextSpacing() {
         if (cssTextSpacing == null) {
             cssTextSpacing =
