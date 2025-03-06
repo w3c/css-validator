@@ -226,6 +226,7 @@ import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
+import org.w3c.css.properties.css.CssRotate;
 import org.w3c.css.properties.css.CssRowGap;
 import org.w3c.css.properties.css.CssRubyAlign;
 import org.w3c.css.properties.css.CssRubyMerge;
@@ -727,6 +728,16 @@ public class Css3Style extends ATSCStyle {
     public CssTextSpacingTrim cssTextSpacingTrim;
     public CssTextSpacing cssTextSpacing;
     public CssTranslate cssTranslate;
+    public CssRotate cssRotate;
+
+    public CssRotate getRotate() {
+        if (cssRotate == null) {
+            cssRotate =
+                    (CssRotate) style.CascadingOrder(new CssRotate(),
+                            style, selector);
+        }
+        return cssRotate;
+    }
 
     public CssTranslate getTranslate() {
         if (cssTranslate == null) {
