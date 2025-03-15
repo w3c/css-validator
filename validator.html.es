@@ -480,7 +480,7 @@
 
 <div id="footer">
    <p id="activity_logos">
-     <a href="//www.w3.org/QA/" title="Actividad de Garantí de Calidad del W3C, ofreciéndole herramientas de calidad Web gratuítas y más "><img src="//www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="//www.w3.org/Style/CSS/learning" title="Aprenda má sobre las Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="//www.w3.org/Style/CSS/learning" title="Aprenda má sobre las Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">

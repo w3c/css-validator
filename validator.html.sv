@@ -480,7 +480,7 @@
 
 <div id="footer">
    <p id="activity_logos">
-     <a href="//www.w3.org/QA/" title="W3C:s kvalitetssäkringsaktivitet, ger dig gratis verktyg för webbkvalitet och annat"><img src="//www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="//www.w3.org/Style/CSS/learning" title="Lär dig mer om Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="//www.w3.org/Style/CSS/learning" title="Lär dig mer om Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">
