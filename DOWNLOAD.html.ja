@@ -204,7 +204,7 @@ css-validator.jar を上の説明にしたがって作成したら、次のよ�
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3Cの品質保証活動は、フリーなウェブ品質管理ツールなどを提供します。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" width="72" height="48" alt="QA" /></a> <a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" width="72" height="48" alt="CSS" /></a>
+      <a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" width="72" height="48" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">

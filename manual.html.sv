@@ -476,7 +476,7 @@ möjligheter:
 <div id="footer">
 <p id="activity_logos">
 
-  <a href="http://www.w3.org/QA/" title="W3C:s kvalitetsarbete, som ger dig gratis verktyg för webbkvalitet och annat"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Mer information om formatmallar"><img src="images/woolly-icon" alt="CSS" /></a>
+  <a href="http://www.w3.org/Style/CSS/learning" title="Mer information om formatmallar"><img src="images/woolly-icon" alt="CSS" /></a>
 </p>
 
 <p id="support_logo">

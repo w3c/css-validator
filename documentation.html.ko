@@ -179,7 +179,7 @@
      
    <div id="footer">
    <p id="activity_logos">
-      <a href="http://www.w3.org/QA/" title="W3C의 품질 보증 활동은 여러가지 도구를 무료로 제공합니다"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="CSS에 대하여 더 많은 것을 알아보기"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://www.w3.org/Style/CSS/learning" title="CSS에 대하여 더 많은 것을 알아보기"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">

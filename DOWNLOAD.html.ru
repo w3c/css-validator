@@ -204,7 +204,7 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="Сообщество контроля качества W3C, распространяющее бесплатные утилиты"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="Сообщество контроля качества" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Узнайте больше о CSS"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://www.w3.org/Style/CSS/learning" title="Узнайте больше о CSS"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">

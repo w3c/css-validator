@@ -135,7 +135,7 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, Ви предлага безплатни инструменти за качество в Мрежата и други"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://dichev.com/Style/CSS/learning/" title="Научете повече за Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://dichev.com/Style/CSS/learning/" title="Научете повече за Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
 Подкрепете този инструмент, станете<br />

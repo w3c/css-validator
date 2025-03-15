@@ -364,7 +364,7 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="Actividad de Garant&iacute;a de Calidad del W3C, ofreci&eacute;ndote herramientas Web de calidad libres y m&aacute;s"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">
