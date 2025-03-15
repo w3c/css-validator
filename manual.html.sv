@@ -480,7 +480,7 @@ möjligheter:
 </p>
 
 <p id="support_logo">
-<a href="http://www.w3.org/QA/Tools/Donate">
+<a href="https://www.w3.org/donate/">
 <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
 </a>
 </p>
