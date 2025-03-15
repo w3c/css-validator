@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Serviciul de validare CSS <span></a></h1>
    <p id="tagline">
      Verifica foile de lucru in cascada(CSS) si documentele (X)HTML 
@@ -99,9 +99,9 @@ Cel mai usor mod de a verifica un document este sa folosesti interfata de baza. 
 <h4 id="basicvalidation">Ce face validarea de baza?</h4>
 
 <p>    
-    Cand se foloseste interfata de baza, validatorul va compara cu <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, care este recomandarea tehnica curenta pentru CSS.<br />
+    Cand se foloseste interfata de baza, validatorul va compara cu <a href="https://www.w3.org/TR/CSS2">CSS 2</a>, care este recomandarea tehnica curenta pentru CSS.<br />
     Va produce un rezultat XHTML fara vreun avertisment (vei vedea numai erorile).<br />
-    Media este setata pentru "all", care este media indicata pentru toate dispozitivele(vezi <a href="http://www.w3.org/TR/CSS2/media.html">
+    Media este setata pentru "all", care este media indicata pentru toate dispozitivele(vezi <a href="https://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a> pentru o descriere completa a mediei).
 </p>
 
@@ -122,16 +122,16 @@ Cel mai usor mod de a verifica un document este sa folosesti interfata de baza. 
 
 <p>
     Validatorul CSS poate verifica diferite profile CSS. Un profil afiseaza toate trasaturile pe care o implementare pe o platforma anume le va implementa. Aceasta definitie se gaseste pe 
-	<a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+	<a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	site-ul CSS.
-    </a> Cea mai folosita si mai noua este: <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.
+    </a> Cea mai folosita si mai noua este: <a href="https://www.w3.org/TR/CSS2">CSS 2</a>.
 </p>
 
 <h4 id="parammedium">Media</h4>
 
 <p>
     Parametrul mediu este echivalentul regulii @media, care se aplica intregului document. Vei gasi mai multe informatii la 
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>.
 </p>
@@ -167,7 +167,7 @@ Serviciul de validare CSS este un serviciu gratuit, public pentru oricine, iar r
     </tr>
     <tr>
       <th>usermedium</th>
-      <td><a href="http://www.w3.org/TR/CSS2/media.html">media</a> folosita pentru validare, ca <code>screen</code>,
+      <td><a href="https://www.w3.org/TR/CSS2/media.html">media</a> folosita pentru validare, ca <code>screen</code>,
 	  <code>print</code>, <code>braille</code>...</td>
       <td><code>all</code></td>
     </tr>
@@ -285,30 +285,30 @@ Serviciul de validare CSS este un serviciu gratuit, public pentru oricine, iar r
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
 Support this tool, become a<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+<a href="https://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

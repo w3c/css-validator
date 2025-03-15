@@ -15,7 +15,7 @@
 
   <body>
     <div id="banner">
-     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
      <a href="./"><span>CSS Validation Service</span></a></h1>
      <p id="tagline">
        Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -61,17 +61,17 @@
 <p>大部分的网页是使用html的计算机语言编写的，这种语言能创建一个结构化划分信息，超链接，多媒体对象等。对于颜色，文字，布局等样式方面的问题，html采用css来解决，css是“层叠样式表”的简称。这个工具所做的事情就是帮助用户进行css的检查，并且在需要的时候可以做一些自动更正。</p>
 
 <h4 id="reference">那么，这个东西是判断一个css是正确与否的权威么？</h4>
-<p>不，它只是一个有用的可靠的软件工具，和所有的软件一样，它也有自己的<a href="https://github.com/w3c/css-validator/issues">bug和问题</a>&amp;<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bug和问题</a>。真正的权威应该参考<a href="http://www.w3.org/Style/CSS/#specs">css标准</a>。</p>
+<p>不，它只是一个有用的可靠的软件工具，和所有的软件一样，它也有自己的<a href="https://github.com/w3c/css-validator/issues">bug和问题</a>&amp;<a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bug和问题</a>。真正的权威应该参考<a href="https://www.w3.org/Style/CSS/#specs">css标准</a>。</p>
 
 <h4 id="free">需要花费多少钱？</h4>
-<p>不需要。这个服务是免费的，并且<a href="DOWNLOAD.html">源代码</a>也是公开的，你可以自由的下载，使用，修改，分发<a href="http://www.w3.org/Consortium/Legal/copyright-software">等等</a>。 如果你很喜欢它，我们也欢迎你<a href="#participate">加入这个项目</a>，或者通过<a href="http://www.w3.org/Consortium/sup">w3c的支持者程序</a>来资助它，但是没有任何人可以强迫你这样做。</p>
+<p>不需要。这个服务是免费的，并且<a href="DOWNLOAD.html">源代码</a>也是公开的，你可以自由的下载，使用，修改，分发<a href="https://www.w3.org/Consortium/Legal/copyright-software">等等</a>。 如果你很喜欢它，我们也欢迎你<a href="#participate">加入这个项目</a>，或者通过<a href="https://www.w3.org/Consortium/sup">w3c的支持者程序</a>来资助它，但是没有任何人可以强迫你这样做。</p>
 
 <h4 id="who">谁写了这个工具？谁在维护这个工具？</h4>
 <p>W3C维护并运行这个服务，感谢w3c的成员，志愿开发者和志愿翻译者所作的工作。更详细的信息请访问<a href="thanks.html">创作人员列表</a>。你也可以<a href="#participate">加入</a>进来。 </p>
 
 <h4 id="participate">我能帮着做点什么呢？</h4>
-<p>当然，如果你是一个Java的编程人员，你可以通过取得<a href="#code">源代码</a>，添加你的新代码或者改正<a href="https://github.com/w3c/css-validator/issues">bug</a>&amp;<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bug</a>的代码。</p>
-<p>除此之外，你也可以通过改进文档，翻译，加入<a href="http://lists.w3.org/Archives/Public/www-validator-css/">mailinglist</a>去解答别人的疑问来帮助这个工具。</p>
+<p>当然，如果你是一个Java的编程人员，你可以通过取得<a href="#code">源代码</a>，添加你的新代码或者改正<a href="https://github.com/w3c/css-validator/issues">bug</a>&amp;<a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bug</a>的代码。</p>
+<p>除此之外，你也可以通过改进文档，翻译，加入<a href="https://lists.w3.org/Archives/Public/www-validator-css/">mailinglist</a>去解答别人的疑问来帮助这个工具。</p>
 
 <h4 id="contact">还有别的问题？</h4>
 <p>如果你还有别的关于css或者css验证器的问题，请加入<a href="Email">mailinglist或者论坛</a>。但是在那之前，请仔细阅读一下<a href="http://www.websitedev.de/css/validator-faq">css验证器的常见问题及解答(<acronym title="Frequently Asked Questions">FAQ</acronym>)</a>，避免不必要的重复劳动和浪费别人的精力。</p>
@@ -200,7 +200,7 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
@@ -210,21 +210,21 @@
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">责任</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商标</a>,已运用
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">文档授权</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">责任</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商标</a>,已运用
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">文档授权</a>
 
-      和 <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">软件授权</a>
+      和 <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">软件授权</a>
 
-      相关规则。你与本站的互动是符合我们的<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">公开</a> 和
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a> 隐私声明。
+      相关规则。你与本站的互动是符合我们的<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">公开</a> 和
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a> 隐私声明。
     </p>
 
 </div>

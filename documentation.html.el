@@ -16,7 +16,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Υπηρεσία Ελέγχου Εγκυρότητας CSS</span></a></h1>
    <p id="tagline">
      Έλεγχος Cascading Style Sheets (CSS) και εγγράφων (X)HTML με style sheets
@@ -62,7 +62,7 @@
     <dt><a href="./api.html">API Υπηρεσίας Web</a></dt>
     <dd>Εγχειρίδιο της διασύνδεσης ελέγχου εγκυρότητας SOAP 1.2</dd>
     
-    <dt><a href="https://github.com/w3c/css-validator/issues">Σφάλματα</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Σφάλματα</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Σφάλματα</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Σφάλματα</a></dt>
     <dd>Γνωστά προβλήματα στην τρέχουσα έκδοση του ελεγκτή εγκυρότητας και μία διασύνδεση για την υποβολή νέων σφαλμάτων και προβλημάτων. 
     Δείτε επίσης τις <a href="Email.html">οδηγίες για την υποβολή της γνώμη σας</a>.</dd>
 </dl>
@@ -180,7 +180,7 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">
@@ -189,19 +189,19 @@
    </p>
 
    <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       Με επιφύλαξη παντός δικαιώματος.
-      Εφαρμόζονται οι κανόνες της W3C για <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
+      Εφαρμόζονται οι κανόνες της W3C για <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
 
-      και <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
+      και <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
 </div>
 </body>
 </html>

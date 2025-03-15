@@ -12,9 +12,9 @@
 
 </head>
   <body>
-    <a class="left" href="http://www.w3.org">
+    <a class="left" href="https://www.w3.org">
       <IMG SRC="http://www.w3.org/Icons/w3c_home" BORDER="0" ALT="w3c"></A>
-    <a class="right" href="http://www.w3.org/Jigsaw/"><IMG
+    <a class="right" href="https://www.w3.org/Jigsaw/"><IMG
 	  SRC="http://jigsaw.w3.org/Icons/jigpower.gif" ALT="Jigsaw Powered"
 	  BORDER="0" WIDTH="94" HEIGHT="52"></a>
     <br>

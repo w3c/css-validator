@@ -18,7 +18,7 @@
 
 <body>
     <div id="banner">
-     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
      <a href="./"><span>Сервіс перевірки CSS</span></a></h1>
      <p id="tagline">
        Перевірка таблиць каскадних стилів (CSS) і документів (X)HTML з таблицями стилів
@@ -30,7 +30,7 @@
 <h3 id="download">Завантаження</h3>	
 
 	<h4 id="source">Завантаження початкових файлів</h4>
-    <p><a href="https://github.com/w3c/css-validator">Сервіс перевірки CSS</a> є доступним для завантаження через CVS. Дотримуйтесь <a href="http://dev.w3.org/cvsweb/">інструкцій для доступу до загальнодоступного серверу CVS</a> й завантажте 2002/css-validator. Зверніть увагу: на jigsaw.w3.org/css-validator встановлено більш ранню версію, ніж ту, що зберігається у репозиторії CVS, через що результати виводу і зовнішній вигляд можуть незначно розрізнятись</p>
+    <p><a href="https://github.com/w3c/css-validator">Сервіс перевірки CSS</a> є доступним для завантаження через CVS. Дотримуйтесь <a href="https://dev.w3.org/cvsweb/">інструкцій для доступу до загальнодоступного серверу CVS</a> й завантажте 2002/css-validator. Зверніть увагу: на jigsaw.w3.org/css-validator встановлено більш ранню версію, ніж ту, що зберігається у репозиторії CVS, через що результати виводу і зовнішній вигляд можуть незначно розрізнятись</p>
 
 	<h4>Завантаження пакета Java (jar або war)</h4>
 <!--	<p>TBD... we just need a stable location to put jar/war archives on a regular basis</p>-->
@@ -48,16 +48,16 @@
 
 <ul class="instructions">
 	<li>робоче середовище Java;</li>
-	<li>засіб розробки <a href="http://ant.apache.org/">Ant</a>;</li>
-	<li>контейнер сервлетів&#x00a0;— наприклад, <a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> або <a href="http://www.mortbay.org/">Jetty</a>&#x00a0;— якщо плануєте створити сітьовий сервіс; в цій інструкції докладно розповідається лише про Jigsaw та Tomcat.</li>
+	<li>засіб розробки <a href="https://ant.apache.org/">Ant</a>;</li>
+	<li>контейнер сервлетів&#x00a0;— наприклад, <a href="https://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="https://tomcat.apache.org/">Tomcat</a> або <a href="http://www.mortbay.org/">Jetty</a>&#x00a0;— якщо плануєте створити сітьовий сервіс; в цій інструкції докладно розповідається лише про Jigsaw та Tomcat.</li>
 </ul>
 
 <p id="prereq-libs">Для встановлення сервісу у власній системі необхідно завантажити або знайти на своєму комп'ютері низку бібліотек Java:</p>
 
 <ul class="instructions">
 	<li>servlet.jar (якщо Tomcat встановлено до [<span class="const">TOMCAT_DIR</span>], то можна знайти цей файл у [<span class="const">TOMCAT_DIR</span>]/common/lib/); можливо, він буде зватися «servlet-api.jar»; якщо його немає, завантажте з <a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a>;</li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a>;</li>
-	<li>xercesImpl.jar і xml-apis.jar (можуть бути завантажені з <a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>);</li>
+	<li><a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a>;</li>
+	<li>xercesImpl.jar і xml-apis.jar (можуть бути завантажені з <a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>);</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a>.</li>
 </ul>
 
@@ -147,29 +147,29 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Дізнайтеся більше про CSS"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Дізнайтеся більше про CSS"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">Підтримайте проект&#x00a0;— внесіть пожертву.<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Люди, що підтримали W3C" /></a>
+<a href="https://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Люди, що підтримали W3C" /></a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

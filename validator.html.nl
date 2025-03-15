@@ -17,7 +17,7 @@
 
   <body>
    <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+    <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
     <a href="./"><span>CSS Validation Service</span></a></h1>
     <p id="tagline">
       Controleer Cascading Style Sheets (CSS) en (X)HTML documenten die gebruik maken van style sheets
@@ -314,7 +314,7 @@
       </div><!-- fields -->
   </div> <!-- frontforms -->
   
-  <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
+  <div id="w3c-include"><script type="text/javascript" src="https://www.w3.org/QA/Tools/w3c-include.js"></script></div>
 
   <div class="intro">
   <p><strong>Opmerking</strong>: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="https://validator.w3.org/">laten controleren</a>.
@@ -480,7 +480,7 @@
 
 <div id="footer">
    <p id="activity_logos">
-     <a href="//www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="https://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">
@@ -489,21 +489,21 @@
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 </div>

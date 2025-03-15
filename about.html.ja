@@ -15,7 +15,7 @@
 
   <body>
     <div id="banner">
-     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
      <a href="./"><span>CSS 検証サービス</span></a></h1>
      <p id="tagline">
        Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -71,15 +71,15 @@
 
 <h4 id="reference">つまり、これは CSS が正しいかどうかについて検査する「権威」なわけですね? </h4>
 <p>違います。
-確かにこれは便利で信頼できるツールですが、他のどんなソフトウェアもそうであるように、ソフトウェアである以上は<a href="https://github.com/w3c/css-validator/issues">バグと問題</a>&amp;<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグと問題</a>があるかもしれません。
-カスケーディング・スタイルシートの絶対的な参考文献は、<a href="http://www.w3.org/Style/CSS/#specs">CSS の仕様書</a>です。</p>
+確かにこれは便利で信頼できるツールですが、他のどんなソフトウェアもそうであるように、ソフトウェアである以上は<a href="https://github.com/w3c/css-validator/issues">バグと問題</a>&amp;<a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグと問題</a>があるかもしれません。
+カスケーディング・スタイルシートの絶対的な参考文献は、<a href="https://www.w3.org/Style/CSS/#specs">CSS の仕様書</a>です。</p>
 
 <h4 id="validCSS">「正当な CSS」つてどういう意味？　どの CSS のバージョンを使ったの？</h4>
 
-<p><a href="http://www.w3.org/TR/CSS21/conform.html#valid-style-sheet"
+<p><a href="https://www.w3.org/TR/CSS21/conform.html#valid-style-sheet"
 title="CSS 2.1 Specification – Conformance: requirements and recommendations">CSS 2.1 仕様「3. 適合性」</a>によれば、<q cite="http://www.w3.org/TR/CSS21/conform.html">スタイルシートの正当性はスタイルシートに使用されるCSSのレベルに依存します。 … 正当な CSS 2.1 スタイルシートは CSS 2.1 の文法にしたがって書かなければなりません。また、この仕様で定義された、@規則、プロパティ名、およびその値だけを含まなければなりません。</q></p>
 
-<p>デフォルトでは、<a href="http://www.w3.org/TR/CSS21/"
+<p>デフォルトでは、<a href="https://www.w3.org/TR/CSS21/"
 title="Cascading Style Sheets Level 2 Revision 1 (CSS&nbsp;2.1) Specification">CSS 2.1 仕様</a>に定義された、文法、プロパティ名、および値に対してスタイルシートを検証しますが、この検証ツールは、オプションを使用して、他のレベルの CSS をチェックできます。</p>
 
 <p>CSS は発展している言語です、そして、多くの人が「CSS」は(最新の仕様に基づき定義された)ただ一つの文法であり、多くのプロパティがあり、プロファイルごとに許容値が様々であると思っています。この検証ツールの将来のバージョンでは、デフォルトでその最新の「CSS文法」と数多の標準化されたCSSのプロパティ名と値に対してスタイルシートをチェックするようになるかもしれません。</p>
@@ -87,8 +87,8 @@ title="Cascading Style Sheets Level 2 Revision 1 (CSS&nbsp;2.1) Specification">C
 <h4 id="free">使うのにいくらかかるの?</h4>
 <p>費用はかかりません。
 これは無償のサービスです。
-ソースは<a href="DOWNLOAD.html">オープン</a>で、自由にダウンロード・利用・修正・配布などすることができます (その他<a href="http://www.w3.org/Consortium/Legal/copyright-software">様々な使い方</a>ができます)。
-もしこのツールを気に入っていただけたのなら、<a href="#participate">このプロジェクトに参加</a>したり、<a href="http://www.w3.org/Consortium/sup">W3Cサポーター・プログラム</a>を使って W3C に寄付活動をすることができます。が、それは一切強制されるものではありません。</p>
+ソースは<a href="DOWNLOAD.html">オープン</a>で、自由にダウンロード・利用・修正・配布などすることができます (その他<a href="https://www.w3.org/Consortium/Legal/copyright-software">様々な使い方</a>ができます)。
+もしこのツールを気に入っていただけたのなら、<a href="#participate">このプロジェクトに参加</a>したり、<a href="https://www.w3.org/Consortium/sup">W3Cサポーター・プログラム</a>を使って W3C に寄付活動をすることができます。が、それは一切強制されるものではありません。</p>
 
 <h4 id="who">誰が作ったの? 誰が管理しているの?</h4>
 <p>
@@ -99,8 +99,8 @@ W3C がツールを管理・ホスティングしています。
 
 <h4 id="participate">何か手伝えることは?</h4>
 <p>もちろん。
-Java プログラマなら、CSS 検証サービスプロジェクトの<a href="#code">コード</a>をチェック・選別して<a href="https://github.com/w3c/css-validator/issues">バグ</a>&amp;<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグ</a>を修正したり、新機能の構築を手伝っていただければ助かります。</p>
-<p>しかし、このツールの構築・運営に必要とされているのはプログラマだけではありません。文書を改良したり、CSS 検証サービスをあなたの言語に翻訳するのを手伝ったり、<a href="http://lists.w3.org/Archives/Public/www-validator-css/">メーリングリスト</a>に参加して議論したり他の参加者を手助けするのも、また大きな支援となります。</p>
+Java プログラマなら、CSS 検証サービスプロジェクトの<a href="#code">コード</a>をチェック・選別して<a href="https://github.com/w3c/css-validator/issues">バグ</a>&amp;<a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグ</a>を修正したり、新機能の構築を手伝っていただければ助かります。</p>
+<p>しかし、このツールの構築・運営に必要とされているのはプログラマだけではありません。文書を改良したり、CSS 検証サービスをあなたの言語に翻訳するのを手伝ったり、<a href="https://lists.w3.org/Archives/Public/www-validator-css/">メーリングリスト</a>に参加して議論したり他の参加者を手助けするのも、また大きな支援となります。</p>
 
 <h4 id="contact">作者にコンタクトをとるには? バグを報告するには?</h4>
 <p>CSS や CSS 検証サービスについての質問があるなら、<a href="Email">メーリングリストやフォーラム</a>を見てください。でもその前に、あなたの質問やコメントがすでに <a href="http://www.websitedev.de/css/validator-faq">CSS 検証サービス<acronym title="Frequently Asked Questions">FAQ</acronym></a> に登録されていないことを確認してください。</p>
@@ -235,7 +235,7 @@ CSS 検証サービスには、平和的 (RESTful) な <a href="api.html">SOAP �
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">
@@ -244,19 +244,19 @@ CSS 検証サービスには、平和的 (RESTful) な <a href="api.html">SOAP �
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">慶應義塾大学</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">慶應義塾大学</a>),
       All Rights Reserved.
-      W3C の<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">責任範囲</a>、
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商標</a>、
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">文書の利用</a>、
-      そして<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">ライセンス</a>
+      W3C の<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">責任範囲</a>、
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商標</a>、
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">文書の利用</a>、
+      そして<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">ライセンス</a>
       の規則が適用されます。
-      このサイトの訪問者は、私たちの<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">一般</a>および<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">メンバー</a>プライバシー声明に従うものとします。
+      このサイトの訪問者は、私たちの<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">一般</a>および<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">メンバー</a>プライバシー声明に従うものとします。
 
     </p>
 

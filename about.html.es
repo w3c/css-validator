@@ -14,7 +14,7 @@
 </head>
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Servicio de Validaci&oacute;n de CSS</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -78,20 +78,20 @@ Puede utilizarse mediante este <a href="./">servicio gratu&iacute;to</a> en la w
 Lo que hace esta herramienta es ayudar a las personas que escriben CSS a comprobar, y corregir si es necesario, sus Hojas de Estilo en Cascada.</p>
 <h4 id="reference">De modo que, &iquest;&eacute;sto es lo que decide qu&eacute; es CSS correcto y qu&eacute; no lo es?</h4>
 <p>No. Es una herramienta &uacute;til y confiable, pero es una herramienta de software, y como todo software, tiene algunos 
-<a href="https://github.com/w3c/css-validator/issues">errores e incidencias</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">errores e incidencias</a>.
-La verdadera referencia sobre Hojas de Estilo en Cascada son las <a href="http://www.w3.org/Style/CSS/#specs">Especificaciones de CSS</a>.</p>
+<a href="https://github.com/w3c/css-validator/issues">errores e incidencias</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">errores e incidencias</a>.
+La verdadera referencia sobre Hojas de Estilo en Cascada son las <a href="https://www.w3.org/Style/CSS/#specs">Especificaciones de CSS</a>.</p>
 <h4 id="free">&iquest;Cu&aacute;nto cuesta?</h4>
-<p>Nada. El servicio es gratis. El código fuente es <a href="DOWNLOAD.html">abierto</a> y eres libre de descargarlo, usarlo, modificarlo, distribuirlo y <a href="http://www.w3.org/Consortium/Legal/copyright-software">m&aacute;s</a>.
+<p>Nada. El servicio es gratis. El código fuente es <a href="DOWNLOAD.html">abierto</a> y eres libre de descargarlo, usarlo, modificarlo, distribuirlo y <a href="https://www.w3.org/Consortium/Legal/copyright-software">m&aacute;s</a>.
 Si realmente te gusta, eres bienvenido a <a href="#participate">unirte al proyecto</a> o hacer una donaci&oacute;n al W3C a través del
- <a href="http://www.w3.org/Consortium/sup">programa de apoyo del W3C</a>, pero nadie te obliga.</p>
+ <a href="https://www.w3.org/Consortium/sup">programa de apoyo del W3C</a>, pero nadie te obliga.</p>
 <h4 id="who">&iquest;Qui&eacute;n desarrolló esta herramienta? &iquest;Qui&eacute;n la mantiene?</h4>
 <p>El W3C mantiene y aloja la herramienta, gracias al trabajo y contribuciones del personal del W3C, desarrolladores y traductores voluntarios. Lee la <a href="thanks.html">p&aacute;gina de cr&eacute;ditos y reconocimientos</a> para m&aacute;s detalles. <a href="#participate">T&uacute; tambi&eacute;n puedes ayudar</a>.</p>
 <h4 id="participate">&iquest;Puedo ayudar?</h4>
 <p>Por supueso. Si eres un programador java, puedes ayudar al proyecto del Validador CSS revisando el <a href="#code">c&oacute;digo</a>,
-adoptando y corrigiendo <a href="https://github.com/w3c/css-validator/issues">bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bugs</a>,
+adoptando y corrigiendo <a href="https://github.com/w3c/css-validator/issues">bugs</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bugs</a>,
 o ayudando a construir nuevas funciones.</p>
 <p>Pero no necesitas ser un programador para ayudar a construir y mantener esta herramienta: tambi&eacute;n puedes ayudar a mejorar la documentaci&oacute;n, participar en la traducci&oacute;n del validador a tu lenguaje, o suscribirte a la 
-<a href="http://lists.w3.org/Archives/Public/www-validator-css/">lista de correo</a> y discutir sobre la herramienta o ayudar a otros usuarios.</p>
+<a href="https://lists.w3.org/Archives/Public/www-validator-css/">lista de correo</a> y discutir sobre la herramienta o ayudar a otros usuarios.</p>
 <h4 id="contact">&iquest;Alguna otra pregunta?</h4>
 <p>Si tienes alguna pregunta respecto a CSS o al validador de CSS, revisa los 
 <a href="Email">foros y listas de correo</a> disponibles. Pero antes, aseg&uacute;rate de que tu pregunta o comentario no est&aacute; ya cubierto por el documento de <a href="http://www.websitedev.de/css/validator-faq">Preguntas frecuentes del Validador CSS</a>.</p>
@@ -234,7 +234,7 @@ o seguir las instrucciones para descargar el &aacute;rbol completo del código f
 
 <div id="footer">
    <p id="activity_logos">
-<a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada">
+<a href="https://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada">
 <img src="images/woolly-icon" alt="CSS"/>
 </a>
 </p>
@@ -244,28 +244,28 @@ o seguir las instrucciones para descargar el &aacute;rbol completo del código f
 </a>
 </p>
 <p class="copyright">
-<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/">
+<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/">
 <acronym title="World Wide Web Consortium">W3C</acronym>
 </a>&reg;
 
-      (<a href="http://www.csail.mit.edu/">
+      (<a href="https://www.csail.mit.edu/">
 <acronym title="Massachusetts Institute of Technology">MIT</acronym>
 </a>,
-      <a href="http://www.ercim.eu/">
+      <a href="https://www.ercim.eu/">
 <acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym>
 </a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
 
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
   </div>

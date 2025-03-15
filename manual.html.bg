@@ -18,7 +18,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS Validation Service</span></a></h1>
    <p id="tagline">
      Проверете Cascading Style Sheets (CSS) и (X)HTML документи със style sheets
@@ -110,12 +110,12 @@
 
 <p>    
     Когато се използва основния интерфейс, валидаторът ще провери за съвместимост
-    с <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, който е настоящата CSS 
+    с <a href="https://www.w3.org/TR/CSS2">CSS 2</a>, който е настоящата CSS 
     Техническа Препоръка.<br />
     Ще произведе XHTML резултат без никакви предупреждения (ще се бъдат изведени 
     само грешки).<br />
     Медия е зададена на "Всички", което означава медия, подходяща за всички 
-    устройства (виж <a href="http://www.w3.org/TR/CSS2/media.html">
+    устройства (виж <a href="https://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a> за пълно описание на медия).
 </p>
 
@@ -151,9 +151,9 @@
     CSS валидатора може да проверява различни CSS профили. Профилът съдържа всички 
     особености, които една имплементация на отделна платформа се очаква да има.
     Тази дефиниция е посочена в 
-    <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+    <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	сайта на CSS</a>. Изборът по подразбиране съответства на настоящия най-използван: 
-    <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.
+    <a href="https://www.w3.org/TR/CSS2">CSS 2</a>.
 </p>
 
 <h4 id="parammedium">Медия</h4>
@@ -161,7 +161,7 @@
 <p>
     Медия параметърът е еквивалентен на @media правилото, прилагано към
     целия документ. Повече информация за медия ще намерите в 
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>.
 </p>
@@ -206,7 +206,7 @@ CSS Валидатора е безплатна публична услуга, щ
     </tr>
     <tr>
       <th>usermedium</th>
-      <td><a href="http://www.w3.org/TR/CSS2/media.html">Медия</a> 
+      <td><a href="https://www.w3.org/TR/CSS2/media.html">Медия</a> 
 	  използвана за валидиране, като <code>screen</code>,
 	  <code>print</code>, <code>braille</code>...</td>
       <td><code>all</code></td>
@@ -336,25 +336,25 @@ CSS Валидатора е безплатна публична услуга, щ
 
    <p id="support_logo">
 Подкрепете този инструмент, станете<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Поддръжник" /></a>
+<a href="https://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Поддръжник" /></a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

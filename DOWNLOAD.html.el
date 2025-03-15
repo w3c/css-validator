@@ -18,7 +18,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Υπηρεσία Ελέγχου Εγκυρότητας CSS</span></a></h1>
    <p id="tagline">
      Έλεγχος Cascading Style Sheets (CSS) και εγγράφων (X)HTML με style sheets
@@ -48,9 +48,9 @@
 <p>Ο οδηγός υποθέτει ότι έχετε εγκαταστήσει επιτυχώς ήδη στον υπολογιστή σας τα παρακάτω:</p>
 <ul class="instructions">
 <li>ένα περιβάλλον java που λειτουργεί κανονικά,</li>
-<li>το εργαλείο προγραμματισμού <a href="http://ant.apache.org/">Ant</a> της java,</li>
-<li>έναν Java servlet container όπως τους <a href="http://www.w3.org/Jigsaw/">Jigsaw</a>,
-<a href="http://tomcat.apache.org/">Tomcat</a> ή <a href="http://www.mortbay.org/">Jetty</a>, σε περίπτωση που σκοπεύετε να παρέχετε τον ελεγκτή εγκυρότητας ως μία υπηρεσία web.</li>
+<li>το εργαλείο προγραμματισμού <a href="https://ant.apache.org/">Ant</a> της java,</li>
+<li>έναν Java servlet container όπως τους <a href="https://www.w3.org/Jigsaw/">Jigsaw</a>,
+<a href="https://tomcat.apache.org/">Tomcat</a> ή <a href="http://www.mortbay.org/">Jetty</a>, σε περίπτωση που σκοπεύετε να παρέχετε τον ελεγκτή εγκυρότητας ως μία υπηρεσία web.</li>
 </ul>
 <p id="prereq-libs">
   Για την εγκατάσταση προαπαιτείται να γνωρίζετε ολόκληρο το μονοπάτι της java βιβλιοθήκης με όνομα <span class="file">servlet.jar</span>.
@@ -199,7 +199,7 @@ http://localhost:8001/css-validator/validator.html</li>
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
@@ -209,19 +209,19 @@ http://localhost:8001/css-validator/validator.html</li>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       Με επιφύλαξη παντός δικαιώματος.
-      Εφαρμόζονται οι κανόνες της W3C για <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
+      Εφαρμόζονται οι κανόνες της W3C για <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
 
-      και <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
+      και <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
 </div>
 </body>
 

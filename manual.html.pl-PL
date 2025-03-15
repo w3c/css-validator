@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Usługa Walidacji CSS</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -92,10 +92,10 @@ Najprostszym sposobem sprawdzenia dokumentu jest skorzystanie z podstawowego int
 <h4 id="basicvalidation">Co robi podstawowa walidacja?</h4>
 
 <p>    
-    Używając podstawowego interfejsu walidator sprawdzi zgodność z <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a>, który jest obecną rekomendacją techniczną CSS. <br />
+    Używając podstawowego interfejsu walidator sprawdzi zgodność z <a href="https://www.w3.org/TR/CSS21">CSS 2.1</a>, który jest obecną rekomendacją techniczną CSS. <br />
     Poda on wynik w XHTML bez ostrzeżeń (widoczne będą jedynie błędy). <br />
     Medium ustawione jest na &quot;wszystkie&quot;, co sprawia, że jest odpowiednie dla wyszystkich urządzeń 
-    (zobacz stronę <a href="http://www.w3.org/TR/CSS2/media.html">
+    (zobacz stronę <a href="https://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a> aby uzyskać kompletny opis mediów).
 </p>
 
@@ -114,14 +114,14 @@ Najprostszym sposobem sprawdzenia dokumentu jest skorzystanie z podstawowego int
 <h4 id="paramprofile">Profile</h4>
 
 <p>
-    Walidator CSS może sprawdzić różne profile CSS. Profil wyszczególnia wszystkie cechy jakie implementacja na konkretnej platformie powinna zastosować. Definicja taka jest wzięta z <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
-	Witryny CSS</a>. Domyślna opcja odpowiada obecnie najbardziej używanemu<a href="http://www.w3.org/TR/CSS2"> CSS 2</a>.
+    Walidator CSS może sprawdzić różne profile CSS. Profil wyszczególnia wszystkie cechy jakie implementacja na konkretnej platformie powinna zastosować. Definicja taka jest wzięta z <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+	Witryny CSS</a>. Domyślna opcja odpowiada obecnie najbardziej używanemu<a href="https://www.w3.org/TR/CSS2"> CSS 2</a>.
 </p>
 
 <h4 id="parammedium">Medium</h4>
 
 <p>
-    Parametr medium jest równoważnikiem reguły @media stosującym się do całego dokumentu. Więcej informacji na temat mediów jest dostępnych na stronie <a href="http://www.w3.org/TR/CSS2/media.html">
+    Parametr medium jest równoważnikiem reguły @media stosującym się do całego dokumentu. Więcej informacji na temat mediów jest dostępnych na stronie <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>.
 </p>
@@ -157,7 +157,7 @@ Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i 
     </tr>
     <tr>
       <th>medium użytkownika</th>
-      <td><a href="http://www.w3.org/TR/CSS2/media.html">Medium</a> użyte do walidacji takie jak: ekran, <code>print</code>, <code>braille</code>...</td>
+      <td><a href="https://www.w3.org/TR/CSS2/media.html">Medium</a> użyte do walidacji takie jak: ekran, <code>print</code>, <code>braille</code>...</td>
       <td><code>Wszystkie</code></td>
     </tr>
     <tr>
@@ -322,7 +322,7 @@ Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i 
          <div id="footer">
    <p id="activity_logos">
 
-            <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+            <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
          </p>
 
          <p id="support_logo">
@@ -332,21 +332,21 @@ Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i 
          </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

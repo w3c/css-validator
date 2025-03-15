@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Servicio de Validaci&oacute;n de CSS</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -108,11 +108,11 @@ La manera más sencilla de comprobar un documento es utilizar la interfaz básic
 
 <p>    
     Cuando se utiliza la interfaz básica, el validador comprobará el cumplimiento 
-    de <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a>, que es la recomendación técnica
+    de <a href="https://www.w3.org/TR/CSS21">CSS 2.1</a>, que es la recomendación técnica
     actual de CSS.<br />
     Esto producirá una salida XHTML sin ninguna advertencia (únicamente verás los errores).<br />
     El parámetro medium está fijado en "all", que es el medio adecuado para todos los dispositivos 
-    (ver <a href="http://www.w3.org/TR/CSS2/media.html">
+    (ver <a href="https://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a> para una descripción completa de los medios).
 </p>
 
@@ -147,17 +147,17 @@ La manera más sencilla de comprobar un documento es utilizar la interfaz básic
     El validador CSS puede comprobar diferentes perfiles de CSS. Un perfil engloba todas las  
     características que se esperan de una implementación en una plataforma determinada. 
     Esta definición está tomada del  
-    <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+    <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	sitio de CSS
     </a>. La opción predeterminada corresponde al más utilizado en la actualidad: 
-    <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.
+    <a href="https://www.w3.org/TR/CSS2">CSS 2</a>.
 </p>
 
 <h4 id="parammedium">Medium</h4>
 
 <p>
     El parámetro medium es el equivalente a la regla @media, aplicada a todo el documento. Encontrarás más información sobre medios en  
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>.
 </p>
@@ -194,7 +194,7 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
     </tr>
     <tr>
       <th>usermedium</th>
-      <td>Se utiliza <a href="http://www.w3.org/TR/CSS2/media.html">medium</a> para la  
+      <td>Se utiliza <a href="https://www.w3.org/TR/CSS2/media.html">medium</a> para la  
 	  validación de medios como <code>screen</code>, <code>print</code>, <code>braille</code>...</td>
       <td><code>all</code></td>
     </tr>
@@ -364,7 +364,7 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">
@@ -373,21 +373,21 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS-valideringstjänst</span></a></h1>
    <p id="tagline">
      Granska formatmallar (<span xml:lang="en" lang="en">Cascading Style Sheets</span>, CSS) och (X)HTML-dokument med formatmallar
@@ -126,7 +126,7 @@ möjligheter:
 
     Då du använder det enkla gränssnittet så kommer valideraren att granska
     om din kod är korrekt enligt
-    <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, som är den aktuella
+    <a href="https://www.w3.org/TR/CSS2">CSS 2</a>, som är den aktuella
     tekniska CSS-standarden.<br />
 
     Den genererar XHTML-utdata med beskrivning av felen, men ger inte
@@ -134,7 +134,7 @@ möjligheter:
 
     Medium sätts till "<code>all</code>", som är det medium som är
     lämpligt för alla apparater (dokumentet
-    <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a>
+    <a href="https://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a>
     ger en fullständig beskrivning av media).
 
 </p>
@@ -187,10 +187,10 @@ möjligheter:
     implementation på en specifik plattform förväntas stödja.
 
     Denna definition tas från
-    <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">CSS-webbplatsen </a>.
+    <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">CSS-webbplatsen </a>.
 
     Standardvalet svarar mot den nu mest använda:
-    <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.
+    <a href="https://www.w3.org/TR/CSS2">CSS 2</a>.
 
 </p>
 
@@ -202,7 +202,7 @@ möjligheter:
     för hela dokumentet.
 
     Du hittar mer information om media på
-    <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a>.
+    <a href="https://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a>.
 
 </p>
 
@@ -275,7 +275,7 @@ möjligheter:
     <tr>
       <th>usermedium</th>
       <td>
-	  <a href="http://www.w3.org/TR/CSS2/media.html">medium</a>
+	  <a href="https://www.w3.org/TR/CSS2/media.html">medium</a>
 	  som skall användas för validering, såsom
 	  <code>screen</code>, <code>print</code>,
 	  <code>braille</code>...
@@ -476,7 +476,7 @@ möjligheter:
 <div id="footer">
 <p id="activity_logos">
 
-  <a href="http://www.w3.org/Style/CSS/learning" title="Mer information om formatmallar"><img src="images/woolly-icon" alt="CSS" /></a>
+  <a href="https://www.w3.org/Style/CSS/learning" title="Mer information om formatmallar"><img src="images/woolly-icon" alt="CSS" /></a>
 </p>
 
 <p id="support_logo">
@@ -486,22 +486,22 @@ möjligheter:
 </p>
 
 <p class="copyright">
-  <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-  <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+  <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+  <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
   
-  (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-  <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-  <a href="http://www.keio.ac.jp/">Keio</a>),
+  (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+  <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+  <a href="https://www.keio.ac.jp/">Keio</a>),
   Rättigheter förbehållna.
   W3C:s regler för
-  <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ansvar</a>,
-  <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">varumärke</a>,
-  <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">dokumentanvändning</a>
+  <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ansvar</a>,
+  <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">varumärke</a>,
+  <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">dokumentanvändning</a>
   och
-  <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">programvarulicenser</a> gäller.
+  <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">programvarulicenser</a> gäller.
   Din interaktion med denna webbplats sker i enlighet med våra integritetspolicies för 
-  <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">allmänheten</a> och 
-  <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">W3C:s medlemmar</a>.
+  <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">allmänheten</a> och 
+  <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">W3C:s medlemmar</a>.
 </p>
 
 </div>

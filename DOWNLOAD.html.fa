@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a><span id="tit"><span style="background-color: #365D95; background-repeat: repeat; background-position: 0 0"><a href="./">سرویس اعتبار سنجی <span lang="en-us">CSS</span></a></span></span></h1><p id="tagline">محک زدن شیوه نامه های آبشاری (CSS) و اسناد X)HTML) حاوی شیوه نامه ها</p></div>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a><span id="tit"><span style="background-color: #365D95; background-repeat: repeat; background-position: 0 0"><a href="./">سرویس اعتبار سنجی <span lang="en-us">CSS</span></a></span></span></h1><p id="tagline">محک زدن شیوه نامه های آبشاری (CSS) و اسناد X)HTML) حاوی شیوه نامه ها</p></div>
 
 <div class="doc">
 <h2>دانلود و نصب اعتبار سنج CSS</h2>
@@ -27,7 +27,7 @@
     <p>
       &nbsp;<a href="https://github.com/w3c/css-validator">اعتبار سنج CSS</a> 
 		برای دانلود با استفاده از CVS در دسترس است.
-		<a href="http://dev.w3.org/cvsweb/">دستورالعمل ها</a> را جهت دسترسی به 
+		<a href="https://dev.w3.org/cvsweb/">دستورالعمل ها</a> را جهت دسترسی به 
 		سرویس دهنده ی عمومی W3C CVS و بدست آوردن 2002/css-validator دنبال کنید. 
 		توجه داشته باشید نسخه ی آنلاین اعتبار سنج CSS بطور کلی قدیمی تر از نسخه 
 		ی CVS
@@ -55,9 +55,9 @@
 <p>در این راهنمای نصب و راه اندازی فرض بر این است که شما موارد زیر را دانلود، نصب و تست نموده اید: </p>
 <ul class="instructions">
 	<li>یک محیط کاری جاوا،</li>
-	<li>ابزار ساختمان <a href="http://ant.apache.org/">غیر</a> جاوا</li>
+	<li>ابزار ساختمان <a href="https://ant.apache.org/">غیر</a> جاوا</li>
 	<li>یک نگهدارنده ی سرولت (<span lang="en-us">servlet</span>) وب از قبیل 
-		<a href="http://www.w3.org/Jigsaw/">Jigsaw</a>، <a href="http://tomcat.apache.org/">Tomcat</a> 
+		<a href="https://www.w3.org/Jigsaw/">Jigsaw</a>، <a href="https://tomcat.apache.org/">Tomcat</a> 
 	یا
 		<a href="http://www.mortbay.org/">Jetty</a> در صورتی که شما طرح کاربرد 
 	اعتبار سنج بصورت سرویسی آنلاین را در نظر داشته باشید. 
@@ -72,9 +72,9 @@
 	احتمالا تحت نام servlet-api.jar یافته باشید. اگر نه، آنرا در
 	<a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a> 
 	بدست آورید.</li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
+	<li><a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar و xml-apis.jar (که می توان با
-	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a> دانلود 
+	<a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a> دانلود 
 	شده باشد).</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
@@ -224,54 +224,54 @@ http://localhost:8001/css-validator/validator.html</li>
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="در مورد شیوه نامه های آبشاری بیشتر یاد بگیرید"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="در مورد شیوه نامه های آبشاری بیشتر یاد بگیرید"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
 حمایت از این ابزار و تبدیل شدن به<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="حامی کنسرسیوم وب جهانی" /></a>
+<a href="https://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="حامی کنسرسیوم وب جهانی" /></a>
    </p>
 
     <p class="copyright">
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">کلیه 
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">کلیه 
 		حقوق چاپ و نشر</a> &copy; 1994-2007
       <acronym title="کنسرسیوم وب جهانی">
-      <a href="http://www.w3.org/">W3C</a> </acronym>&reg; برای
+      <a href="https://www.w3.org/">W3C</a> </acronym>&reg; برای
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="انستیتو فن آوری ماساچوست">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/">
+      (<a href="https://www.csail.mit.edu/"><acronym title="انستیتو فن آوری ماساچوست">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/">
 		<acronym title="کنسرسیوم تحقیقات اروپایی برای پردازش اطلاعات و ریاضیات">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>)،
+      <a href="https://www.keio.ac.jp/">Keio</a>)،
       محفوظ است.
       W3C ، رعایت قوانین مربوط به
-		<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">
+		<a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">
 		مارک تجاری</a>،
-		<a href="http://www.w3.org/Consortium/Legal/copyright-documents">استفاده 
+		<a href="https://www.w3.org/Consortium/Legal/copyright-documents">استفاده 
 		از سند</a> و
-		<a href="http://www.w3.org/Consortium/Legal/copyright-software">مجوز 
+		<a href="https://www.w3.org/Consortium/Legal/copyright-software">مجوز 
 		استفاده نرم افزار</a> را
-		<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
+		<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
 		الزامی</a> نموده است. تعامل شما با این سایت بر اساس بیانیه اختصاصی
-		<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">
+		<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">
 		اعضا</a> و
-		<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">
+		<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">
 		گروه</a> ما می باشد. <br />
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
 
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

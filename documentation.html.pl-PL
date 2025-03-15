@@ -16,7 +16,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Usługa Walidacji CSS</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -57,7 +57,7 @@
     <dt><a href="./api.html">API Usługi</a></dt>
     <dd>Dokumentacja interfejsu walidatora SOAP 1.2</dd>
     
-    <dt><a href="https://github.com/w3c/css-validator/issues">Błędy (bugs)</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Błędy (legacy bugs)</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Błędy (bugs)</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Błędy (legacy bugs)</a></dt>
     <dd>Znane problemy w obecnej wersji walidatora oraz interfejs do zgłaszania błędów i problemów. Zobacz także <a href="./Email.html">instrukcje na temat dostarczania opinii.</a></dd>
 
 </dl>
@@ -180,7 +180,7 @@
          <div id="footer">
    <p id="activity_logos">
 
-            <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+            <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
          </p>
 
          <p id="support_logo">
@@ -190,17 +190,17 @@
          </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
-      Wszystkie prawa zastrzeżone. W3C stosuje zasady dotyczące    .<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">odpowiedzialności cywilnej</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">używania dokumentu</a>
-      i <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">licencji oprogramowania.</a>. Wszelkie interakcje z tą witryną są zgodne z naszą <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publiczną</a> i
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Członkowską</a> ochroną prywatności.
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
+      Wszystkie prawa zastrzeżone. W3C stosuje zasady dotyczące    .<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">odpowiedzialności cywilnej</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">używania dokumentu</a>
+      i <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">licencji oprogramowania.</a>. Wszelkie interakcje z tą witryną są zgodne z naszą <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">publiczną</a> i
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Członkowską</a> ochroną prywatności.
     </p>
 
 </div>

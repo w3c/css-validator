@@ -15,7 +15,7 @@
 </head>
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Servicio de Validaci&oacute;n de CSS</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -31,7 +31,7 @@
 <h4 id="source">Descarga la fuente</h4>
 <p>
       El <a href="https://github.com/w3c/css-validator">validador de CSS</a> est&aacute; disponible para su descarga mediante CVS.
-      Sigue las <a href="http://dev.w3.org/cvsweb/">instrucciones</a> para acceder
+      Sigue las <a href="https://dev.w3.org/cvsweb/">instrucciones</a> para acceder
       al servidor p&uacute;blico de CVS del W3C y descarga 2002/css-validator. Ten en cuenta  
       que la versi&oacute;n en l&iacute;nea del Validador de CSS es, generalmente, m&aacute;s antigua que la 
       versi&oacute;n CVS, de modo que los resultados y la apariencia pueden variar ligeramente...
@@ -52,10 +52,10 @@ Sin embargo, por simplicidad, en este documento proporcionaremos principalmente 
 <p>Esta gu&iacute;a de instalaci&oacute;n asume que has descargado, instalado y probado: </p>
 <ul class="instructions">
 <li>Un entorno java en funcionamiento,</li>
-<li>La herramienta de desarrollo java <a href="http://ant.apache.org/">Ant</a>
+<li>La herramienta de desarrollo java <a href="https://ant.apache.org/">Ant</a>
 </li>
 <li>Un contenedor del servlet Web java, como 
-		<a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> o
+		<a href="https://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="https://tomcat.apache.org/">Tomcat</a> o
 		<a href="http://www.mortbay.org/">Jetty</a> si planeas utilizar el validador como un servicio en l&iacute;nea. 
 		Esta gu&iacute;a &uacute;nicamente cubre en detalle Tomcat y Jigsaw.</li>
 </ul>
@@ -67,10 +67,10 @@ Sin embargo, por simplicidad, en este documento proporcionaremos principalmente 
 	<a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a>
 </li>
 <li>
-<a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a>
+<a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a>
 </li>
 <li>xercesImpl.jar y xml-apis.jar (que puedes descargar con
-	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
+	<a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 <h4>Instalaci&oacute;n del Validador de CSS con Tomcat</h4>
@@ -251,7 +251,7 @@ http://localhost:8001/css-validator/validator.html</li>
 
 <div id="footer">
    <p id="activity_logos">
-<a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets">
+<a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets">
 <img src="images/woolly-icon" alt="CSS"/>
 </a>
 </p>
@@ -261,28 +261,28 @@ http://localhost:8001/css-validator/validator.html</li>
 </a>
 </p>
 <p class="copyright">
-<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/">
+<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/">
 <acronym title="World Wide Web Consortium">W3C</acronym>
 </a>&reg;
 
-      (<a href="http://www.csail.mit.edu/">
+      (<a href="https://www.csail.mit.edu/">
 <acronym title="Massachusetts Institute of Technology">MIT</acronym>
 </a>,
-      <a href="http://www.ercim.eu/">
+      <a href="https://www.ercim.eu/">
 <acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym>
 </a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
 
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
   </div>

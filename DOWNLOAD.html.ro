@@ -18,7 +18,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Serviciul de validare CSS</span></a></h1>
    <p id="tagline">
      Verifica foile de stil in cascada (CSS) si documentele (X)HTML
@@ -48,9 +48,9 @@ Urmeaza <a href='http://dev.w3.org/cvsweb/'>instructiunile </a> pentru a te cone
 <p>Acest ghid presupune ca ai descarcat deja si instalat cu succes urmatoarele:</p>
 <ul class="instructions">
 <li>un mediu java functional;</li>
-<li><a href="http://ant.apache.org/">Ant</a> unealta de constructie Java;</li>
-<li>Un servlet in limbaj Java ca si <a href="http://www.w3.org/Jigsaw/">Jigsaw</a>,
-<a href="http://tomcat.apache.org/">Tomcat</a> sau <a href="http://www.mortbay.org/">Jetty</a>, daca planuiesti sa oferi validatorul ca un serviciu Web.</li>
+<li><a href="https://ant.apache.org/">Ant</a> unealta de constructie Java;</li>
+<li>Un servlet in limbaj Java ca si <a href="https://www.w3.org/Jigsaw/">Jigsaw</a>,
+<a href="https://tomcat.apache.org/">Tomcat</a> sau <a href="http://www.mortbay.org/">Jetty</a>, daca planuiesti sa oferi validatorul ca un serviciu Web.</li>
 </ul>
 <p id="prereq-libs">
   Ca si conditie prealabila pentru instalare, va trebui sa stii adresa completa pentru libraria Java numita <span class="file">servlet.jar</span>.
@@ -212,7 +212,7 @@ Descarca arhiva css-validator.jar (sau construieste-o cu <kbd>ant jar</kbd>) si 
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
@@ -222,22 +222,22 @@ Descarca arhiva css-validator.jar (sau construieste-o cu <kbd>ant jar</kbd>) si 
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
 
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

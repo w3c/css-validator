@@ -18,7 +18,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Usługa Walidacji CSS</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -58,8 +58,8 @@
 <p>Przewodnik instalacyjny zakłada, że następujące komponenty zostały ściągnięte, zainstalowane i przetestowane: </p>
 <ul class="instructions">
 	<li>działające środowisko Javy,</li>
-	<li>oparte na języku. Java narzędzie do budowania projektów <a href="http://ant.apache.org/">Ant</a> </li>
-	<li>Kontener serwletów taki jak <a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> lub <a href="http://www.mortbay.org/">Jetty</a> , jeśli planowane jest używanie walidatora jako usługi sieciowej. Przewodnik omawia szczegółowo jedynie  Tomcat i Jigsaw.</li>
+	<li>oparte na języku. Java narzędzie do budowania projektów <a href="https://ant.apache.org/">Ant</a> </li>
+	<li>Kontener serwletów taki jak <a href="https://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="https://tomcat.apache.org/">Tomcat</a> lub <a href="http://www.mortbay.org/">Jetty</a> , jeśli planowane jest używanie walidatora jako usługi sieciowej. Przewodnik omawia szczegółowo jedynie  Tomcat i Jigsaw.</li>
 </ul>
 <p id="prereq-libs">Jeśli chcesz zainstalować walidator na swoim systemie, będziesz musiał ściągnąć i/lub 
 
@@ -76,8 +76,8 @@ w swoim systemie kilka bibliotek Javy:</p>
 znaleźć
 
  w [<span class="const">TOMCAT_DIR</span>]/common/lib/, najprawdopodobniej pod nazwą servlet-api.jar. Jeśli nie, możesz ściągnąć ten plik z <a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a></li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
-	<li>xercesImpl.jar i xml-apis.jar (można je ściągnąć z <a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
+	<li><a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
+	<li>xercesImpl.jar i xml-apis.jar (można je ściągnąć z <a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
@@ -257,7 +257,7 @@ http://localhost:8001/css-validator/validator.html</li>
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
@@ -267,22 +267,22 @@ http://localhost:8001/css-validator/validator.html</li>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
 
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

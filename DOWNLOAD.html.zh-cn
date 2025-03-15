@@ -18,7 +18,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS Validation Service</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -55,9 +55,9 @@
 <p>本安装指南假设你已经下载，安装并测试了以下的东西：</p>
 <ul class="instructions">
 	<li>一个可以使用的Java环境</li>
-	<li><a href="http://ant.apache.org/">Ant</a> 工具</li>
+	<li><a href="https://ant.apache.org/">Ant</a> 工具</li>
 	<li>一个java web servlet的容器例如：
-		<a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> 或者
+		<a href="https://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="https://tomcat.apache.org/">Tomcat</a> 或者
 		<a href="http://www.mortbay.org/">Jetty</a> 如果你打算将验证器作为一个在线的服务，那么本安装指南只涉及到了如何在Jigsaw和Tomcat中的安装。</li>
 </ul>
 <p id="prereq-libs">为了将验证器安装到你的系统中去，你需要下载或者在你系统中确认一下的java库文件是否存在：</p>
@@ -66,9 +66,9 @@
 	((在Tomcat的安装目录 [<span class="const">TOMCAT_DIR</span>],
 	下, 你应该能在 [<span class="const">TOMCAT_DIR</span>]/common/lib/这个位置找到它, 名字应该是servlet-api.jar。如果不是或者没有，那么请在
 	<a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a>中下载它</li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
+	<li><a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar 和 xml-apis.jar (这些都可以在
-	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>)下载到。</li>
+	<a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>)下载到。</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
@@ -231,7 +231,7 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
@@ -241,21 +241,21 @@
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">责任</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商标</a>,已运用
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">文档授权</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">责任</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商标</a>,已运用
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">文档授权</a>
 
-      和 <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">软件授权</a>
+      和 <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">软件授权</a>
 
-      相关规则。你与本站的互动是符合我们的<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">公开</a> 和
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a> 隐私声明。
+      相关规则。你与本站的互动是符合我们的<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">公开</a> 和
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a> 隐私声明。
     </p>
 
 </div>

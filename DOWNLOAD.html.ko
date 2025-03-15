@@ -18,7 +18,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS 검사 서비스</span></a></h1>
    <p id="tagline">
       캐스케이딩 스타일시트 (CSS)와 스타일시트를 포함한 문서를 검사
@@ -57,9 +57,9 @@ Jigsaw 서버를 이용하여 서비스하고 있습니다. 이 문서에서는 
 <p>아래 설명은 다음 환경이 설치되어 동작한다는 가정 하에 설명하고 있습니다.</p>
 <ul class="instructions">
 	<li>동작하는 자바 환경</li>
-	<li><a href="http://ant.apache.org/">Ant</a>와 같은 자바 빌드 툴</li>
+	<li><a href="https://ant.apache.org/">Ant</a>와 같은 자바 빌드 툴</li>
 	<li>아울러, 온라인 상에서 사용할 수 있는 서비스로 제공할 예정일 경우
-		<a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> 또는
+		<a href="https://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="https://tomcat.apache.org/">Tomcat</a> 또는
 		<a href="http://www.mortbay.org/">Jetty</a> 등의 자바 웹 서블릿이 동작할 수 있는 환경이 필요합니다.
 		여기에서는 Tomcat과 Jigsaw에 대해서만 다루고 있습니다.</li>
 </ul>
@@ -71,9 +71,9 @@ Jigsaw 서버를 이용하여 서비스하고 있습니다. 이 문서에서는 
 	 [<span class="const">TOMCAT_DIR</span>]/common/lib/)에 servlet-api.jar 이라는 이름으로
 	저장되어 있을 가능성이 높습니다. 만일 없을 경우, <a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a>
 	에서 다운로드가 가능합니다.</li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
+	<li><a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar 와 xml-apis.jar (
-	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>과 함께 다운로드가 가능합니다).</li>
+	<a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>과 함께 다운로드가 가능합니다).</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
@@ -249,7 +249,7 @@ http://localhost:8001/css-validator/validator.html</li>
 
    <div id="footer">
    <p id="activity_logos">
-      <a href="http://www.w3.org/Style/CSS/learning" title="CSS에 대하여 더 많은 것을 알아보기"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="CSS에 대하여 더 많은 것을 알아보기"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
 
@@ -260,22 +260,22 @@ http://localhost:8001/css-validator/validator.html</li>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
 
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

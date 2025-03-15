@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS Validation Service</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -64,9 +64,9 @@ onderaan gegeven.</p>
 
 <ul class="instructions">
 	<li>Een werkende Java omgeving,</li>
-	<li>De <a href="http://ant.apache.org/">Ant</a> Java builder</li>
+	<li>De <a href="https://ant.apache.org/">Ant</a> Java builder</li>
 	<li>Een Java Web servlet container zoals 
-		<a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> of
+		<a href="https://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="https://tomcat.apache.org/">Tomcat</a> of
 		<a href="http://www.mortbay.org/">Jetty</a> als je van plan bent de validator als een online service aan te bieden. 
 		Deze handleiding gaat alleen in detail in op de installatie van Tomcat en Jigsaw.</li>
 
@@ -78,9 +78,9 @@ onderaan gegeven.</p>
 	(deze bevind zich, als je Tomcat ge&iuml;nstalleerd hebt, in [<span class="const">TOMCAT_DIR</span>]/common/lib/, 
 	waarschijnlijk on de naam servlet-api.jar. Zo niet, haal hem hier op: 
 	<a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a></li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
+	<li><a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar en xml-apis.jar (die gedownload worden met
-	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
+	<a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
@@ -266,7 +266,7 @@ Java ge&iuml;nstalleerd heeft. Build de css-validator.jar zoals hierboven beschr
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
@@ -277,22 +277,22 @@ Java ge&iuml;nstalleerd heeft. Build de css-validator.jar zoals hierboven beschr
 
     <p class="copyright">
 
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       Alle Rechten Voorbehouden.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">aansprakelijkheid</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">handelsmerk</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document gebruik</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">aansprakelijkheid</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">handelsmerk</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document gebruik</a>
 
-      en de <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licentie</a>
+      en de <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licentie</a>
 
       regels zijn van toepassing. Je interacties met deze site zijn in overeenstemming
-      met onze <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publieke</a> en
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      met onze <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">publieke</a> en
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       verklaringen.
     </p>
 

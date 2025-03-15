@@ -18,7 +18,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS Validation Service</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -116,10 +116,10 @@ De makkelijkste manier om een document te checken is door de basis interface te 
 
 <p>    
     Als de basis interface gebruikt wordt, controleert de validator de geldigheid van de CSS
-	met <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a>, de huidige CSS standaard.<br />
+	met <a href="https://www.w3.org/TR/CSS21">CSS 2.1</a>, de huidige CSS standaard.<br />
     De validator produceert een XHTML output zonder waarschuwingen. (standaard krijg je alleen errors te zien)<br />
     Het medium is ingesteld op "all", want dit is het medium dat geschikt is voor alle apparaten.
-    (zie ook <a href="http://www.w3.org/TR/CSS2/media.html">
+    (zie ook <a href="https://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a> voor een complete beschrijving van de verschillende typen media)
 </p>
 
@@ -155,10 +155,10 @@ De makkelijkste manier om een document te checken is door de basis interface te 
     De CSS validator kan controleren op verschillende CSS profielen.
 	Een profiel definieert alle functies die een implementatie op een specifiek platform
 	zou moeten implementeren. Deze definitie wordt gehaald van
-    <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+    <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	de CSS webpagina
     </a>. De standaard keuze correspondeert met het profiel dat op dit moment het meest wordt toegepast: 
-    <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.
+    <a href="https://www.w3.org/TR/CSS2">CSS 2</a>.
 </p>
 
 <h4 id="parammedium">Medium</h4>
@@ -166,7 +166,7 @@ De makkelijkste manier om een document te checken is door de basis interface te 
 <p>
     De parameter medium is hetzelfde als de @media regel, die wordt toegepast op het hele document.
 	Je kunt meer informatie over media vinden op 
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>.
 </p>
@@ -212,7 +212,7 @@ service voor iedereen, je respect wordt gewaardeerd. Bedankt.</p>
 
     <tr>
       <th>usermedium</th>
-      <td>Het <a href="http://www.w3.org/TR/CSS2/media.html">medium</a> dat gebruikt 
+      <td>Het <a href="https://www.w3.org/TR/CSS2/media.html">medium</a> dat gebruikt 
 	  wordt voor de validatie, zoals <code>screen</code>,
 	  <code>print</code>, <code>braille</code>...</td>
 
@@ -392,7 +392,7 @@ service voor iedereen, je respect wordt gewaardeerd. Bedankt.</p>
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
@@ -403,22 +403,22 @@ service voor iedereen, je respect wordt gewaardeerd. Bedankt.</p>
 
     <p class="copyright">
 
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       Alle Rechten Voorbehouden.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">aansprakelijkheid</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">handelsmerk</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document gebruik</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">aansprakelijkheid</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">handelsmerk</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document gebruik</a>
 
-      en de <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licentie</a>
+      en de <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licentie</a>
 
       regels zijn van toepassing. Je interacties met deze site zijn in overeenstemming
-      met onze <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publieke</a> en
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      met onze <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">publieke</a> en
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       verklaringen.
     </p>
 
