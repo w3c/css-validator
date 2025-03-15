@@ -244,7 +244,7 @@ o seguir las instrucciones para descargar el &aacute;rbol completo del código f
 </p>
 <p id="support_logo">
 <a href="https://www.w3.org/donate/">
-<img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+<img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
 </a>
 </p>
 <p class="copyright">

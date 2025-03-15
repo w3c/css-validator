@@ -239,7 +239,7 @@ of installeer en draai je eigen instantie van de validator.</p>
 
    <p id="support_logo">
    <a href="https://www.w3.org/donate/">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
