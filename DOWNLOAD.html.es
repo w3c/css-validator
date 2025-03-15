@@ -38,7 +38,7 @@
     </p>
 <h4>Descarga como un paquete java (jar o war)</h4>
 <!--<p>A determinar... s&oacute;lo necesitamos una ubicaci&oacute;n estable para poner los archivos jar/war con regularidad</p>-->
-<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 
 <h3>Gu&iacute;a de instalaci&oacute;n</h3>

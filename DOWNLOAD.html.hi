@@ -40,7 +40,7 @@
 	तहत पुराने संस्करण है, और उनके परिणाम और व्यवहार अलग हो सकता.</p>
 	<h4>जावा संग्रह को डाउनलोड करें (jar)</h4>
 	<p>
-	<a href="http://www.w3.org/QA/Tools/css-मान्यकर्ता%20/css-validator.jar%20">
+	<a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">
 	सीएसएस मान्यकर्ता.jar </a></p>
 	<h3>अधिष्ठापन गाइड</h3>
 	<p>सीएसएस मान्यकरण सेवा एक पार मंच जावा भाषा में लिखा सर्वलेट पर आधारित है, 

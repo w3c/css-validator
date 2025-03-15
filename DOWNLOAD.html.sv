@@ -48,7 +48,7 @@
 <h4>Ladda ned som Java-paket (jar eller war)</h4>
 <!--	<p>Att åtgärdas... vi behöver en stabil plats där jar/war-arkiv kan lagras regelbundet</p>-->
 <p>
-  <a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a>
+  <a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a>
 </p>
 
 <h3>Installationsanvisningar</h3>

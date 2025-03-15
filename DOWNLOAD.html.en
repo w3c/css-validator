@@ -40,7 +40,7 @@ generally a little older than the version under Git, and their results and behav
 
 
 <h4>Download the Java archive (jar)</h4>
-<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 <h3>Installation Guide</h3>
 <p>The CSS Validation service is based on a servlet written in the cross-platform Java language, and can

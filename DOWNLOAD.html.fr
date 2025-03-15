@@ -38,7 +38,7 @@ de sorte que les résultats et leur comportement peuvent varier légèrement.</p
 
 	
 <h4>Télécharger un paquetage Java (jar)</h4>
-<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 <h3>Guide d'installation</h3>
 <p>Le service de validation CSS est un servlet écrit en Java. On peut l'installer sur n'importe quel moteur de servlets,

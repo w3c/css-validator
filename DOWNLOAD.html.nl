@@ -44,7 +44,7 @@
 	<h4>Download de CSS Validator als java package (jar of war)</h4>
 
 	<!--<p>Werk in uitvoering - Er moet een locatie gevonden worden waar we de bestanden neer kunnen zetten.</p>-->
-	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+	<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 
 

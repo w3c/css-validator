@@ -37,7 +37,7 @@
 
 
 <h4>Λήψη του αρχείου Java (jar)</h4>
-<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 <h3>Οδηγός Εγκατάστασης</h3>
 <p>Η υπηρεσία Έλεγχος Εγκυρότητας CSS βασίζεται σε ένα  servlet που είναι κωδικοποιημένο με βάση την  cross-platform γλώσσα προγραμματισμού Java, και μπορεί να εγκατασταθεί σε οποιαδήποτε πλατφόρμα servlet. Αν και το επίσημη service από την W3C εκτελείται σε διακομιστή  Jigsaw  

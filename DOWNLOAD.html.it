@@ -41,7 +41,7 @@
     </p>	
 	<h4>Scarica come pacchetto java (jar oppure war)</h4>
 <!--	<p>DA DEFINIRE... necessitiamo di definire una posizione stabile dove posizionare gli archivi jar/war ad intervalli regolari.</p>-->
-	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+	<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 
 

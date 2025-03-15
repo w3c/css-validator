@@ -35,7 +35,7 @@
     </p>	
 	<h4>دانلود بصورت بسته ی جاوا (jar یا war)</h4>
 <!--	<p>TBD... we just need a stable location to put jar/war archives on a regular basis</p>-->
-	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+	<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 
 <h3>راهنمای نصب</h3>

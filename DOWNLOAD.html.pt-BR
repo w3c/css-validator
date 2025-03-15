@@ -40,7 +40,7 @@
       portanto não estranhe se houver pequenas diferenças de apresentação entre elas.</p>	
 	<h4>Download como um pacote java  (jar ou war)</h4>
     <!--	<p>TBD... we just need a stable location to put jar/war archives on a regular basis</p>-->
-	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+	<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 
 <h3>Guia de instalação </h3>

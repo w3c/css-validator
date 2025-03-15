@@ -38,7 +38,7 @@ Urmeaza <a href='http://dev.w3.org/cvsweb/'>instructiunile </a> pentru a te cone
 
 
 <h4>Descarca arhiva Java(jar)</h4>
-<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 <h3>Ghid de instalare</h3>
 <p>Serviciul de validare CSS se bazeaza pe un servlet scris in limbajul Java si poate fi instalat pe orice platforma servlet. IN timp ce orice serviciu oficial oferit de W3C ruleaza pe serverul Jigsaw (care este metoda de instalare recomandata), noi vom descrie in acest ghid instalarea pentru motorul de servlet Apache, Tomcat, si cateva instructiuni rapide pentru folosirea Jigsaw si a liniei de comanda.</p>
