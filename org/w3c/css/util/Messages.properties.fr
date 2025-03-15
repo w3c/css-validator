@@ -58,8 +58,8 @@ validate_by_input: Validation par Saisie Directe
 enter_CSS: Saisissez la feuille de style à valider  (ATTENTION : feuilles de style CSS uniquement)
 submit_input: Valider la feuille de style
 note: Remarque
-note_xhtml_valid: Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML, vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>
-note_valide_html: Les resultats de la validation de feuilles de styles incorporées dans un document (X)HTML ne sont fiables que si <a href="http://validator.w3.org/">le document HTML est valide</a>.
+note_xhtml_valid: Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML, vous devriez d'abord <a href="https://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>
+note_valide_html: Les resultats de la validation de feuilles de styles incorporées dans un document (X)HTML ne sont fiables que si <a href="https://validator.w3.org/">le document HTML est valide</a>.
 # End of variables added along with Index page template
 vendorext: Extensions Propriétaires
 vext_default: Défaut

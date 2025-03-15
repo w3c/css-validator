@@ -55,7 +55,7 @@ validate_by_input: Ověřte přímým vstupem
 enter_CSS: Zadejte CSS, kterou chcete ověřit
 submit_input: Potvrďte vstup pro ověření
 note: Poznámka
-note_xhtml_valid: Pokud chcete ověřit svůj CSS styl vložený do dokumentu (X)HTML měli byste nejprve zkontrolovat  <a href="http://validator.w3.org/">, že vámi použité (X)HTML je platné </a>
+note_xhtml_valid: Pokud chcete ověřit svůj CSS styl vložený do dokumentu (X)HTML měli byste nejprve zkontrolovat  <a href="https://validator.w3.org/">, že vámi použité (X)HTML je platné </a>
 # Konec proměnných přidaných společně se stránkou šablony
 
 W3C_validator_results:Validátor výsledků W3C CSS
@@ -83,7 +83,7 @@ no_errors_dl_local_msg: Chcete-li můžete si stáhnout kopii tohoto obrázku, k
 no_errors_create_link_msg: Chcete-li vytvořit odkaz na tuto stránku (tj. tento výsledek ověření ) znovuověření této stránky v budoucnosti nebo umožněte ostatním ověřit vaši stránku, URI je:
 no_errors_forHTML_only_msg: pouze pro dokument HTML/XML
 no_errors_bookmark_msg: Nebo stačí, když přidáte aktuální stránku do záložky nebo do oblíbených.
-note_valide_html: Aby tabulka stylů CSS fungovala jak chcete, musí mít správnou syntaxi. To znamená, že byste měli použít <a href="http://validator.w3.org/">valid HTML</a>.
+note_valide_html: Aby tabulka stylů CSS fungovala jak chcete, musí mít správnou syntaxi. To znamená, že byste měli použít <a href="https://validator.w3.org/">valid HTML</a>.
 top: Nahoru
 # hook_html_validator <!—vygenerováno v průběhu -->
 not-css1-style: /* POZOR ! Toto není vlastnost CSS1! */

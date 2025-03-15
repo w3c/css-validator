@@ -57,7 +57,7 @@ validate_by_input: 직접 입력을 통한 검사
 enter_CSS: 검사할 CSS를 입력하여 주십시오
 submit_input: 검사할 내용을 저장
 note: 주의
-note_xhtml_valid: (X)HTML 문서에 포함된 CSS 스타일시트를 검사하기 이전에, <a href="http://validator.w3.org/">(X)HTML 문법 검사</a>를 하는 것을 권장합니다.
+note_xhtml_valid: (X)HTML 문서에 포함된 CSS 스타일시트를 검사하기 이전에, <a href="https://validator.w3.org/">(X)HTML 문법 검사</a>를 하는 것을 권장합니다.
 # End of variables added along with Index page template
 
 W3C_validator_results: W3C CSS 검사 결과
@@ -85,7 +85,7 @@ no_errors_dl_local_msg: 원하신다면, 이 이미지의 사본을 웹 사이�
 no_errors_create_link_msg: 향후 이 페이지를 쉽게 검사하거나 다른 사용자들이 검사를 해볼 수 있게 이 검사 결과에 대한 링크를 만들고 싶다면, 링크 URI는 다음과 같습니다:
 no_errors_forHTML_only_msg: HTML/XML 문서 전용
 no_errors_bookmark_msg: 또는, 이 페이지를 즐겨찾기 (또는 책갈피) 에 추가하여도 됩니다.
-note_valide_html: 정상적인 작동을 위해서, 스타일시트는 올바른 문서 구조를 가지고 있어야 합니다. 즉, <a href="http://validator.w3.org/">올바른 HTML</a>을 사용하여야 합니다.
+note_valide_html: 정상적인 작동을 위해서, 스타일시트는 올바른 문서 구조를 가지고 있어야 합니다. 즉, <a href="https://validator.w3.org/">올바른 HTML</a>을 사용하여야 합니다.
 top: 최상위
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* 주의하세요 ! 이것은 CSS1 속성이 아닙니다 !  */

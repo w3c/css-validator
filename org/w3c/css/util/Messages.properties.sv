@@ -56,7 +56,7 @@ validate_by_input: Validera genom direkt inmatning
 enter_CSS: Mata in den CSS du vill validera
 submit_input: Skicka in data för validering
 note: Märk
-note_xhtml_valid: Om du vill validera din CSS-formatmall inbäddad i ett (X)HTML-dokument, så bör du först <a href="http://validator.w3.org/">kontrollera att den (X)HTML du använder är giltig</a>
+note_xhtml_valid: Om du vill validera din CSS-formatmall inbäddad i ett (X)HTML-dokument, så bör du först <a href="https://validator.w3.org/">kontrollera att den (X)HTML du använder är giltig</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: W3C CSS-valideringsresultat för
@@ -90,7 +90,7 @@ resultat) för att göra det lättare att validera denna sida i framtiden, eller
 andra validera dina sidor, använd då URI:en: 
 no_errors_forHTML_only_msg: enbart för HTML-/XML-dokument
 no_errors_bookmark_msg: Eller så kan du helt enkelt lägga till denna sida till dina bokmärken eller snabblänkar.
-note_valide_html: För att fungera som avsett, så behöver din CSS-formatmall ett korrekt dokumentparseträd. Detta betyder att du bör använda <a href="http://validator.w3.org/">valid HTML</a>.
+note_valide_html: För att fungera som avsett, så behöver din CSS-formatmall ett korrekt dokumentparseträd. Detta betyder att du bör använda <a href="https://validator.w3.org/">valid HTML</a>.
 top: Toppen
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* VAR FÖRSIKTIG! Detta är inte en CSS1-egenskap! */

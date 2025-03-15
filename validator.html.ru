@@ -317,7 +317,7 @@
   <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
 
   <div class="intro">
-  <p><strong>Примечание</strong>: Если вы хотите проверить каскадные таблицы стилей, встроенные в документ (X)HTML, вы должны сначала <a href="http://validator.w3.org/">проверить на корректность сам документ (X)HTML</a>.
+  <p><strong>Примечание</strong>: Если вы хотите проверить каскадные таблицы стилей, встроенные в документ (X)HTML, вы должны сначала <a href="https://validator.w3.org/">проверить на корректность сам документ (X)HTML</a>.
   </p>
   </div>
   <ul class="navbar" id="menu">

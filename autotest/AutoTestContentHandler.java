@@ -239,7 +239,7 @@ public class AutoTestContentHandler implements ContentHandler {
 
 		if (element == TESTSUITE) {
 			print(" <p id=\"valid\">");
-			print(" <a href=\"http://validator.w3.org/check?uri=referer\">");
+			print(" <a href=\"https://validator.w3.org/check?uri=referer\">");
 			print(" <img style=\"border:0;width:88px;height:31px\"");
 			print(" src=\"http://www.w3.org/Icons/valid-xhtml10\"");
 			print(" alt=\"Valid XHTML 1.0!\" height=\"31\" width=\"88\" />");

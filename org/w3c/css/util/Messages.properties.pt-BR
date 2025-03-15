@@ -58,7 +58,7 @@ validate_by_input: Validar por entrada direta
 enter_CSS: Entre as CSS que você gostaria de validar
 submit_input: Enviar CSS para validação
 note: Nota
-note_xhtml_valid: Para validar uma folha de estilo CSS incorporada a um documento (X)HTML você deverá, primeiramente, <a href="http://validator.w3.org/">verificar se a marcação (X)HTML é válida</a>
+note_xhtml_valid: Para validar uma folha de estilo CSS incorporada a um documento (X)HTML você deverá, primeiramente, <a href="https://validator.w3.org/">verificar se a marcação (X)HTML é válida</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: Resultados da validação CSS do W3C para
@@ -93,7 +93,7 @@ com a finalidade de facilitar futuras revalidações, ou mesmo permitir que seus
 verifiquem a validação da página, o endereço URI é mostrado a seguir:
 no_errors_forHTML_only_msg: Somente para documentos HTML/XML
 no_errors_bookmark_msg: Ou, você pode adicionar esta página à sua lista de favoritos.
-note_valide_html: Para surtir os efeitos de estilização pretendidos sua folha de estilo CSS precisa estar atrelada a um documento capaz de criar uma árvore possível de ser parseada. Em outras palavras: o documento deverá estar escrito em linguagem <a href="http://validator.w3.org/">HTML válida</a>.
+note_valide_html: Para surtir os efeitos de estilização pretendidos sua folha de estilo CSS precisa estar atrelada a um documento capaz de criar uma árvore possível de ser parseada. Em outras palavras: o documento deverá estar escrito em linguagem <a href="https://validator.w3.org/">HTML válida</a>.
 top: Topo
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* CUIDADO ! Essa não é uma propriedade CSS1 válida ! */

@@ -317,7 +317,7 @@
   <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
 
   <div class="intro">
-  <p><strong>Poznámka</strong>: Pokud chcete ověřit svůj CSS styl vložený do dokumentu (X)HTML měli byste nejprve zkontrolovat  <a href="http://validator.w3.org/">, že vámi použité (X)HTML je platné </a>.
+  <p><strong>Poznámka</strong>: Pokud chcete ověřit svůj CSS styl vložený do dokumentu (X)HTML měli byste nejprve zkontrolovat  <a href="https://validator.w3.org/">, že vámi použité (X)HTML je platné </a>.
   </p>
   </div>
   <ul class="navbar" id="menu">

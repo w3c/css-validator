@@ -317,7 +317,7 @@
   <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
 
   <div class="intro">
-  <p><strong>Nota</strong>: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deberías antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es válido</a>.
+  <p><strong>Nota</strong>: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deberías antes <a href="https://validator.w3.org/">comprobar que el  (X)HTML utilizado es válido</a>.
   </p>
   </div>
   <ul class="navbar" id="menu">

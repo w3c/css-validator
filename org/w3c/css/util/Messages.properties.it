@@ -57,7 +57,7 @@ validate_by_input: Validazione tramite immissione diretta
 enter_CSS: Inserisci il testo del CSS che desideri validare
 submit_input: Invia il codice per la verifica
 note: Nota
-note_xhtml_valid: Se desideri verificare un foglio di stile CSS interno ad un documento (X)HTML, dovresti prima <a href="http://validator.w3.org/">verificare la validità del codice (X)HTML</a>
+note_xhtml_valid: Se desideri verificare un foglio di stile CSS interno ad un documento (X)HTML, dovresti prima <a href="https://validator.w3.org/">verificare la validità del codice (X)HTML</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: Risultati della validazione W3C dei Fogli di Stile a Cascata (CSS) per 
@@ -92,7 +92,7 @@ per rendere più facile una futura riverifica di questa pagina o per consentire 
 di verificare la conformità della tua pagina, l'URI è:
 no_errors_forHTML_only_msg: solo per documenti HTML/XML
 no_errors_bookmark_msg: Oppure puoi solamente aggiungere la pagina corrente ai tuoi collegamenti preferiti.
-note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="http://validator.w3.org/">valid HTML</a>.
+note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="https://validator.w3.org/">valid HTML</a>.
 top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */

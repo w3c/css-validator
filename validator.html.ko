@@ -317,7 +317,7 @@
   <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
 
   <div class="intro">
-  <p><strong>주의</strong>: (X)HTML 문서에 포함된 CSS 스타일시트를 검사하기 이전에, <a href="http://validator.w3.org/">(X)HTML 문법 검사</a>를 하는 것을 권장합니다..
+  <p><strong>주의</strong>: (X)HTML 문서에 포함된 CSS 스타일시트를 검사하기 이전에, <a href="https://validator.w3.org/">(X)HTML 문법 검사</a>를 하는 것을 권장합니다..
   </p>
   </div>
   <ul class="navbar" id="menu">

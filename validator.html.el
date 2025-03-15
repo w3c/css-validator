@@ -317,7 +317,7 @@
   <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
 
   <div class="intro">
-  <p><strong>Σημείωση</strong>: Εάν επιθυμείτε να ελέγξετε την εγκυρότητα ενός CSS style sheet που είναι ενσωματωμένο σε ένα αρχείο (X)HTML, πρέπει αρχικά να <a href="http://validator.w3.org/">ελέγξετε ότι είναι έγκυρο το αρχείο (X)HTML που χρησιμοποιείτε</a>.
+  <p><strong>Σημείωση</strong>: Εάν επιθυμείτε να ελέγξετε την εγκυρότητα ενός CSS style sheet που είναι ενσωματωμένο σε ένα αρχείο (X)HTML, πρέπει αρχικά να <a href="https://validator.w3.org/">ελέγξετε ότι είναι έγκυρο το αρχείο (X)HTML που χρησιμοποιείτε</a>.
   </p>
   </div>
   <ul class="navbar" id="menu">
