@@ -241,12 +241,12 @@ public class AutoTestContentHandler implements ContentHandler {
 			print(" <p id=\"valid\">");
 			print(" <a href=\"https://validator.w3.org/check?uri=referer\">");
 			print(" <img style=\"border:0;width:88px;height:31px\"");
-			print(" src=\"http://www.w3.org/Icons/valid-xhtml10\"");
+			print(" src=\"https://www.w3.org/Icons/valid-xhtml10\"");
 			print(" alt=\"Valid XHTML 1.0!\" height=\"31\" width=\"88\" />");
 			print(" </a>");
-			print(" <a href=\"http://jigsaw.w3.org/css-validator/check/referer\">");
+			print(" <a href=\"https://jigsaw.w3.org/css-validator/check/referer\">");
 			print(" <img style=\"border:0;width:88px;height:31px\"");
-			print(" src=\"http://jigsaw.w3.org/css-validator/images/vcss\"");
+			print(" src=\"https://jigsaw.w3.org/css-validator/images/vcss\"");
 			print(" alt=\"Valid CSS!\" />");
 			print(" </a>");
 			print(" </p>");
