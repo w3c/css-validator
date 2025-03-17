@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS 検証サービス</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -107,12 +107,12 @@
 <h4 id="basicvalidation">基本的な検証で行われること</h4>
 
 <p>    
-    基本インターフェースを使うと、Validator は <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a> に対する準拠具合を調べます。CSS2 は、現行の CSS に関する技術勧告です。<br />
-    基本インターフェースを使うと、CSS 検証サービスは <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a> に対する準拠具合を調べます。CSS2 は、現行の CSS に関する技術勧告です。<br />
+    基本インターフェースを使うと、Validator は <a href="https://www.w3.org/TR/CSS21">CSS 2.1</a> に対する準拠具合を調べます。CSS2 は、現行の CSS に関する技術勧告です。<br />
+    基本インターフェースを使うと、CSS 検証サービスは <a href="https://www.w3.org/TR/CSS21">CSS 2.1</a> に対する準拠具合を調べます。CSS2 は、現行の CSS に関する技術勧告です。<br />
 
     この画面では、警告を出さずに(エラーのみ表示されます) XHTML で結果を表示します。<br />
     基本的な検証ではメディアは "all" に設定されますが、これはすべてのデバイスに適切なメディアです
-    (メディアについてのちゃんとした説明は <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a> を参照してください)。
+    (メディアについてのちゃんとした説明は <a href="https://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a> を参照してください)。
 </p>
 
 <h3 id="advanced">応用的な使い方</h3>
@@ -140,9 +140,9 @@
     CSS 検証サービスは、数種類の CSS プロファイルをチェックすることができます。
     プロファイルとは、あるプラットフォームが実装していると想定している機能のリストです。
     プロファイルの定義は、
-    <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">CSS のサイト</a> にあります。
+    <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">CSS のサイト</a> にあります。
     デフォルトでは、現在もっともよく使われている
-    <a href="http://www.w3.org/TR/CSS2">CSS 2</a> が用いられます。
+    <a href="https://www.w3.org/TR/CSS2">CSS 2</a> が用いられます。
 </p>
 
 <h4 id="parammedium">「メディア」パラメータ</h4>
@@ -150,7 +150,7 @@
 <p>
     メディアパラメータは、@media ルールと等価で、すべての文書に適用されます。
     メディアについての詳細は
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a> にあります。
 </p>
@@ -187,7 +187,7 @@
     </tr>
     <tr>
       <th>usermedium</th>
-      <td>検査するのに用いる<a href="http://www.w3.org/TR/CSS2/media.html">メディア</a>。
+      <td>検査するのに用いる<a href="https://www.w3.org/TR/CSS2/media.html">メディア</a>。
           たとえば <code>screen</code>、<code>print</code>、<code>braille</code>…など。</td>
       <td><code>all</code></td>
     </tr>
@@ -363,30 +363,30 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3Cの品質保証活動は、フリーなウェブ品質管理ツールなどを提供します。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
-   <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <a href="https://www.w3.org/donate/">
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">慶應義塾大学</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">慶應義塾大学</a>),
       All Rights Reserved.
-      W3C の<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">責任範囲</a>、
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商標</a>、
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">文書の利用</a>、
-      そして<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">ライセンス</a>
+      W3C の<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">責任範囲</a>、
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商標</a>、
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">文書の利用</a>、
+      そして<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">ライセンス</a>
 
       の規則が適用されます。
-      このサイトの訪問者は、私たちの<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">一般</a>および<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">メンバー</a>プライバシー声明に従うものとします。
+      このサイトの訪問者は、私たちの<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">一般</a>および<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">メンバー</a>プライバシー声明に従うものとします。
 
     </p>
 

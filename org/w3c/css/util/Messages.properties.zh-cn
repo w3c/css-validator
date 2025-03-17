@@ -58,7 +58,7 @@ validate_by_input: 验证直接输入的内容
 enter_CSS: 输入你要验证的CSS代码
 submit_input: Submit your input for validation
 note: 注意
-note_xhtml_valid: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="http://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。
+note_xhtml_valid: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="https://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。
 # End of variables added along with Index page template
 
 W3C_validator_results: W3C CSS 校验器结果：  
@@ -86,7 +86,7 @@ no_errors_dl_local_msg: 如果你喜欢的话，你可以下载这个图象到�
 no_errors_create_link_msg: 如果你愿意链接到此页（比如这个校验结果）以便以后更加容易地再校验此页，或者容许其它人校验你的网页，其 URI 是：
 no_errors_forHTML_only_msg: 仅使用于HTML文档
 no_errors_bookmark_msg: 或者，你可以把当前页添加到你的书签或列表中。
-note_valide_html: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="http://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。 
+note_valide_html: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="https://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。 
 top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* 请注意！这不是CSS1的属性！ */

@@ -15,7 +15,7 @@
 
   <body>
     <div id="banner">
-     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
      <a href="./"><span>Υπηρεσία Ελέγχου Εγκυρότητας CSS</span></a></h1>
      <p id="tagline">
        Έλεγχος Cascading Style Sheets (CSS) και εγγράφων (X)HTML με style sheets
@@ -66,18 +66,18 @@ CSS, θα σας βοηθάει να εντοπίσετε τα λάθη ή τι�
 
 <h4 id="reference">Οπότε, πρόκειται για μία υπηρεσία ελέγχου σχετικά με το τί είναι σωστό CSS και τι όχι;</h4>
 <p>Όχι. Είναι ένα χρήσιμο και αξιόπιστο εργαλείο, αλλά ένα εργαλείο λογισμικού, και όπως κάθε εργαλείο λογισμικού, έχει κάποια 
-<a href="https://github.com/w3c/css-validator/issues">σφάλματα και προβλήματα</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">σφάλματα και προβλήματα</a>.
-Η πραγματική αναφορά στα Cascading Style Sheets βρίσκεται στις <a href="http://www.w3.org/Style/CSS/#specs">Προδιαγραφές CSS</a>.</p>
+<a href="https://github.com/w3c/css-validator/issues">σφάλματα και προβλήματα</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">σφάλματα και προβλήματα</a>.
+Η πραγματική αναφορά στα Cascading Style Sheets βρίσκεται στις <a href="https://www.w3.org/Style/CSS/#specs">Προδιαγραφές CSS</a>.</p>
 
 <h4 id="validCSS">Τι σημαίνει “Έγκυρο CSS”; Ποια έκδοση  CSS χρησιμοποιεί ο Ελεγκτής Εγκυρότητας;</h4>
-<p>Σύμφωνα με τις  <a href="http://www.w3.org/TR/CSS21/conform.html#valid-style-sheet" 
+<p>Σύμφωνα με τις  <a href="https://www.w3.org/TR/CSS21/conform.html#valid-style-sheet" 
 title="CSS 2.1 Specification – Conformance: requirements and recommendations">Προδιαγραφές CSS 2.1</a>:
 <q cite="http://www.w3.org/TR/CSS21/conform.html">Η εγκυρότητα ενός  style sheet εξαρτάται από το επίπεδο  
 CSS που χρησιμοποιείται στο. […]  το έγκυρο  CSS 2.1 style sheet πρέπει να είναι κωδικοποιημένο σύμφωνα με το γραμματική του  CSS 2.1. 
 Επιπλέον, πρέπει να περιέχει μόνο κανόνες, ονόματα, ονόματα ιδιοτήτων και τιμές ιδιοτήτων που ορίζονται στις προδιαγραφές.</q></p>
 
 <p>Ο ελεγκτής εγκυρότητας ελέγχει τα style sheet κατά προεπιλογή για γραμματική, ιδιότητες και τιμές σύμφωνα με τις προδιαγραφές του
-<a href="http://www.w3.org/TR/CSS21/" 
+<a href="https://www.w3.org/TR/CSS21/" 
 title="Cascading Style Sheets Level 2 Revision 1 (CSS&nbsp;2.1) Specification">CSS&nbsp;2.1</a>, 
 αλλά μπορούν να ελεγχθούν άλλα προφίλ  CSS με χρήση των επιλογών.</p>
 
@@ -85,19 +85,19 @@ title="Cascading Style Sheets Level 2 Revision 1 (CSS&nbsp;2.1) Specification">C
 (αυτή που ορίζεται στο τελευταίο εγχειρίδιο χρήσης) με ένα πλήθος ιδιοτήτων και αποδεκτών τιμών που ορίζονται σε διάφορα προφίλ. Σε μία μελλοντική έκδοση του ελεγκτή εγκυρότητας, η προεπιλεγμένη επιλογή θα είναι ο έλεγχος των style sheet με βάση την τελευταία  “γραμματική CSSr” και όλων των τυποποιημένων ιδιοτήτων και τιμών του CSS.</p>
 
 <h4 id="free">Πόσο κοστίζει; </h4>
-<p>Τίποτα. Η υπηρεσία είναι δωρεά. Ο πηγαίος κώδικας είναι  <a href="DOWNLOAD.html">δωρεάν</a> και μπορείτε να τον κάνετε λήψη, τροποποιήσετε, επεξεργαστείτε, διανέμετε και  <a href="http://www.w3.org/Consortium/Legal/copyright-software">άλλα</a>.
+<p>Τίποτα. Η υπηρεσία είναι δωρεά. Ο πηγαίος κώδικας είναι  <a href="DOWNLOAD.html">δωρεάν</a> και μπορείτε να τον κάνετε λήψη, τροποποιήσετε, επεξεργαστείτε, διανέμετε και  <a href="https://www.w3.org/Consortium/Legal/copyright-software">άλλα</a>.
 Εάν σας αρέσει πραγματικά, είστε ευσπρόδεκτος να  <a href="#participate">συμμετέχετε στο έργο</a> ή να δωρίσετε χρήματα στην  W3C μέσω του 
- <a href="http://www.w3.org/Consortium/sup">W3C πρόγραμμα υποστηρικτών</a>, αλλά κανείς δεν σας αναγκάζει να το κάνετε.</p>
+ <a href="https://www.w3.org/Consortium/sup">W3C πρόγραμμα υποστηρικτών</a>, αλλά κανείς δεν σας αναγκάζει να το κάνετε.</p>
 
 <h4 id="who">Ποιος δημιούργησε αυτό το εργαλείο; Ποιος το συντηρεί;</h4>
 <p>Η W3C συντηρεί και φιλοξενεί το εργαλείο, χάρη στην εργασία και στις συνεισφορές από το προσωπικό, στους εθελοντές προγραμματιστές και μεταφραστές της W3C. Για λεπτομέριες δείτε τη <a href="thanks.html">σελίδα ευχαριστιών</a>. <a href="#participate">Μπορείτε και εσείς να βοηθήσετε</a>.</p>
 
 <h4 id="participate">Μπορώ να βοηθήσω;</h4>
 <p>Φυσικά. Εάν είστε προγραμματιστής  java, μπορείτε να βοηθήσετε στο έργο Ελεγκτή Εγκυρότητας CSS, ελέγχοντας τον <a href="#code">κώδικα</a>,
-διορθώνοντας <a href="https://github.com/w3c/css-validator/issues">σφάλματα</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">σφάλματα</a>
+διορθώνοντας <a href="https://github.com/w3c/css-validator/issues">σφάλματα</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">σφάλματα</a>
 ή βοηθώντας στη δημιουργία νέων χαρακτηριστικών.</p>
 <p>Αλλά δε χρειάζεται να είστε προγραμματιστής για να βοηθήσετε στη δημιουργία και συντήρηση του εργαλείου, μπορείτε να βοηθήσετε στη βελτίωση του εγχειρίδιου χρήσης, να συμμετέχετε στην μετάφραση του ελεγκτή εγκυρότητας στη γλώσσα σας ή να εγγραφείτε στη  
-<a href="http://lists.w3.org/Archives/Public/www-validator-css/">λίστα ενημέρωσης</a> και να συζητήσετε για το εργαλείο ή να βοηθήσετε άλλους.</p>
+<a href="https://lists.w3.org/Archives/Public/www-validator-css/">λίστα ενημέρωσης</a> και να συζητήσετε για το εργαλείο ή να βοηθήσετε άλλους.</p>
 
 <h4 id="contact">Πως επικοινωνώ με τους δημιουργούς του ελεγκτή; Αναφέρω ένα πρόβλημα; </h4>
 <p>Εάν έχετε κάποιο ερώτημα σχετικά με τη CSS ή τον ελεγκτή εγκυρότητας CSS, ελέγξτε τις διαθέσιμες
@@ -230,29 +230,29 @@ title="Cascading Style Sheets Level 2 Revision 1 (CSS&nbsp;2.1) Specification">C
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
 <p id="support_logo">
-<a href="http://www.w3.org/QA/Tools/Donate">
-<img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+<a href="https://www.w3.org/donate/">
+<img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
 </a>
 </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       Με επιφύλαξη παντός δικαιώματος.
-      Εφαρμόζονται οι κανόνες της W3C για <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
+      Εφαρμόζονται οι κανόνες της W3C για <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
 
-      και <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
+      και <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
 
 </div>
   </body>

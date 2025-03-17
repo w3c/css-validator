@@ -57,7 +57,7 @@ validate_by_input: Validierung per Direkteingabe
 enter_CSS: Geben Sie den CSS Code ein, den Sie überprüfen möchten
 submit_input: Code validieren
 note: Achtung
-note_xhtml_valid: Wenn Sie CSS-Code in einem (X)HTML-Dokument validieren möchten, sollten Sie zunächst <a href="http://validator.w3.org/">prüfen, ob das (X)HTML-Dokument valide ist</a>
+note_xhtml_valid: Wenn Sie CSS-Code in einem (X)HTML-Dokument validieren möchten, sollten Sie zunächst <a href="https://validator.w3.org/">prüfen, ob das (X)HTML-Dokument valide ist</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: Ergebnisse des CSS-Validators 
@@ -92,7 +92,7 @@ Seite zu erleichtern oder um es anderen zu ermöglichen Ihre Seite zu \
 validieren, so verwenden Sie folgenden URI:
 no_errors_forHTML_only_msg: nur für HTML/XML-Dokumente
 no_errors_bookmark_msg: Sie können die aktuelle Seite auch einfach in Ihre Bookmarks aufnehmen.
-note_valide_html: Damit das Programm richtig funktioniert, benötigt Ihr CSS style sheet einen korrekten Dokument-Syntaxbaum. Das bedeutet, dass Sie <a href="http://validator.w3.org/">gültiges HTML</a> verwenden sollten.
+note_valide_html: Damit das Programm richtig funktioniert, benötigt Ihr CSS style sheet einen korrekten Dokument-Syntaxbaum. Das bedeutet, dass Sie <a href="https://validator.w3.org/">gültiges HTML</a> verwenden sollten.
 top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */

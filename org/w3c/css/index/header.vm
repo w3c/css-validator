@@ -22,7 +22,7 @@
 
   <body>
    <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+    <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
     <a href="./"><span>CSS Validation Service</span></a></h1>
     <p id="tagline">
       $check_CSS

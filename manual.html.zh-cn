@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS Validation Service</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -98,9 +98,9 @@
 <h4 id="basicvalidation">基本验证都作了什么工作？</h4>
 
 <p>    
-    当使用基本界面的时候，验证器会和<a href="http://www.w3.org/TR/CSS2">CSS2的标准(目前最新的标准)</a>进行比较，<br />你会看到一个XHTML格式的Error输出(不会包括警告)。
+    当使用基本界面的时候，验证器会和<a href="https://www.w3.org/TR/CSS2">CSS2的标准(目前最新的标准)</a>进行比较，<br />你会看到一个XHTML格式的Error输出(不会包括警告)。
     <br />
-    媒介会设定到使用所有的设备媒介(对于媒介的描述请参考<a href="http://www.w3.org/TR/CSS2/media.html">
+    媒介会设定到使用所有的设备媒介(对于媒介的描述请参考<a href="https://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a>)。
 </p>
 
@@ -123,17 +123,17 @@
 
 <p>
     CSS验证器可以检查不同的CSS配置。所谓的配置列出了一系列某一个特定平台上的的特性。配置本身的定义可以参考
-    <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+    <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	CSS站点
     </a>。默认的选择就是当前最常用的
-    <a href="http://www.w3.org/TR/CSS21">CSS 2.1标准</a>.
+    <a href="https://www.w3.org/TR/CSS21">CSS 2.1标准</a>.
 </p>
 
 <h4 id="parammedium">媒介</h4>
 
 <p>
     这个参数就等同于@media规则，适用于所有的文档。你可以在
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>找到更多的关于媒介的资料。
 </p>
@@ -169,7 +169,7 @@
     </tr>
     <tr>
       <th>usermedium</th>
-      <td>指定用于被验证的媒介(<a href="http://www.w3.org/TR/CSS2/media.html">medium</a>)，例如<code>screen</code>,
+      <td>指定用于被验证的媒介(<a href="https://www.w3.org/TR/CSS2/media.html">medium</a>)，例如<code>screen</code>,
 	  <code>print</code>, <code>braille</code>...</td>
       <td><code>all</code></td>
     </tr>
@@ -341,31 +341,31 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
-   <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <a href="https://www.w3.org/donate/">
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">责任</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商标</a>,已运用
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">文档授权</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">责任</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商标</a>,已运用
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">文档授权</a>
 
-      和 <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">软件授权</a>
+      和 <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">软件授权</a>
 
-      相关规则。你与本站的互动是符合我们的<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">公开</a> 和
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a> 隐私声明。
+      相关规则。你与本站的互动是符合我们的<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">公开</a> 和
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a> 隐私声明。
     </p>
 
 </div>

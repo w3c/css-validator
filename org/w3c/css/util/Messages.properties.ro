@@ -54,7 +54,7 @@ validate_by_input: Validare prin introducere directa a codului
 enter_CSS: Introdu CSS-ul pe care vrei sa il validezi
 submit_input: Trimite codul pentru validare
 note: Nota
-note_xhtml_valid: Daca vrei sa validezi CSS-ul inclus intr-un document (X)HTML, ar trebui mai intai sa <a href="http://validator.w3.org/">verifici daca documentul (X)HTML pe care il folosesti este valid</a>
+note_xhtml_valid: Daca vrei sa validezi CSS-ul inclus intr-un document (X)HTML, ar trebui mai intai sa <a href="https://validator.w3.org/">verifici daca documentul (X)HTML pe care il folosesti este valid</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: Rezultatele Validatorului W3C
@@ -82,7 +82,7 @@ no_errors_dl_local_msg: Daca vrei, poti descarca o copie a acestei imagini pentr
 no_errors_create_link_msg: Daca vrei sa creezi un link catre aceasta pagina pentru a revalida mai usor in viitor sau sa permiti altora sa valideze pagina ta, URI-ul este:
 no_errors_forHTML_only_msg: Doar pentru documente HTML/XML 
 no_errors_bookmark_msg: Sau, poti doar sa adaugi pagina actuala la marcaje (bookmark-uri)
-note_valide_html: Pentru a functiona cu ar trebui, foile de stil CSS au nevoie de o graf orientat aciclic corect. Asta inseamna ca trebuie sa folosesti un <a href="http://validator.w3.org/">HTML valid</a>.
+note_valide_html: Pentru a functiona cu ar trebui, foile de stil CSS au nevoie de o graf orientat aciclic corect. Asta inseamna ca trebuie sa folosesti un <a href="https://validator.w3.org/">HTML valid</a>.
 top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* Atentie! Aceasta nu este o proprietate CSS1! */

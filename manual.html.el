@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Υπηρεσία Ελέγχου Εγκυρότητας CSS</span></a></h1>
    <p id="tagline">
      Έλεγχος Cascading Style Sheets (CSS) και εγγράφων (X)HTML με style sheets
@@ -100,10 +100,10 @@
 <h4 id="basicvalidation">Τι κάνει ο βασικός έλεγχος εγκυρότητας;</h4>
 
 <p>    
-    Κατά τη χρήση της βασικής διασύνδεσης, ο ελεγκτής εγκυρότητας ελέγχει τη συμβατότητα σύμφωνα με το  <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, το οποίο αποτελεί την τρέχουσα τεχνική πρόταση CSS.<br />
+    Κατά τη χρήση της βασικής διασύνδεσης, ο ελεγκτής εγκυρότητας ελέγχει τη συμβατότητα σύμφωνα με το  <a href="https://www.w3.org/TR/CSS2">CSS 2</a>, το οποίο αποτελεί την τρέχουσα τεχνική πρόταση CSS.<br />
     Παράγει μία έξοδο XHTML χωρίς καμία προειδοποίηση (θα δείτε μόνο σφάλματα).<br />
     Το μέσο είναι ορισμένο στο  "όλα", το οποίο αποτελεί το κατάλληλο μέσο για όλες τις συσκευές  
-    (δείτε τη σελίδα<a href="http://www.w3.org/TR/CSS2/media.html">
+    (δείτε τη σελίδα<a href="https://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a> για μία ολοκληρωμένη περιγραφή του μέσου).
 </p>
 
@@ -128,16 +128,16 @@
 
 <p>
     Ο ελεγκτής εγκυρότητας CSS μπορεί να ελέγξει διαφορετικά προφίλ  CSS. Ένα προφίλ εμφανίζει όλα τα χαρακτηριστικά που αναμένεται να υλοποιήσει μία υλοποίηση σε μία συγκεκριμένη πλατφόρμα. Ο ορισμός λαμβάνεται από από την  
-    <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+    <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	τον ιστότοπο  CSS</a>. Η προεπιλεγμένη επιλογή ανταποκρίνεται στην πιο χρησιμοποιημένη τρέχουσα επιλογή: 
-    <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.
+    <a href="https://www.w3.org/TR/CSS2">CSS 2</a>.
 </p>
 
 <h4 id="parammedium">Μέσον</h4>
 
 <p>
     Η παράμετρος μέσου ισοδυναμεί με τον κανόνα @media, ο οποίος εφαρμόζεται σε όλο το έγγραφο. Θα βρείτε περισσότερες πληροφορίες σχετικά με τα μέσα στη διεύθυνση 
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>.
 </p>
@@ -174,7 +174,7 @@ CSS Ελεγκτή Εγκυρότητας.</p>
     </tr>
     <tr>
       <th>usermedium</th>
-      <td>Το <a href="http://www.w3.org/TR/CSS2/media.html">μέσο</a> που χρησιμοποιείται για τον έλεγχο εγκυρότητας, όπως <code>screen</code>,
+      <td>Το <a href="https://www.w3.org/TR/CSS2/media.html">μέσο</a> που χρησιμοποιείται για τον έλεγχο εγκυρότητας, όπως <code>screen</code>,
 	  <code>print</code>, <code>braille</code>...</td>
       <td><code>all</code></td>
     </tr>
@@ -286,28 +286,28 @@ CSS Ελεγκτή Εγκυρότητας.</p>
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
 Υποστηρίξτε το εργαλείο, γίνετε ένας υποστηρικτής<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+<a href="https://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       Με επιφύλαξη παντός δικαιώματος.
-      Εφαρμόζονται οι κανόνες της W3C για <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
+      Εφαρμόζονται οι κανόνες της W3C για <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
 
-      και <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
+      και <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
 
 
 </div>

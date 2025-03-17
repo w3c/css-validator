@@ -16,7 +16,7 @@
 
   <body>
     <div id="banner">
-     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
      <a href="./"><span>CSS Validation Service</span></a></h1>
      <p id="tagline">
        Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -74,16 +74,16 @@ Deze tool helpt mensen die zich bezig houden met het ontwikkelen van webpagina's
 
 <h4 id="reference">Dus deze service bepaalt wat wel of geen correct CSS is?</h4>
 <p>Nee. Het is een helpvolle en betrouwbare tool, maar het blijft software, en zoals elk stuk software heeft de validator een aantal
-<a href="https://github.com/w3c/css-validator/issues">bugs en problemen</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs en problemen</a>.
-De echte referentie over Cascading Style Sheets zijn de offici&euml;le <a href="http://www.w3.org/Style/CSS/#specs">CSS 
+<a href="https://github.com/w3c/css-validator/issues">bugs en problemen</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs en problemen</a>.
+De echte referentie over Cascading Style Sheets zijn de offici&euml;le <a href="https://www.w3.org/Style/CSS/#specs">CSS 
 Specificaties</a>.</p>
 
 <h4 id="free">Wat kost dit mij?</h4>
 <p>Niets. De service is gratis. De broncode is <a href="DOWNLOAD.html">open</a> en je bent vrij om de code te downloaden,
 te gebruiken, te wijzigen, te verspreiden 
-en <a href="http://www.w3.org/Consortium/Legal/copyright-software">meer</a>.
+en <a href="https://www.w3.org/Consortium/Legal/copyright-software">meer</a>.
 Verder ben je, als je dat wilt, welkom om <a href="#participate">mee te werken</a> aan dit project of om te doneren aan het W3C via het
- <a href="http://www.w3.org/Consortium/sup">W3C supporters programma</a>.</p>
+ <a href="https://www.w3.org/Consortium/sup">W3C supporters programma</a>.</p>
 
 <h4 id="who">Wie heeft deze tool geschreven? En wie onderhoudt hem?</h4>
 
@@ -93,11 +93,11 @@ voor details. <a href="#participate">Ook jij kunt helpen</a>.</p>
 
 <h4 id="participate">Kan ik helpen?</h4>
 <p>Natuurlijk, graag zelfs! Als je een java programmeur bent kun je meehelpen aan het CSS Validator project door 
-de <a href="#code">broncode</a> op te halen en te helpen bij het oplossen van <a href="https://github.com/w3c/css-validator/issues">bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs</a>,
+de <a href="#code">broncode</a> op te halen en te helpen bij het oplossen van <a href="https://github.com/w3c/css-validator/issues">bugs</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs</a>,
 of door het helpen bij het implementeren van nieuwe functies.</p>
 <p>Maar je hoeft niet perse een coder te zijn om te helpen bij het bouwen en onderhouden van deze tool: je kunt ook helpen de documentatie
 te verbeteren, mee te werken door de validator in jouw taal te vertalen, of door je aan te melden bij de
-<a href="http://lists.w3.org/Archives/Public/www-validator-css/">mailing-list</a> en te discussi&euml;ren over de tool of anderen te helpen.</p>
+<a href="https://lists.w3.org/Archives/Public/www-validator-css/">mailing-list</a> en te discussi&euml;ren over de tool of anderen te helpen.</p>
 
 <h4 id="contact">Heb je verder nog vragen?</h4>
 <p>Mocht je verder nog vragen hebben over CSS of de CSS validator, bekijk dan even de beschikbare
@@ -234,33 +234,33 @@ of installeer en draai je eigen instantie van de validator.</p>
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, brengt je gratis Web kwaliteits tools en meer"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
-   <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <a href="https://www.w3.org/donate/">
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
     <p class="copyright">
 
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       Alle Rechten Voorbehouden.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">aansprakelijkheid</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">handelsmerk</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document gebruik</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">aansprakelijkheid</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">handelsmerk</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document gebruik</a>
 
-      en de <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licentie</a>
+      en de <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licentie</a>
 
       regels zijn van toepassing. Je interacties met deze site zijn in overeenstemming
-      met onze <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publieke</a> en
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      met onze <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">publieke</a> en
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       verklaringen.
     </p>
 

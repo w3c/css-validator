@@ -16,7 +16,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a><span id="tit"><span style="background-color: #365D95; background-repeat: repeat; background-position: 0 0"><a href="./">سرویس اعتبار سنجی <span lang="en-us">CSS</span></a></span></span></h1>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a><span id="tit"><span style="background-color: #365D95; background-repeat: repeat; background-position: 0 0"><a href="./">سرویس اعتبار سنجی <span lang="en-us">CSS</span></a></span></span></h1>
    <p id="tagline">
      محک زدن شیوه نامه های آبشاری (CSS) و اسناد X)HTML) حاوی شیوه نامه ها
    </p>
@@ -60,7 +60,7 @@
     
     <dt>
 	<a href="https://github.com/w3c/css-validator/issues">
-	اشکالات</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">اشکالات</a></dt>
+	اشکالات</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">اشکالات</a></dt>
     <dd>موضوعات شناخته شده در ورژن جاری اعتبار سنج و یک واسط جهت ارایه ی اشکالات 
 	جدید و مسائل مشخص. <a href="Email.html">دستور العمل های بازخورد</a> 
 	را نیز مشاهده کنید.</dd>
@@ -136,53 +136,53 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="فعالیت تضمین کیفی کنسرسیوم وب جهانی، ابزارهای رایگان کیفیت وب و سایر موارد را برای شما به ارمغان می آورد"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="در مورد شیوه نامه های آبشاری بیشتر یاد بگیرید"><img src="images/woolly-icon.png" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="در مورد شیوه نامه های آبشاری بیشتر یاد بگیرید"><img src="images/woolly-icon.png" alt="CSS" /></a>
    </p>
    <p id="support_logo">
 حمایت از این ابزار و تبدیل شدن به<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="حامی کنسرسیوم وب جهانی" /></a>
+<a href="https://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="حامی کنسرسیوم وب جهانی" /></a>
    </p>
 
     <p class="copyright">
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">کلیه 
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">کلیه 
 		حقوق چاپ و نشر</a> &copy; 1994-2007
       <acronym title="کنسرسیوم وب جهانی">
-      <a href="http://www.w3.org/">W3C</a> </acronym>&reg; برای
+      <a href="https://www.w3.org/">W3C</a> </acronym>&reg; برای
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="انستیتو فن آوری ماساچوست">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/">
+      (<a href="https://www.csail.mit.edu/"><acronym title="انستیتو فن آوری ماساچوست">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/">
 		<acronym title="کنسرسیوم تحقیقات اروپایی برای پردازش اطلاعات و ریاضیات">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>)،
+      <a href="https://www.keio.ac.jp/">Keio</a>)،
       محفوظ است.
       W3C ، رعایت قوانین مربوط به
-		<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">
+		<a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">
 		مارک تجاری</a>،
-		<a href="http://www.w3.org/Consortium/Legal/copyright-documents">استفاده 
+		<a href="https://www.w3.org/Consortium/Legal/copyright-documents">استفاده 
 		از سند</a> و
-		<a href="http://www.w3.org/Consortium/Legal/copyright-software">مجوز 
+		<a href="https://www.w3.org/Consortium/Legal/copyright-software">مجوز 
 		استفاده نرم افزار</a> را
-		<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
+		<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
 		الزامی</a> نموده است. تعامل شما با این سایت بر اساس بیانیه اختصاصی
-		<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">
+		<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">
 		اعضا</a> و
-		<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">
+		<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">
 		گروه</a> ما می باشد. <br />
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">
 		Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> 
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> 
 		privacy statements
     </p>
 

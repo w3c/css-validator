@@ -59,7 +59,7 @@ validate_by_input: Validate by direct input
 enter_CSS: Enter the CSS you would like validated
 submit_input: Submit your input for validation
 note: Note
-note_xhtml_valid: If you want to validate your CSS style sheet embedded in an (X)HTML document, you should first <a href="http://validator.w3.org/">check that the (X)HTML you use is valid</a>
+note_xhtml_valid: If you want to validate your CSS style sheet embedded in an (X)HTML document, you should first <a href="https://validator.w3.org/">check that the (X)HTML you use is valid</a>
 vendorext: Vendor Extensions
 vext_default: Default
 vext_warnings: Warnings
@@ -98,7 +98,7 @@ result) to make it easier to re-validate this page in the future or to allow \
 others to validate your page, the URI is:
 no_errors_forHTML_only_msg: for HTML/XML document only
 no_errors_bookmark_msg: Or, you can just add the current page to your bookmarks or hotlist.
-note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="http://validator.w3.org/">valid HTML</a>.
+note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="https://validator.w3.org/">valid HTML</a>.
 top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */

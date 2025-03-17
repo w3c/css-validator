@@ -17,7 +17,7 @@
 <body>
 
 <div id="banner">
-	<h1 id="title"><a href="http://www.w3.org/">
+	<h1 id="title"><a href="https://www.w3.org/">
 	<img id="logo" alt="W3C" height="61" src="images/w3c.png" width="110" /></a>
 	<a href="./"><span>सीएसएस मान्यकरण सेवा</span></a></h1>
 	<p id="tagline">कास्केडिंग शैली पत्रक (CSS) and (X)HTML दस्तावेजों शैली शीट्स 
@@ -83,21 +83,21 @@
 	सॉफ्टवेयर की तरह और, यह
 	<a href="https://github.com/w3c/css-validator/issues">कुछ 
 	क़ी मुददा</a>
-	&amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">कुछ 
+	&amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">कुछ 
 	क़ी मुददा</a>
 	है शैली पत्रक कास्केडिंग पर वास्तविक संदर्भ
-	<a href="http://www.w3.org/Style/CSS/#specs">सीएसएस निर्दिष्टीकरण</a> हैं.</p>
+	<a href="https://www.w3.org/Style/CSS/#specs">सीएसएस निर्दिष्टीकरण</a> हैं.</p>
 	<h4 id="validCSS">मान्य सीएसएस का क्या मतलब है? यह मान्यकर्ता कौन से सीएसएस 
 	संस्करण में का उपयोग करता है?</h4>
 	<p>
-	<a href="http://www.w3.org/TR/CSS21/conform.html#valid-style-sheet" title="सीएसएस 2.1 विनिर्देश – आवश्यकताओं: और सिफारिशें">
+	<a href="https://www.w3.org/TR/CSS21/conform.html#valid-style-sheet" title="सीएसएस 2.1 विनिर्देश – आवश्यकताओं: और सिफारिशें">
 	सीएसएस 2.1 विनिर्देश</a><q cite="http://www.w3.org/TR/CSS21/conform.html"> के 
 	अनुसार: एक शैली पत्रक की वैधता शैली पत्रक के लिए इस्तेमाल किया सीएसएस के स्तर 
 	पर निर्भर करता है. [...] मान्य सीएसएस 2,1 शैली पत्रक 2.1 सीएसएस के व्याकरण के 
 	हिसाब से लिखा होना चाहिए. इसके अलावा, यह केवल पर, नियम, संपत्ति के नाम, और संपत्ति 
 	मूल्यों इस विनिर्देशन में परिभाषित होना चाहिए.</q></p>
 	<p>डिफ़ॉल्ट रूप से, व्याकरण के खिलाफ इस मान्यकर्ता चेक शैली पत्रक, गुण और
-	<a href="http://www.w3.org/TR/CSS21/" title="शैली पत्रक स्तर 2 संशोधन 1 (2.1 सीएसएस) विशिष्टता">
+	<a href="https://www.w3.org/TR/CSS21/" title="शैली पत्रक स्तर 2 संशोधन 1 (2.1 सीएसएस) विशिष्टता">
 	सीएसएस 2.1</a> विनिर्देश में परिभाषित किया गया है लेकिन अन्य सीएसएस प्रोफाइल 
 	विकल्पों के खिलाफ प्रयोग करके के जाँच की जा सकती. </p>
 	<p>सीएसएस एक विकसित भाषा है, और यह द्वारा कई कि &quot;सीएसएस&quot; गुण और स्वीकार्य विभिन्न 
@@ -109,9 +109,9 @@
 	<h4 id="free">इस में कितना खर्च आता है? </h4>
 	<p>कुछ नहीं. सेवा मुफ़्त है. स्रोत <a href="DOWNLOAD.html.hi">खुला</a> है और 
 	आप इसे डाउनलोड करने के लिए स्वतंत्र हैं, इसका इस्तेमाल संशोधित, वितरित करने 
-	, इसे <a href="http://www.w3.org/Consortium/Legal/copyright-software">और अधिक</a> 
+	, इसे <a href="https://www.w3.org/Consortium/Legal/copyright-software">और अधिक</a> 
 	. तुम सच में इसे तरह अगर, आप के लिए परियोजना में <a href="#participate">शामिल 
-	होने </a>का स्वागत कर रहे हैं या <a href="http://www.w3.org/Consortium/sup">
+	होने </a>का स्वागत कर रहे हैं या <a href="https://www.w3.org/Consortium/sup">
 	W3C समर्थकों कार्यक्रम</a> है ,इस के माध्यम से W3C दान करने के लिए, लेकिन कोई 
 	भी तुमहे बलों को.</p>
 	<h4 id="who">कौन इस उपकरण को लिखा? रख रखाव करता है? </h4>
@@ -124,12 +124,12 @@
 	जाँच द्वारा सीएसएस मान्यकर्ता परियोजना मदद, अपनाने और
 	<a href="https://github.com/w3c/css-validator/issues">कीड़े 
 	फिक्सिंग</a>
-	&amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">कीड़े 
+	&amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">कीड़े 
 	फिक्सिंग</a>, या नई सुविधाओं के निर्माण में मदद कर सकते हैं. </p>
 	<p>लेकिन आप एक मदद करने के लिए इस उपकरण का निर्माण और बनाए रखने के लिए सांकेतिक 
 	शब्दों में बदलनेवाला की आवश्यकता नहीं है: क्या आप भी मदद कर सकते है प्रलेखन 
 	में सुधार अपनी भाषा, या
-	<a href="http://lists.w3.org/Archives/Public/www-validator-css/">मेलिंग सूची</a> 
+	<a href="https://lists.w3.org/Archives/Public/www-validator-css/">मेलिंग सूची</a> 
 	की सदस्यता में मान्यकर्ता के अनुवाद में भाग लेने के लिए और उपकरण या अन्य उपयोगकर्ताओं 
 	की मदद के बारे में चर्चा.</p>
 	<h4 id="contact">किसी भी अन्य प्रश्न?</h4>
@@ -214,29 +214,28 @@
 </ul>
 <div id="footer">
 	<p id="activity_logos">
-	<a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more">
-	<img alt="QA" src="http://www.w3.org/QA/2002/12/qa-small.png" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img alt="CSS" src="images/woolly-icon" /></a>
+        <a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img alt="CSS" src="images/woolly-icon" /></a>
 	</p>
-	<p id="support_logo"><a href="http://www.w3.org/QA/Tools/Donate">
-	<img alt="I heart Validator logo" src="http://www.w3.org/QA/Tools/I_heart_validator" title=" Validators Donation Program" />
+	<p id="support_logo"><a href="https://www.w3.org/donate/">
+	<img alt="I heart Validator logo" src="https://www.w3.org/QA/Tools/I_heart_validator" title=" Validators Donation Program" />
 	</a></p>
 	<p class="copyright">
-	<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" rel="Copyright">
-	Copyright</a> © 1994-2009 <a href="http://www.w3.org/">
-	<acronym title="World Wide Web Consortium">W3C</acronym></a>® (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-	<a href="http://www.ercim.org/">
+	<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright" rel="Copyright">
+	Copyright</a> © 1994-2009 <a href="https://www.w3.org/">
+	<acronym title="World Wide Web Consortium">W3C</acronym></a>® (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+	<a href="https://www.ercim.eu/">
 	<acronym title="European Research Consortium for Informatics and Mathematics">
-	ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights 
+	ERCIM</acronym></a>, <a href="https://www.keio.ac.jp/">Keio</a>), All Rights 
 	Reserved. W3C
-	<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-	<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-	<a href="http://www.w3.org/Consortium/Legal/copyright-documents" rel="Copyright">
+	<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+	<a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+	<a href="https://www.w3.org/Consortium/Legal/copyright-documents" rel="Copyright">
 	document use</a> and
-	<a href="http://www.w3.org/Consortium/Legal/copyright-software" rel="Copyright">
+	<a href="https://www.w3.org/Consortium/Legal/copyright-software" rel="Copyright">
 	software licensing</a> rules apply. Your interactions with this site are in 
 	accordance with our
-	<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> 
-	and <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> 
+	<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> 
+	and <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> 
 	privacy statements. </p>
 </div>
 

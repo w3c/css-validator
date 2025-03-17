@@ -17,7 +17,7 @@
 
 <body>
     <div id="banner">
-     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
      <a href="./"><span>Сервис проверки CSS</span></a></h1>
      <p id="tagline">
        Проверка таблиц каскадных стилей (CSS) и документов (X)HTML с таблицами стилей
@@ -85,9 +85,9 @@
 
 <h4 id="basicvalidation">Что делает основная проверка?</h4>
 
-<p>При использовании упрощенного интерфейса, сервис проверит документы на соответствие <a href="http://www.w3.org/TR/CSS2">CSS&#x00a0;2</a>&#x00a0;— текущей технической рекомендации для CSS.<br />
+<p>При использовании упрощенного интерфейса, сервис проверит документы на соответствие <a href="https://www.w3.org/TR/CSS2">CSS&#x00a0;2</a>&#x00a0;— текущей технической рекомендации для CSS.<br />
 Он выдаст отчет в XHTML без каких-либо предупреждений (будет только информация об ошибках).<br />
-Опция «среда» будет установлена в значение «all», что обозначает соответствие всем устройствам (смотрите <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a> для полного описания сред).</p>
+Опция «среда» будет установлена в значение «all», что обозначает соответствие всем устройствам (смотрите <a href="https://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a> для полного описания сред).</p>
 
 <h3 id="advanced">Расширенная проверка</h3>
 
@@ -101,11 +101,11 @@
 
 <h4 id="paramprofile">Профиль</h4>
 
-<p>Сервис проверки может работать с различными профилями CSS. Профиль перечисляет все особенности и возможности реализации на конкретной платформе. Это определение взято с <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">сайта CSS</a>. Выбор по умолчанию соответствует наиболее часто используемому, <a href="http://www.w3.org/TR/CSS2">CSS&#x00a0;2</a>.</p>
+<p>Сервис проверки может работать с различными профилями CSS. Профиль перечисляет все особенности и возможности реализации на конкретной платформе. Это определение взято с <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">сайта CSS</a>. Выбор по умолчанию соответствует наиболее часто используемому, <a href="https://www.w3.org/TR/CSS2">CSS&#x00a0;2</a>.</p>
 
 <h4 id="parammedium">Носитель</h4>
 
-<p>Задание носителя соответствует правилу @media, применяющемуся ко всему документу. Вы можете найти больше информации о носителях по адресу <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a>.</p>
+<p>Задание носителя соответствует правилу @media, применяющемуся ко всему документу. Вы можете найти больше информации о носителях по адресу <a href="https://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a>.</p>
 
 <h3 id="expert">Только для специалистов</h3>
 
@@ -138,7 +138,7 @@
     </tr>
     <tr>
       <th>usermedium</th>
-      <td><a href="http://www.w3.org/TR/CSS2/media.html">Среда</a>, используемая для проверки; например. <code>screen</code>, <code>print</code>, <code>braille</code>...</td>
+      <td><a href="https://www.w3.org/TR/CSS2/media.html">Среда</a>, используемая для проверки; например. <code>screen</code>, <code>print</code>, <code>braille</code>...</td>
       <td><code>all</code></td>
     </tr>
     <tr>
@@ -293,31 +293,31 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="Сообщество контроля качества в W3C, распространяющее бесплатные утилиты"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="Сообщество контроля качества" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Изучите больше о Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Изучите больше о Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
-   <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <a href="https://www.w3.org/donate/">
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

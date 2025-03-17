@@ -54,7 +54,7 @@ validate_by_input: Έλεγχος εγκυρότητας με άμεση εισ�
 enter_CSS: Εισάγετε το CSS που θέλετε να ελέγξετε την εγκυρότητα
 submit_input: Εισάγετε αρχείο για έλεγχο εγκυρότητας
 note: Σημείωση
-note_xhtml_valid: Εάν επιθυμείτε να ελέγξετε την εγκυρότητα ενός CSS style sheet που είναι ενσωματωμένο σε ένα αρχείο (X)HTML, πρέπει αρχικά να <a href="http://validator.w3.org/">ελέγξετε ότι είναι έγκυρο το αρχείο (X)HTML που χρησιμοποιείτε</a>
+note_xhtml_valid: Εάν επιθυμείτε να ελέγξετε την εγκυρότητα ενός CSS style sheet που είναι ενσωματωμένο σε ένα αρχείο (X)HTML, πρέπει αρχικά να <a href="https://validator.w3.org/">ελέγξετε ότι είναι έγκυρο το αρχείο (X)HTML που χρησιμοποιείτε</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: Αποτελέσματα Ελέγχου Εγκυρότητας W3C CSS για
@@ -88,7 +88,7 @@ no_errors_create_link_msg: Εάν επιθυμείτε να δημιουργήσ
 σε άλλους να ελέγχουν την εγκυρότητα της σελίδας, το URI είναι:
 no_errors_forHTML_only_msg: μόνο για αρχεία HTML/XML
 no_errors_bookmark_msg: Ή μπορείτε να προσθέσετε την τρέχουσα σελίδα στα αγαπημένα σας ή στη hotlist.
-note_valide_html: Για να λειτουργεί όπως προτείνεται, το CSS style sheet χρειάζεται ένα σωστό δέντρο συντακτικής ανάλυσης. Αυτό σημαίνει ότι πρέπει να χρησιμοποιείτε ένα <a href="http://validator.w3.org/">έγκυρο HTML</a>.
+note_valide_html: Για να λειτουργεί όπως προτείνεται, το CSS style sheet χρειάζεται ένα σωστό δέντρο συντακτικής ανάλυσης. Αυτό σημαίνει ότι πρέπει να χρησιμοποιείτε ένα <a href="https://validator.w3.org/">έγκυρο HTML</a>.
 top: Πάνω
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* ΠΡΟΣΟΧΗ ! Δεν πρόκεται για ιδιότητα CSS1 ! */

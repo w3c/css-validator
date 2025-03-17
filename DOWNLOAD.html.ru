@@ -18,7 +18,7 @@
 
 <body>
     <div id="banner">
-     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
      <a href="./"><span>Сервис проверки CSS</span></a></h1>
      <p id="tagline">
        Проверка таблиц каскадных стилей (CSS) и документов (X)HTML с таблицами стилей
@@ -33,11 +33,11 @@
 <h3 id="download">Загрузка</h3>	
 
 	<h4 id="source">Загрузка исходных файлов</h4>
-    <p><a href="https://github.com/w3c/css-validator">Сервис проверки CSS</a> доступен для загрузки через CVS. Следуйте <a href="http://dev.w3.org/cvsweb/">инструкциям для доступа к общедоступному серверу CVS</a> и загрузите 2002/css-validator. Заметьте, что на jigsaw.w3.org/css-validator установлена более ранняя версия, нежели та, что хранится в репозитории CVS, так что результаты вывода и внешний вид могут незначительно различаться</p>
+    <p><a href="https://github.com/w3c/css-validator">Сервис проверки CSS</a> доступен для загрузки через CVS. Следуйте <a href="https://dev.w3.org/cvsweb/">инструкциям для доступа к общедоступному серверу CVS</a> и загрузите 2002/css-validator. Заметьте, что на jigsaw.w3.org/css-validator установлена более ранняя версия, нежели та, что хранится в репозитории CVS, так что результаты вывода и внешний вид могут незначительно различаться</p>
 
 	<h4>Загрузка пакета Java (jar или war)</h4>
 <!--	<p>TBD... we just need a stable location to put jar/war archives on a regular basis</p>-->
-	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+	<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 
 <h3>Руководство по установке</h3>
@@ -51,16 +51,16 @@
 
 <ul class="instructions">
 	<li>рабочую среду Java;</li>
-	<li>средство разработки <a href="http://ant.apache.org/">Ant</a>;</li>
-	<li>контейнер сервлетов&#x00a0;— например, <a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> или <a href="http://www.mortbay.org/">Jetty</a>&#x00a0;— если планируете создать сетевой сервис; в этой инструкции подробно рассказывается только про Jigsaw и Tomcat.</li>
+	<li>средство разработки <a href="https://ant.apache.org/">Ant</a>;</li>
+	<li>контейнер сервлетов&#x00a0;— например, <a href="https://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="https://tomcat.apache.org/">Tomcat</a> или <a href="http://www.mortbay.org/">Jetty</a>&#x00a0;— если планируете создать сетевой сервис; в этой инструкции подробно рассказывается только про Jigsaw и Tomcat.</li>
 </ul>
 
 <p id="prereq-libs">Для установки сервиса в своей системе необходимо загрузить или найти у себя на компьютере ряд библиотек Java:</p>
 
 <ul class="instructions">
 	<li>servlet.jar (если Tomcat установлен в [<span class="const">TOMCAT_DIR</span>], то можете найти этот файл в [<span class="const">TOMCAT_DIR</span>]/common/lib/); возможно, он будет называться «servlet-api.jar»; если его нет, загрузите с <a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a>;</li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a>;</li>
-	<li>xercesImpl.jar и xml-apis.jar (могут быть загружены с <a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>);</li>
+	<li><a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a>;</li>
+	<li>xercesImpl.jar и xml-apis.jar (могут быть загружены с <a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>);</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a>.</li>
 </ul>
 
@@ -204,31 +204,31 @@
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="Сообщество контроля качества W3C, распространяющее бесплатные утилиты"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="Сообщество контроля качества" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Узнайте больше о CSS"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Узнайте больше о CSS"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
-   <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <a href="https://www.w3.org/donate/">
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

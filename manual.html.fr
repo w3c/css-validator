@@ -16,7 +16,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>Service de validation CSS</span></a></h1>
    <p id="tagline">
      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -91,10 +91,10 @@ vers l'adresse URL du résultat pour donner un jeu d'essais.</p>
 <h4 id="basicvalidation">Que fait la validation de base ?</h4>
 
 <p>Avec l'interface de base, le validateur vérifiera la conformité vis-à-vis de la spécification
-<a href="http://www.w3.org/TR/CSS2">CSS 2</a>, laquelle est la recommandation technique CSS actuelle.<br />
+<a href="https://www.w3.org/TR/CSS2">CSS 2</a>, laquelle est la recommandation technique CSS actuelle.<br />
 Elle produira une sortie XHTML sans avertissement (vous ne verrez que les erreurs).<br />
 Le paramètre de média est réglé sur "all", c'est-à-dire une valeur qui correspond à tous les types d'appareil
-(cf. <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a> pour une description complète des médias).</p>
+(cf. <a href="https://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a> pour une description complète des médias).</p>
 
 <h3 id="advanced">La validation évoluée</h3>
 
@@ -117,13 +117,13 @@ basculera sur la sienne par défaut, ce qui se traduira peut-être par un affich
 
 <p>Le validateur CSS peut vérifier des profils CSS différents. Un profil liste toutes les caractéristiques attendues
 d'une mise en &#339;uvre sur une plateforme particulière. Cette définition est tirée du
-<a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">site CSS</a>. L'option par défaut correspond
-au profil le plus utilisé : <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.</p>
+<a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">site CSS</a>. L'option par défaut correspond
+au profil le plus utilisé : <a href="https://www.w3.org/TR/CSS2">CSS 2</a>.</p>
 
 <h4 id="parammedium">Média</h4>
 
 <p>Le paramètre de média équivaut à la règle @media qui s'applique à tout le document. Vous obtiendrez plus d'informations sur les types
-de média à <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a>.</p>
+de média à <a href="https://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a>.</p>
 
 <h3 id="expert">Pour les experts</h3>
 
@@ -158,7 +158,7 @@ du W3C est un service public gratuit, merci de le respecter.</p>
 </tr>
 <tr>
 <th>usermedium</th>
-<td>Le <a href="http://www.w3.org/TR/CSS2/media.html">média</a> à utiliser pour la validation, comme <code>screen</code>,
+<td>Le <a href="https://www.w3.org/TR/CSS2/media.html">média</a> à utiliser pour la validation, comme <code>screen</code>,
 <code>print</code>, <code>braille</code>, etc.</td>
 <td><code>all</code></td>
 </tr>
@@ -317,28 +317,28 @@ le validateur, voir l'<a href="./api.html">API de service Web du validateur CSS<
 <div id="footer">
    <p id="activity_logos">
 
-<a href="http://www.w3.org/QA/" title="L'activité Assurance Qualité du W3C vous offre des outils Web gratuits de qualité et plus encore"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Plus d'informations concernant les feuilles de style en cascade"><img src="images/woolly-icon" alt="CSS" /></a>
+<a href="https://www.w3.org/Style/CSS/learning" title="Plus d'informations concernant les feuilles de style en cascade"><img src="images/woolly-icon" alt="CSS" /></a>
 </p>
 
 <p id="support_logo">
-<a href="http://www.w3.org/QA/Tools/Donate">
-<img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+<a href="https://www.w3.org/donate/">
+<img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
 </a>
 </p>
 
 <p class="copyright">
-<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-<a href="http://www.w3.org/"><abbr lang="en" title="World Wide Web Consortium">W3C</abbr></a>&reg;
-(<a href="http://www.csail.mit.edu/"><abbr lang="en" title="Massachusetts Institute of Technology">MIT</abbr></a>,
-<a href="http://www.ercim.eu/"><abbr lang="en" title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-<a href="http://www.keio.ac.jp/">Keio</a>), tous droits réservés.
-Les règles de <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">responsabilité</a>,
-de <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">nom de marque</a>,
-d'<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">utilisation des documents</a>
-et d'<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">octroi de licences logicielles</a>
+<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
+<a href="https://www.w3.org/"><abbr lang="en" title="World Wide Web Consortium">W3C</abbr></a>&reg;
+(<a href="https://www.csail.mit.edu/"><abbr lang="en" title="Massachusetts Institute of Technology">MIT</abbr></a>,
+<a href="https://www.ercim.eu/"><abbr lang="en" title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+<a href="https://www.keio.ac.jp/">Keio</a>), tous droits réservés.
+Les règles de <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">responsabilité</a>,
+de <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">nom de marque</a>,
+d'<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">utilisation des documents</a>
+et d'<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">octroi de licences logicielles</a>
 du W3C s'appliquent. Vos interactions avec ce site sont conformes à nos déclarations de confidentialité
-<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publiques</a> et vis-à-vis
-de nos <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">membres</a>.
+<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">publiques</a> et vis-à-vis
+de nos <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">membres</a>.
 </p>
 </div>
 </body>

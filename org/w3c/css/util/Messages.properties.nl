@@ -57,7 +57,7 @@ validate_by_input: Valideer via directe invoer
 enter_CSS: Voer de CSS in die je wilt valideren
 submit_input: Verzenden om te valideren
 note: Opmerking
-note_xhtml_valid: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="http://validator.w3.org/">laten controleren</a>
+note_xhtml_valid: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="https://validator.w3.org/">laten controleren</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: W3C CSS Validator Resultaten met object : 
@@ -91,7 +91,7 @@ om het gemakkelijker te maken deze pagina later te revalideren of anderen \
 in staat te stellen uw pagina te valideren is de URL:
 no_errors_forHTML_only_msg: Alleen voor HTML documenten
 no_errors_bookmark_msg: Of u kunt de huidige pagina toevoegen aan uw favorieten of hotlist.
-note_valide_html: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="http://validator.w3.org/">laten controleren</a>.
+note_valide_html: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="https://validator.w3.org/">laten controleren</a>.
 top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* VOORZICHTIG ! Dit is geen CSS1 eigenschap ! */

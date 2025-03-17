@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS 검사 서비스</span></a></h1>
    <p id="tagline">
 	 캐스케이딩 스타일시트 (CSS)와 스타일시트를 포함한 문서를 검사
@@ -103,10 +103,10 @@
 
 <p>    
     기본 검사를 수행할 경우, 검사 서비스에서는 현재 CSS 기술에 있어서 권장되고 있고, 검증된 규약인
-	<a href="http://www.w3.org/TR/CSS2">CSS 2</a>에 대한 유효성 검사를 수행하게 됩니다.<br />
+	<a href="https://www.w3.org/TR/CSS2">CSS 2</a>에 대한 유효성 검사를 수행하게 됩니다.<br />
 	이 경우에는 경고를 제외한 XHTML로 된 검사 결과를 표시합니다. (오류만 표시가 됩니다)<br />
 	대상 매체는 모든 장치에서 사용할 수 있는 "all"에 대하여 검사를 수행합니다. (매체에 대한 자세한 내용은 
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a>에서 확인 가능합니다.)
 </p>
 
@@ -136,17 +136,17 @@
 <p>
 	CSS 검사 서비스에서는 서로 다른 CSS 프로파일에 대한 검사를 할 수 있습니다. 프로파일은 특정한 플랫폼에서
 	사용가능하거나 호환이 되어야 할 기능에 대한 명세를 합니다. 이 정의는 
-    <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+    <a href="https://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	CSS 사이트
     </a>에 정의 되어 있습니다. 기본값으로는 가장 많이 사용되는
-    <a href="http://www.w3.org/TR/CSS2">CSS 2</a>를 사용합니다.
+    <a href="https://www.w3.org/TR/CSS2">CSS 2</a>를 사용합니다.
 </p>
 
 <h4 id="parammedium">매체 속성</h4>
 
 <p>
 	매체 속성은 @media로 정의되는 규칙과 같은 것이며, 문서 전체에 대하여 적용됩니다. 이에 대한 보다 자세한 내용은
-    <a href="http://www.w3.org/TR/CSS2/media.html">
+    <a href="https://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>에서 확인이 가능합니다.
 </p>
@@ -184,7 +184,7 @@
     <tr>
       <th>usermedium</th>
       <td><code>screen</code>,
-	  <code>print</code>, <code>braille</code>과 같은 검사 대상 <a href="http://www.w3.org/TR/CSS2/media.html">매체</a>입니다.</td>
+	  <code>print</code>, <code>braille</code>과 같은 검사 대상 <a href="https://www.w3.org/TR/CSS2/media.html">매체</a>입니다.</td>
       <td><code>all</code></td>
     </tr>
     <tr>
@@ -349,31 +349,31 @@
 
    <div id="footer">
    <p id="activity_logos">
-      <a href="http://www.w3.org/QA/" title="W3C의 품질 보증 활동은 여러가지 도구를 무료로 제공합니다"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="CSS에 대하여 더 많은 것을 알아보기"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="CSS에 대하여 더 많은 것을 알아보기"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
-   <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <a href="https://www.w3.org/donate/">
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 

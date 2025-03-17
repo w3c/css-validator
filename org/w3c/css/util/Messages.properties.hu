@@ -56,7 +56,7 @@ validate_by_input: Érvényesítés közvetlen bevitellel
 enter_CSS: Írja be a CSS-t, melyet érvényesíttetni szeretne
 submit_input: Bevitel érvényesítésre küldése
 note: Megjegyzés
-note_xhtml_valid: Ha CSS stíluslapját (X)HTML dokumentumba ágyazva szeretné érvényesíttetni, először <a href="http://validator.w3.org/">ellenőrizze, hogy a használt (X)HTML érvényes-e</a>
+note_xhtml_valid: Ha CSS stíluslapját (X)HTML dokumentumba ágyazva szeretné érvényesíttetni, először <a href="https://validator.w3.org/">ellenőrizze, hogy a használt (X)HTML érvényes-e</a>
 
 # End of variables added along with Index page template
 
@@ -95,7 +95,7 @@ mások érvényesíthessék oldalát, az URI a következő:
 no_errors_forHTML_only_msg: csak HTML/XML documenumhoz
 no_errors_bookmark_msg: De hozzá is adhatja ezt az oldalt a könyvjelzők vagy kedvencek közé.
 
-note_valide_html: Hogy az elvárásoknak megfelelően működjön, a CSS stíluslaphoz helyes dokumentum fa-struktúra szükséges. Ez azt jelenti, hogy <a href="http://validator.w3.org/">érvényes HTML-t</a> kell használnia.
+note_valide_html: Hogy az elvárásoknak megfelelően működjön, a CSS stíluslaphoz helyes dokumentum fa-struktúra szükséges. Ez azt jelenti, hogy <a href="https://validator.w3.org/">érvényes HTML-t</a> kell használnia.
 
 top: Tetejére
 # hook_html_validator <!-- generated on the fly -->

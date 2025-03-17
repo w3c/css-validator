@@ -15,7 +15,7 @@
 
 <body>
 <div id="banner">
-<h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+<h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
   <a href="./"><span>CSS valideringstjänst</span></a></h1>
      <p id="tagline">
        Granska formatmallar ("<span xml:lang="en" lang="en">Check Cascading Style Sheets</span>, CSS) och (X)HTML-dokument med formatmallar
@@ -94,10 +94,10 @@ CSS och vid skapandet av CSS formatmallar.
 
 Nej. Det är ett verktyg, hjälpande och tillförlitligt, men ändå ett
 programvaruverktyg, och som all annan programvara så har den några
-<a href="https://github.com/w3c/css-validator/issues">fel och brister</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">fel och brister</a>.
+<a href="https://github.com/w3c/css-validator/issues">fel och brister</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">fel och brister</a>.
 
 Den sanna måttstocken för CSS-formatmallar är 
-<a href="http://www.w3.org/Style/CSS/#specs">CSS specifikationerna</a>.
+<a href="https://www.w3.org/Style/CSS/#specs">CSS specifikationerna</a>.
 
 </p>
 
@@ -108,12 +108,12 @@ Den sanna måttstocken för CSS-formatmallar är
 Ingenting. Tjänsten är gratis. Källkoden är 
 <a href="DOWNLOAD.html">öppen</a>, och du kan ladda ned den, använda den,
 modifiera den, distribuera den och
-<a href="http://www.w3.org/Consortium/Legal/copyright-software">annat</a>.
+<a href="https://www.w3.org/Consortium/Legal/copyright-software">annat</a>.
 
 Om du skulle vilja, så kan du 
 <a href="#participate">deltaga i detta projekt</a>
 eller donera till W3C via 
- <a href="http://www.w3.org/Consortium/sup">W3C:s supperterprogram</a>.
+ <a href="https://www.w3.org/Consortium/sup">W3C:s supperterprogram</a>.
 
 </p>
 
@@ -138,7 +138,7 @@ Naturligtvis. Om du är Javaprogrammerare, så kan du hjälpa projektet
 CSS-valideraren genom att granska
 <a href="#code">koden</a>,
 diagnosticera och rätta
-<a href="https://github.com/w3c/css-validator/issues">fel</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">fel</a>,
+<a href="https://github.com/w3c/css-validator/issues">fel</a> &amp; <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">fel</a>,
 eller att hjälpa till med att konstruera ny funktionalitet.
 
 </p><p>
@@ -147,7 +147,7 @@ Men du behöver inte vara en kodare för att hjälpa till i arbetet med
 att bygga och underhålla detta verktyg; du kan också hjälpa till med
 att förbättra dokumentation, översätta valideraren till ditt språk,
 eller prenumerera på 
-<a href="http://lists.w3.org/Archives/Public/www-validator-css/">dess epostlista</a>
+<a href="https://lists.w3.org/Archives/Public/www-validator-css/">dess epostlista</a>
 och diskutera verktyget och hjälpa andra användare.
 
 </p>
@@ -331,32 +331,32 @@ installera din egen instans av valideraren.
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3C:s kvalitetsarbete, som ger dig gratis verktyg för webbkvalitet och annat"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Mer information om formatmallar"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="https://www.w3.org/Style/CSS/learning" title="Mer information om formatmallar"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
-   <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <a href="https://www.w3.org/donate/">
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       Rättigheter förbehållna.
       W3C:s regler för
-  <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ansvar</a>,
-  <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">varumärke</a>,
-  <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">dokumentanvändning</a>
+  <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ansvar</a>,
+  <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">varumärke</a>,
+  <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">dokumentanvändning</a>
   och
-  <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">programvarulicenser</a> gäller.
+  <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">programvarulicenser</a> gäller.
   Din interaktion med denna webbplats sker i enlighet med våra integritetspolicies för 
-  <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">allmänheten</a> och 
-  <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">W3C:s medlemmar</a>.
+  <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">allmänheten</a> och 
+  <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">W3C:s medlemmar</a>.
 </p>
 
 </div>

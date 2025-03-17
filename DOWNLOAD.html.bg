@@ -19,7 +19,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
    <a href="./"><span>CSS Validation Service</span></a></h1>
    <p id="tagline">
      Проверете Cascading Style Sheets (CSS) и (X)HTML документи със style sheets
@@ -40,7 +40,7 @@
     </p>	
 	<h4>Изтегляне на java пакет (jar или war)</h4>
 <!--	<p>TBD... we just need a stable location to put jar/war archives on a regular basis</p>-->
-	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+	<p><a href="https://github.com/w3c/css-validator/releases/latest/download/css-validator.jar">css-validator.jar</a></p>
 
 
 <h3>Указател за инсталиране</h3>
@@ -58,9 +58,9 @@
 <p>Това ръководство за инсталиране приема, че сте изтеглили, инсталирали и тествали: </p>
 <ul class="instructions">
 	<li>Работеща java среда</li>
-	<li>Инструментът за създаване на java <a href="http://ant.apache.org/">Ant</a></li>
+	<li>Инструментът за създаване на java <a href="https://ant.apache.org/">Ant</a></li>
 	<li>Java уеб сървлет контейнер като, 
-		<a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> или
+		<a href="https://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="https://tomcat.apache.org/">Tomcat</a> или
 		<a href="http://www.mortbay.org/">Jetty</a>, ако сте планирали да използвате валидатора като онлайн услуга. 
 		Това ръководство засяга подробно само Tomcat и Jigsaw.</li>
 </ul>
@@ -72,9 +72,9 @@
 	би трябвало да откриете в [<span class="const">TOMCAT_DIR</span>]/common/lib/) вероятно 
 	с името servlet-api.jar. Ако не, вземете я от 
 	<a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a></li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
+	<li><a href="https://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar и xml-apis.jar (които могат да бъдат изтеглени с
-	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
+	<a href="https://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
 	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
@@ -205,31 +205,31 @@ http://localhost:8001/css-validator/validator.html</li>
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, Ви предлага безплатни инструменти за качество в Мрежата и други"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://dichev.com/Style/CSS/learning/" title="Научете повече за Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://dichev.com/Style/CSS/learning/" title="Научете повече за Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
 Подкрепете този инструмент, станете<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Поддръжник" /></a>
+<a href="https://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Поддръжник" /></a>
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="http://www.keio.ac.jp/">Keio</a>),
+      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>),
       All Rights Reserved.
-      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
 
-      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      and <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
       rules apply. Your interactions with this site are in accordance
-      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      with our <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
 
