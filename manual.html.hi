@@ -251,10 +251,12 @@ http://www.w3.org/TR/CSS2/media.html</a> में मीडिया के ब
 	<p id="activity_logos">
 	<a href="https://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img alt="CSS" src="images/woolly-icon" /></a>
 	</p>
-	<p id="support_logo">Support this tool, become a<br />
-	<a href="https://www.w3.org/Consortium/supporters">
-	<img alt="W3C Supporter" src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" /></a>
-	</p>
+
+	<p id="support_logo">
+        <a href="https://www.w3.org/donate/">
+        <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title="Validators Donation Program" />
+        </a>
+        </p>
 
 	<p class="copyright"><span lang="en" dir="ltr">Copyright &copy; 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>.<br> <abbr title="World Wide Web Consortium">W3C</abbr><sup>&reg;</sup> <a href="https://www.w3.org/policies/#disclaimers">liability</a>, <a href="https://www.w3.org/policies/#trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/document-license/" title="W3C Document License">permissive license</a> rules apply.</span></p>
 </div>
