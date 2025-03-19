@@ -282,7 +282,6 @@ CSS Ελεγκτή Εγκυρότητας.</p>
                rel="alternate">中文</a></li>
       </ul>
 
-
    <div id="footer">
    <p id="activity_logos">
 
@@ -290,25 +289,12 @@ CSS Ελεγκτή Εγκυρότητας.</p>
    </p>
 
    <p id="support_logo">
-Υποστηρίξτε το εργαλείο, γίνετε ένας υποστηρικτής<br />
-<a href="https://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   <a href="https://www.w3.org/donate/">
+   <img src="https://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title="Validators Donation Program" />
+   </a>
    </p>
 
-    <p class="copyright">
-      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Πνευματικά Δικαιώματα</a> &copy; 1994-2009
-      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
-
-      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="https://www.keio.ac.jp/">Keio</a>),
-      Με επιφύλαξη παντός δικαιώματος.
-      Εφαρμόζονται οι κανόνες της W3C για <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ευθύνη</a>,
-      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">καταχωρημένο εμπορικό σήμα</a>,
-      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">χρήση εγγράφου</a>
-
-      και <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">άδεια χρήσης λογισμικού</a>. Η αλληλεπίδραση σας με αυτόν τον ιστότοπο γίνεται σύμφωνα με τις δηλώσεις μας απορρήτου για <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">δημόσια χρήση </a> και για τα 
-      <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">Μέλη</a>.    </p>
-
+   <p class="copyright"><span lang="en" dir="ltr">Copyright &copy; 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>.<br> <abbr title="World Wide Web Consortium">W3C</abbr><sup>&reg;</sup> <a href="https://www.w3.org/policies/#disclaimers">liability</a>, <a href="https://www.w3.org/policies/#trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/document-license/" title="W3C Document License">permissive license</a> rules apply.</span></p>
 
 </div>
   </body>

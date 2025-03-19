@@ -340,24 +340,7 @@ installera din egen instans av valideraren.
    </a>
    </p>
 
-    <p class="copyright">
-      <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
-      <a href="https://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
-
-      (<a href="https://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
-      <a href="https://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-      <a href="https://www.keio.ac.jp/">Keio</a>),
-      Rättigheter förbehållna.
-      W3C:s regler för
-  <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">ansvar</a>,
-  <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">varumärke</a>,
-  <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">dokumentanvändning</a>
-  och
-  <a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">programvarulicenser</a> gäller.
-  Din interaktion med denna webbplats sker i enlighet med våra integritetspolicies för 
-  <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">allmänheten</a> och 
-  <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">W3C:s medlemmar</a>.
-</p>
+   <p class="copyright"><span lang="en" dir="ltr">Copyright &copy; 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>.<br> <abbr title="World Wide Web Consortium">W3C</abbr><sup>&reg;</sup> <a href="https://www.w3.org/policies/#disclaimers">liability</a>, <a href="https://www.w3.org/policies/#trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/document-license/" title="W3C Document License">permissive license</a> rules apply.</span></p>
 
 </div>
   </body>

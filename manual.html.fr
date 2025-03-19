@@ -326,20 +326,8 @@ le validateur, voir l'<a href="./api.html">API de service Web du validateur CSS<
 </a>
 </p>
 
-<p class="copyright">
-<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
-<a href="https://www.w3.org/"><abbr lang="en" title="World Wide Web Consortium">W3C</abbr></a>&reg;
-(<a href="https://www.csail.mit.edu/"><abbr lang="en" title="Massachusetts Institute of Technology">MIT</abbr></a>,
-<a href="https://www.ercim.eu/"><abbr lang="en" title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-<a href="https://www.keio.ac.jp/">Keio</a>), tous droits réservés.
-Les règles de <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">responsabilité</a>,
-de <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">nom de marque</a>,
-d'<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-documents">utilisation des documents</a>
-et d'<a rel="Copyright" href="https://www.w3.org/Consortium/Legal/copyright-software">octroi de licences logicielles</a>
-du W3C s'appliquent. Vos interactions avec ce site sont conformes à nos déclarations de confidentialité
-<a href="https://www.w3.org/Consortium/Legal/privacy-statement#Public">publiques</a> et vis-à-vis
-de nos <a href="https://www.w3.org/Consortium/Legal/privacy-statement#Members">membres</a>.
-</p>
+<p class="copyright"><span lang="en" dir="ltr">Copyright &copy; 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>.<br> <abbr title="World Wide Web Consortium">W3C</abbr><sup>&reg;</sup> <a href="https://www.w3.org/policies/#disclaimers">liability</a>, <a href="https://www.w3.org/policies/#trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/document-license/" title="W3C Document License">permissive license</a> rules apply.</span></p>
+
 </div>
 </body>
 </html>
