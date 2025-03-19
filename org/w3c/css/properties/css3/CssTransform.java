@@ -324,7 +324,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
         CssValue val;
         val = expression.getValue();
         // special case, 0 can be a length or an angle...
-        if (val.getType() == CssTypes.CSS_NUMBER) {
+        if (val.getType() == CssTypes.CSS_NUMBER && type != CssTypes.CSS_NUMBER) {
             if (type == CssTypes.CSS_LENGTH || type == CssTypes.CSS_ANGLE) {
                 // if not zero, it will fail
                 val.getCheckableValue().checkEqualsZero(ac, caller.getPropertyName());
@@ -353,7 +353,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
         CssValue val;
         val = expression.getValue();
         // special case, 0 can be a length or an angle...
-        if (val.getType() == CssTypes.CSS_NUMBER) {
+        if (val.getType() == CssTypes.CSS_NUMBER && type1 != CssTypes.CSS_NUMBER && type2 != CssTypes.CSS_NUMBER) {
             if (type1 == CssTypes.CSS_LENGTH || type1 == CssTypes.CSS_ANGLE ||
                     type1 == CssTypes.CSS_PERCENTAGE || type2 == CssTypes.CSS_PERCENTAGE ||
                     type2 == CssTypes.CSS_LENGTH || type2 == CssTypes.CSS_ANGLE) {
