@@ -249,11 +249,12 @@ h1#title {
 	background-color: #365D95;
 	color: #fdfdfd;
 	font-size: 1.6em;
-	background: url(../images/head-bl.png) bottom left no-repeat;
 	padding-bottom: 0.430em;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 h1#title a, h1#title a img {
-background-color: #365D95;
+  background-color: #365D95;
 }
 
 h1 span {
@@ -271,14 +272,22 @@ h1#title img {
 	margin-right: 0.7em;
 }
 
+#logo {
+	border-radius: 10px;
+	width: 100px;
+	margin-left: 20px;
+	margin-top: 10px;
+	height: 100px;
+}
+
 div#banner {
-	background: #365D95 url(../images/head-br.png) bottom right no-repeat;
+	background-color: #365D95;
 	margin: 1.5em 2em;
 }
 
 p#tagline {
 	font-size: 0.7em;
-	margin: -2em 0 0 12.1em;
+	margin: -4em 0 4em 13em;
 	padding-bottom: 1em;
 	letter-spacing: 0.1em;
 	line-height: 100% !important;
