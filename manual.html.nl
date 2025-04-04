@@ -260,6 +260,13 @@ service voor iedereen, je respect wordt gewaardeerd. Bedankt.</p>
 
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>Toon extensies als waarschuwingen.
+        <code>true</code> als waarschuwingen, <code>false</code> als fouten.
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
