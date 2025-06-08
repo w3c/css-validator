@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Validar por URI</legend>
+        <legend>Validar por URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
           Entre a URI do documento (HTML com CSS ou somente CSS) a ser validado:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">Validar por upload de arquivo</legend>
+        <legend>Validar por upload de arquivo</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">Escolha o documento que você gostaria de validar:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">Validar por entrada direta</legend>
+        <legend>Validar por entrada direta</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">Entre as CSS que você gostaria de validar:</p>
         <p>

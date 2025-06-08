@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">URI تایید اعتبار با</legend>
+        <legend>URI تایید اعتبار با</legend>
         <form method="get" action="validator">
         <p class="instructions">
           ای که می خواهید معتبر نمایید را، وارد نمایید (CSS یا تنها CSS دارای HTML) سند URI:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">تایید اعتبار با آپلود فایل</legend>
+        <legend>تایید اعتبار با آپلود فایل</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">(CSS سندی که می خواهید معتبر نمایید را انتخاب کنید (تنها فایلهای:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">تایید اعتبار با ورودی مستقیم</legend>
+        <legend>تایید اعتبار با ورودی مستقیم</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">ای را که می خواهید تایید اعتبار شود را وارد نمایید CSS:</p>
         <p>

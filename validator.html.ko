@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">URI 검사</legend>
+        <legend>URI 검사</legend>
         <form method="get" action="validator">
         <p class="instructions">
           검사하고자 하는 (HTML과 CSS 또는 CSS만으로 이루어진) 문서의 URI를 입력하여 주십시오:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">파일 업로드를 통한 검사</legend>
+        <legend>파일 업로드를 통한 검사</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">검사를 할 문서를 선택하여 주십시오:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">직접 입력을 통한 검사</legend>
+        <legend>직접 입력을 통한 검사</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">검사할 CSS를 입력하여 주십시오:</p>
         <p>

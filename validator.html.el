@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Έλεγχος εγκυρότητας με URI</legend>
+        <legend>Έλεγχος εγκυρότητας με URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
           Εισάγετε το URI του αρχείου (HTML με CSS ή μόνο CSS) που θέλετε να ελέγξετε την εγκυρότητα:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">Έλεγχος εγκυρότητας με μεταφορά αρχείου</legend>
+        <legend>Έλεγχος εγκυρότητας με μεταφορά αρχείου</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">Επιλέξτε το αρχείο που επιθυμείτε να ελέγξετε την εγκυρότητα:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">Έλεγχος εγκυρότητας με άμεση εισαγωγή</legend>
+        <legend>Έλεγχος εγκυρότητας με άμεση εισαγωγή</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">Εισάγετε το CSS που θέλετε να ελέγξετε την εγκυρότητα:</p>
         <p>

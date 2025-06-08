@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">URI द्वारा मान्यकर्ण </legend>
+        <legend>URI द्वारा मान्यकर्ण </legend>
         <form method="get" action="validator">
         <p class="instructions">
           किसी दस्तावेज़ के URI को दर्ज कीजिये (HTML  सीएसएस के साथ या केवल सीएसएस) जिसका आप मान्यकर्ण करना चाहते हैं।:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">फ़ाइल अपलोड के द्वारा मान्यकर्ण करें</legend>
+        <legend>फ़ाइल अपलोड के द्वारा मान्यकर्ण करें</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">मान्यकर्ण करने के लिए दस्तावेज़ चुनें:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">प्रत्यक्ष निवेश के द्वारा मान्यकर्ण करें</legend>
+        <legend>प्रत्यक्ष निवेश के द्वारा मान्यकर्ण करें</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">मान्यकर्ण करने के लिए सीएसएस दर्ज करें:</p>
         <p>

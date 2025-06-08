@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Validera genom URI</legend>
+        <legend>Validera genom URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
           Mata in URI för det dokument (HTML med CSS eller enbart CSS) som du vill validera:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">Validera genom att ladda upp fil</legend>
+        <legend>Validera genom att ladda upp fil</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">Välj det dokument som du vill validera:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">Validera genom direkt inmatning</legend>
+        <legend>Validera genom direkt inmatning</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">Mata in den CSS du vill validera:</p>
         <p>
