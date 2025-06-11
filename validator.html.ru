@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Проверка по URI</legend>
+        <legend>Проверка по URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
           Введите URI документа (HTML с CSS или только CSS) для проверки:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">Проверить загруженный файл</legend>
+        <legend>Проверить загруженный файл</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">Выберите документ, который вы хотели бы проверить:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">Проверка набираемого текста</legend>
+        <legend>Проверка набираемого текста</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">Введите код CSS, который вы хотели бы проверить на корректность:</p>
         <p>

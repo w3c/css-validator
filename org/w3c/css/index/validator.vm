@@ -104,7 +104,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">$validate_by_URI</legend>
+        <legend>$validate_by_URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
           $enter_uri:
@@ -120,7 +120,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">$validate_by_file_upload</legend>
+        <legend>$validate_by_file_upload</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">$choose_document:</p>
         <p>
@@ -132,7 +132,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">$validate_by_input</legend>
+        <legend>$validate_by_input</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">$enter_CSS:</p>
         <p>

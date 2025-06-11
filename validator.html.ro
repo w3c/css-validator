@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Valideaza prin URI</legend>
+        <legend>Valideaza prin URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
           Introdu URL-ul unui document (HTML cu CSS sau doar CSS) pe care vrei sa il validezi:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">Valideaza prin incarcare fisier</legend>
+        <legend>Valideaza prin incarcare fisier</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">Alege documentul pe care vrei sa il validezi:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">Validare prin introducere directa a codului</legend>
+        <legend>Validare prin introducere directa a codului</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">Introdu CSS-ul pe care vrei sa il validezi:</p>
         <p>

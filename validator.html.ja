@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">URLで指定して検証</legend>
+        <legend>URLで指定して検証</legend>
         <form method="get" action="validator">
         <p class="instructions">
           検証したい文書(CSSと組み合わせたHTML文書、もしくはCSS単体の文書)のURIを入力してください:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">ソースファイルをアップロードして検証</legend>
+        <legend>ソースファイルをアップロードして検証</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">検証したいCSS文書のソースファイル名を入力してください:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">テキストエリアに直接入力して検証</legend>
+        <legend>テキストエリアに直接入力して検証</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">検証したいCSSをテキストエリアに入力してください (CSSソースのみ):</p>
         <p>

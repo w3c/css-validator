@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Ověřením URI</legend>
+        <legend>Ověřením URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
           Zadejte URI dokumentu (HTML pouze s CSS nebo CSS), který chcete ověřit.:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">Ověřit po nahrání souboru</legend>
+        <legend>Ověřit po nahrání souboru</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">Vyberte dokument, který chcete ověřit:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">Ověřte přímým vstupem</legend>
+        <legend>Ověřte přímým vstupem</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">Zadejte CSS, kterou chcete ověřit:</p>
         <p>

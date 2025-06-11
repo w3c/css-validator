@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">验证指定URI的CSS内容</legend>
+        <legend>验证指定URI的CSS内容</legend>
         <form method="get" action="validator">
         <p class="instructions">
           输入你想验证的文档(带CSS的HTML文档或者CSS文档)的URI:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">验证上传文件</legend>
+        <legend>验证上传文件</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">选择需要验证的文件:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">验证直接输入的内容</legend>
+        <legend>验证直接输入的内容</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">输入你要验证的CSS代码:</p>
         <p>

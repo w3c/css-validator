@@ -30,7 +30,7 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Érvényesítés URI segítségével</legend>
+        <legend>Érvényesítés URI segítségével</legend>
         <form method="get" action="validator">
         <p class="instructions">
           Adja meg a dokumentum (HTML CSS-sel vagy csak CSS) URI-jét, melyet érvényesíteni szeretne:
@@ -124,7 +124,7 @@
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">Érvényesítés file feltöltéssel</legend>
+        <legend>Érvényesítés file feltöltéssel</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">Válassza ki az érvényesítendő dokumentumot:</p>
         <p>
@@ -214,7 +214,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">Érvényesítés közvetlen bevitellel</legend>
+        <legend>Érvényesítés közvetlen bevitellel</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
         <p class="instructions">Írja be a CSS-t, melyet érvényesíttetni szeretne:</p>
         <p>
