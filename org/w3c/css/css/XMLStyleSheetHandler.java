@@ -549,6 +549,9 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
 
             xmlParser.setFeature("http://xml.org/sax/features/validation",
                     false);
+            xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            xmlParser.setFeature("http://xml.org/sax/features/external-general-entities", false);
+
             xmlParser.setErrorHandler(this);
             xmlParser.setEntityResolver(this);
         } catch (Exception ex) {
@@ -605,6 +608,8 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
                     this);
             xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
             xmlParser.setFeature("http://xml.org/sax/features/validation", false);
+            xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            xmlParser.setFeature("http://xml.org/sax/features/external-general-entities", false);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
