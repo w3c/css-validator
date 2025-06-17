@@ -5,11 +5,6 @@ package autotest;
 // (c) COPYRIGHT MIT, ERCIM and Keio, 2003.
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-import org.w3c.www.http.HTTP;
-import org.w3c.www.protocol.http.HttpException;
-import org.w3c.www.protocol.http.HttpManager;
-import org.w3c.www.protocol.http.Reply;
-import org.w3c.www.protocol.http.Request;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -20,6 +15,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -293,14 +289,10 @@ public class AutoTestContentHandler implements ContentHandler {
 			val += PARAMS;
 
 			try {
-				HttpManager manager = HttpManager.getManager();
-				Request request = manager.createRequest();
-				request.setMethod(HTTP.GET);
+				HttpURLConnection conn = (HttpURLConnection) new URL(val).openConnection();
 				System.err.println(val);
-				request.setURL(new URL(val));
-				Reply reply = manager.runRequest(request);
 				// Get the reply input stream that contains the actual data:
-				InputStream res = reply.getInputStream();
+				InputStream res = conn.getInputStream();
 
 				int currentChar;
 				StringBuffer buf = new StringBuffer();
@@ -308,7 +300,7 @@ public class AutoTestContentHandler implements ContentHandler {
 					buf.append((char) currentChar);
 				}
 
-				if (reply.getStatus() == 500) { // Internal Server Error
+				if (conn.getResponseCode() == 500) { // Internal Server Error
 					if (buf.indexOf("env:Sender") != -1) {
 						printError(val, "Reply status code: 500<br/>"
 								+ "Invalid URL: Sender error");
@@ -347,8 +339,6 @@ public class AutoTestContentHandler implements ContentHandler {
 			} catch (MalformedURLException e) {
 				printError(val, e.getMessage());
 			} catch (IOException e) {
-				printError(val, e.getMessage());
-			} catch (HttpException e) {
 				printError(val, e.getMessage());
 			}
 
