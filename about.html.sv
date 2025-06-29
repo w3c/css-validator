@@ -192,7 +192,7 @@ Det går att ladda ned och installera CSS-valideraren, och köra den
 antingen från kommandoraden eller som en servlet i en webbserver.
 
 Läs
-<a href="RUN.html">anvisningarna</a>
+<a href="DOWNLOAD.html">anvisningarna</a>
 om ur den installeras och används.
 
 </p>

@@ -123,7 +123,7 @@
 	Ik zal nog wel veel te doen hebben in deze file.
 	    </dd>
       <dt>
-	<a href="RUN.html">RUN</a></dt>
+	<a href="DOWNLOAD.html">RUN</a></dt>
       <dd>
 	Hoe gebruikt u de validator op uw eigen systeem.</dd>
     </dl>

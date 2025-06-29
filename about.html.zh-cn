@@ -82,7 +82,7 @@
 <p>W3C的 css验证器是使用Java开发的，当然，还是开源的，你可以通过CVS：<a href="https://github.com/w3c/css-validator">在线察看代码</a>或者下载所有的代码。察看<a href="README.html">readme</a>文件可以快速的了解css验证器的概貌。</p>
 
 <h4 id="install">我能自己安装并运行这个验证器么？</h4>
-<p>当然可以，你还可以以命令行的形式或者安装到web服务器上以servlet的形式运行。你可以参考 <a href="RUN.html">如何安装和运行</a> 。</p>
+<p>当然可以，你还可以以命令行的形式或者安装到web服务器上以servlet的形式运行。你可以参考 <a href="DOWNLOAD.html">如何安装和运行</a> 。</p>
 
 <h4 id="api">我能在我的应用程序中运用这个验证器么？有什么API么？</h4>
 <p>当然可以，当然有  <a href="api.html">API</a>。css验证器还有一个<a href="api.html">SOAP接口</a>来提供更多便利。在自己的程序中使用css验证器的时候，最好做法是在调用css验证器前调用自己程序的sleep()函数，或者将验证器作为一个单独的实例来使用</p>

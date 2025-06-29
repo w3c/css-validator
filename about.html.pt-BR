@@ -94,7 +94,7 @@ ou baixar o código seguindo as instruções ali contidas. Para uma visão rápi
 <a href="README.html">LEIA-ME</a>.</p>
 
 <h4 id="install">Posso instalar e rodar o validador?</h4>
-<p>É sim, possível baixar, instalar o validador e  rodá-lo via linha de comando ou como servlet em um servidor web. Leia as <a href="RUN.html">instruções</a> para instalação e uso.</p>
+<p>É sim, possível baixar, instalar o validador e  rodá-lo via linha de comando ou como servlet em um servidor web. Leia as <a href="DOWNLOAD.html">instruções</a> para instalação e uso.</p>
 
 <h4 id="api">Posso construir uma aplicação para o validador? Existe uma API?</h4>
 <p>Sim e <a href="api.html">sim</a>. O validor CSS possui uma (RESTful) <a href="api.html">interface SOAP</a>

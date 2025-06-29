@@ -101,7 +101,7 @@ o ayudando a construir nuevas funciones.</p>
 o seguir las instrucciones para descargar el &aacute;rbol completo del código fuente. Para una r&aacute;pida vista general de las clases usadas en el c&oacute;digo del Validador CSS, revisa el archivo 
 <a href="README.html">README</a>.</p>
 <h4 id="install">&iquest;Puedo instalar y ejecutar el Validador CSS por m&iacute; mismo?</h4>
-<p>Es posible descargar e instalar el validador CSS, y ejecutarlo bien desde la l&iacute;nea de comandos, o como un servlet en un servidor Web. Lee las <a href="RUN.html">instrucciones</a> para la instalaci&oacute;n y utilizaci&oacute;n.</p>
+<p>Es posible descargar e instalar el validador CSS, y ejecutarlo bien desde la l&iacute;nea de comandos, o como un servlet en un servidor Web. Lee las <a href="DOWNLOAD.html">instrucciones</a> para la instalaci&oacute;n y utilizaci&oacute;n.</p>
 <h4 id="api">&iquest;Puedo construir una aplicaci&oacute;n basada en este validador? &iquest;Existe una API?</h4>
 <p>S&iacute;, y <a href="api">s&iacute;</a>. El validador CSS tiene una (RESTful) <a href="api">interfaz SOAP</a> que deber&iacute;a hacer razonablemente f&aacute;cil construir aplicaciones (Web o de otro tipo) basadas en &eacute;l. Las buenas maneras y el uso respetuoso de recursos compartidos son, por supuesto, convencionales: aseg&uacute;rate que tus aplicaciones realizan pausas (sleep) entre llamadas al validador, o instala y ejecuta tu propio validador.</p>
 </div>
