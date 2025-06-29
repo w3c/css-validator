@@ -149,7 +149,7 @@
     </jar>
   </target>
 
-  <target name="war" depends="build" description="Creates the webapp module">
+  <target name="war" depends="build, buildhtml" description="Creates the webapp module">
     <delete file="${war.file}"/>
     <war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**" excludes="html,css-validator.*">
       <classes dir="build"/>
@@ -175,6 +175,20 @@
     </java>
   </target>
 
+  <path id="generate.class.path">
+    <path refid="build.class.path"/>
+    <pathelement location="build"/>
+  </path>
+
+  <target name="buildhtml" depends="build">
+    <java classpathref="generate.class.path" classname="org.w3c.css.index.IndexGenerator">
+      <arg value="."/>
+    </java>
+    <java classpathref="generate.class.path" classname="org.w3c.css.index.TranslationTableGenerator">
+      <arg value="."/>
+    </java>
+  </target>
+
   <target name="javacc">
     <ant antfile="build.xml" dir="javacc"/>
   </target>
@@ -182,6 +196,10 @@
   <target name="clean" description="Cleans up generated files">
     <delete file="${jar.file}"/>
     <delete file="${war.file}"/>
+    <delete>
+      <fileset dir="." includes="validator.html.*"/>
+    </delete>
+    <delete file="translations.html"/>
     <delete dir="./build"/>
     <delete dir="./javadoc"/>
     <delete dir="./tmp"/>
