@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -42,6 +45,31 @@ public class IndexGenerator {
      * @param args
      */
     public static void main(String[] args) {
+        // 1st argument: output path of the html files
+        if (args.length != 0 && !args[0].isEmpty())
+        {
+            String currentPathToClass = IndexGenerator.class.getResource("").getPath();
+            try {
+                Path path = Paths.get(currentPathToClass);
+                Path outputPath = Paths.get(new File(args[0]).getAbsolutePath().toString());
+                Path relativeOutputPath = path.relativize(outputPath);
+                // Overwrite html_files_path so that it is relative to the path (ie. currentPathToClass)
+                html_files_path = relativeOutputPath.toString() + "/";
+                if (!outputPath.toFile().exists()) {
+                    System.err.println("Directory doesn't exist:" + outputPath);
+                    System.exit(1);
+                }
+                if (!Files.isWritable(outputPath)) {
+                    System.err.println("Directory is not writable: " + outputPath);
+                    System.exit(1);
+                }
+                System.out.println("Writing files to " + path.toString() + "/" + html_files_path);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
         IndexGenerator.generatesIndex(false);
     }
 
