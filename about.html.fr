@@ -105,7 +105,7 @@ l'arbre source entier. Pour un aperçu des classes utilisées par le code du val
 
 <h4 id="install">Puis-je installer et utiliser personnellement le validateur CSS ?</h4>
 <p>On peut télécharger et installer le validateur CSS, et l'exécuter en ligne de commande ou bien en tant que servlet dans un serveur Web.
-Lisez les <a href="RUN.html">instructions</a> d'installation et d'utilisation.</p>
+Lisez les <a href="DOWNLOAD.html">instructions</a> d'installation et d'utilisation.</p>
 
 <h4 id="api">Puis-je créer une application utilisant ce validateur ? Existe-t-il une API ?</h4>
 <p>Oui, et <a href="api.html">oui</a>. Le validateur CSS possède une <a href="api.html">interface SOAP</a> (RESTful) qui devrait rendre

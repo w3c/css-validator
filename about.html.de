@@ -112,7 +112,7 @@ das <a href="README.html">README</a>.</p>
 <h4 id="install">Kann ich den CSS Validator installieren und selbst betreiben?</h4>
 <p>Es ist möglich den CSS Validator herunterzuladen und zu
 installieren. Er kann entweder von der Kommandozeile oder als Servlet
-in einem Webserver betrieben werden. Lesen Sie die <a href="RUN.html">Anleitung</a> zur Installation und Inbetriebnahme.</p>
+in einem Webserver betrieben werden. Lesen Sie die <a href="DOWNLOAD.html">Anleitung</a> zur Installation und Inbetriebnahme.</p>
 
 
 <h4 id="api">Kann ich Anwendungen mit dem Validator bauen? Gibt es ein API?</h4>

@@ -113,7 +113,7 @@ CSS Validator code kun je de <a href="README.html">README</a> lezen.</p>
 
 <h4 id="install">Kan ik de CSS Validator zelf installeren en draaien?</h4>
 <p>Het is mogelijk om de CSS validator te downloaden en te installeren, en het te draaien van de command line, of 
-als een servlet op een Web server. Lees de <a href="RUN.html">instructies</a> voor meer informatie over de installatie en het gebruik van de validator.</p>
+als een servlet op een Web server. Lees de <a href="DOWNLOAD.html">instructies</a> voor meer informatie over de installatie en het gebruik van de validator.</p>
 
 <h4 id="api">Kan ik een applicatie maken die gebruik maakt van de validator? Is er een API?</h4>
 <p>Ja, en <a href="api.html">ja</a>. De CSS Validator heeft een (RESTful) <a href="api.html">SOAP interface</a>

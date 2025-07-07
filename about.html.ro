@@ -100,7 +100,7 @@ adoptarea si repararea <a href="https://github.com/w3c/css-validator/issues">ero
 <a href="README.html">README</a>.</p>
 
 <h4 id="install">Pot instala si rula singur acest serviciu?</h4>
-<p>Este posibil sa dezcarci si sa instalezi validatorul CSS, si sa il rulezi din linie de comanda, sau ca servlet pe un server Web. Citeste <a href="RUN.html">instructiunile</a> de instalare si folosire.</p>
+<p>Este posibil sa dezcarci si sa instalezi validatorul CSS, si sa il rulezi din linie de comanda, sau ca servlet pe un server Web. Citeste <a href="DOWNLOAD.html">instructiunile</a> de instalare si folosire.</p>
 
 <h4 id="api">Pot sa dezvolt o aplicatie avand la baza acest validator? Exista un API?</h4>
 <p>Da, si <a href="api.html">da</a>. Validatorul CSS are o <a href="api.html">interfata SOAP</a> care ar trebui sa usureze construirea aplicatiilor (web sau de alt tip) pe baza ei. Este recomandabil respectarea resurselor puse la comun (shared resources) si utilizarea cu bun simt : ai grija ca sa lasi pauze (sleep) intre doua folosiri ale validatorului, sau sa iti instalezi si sa iti rulezi propria varianta de validator.</p>

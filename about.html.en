@@ -132,7 +132,7 @@ overview of the classes used in the CSS Validator code, check out the
 
 <h4 id="install">Can I install and run the CSS Validator myself?</h4>
 <p>It is possible to download and install the CSS validator, and to run it either from the command line, or 
-as a servlet in a Web server. Read the <a href="RUN.html">instructions</a> for installation and use.</p>
+as a servlet in a Web server. Read the <a href="DOWNLOAD.html">instructions</a> for installation and use.</p>
 
 <h4 id="api">Can I build an application upon this validator? Is there an API?</h4>
 <p>Yes, and <a href="api.html">yes</a>. The CSS Validator has a (RESTful) <a href="api.html">SOAP interface</a>
