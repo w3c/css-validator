@@ -150,6 +150,13 @@ Sie die zu überprüfende Datei.<img style="display: block; margin-left: auto; m
       </td>
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>Zeigt Erweiterungen als Warnungen an
+        <code>true</code> für Warnungen, <code>false</code> für Fehler.
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
