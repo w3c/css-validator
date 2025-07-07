@@ -13,7 +13,6 @@ import org.w3c.css.css.StyleSheet;
 import org.w3c.css.parser.Frame;
 import org.w3c.www.http.HttpAcceptCharset;
 import org.w3c.www.http.HttpAcceptCharsetList;
-import org.w3c.www.http.HttpFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -367,10 +366,10 @@ public class ApplContext {
             // uses some Jigsaw classes to parse the Accept-Charset
             // these classes need to load a lot of stuff, so it may be quite
             // long the first time
-            HttpAcceptCharsetList charsetList;
-            HttpAcceptCharset[] charsets;
+            HttpAcceptCharsetList charsetList = new HttpAcceptCharsetList();
+            charsetList.setString(acceptCharset);
 
-            charsetList = HttpFactory.parseAcceptCharsetList(acceptCharset);
+            HttpAcceptCharset[] charsets;
             charsets = (HttpAcceptCharset[]) charsetList.getValue();
 
             String encoding = null;
