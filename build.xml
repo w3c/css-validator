@@ -149,7 +149,7 @@
     </jar>
   </target>
 
-  <target name="war" depends="build" description="Creates the webapp module">
+  <target name="war" depends="build, buildhtml" description="Creates the webapp module">
     <delete file="${war.file}"/>
     <war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**.js" excludes="html,css-validator.*">
       <classes dir="build"/>
@@ -172,6 +172,20 @@
       includeantruntime="false"/>
     <java classname="autotest.AutoTest" classpath="css-validator.jar">
       <arg value="${testfile}"/>
+    </java>
+  </target>
+
+  <path id="generate.class.path">
+    <path refid="build.class.path"/>
+    <pathelement location="build"/>
+  </path>
+
+  <target name="buildhtml" depends="build">
+    <java classpathref="generate.class.path" classname="org.w3c.css.index.IndexGenerator">
+      <arg value="."/>
+    </java>
+    <java classpathref="generate.class.path" classname="org.w3c.css.index.TranslationTableGenerator">
+      <arg value="."/>
     </java>
   </target>
 
