@@ -243,6 +243,13 @@ CSS بکار برید وجود دارد.</p>
       </td>
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>پسوندها را به عنوان هشدار نشان دهید
+        <code>true</code> برای هشدارها <code>false</code> برای خطاها
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

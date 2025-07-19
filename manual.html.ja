@@ -227,6 +227,13 @@
       </td>
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>拡張機能を警告として表示する
+        <code>true</code> 警告として、<code>false</code> エラーとして
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

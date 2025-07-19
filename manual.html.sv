@@ -343,6 +343,13 @@ möjligheter:
 	  2
       </td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>Visa tillägg som varningar.
+        <code>true</code> som varningar, <code>false</code> som fel.
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
