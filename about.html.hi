@@ -18,7 +18,7 @@
 
 <div id="banner">
 	<h1 id="title"><a href="https://www.w3.org/">
-	<img id="logo" alt="W3C" height="61" src="images/w3c.png" width="110" /></a>
+	<img id="logo" alt="W3C" src="https://www.w3.org/assets/logos/w3c-2025/svg/margins/w3c-letters-bg-white.svg" /></a>
 	<a href="./"><span>सीएसएस मान्यकरण सेवा</span></a></h1>
 	<p id="tagline">कास्केडिंग शैली पत्रक (CSS) and (X)HTML दस्तावेजों शैली शीट्स 
 	की जाँच करें </p>
