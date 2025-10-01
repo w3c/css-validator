@@ -16,7 +16,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" src="https://www.w3.org/assets/logos/w3c-2025/svg/margins/w3c-letters-bg-white.svg" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" id="logo" src="https://www.w3.org/assets/logos/w3c-2025/svg/margins/w3c-letters-bg-white.svg" /></a>
    <a href="./"><span>Υπηρεσία Ελέγχου Εγκυρότητας CSS</span></a></h1>
    <p id="tagline">
      Έλεγχος Cascading Style Sheets (CSS) και εγγράφων (X)HTML με style sheets
