@@ -17,7 +17,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" src="https://www.w3.org/assets/logos/w3c-2025/svg/margins/w3c-letters-bg-white.svg" /></a><span id="tit"><span style="background-color: #365D95; background-repeat: repeat; background-position: 0 0"><a href="./">سرویس اعتبار سنجی <span lang="en-us">CSS</span></a></span></span></h1><p id="tagline">محک زدن شیوه نامه های آبشاری (CSS) و اسناد X)HTML) حاوی شیوه نامه ها</p></div>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" id="logo" src="https://www.w3.org/assets/logos/w3c-2025/svg/margins/w3c-letters-bg-white.svg" /></a><span id="tit"><span style="background-color: #365D95; background-repeat: repeat; background-position: 0 0"><a href="./">سرویس اعتبار سنجی <span lang="en-us">CSS</span></a></span></span></h1><p id="tagline">محک زدن شیوه نامه های آبشاری (CSS) و اسناد X)HTML) حاوی شیوه نامه ها</p></div>
 
 <div class="doc">
 <h2>دانلود و نصب اعتبار سنج CSS</h2>

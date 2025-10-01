@@ -16,7 +16,7 @@
 
 <body>
   <div id="banner">
-   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" src="https://www.w3.org/assets/logos/w3c-2025/svg/margins/w3c-letters-bg-white.svg" /></a>
+   <h1 id="title"><a href="https://www.w3.org/"><img alt="W3C" id="logo" src="https://www.w3.org/assets/logos/w3c-2025/svg/margins/w3c-letters-bg-white.svg" /></a>
    <a href="./"><span>CSS valideringstjänst</span></a></h1>
    <p id="tagline">
      Granska formatmallar ("<span xml:lang="en" lang="en">Check Cascading Style Sheets</span>, CSS) och (X)HTML-dokument med formatmallar
