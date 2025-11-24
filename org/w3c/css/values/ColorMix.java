@@ -119,6 +119,7 @@ public class ColorMix {
                 return new CssValueList(values);
             } else {
                 val = exp.getValue();
+                op = exp.getOperator();
                 if (val.getType() == CssTypes.CSS_IDENT) {
                     id = val.getIdent();
                     if (getAllowedValue(id, hueInterpolationMethodModifiers) != null) {
@@ -231,7 +232,7 @@ public class ColorMix {
             StringBuilder sb = new StringBuilder("color-mix(");
             boolean isFirst = true;
             if (color_interpolation_method != null) {
-                sb.append(color_interpolation_method).append(", ");
+                sb.append(color_interpolation_method);
                 isFirst = false;
             }
             for (CssValue v : color_percentages) {
