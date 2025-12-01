@@ -8,6 +8,7 @@ package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.color.LAB;
 
 import java.math.BigDecimal;
 

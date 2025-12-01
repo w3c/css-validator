@@ -10,6 +10,7 @@ package org.w3c.css.values;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.color.LAB;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -23,6 +24,8 @@ import static org.w3c.css.values.CssOperator.SPACE;
 public class CssColor extends CssValue {
 
     public static final int type = CssTypes.CSS_COLOR;
+    public static final CssIdent relative = CssIdent.getIdent("from");
+    public static final CssIdent none = CssIdent.getIdent("none");
 
     public final int getType() {
         return type;
@@ -1033,124 +1036,7 @@ public class CssColor extends CssValue {
 
     public void setLABColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
-        // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
-        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("lab(").append(exp.toStringFromStart()).append(')');
-            throw new InvalidParamException("notversion", sb.toString(),
-                    ac.getCssVersionString(), ac);
-        }
-
-        if (exp.hasCssVariable()) {
-            markCssVariable();
-            // we still parse variables as they will be ignored
-            // we check the delimiter syntax, and other failures
-        }
-
-        color = null;
-        lab = new LAB();
-        CssValue val = exp.getValue();
-        char op = exp.getOperator();
-        // L
-        if ((val == null || op != SPACE) && !hasCssVariable()) {
-            throw new InvalidParamException("colorfunc", exp, "Lab", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-            case CssTypes.CSS_PERCENTAGE:
-            case CssTypes.CSS_VARIABLE:
-                lab.setL(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    throw new InvalidParamException("colorfunc", val, "Lab", ac);
-                }
-        }
-
-        // A
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if ((val == null || op != SPACE) && !hasCssVariable()) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-            case CssTypes.CSS_VARIABLE:
-                lab.setA(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    exp.starts();
-                    throw new InvalidParamException("colorfunc", val, "Lab", ac);
-                }
-        }
-
-        // B
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if (val == null) {
-            if (!hasCssVariable()) {
-                exp.starts();
-                throw new InvalidParamException("colorfunc", exp, "Lab", ac);
-            }
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-            case CssTypes.CSS_VARIABLE:
-                lab.setB(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    exp.starts();
-                    throw new InvalidParamException("colorfunc", val, "Lab", ac);
-                }
-        }
-
-        exp.next();
-        if (!exp.end()) {
-            if (op != SPACE && !hasCssVariable()) {
-                throw new InvalidParamException("colorfunc", op, "Lab", ac);
-            }
-            // now we need an alpha.
-            val = exp.getValue();
-            op = exp.getOperator();
-
-            if ((val.getType() != CssTypes.CSS_SWITCH) && !hasCssVariable()) {
-                throw new InvalidParamException("colorfunc", val, "Lab", ac);
-            }
-            if (op != SPACE && !hasCssVariable()) {
-                throw new InvalidParamException("colorfunc", val, "Lab", ac);
-            }
-            exp.next();
-            // now we get the alpha value
-            val = exp.getValue();
-            if ((val == null) && !hasCssVariable()) {
-                throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "Lab", ac);
-            }
-            switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                case CssTypes.CSS_PERCENTAGE:
-                case CssTypes.CSS_VARIABLE:
-                    lab.setAlpha(ac, val);
-                    break;
-                default:
-                    if (!hasCssVariable()) {
-                        exp.starts();
-                        throw new InvalidParamException("colorfunc", val, "Lab", ac);
-                    }
-            }
-            exp.next();
-        }
-        // extra values?
-        if (!exp.end()) {
-            exp.starts();
-            if (!hasCssVariable()) {
-                throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "Lab", ac);
-            }
-        }
+        lab = LAB.parseLABColor(ac, exp, this);
     }
 
 
