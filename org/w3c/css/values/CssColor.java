@@ -14,6 +14,7 @@ import org.w3c.css.values.color.HSL;
 import org.w3c.css.values.color.HWB;
 import org.w3c.css.values.color.LAB;
 import org.w3c.css.values.color.LCH;
+import org.w3c.css.values.color.LightDark;
 import org.w3c.css.values.color.OKLAB;
 import org.w3c.css.values.color.OKLCH;
 
@@ -131,21 +132,8 @@ public class CssColor extends CssValue {
 
     public void setLightDark(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
-        if ((exp == null) || (exp.getCount() != 2)) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        LightDark ld = new LightDark();
-        CssValue l = exp.getValue();
-        char op = exp.getOperator();
-        if (l == null || op != COMMA) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        exp.next();
-        CssValue d = exp.getValue();
-        ld.setLight(ac, l);
-        ld.setDark(ac, d);
-        this.lightdark = ld;
-        exp.next();
+        lightdark = LightDark.parseLightDark(ac, exp, this);
+
     }
 
     public void setRGBColor(ApplContext ac, CssExpression exp)
