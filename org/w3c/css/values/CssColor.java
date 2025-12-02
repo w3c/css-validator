@@ -10,6 +10,7 @@ package org.w3c.css.values;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.color.ColorMix;
 import org.w3c.css.values.color.HSL;
 import org.w3c.css.values.color.HWB;
 import org.w3c.css.values.color.LAB;
@@ -18,7 +19,6 @@ import org.w3c.css.values.color.LightDark;
 import org.w3c.css.values.color.OKLAB;
 import org.w3c.css.values.color.OKLCH;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 import static org.w3c.css.values.CssOperator.COMMA;
@@ -925,41 +925,7 @@ public class CssColor extends CssValue {
 
     public void setColorMix(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
-        ColorMix colorMix = new ColorMix();
-        ArrayList<CssExpression> expressions = new ArrayList<>(3);
-        CssValue val;
-        char op;
-        CssExpression e = new CssExpression();
-        while (!exp.end()) {
-            val = exp.getValue();
-            op = exp.getOperator();
-            e.addValue(val);
-            if (op == COMMA) {
-                expressions.add(e);
-                e = new CssExpression();
-            } else if (op != SPACE) {
-                throw new InvalidParamException("operator",
-                        Character.toString(op), ac);
-            }
-            exp.next();
-        }
-        if (e.getCount() != 0) {
-            expressions.add(e);
-        }
-        // now check if the first one is interpolation.
-        if (expressions.isEmpty()) {
-            throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "color-mix", ac);
-        }
-
-        e = expressions.get(0);
-        val = e.getValue();
-        if (val.getType() == CssTypes.CSS_IDENT && ColorMix.in.equals(val.getIdent())) {
-            colorMix.setColorInterpolationMethod(ac, e, this);
-            expressions.remove(0);
-        }
-        for (CssExpression colorex : expressions) {
-            colorMix.addColorPercentageValue(ac, colorex, this);
-        }
+        colormix = ColorMix.parseColorMix(ac, exp, this);
     }
 
 }
