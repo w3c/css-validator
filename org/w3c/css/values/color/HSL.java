@@ -41,16 +41,15 @@ public class HSL {
     }
 
     /**
-     *  Parse HSL per
-     *
-     * @spec https://www.w3.org/TR/2025/CRD-css-color-4-20250424/#the-hsl-notation
-     * @spec https://www.w3.org/TR/2025/WD-css-color-5-20250318/#relative-HSL
+     * Parse HSL per
      *
      * @param ac
      * @param exp
      * @param caller
      * @return
      * @throws InvalidParamException
+     * @spec https://www.w3.org/TR/2025/CRD-css-color-4-20250424/#the-hsl-notation
+     * @spec https://www.w3.org/TR/2025/WD-css-color-5-20250318/#relative-HSL
      */
 
     public static final HSL parseHSL(ApplContext ac, CssExpression exp, CssColor caller)
@@ -154,6 +153,10 @@ public class HSL {
 
         // S
         switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                if (!separator_space) {
+                    throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                }
             case CssTypes.CSS_PERCENTAGE:
             case CssTypes.CSS_VARIABLE:
                 hsl.setSaturation(ac, val);
@@ -180,6 +183,10 @@ public class HSL {
 
         // L
         switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                if (!separator_space) {
+                    throw new InvalidParamException("colorfunc", val, "HSL", ac);
+                }
             case CssTypes.CSS_PERCENTAGE:
             case CssTypes.CSS_VARIABLE:
                 hsl.setLightness(ac, val);
@@ -268,7 +275,8 @@ public class HSL {
             // TODO add warning about uncheckability
             // might need to extend...
         } else {
-            if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+            if ((val.getType() == CssTypes.CSS_PERCENTAGE) ||
+                    (val.getType() == CssTypes.CSS_NUMBER)) {
                 CssCheckableValue v = val.getCheckableValue();
                 if (!v.warnPositiveness(ac, "RGB")) {
                     CssNumber nb = new CssNumber();
@@ -281,6 +289,8 @@ public class HSL {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
                         return new CssPercentage(100);
                     }
+                } else if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    val.getNumber().warnLowerEqualThan(ac, 100., null);
                 }
             }
         }
