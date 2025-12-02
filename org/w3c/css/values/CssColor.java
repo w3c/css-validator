@@ -13,7 +13,9 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.color.HSL;
 import org.w3c.css.values.color.HWB;
 import org.w3c.css.values.color.LAB;
+import org.w3c.css.values.color.LCH;
 import org.w3c.css.values.color.OKLAB;
+import org.w3c.css.values.color.OKLCH;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -764,7 +766,6 @@ public class CssColor extends CssValue {
         hwb = HWB.parseHWBColor(ac, exp, this);
     }
 
-
     public void setLABColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         lab = LAB.parseLABColor(ac, exp, this);
@@ -775,125 +776,17 @@ public class CssColor extends CssValue {
         lab = OKLAB.parseOKLABColor(ac, exp, this);
     }
 
-
     public void setLCHColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
-        // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
-        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("lch(").append(exp.toStringFromStart()).append(')');
-            throw new InvalidParamException("notversion", sb.toString(),
-                    ac.getCssVersionString(), ac);
-        }
-        if (exp.hasCssVariable()) {
-            markCssVariable();
-        }
-
-        color = null;
-        lch = new LCH();
-        CssValue val = exp.getValue();
-        char op = exp.getOperator();
-        // L
-        if ((val == null || op != SPACE) && !hasCssVariable()) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_PERCENTAGE:
-            case CssTypes.CSS_VARIABLE:
-                lch.setL(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    throw new InvalidParamException("colorfunc", val, "LCH", ac);
-                }
-        }
-
-        // A
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if ((val == null || op != SPACE) && !hasCssVariable()) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
-        }
-
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-            case CssTypes.CSS_VARIABLE:
-                lch.setC(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    exp.starts();
-                    throw new InvalidParamException("colorfunc", val, "LCH", ac);
-                }
-        }
-
-        // B
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if ((val == null) && !hasCssVariable()) {
-            throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "LCH", ac);
-        }
-
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-            case CssTypes.CSS_ANGLE:
-            case CssTypes.CSS_VARIABLE:
-                lch.setH(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    exp.starts();
-                    throw new InvalidParamException("colorfunc", val, "LCH", ac);
-                }
-        }
-
-        exp.next();
-        if (!exp.end()) {
-            if ((op != SPACE) && !hasCssVariable()) {
-                throw new InvalidParamException("invalid-color", ac);
-            }
-            // now we need an alpha.
-            val = exp.getValue();
-            op = exp.getOperator();
-
-            if ((val.getType() != CssTypes.CSS_SWITCH) && !hasCssVariable()) {
-                throw new InvalidParamException("colorfunc", val, "LCH", ac);
-            }
-            if ((op != SPACE) && !hasCssVariable()) {
-                throw new InvalidParamException("invalid-color", ac);
-            }
-            exp.next();
-            // now we get the alpha value
-            val = exp.getValue();
-            if (val == null) {
-                throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "LCH", ac);
-            }
-            switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                case CssTypes.CSS_PERCENTAGE:
-                case CssTypes.CSS_VARIABLE:
-                    lch.setAlpha(ac, val);
-                    break;
-                default:
-                    if (!hasCssVariable()) {
-                        exp.starts();
-                        throw new InvalidParamException("colorfunc", val, "LCH", ac);
-                    }
-            }
-            exp.next();
-        }
-        // extra values?
-        if (!exp.end()) {
-            if (!hasCssVariable()) {
-                exp.starts();
-                throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "LCH", ac);
-            }
-        }
+        // LCH defined in CSSColor Level 4 and onward, currently used in the CSS level
+        lch = LCH.parseLCHColor(ac, exp, this);
     }
 
+    public void setOKLCHColor(ApplContext ac, CssExpression exp)
+            throws InvalidParamException {
+        // OKLch defined in CSSColor Level 4 and onward, currently used in the CSS level
+        lch = OKLCH.parseOKLCHColor(ac, exp, this);
+    }
 
     public void setDeviceCMYKColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
