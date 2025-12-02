@@ -8650,6 +8650,9 @@ String funcname = n.image.toLowerCase();
         } else if (funcname.equals("oklab(")) {
             color.setOKLABColor(ac, exp);
             {if ("" != null) return color;}
+        } else if (funcname.equals("oklch(")) {
+            color.setOKLCHColor(ac, exp);
+            {if ("" != null) return color;}
         } else if (funcname.equals("device-cmyk(")) {
             color.setDeviceCMYKColor(ac, exp);
             {if ("" != null) return color;}
