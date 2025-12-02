@@ -269,6 +269,11 @@ public class LAB {
 
     public boolean equals(LAB other) {
         if (other != null) {
+            if (isRelative) {
+                if (!other.isRelative || !fromValue.equals(other.fromValue)) {
+                    return false;
+                }
+            }
             return (vl.equals(other.vl) && va.equals(other.va) && vb.equals(other.vb) &&
                     ((alpha == null && other.alpha == null) || (alpha != null && alpha.equals(other.alpha))));
         }
