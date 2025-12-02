@@ -11,7 +11,9 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.color.HSL;
+import org.w3c.css.values.color.HWB;
 import org.w3c.css.values.color.LAB;
+import org.w3c.css.values.color.OKLAB;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -759,131 +761,18 @@ public class CssColor extends CssValue {
 
     public void setHWBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
-        // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
-        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("hwb(").append(exp.toStringFromStart()).append(')');
-            throw new InvalidParamException("notversion", sb.toString(),
-                    ac.getCssVersionString(), ac);
-        }
-        if (exp.hasCssVariable()) {
-            markCssVariable();
-        }
-
-        color = null;
-        hwb = new HWB();
-
-        CssValue val = exp.getValue();
-        char op = exp.getOperator();
-        // H
-        if ((val == null || op != SPACE) && !hasCssVariable()) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_ANGLE:
-            case CssTypes.CSS_NUMBER:
-            case CssTypes.CSS_VARIABLE:
-                hwb.setHue(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    throw new InvalidParamException("colorfunc", val, "HWB", ac);
-                }
-        }
-
-        // W
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if ((val == null || op != SPACE) && !hasCssVariable()) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_PERCENTAGE:
-            case CssTypes.CSS_VARIABLE:
-                hwb.setWhiteness(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    exp.starts();
-                    throw new InvalidParamException("colorfunc", val, "HWB", ac);
-                }
-        }
-
-        // B
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if (val == null || (op != SPACE && exp.getRemainingCount() > 1)) {
-            if (!hasCssVariable()) {
-                exp.starts();
-                throw new InvalidParamException("invalid-color", ac);
-            }
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_PERCENTAGE:
-            case CssTypes.CSS_VARIABLE:
-                hwb.setBlackness(ac, val);
-                break;
-            default:
-                if (!hasCssVariable()) {
-                    exp.starts();
-                    throw new InvalidParamException("colorfunc", val, "HWB", ac);
-                }
-        }
-
-        hwb.normalize();
-
-        // A
-        exp.next();
-        if (!exp.end()) {
-            if (op != SPACE && !hasCssVariable()) {
-                throw new InvalidParamException("invalid-color", ac);
-            }
-            // now we need an alpha.
-            val = exp.getValue();
-            op = exp.getOperator();
-
-            if ((val.getType() != CssTypes.CSS_SWITCH) && !hasCssVariable()) {
-                throw new InvalidParamException("colorfunc", val, "HWB", ac);
-            }
-            if (op != SPACE && !hasCssVariable()) {
-                throw new InvalidParamException("invalid-color", ac);
-            }
-            exp.next();
-            // now we get the alpha value
-            val = exp.getValue();
-            if (val == null && !hasCssVariable()) {
-                throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
-            }
-            switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                case CssTypes.CSS_PERCENTAGE:
-                case CssTypes.CSS_VARIABLE:
-                    hwb.setAlpha(ac, val);
-                    break;
-                default:
-                    if (!hasCssVariable()) {
-                        exp.starts();
-                        throw new InvalidParamException("colorfunc", val, "HWB", ac);
-                    }
-            }
-            exp.next();
-        }
-        // extra values?
-        if (!exp.end()) {
-            if (!hasCssVariable()) {
-                exp.starts();
-                throw new InvalidParamException("colorfunc", exp.toStringFromStart(), "HWB", ac);
-            }
-        }
+        hwb = HWB.parseHWBColor(ac, exp, this);
     }
 
 
     public void setLABColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         lab = LAB.parseLABColor(ac, exp, this);
+    }
+
+    public void setOKLABColor(ApplContext ac, CssExpression exp)
+            throws InvalidParamException {
+        lab = OKLAB.parseOKLABColor(ac, exp, this);
     }
 
 
@@ -1160,18 +1049,18 @@ public class CssColor extends CssValue {
         CssValue val;
         char op;
         CssExpression e = new CssExpression();
-        while(!exp.end()) {
-           val = exp.getValue();
-           op = exp.getOperator();
-           e.addValue(val);
-           if (op == COMMA) {
-               expressions.add(e);
-               e = new CssExpression();
-           } else if (op != SPACE) {
-               throw new InvalidParamException("operator",
-                       Character.toString(op), ac);
-           }
-           exp.next();
+        while (!exp.end()) {
+            val = exp.getValue();
+            op = exp.getOperator();
+            e.addValue(val);
+            if (op == COMMA) {
+                expressions.add(e);
+                e = new CssExpression();
+            } else if (op != SPACE) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op), ac);
+            }
+            exp.next();
         }
         if (e.getCount() != 0) {
             expressions.add(e);
@@ -1187,7 +1076,7 @@ public class CssColor extends CssValue {
             colorMix.setColorInterpolationMethod(ac, e, this);
             expressions.remove(0);
         }
-        for(CssExpression colorex : expressions) {
+        for (CssExpression colorex : expressions) {
             colorMix.addColorPercentageValue(ac, colorex, this);
         }
     }

@@ -3719,6 +3719,9 @@ CssValue function() :
         } else if (funcname.equals("lch(")) {
             color.setLCHColor(ac, exp);
             return color;
+        } else if (funcname.equals("oklab(")) {
+            color.setOKLABColor(ac, exp);
+            return color;
         } else if (funcname.equals("device-cmyk(")) {
             color.setDeviceCMYKColor(ac, exp);
             return color;
