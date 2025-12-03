@@ -439,13 +439,20 @@ public class CssColor extends CssValue {
     }
 
     /**
-     * Parse a HSL color.
-     * format hsl( <percentage>{3} [ / <alpha-value> ]? ) |
-     * hsl( <number>{3} [ / <alpha-value> ]? )
+     * Parse a HSL color
      */
     public void setHSLColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         hsl = HSL.parseHSL(ac, exp, this);
+    }
+
+    /**
+     * Parse a HSLA color
+     */
+    public void setHSLAColor(ApplContext ac, CssExpression exp)
+            throws InvalidParamException {
+        hsl = HSL.parseHSL(ac, exp, this);
+        hsl.setFunctionName("hsla");
     }
 
     /**

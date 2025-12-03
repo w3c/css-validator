@@ -32,7 +32,7 @@ public class HSL {
     boolean isRelative = false;
     CssColor fromValue;
 
-    static final String functionname = "hsl";
+    String functionname = "hsl";
 
     /**
      * Create a new HSL
@@ -382,6 +382,10 @@ public class HSL {
                     ((va == null && other.va == null) || (va != null && va.equals(other.va))));
         }
         return false;
+    }
+
+    public void setFunctionName(String name) {
+        functionname = name;
     }
 
     /**

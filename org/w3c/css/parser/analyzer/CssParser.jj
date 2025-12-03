@@ -3708,7 +3708,7 @@ CssValue function() :
 	    color.setHSLColor(ac, exp);
 	    return color;
 	} else if (funcname.equals("hsla(")) {
-	    color.setHSLColor(ac, exp);
+	    color.setHSLAColor(ac, exp);
 	    return color;
         } else if (funcname.equals("hwb(")) {
             color.setHWBColor(ac, exp);
