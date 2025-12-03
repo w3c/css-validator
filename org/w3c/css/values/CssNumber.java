@@ -29,6 +29,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
     BigDecimal value;
     boolean isInt = false;
     String _strval = null;
+    boolean relativeColor = false;
 
     /**
      * Create a new CssNumber
@@ -103,9 +104,10 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
             case "s":
             case "w":
                 // Fake value as it is relative to the "from" color
+                relativeColor = true;
                 value = BigDecimal.ONE;
                 isInt = true;
-                _strval = "infinity";
+                _strval = val.toLowerCase();
                 break;
             default:
                 value = new BigDecimal(val);
