@@ -91,8 +91,11 @@ public class LCH {
 
         // L
         switch (val.getType()) {
-            case CssTypes.CSS_PERCENTAGE:
             case CssTypes.CSS_VARIABLE:
+                exp.markCssVariable();
+                caller.markCssVariable();
+            case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_PERCENTAGE:
                 lch.setL(ac, val);
                 break;
             case CssTypes.CSS_IDENT:
@@ -116,8 +119,11 @@ public class LCH {
         }
 
         switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_VARIABLE:
+                exp.markCssVariable();
+                caller.markCssVariable();
+            case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_PERCENTAGE:
                 lch.setC(ac, val);
                 break;
             case CssTypes.CSS_IDENT:
@@ -141,9 +147,11 @@ public class LCH {
         }
 
         switch (val.getType()) {
+            case CssTypes.CSS_VARIABLE:
+                exp.markCssVariable();
+                caller.markCssVariable();
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_ANGLE:
-            case CssTypes.CSS_VARIABLE:
                 lch.setH(ac, val);
                 break;
             case CssTypes.CSS_IDENT:
@@ -214,13 +222,12 @@ public class LCH {
             // TODO add warning about uncheckability
             // might need to extend...
         } else {
-            if (val.getType() == CssTypes.CSS_NUMBER) {
+            if ((val.getType() == CssTypes.CSS_NUMBER) ||
+                    (val.getType() == CssTypes.CSS_PERCENTAGE)) {
                 CssCheckableValue v = val.getCheckableValue();
                 if (!v.isPositive()) {
                     ac.getFrame().addWarning("out-of-range", val.toString());
-                    CssNumber nb = new CssNumber();
-                    nb.setValue(BigDecimal.ZERO);
-                    return nb;
+                    val.getCheckableValue().setValue(BigDecimal.ZERO);
                 }
             }
         }
