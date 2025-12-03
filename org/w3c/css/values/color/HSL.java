@@ -41,7 +41,7 @@ public class HSL {
     }
 
     /**
-     * Parse HSL per
+     * Parse HSL per spec below
      *
      * @param ac
      * @param exp
