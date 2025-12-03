@@ -73,24 +73,51 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
             val = s;
         }
 
-        if (val.equalsIgnoreCase("pi")) {
-            value = BigDecimal.valueOf(Math.PI);
-            isInt = false;
-            _strval = "pi";
-        } else if (val.equalsIgnoreCase("e")) {
-            value = BigDecimal.valueOf(Math.E);
-            isInt = false;
-            _strval = "e";
-        } else {
-            value = new BigDecimal(val);
-            isInt = (val.indexOf('.') < 0);
-/*		CSS integers are not value-based integers.
-        try {
-			value.toBigIntegerExact();
-			isInt = true;
-		} catch (ArithmeticException e) {
-			isInt = false;
-		} */
+        switch (val.toLowerCase()) {
+            case "pi":
+                value = BigDecimal.valueOf(Math.PI);
+                isInt = false;
+                _strval = "pi";
+                break;
+            case "e":
+                value = BigDecimal.valueOf(Math.E);
+                isInt = false;
+                _strval = "e";
+                break;
+            case "infinity":
+                value = BigDecimal.valueOf(Double.POSITIVE_INFINITY);
+                isInt = true;
+                _strval = "infinity";
+                break;
+            // special case for relative colors treated as numbers
+            // h, s, l, alpha, r, g, b,  h, w, b,  l, a, b,  l, c, h
+            // so a, alpha, b, c, g, h, l, r, s, w
+            case "a":
+            case "alpha":
+            case "b":
+            case "c":
+            case "g":
+            case "h":
+            case "l":
+            case "r":
+            case "s":
+            case "w":
+                // Fake value as it is relative to the "from" color
+                value = BigDecimal.ONE;
+                isInt = true;
+                _strval = "infinity";
+                break;
+            default:
+                value = new BigDecimal(val);
+                isInt = (val.indexOf('.') < 0);
+                /*		CSS integers are not value-based integers.
+                try {
+                    value.toBigIntegerExact();
+                    isInt = true;
+                } catch (ArithmeticException ex) {
+                    isInt = false;
+                }
+                */
         }
         if (negate) {
             value = value.negate();
