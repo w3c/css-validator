@@ -12,6 +12,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -20,6 +21,15 @@ import org.w3c.css.values.RGBA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 public class LAB {
+    public static final CssIdent l, a, b, al;
+
+    static {
+        l = CssIdent.getIdent("h");
+        a = CssIdent.getIdent("s");
+        b = CssIdent.getIdent("l");
+        al = CssIdent.getIdent("alpha");
+    }
+
     String output = null;
     CssValue vl, va, vb, alpha;
     boolean faSet = false;
@@ -128,7 +138,8 @@ public class LAB {
                 lab.setL(ac, val);
                 break;
             case CssTypes.CSS_IDENT:
-                if (CssColor.none.equals(val.getIdent())) {
+                if (CssColor.none.equals(val.getIdent()) ||
+                        (lab.isRelative && l.equals(val.getIdent()))) {
                     lab.setL(ac, val);
                     break;
                 }
@@ -152,7 +163,8 @@ public class LAB {
                 lab.setA(ac, val);
                 break;
             case CssTypes.CSS_IDENT:
-                if (CssColor.none.equals(val.getIdent())) {
+                if (CssColor.none.equals(val.getIdent()) ||
+                        (lab.isRelative && a.equals(val.getIdent()))) {
                     lab.setA(ac, val);
                     break;
                 }
@@ -179,7 +191,8 @@ public class LAB {
                 lab.setB(ac, val);
                 break;
             case CssTypes.CSS_IDENT:
-                if (CssColor.none.equals(val.getIdent())) {
+                if (CssColor.none.equals(val.getIdent()) ||
+                        (lab.isRelative && b.equals(val.getIdent()))) {
                     lab.setB(ac, val);
                     break;
                 }
@@ -218,7 +231,8 @@ public class LAB {
                     lab.setAlpha(ac, val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (CssColor.none.equals(val.getIdent())) {
+                    if (CssColor.none.equals(val.getIdent()) ||
+                            (lab.isRelative && al.equals(val.getIdent()))) {
                         lab.setAlpha(ac, val);
                         break;
                     }
