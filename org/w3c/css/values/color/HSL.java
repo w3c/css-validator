@@ -20,7 +20,6 @@ import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssVariable;
-import org.w3c.css.values.RGBA;
 
 import java.math.RoundingMode;
 

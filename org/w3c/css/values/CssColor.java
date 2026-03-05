@@ -11,6 +11,10 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.color.ColorMix;
+import org.w3c.css.values.color.CssColorCSS1;
+import org.w3c.css.values.color.CssColorCSS2;
+import org.w3c.css.values.color.CssColorCSS21;
+import org.w3c.css.values.color.CssColorCSS3;
 import org.w3c.css.values.color.DeviceCMYK;
 import org.w3c.css.values.color.HSL;
 import org.w3c.css.values.color.HWB;
@@ -19,11 +23,12 @@ import org.w3c.css.values.color.LCH;
 import org.w3c.css.values.color.LightDark;
 import org.w3c.css.values.color.OKLAB;
 import org.w3c.css.values.color.OKLCH;
+import org.w3c.css.values.color.RGB;
+import org.w3c.css.values.color.RGBA;
 
 import java.util.Locale;
 
 import static org.w3c.css.values.CssOperator.COMMA;
-import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @version $Revision$
@@ -143,7 +148,7 @@ public class CssColor extends CssValue {
         if (!isCss3) {
             setLegacyRGBColor(ac, exp);
         } else {
-            setModernRGBColor(ac, exp);
+            rgba = RGBA.parseModernRGBA(ac, exp, this, "rgb(");
         }
     }
 
@@ -238,204 +243,8 @@ public class CssColor extends CssValue {
      */
     public void setModernRGBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
-        CssValue val;
-        char op;
-        color = null;
-        rgba = new RGBA("rgb");
-        boolean separator_space = true;
 
-        // check for variables
-        if (exp.hasCssVariable()) {
-            // don't check value then
-            markCssVariable();
-
-            val = exp.getValue();
-            op = exp.getOperator();
-            separator_space = (op == SPACE);
-            rgba.setModernStyle(separator_space);
-
-            if (val == null || (!separator_space && (op != COMMA))) {
-                // don't throw, perhaps a warning instead? FIXME
-                // throw new InvalidParamException("invalid-color", ac);
-            }
-            rgba.vr = val;
-
-            exp.next();
-            val = exp.getValue();
-            op = exp.getOperator();
-
-            if (val == null || (separator_space && (op != SPACE)) ||
-                    (!separator_space && (op != COMMA))) {
-                // don't throw, perhaps a warning instead? FIXME
-                // throw new InvalidParamException("invalid-color", ac);
-            }
-            rgba.vg = val;
-            exp.next();
-            val = exp.getValue();
-            op = exp.getOperator();
-
-            rgba.vb = val;
-            exp.next();
-
-            if (!exp.end()) {
-                // care for old syntax
-                if (op == COMMA && !separator_space) {
-                    val = exp.getValue();
-                    rgba.va = val;
-                } else {
-                    // otherwise modern syntax
-                    if (op != SPACE) {
-                        // don't throw, perhaps a warning instead? FIXME
-                        //         throw new InvalidParamException("invalid-color", ac);
-                    }
-                    // now we need an alpha.
-                    val = exp.getValue();
-                    op = exp.getOperator();
-
-                    if (val.getType() != CssTypes.CSS_SWITCH) {
-                        // don't throw, perhaps a warning instead? FIXME
-//                        throw new InvalidParamException("rgb", val, ac);
-                    }
-                    if (op != SPACE) {
-                        // don't throw, perhaps a warning instead? FIXME
-//                        throw new InvalidParamException("invalid-color", ac);
-                    }
-                    exp.next();
-                    // now we get the alpha value
-                    if (exp.end()) {
-                        // don't throw, perhaps a warning instead? FIXME
-//                        throw new InvalidParamException("rgb", exp.getValue(), ac);
-                    }
-                    val = exp.getValue();
-                    rgba.va = val;
-                }
-                exp.next();
-            }
-            return;
-        }
-
-        val = exp.getValue();
-        op = exp.getOperator();
-        separator_space = (op == SPACE);
-        rgba.setModernStyle(separator_space);
-
-        if (val == null || (!separator_space && (op != COMMA))) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                rgba.setPercent(false);
-                rgba.setRed(ac, val);
-                break;
-            case CssTypes.CSS_PERCENTAGE:
-                rgba.setPercent(true);
-                rgba.setRed(ac, val);
-                break;
-            default:
-                throw new InvalidParamException("rgb", val, ac);
-        }
-
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-
-        if (val == null || (separator_space && (op != SPACE)) ||
-                (!separator_space && (op != COMMA))) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                if (rgba.isPercent()) {
-                    throw new InvalidParamException("percent", val, ac);
-                }
-                rgba.setGreen(ac, val);
-                break;
-            case CssTypes.CSS_PERCENTAGE:
-                if (!rgba.isPercent()) {
-                    throw new InvalidParamException("integer", val, ac);
-                }
-                rgba.setGreen(ac, val);
-                break;
-            default:
-                throw new InvalidParamException("rgb", val, ac);
-        }
-
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-
-        if (val == null) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                if (rgba.isPercent()) {
-                    throw new InvalidParamException("percent", val, ac);
-                }
-                rgba.setBlue(ac, val);
-                break;
-            case CssTypes.CSS_PERCENTAGE:
-                if (!rgba.isPercent()) {
-                    throw new InvalidParamException("integer", val, ac);
-                }
-                rgba.setBlue(ac, val);
-                break;
-            default:
-                throw new InvalidParamException("rgb", val, ac);
-        }
-        exp.next();
-
-        // check for optional alpha channel
-        if (!exp.end()) {
-            // care for old syntax
-            if (op == COMMA && !separator_space) {
-                val = exp.getValue();
-                switch (val.getType()) {
-                    case CssTypes.CSS_NUMBER:
-                    case CssTypes.CSS_PERCENTAGE:
-                        rgba.setAlpha(ac, val);
-                        break;
-                    default:
-                        throw new InvalidParamException("rgb", val, ac);
-                }
-            } else {
-                // otherwise modern syntax
-                if (op != SPACE) {
-                    throw new InvalidParamException("invalid-color", ac);
-                }
-                // now we need an alpha.
-                val = exp.getValue();
-                op = exp.getOperator();
-
-                if (val.getType() != CssTypes.CSS_SWITCH) {
-                    throw new InvalidParamException("rgb", val, ac);
-                }
-                if (op != SPACE) {
-                    throw new InvalidParamException("invalid-color", ac);
-                }
-                exp.next();
-                // now we get the alpha value
-                if (exp.end()) {
-                    throw new InvalidParamException("rgb", exp.getValue(), ac);
-                }
-                val = exp.getValue();
-                switch (val.getType()) {
-                    case CssTypes.CSS_NUMBER:
-                    case CssTypes.CSS_PERCENTAGE:
-                        rgba.setAlpha(ac, val);
-                        break;
-                    default:
-                        throw new InvalidParamException("rgb", val, ac);
-                }
-            }
-            exp.next();
-
-            if (!exp.end()) {
-                throw new InvalidParamException("rgb", exp.getValue(), ac);
-            }
-        }
+        rgba = RGBA.parseModernRGBA(ac, exp, this, "rgb");
     }
 
     /**
@@ -461,75 +270,8 @@ public class CssColor extends CssValue {
      */
     public void setShortRGBColor(ApplContext ac, String s)
             throws InvalidParamException {
-        int r;
-        int g;
-        int b;
-        int a;
-        int v;
-        int idx;
-        boolean islong;
-        boolean hasAlpha = false;
-        boolean isCss3;
-
-        isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
-        idx = 1;
-        a = 0;
-        switch (s.length()) {
-            case 5:
-                a = Character.digit(s.charAt(4), 16);
-                if (!isCss3 || a < 0) {
-                    throw new InvalidParamException("rgb", s, ac);
-                }
-                hasAlpha = true;
-            case 4:
-                r = Character.digit(s.charAt(idx++), 16);
-                g = Character.digit(s.charAt(idx++), 16);
-                b = Character.digit(s.charAt(idx++), 16);
-                if (r < 0 || g < 0 || b < 0) {
-                    throw new InvalidParamException("rgb", s, ac);
-                }
-                break;
-            case 9:
-                a = Character.digit(s.charAt(7), 16);
-                v = Character.digit(s.charAt(8), 16);
-                if (!isCss3 || a < 0 || v < 0) {
-                    throw new InvalidParamException("rgb", s, ac);
-                }
-                a = (a << 4) + v;
-                hasAlpha = true;
-            case 7:
-                r = Character.digit(s.charAt(idx++), 16);
-                v = Character.digit(s.charAt(idx++), 16);
-                if (r < 0 || v < 0) {
-                    throw new InvalidParamException("rgb", s, ac);
-                }
-                r = (r << 4) + v;
-                g = Character.digit(s.charAt(idx++), 16);
-                v = Character.digit(s.charAt(idx++), 16);
-                if (g < 0 || v < 0) {
-                    throw new InvalidParamException("rgb", s, ac);
-                }
-                g = (g << 4) + v;
-                b = Character.digit(s.charAt(idx++), 16);
-                v = Character.digit(s.charAt(idx++), 16);
-                if (b < 0 || v < 0) {
-                    throw new InvalidParamException("rgb", s, ac);
-                }
-                b = (b << 4) + v;
-                break;
-            default:
-                throw new InvalidParamException("rgb", s, ac);
-        }
-
+        rgba = RGBA.parseShortRGBColor(ac, s);
         color = null;
-        if (hasAlpha) {
-            rgba = new RGBA(isCss3, r, g, b, a);
-            rgba.setRepresentationString(s);
-        } else {
-            rgb = new RGB(isCss3, r, g, b);
-            // we force the specific display of it
-            rgb.setRepresentationString(s);
-        }
     }
 
     /**
@@ -572,11 +314,6 @@ public class CssColor extends CssValue {
             case CSS_2015:
             case CSS:
                 // test RGB colors, RGBA colors (transparent), deprecated system colors
-                rgb = CssColorCSS3.getRGB(lower_s);
-                if (rgb != null) {
-                    color = lower_s;
-                    break;
-                }
                 rgba = CssColorCSS3.getRGBA(lower_s);
                 if (rgba != null) {
                     color = lower_s;
@@ -644,14 +381,7 @@ public class CssColor extends CssValue {
 
     public void setRGBAColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
-        // RGBA defined in CSS3 and onward
-        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("rgba(").append(exp.toStringFromStart()).append(')');
-            throw new InvalidParamException("notversion", sb.toString(),
-                    ac.getCssVersionString(), ac);
-        }
-        setModernRGBColor(ac, exp);
+        rgba = RGBA.parseModernRGBA(ac, exp, this, "rgba(");
     }
 
     // use only for atsc profile, superseded by setModernRGBColor
