@@ -95,6 +95,11 @@ public class CssValidator {
 
         // first, we get the parameters and create an application context
         try {
+            for (String param : args) {
+                if ("-h".equals(param) || "--help".equals(param) || "-help".equals(param)) {
+                    throw new Exception();
+                }
+            }
             style.getParams(args);
             style.ac = new ApplContext(style.params.get("lang"));
             System.err.println(style.params);
