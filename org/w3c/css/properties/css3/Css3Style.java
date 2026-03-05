@@ -339,6 +339,7 @@ import org.w3c.css.properties.css.fontface.CssFontWeight;
 import org.w3c.css.properties.css.fontface.CssLineGapOverride;
 import org.w3c.css.properties.css.fontface.CssSizeAdjust;
 import org.w3c.css.properties.css.fontface.CssSubscriptPositionOverride;
+import org.w3c.css.properties.css.fontface.CssSubscriptSizeOverride;
 import org.w3c.css.properties.css.fontface.CssSuperscriptPositionOverride;
 import org.w3c.css.properties.css.fontface.CssUnicodeRange;
 import org.w3c.css.properties.css.viewport.CssMaxZoom;
@@ -635,6 +636,7 @@ public class Css3Style extends ATSCStyle {
     public CssSizeAdjust fontFaceCssSizeAdjust;
     public CssSuperscriptPositionOverride fontFaceCssSuperscriptPositionOverride;
     public CssSubscriptPositionOverride fontFaceCssSubscriptPositionOverride;
+    public CssSubscriptSizeOverride fontFaceCssSubscriptSizeOverride; 
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1724,6 +1726,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return fontFaceCssSubscriptPositionOverride;
+    }
+
+    public CssSubscriptSizeOverride getFontFaceCssSubscriptSizeOverride() {
+        if (fontFaceCssSubscriptSizeOverride == null) {
+            fontFaceCssSubscriptSizeOverride =
+                    (CssSubscriptSizeOverride) style.CascadingOrder(new CssSubscriptSizeOverride(),
+                            style, selector);
+        }
+        return fontFaceCssSubscriptSizeOverride;
     }
 
     public CssFontDisplay getFontFaceCssFontDisplay() {
