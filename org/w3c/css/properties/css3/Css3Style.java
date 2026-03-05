@@ -337,6 +337,7 @@ import org.w3c.css.properties.css.fontface.CssFontStretch;
 import org.w3c.css.properties.css.fontface.CssFontStyle;
 import org.w3c.css.properties.css.fontface.CssFontWeight;
 import org.w3c.css.properties.css.fontface.CssLineGapOverride;
+import org.w3c.css.properties.css.fontface.CssSizeAdjust;
 import org.w3c.css.properties.css.fontface.CssUnicodeRange;
 import org.w3c.css.properties.css.viewport.CssMaxZoom;
 import org.w3c.css.properties.css.viewport.CssMinZoom;
@@ -629,6 +630,7 @@ public class Css3Style extends ATSCStyle {
     public org.w3c.css.properties.css.fontface.CssFontFamily fontFaceCssFontFamily;
     public org.w3c.css.properties.css.fontface.CssFontFeatureSettings fontFaceCssFontFeatureSettings;
     public org.w3c.css.properties.css.fontface.CssFontVariationSettings fontFaceCssFontVariationSettings;
+    public CssSizeAdjust fontFaceCssSizeAdjust;
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1691,6 +1693,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return fontFaceCssFontNamedInstance;
+    }
+
+    public CssSizeAdjust getFontFaceCssSizeAdjust() {
+        if (fontFaceCssSizeAdjust == null) {
+            fontFaceCssSizeAdjust =
+                    (CssSizeAdjust) style.CascadingOrder(new CssSizeAdjust(),
+                            style, selector);
+        }
+        return fontFaceCssSizeAdjust;
     }
 
     public CssFontDisplay getFontFaceCssFontDisplay() {
