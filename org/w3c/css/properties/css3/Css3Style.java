@@ -52,12 +52,6 @@ import org.w3c.css.properties.css.CssBorderBlockStyle;
 import org.w3c.css.properties.css.CssBorderBlockWidth;
 import org.w3c.css.properties.css.CssBorderEndEndRadius;
 import org.w3c.css.properties.css.CssBorderEndStartRadius;
-import org.w3c.css.properties.css.CssHyphenateCharacter;
-import org.w3c.css.properties.css.CssHyphenateLimitChars;
-import org.w3c.css.properties.css.CssHyphenateLimitLast;
-import org.w3c.css.properties.css.CssHyphenateLimitLines;
-import org.w3c.css.properties.css.CssHyphenateLimitZone;
-import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssBorderImageSource;
 import org.w3c.css.properties.css.CssBorderInline;
 import org.w3c.css.properties.css.CssBorderInlineColor;
@@ -151,9 +145,15 @@ import org.w3c.css.properties.css.CssGridTemplateAreas;
 import org.w3c.css.properties.css.CssGridTemplateColumns;
 import org.w3c.css.properties.css.CssGridTemplateRows;
 import org.w3c.css.properties.css.CssHangingPunctuation;
+import org.w3c.css.properties.css.CssHyphenateCharacter;
+import org.w3c.css.properties.css.CssHyphenateLimitChars;
+import org.w3c.css.properties.css.CssHyphenateLimitLast;
+import org.w3c.css.properties.css.CssHyphenateLimitLines;
+import org.w3c.css.properties.css.CssHyphenateLimitZone;
 import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssIcon;
 import org.w3c.css.properties.css.CssImageOrientation;
+import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssImageResolution;
 import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssInitialLetter;
@@ -338,6 +338,7 @@ import org.w3c.css.properties.css.fontface.CssFontStyle;
 import org.w3c.css.properties.css.fontface.CssFontWeight;
 import org.w3c.css.properties.css.fontface.CssLineGapOverride;
 import org.w3c.css.properties.css.fontface.CssSizeAdjust;
+import org.w3c.css.properties.css.fontface.CssSubscriptPositionOverride;
 import org.w3c.css.properties.css.fontface.CssSuperscriptPositionOverride;
 import org.w3c.css.properties.css.fontface.CssUnicodeRange;
 import org.w3c.css.properties.css.viewport.CssMaxZoom;
@@ -633,6 +634,7 @@ public class Css3Style extends ATSCStyle {
     public org.w3c.css.properties.css.fontface.CssFontVariationSettings fontFaceCssFontVariationSettings;
     public CssSizeAdjust fontFaceCssSizeAdjust;
     public CssSuperscriptPositionOverride fontFaceCssSuperscriptPositionOverride;
+    public CssSubscriptPositionOverride fontFaceCssSubscriptPositionOverride;
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
@@ -1713,6 +1715,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return fontFaceCssSuperscriptPositionOverride;
+    }
+
+    public CssSubscriptPositionOverride getFontFaceCssSubscriptPositionOverride() {
+        if (fontFaceCssSubscriptPositionOverride == null) {
+            fontFaceCssSubscriptPositionOverride =
+                    (CssSubscriptPositionOverride) style.CascadingOrder(new CssSubscriptPositionOverride(),
+                            style, selector);
+        }
+        return fontFaceCssSubscriptPositionOverride;
     }
 
     public CssFontDisplay getFontFaceCssFontDisplay() {
