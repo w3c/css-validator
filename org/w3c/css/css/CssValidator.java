@@ -95,6 +95,10 @@ public class CssValidator {
 
         // first, we get the parameters and create an application context
         try {
+            // kludge to display usage
+            if (args == null || args.length == 0) {
+                throw new Exception();
+            }
             for (String param : args) {
                 if ("-h".equals(param) || "--help".equals(param) || "-help".equals(param)) {
                     throw new Exception();
