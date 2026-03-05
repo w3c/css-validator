@@ -24,12 +24,28 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 public class LCH {
     public static final CssIdent l, c, h, a;
+    public static final CssIdent colorRelativeValues[];
 
     static {
         l = CssIdent.getIdent("l");
         c = CssIdent.getIdent("c");
         h = CssIdent.getIdent("h");
         a = CssIdent.getIdent("alpha");
+
+        colorRelativeValues = new CssIdent[4];
+        colorRelativeValues[0] = l;
+        colorRelativeValues[1] = c;
+        colorRelativeValues[2] = h;
+        colorRelativeValues[3] = a;
+    }
+
+    public static boolean isColorRelativeValue(CssIdent ident) {
+        for (CssIdent id : colorRelativeValues) {
+            if (id.equals(ident)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     String output = null;
@@ -109,7 +125,7 @@ public class LCH {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (lch.isRelative && l.equals(val.getIdent()))) {
+                        (lch.isRelative && isColorRelativeValue(val.getIdent()))) {
                     lch.setL(ac, val);
                     break;
                 }
@@ -138,7 +154,7 @@ public class LCH {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (lch.isRelative && c.equals(val.getIdent()))) {
+                        (lch.isRelative && isColorRelativeValue(val.getIdent()))) {
                     lch.setC(ac, val);
                     break;
                 }
@@ -167,7 +183,7 @@ public class LCH {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (lch.isRelative && h.equals(val.getIdent()))) {
+                        (lch.isRelative && isColorRelativeValue(val.getIdent()))) {
                     lch.setH(ac, val);
                     break;
                 }
@@ -207,7 +223,7 @@ public class LCH {
                     break;
                 case CssTypes.CSS_IDENT:
                     if (CssColor.none.equals(val.getIdent()) ||
-                            (lch.isRelative && a.equals(val.getIdent()))) {
+                            (lch.isRelative && isColorRelativeValue(val.getIdent()))) {
                         lch.setAlpha(ac, val);
                         break;
                     }
