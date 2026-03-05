@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2026/WD-css-fonts-5-20260303/#descdef-font-face-descent-override
+ * @spec https://www.w3.org/TR/2026/WD-css-fonts-5-20260303/#descdef-font-face-subscript-position-override
  */
-public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssDescentOverride {
+public class CssSubscriptPositionOverride extends org.w3c.css.properties.css.fontface.CssSubscriptPositionOverride {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"normal"};
+        String[] _allowed_values = {"normal", "from-font"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -43,19 +43,19 @@ public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssD
     }
 
     /**
-     * Create a new CssDescentOverride
+     * Create a new CssSubscriptPositionOverride
      */
-    public CssDescentOverride() {
+    public CssSubscriptPositionOverride() {
         value = initial;
     }
 
     /**
-     * Creates a new CssDescentOverride
+     * Creates a new CssSubscriptPositionOverride
      *
      * @param expression The expression for this property
      * @throws InvalidParamException Expressions are incorrect
      */
-    public CssDescentOverride(ApplContext ac, CssExpression expression, boolean check)
+    public CssSubscriptPositionOverride(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
@@ -65,6 +65,7 @@ public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssD
 
         char op;
         CssValue val;
+
         ArrayList<CssValue> values = new ArrayList<>();
 
         while (!expression.end()) {
@@ -92,7 +93,7 @@ public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssD
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssDescentOverride(ApplContext ac, CssExpression expression)
+    public CssSubscriptPositionOverride(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

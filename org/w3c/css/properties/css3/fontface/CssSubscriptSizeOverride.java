@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2026/WD-css-fonts-5-20260303/#descdef-font-face-descent-override
+ * @spec https://www.w3.org/TR/2026/WD-css-fonts-5-20260303/#descdef-font-face-subscript-Size-override
  */
-public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssDescentOverride {
+public class CssSubscriptSizeOverride extends org.w3c.css.properties.css.fontface.CssSubscriptSizeOverride {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"normal"};
+        String[] _allowed_values = {"normal", "from-font"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -43,19 +43,19 @@ public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssD
     }
 
     /**
-     * Create a new CssDescentOverride
+     * Create a new CssSubscriptSizeOverride
      */
-    public CssDescentOverride() {
+    public CssSubscriptSizeOverride() {
         value = initial;
     }
 
     /**
-     * Creates a new CssDescentOverride
+     * Creates a new CssSubscriptSizeOverride
      *
      * @param expression The expression for this property
      * @throws InvalidParamException Expressions are incorrect
      */
-    public CssDescentOverride(ApplContext ac, CssExpression expression, boolean check)
+    public CssSubscriptSizeOverride(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
@@ -65,6 +65,7 @@ public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssD
 
         char op;
         CssValue val;
+
         ArrayList<CssValue> values = new ArrayList<>();
 
         while (!expression.end()) {
@@ -72,6 +73,7 @@ public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssD
             op = expression.getOperator();
             switch (val.getType()) {
                 case CssTypes.CSS_PERCENTAGE:
+                    val.getCheckableValue().checkPositiveness(ac, this);
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
@@ -92,7 +94,7 @@ public class CssDescentOverride extends org.w3c.css.properties.css.fontface.CssD
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssDescentOverride(ApplContext ac, CssExpression expression)
+    public CssSubscriptSizeOverride(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
