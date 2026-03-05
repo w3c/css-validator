@@ -27,13 +27,24 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 public class HSL {
-    public static final CssIdent h, s, l, a;
+    public static final CssIdent[] colorRelativeValues;
 
     static {
-        h = CssIdent.getIdent("h");
-        s = CssIdent.getIdent("s");
-        l = CssIdent.getIdent("l");
-        a = CssIdent.getIdent("alpha");
+        String[] _allowed_values = {"h", "s", "l", "alpha"};
+        colorRelativeValues = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            colorRelativeValues[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static boolean isColorRelativeValue(CssIdent ident) {
+        for (CssIdent id : colorRelativeValues) {
+            if (id.equals(ident)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     String output = null;
@@ -140,7 +151,7 @@ public class HSL {
                 break;
             case CssTypes.CSS_IDENT:
                 if (separator_space && CssColor.none.equals(val.getIdent()) ||
-                        (hsl.isRelative && h.equals(val.getIdent()))) {
+                        (hsl.isRelative && isColorRelativeValue(val.getIdent()))) {
                     hsl.setHue(ac, val);
                     break;
                 }
@@ -173,7 +184,7 @@ public class HSL {
                 break;
             case CssTypes.CSS_IDENT:
                 if (separator_space && CssColor.none.equals(val.getIdent()) ||
-                        (hsl.isRelative && s.equals(val.getIdent()))) {
+                        (hsl.isRelative && isColorRelativeValue(val.getIdent()))) {
                     hsl.setSaturation(ac, val);
                     break;
                 }
@@ -204,7 +215,7 @@ public class HSL {
                 break;
             case CssTypes.CSS_IDENT:
                 if (separator_space && CssColor.none.equals(val.getIdent()) ||
-                        (hsl.isRelative && l.equals(val.getIdent()))) {
+                        (hsl.isRelative && isColorRelativeValue(val.getIdent()))) {
                     hsl.setLightness(ac, val);
                     break;
                 }
@@ -263,7 +274,7 @@ public class HSL {
                         break;
                     case CssTypes.CSS_IDENT:
                         if ((op != COMMA) && (CssColor.none.equals(val.getIdent()) ||
-                                (hsl.isRelative && a.equals(val.getIdent())))) {
+                                (hsl.isRelative && isColorRelativeValue(val.getIdent())))) {
                             hsl.setAlpha(ac, val);
                             break;
                         }

@@ -23,20 +23,15 @@ import java.math.BigDecimal;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 public class LCH {
-    public static final CssIdent l, c, h, a;
-    public static final CssIdent colorRelativeValues[];
+    public static final CssIdent[] colorRelativeValues;
 
     static {
-        l = CssIdent.getIdent("l");
-        c = CssIdent.getIdent("c");
-        h = CssIdent.getIdent("h");
-        a = CssIdent.getIdent("alpha");
-
-        colorRelativeValues = new CssIdent[4];
-        colorRelativeValues[0] = l;
-        colorRelativeValues[1] = c;
-        colorRelativeValues[2] = h;
-        colorRelativeValues[3] = a;
+        String[] _allowed_values = {"l", "c", "h", "alpha"};
+        colorRelativeValues = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            colorRelativeValues[i++] = CssIdent.getIdent(s);
+        }
     }
 
     public static boolean isColorRelativeValue(CssIdent ident) {

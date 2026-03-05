@@ -20,13 +20,24 @@ import org.w3c.css.values.CssValue;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 public class LAB {
-    public static final CssIdent l, a, b, al;
+    public static final CssIdent[] colorRelativeValues;
 
     static {
-        l = CssIdent.getIdent("h");
-        a = CssIdent.getIdent("s");
-        b = CssIdent.getIdent("l");
-        al = CssIdent.getIdent("alpha");
+        String[] _allowed_values = {"l", "a", "b", "alpha"};
+        colorRelativeValues = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            colorRelativeValues[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static boolean isColorRelativeValue(CssIdent ident) {
+        for (CssIdent id : colorRelativeValues) {
+            if (id.equals(ident)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     String output = null;
@@ -138,7 +149,7 @@ public class LAB {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (lab.isRelative && l.equals(val.getIdent()))) {
+                        (lab.isRelative && isColorRelativeValue((val.getIdent())))) {
                     lab.setL(ac, val);
                     break;
                 }
@@ -163,7 +174,7 @@ public class LAB {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (lab.isRelative && a.equals(val.getIdent()))) {
+                        (lab.isRelative && isColorRelativeValue(val.getIdent()))) {
                     lab.setA(ac, val);
                     break;
                 }
@@ -191,7 +202,7 @@ public class LAB {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (lab.isRelative && b.equals(val.getIdent()))) {
+                        (lab.isRelative && isColorRelativeValue(val.getIdent()))) {
                     lab.setB(ac, val);
                     break;
                 }
@@ -231,7 +242,7 @@ public class LAB {
                     break;
                 case CssTypes.CSS_IDENT:
                     if (CssColor.none.equals(val.getIdent()) ||
-                            (lab.isRelative && al.equals(val.getIdent()))) {
+                            (lab.isRelative && isColorRelativeValue(val.getIdent()))) {
                         lab.setAlpha(ac, val);
                         break;
                     }

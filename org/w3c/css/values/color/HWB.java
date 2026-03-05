@@ -30,13 +30,25 @@ import java.math.RoundingMode;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 public class HWB {
-    public static final CssIdent h, w, b, a;
+
+    public static final CssIdent[] colorRelativeValues;
 
     static {
-        h = CssIdent.getIdent("h");
-        w = CssIdent.getIdent("w");
-        b = CssIdent.getIdent("b");
-        a = CssIdent.getIdent("alpha");
+        String[] _allowed_values = {"h", "w", "p", "alpha"};
+        colorRelativeValues = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            colorRelativeValues[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static boolean isColorRelativeValue(CssIdent ident) {
+        for (CssIdent id : colorRelativeValues) {
+            if (id.equals(ident)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     String output = null;
@@ -113,7 +125,7 @@ public class HWB {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (hwb.isRelative && h.equals(val.getIdent()))) {
+                        (hwb.isRelative && isColorRelativeValue(val.getIdent()))) {
                     hwb.setHue(ac, val);
                     break;
                 }
@@ -138,7 +150,7 @@ public class HWB {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (hwb.isRelative && w.equals(val.getIdent()))) {
+                        (hwb.isRelative && isColorRelativeValue(val.getIdent()))) {
                     hwb.setWhiteness(ac, val);
                     break;
                 }
@@ -166,7 +178,7 @@ public class HWB {
                 break;
             case CssTypes.CSS_IDENT:
                 if (CssColor.none.equals(val.getIdent()) ||
-                        (hwb.isRelative && b.equals(val.getIdent()))) {
+                        (hwb.isRelative && isColorRelativeValue(val.getIdent()))) {
                     hwb.setBlackness(ac, val);
                     break;
                 }
@@ -209,7 +221,7 @@ public class HWB {
                     break;
                 case CssTypes.CSS_IDENT:
                     if (CssColor.none.equals(val.getIdent()) ||
-                            (hwb.isRelative && a.equals(val.getIdent()))) {
+                            (hwb.isRelative && isColorRelativeValue(val.getIdent()))) {
                         hwb.setAlpha(ac, val);
                         break;
                     }
