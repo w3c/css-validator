@@ -3708,7 +3708,7 @@ CssValue function() :
 	    color.setHSLColor(ac, exp);
 	    return color;
 	} else if (funcname.equals("hsla(")) {
-	    color.setHSLColor(ac, exp);
+	    color.setHSLAColor(ac, exp);
 	    return color;
         } else if (funcname.equals("hwb(")) {
             color.setHWBColor(ac, exp);
@@ -3718,6 +3718,12 @@ CssValue function() :
             return color;
         } else if (funcname.equals("lch(")) {
             color.setLCHColor(ac, exp);
+            return color;
+        } else if (funcname.equals("oklab(")) {
+            color.setOKLABColor(ac, exp);
+            return color;
+        } else if (funcname.equals("oklch(")) {
+            color.setOKLCHColor(ac, exp);
             return color;
         } else if (funcname.equals("device-cmyk(")) {
             color.setDeviceCMYKColor(ac, exp);

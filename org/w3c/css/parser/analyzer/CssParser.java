@@ -8636,7 +8636,7 @@ String funcname = n.image.toLowerCase();
             color.setHSLColor(ac, exp);
             {if ("" != null) return color;}
         } else if (funcname.equals("hsla(")) {
-            color.setHSLColor(ac, exp);
+            color.setHSLAColor(ac, exp);
             {if ("" != null) return color;}
         } else if (funcname.equals("hwb(")) {
             color.setHWBColor(ac, exp);
@@ -8646,6 +8646,12 @@ String funcname = n.image.toLowerCase();
             {if ("" != null) return color;}
         } else if (funcname.equals("lch(")) {
             color.setLCHColor(ac, exp);
+            {if ("" != null) return color;}
+        } else if (funcname.equals("oklab(")) {
+            color.setOKLABColor(ac, exp);
+            {if ("" != null) return color;}
+        } else if (funcname.equals("oklch(")) {
+            color.setOKLCHColor(ac, exp);
             {if ("" != null) return color;}
         } else if (funcname.equals("device-cmyk(")) {
             color.setDeviceCMYKColor(ac, exp);
