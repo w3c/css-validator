@@ -487,6 +487,63 @@ public class CssColor extends CssValue {
         }
     }
 
+    /**
+     * parse a color function based on its name.
+     * @param ac
+     * @param exp
+     * @param function_name
+     * @return  a CssColor instance or null
+     * @throws InvalidParamException
+     */
+    public static CssColor parseColorFunction(ApplContext ac, CssExpression exp, String function_name)
+            throws InvalidParamException {
+        if (function_name != null) {
+            CssColor color = new CssColor();
+            switch (function_name) {
+                case "rgb(":
+                    color.setRGBColor(ac, exp);
+                    break;
+                case "rgba(":
+                    color.setRGBAColor(ac, exp);
+                    break;
+                case "hsl(":
+                    color.setHSLColor(ac, exp);
+                    break;
+                case "hsla(":
+                    color.setHSLAColor(ac, exp);
+                    break;
+                case "hwb(":
+                    color.setHWBColor(ac, exp);
+                    break;
+                case "lab(":
+                    color.setLABColor(ac, exp);
+                    break;
+                case "lch(":
+                    color.setLCHColor(ac, exp);
+                    break;
+                case "oklab(":
+                    color.setOKLABColor(ac, exp);
+                    break;
+                case "oklch(":
+                    color.setOKLCHColor(ac, exp);
+                    break;
+                case "device-cmyk(":
+                    color.setDeviceCMYKColor(ac, exp);
+                    break;
+                case "light-dark(":
+                    color.setLightDark(ac, exp);
+                    break;
+                case "color-mix(":
+                    color.setColorMix(ac, exp);
+                    break;
+                default:
+                    throw new InvalidParamException("invalid-color", ac);
+            }
+            return color;
+        }
+        return null;
+    }
+
     public void setHWBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         hwb = HWB.parseHWBColor(ac, exp, this);
