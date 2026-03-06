@@ -16,7 +16,7 @@ import java.util.HashMap;
 /**
  * A CSS env().
  *
- * @spec TODO
+ * @spec https://www.w3.org/TR/2025/WD-css-env-1-20250923/
  */
 public class CssEnv extends CssCheckableValue {
 
