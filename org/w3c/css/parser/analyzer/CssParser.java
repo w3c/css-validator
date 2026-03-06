@@ -8561,6 +8561,7 @@ if (exp != null) {
   final public CssValue function() throws ParseException {Token n,p = null,q = null;
  CssExpression exp = new CssExpression();
  CssColor color = new CssColor();
+ CssImage img;
     n = jj_consume_token(FUNCTION);
     label_221:
     while (true) {
@@ -8626,85 +8627,86 @@ if (exp != null) {
       }
       jj_consume_token(RPAREN);
 String funcname = n.image.toLowerCase();
-        if (funcname.equals("rgb(")) {
+        switch(funcname) {
+            case "rgb(":
             color.setRGBColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("rgba(")) {
+        case "rgba(":
             color.setRGBAColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("hsl(")) {
+        case "hsl(":
             color.setHSLColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("hsla(")) {
+        case "hsla(":
             color.setHSLAColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("hwb(")) {
+        case "hwb(":
             color.setHWBColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("lab(")) {
+        case "lab(":
             color.setLABColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("lch(")) {
+        case "lch(":
             color.setLCHColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("oklab(")) {
+        case "oklab(":
             color.setOKLABColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("oklch(")) {
+        case "oklch(":
             color.setOKLCHColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("device-cmyk(")) {
+        case "device-cmyk(":
             color.setDeviceCMYKColor(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("light-dark(")) {
+        case "light-dark(":
             color.setLightDark(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("color-mix(")) {
+        case "color-mix(":
             color.setColorMix(ac, exp);
             {if ("" != null) return color;}
-        } else if (funcname.equals("image(")) {
-            CssImage img = new CssImage();
-            img.setImageList(exp, ac);
-            {if ("" != null) return img;}
-        } else if (funcname.equals("linear-gradient(")) {
-            CssImage img = new CssImage();
+            case "image(":
+                img = new CssImage();
+                img.setImageList(exp, ac);
+                {if ("" != null) return img;}
+            case "linear-gradient(":
+            img = new CssImage();
             img.setLinearGradient(exp, ac);
             {if ("" != null) return img;}
-        } else if (funcname.equals("repeating-linear-gradient(")) {
-            CssImage img = new CssImage();
+        case "repeating-linear-gradient(":
+            img = new CssImage();
             img.setRepeatingLinearGradient(exp, ac);
             {if ("" != null) return img;}
-        } else if (funcname.equals("radial-gradient(")) {
-            CssImage img = new CssImage();
+        case "radial-gradient(":
+            img = new CssImage();
             img.setRadialGradient(exp, ac);
             {if ("" != null) return img;}
-        } else if (funcname.equals("repeating-radial-gradient(")) {
-            CssImage img = new CssImage();
+        case "repeating-radial-gradient(":
+            img = new CssImage();
             img.setRepeatingRadialGradient(exp, ac);
             {if ("" != null) return img;}
-        } else if (funcname.equals("conic-gradient(")) {
-            CssImage img = new CssImage();
+        case "conic-gradient(":
+            img = new CssImage();
             img.setConicGradient(exp, ac);
             {if ("" != null) return img;}
-        } else if (funcname.equals("repeating-conic-gradient(")) {
-            CssImage img = new CssImage();
+        case "repeating-conic-gradient(":
+            img = new CssImage();
             img.setRepeatingConicGradient(exp, ac);
             {if ("" != null) return img;}
-        } else if (funcname.equals("atsc-rgba(")) {
-            if (getAtRule().toString().equals("@media atsc-tv")) {
-                color.setATSCRGBAColor(ac, exp);
-                {if ("" != null) return color;}
-            } else {
-                addError(new InvalidParamException("onlyATSC", "", ac),
+            case "atsc-rgba(":
+                if (getAtRule().toString().equals("@media atsc-tv")) {
+                    color.setATSCRGBAColor(ac, exp);
+                    {if ("" != null) return color;}
+                } else {
+                        addError(new InvalidParamException("onlyATSC", "", ac),
                                                  getAtRule().toString());
-                {if ("" != null) return null;}
-            }
-        } else {
-            CssFunction f = new CssFunction();
-            f.set(n.image.substring(0, n.image.length() - 1), exp);
-            if (funcname.charAt(0) == '-') {
-                exp.markVendorExtension();
-            }
+                    {if ("" != null) return null;}
+                }
+            default:
+                CssFunction f = new CssFunction();
+                f.set(n.image.substring(0, n.image.length() - 1), exp);
+                if (funcname.charAt(0) == '-') {
+                    exp.markVendorExtension();
+                }
             {if ("" != null) return f;}
         }
     } else {

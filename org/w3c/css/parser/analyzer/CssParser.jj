@@ -3693,90 +3693,92 @@ CssValue function() :
 {Token n,p = null,q = null;
  CssExpression exp = new CssExpression();
  CssColor color = new CssColor();
+ CssImage img;
 }
 {
     n=<FUNCTION> ( <S> )*  ( LOOKAHEAD(2) ( exp=expr() )?
     ")" { 
 	String funcname = n.image.toLowerCase();
-	if (funcname.equals("rgb(")) {
-	    color.setRGBColor(ac, exp);
-	    return color;
-	} else if (funcname.equals("rgba(")) {
-	    color.setRGBAColor(ac, exp);
-	    return color;
-	} else if (funcname.equals("hsl(")) {
-	    color.setHSLColor(ac, exp);
-	    return color;
-	} else if (funcname.equals("hsla(")) {
-	    color.setHSLAColor(ac, exp);
-	    return color;
-        } else if (funcname.equals("hwb(")) {
+	switch(funcname) {
+	    case "rgb(":
+            color.setRGBColor(ac, exp);
+            return color;
+        case "rgba(":
+            color.setRGBAColor(ac, exp);
+            return color;
+        case "hsl(":
+            color.setHSLColor(ac, exp);
+            return color;
+        case "hsla(":
+            color.setHSLAColor(ac, exp);
+            return color;
+        case "hwb(":
             color.setHWBColor(ac, exp);
             return color;
-        } else if (funcname.equals("lab(")) {
+        case "lab(":
             color.setLABColor(ac, exp);
             return color;
-        } else if (funcname.equals("lch(")) {
+        case "lch(":
             color.setLCHColor(ac, exp);
             return color;
-        } else if (funcname.equals("oklab(")) {
+        case "oklab(":
             color.setOKLABColor(ac, exp);
             return color;
-        } else if (funcname.equals("oklch(")) {
+        case "oklch(":
             color.setOKLCHColor(ac, exp);
             return color;
-        } else if (funcname.equals("device-cmyk(")) {
+        case "device-cmyk(":
             color.setDeviceCMYKColor(ac, exp);
             return color;
-        } else if (funcname.equals("light-dark(")) {
-	    color.setLightDark(ac, exp);
-	    return color;
-        } else if (funcname.equals("color-mix(")) {
-	    color.setColorMix(ac, exp);
-	    return color;
-	} else if (funcname.equals("image(")) {
-	    CssImage img = new CssImage();
-	    img.setImageList(exp, ac);
-	    return img;
-        } else if (funcname.equals("linear-gradient(")) {
-            CssImage img = new CssImage();
+        case "light-dark(":
+            color.setLightDark(ac, exp);
+            return color;
+        case "color-mix(":
+            color.setColorMix(ac, exp);
+            return color;
+	    case "image(":
+	        img = new CssImage();
+	        img.setImageList(exp, ac);
+	        return img;
+	    case "linear-gradient(":
+            img = new CssImage();
             img.setLinearGradient(exp, ac);
             return img;
-        } else if (funcname.equals("repeating-linear-gradient(")) {
-            CssImage img = new CssImage();
+        case "repeating-linear-gradient(":
+            img = new CssImage();
             img.setRepeatingLinearGradient(exp, ac);
             return img;
-        } else if (funcname.equals("radial-gradient(")) {
-            CssImage img = new CssImage();
+        case "radial-gradient(":
+            img = new CssImage();
             img.setRadialGradient(exp, ac);
             return img;
-        } else if (funcname.equals("repeating-radial-gradient(")) {
-            CssImage img = new CssImage();
+        case "repeating-radial-gradient(":
+            img = new CssImage();
             img.setRepeatingRadialGradient(exp, ac);
             return img;
-        } else if (funcname.equals("conic-gradient(")) {
-            CssImage img = new CssImage();
+        case "conic-gradient(":
+            img = new CssImage();
             img.setConicGradient(exp, ac);
             return img;
-        } else if (funcname.equals("repeating-conic-gradient(")) {
-            CssImage img = new CssImage();
+        case "repeating-conic-gradient(":
+            img = new CssImage();
             img.setRepeatingConicGradient(exp, ac);
             return img;
-	} else if (funcname.equals("atsc-rgba(")) {
-	    if (getAtRule().toString().equals("@media atsc-tv")) {
-	        color.setATSCRGBAColor(ac, exp);
-	        return color;
-	    } else {
-		addError(new InvalidParamException("onlyATSC", "", ac),
+	    case "atsc-rgba(":
+	        if (getAtRule().toString().equals("@media atsc-tv")) {
+	            color.setATSCRGBAColor(ac, exp);
+	            return color;
+	        } else {
+		        addError(new InvalidParamException("onlyATSC", "", ac),
 						 getAtRule().toString());
-	        return null;
-	    }
-	} else {
-	    CssFunction f = new CssFunction();
-	    f.set(n.image.substring(0, n.image.length() - 1), exp);
-	    if (funcname.charAt(0) == '-') {
-	        exp.markVendorExtension();
-	    }
+	            return null;
+	        }
+	    default:
+	        CssFunction f = new CssFunction();
+	        f.set(n.image.substring(0, n.image.length() - 1), exp);
+	        if (funcname.charAt(0) == '-') {
+	            exp.markVendorExtension();
+	        }
 	    return f;
 	}
     }   |  p=ident() <EQ> q=<NUMBER> ")" ) {
