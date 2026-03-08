@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 //import org.xml.sax.helpers.LocatorImpl;
@@ -37,6 +40,7 @@ import java.net.URL;
  */
 public class AutoTestContentHandler implements ContentHandler {
 
+	public static final String CLI_PARAMS = "--output=soap12";
 	public static final String VALIDATOR = "http://jigsaw.w3.org/css-validator/validator?";
 	public static final String PARAMS = "&output=soap12";
 	public static final int TESTSUITE = "testsuite".hashCode();
@@ -63,6 +67,8 @@ public class AutoTestContentHandler implements ContentHandler {
 	boolean inDesc = false;
 	boolean inErrors = false;
 	boolean inWarnings = false;
+	int testFailCount = 0;
+	int testSuccessCount = 0;
 	String urlString = "";
 	String file = "";
 	String desc = "";
@@ -71,14 +77,18 @@ public class AutoTestContentHandler implements ContentHandler {
 	String profile;
 	String warning;
 	String medium;
+	String testInstance = "servlet";
 	
 	/**
 	 * Default Constructor.
 	 */
-	public AutoTestContentHandler() {
+	public AutoTestContentHandler(String testInstance) {
 		super();
 		// On definit le locator par defaut.
 		// locator = new LocatorImpl();
+		if (testInstance != null) {
+			this.testInstance = testInstance;
+		}
 	}
 
 	/**
@@ -259,9 +269,10 @@ public class AutoTestContentHandler implements ContentHandler {
 				System.err.println(e.getMessage());
 			}
 		} else if (element == TEST) {
-			String val;
-			System.err.println(urlString);
+			System.out.print(urlString + "... ");
 			String validURL = createValidURL(urlString);
+			String val;
+			List<String> command = new ArrayList<>();
 			if (isFile) {
 				InputStream content;
 				String text = "";
@@ -283,24 +294,55 @@ public class AutoTestContentHandler implements ContentHandler {
 
 			if (warning != null) {
 				val += "&warning=" + warning;
+				command.add("--warning=" + warning);
 			}
 			if (profile != null) {
 				val += "&profile=" + profile;
+				command.add("--profile=" + profile);
 			}
 			if (medium != null) {
 				val += "&medium=" + medium;
+				command.add("--medium=" + medium);
 			}
 			val += PARAMS;
+			command.add(CLI_PARAMS);
+
+			if (isFile) {
+				command.add("file:" + urlString);
+			} else {
+				command.add(urlString);
+			}
 
 			try {
-				HttpManager manager = HttpManager.getManager();
-				Request request = manager.createRequest();
-				request.setMethod(HTTP.GET);
-				System.err.println(val);
-				request.setURL(new URL(val));
-				Reply reply = manager.runRequest(request);
-				// Get the reply input stream that contains the actual data:
-				InputStream res = reply.getInputStream();
+				InputStream res = null;
+				Reply reply = null;
+				if (testInstance.equals("servlet")) {
+					HttpManager manager = HttpManager.getManager();
+					Request request = manager.createRequest();
+					request.setMethod(HTTP.GET);
+					// System.out.println(val);
+					request.setURL(new URL(val));
+					reply = manager.runRequest(request);
+					res = reply.getInputStream();
+				} else if (testInstance.equals("jar")) {
+					Runtime r = Runtime.getRuntime();
+					command.add(0, "java");
+					command.add(1, "org.w3c.css.css.CssValidator");
+					ProcessBuilder pb = new ProcessBuilder(command);
+					Map<String, String> env = pb.environment();
+					env.put("CLASSPATH", env.get("CLASSPATH") + ":css-validator.jar");
+					Process p = pb.start();
+					res = p.getInputStream();
+				} else if (testInstance.equals("cli")) {
+					Runtime r = Runtime.getRuntime();
+					command.add(0, "css-validator");
+					ProcessBuilder pb = new ProcessBuilder(command);
+					Process p = pb.start();
+					res = p.getInputStream();
+				} else {
+					System.err.println("Unsupported operation. Invalid instance or instance not set: " + testInstance);
+					System.exit(2);
+				}
 
 				int currentChar;
 				StringBuffer buf = new StringBuffer();
@@ -308,7 +350,7 @@ public class AutoTestContentHandler implements ContentHandler {
 					buf.append((char) currentChar);
 				}
 
-				if (reply.getStatus() == 500) { // Internal Server Error
+				if (testInstance.equals("servlet") && reply.getStatus() == 500) { // Internal Server Error
 					if (buf.indexOf("env:Sender") != -1) {
 						printError(val, "Reply status code: 500<br/>"
 								+ "Invalid URL: Sender error");
@@ -342,14 +384,18 @@ public class AutoTestContentHandler implements ContentHandler {
 						result.setWarnings(Integer.parseInt(warn));
 					}
 					printResult(val.substring(0, val.length() - 14));
+					printResultToConsole(urlString);
 				}
 
 			} catch (MalformedURLException e) {
 				printError(val, e.getMessage());
+				printResultToConsole(urlString);
 			} catch (IOException e) {
 				printError(val, e.getMessage());
+				printResultToConsole(urlString);
 			} catch (HttpException e) {
 				printError(val, e.getMessage());
+				printResultToConsole(urlString);
 			}
 
 			isFile = false;
@@ -450,6 +496,56 @@ public class AutoTestContentHandler implements ContentHandler {
 	}
 
 	/**
+	 * Return whether "Valid" status is equal
+	 *
+	 */
+	private boolean isValidEqual() {
+		return (awaitedResult.isValid() == result.isValid());
+	}
+
+	/**
+	 * Return whether "Warnings" status is equal
+	 *
+	 */
+	private boolean isWarningsEqual() {
+		return (awaitedResult.getWarnings() == result.getWarnings());
+	}
+
+	/**
+	 * Return whether "Errors" status is equal
+	 *
+	 */
+	private boolean isErrorsEqual() {
+		return (awaitedResult.getErrors() == result.getErrors());
+	}
+
+	/**
+	 * Prints an HTML result of a validation to StdOut
+	 *
+	 * @param validatorPage
+	 *            the validator page result
+	 */
+	private void printResultToConsole(String urlString) {
+
+		if (isValidEqual() && isWarningsEqual() && isErrorsEqual()) {
+			testSuccessCount++;
+			System.out.println(" Success");
+		} else {
+			testFailCount++;
+			System.out.println(" \u001B[31mFailure\u001B[0m");
+			System.err.println("\t" + urlString);
+			System.err.print("\tExpected:");
+			System.err.print("\tV:"+awaitedResult.isValid());
+			System.err.print("\tE:"+awaitedResult.getErrors());
+			System.err.println("\tW:"+awaitedResult.getWarnings());
+			System.err.print("\tResult:\t");
+			System.err.print("\tV:"+result.isValid());
+			System.err.print("\tE:"+result.getErrors());
+			System.err.println("\tW:"+result.getWarnings());
+		}
+	}
+
+	/**
 	 * Used when an error occurs
 	 * 
 	 * @param validatorPage
@@ -512,6 +608,21 @@ public class AutoTestContentHandler implements ContentHandler {
 		res = res.replaceAll("\\\n", "");
 		res = res.replaceAll("\\\r", "");
 		return res;
+	}
+
+	public boolean hasErrors() {
+		if (testFailCount > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public int getTestFailCount() {
+		return testFailCount;
+	}
+
+	public int getTestSuccessCount() {
+		return testSuccessCount;
 	}
 
 }
