@@ -40,7 +40,7 @@ public class SimpleCharStream
 
   protected void ExpandBuff(boolean wrapAround)
   {
-    int newBufsize = bufsize >> 1;
+    int newBufsize = bufsize << 1;
     char[] newbuffer = new char[newBufsize];
     int newbufline[] = new int[newBufsize];
     int newbufcolumn[] = new int[newBufsize];
