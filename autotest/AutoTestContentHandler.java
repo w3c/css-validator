@@ -17,6 +17,7 @@ import org.xml.sax.SAXException;
 
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -204,15 +205,17 @@ public class AutoTestContentHandler implements ContentHandler {
 			desc = "";
 			result = new Result();
 
-			// Set default value of warning to Zero, because
+			// Set default value of warning to 1, because
+			// - The test suite ran by upstream uses the javasript at autotest/client/buildtest.js,
+			//   and the default value of warning is 1.
 			// - if the GET request to the servlet doesn't define a warning, it will be 0 (as per the
 			// ApplContext class default values).
 			// - on the contrary, the default value for the warning of the CLI is 2.
-			// So we have to set he default value to 0 here, so that when the warning is not defined
-			// it means 0. This is required to harmonize test result between call to jar and call to servlet.
-			warning = "0";
-			profile = null;
-			medium = null;
+			// So we have to set the default value to 1 here, so that when the warning is not defined
+			// it means 1. This is required to harmonize test result between call to jar and call to servlet.
+			warning = "1";     // Set to same default value as in autotest/client/buildtest.js
+			profile = "css21"; // Set to same default value as in autotest/client/buildtest.js
+			medium = "all";    // Set to same default value as in autotest/client/buildtest.js
 			for (int i = 0; i < attributs.getLength(); i++) {
 				String currentAttr = attributs.getLocalName(i);
 				if (currentAttr.equals("warning")) {
@@ -351,8 +354,13 @@ public class AutoTestContentHandler implements ContentHandler {
 						.getClassLoader()
 						.getResourceAsStream(urlString);
 					byte[] textBytes = new byte[content.available()];
-					content.read(textBytes, 0, textBytes.length);
-					text = createValidURL(new String(textBytes));
+					ByteArrayOutputStream result = new ByteArrayOutputStream();
+					for (int length; (length = content.read(textBytes)) != -1; ) {
+						result.write(textBytes, 0, length);
+					}
+					// Files are encoded in ISO-8859-1
+					// ie. "testsuite/properties/positive/content/css3/001.css"
+					text = createValidURL(result.toString("ISO-8859-1"));
 				} catch (IOException e) {
 					System.err.println(e.getMessage());
 				}
@@ -761,6 +769,8 @@ public class AutoTestContentHandler implements ContentHandler {
 		res = res.replaceAll("~'", "%7E");
 		res = res.replaceAll("\\\n", "");
 		res = res.replaceAll("\\\r", "");
+		// 'à' character is present in 'testsuite/properties/positive/content/css2/001.css'
+		res = res.replaceAll("à", "%C3%A0");
 		return res;
 	}
 

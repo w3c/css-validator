@@ -164,6 +164,7 @@
            classpathref="build.class.path"
            classpath="."
            debug="yes"
+           encoding="UTF-8"
            includeantruntime="false"/>
   </target>
 
