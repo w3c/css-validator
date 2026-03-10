@@ -86,7 +86,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
                 _strval = "e";
                 break;
             case "infinity":
-                value = BigDecimal.valueOf(Double.POSITIVE_INFINITY);
+                value = BigDecimal.valueOf(Double.MAX_VALUE);
                 isInt = true;
                 _strval = "infinity";
                 break;
@@ -108,6 +108,12 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
                 value = BigDecimal.ONE;
                 isInt = true;
                 _strval = val.toLowerCase();
+                break;
+            case "nan":
+                // FIXME add warning that this iss invalid at compute time?
+                value = BigDecimal.valueOf(Long.MAX_VALUE);
+                isInt = false;
+                _strval = "NaN";
                 break;
             default:
                 value = new BigDecimal(val);
