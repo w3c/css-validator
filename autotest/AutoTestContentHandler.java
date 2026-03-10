@@ -16,10 +16,13 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
 import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.StringBuilder;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -69,6 +72,8 @@ public class AutoTestContentHandler implements ContentHandler {
 	boolean inWarnings = false;
 	int testFailCount = 0;
 	int testSuccessCount = 0;
+	int testErrorCount = 0; // Errors while trying to run the test
+	boolean hasError = false;
 	String urlString = "";
 	String file = "";
 	String desc = "";
@@ -78,6 +83,7 @@ public class AutoTestContentHandler implements ContentHandler {
 	String warning;
 	String medium;
 	String testInstance = "servlet";
+	StringBuilder errorSb;
 	
 	/**
 	 * Default Constructor.
@@ -198,7 +204,13 @@ public class AutoTestContentHandler implements ContentHandler {
 			desc = "";
 			result = new Result();
 
-			warning = null;
+			// Set default value of warning to Zero, because
+			// - if the GET request to the servlet doesn't define a warning, it will be 0 (as per the
+			// ApplContext class default values).
+			// - on the contrary, the default value for the warning of the CLI is 2.
+			// So we have to set he default value to 0 here, so that when the warning is not defined
+			// it means 0. This is required to harmonize test result between call to jar and call to servlet.
+			warning = "0";
 			profile = null;
 			medium = null;
 			for (int i = 0; i < attributs.getLength(); i++) {
@@ -238,6 +250,61 @@ public class AutoTestContentHandler implements ContentHandler {
 		}
 	}
 
+	private void waitProcess(Process p, List<String> command) {
+		boolean waitForValue = false;
+		try {
+			waitForValue = p.waitFor(20,java.util.concurrent.TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			hasError = true;
+			errorSb.append("Request: ");
+			errorSb.append(command.toString());
+			errorSb.append(System.getProperty("line.separator"));
+			errorSb.append("Timeout reached. Subprocess stopped.");
+			errorSb.append(System.getProperty("line.separator"));
+			errorSb.append(e.getStackTrace().toString());
+			printError(command, "Timeout reached. Subprocess stopped.");
+			printErrorToConsole();
+			return;
+		}
+		if (waitForValue == true && p.exitValue() == 1) {
+			hasError = true;
+			errorSb.append("Request: ");
+			errorSb.append(command.toString());
+			errorSb.append(System.getProperty("line.separator"));
+			errorSb.append("Command failed with exit code: " + p.exitValue());
+			errorSb.append(System.getProperty("line.separator"));
+
+			StringBuilder cmdOutput = new StringBuilder();
+			try {
+				String line;
+				BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				while ((line = input.readLine()) != null) {
+					cmdOutput.append(line);
+					cmdOutput.append(System.getProperty("line.separator"));
+				}
+				input.close();
+				BufferedReader error = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+				while ((line = error.readLine()) != null) {
+					cmdOutput.append(line);
+					cmdOutput.append(System.getProperty("line.separator"));
+				}
+				error.close();
+				errorSb.append(cmdOutput);
+			}
+			catch (IOException e) {
+				errorSb.append(e.getMessage());
+				errorSb.append(System.getProperty("line.separator"));
+				errorSb.append(e.getStackTrace().toString());
+				printError(command, e.getMessage());
+				printErrorToConsole();
+				return;
+			}
+			printError(command, "Command failed with exit code: " + p.exitValue() + "<pre>" + cmdOutput + "</pre>");
+			printErrorToConsole();
+			//System.exit(p.exitValue());
+		}
+	}
+
 	/**
 	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String,
 	 *      java.lang.String, java.lang.String)
@@ -269,6 +336,8 @@ public class AutoTestContentHandler implements ContentHandler {
 				System.err.println(e.getMessage());
 			}
 		} else if (element == TEST) {
+			hasError = false;
+			errorSb = new StringBuilder("");
 			System.out.print(urlString + "... ");
 			String validURL = createValidURL(urlString);
 			String val;
@@ -294,7 +363,11 @@ public class AutoTestContentHandler implements ContentHandler {
 
 			if (warning != null) {
 				val += "&warning=" + warning;
-				command.add("--warning=" + warning);
+				if (warning.equals("no")) {
+					command.add("--warning=-1");
+				} else {
+					command.add("--warning=" + warning);
+				}
 			}
 			if (profile != null) {
 				val += "&profile=" + profile;
@@ -332,12 +405,14 @@ public class AutoTestContentHandler implements ContentHandler {
 					Map<String, String> env = pb.environment();
 					env.put("CLASSPATH", env.get("CLASSPATH") + ":css-validator.jar");
 					Process p = pb.start();
+					waitProcess(p, command);
 					res = p.getInputStream();
 				} else if (testInstance.equals("cli")) {
 					Runtime r = Runtime.getRuntime();
 					command.add(0, "css-validator");
 					ProcessBuilder pb = new ProcessBuilder(command);
 					Process p = pb.start();
+					waitProcess(p, command);
 					res = p.getInputStream();
 				} else {
 					System.err.println("Unsupported operation. Invalid instance or instance not set: " + testInstance);
@@ -351,15 +426,26 @@ public class AutoTestContentHandler implements ContentHandler {
 				}
 
 				if (testInstance.equals("servlet") && reply.getStatus() == 500) { // Internal Server Error
+					hasError = true;
 					if (buf.indexOf("env:Sender") != -1) {
 						printError(val, "Reply status code: 500<br/>"
 								+ "Invalid URL: Sender error");
+						errorSb.append(val);
+						errorSb.append(System.getProperty("line.separator"));
+						errorSb.append("Reply status code: 500. Invalid URL: Sender error");
 					} else if (buf.indexOf("env:Receiver") != -1) {
 						printError(val, "Reply status code: 500<br/>"
 								+ "Unreachable URL: Receiver error");
+						errorSb.append(val);
+						errorSb.append(System.getProperty("line.separator"));
+						errorSb.append("Reply status code: 500. Unreachable URL: Receiver error");
 					} else {
 						printError(val, "Reply status code: 500");
+						errorSb.append(val);
+						errorSb.append(System.getProperty("line.separator"));
+						errorSb.append("Reply status code: 500");
 					}
+					printErrorToConsole();
 				} else {
 					result = new Result();
 					int begin = buf.indexOf("<m:validity>");
@@ -388,14 +474,42 @@ public class AutoTestContentHandler implements ContentHandler {
 				}
 
 			} catch (MalformedURLException e) {
-				printError(val, e.getMessage());
-				printResultToConsole(urlString);
+				if (hasError == false) {
+					hasError = true;
+					errorSb.append("Request: ");
+					errorSb.append(testInstance.equals("servlet") ? truncateString(val) : command.toString());
+					errorSb.append(System.getProperty("line.separator"));
+					errorSb.append(truncateString(e.getMessage()));
+					errorSb.append(System.getProperty("line.separator"));
+					printError(val, e.getMessage());
+					printErrorToConsole();
+				}
 			} catch (IOException e) {
-				printError(val, e.getMessage());
-				printResultToConsole(urlString);
+				if (hasError == false) {
+					hasError = true;
+					errorSb.append("Request: ");
+					errorSb.append(testInstance.equals("servlet") ? truncateString(val) : command.toString());
+					errorSb.append(System.getProperty("line.separator"));
+					errorSb.append(truncateString(e.getMessage()));
+					errorSb.append(System.getProperty("line.separator"));
+					printError(val, e.getMessage());
+					printErrorToConsole();
+				}
 			} catch (HttpException e) {
-				printError(val, e.getMessage());
-				printResultToConsole(urlString);
+				if (hasError == false) {
+					hasError = true;
+					errorSb.append("Request: ");
+					errorSb.append(testInstance.equals("servlet") ? truncateString(val) : command.toString());
+					errorSb.append(System.getProperty("line.separator"));
+					errorSb.append(truncateString(e.getMessage()));
+					errorSb.append(System.getProperty("line.separator"));
+					printError(val, e.getMessage());
+					printErrorToConsole();
+				}
+			}
+
+			if (hasError == true) {
+				testErrorCount++;
 			}
 
 			isFile = false;
@@ -409,6 +523,16 @@ public class AutoTestContentHandler implements ContentHandler {
 			inErrors = false;
 		} else if (element == WARNINGS) {
 			inWarnings = false;
+		}
+	}
+
+	private String truncateString(String str) {
+		int maxLength = 512;
+		int tailLength = 100;
+		if (str.length() <= maxLength) {
+			return str;
+		} else {
+			return str.substring(0, maxLength) + "...[TRUNCATED]..." + str.substring(str.length()-tailLength, str.length()) + "[TRUNCATED]";
 		}
 	}
 
@@ -526,7 +650,6 @@ public class AutoTestContentHandler implements ContentHandler {
 	 *            the validator page result
 	 */
 	private void printResultToConsole(String urlString) {
-
 		if (isValidEqual() && isWarningsEqual() && isErrorsEqual()) {
 			testSuccessCount++;
 			System.out.println(" Success");
@@ -556,16 +679,47 @@ public class AutoTestContentHandler implements ContentHandler {
 	private void printError(String validatorPage, String message) {
 
 		validatorPage = validatorPage.replaceAll("&", "&amp;");
-		urlString = urlString.replaceAll("&", "&amp;");
+		String urlString2 = urlString.replaceAll("&", "&amp;");
 
 		print("    <div class=\"error\">");
-		print("      <h3><a href=\"" + urlString + "\">"
-				+ urlString + "</a></h3>");
+		print("      <h3><a href=\"" + urlString2 + "\">"
+				+ urlString2 + "</a></h3>");
 		print("      <p><a href=\"" + validatorPage
 				+ "\">Go to the Validator page</a></p>");
 		print("      <p>" + desc + "</p>");
+		print("      <p>" + truncateString(message) + "</p>");
+		print("    </div>");
+	}
+
+	/**
+	 * Used when an error occurs
+	 *
+	 * @param validatorPage
+	 *            the validator page result
+	 * @param message
+	 *            the message to be displayed
+	 */
+	private void printError(List<String> command, String message) {
+
+		String urlString2 = urlString.replaceAll("&", "&amp;");
+
+		print("    <div class=\"error\">");
+		print("      <h3><a href=\"" + urlString2 + "\">"
+				+ urlString2 + "</a></h3>");
+		print("      <p>Command: " + command + "</p>");
+		print("      <p>" + desc + "</p>");
 		print("      <p>" + message + "</p>");
 		print("    </div>");
+	}
+
+	/**
+	 * Used when an error occurs. Prints to console.
+	 *
+	 */
+	private void printErrorToConsole() {
+		System.out.println(" \u001B[31mError\u001B[0m");
+		System.err.println(urlString.indent(4));
+		System.err.println(errorSb.toString().indent(4)); // String.indent() requires java >= 12.
 	}
 
 	/**
@@ -611,7 +765,7 @@ public class AutoTestContentHandler implements ContentHandler {
 	}
 
 	public boolean hasErrors() {
-		if (testFailCount > 0) {
+		if (testFailCount > 0 || testErrorCount > 0) {
 			return true;
 		}
 		return false;
@@ -623,6 +777,10 @@ public class AutoTestContentHandler implements ContentHandler {
 
 	public int getTestSuccessCount() {
 		return testSuccessCount;
+	}
+
+	public int getTestErrorCount() {
+		return testErrorCount;
 	}
 
 }

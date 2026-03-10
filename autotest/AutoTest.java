@@ -85,23 +85,29 @@ public class AutoTest {
 			AutoTest parser = new AutoTest(instance);
 			parser.parse(uri);
 			if (parser.autoTestContentHandler.hasErrors()) {
-				System.err.println("\tTest outcome:" +
+				System.err.println("\tTests outcome:" +
 					" " +
 					parser.autoTestContentHandler.getTestSuccessCount() +
 					" success(es)." +
 					" " +
 					parser.autoTestContentHandler.getTestFailCount() +
-					" failure(s)."
+					" failure(s)." +
+					" " +
+					parser.autoTestContentHandler.getTestErrorCount() +
+					" error(s)."
 					);
 				System.exit(1);
 			} else {
-				System.out.println("\tTest outcome:" +
+				System.out.println("\tTests outcome:" +
 					" " +
 					parser.autoTestContentHandler.getTestSuccessCount() +
 					" success(es)." +
 					" " +
 					parser.autoTestContentHandler.getTestFailCount() +
-					" failure(s)."
+					" failure(s)." +
+					" " +
+					parser.autoTestContentHandler.getTestErrorCount() +
+					" error(s)."
 					);
 			}
 		} catch (Throwable t) {
