@@ -34,7 +34,7 @@ public class HWB {
     public static final CssIdent[] colorRelativeValues;
 
     static {
-        String[] _allowed_values = {"h", "w", "p", "alpha"};
+        String[] _allowed_values = {"h", "w", "b", "alpha"};
         colorRelativeValues = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
