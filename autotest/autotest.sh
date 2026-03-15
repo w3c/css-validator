@@ -17,4 +17,4 @@ javac -classpath css-validator.jar \
   echo "Usage: autotest.sh ./testsuite/xml/FILENAME.xml" && \
   exit 1
 
-java -cp css-validator.jar autotest.AutoTest "$1"
+java -cp css-validator.jar autotest.AutoTest "$1" "${ENGINE:-servlet}"

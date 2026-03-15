@@ -10,6 +10,7 @@
 package org.w3c.css.css;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Util;
@@ -79,13 +80,21 @@ public class CssValidator {
         String profile = params.get("profile");
         ac.setCssVersionAndProfile(profile);
 
-        // medium to use
-        ac.setMedium(params.get("medium"));
+        // media, only if we are not using CSS1
+        if (ac.getCssVersion() != CssVersion.CSS1) {
+            String usermedium = params.get("medium");
+            if (usermedium == null || usermedium.isEmpty()) {
+                usermedium = "all";
+            }
+            ac.setMedium(usermedium);
+        }
 
         String vextwarn = params.get("vextwarning");
         ac.setTreatVendorExtensionsAsWarnings("true".equalsIgnoreCase(vextwarn));
         // TODO for now we use the same parameter for both vendor extensions and CSS Hacks.
         ac.setTreatCssHacksAsWarnings("true".equalsIgnoreCase(vextwarn));
+
+        ac.setWarningLevel(Integer.parseInt(params.get("warning")));
     }
 
     public static void main(String args[])
