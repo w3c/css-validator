@@ -211,6 +211,13 @@
       </td>
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>将扩展名显示为警告。
+        <code>true</code> 作为警告 <code>false</code> 作为错误.
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

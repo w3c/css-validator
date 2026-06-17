@@ -201,10 +201,17 @@ Serviciul de validare CSS este un serviciu gratuit, public pentru oricine, iar r
       <td>Engleza(<code>en</code>).</td>
     </tr>
     <tr>
-      <th>Avertisment</th>
+      <th>warning</th>
       <td>Nivelul de avertisment <code>no</code> pentru nici un avertisment, <code>0</code> pentru avertismente putine, <code>1</code>or <code>2</code> pentru avertismente mai multe.
       </td>
       <td>2</td>
+    </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>Afișați extensiile ca avertismente.
+        <code>true</code> ca avertismente, <code>false</code> ca erori.
+      </td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>
