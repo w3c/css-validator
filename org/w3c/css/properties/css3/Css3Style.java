@@ -648,6 +648,7 @@ public class Css3Style extends ATSCStyle {
     public CssFontDisplay fontFaceCssFontDisplay;
     public CssFontWeight fontFaceCssFontWeight;
     public org.w3c.css.properties.css.fontface.CssFontWidth fontFaceCssFontWidth;
+    public org.w3c.css.properties.css.fontface.CSSFontStretch fontFaceCssFontStretch;
     public CssFontStyle fontFaceCssFontStyle;
     public org.w3c.css.properties.css.fontface.CssFontLanguageOverride fontFaceCssFontLanguageOverride;
     public CssFontNamedInstance fontFaceCssFontNamedInstance;
@@ -1831,6 +1832,13 @@ public class Css3Style extends ATSCStyle {
         return fontFaceCssFontDisplay;
     }
 
+    public org.w3c.css.properties.css.fontface.CSSFontStretch getFontFaceCssFontStretch() {
+        if (fontFaceCssFontStretch == null) {
+            fontFaceCssFontStretch = (org.w3c.css.properties.css.fontface.CSSFontStretch) style.CascadingOrder(new org.w3c.css.properties.css.fontface.CSSFontStretch(), style, selector);
+        }
+        return fontFaceCssFontStretch;
+    }
+    
     public org.w3c.css.properties.css.fontface.CssFontWidth getFontFaceCssFontWidth() {
         if (fontFaceCssFontWidth == null) {
             fontFaceCssFontWidth =
