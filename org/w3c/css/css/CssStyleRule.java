@@ -10,7 +10,7 @@ import org.w3c.css.util.Messages;
 
 import java.util.ArrayList;
 
-public class CssStyleRule {
+public class CssStyleRule implements ICssStyleRuleOrCssRuleList  {
 
     public CssStyleRule(String indent, String selectors,
                         ArrayList<CssProperty> properties, boolean important) {
