@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssUserZoom extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssUserZoom
      */
@@ -52,7 +50,6 @@ public class CssUserZoom extends CssProperty {
         return value;
     }
 
-
     /**
      * Returns the name of this property
      */
@@ -69,13 +66,6 @@ public class CssUserZoom extends CssProperty {
     }
 
     /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
@@ -88,7 +78,6 @@ public class CssUserZoom extends CssProperty {
         s.viewportCssUserZoom = this;
     }
 
-
     /**
      * Compares two properties for equality.
      *
@@ -98,7 +87,6 @@ public class CssUserZoom extends CssProperty {
         return (property instanceof CssUserZoom &&
                 value.equals(((CssUserZoom) property).value));
     }
-
 
     /**
      * Get this property in the style.

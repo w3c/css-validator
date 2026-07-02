@@ -18,7 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CatchallProperty extends CssProperty {
 
-    public CssValue value;
     public String name;
 
     /**
@@ -54,7 +53,6 @@ public class CatchallProperty extends CssProperty {
         return value;
     }
 
-
     /**
      * Returns the name of this property
      */
@@ -71,13 +69,6 @@ public class CatchallProperty extends CssProperty {
     }
 
     /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
@@ -85,7 +76,6 @@ public class CatchallProperty extends CssProperty {
     public void addToStyle(ApplContext ac, CssStyle style) {
         // TODO
     }
-
 
     /**
      * Compares two properties for equality.
@@ -96,7 +86,6 @@ public class CatchallProperty extends CssProperty {
         return (property instanceof CatchallProperty &&
                 value.equals(((CatchallProperty) property).value));
     }
-
 
     /**
      * Get this property in the style.

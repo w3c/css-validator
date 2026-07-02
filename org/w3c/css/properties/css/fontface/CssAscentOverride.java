@@ -19,8 +19,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssAscentOverride extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssAscentOverride
      */
@@ -53,7 +51,6 @@ public class CssAscentOverride extends CssProperty {
         return value;
     }
 
-
     /**
      * Returns the name of this property
      */
@@ -70,13 +67,6 @@ public class CssAscentOverride extends CssProperty {
     }
 
     /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
@@ -89,7 +79,6 @@ public class CssAscentOverride extends CssProperty {
         s.fontFaceCssAscentOverride = this;
     }
 
-
     /**
      * Compares two properties for equality.
      *
@@ -99,7 +88,6 @@ public class CssAscentOverride extends CssProperty {
         return (property instanceof CssAscentOverride &&
                 value.equals(((CssAscentOverride) property).value));
     }
-
 
     /**
      * Get this property in the style.

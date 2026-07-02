@@ -48,12 +48,11 @@ public class CssFontWidth extends CssProperty {
         return value;
     }
 
-
     /**
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "font-Width";
+        return "font-width";
     }
 
     /**
@@ -62,13 +61,6 @@ public class CssFontWidth extends CssProperty {
      */
     public boolean isSoftlyInherited() {
         return value.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
     }
 
     /**
@@ -84,7 +76,6 @@ public class CssFontWidth extends CssProperty {
         s.fontFaceCssFontWidth = this;
     }
 
-
     /**
      * Compares two properties for equality.
      *
@@ -94,7 +85,6 @@ public class CssFontWidth extends CssProperty {
         return (property instanceof CssFontWidth &&
                 value.equals(property.value));
     }
-
 
     /**
      * Get this property in the style.

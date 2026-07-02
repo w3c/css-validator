@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssRenderingIntent extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssRenderingIntent
      */
@@ -52,7 +50,6 @@ public class CssRenderingIntent extends CssProperty {
         return value;
     }
 
-
     /**
      * Returns the name of this property
      */
@@ -69,13 +66,6 @@ public class CssRenderingIntent extends CssProperty {
     }
 
     /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
@@ -88,7 +78,6 @@ public class CssRenderingIntent extends CssProperty {
         s.colorProfileCssRenderingIntent = this;
     }
 
-
     /**
      * Compares two properties for equality.
      *
@@ -98,7 +87,6 @@ public class CssRenderingIntent extends CssProperty {
         return (property instanceof CssRenderingIntent &&
                 value.equals(((CssRenderingIntent) property).value));
     }
-
 
     /**
      * Get this property in the style.

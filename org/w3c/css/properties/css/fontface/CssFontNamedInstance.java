@@ -19,8 +19,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssFontNamedInstance extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssFontNamedInstance
      */
@@ -53,7 +51,6 @@ public class CssFontNamedInstance extends CssProperty {
         return value;
     }
 
-
     /**
      * Returns the name of this property
      */
@@ -70,13 +67,6 @@ public class CssFontNamedInstance extends CssProperty {
     }
 
     /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
@@ -89,7 +79,6 @@ public class CssFontNamedInstance extends CssProperty {
         s.fontFaceCssFontNamedInstance = this;
     }
 
-
     /**
      * Compares two properties for equality.
      *
@@ -99,7 +88,6 @@ public class CssFontNamedInstance extends CssProperty {
         return (property instanceof CssFontNamedInstance &&
                 value.equals(((CssFontNamedInstance) property).value));
     }
-
 
     /**
      * Get this property in the style.

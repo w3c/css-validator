@@ -19,8 +19,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssLineGapOverride extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssLineGapOverride
      */
@@ -53,7 +51,6 @@ public class CssLineGapOverride extends CssProperty {
         return value;
     }
 
-
     /**
      * Returns the name of this property
      */
@@ -70,13 +67,6 @@ public class CssLineGapOverride extends CssProperty {
     }
 
     /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
@@ -89,7 +79,6 @@ public class CssLineGapOverride extends CssProperty {
         s.fontFaceCssLineGapOverride = this;
     }
 
-
     /**
      * Compares two properties for equality.
      *
@@ -99,7 +88,6 @@ public class CssLineGapOverride extends CssProperty {
         return (property instanceof CssLineGapOverride &&
                 value.equals(((CssLineGapOverride) property).value));
     }
-
 
     /**
      * Get this property in the style.

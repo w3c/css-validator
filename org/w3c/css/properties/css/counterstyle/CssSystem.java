@@ -18,8 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssSystem extends CssProperty {
 
-    public CssValue value;
-
     /**
      * Create a new CssSystem
      */
@@ -52,7 +50,6 @@ public class CssSystem extends CssProperty {
         return value;
     }
 
-
     /**
      * Returns the name of this property
      */
@@ -69,13 +66,6 @@ public class CssSystem extends CssProperty {
     }
 
     /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
@@ -88,7 +78,6 @@ public class CssSystem extends CssProperty {
         s.counterStyleCssSystem = this;
     }
 
-
     /**
      * Compares two properties for equality.
      *
@@ -98,7 +87,6 @@ public class CssSystem extends CssProperty {
         return (property instanceof CssSystem &&
                 value.equals(((CssSystem) property).value));
     }
-
 
     /**
      * Get this property in the style.

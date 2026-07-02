@@ -263,10 +263,6 @@ public class CssPropertyFactory implements Cloneable {
             throw new WarningParamException("vendor-extension", expression.toStringFromStart());
         }
 
-        if (expression.hasCssVariable()) {
-            throw new WarningParamException("css-variable", expression.toStringFromStart());
-        }
-
         if (ac.getTreatCssHacksAsWarnings() && expression.hasCssHack()) {
             throw new WarningParamException("css-hack", expression.toStringFromStart());
         }
@@ -274,6 +270,7 @@ public class CssPropertyFactory implements Cloneable {
         try {
             boolean isCssWide = false;
             CssIdent cssIdent = null;
+            CssProperty p;
             if ((expression.getCount() == 1) && (expression.getValue().getRawType() == CssTypes.CSS_IDENT)) {
                 cssIdent = expression.getValue().getIdent();
                 isCssWide = CssIdent.isCssWide(cssIdent);
@@ -285,7 +282,7 @@ public class CssPropertyFactory implements Cloneable {
                 Object[] parameters = {};
                 expression.next(); // consume token
                 // invoke the constructor
-                CssProperty p = (CssProperty) constructor.newInstance(parameters);
+                p = (CssProperty) constructor.newInstance(parameters);
                 p.value = cssIdent;
                 return p;
             } else if (isCatchall) {
@@ -294,20 +291,38 @@ public class CssPropertyFactory implements Cloneable {
                 Constructor constructor = Class.forName(classname).getConstructor(parametersType);
                 Object[] parameters = {ac, property, expression, Boolean.TRUE};
                 // invoke the constructor
-                return (CssProperty) constructor.newInstance(parameters);
+                p = (CssProperty) constructor.newInstance(parameters);
+                if (expression.hasCssVariable() && p.toString() == null) {
+                    p.valueString = expression.toStringFromStart();
+                }
+                return p;
             } else {
                 // create an instance of your property class
                 Class[] parametersType = {ac.getClass(), expression.getClass(), boolean.class};
                 Constructor constructor = Class.forName(classname).getConstructor(parametersType);
                 Object[] parameters = {ac, expression, Boolean.TRUE};
                 // invoke the constructor
-                return (CssProperty) constructor.newInstance(parameters);
+                p = (CssProperty) constructor.newInstance(parameters);
+                if (expression.hasCssVariable() && p.toString() == null) {
+                    p.valueString = expression.toStringFromStart();
+                }
+                return p;
 
             }
         } catch (InvocationTargetException e) {
             // catch InvalidParamException
             Exception ex = (Exception) e.getTargetException();
             //	uncomment for debug - ex.printStackTrace();
+            if (expression.hasCssVariable()) {
+                try {
+                    CssProperty p = (CssProperty) Class.forName(classname).getConstructor().newInstance();
+                    p.valueString = expression.toStringFromStart();
+                    ac.getFrame().addWarning("css-variable", new String[]{p.valueString});
+                    return p;
+                } catch (Exception fex) {
+                    throw new WarningParamException("css-variable", expression.toStringFromStart());
+                }
+            }
             throw ex;
         }
     }
