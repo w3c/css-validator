@@ -22,7 +22,6 @@ import org.w3c.css.index.IndexGenerator;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.Errors;
 import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.Codecs;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.FakeFile;
 import org.w3c.css.util.HTTPURL;
@@ -35,10 +34,12 @@ import org.w3c.www.mime.MimeTypeFormatException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -47,6 +48,7 @@ import java.io.PrintWriter;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * This class is a servlet to use the validator.
@@ -54,6 +56,7 @@ import java.nio.charset.Charset;
  * @version $Revision$
  */
 @SuppressWarnings("serial")
+@MultipartConfig
 public final class CssValidator extends HttpServlet {
 
     final static String texthtml = "text/html";
@@ -529,13 +532,6 @@ public final class CssValidator extends HttpServlet {
         String vendorExtensionAsWarnings = null;
         String inputType = "none";
 
-        ServletInputStream in = req.getInputStream();
-
-        byte[] buf = new byte[2048];
-        byte[] general = new byte[65536];
-        int count = 0;
-        int len;
-
         if (req.getParameter("debug") != null) {
             Util.onDebug = req.getParameter("debug").equals("true");
             if (Util.onDebug) {
@@ -555,71 +551,62 @@ public final class CssValidator extends HttpServlet {
         }
 
         try {
-            while ((len = in.readLine(buf, 0, buf.length)) != -1) {
-                if (len >= 2 && buf[len - 1] == '\n' && buf[len - 2] == '\r') {
-                    len -= 1;
-                    buf[len - 1] = (byte) '\n';
-                }
-                if (len != 0 && buf[len - 1] == '\r') {
-                    buf[len - 1] = (byte) '\n';
+            if (req.getPart(opt_file) != null) {
+                file = new FakeFile(req.getPart(opt_file).getSubmittedFileName());
+                file.setContentType(req.getPart(opt_file).getContentType());
+
+                InputStream is2 = req.getPart(opt_file).getInputStream();
+                ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+                int nRead;
+                byte[] data = new byte[16384];
+
+                while ((nRead = is2.read(data, 0, data.length)) != -1) {
+                    buffer.write(data, 0, nRead);
                 }
 
-                if (general.length < (count + len)) {
-                    byte[] old = general;
-                    general = new byte[old.length * 2];
-                    System.arraycopy(old, 0, general, 0, old.length);
-                }
-                System.arraycopy(buf, 0, general, count, len);
-                count += len;
+                file.write(buffer.toByteArray(), 0, buffer.size());
             }
-        } finally {
-            in.close();
-        }
 
-        try {
-            buf = new byte[count];
-            System.arraycopy(general, 0, buf, 0, count);
-            for (Pair<String, ?> pair : Codecs.mpFormDataDecode(buf, req.getContentType())) {
-                switch (pair.getKey()) {
-                    case opt_file:
-                        file = (FakeFile) pair.getValue();
-                        break;
-                    case opt_text:
-                        text = (String) pair.getValue();
-                        break;
-                    case opt_textcharset:
-                        textcharset = (Charset) pair.getValue();
-                        break;
-                    case opt_lang:
-                        lang = (String) pair.getValue();
-                        break;
-                    case opt_output:
-                        output = (String) pair.getValue();
-                        break;
-                    case opt_warning:
-                        warning = (String) pair.getValue();
-                        break;
-                    case opt_error:
-                        error = (String) pair.getValue();
-                        break;
-                    case opt_profile:
-                        profile = (String) pair.getValue();
-                        break;
-                    case opt_usermedium:
-                        usermedium = (String) pair.getValue();
-                        break;
-                    case opt_vextwarning:
-                        vendorExtensionAsWarnings = (String) pair.getValue();
-                        break;
-                    case opt_type:
-                        inputType = (String) pair.getValue();
-                        break;
-                    default:
-                        // log extra parameters?
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Oups! Error in Util/Codecs.java?!?");
+            textcharset = req.getCharacterEncoding() != null ? Charset.forName(req.getCharacterEncoding()) : StandardCharsets.UTF_8;
+            text = req.getPart(opt_text) != null ? new String(
+                req.getPart(opt_text).getInputStream().readAllBytes(),
+                textcharset
+            ) : text;
+            lang = req.getPart(opt_lang) != null ? new String(
+                req.getPart(opt_lang).getInputStream().readAllBytes(),
+                textcharset
+            ) : lang;
+            output = req.getPart(opt_output) != null ? new String(
+                req.getPart(opt_output).getInputStream().readAllBytes(),
+                textcharset
+            ) : output;
+            warning = req.getPart(opt_warning) != null ? new String(
+                req.getPart(opt_warning).getInputStream().readAllBytes(),
+                textcharset
+            ) : warning;
+            error = req.getPart(opt_error) != null ? new String(
+                req.getPart(opt_error).getInputStream().readAllBytes(),
+                textcharset
+            ) : error;
+            profile = req.getPart(opt_profile) != null ? new String(
+                req.getPart(opt_profile).getInputStream().readAllBytes(),
+                textcharset
+            ) : profile;
+            usermedium = req.getPart(opt_usermedium) != null ? new String(
+                req.getPart(opt_usermedium).getInputStream().readAllBytes(),
+                textcharset
+            ) : usermedium;
+            vendorExtensionAsWarnings = req.getPart(opt_vextwarning) != null ? new String(
+                req.getPart(opt_vextwarning).getInputStream().readAllBytes(),
+                textcharset
+            ) : vendorExtensionAsWarnings;
+            inputType = req.getPart(opt_type) != null ? new String(
+                req.getPart(opt_type).getInputStream().readAllBytes(),
+                textcharset
+            ) : inputType;
+        } catch (IOException e) {
+            System.out.println("Error getting form data");
             e.printStackTrace();
         }
 
