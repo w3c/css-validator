@@ -226,6 +226,13 @@
       </td>
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>확장명을 경고로 표시하십시오.
+        <code>true</code> 경고, <code>false</code> 오류.
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

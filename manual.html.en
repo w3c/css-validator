@@ -254,6 +254,13 @@ appreciated. thanks.</p>
       </td>
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>Allow vendor extensions to just show up as warnings.
+        <code>true</code> for warnings, <code>false</code> for errors.
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

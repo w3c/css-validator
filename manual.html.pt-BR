@@ -201,6 +201,13 @@ O serviço de validação CSS é gratuito e aberto a todos, usá-lo respeitando 
       </td>
       <td>2</td>
     </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>Exibir extensões de fornecedor como avisos.
+        <code>true</code> como avisos, <code>false</code> como erros.
+      </td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
