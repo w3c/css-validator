@@ -74,7 +74,7 @@ public class CssImageResolution extends org.w3c.css.properties.css.CssImageResol
                     }
                     if (fromVal == null) {
                         if (fromImage.equals(val)) {
-                            fromVal = fromImage;
+                            fromVal = val;
                             break;
                         }
                     }
@@ -85,9 +85,9 @@ public class CssImageResolution extends org.w3c.css.properties.css.CssImageResol
                                 throw new InvalidParamException("value", val.toString(),
                                         getPropertyName(), ac);
                             }
+                            snapVal = val;
+                            break;
                         }
-                        snapVal = snap;
-                        break;
                     }
                 default:
                     throw new InvalidParamException("value", val.toString(),
