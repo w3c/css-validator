@@ -47,10 +47,10 @@ public class CssImage extends CssValue {
         for (String s : _val) {
             extent_keywords[i++] = CssIdent.getIdent(s);
         }
-        String _img_tags[] = { "ltr", "rtl"};
+        String _img_tags[] = {"ltr", "rtl"};
         image_tags = new CssIdent[_img_tags.length];
         i = 0;
-        for (String s: _img_tags) {
+        for (String s : _img_tags) {
             image_tags[i++] = CssIdent.getIdent(s);
         }
     }
@@ -94,7 +94,7 @@ public class CssImage extends CssValue {
         return null;
     }
 
-    public static CssIdent getImageTag(CssIdent ident)  {
+    public static CssIdent getImageTag(CssIdent ident) {
         for (CssIdent id : image_tags) {
             if (id.equals(ident)) {
                 return id;
@@ -206,6 +206,243 @@ public class CssImage extends CssValue {
             }
         }
         value = (v.size() == 1) ? v.get(0) : new CssLayerList(v);
+    }
+
+    /**
+     * @param exp
+     * @param ac
+     * @throws InvalidParamException
+     * @spec https://www.w3.org/TR/2025/WD-css-images-4-20250930/#funcdef-image-set
+     */
+    public void setImageSet(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        name = "image-set";
+        _cache = null;
+
+        // image-set defined in CSS3 and onward
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(name).append('(').append(exp.toStringFromStart()).append(')');
+            throw new InvalidParamException("notversion", sb.toString(),
+                    ac.getCssVersionString(), ac);
+        }
+
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
+
+        ArrayList<CssValue> v = new ArrayList<CssValue>();
+        CssExpression e = new CssExpression();
+        CssValue val;
+        char op;
+
+        while (!exp.end()) {
+            val = exp.getValue();
+            op = exp.getOperator();
+            e.addValue(val);
+            if (op == COMMA) {
+                v.add(parseImageSetValue(e, ac, this));
+                e = new CssExpression();
+            } else if ((op != SPACE) && !hasCssVariable()) {
+                exp.starts();
+                throw new InvalidParamException("operator",
+                        Character.toString(op), ac);
+            }
+            exp.next();
+        }
+        if (e.getCount() > 0) {
+            v.add(parseImageSetValue(e, ac, this));
+        }
+        value = (v.size() == 1) ? v.get(0) : new CssLayerList(v);
+    }
+
+    private CssValue parseImageSetValue(CssExpression exp, ApplContext ac, CssImage caller)
+            throws InvalidParamException {
+        ArrayList<CssValue> v = new ArrayList<CssValue>();
+        CssValue val;
+        boolean gotresolution = false;
+        boolean gottype = false;
+
+        val = exp.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_URL:
+            case CssTypes.CSS_STRING:
+                break;
+            case CssTypes.CSS_IMAGE:
+                // image-set() can not be nested
+                if ((val.getRawType() == CssTypes.CSS_IMAGE) &&
+                        ((CssImage) val).name.equals(caller.name)) {
+                    // TODO another specific error?
+                    throw new InvalidParamException("value", val.toString(),
+                            name, ac);
+                }
+                break;
+            default:
+                if (!hasCssVariable()) {
+                    throw new InvalidParamException("value", val.toString(),
+                            name, ac);
+                }
+        }
+        v.add(val);
+        exp.next();
+
+        while (!exp.end()) {
+            val = exp.getValue();
+            switch (val.getType()) {
+                case CssTypes.CSS_RESOLUTION:
+                    if (gotresolution && !hasCssVariable()) {
+                        throw new InvalidParamException("value", val.toString(),
+                                name, ac);
+                    }
+                    gotresolution = true;
+                    v.add(val);
+                    break;
+                case CssTypes.CSS_FUNCTION:
+                    if (!gottype && (val.getRawType() == CssTypes.CSS_FUNCTION)) {
+                        CssFunction f = val.getFunction();
+                        if (!"type".equalsIgnoreCase(f.getName())) {
+                            throw new InvalidParamException("value", f.toString(), name, ac);
+                        }
+                        CssExpression params = f.getParameters();
+                        if (params.getCount() != 1) {
+                            throw new InvalidParamException("value", f.toString(), name, ac);
+                        }
+                        CssValue func_v = params.getValue();
+                        if (func_v.getType() != CssTypes.CSS_STRING) {
+                            throw new InvalidParamException("value",
+                                    func_v.toString(), f.getName(), ac);
+                        }
+                        gottype = true;
+                        v.add(val);
+                        break;
+                    }
+                default:
+                    if (!hasCssVariable()) {
+                        throw new InvalidParamException("value", val.toString(),
+                                name, ac);
+                    }
+                    v.add(val);
+            }
+            exp.next();
+        }
+        return (v.size() == 1) ? v.get(0) : new CssValueList(v);
+    }
+
+    /**
+     * @param exp
+     * @param ac
+     * @throws InvalidParamException
+     * @spec https://www.w3.org/TR/2025/WD-css-images-4-20250930/#funcdef-cross-fade
+     */
+    public void setCrossFade(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        name = "cross-fade";
+        _cache = null;
+        // cross-fade defined in CSS3 and onward
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(name).append('(').append(exp.toStringFromStart()).append(')');
+            throw new InvalidParamException("notversion", sb.toString(),
+                    ac.getCssVersionString(), ac);
+
+        }
+
+        if (exp.hasCssVariable()) {
+            markCssVariable();
+        }
+
+        ArrayList<CssValue> v = new ArrayList<CssValue>();
+        CssExpression e = new CssExpression();
+        CssValue val;
+        char op;
+
+        while (!exp.end()) {
+            val = exp.getValue();
+            op = exp.getOperator();
+            e.addValue(val);
+            if (op == COMMA) {
+                v.add(parseCrossFadeValue(e, ac, this));
+                e = new CssExpression();
+            } else if ((op != SPACE) && !hasCssVariable()) {
+                exp.starts();
+                throw new InvalidParamException("operator",
+                        Character.toString(op), ac);
+            }
+            exp.next();
+        }
+        if (e.getCount() > 0) {
+            v.add(parseCrossFadeValue(e, ac, this));
+        }
+        value = (v.size() == 1) ? v.get(0) : new CssLayerList(v);
+    }
+
+    private CssValue parseCrossFadeValue(CssExpression exp, ApplContext ac, CssImage caller)
+            throws InvalidParamException {
+        ArrayList<CssValue> v = new ArrayList<CssValue>();
+        CssValue val;
+        CssColor c;
+        boolean got_image = false;
+        boolean got_percentage = false;
+
+        while (!exp.end()) {
+            val = exp.getValue();
+            if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+                if (got_percentage && !hasCssVariable()) {
+                    throw new InvalidParamException("value", val.toString(),
+                            name, ac);
+                }
+                if (val.isCheckableValue()) {
+                    CssPercentage p = val.getPercentage();
+                    p.checkPositiveness(ac, caller.name);
+                    p.checkLowerEqualThan(ac, 100.d, caller.name);
+                }
+                got_percentage = true;
+                v.add(val);
+                exp.next();
+            } else {
+                // everything else is the <image> or the <color>
+                if (got_image && !hasCssVariable()) {
+                    throw new InvalidParamException("value", val.toString(),
+                            name, ac);
+                }
+                // we should have an image, or color, or fail :)
+                got_image = true;
+                switch (val.getType()) {
+                    case CssTypes.CSS_IMAGE:
+                    case CssTypes.CSS_URL:
+                        v.add(val);
+                        break;
+                    case CssTypes.CSS_HASH_IDENT:
+                        c = new CssColor();
+                        c.setShortRGBColor(ac, val.getHashIdent().toString());
+                        v.add((val.getRawType() == CssTypes.CSS_HASH_IDENT) ? c : val);
+                        break;
+                    case CssTypes.CSS_IDENT:
+                        if (CssColorCSS3.currentColor.equals(val.getIdent())) {
+                            v.add(val);
+                            break;
+                        }
+                        c = new CssColor();
+                        c.setIdentColor(ac, val.getIdent().toString());
+                        v.add((val.getRawType() == CssTypes.CSS_IDENT) ? c : val);
+                        break;
+                    case CssTypes.CSS_COLOR:
+                        v.add(val);
+                        break;
+                    default:
+                        if (!hasCssVariable()) {
+                            throw new InvalidParamException("value", val.toString(),
+                                    name, ac);
+                        }
+                        v.add(val);
+                }
+            }
+            exp.next();
+        }
+        if (!got_image && !hasCssVariable()) {
+            throw new InvalidParamException("few-value", name, ac);
+        }
+        return (v.size() == 1) ? v.get(0) : new CssValueList(v);
     }
 
     /**

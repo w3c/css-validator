@@ -4061,6 +4061,14 @@ CssValue function() :
 	    img = new CssImage();
 	    img.setImageList(exp, ac);
 	    return img;
+	case "image-set(":
+	    img = new CssImage();
+	    img.setImageSet(exp, ac);
+	    return img;
+	case "cross-fade(":
+	    img = new CssImage();
+	    img.setCrossFade(exp, ac);
+	    return img;
 	case "linear-gradient(":
             img = new CssImage();
             img.setLinearGradient(exp, ac);
