@@ -196,14 +196,20 @@ public class ColorMix {
                 op = exp.getOperator();
                 if (val.getType() == CssTypes.CSS_IDENT) {
                     id = val.getIdent();
-                    if (getAllowedValue(id, hueInterpolationMethodModifiers) != null) {
-                        values.add(val);
+                    if (getAllowedValue(id, hueInterpolationMethodModifiers) == null) {
+                        throw new InvalidParamException("value", val.toString(),
+                                caller, ac);
                     }
+                    values.add(val);
                     if (op != CssOperator.SPACE) {
                         throw new InvalidParamException("operator",
                                 Character.toString(op), ac);
                     }
                     exp.next();
+                    if (exp.end()) {    // we must have hue
+                        throw new InvalidParamException("few-value",
+                                caller.toString(), ac);
+                    }
                     val = exp.getValue();
                     if (hue.equals(val.getIdent())) {
                         values.add(val);
