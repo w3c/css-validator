@@ -65,6 +65,17 @@ public class CssImage extends CssValue {
         contains_variable = true;
     }
 
+    boolean contains_image_set = false;
+
+    // used to check image-set in image-set check
+    public boolean hasImageSet() {
+        return contains_image_set;
+    }
+
+    public void markImageSet() {
+        contains_image_set = true;
+    }
+
     public static boolean isVerticalIdent(CssIdent ident) {
         return ident.equals(top) || ident.equals(bottom);
     }
@@ -218,6 +229,7 @@ public class CssImage extends CssValue {
             throws InvalidParamException {
         name = "image-set";
         _cache = null;
+        markImageSet();
 
         // image-set defined in CSS3 and onward
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
@@ -253,6 +265,9 @@ public class CssImage extends CssValue {
         if (e.getCount() > 0) {
             v.add(parseImageSetValue(e, ac, this));
         }
+        if (v.isEmpty()) {
+            throw new InvalidParamException("few-value", name, ac);
+        }
         value = (v.size() == 1) ? v.get(0) : new CssLayerList(v);
     }
 
@@ -271,7 +286,7 @@ public class CssImage extends CssValue {
             case CssTypes.CSS_IMAGE:
                 // image-set() can not be nested
                 if ((val.getRawType() == CssTypes.CSS_IMAGE) &&
-                        ((CssImage) val).name.equals(caller.name)) {
+                        ((CssImage) val).hasImageSet()) {
                     // TODO another specific error?
                     throw new InvalidParamException("value", val.toString(),
                             name, ac);
@@ -373,6 +388,9 @@ public class CssImage extends CssValue {
         if (e.getCount() > 0) {
             v.add(parseCrossFadeValue(e, ac, this));
         }
+        if (v.isEmpty()) {
+            throw new InvalidParamException("few-value", name, ac);
+        }
         value = (v.size() == 1) ? v.get(0) : new CssLayerList(v);
     }
 
@@ -398,7 +416,6 @@ public class CssImage extends CssValue {
                 }
                 got_percentage = true;
                 v.add(val);
-                exp.next();
             } else {
                 // everything else is the <image> or the <color>
                 if (got_image && !hasCssVariable()) {
@@ -409,6 +426,12 @@ public class CssImage extends CssValue {
                 got_image = true;
                 switch (val.getType()) {
                     case CssTypes.CSS_IMAGE:
+                        if ((val.getRawType() == CssTypes.CSS_IMAGE) &&
+                                ((CssImage) val).hasImageSet()) {
+                            caller.markImageSet();
+                        }
+                        v.add(val);
+                        break;
                     case CssTypes.CSS_URL:
                         v.add(val);
                         break;
