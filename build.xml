@@ -6,7 +6,7 @@
   <!-- User-overrideable properties                                      -->
   <!-- =================================================================== -->
 
-  <property name="servlet.lib" value="/usr/share/java/servlet-2.3.jar"/>
+  <property name="servlet.lib" value="/usr/share/java/servlet-api-4.0.1.jar"/>
 
   <!-- =================================================================== -->
   <!-- Project-wide properties                                           -->
@@ -43,7 +43,7 @@
         <available file="lib/xercesImpl-2.12.2.jar"/>
         <available file="lib/xml-apis-1.4.01.jar"/>
         <available file="lib/tagsoup-1.2.1.jar"/>
-        <available file="lib/servlet-api-2.5-6.0.1.jar"/>
+        <available file="lib/javax.servlet-api-4.0.1.jar"/>
         <available file="lib/htmlparser-1.4.16.jar"/>
         <available file="lib/velocity-tools-generic-3.1.jar"/>
         <available file="lib/slf4j-api-1.7.36.jar"/>
@@ -70,13 +70,13 @@
     <get dest="tmp/xercesImpl-2.12.1.jar" src="https://repo1.maven.org/maven2/xerces/xercesImpl/2.12.1/xercesImpl-2.12.1.jar" usetimestamp="true"/>
     <get dest="tmp/xml-apis-1.4.01.jar" src="https://repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar" usetimestamp="true"/>
     <get dest="tmp/tagsoup-1.2.1.jar" src="https://repo1.maven.org/maven2/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar" usetimestamp="true"/>
-    <get dest="tmp/servlet-api-2.5-6.0.1.jar" src="https://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-6.0.1/servlet-api-2.5-6.0.1.jar" usetimestamp="true"/>
+    <get dest="tmp/javax.servlet-api-4.0.1.jar" src="https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar" usetimestamp="true"/>
     <get dest="tmp/htmlparser-1.4.16.jar" src="https://repo1.maven.org/maven2/nu/validator/htmlparser/1.4.16/htmlparser-1.4.16.jar" usetimestamp="true"/>
     <get dest="tmp/slf4j-api-1.7.36.jar" src="https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar" usetimestamp="true"/>
     <get dest="tmp/slf4j-nop-1.7.36.jar" src="https://repo1.maven.org/maven2/org/slf4j/slf4j-nop/1.7.36/slf4j-nop-1.7.36.jar" usetimestamp="true"/>
 
 
-    <copy file="tmp/servlet-api-2.5-6.0.1.jar" tofile="lib/servlet-api-2.5-6.0.1.jar"/>
+    <copy file="tmp/javax.servlet-api-4.0.1.jar" tofile="lib/javax.servlet-api-4.0.1.jar"/>
     <copy file="tmp/jigsaw-2.2.6.jar" tofile="lib/jigsaw-2.2.6.jar"/>
     <copy file="tmp/commons-beanutils-1.11.0.jar" tofile="lib/commons-beanutils-1.11.0.jar"/>
     <copy file="tmp/commons-collections4-4.5.0.jar" tofile="lib/commons-collections4-4.5.0.jar"/>

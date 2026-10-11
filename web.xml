@@ -12,6 +12,7 @@
       <param-name>vendorExtensionsAsWarnings</param-name>
       <param-value>true</param-value>
     </init-param>
+    <multipart-config/>
   </servlet>
   
   <servlet-mapping>
