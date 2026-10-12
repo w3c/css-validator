@@ -25,6 +25,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
+import java.util.Vector;
 
 /**
  * This class contains a style sheet with all rules, errors and warnings.
@@ -38,7 +41,9 @@ public class StyleSheet {
     private Errors errors;
     private Warnings warnings;
     private String type;
-    private ArrayList<CssRuleList> atRuleList;
+    private ArrayList<CssRuleList> atRuleListFlat = new ArrayList<>();
+    private ArrayList<CssRuleList> atRuleListTree = new ArrayList<>();
+    private Stack<CssRuleList> ruleInsertStack = new Stack<CssRuleList>();
     private boolean doNotAddRule;
     private boolean doNotAddAtRule;
     private static final boolean debug = false;
@@ -52,7 +57,6 @@ public class StyleSheet {
         errors = new Errors();
         warnings = new Warnings();
         cascading = new CssCascadingOrder();
-        atRuleList = new ArrayList<>();
         customProperties = new HashMap<>();
     }
 
@@ -249,7 +253,15 @@ public class StyleSheet {
         }
         CssRuleList rulelist = new CssRuleList();
         rulelist.addAtRule(atRule);
-        atRuleList.add(rulelist);
+        
+        atRuleListFlat.add(rulelist);
+        if (! ruleInsertStack.isEmpty()) {
+        	ruleInsertStack.peek().addSubRulelist(rulelist);
+        } else {
+            atRuleListTree.add(rulelist);
+        }
+        ruleInsertStack.add(rulelist);
+        
         indent += "   ";
     }
 
@@ -263,8 +275,9 @@ public class StyleSheet {
             return;
         }
         if (!doNotAddAtRule) {
-            CssRuleList rulelist = new CssRuleList();
-            atRuleList.add(rulelist); //for the new set of rules
+//            CssRuleList rulelist = new CssRuleList();
+//            atRuleList.add(rulelist); //for the new set of rules
+        	if (! ruleInsertStack.isEmpty()) ruleInsertStack.pop();
         }
         important = false;
         selectortext = "";
@@ -386,13 +399,15 @@ public class StyleSheet {
         if (!doNotAddRule) {
             CssStyleRule stylerule = new CssStyleRule(indent, selectortext,
                     properties, important);
-            if (!atRuleList.isEmpty()) {
-                rulelist = atRuleList.remove(atRuleList.size() - 1);
+            if (!ruleInsertStack.isEmpty()) {
+                rulelist = ruleInsertStack.peek();
             } else {
                 rulelist = new CssRuleList();
+                ruleInsertStack.add(rulelist);
+                atRuleListTree.add(rulelist);
+                atRuleListFlat.add(rulelist);
             }
             rulelist.addStyleRule(stylerule);
-            atRuleList.add(rulelist);
         }
         selectortext = "";
         doNotAddRule = false;
@@ -448,7 +463,10 @@ public class StyleSheet {
     }
 
     public ArrayList<CssRuleList> newGetRules() {
-        return atRuleList;
+        return atRuleListFlat;
+    }
+    public List<CssRuleList> newGetRulesTree() {
+    	return this.atRuleListTree;
     }
 
     String selectortext;
@@ -476,4 +494,5 @@ public class StyleSheet {
     private final ArrayList<OpenFrame> openRuleStack = new ArrayList<OpenFrame>();
     String indent = new String();
     public String charset;
+
 }
