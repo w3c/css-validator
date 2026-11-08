@@ -86,8 +86,8 @@ public class StyleSheetGenerator extends StyleReport {
         }
 
         try {
-            Velocity.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-            Velocity.setProperty("classpath.resource.loader.class",
+            Velocity.setProperty(RuntimeConstants.RESOURCE_LOADERS, "classpath");
+            Velocity.setProperty("resource.loader.classpath.class",
                     ClasspathResourceLoader.class.getName());
             Velocity.init();
             velocityToolManager = new ToolManager();
